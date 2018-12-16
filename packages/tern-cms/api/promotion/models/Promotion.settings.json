@@ -1,0 +1,40 @@
+{
+  "connection": "default",
+  "collectionName": "promotions",
+  "info": {
+    "name": "promotion",
+    "description": "A promotion on a product or collection of products."
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "collections": {
+      "collection": "collection",
+      "via": "promotions",
+      "dominant": true
+    },
+    "product": {
+      "model": "product",
+      "via": "promotion"
+    },
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "type": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "percentage",
+        " fixed"
+      ]
+    },
+    "enabled": {
+      "default": false,
+      "type": "boolean"
+    }
+  }
+}

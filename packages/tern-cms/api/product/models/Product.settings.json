@@ -1,0 +1,61 @@
+{
+  "connection": "default",
+  "collectionName": "products",
+  "info": {
+    "name": "product",
+    "description": "A product item."
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "primaryImage": {
+      "model": "image"
+    },
+    "collections": {
+      "collection": "collection",
+      "via": "products"
+    },
+    "promotion": {
+      "model": "promotion",
+      "via": "product"
+    },
+    "price": {
+      "default": "",
+      "type": "decimal",
+      "required": true
+    },
+    "type": {
+      "default": "",
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "physical",
+        "digital",
+        "donation",
+        "subscription"
+      ]
+    },
+    "slug": {
+      "default": "",
+      "unique": true,
+      "type": "string",
+      "required": true
+    },
+    "fullDescription": {
+      "default": "",
+      "type": "text"
+    },
+    "shortDescription": {
+      "default": "",
+      "type": "text"
+    }
+  }
+}

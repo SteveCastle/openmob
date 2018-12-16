@@ -1,0 +1,76 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/promotions",
+      "handler": "Promotion.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/promotions/count",
+      "handler": "Promotion.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/promotions/:id",
+      "handler": "Promotion.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/promotions",
+      "handler": "Promotion.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/promotions/:id",
+      "handler": "Promotion.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/promotions/:id",
+      "handler": "Promotion.destroy",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/promotions/:id/relationships/:relation",
+      "handler": "Promotion.createRelation",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/promotions/:id/relationships/:relation",
+      "handler": "Promotion.updateRelation",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/promotions/:id/relationships/:relation",
+      "handler": "Promotion.destroyRelation",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

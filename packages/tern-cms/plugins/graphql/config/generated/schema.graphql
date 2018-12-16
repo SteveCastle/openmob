@@ -1,0 +1,398 @@
+"""A collection of product items."""
+type Collection {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  products(sort: String, limit: Int, start: Int, where: JSON): [Product]
+  promotions(sort: String, limit: Int, start: Int, where: JSON): [Promotion]
+}
+
+input CollectionInput {
+  products: [ID]
+  title: String!
+  promotions: [ID]
+}
+
+input createCollectionInput {
+  data: CollectionInput
+}
+
+type createCollectionPayload {
+  collection: Collection
+}
+
+input createImageInput {
+  data: ImageInput
+}
+
+type createImagePayload {
+  image: Image
+}
+
+input createProductInput {
+  data: ProductInput
+}
+
+type createProductPayload {
+  product: Product
+}
+
+input createPromotionInput {
+  data: PromotionInput
+}
+
+type createPromotionPayload {
+  promotion: Promotion
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deleteCollectionInput {
+  where: InputID
+}
+
+type deleteCollectionPayload {
+  collection: Collection
+}
+
+input deleteImageInput {
+  where: InputID
+}
+
+type deleteImagePayload {
+  image: Image
+}
+
+input deleteProductInput {
+  where: InputID
+}
+
+type deleteProductPayload {
+  product: Product
+}
+
+input deletePromotionInput {
+  where: InputID
+}
+
+type deletePromotionPayload {
+  promotion: Promotion
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+enum ENUM_PRODUCT_TYPE {
+  physical
+  digital
+  donation
+  subscription
+}
+
+enum ENUM_PROMOTION_TYPE {
+  percentage
+  fixed
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related: [ID]
+}
+
+"""Image content type."""
+type Image {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  image: UploadFile
+}
+
+input ImageInput {
+  title: String
+  image: ID
+}
+
+input InputID {
+  id: ID!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Collection | createCollectionPayload | updateCollectionPayload | deleteCollectionPayload | Image | createImagePayload | updateImagePayload | deleteImagePayload | Product | createProductPayload | updateProductPayload | deleteProductPayload | Promotion | createPromotionPayload | updatePromotionPayload | deletePromotionPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+
+type Mutation {
+  createCollection(input: createCollectionInput): createCollectionPayload
+  updateCollection(input: updateCollectionInput): updateCollectionPayload
+  deleteCollection(input: deleteCollectionInput): deleteCollectionPayload
+  createImage(input: createImageInput): createImagePayload
+  updateImage(input: updateImageInput): updateImagePayload
+  deleteImage(input: deleteImageInput): deleteImagePayload
+  createProduct(input: createProductInput): createProductPayload
+  updateProduct(input: updateProductInput): updateProductPayload
+  deleteProduct(input: deleteProductInput): deleteProductPayload
+  createPromotion(input: createPromotionInput): createPromotionPayload
+  updatePromotion(input: updatePromotionInput): updatePromotionPayload
+  deletePromotion(input: deletePromotionInput): deletePromotionPayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  createUser(input: createUserInput): createUserPayload
+  updateUser(input: updateUserInput): updateUserPayload
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+"""A product item."""
+type Product {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  primaryImage: Image
+  promotion: Promotion
+  price: Float!
+  type: ENUM_PRODUCT_TYPE!
+  slug: String!
+  fullDescription: String
+  shortDescription: String
+  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
+}
+
+input ProductInput {
+  title: String!
+  primaryImage: ID
+  collections: [ID]
+  promotion: ID
+  price: Float!
+  type: ENUM_PRODUCT_TYPE!
+  slug: String!
+  fullDescription: String
+  shortDescription: String
+}
+
+"""A promotion on a product or collection of products."""
+type Promotion {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  product: Product
+  title: String
+  type: ENUM_PROMOTION_TYPE
+  enabled: Boolean
+  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
+}
+
+input PromotionInput {
+  collections: [ID]
+  product: ID
+  title: String
+  type: ENUM_PROMOTION_TYPE
+  enabled: Boolean
+}
+
+type Query {
+  collection(id: ID!): Collection
+  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
+  image(id: ID!): Image
+  images(sort: String, limit: Int, start: Int, where: JSON): [Image]
+  product(id: ID!): Product
+  products(sort: String, limit: Int, start: Int, where: JSON): [Product]
+  promotion(id: ID!): Promotion
+  promotions(sort: String, limit: Int, start: Int, where: JSON): [Promotion]
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  me: UsersPermissionsMe
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input updateCollectionInput {
+  where: InputID
+  data: CollectionInput
+}
+
+type updateCollectionPayload {
+  collection: Collection
+}
+
+input updateImageInput {
+  where: InputID
+  data: ImageInput
+}
+
+type updateImagePayload {
+  image: Image
+}
+
+input updateProductInput {
+  where: InputID
+  data: ProductInput
+}
+
+type updateProductPayload {
+  product: Product
+}
+
+input updatePromotionInput {
+  where: InputID
+  data: PromotionInput
+}
+
+type updatePromotionPayload {
+  promotion: Promotion
+}
+
+input updateRoleInput {
+  where: InputID
+  data: RoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateUserInput {
+  where: InputID
+  data: UserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadFile {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+}
+
+type UsersPermissionsMe {
+  _id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+}
