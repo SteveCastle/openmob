@@ -1,3 +1,4 @@
-# tern-cms
+# Tern CMS
 
-A quick description of tern-cms.
+A CMS for content management on the OpenMob Platform. Provides a graphql schema
+for starling.
