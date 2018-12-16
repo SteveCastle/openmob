@@ -14,6 +14,20 @@ input CollectionInput {
   promotions: [ID]
 }
 
+"""Company content type."""
+type Company {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  slug: String!
+}
+
+input CompanyInput {
+  title: String
+  slug: String!
+}
+
 input createCollectionInput {
   data: CollectionInput
 }
@@ -22,12 +36,36 @@ type createCollectionPayload {
   collection: Collection
 }
 
+input createCompanyInput {
+  data: CompanyInput
+}
+
+type createCompanyPayload {
+  company: Company
+}
+
+input createEventInput {
+  data: EventInput
+}
+
+type createEventPayload {
+  event: Event
+}
+
 input createImageInput {
   data: ImageInput
 }
 
 type createImagePayload {
   image: Image
+}
+
+input createPoliticianInput {
+  data: PoliticianInput
+}
+
+type createPoliticianPayload {
+  politician: Politician
 }
 
 input createProductInput {
@@ -75,12 +113,36 @@ type deleteCollectionPayload {
   collection: Collection
 }
 
+input deleteCompanyInput {
+  where: InputID
+}
+
+type deleteCompanyPayload {
+  company: Company
+}
+
+input deleteEventInput {
+  where: InputID
+}
+
+type deleteEventPayload {
+  event: Event
+}
+
 input deleteImageInput {
   where: InputID
 }
 
 type deleteImagePayload {
   image: Image
+}
+
+input deletePoliticianInput {
+  where: InputID
+}
+
+type deletePoliticianPayload {
+  politician: Politician
 }
 
 input deleteProductInput {
@@ -127,6 +189,24 @@ enum ENUM_PROMOTION_TYPE {
   fixed
 }
 
+"""Event content type."""
+type Event {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  slug: String!
+  startTime: DateTime
+  endTime: DateTime
+}
+
+input EventInput {
+  title: String!
+  slug: String!
+  startTime: DateTime
+  endTime: DateTime
+}
+
 input FileInput {
   name: String!
   hash: String!
@@ -163,15 +243,24 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Collection | createCollectionPayload | updateCollectionPayload | deleteCollectionPayload | Image | createImagePayload | updateImagePayload | deleteImagePayload | Product | createProductPayload | updateProductPayload | deleteProductPayload | Promotion | createPromotionPayload | updatePromotionPayload | deletePromotionPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Collection | createCollectionPayload | updateCollectionPayload | deleteCollectionPayload | Company | createCompanyPayload | updateCompanyPayload | deleteCompanyPayload | Event | createEventPayload | updateEventPayload | deleteEventPayload | Image | createImagePayload | updateImagePayload | deleteImagePayload | Politician | createPoliticianPayload | updatePoliticianPayload | deletePoliticianPayload | Product | createProductPayload | updateProductPayload | deleteProductPayload | Promotion | createPromotionPayload | updatePromotionPayload | deletePromotionPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
 
 type Mutation {
   createCollection(input: createCollectionInput): createCollectionPayload
   updateCollection(input: updateCollectionInput): updateCollectionPayload
   deleteCollection(input: deleteCollectionInput): deleteCollectionPayload
+  createCompany(input: createCompanyInput): createCompanyPayload
+  updateCompany(input: updateCompanyInput): updateCompanyPayload
+  deleteCompany(input: deleteCompanyInput): deleteCompanyPayload
+  createEvent(input: createEventInput): createEventPayload
+  updateEvent(input: updateEventInput): updateEventPayload
+  deleteEvent(input: deleteEventInput): deleteEventPayload
   createImage(input: createImageInput): createImagePayload
   updateImage(input: updateImageInput): updateImagePayload
   deleteImage(input: deleteImageInput): deleteImagePayload
+  createPolitician(input: createPoliticianInput): createPoliticianPayload
+  updatePolitician(input: updatePoliticianInput): updatePoliticianPayload
+  deletePolitician(input: deletePoliticianInput): deletePoliticianPayload
   createProduct(input: createProductInput): createProductPayload
   updateProduct(input: updateProductInput): updateProductPayload
   deleteProduct(input: deleteProductInput): deleteProductPayload
@@ -191,6 +280,19 @@ type Mutation {
   updateUser(input: updateUserInput): updateUserPayload
   deleteUser(input: deleteUserInput): deleteUserPayload
   upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+type Politician {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  slug: String!
+}
+
+input PoliticianInput {
+  name: String
+  slug: String!
 }
 
 """A product item."""
@@ -244,8 +346,14 @@ input PromotionInput {
 type Query {
   collection(id: ID!): Collection
   collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
+  company(id: ID!): Company
+  companies(sort: String, limit: Int, start: Int, where: JSON): [Company]
+  event(id: ID!): Event
+  events(sort: String, limit: Int, start: Int, where: JSON): [Event]
   image(id: ID!): Image
   images(sort: String, limit: Int, start: Int, where: JSON): [Image]
+  politician(id: ID!): Politician
+  politicians(sort: String, limit: Int, start: Int, where: JSON): [Politician]
   product(id: ID!): Product
   products(sort: String, limit: Int, start: Int, where: JSON): [Product]
   promotion(id: ID!): Promotion
@@ -279,6 +387,24 @@ type updateCollectionPayload {
   collection: Collection
 }
 
+input updateCompanyInput {
+  where: InputID
+  data: CompanyInput
+}
+
+type updateCompanyPayload {
+  company: Company
+}
+
+input updateEventInput {
+  where: InputID
+  data: EventInput
+}
+
+type updateEventPayload {
+  event: Event
+}
+
 input updateImageInput {
   where: InputID
   data: ImageInput
@@ -286,6 +412,15 @@ input updateImageInput {
 
 type updateImagePayload {
   image: Image
+}
+
+input updatePoliticianInput {
+  where: InputID
+  data: PoliticianInput
+}
+
+type updatePoliticianPayload {
+  politician: Politician
 }
 
 input updateProductInput {

@@ -1,0 +1,34 @@
+{
+  "connection": "default",
+  "collectionName": "events",
+  "info": {
+    "name": "event",
+    "description": "Event content type."
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "default": "",
+      "unique": true,
+      "type": "string",
+      "required": true
+    },
+    "startTime": {
+      "default": "",
+      "type": "date"
+    },
+    "endTime": {
+      "default": "",
+      "type": "date"
+    }
+  }
+}

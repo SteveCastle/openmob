@@ -2,72 +2,72 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/images",
-      "handler": "Image.find",
+      "path": "/events",
+      "handler": "Event.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/images/count",
-      "handler": "Image.count",
+      "path": "/events/count",
+      "handler": "Event.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/images/:id",
-      "handler": "Image.findOne",
+      "path": "/events/:id",
+      "handler": "Event.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/images",
-      "handler": "Image.create",
+      "path": "/events",
+      "handler": "Event.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/images/:id",
-      "handler": "Image.update",
+      "path": "/events/:id",
+      "handler": "Event.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/images/:id",
-      "handler": "Image.destroy",
+      "path": "/events/:id",
+      "handler": "Event.destroy",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.createRelation",
+      "path": "/events/:id/relationships/:relation",
+      "handler": "Event.createRelation",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.updateRelation",
+      "path": "/events/:id/relationships/:relation",
+      "handler": "Event.updateRelation",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.destroyRelation",
+      "path": "/events/:id/relationships/:relation",
+      "handler": "Event.destroyRelation",
       "config": {
         "policies": []
       }

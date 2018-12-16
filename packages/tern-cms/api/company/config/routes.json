@@ -2,72 +2,72 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/images",
-      "handler": "Image.find",
+      "path": "/companies",
+      "handler": "Company.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/images/count",
-      "handler": "Image.count",
+      "path": "/companies/count",
+      "handler": "Company.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/images/:id",
-      "handler": "Image.findOne",
+      "path": "/companies/:id",
+      "handler": "Company.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/images",
-      "handler": "Image.create",
+      "path": "/companies",
+      "handler": "Company.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/images/:id",
-      "handler": "Image.update",
+      "path": "/companies/:id",
+      "handler": "Company.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/images/:id",
-      "handler": "Image.destroy",
+      "path": "/companies/:id",
+      "handler": "Company.destroy",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.createRelation",
+      "path": "/companies/:id/relationships/:relation",
+      "handler": "Company.createRelation",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.updateRelation",
+      "path": "/companies/:id/relationships/:relation",
+      "handler": "Company.updateRelation",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.destroyRelation",
+      "path": "/companies/:id/relationships/:relation",
+      "handler": "Company.destroyRelation",
       "config": {
         "policies": []
       }

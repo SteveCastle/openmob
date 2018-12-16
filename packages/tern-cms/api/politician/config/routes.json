@@ -2,72 +2,72 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/images",
-      "handler": "Image.find",
+      "path": "/politicians",
+      "handler": "Politician.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/images/count",
-      "handler": "Image.count",
+      "path": "/politicians/count",
+      "handler": "Politician.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/images/:id",
-      "handler": "Image.findOne",
+      "path": "/politicians/:id",
+      "handler": "Politician.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/images",
-      "handler": "Image.create",
+      "path": "/politicians",
+      "handler": "Politician.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/images/:id",
-      "handler": "Image.update",
+      "path": "/politicians/:id",
+      "handler": "Politician.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/images/:id",
-      "handler": "Image.destroy",
+      "path": "/politicians/:id",
+      "handler": "Politician.destroy",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.createRelation",
+      "path": "/politicians/:id/relationships/:relation",
+      "handler": "Politician.createRelation",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.updateRelation",
+      "path": "/politicians/:id/relationships/:relation",
+      "handler": "Politician.updateRelation",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/images/:id/relationships/:relation",
-      "handler": "Image.destroyRelation",
+      "path": "/politicians/:id/relationships/:relation",
+      "handler": "Politician.destroyRelation",
       "config": {
         "policies": []
       }
