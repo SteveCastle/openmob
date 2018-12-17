@@ -9,6 +9,7 @@
    increase participation, and raise awareness out of the box.
 4. Provide a means to coordinate volunteers for sales and order fulfillment.
 5. Make testing and analytics a first class citizen.
+6. Do not require users to lock in to any third-party service.
 
 ## Technical Goals
 
@@ -18,4 +19,4 @@
    corporate lock in.
 3. Consider serverless first deployment.. if it can avoid provider lock in.
 4. One command CLI deploy and application manager.
-5. Provide best practice accessability out of the box.
+5. Provide best practice accessibility out of the box.
