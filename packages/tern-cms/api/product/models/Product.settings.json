@@ -19,10 +19,6 @@
     "primaryImage": {
       "model": "image"
     },
-    "collections": {
-      "collection": "collection",
-      "via": "products"
-    },
     "promotion": {
       "model": "promotion",
       "via": "product"

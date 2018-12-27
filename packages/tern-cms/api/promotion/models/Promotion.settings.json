@@ -11,11 +11,6 @@
     "comment": ""
   },
   "attributes": {
-    "collections": {
-      "collection": "collection",
-      "via": "promotions",
-      "dominant": true
-    },
     "product": {
       "model": "product",
       "via": "promotion"

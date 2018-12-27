@@ -1,0 +1,20 @@
+{
+  "connection": "default",
+  "collectionName": "races",
+  "info": {
+    "name": "race",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "Title": {
+      "default": "",
+      "type": "string",
+      "required": true
+    }
+  }
+}

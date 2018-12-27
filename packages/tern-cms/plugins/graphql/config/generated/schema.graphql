@@ -1,17 +1,25 @@
-"""A collection of product items."""
-type Collection {
+type Campaign {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
   title: String!
-  products(sort: String, limit: Int, start: Int, where: JSON): [Product]
-  promotions(sort: String, limit: Int, start: Int, where: JSON): [Promotion]
 }
 
-input CollectionInput {
-  products: [ID]
+input CampaignInput {
   title: String!
-  promotions: [ID]
+}
+
+type Cause {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  slug: String!
+}
+
+input CauseInput {
+  title: String!
+  slug: String!
 }
 
 """Company content type."""
@@ -28,12 +36,20 @@ input CompanyInput {
   slug: String!
 }
 
-input createCollectionInput {
-  data: CollectionInput
+input createCampaignInput {
+  data: CampaignInput
 }
 
-type createCollectionPayload {
-  collection: Collection
+type createCampaignPayload {
+  campaign: Campaign
+}
+
+input createCauseInput {
+  data: CauseInput
+}
+
+type createCausePayload {
+  cause: Cause
 }
 
 input createCompanyInput {
@@ -84,6 +100,14 @@ type createPromotionPayload {
   promotion: Promotion
 }
 
+input createRaceInput {
+  data: RaceInput
+}
+
+type createRacePayload {
+  race: Race
+}
+
 input createRoleInput {
   data: RoleInput
 }
@@ -105,12 +129,20 @@ The `DateTime` scalar represents a date and time following the ISO 8601 standard
 """
 scalar DateTime
 
-input deleteCollectionInput {
+input deleteCampaignInput {
   where: InputID
 }
 
-type deleteCollectionPayload {
-  collection: Collection
+type deleteCampaignPayload {
+  campaign: Campaign
+}
+
+input deleteCauseInput {
+  where: InputID
+}
+
+type deleteCausePayload {
+  cause: Cause
 }
 
 input deleteCompanyInput {
@@ -159,6 +191,14 @@ input deletePromotionInput {
 
 type deletePromotionPayload {
   promotion: Promotion
+}
+
+input deleteRaceInput {
+  where: InputID
+}
+
+type deleteRacePayload {
+  race: Race
 }
 
 input deleteRoleInput {
@@ -243,12 +283,15 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Collection | createCollectionPayload | updateCollectionPayload | deleteCollectionPayload | Company | createCompanyPayload | updateCompanyPayload | deleteCompanyPayload | Event | createEventPayload | updateEventPayload | deleteEventPayload | Image | createImagePayload | updateImagePayload | deleteImagePayload | Politician | createPoliticianPayload | updatePoliticianPayload | deletePoliticianPayload | Product | createProductPayload | updateProductPayload | deleteProductPayload | Promotion | createPromotionPayload | updatePromotionPayload | deletePromotionPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Campaign | createCampaignPayload | updateCampaignPayload | deleteCampaignPayload | Cause | createCausePayload | updateCausePayload | deleteCausePayload | Company | createCompanyPayload | updateCompanyPayload | deleteCompanyPayload | Event | createEventPayload | updateEventPayload | deleteEventPayload | Image | createImagePayload | updateImagePayload | deleteImagePayload | Politician | createPoliticianPayload | updatePoliticianPayload | deletePoliticianPayload | Product | createProductPayload | updateProductPayload | deleteProductPayload | Promotion | createPromotionPayload | updatePromotionPayload | deletePromotionPayload | Race | createRacePayload | updateRacePayload | deleteRacePayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
 
 type Mutation {
-  createCollection(input: createCollectionInput): createCollectionPayload
-  updateCollection(input: updateCollectionInput): updateCollectionPayload
-  deleteCollection(input: deleteCollectionInput): deleteCollectionPayload
+  createCampaign(input: createCampaignInput): createCampaignPayload
+  updateCampaign(input: updateCampaignInput): updateCampaignPayload
+  deleteCampaign(input: deleteCampaignInput): deleteCampaignPayload
+  createCause(input: createCauseInput): createCausePayload
+  updateCause(input: updateCauseInput): updateCausePayload
+  deleteCause(input: deleteCauseInput): deleteCausePayload
   createCompany(input: createCompanyInput): createCompanyPayload
   updateCompany(input: updateCompanyInput): updateCompanyPayload
   deleteCompany(input: deleteCompanyInput): deleteCompanyPayload
@@ -267,6 +310,9 @@ type Mutation {
   createPromotion(input: createPromotionInput): createPromotionPayload
   updatePromotion(input: updatePromotionInput): updatePromotionPayload
   deletePromotion(input: deletePromotionInput): deletePromotionPayload
+  createRace(input: createRaceInput): createRacePayload
+  updateRace(input: updateRaceInput): updateRacePayload
+  deleteRace(input: deleteRaceInput): deleteRacePayload
 
   """Create a new role"""
   createRole(input: createRoleInput): createRolePayload
@@ -308,13 +354,11 @@ type Product {
   slug: String!
   fullDescription: String
   shortDescription: String
-  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
 }
 
 input ProductInput {
   title: String!
   primaryImage: ID
-  collections: [ID]
   promotion: ID
   price: Float!
   type: ENUM_PRODUCT_TYPE!
@@ -332,11 +376,9 @@ type Promotion {
   title: String
   type: ENUM_PROMOTION_TYPE
   enabled: Boolean
-  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
 }
 
 input PromotionInput {
-  collections: [ID]
   product: ID
   title: String
   type: ENUM_PROMOTION_TYPE
@@ -344,8 +386,10 @@ input PromotionInput {
 }
 
 type Query {
-  collection(id: ID!): Collection
-  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
+  campaign(id: ID!): Campaign
+  campaigns(sort: String, limit: Int, start: Int, where: JSON): [Campaign]
+  cause(id: ID!): Cause
+  causes(sort: String, limit: Int, start: Int, where: JSON): [Cause]
   company(id: ID!): Company
   companies(sort: String, limit: Int, start: Int, where: JSON): [Company]
   event(id: ID!): Event
@@ -358,6 +402,8 @@ type Query {
   products(sort: String, limit: Int, start: Int, where: JSON): [Product]
   promotion(id: ID!): Promotion
   promotions(sort: String, limit: Int, start: Int, where: JSON): [Promotion]
+  race(id: ID!): Race
+  races(sort: String, limit: Int, start: Int, where: JSON): [Race]
   files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   role(id: ID!): UsersPermissionsRole
 
@@ -370,6 +416,17 @@ type Query {
   me: UsersPermissionsMe
 }
 
+type Race {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Title: String!
+}
+
+input RaceInput {
+  Title: String!
+}
+
 input RoleInput {
   name: String!
   description: String
@@ -378,13 +435,22 @@ input RoleInput {
   users: [ID]
 }
 
-input updateCollectionInput {
+input updateCampaignInput {
   where: InputID
-  data: CollectionInput
+  data: CampaignInput
 }
 
-type updateCollectionPayload {
-  collection: Collection
+type updateCampaignPayload {
+  campaign: Campaign
+}
+
+input updateCauseInput {
+  where: InputID
+  data: CauseInput
+}
+
+type updateCausePayload {
+  cause: Cause
 }
 
 input updateCompanyInput {
@@ -439,6 +505,15 @@ input updatePromotionInput {
 
 type updatePromotionPayload {
   promotion: Promotion
+}
+
+input updateRaceInput {
+  where: InputID
+  data: RaceInput
+}
+
+type updateRacePayload {
+  race: Race
 }
 
 input updateRoleInput {

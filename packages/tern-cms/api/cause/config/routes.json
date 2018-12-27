@@ -1,0 +1,76 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/causes",
+      "handler": "Cause.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/causes/count",
+      "handler": "Cause.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/causes/:id",
+      "handler": "Cause.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/causes",
+      "handler": "Cause.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/causes/:id",
+      "handler": "Cause.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/causes/:id",
+      "handler": "Cause.destroy",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/causes/:id/relationships/:relation",
+      "handler": "Cause.createRelation",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/causes/:id/relationships/:relation",
+      "handler": "Cause.updateRelation",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/causes/:id/relationships/:relation",
+      "handler": "Cause.destroyRelation",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
