@@ -28,13 +28,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	var p1 models.Person
+	var p1 models.Cause
 	p1.ID = 1
 	err = p1.Insert(context.Background(), db, boil.Infer())
 	if err != nil {
 		panic(err)
 	}
-	doesIt, _ := models.People(qm.Where("id=?", 1)).Exists(context.Background(), db)
+	doesIt, _ := models.Causes(qm.Where("id=?", 1)).Exists(context.Background(), db)
 	fmt.Println(doesIt)
 	fmt.Println("vim-go")
 }

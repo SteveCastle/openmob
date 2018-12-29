@@ -1,12 +1,5 @@
 development:
-    dialect: postgres
-    datasource: dbname=tern user=tern password=tern sslmode=disable
-    dir: migrations/postgres
-    table: migrations
-
-
-production:
-    dialect: postgres
-    datasource: dbname=tern sslmode=disable
-    dir: migrations/postgres
-    table: migrations
+  dialect: postgres
+  datasource: dbname=tern user=tern password=tern sslmode=disable
+  dir: migrations/postgres
+  table: migrations
