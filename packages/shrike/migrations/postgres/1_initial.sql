@@ -17,7 +17,7 @@ CREATE TABLE account
 
 create table acl
 (
-    id serial PRIMARY KEY,
+    id serial PRIMARY KEY
 );
 
 -- HELPER TABLES
@@ -126,7 +126,7 @@ CREATE TABLE payment
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
 );
-CREATE TABLE shipment
+CREATE TABLE delivery
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
@@ -194,7 +194,7 @@ DROP TABLE donation;
 DROP TABLE customer_cart;
 DROP TABLE customer_order;
 DROP TABLE payment;
-DROP TABLE shipment;
+DROP TABLE delivery;
 
 --CMS TABLES
 DROP TABLE landing_page;
