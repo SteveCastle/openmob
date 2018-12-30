@@ -39,7 +39,12 @@ CREATE TABLE email_address
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
 );
-
+CREATE TABLE photo
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP
+);
 -- CMS TABLES
 CREATE TABLE landing_page
 (
@@ -77,6 +82,19 @@ CREATE TABLE office
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
 );
+CREATE TABLE live_event
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP
+);
+CREATE TABLE live_event_type
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP
+);
+
 CREATE TABLE boycott
 (
     id serial PRIMARY KEY,
@@ -182,14 +200,15 @@ CREATE TABLE note
 -- CORE TABLES
 DROP TABLE cause;
 DROP TABLE account;
-
+DROP TABLE acl;
 --HELPER TABLES
-DROP TABLE mailing_address
-DROP TABLE phone_number
-DROP TABLE email_address
-
+DROP TABLE mailing_address;
+DROP TABLE phone_number;
+DROP TABLE email_address;
+DROP TABLE photo;
 --COMMERCE TABLES
 DROP TABLE product;
+DROP TABLE product_type;
 DROP TABLE donation;
 DROP TABLE customer_cart;
 DROP TABLE customer_order;
@@ -203,6 +222,8 @@ DROP TABLE election;
 DROP TABLE candidate;
 DROP TABLE district;
 DROP TABLE office;
+DROP TABLE live_event;
+DROP TABLE live_event_type;
 DROP TABLE boycott;
 DROP TABLE company;
 
