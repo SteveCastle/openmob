@@ -280,7 +280,6 @@ CHECK(count_not_nulls(account_id,
 
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
-DROP FUNCTION count_not_nulls;
 -- CORE TABLES
 DROP TABLE cause_relationship;
 DROP TABLE cause;
@@ -327,3 +326,5 @@ DROP TABLE territory;
 DROP TABLE activity;
 DROP TABLE activity_type;
 DROP TABLE note;
+
+DROP FUNCTION count_not_nulls;
