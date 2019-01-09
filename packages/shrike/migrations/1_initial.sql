@@ -20,6 +20,8 @@ CREATE TABLE account
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
+    username VARCHAR(255) NOT NULL
+
 );
 
 CREATE TABLE acl
@@ -57,25 +59,30 @@ CREATE TABLE landing_page
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
+
 );
 CREATE TABLE experiment
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE election
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE issue
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE candidate
 (
@@ -90,61 +97,71 @@ CREATE TABLE district
     updated_at TIMESTAMP,
     geom geometry(Polygon,
     28992)
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE district_type
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE office
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE petition
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE volunteer_opportunity
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE volunteer_opportunity_type
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE live_event
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE live_event_type
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE boycott
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE company
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
+    title VARCHAR(255) NOT NULL
 );
 --COMMERCE TABLES
 CREATE TABLE product
@@ -152,18 +169,21 @@ CREATE TABLE product
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE product_type
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE donation
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE customer_cart
 (
@@ -225,18 +245,21 @@ CREATE TABLE territory
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE activity
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE activity_type
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
+    title VARCHAR(255) NOT NULL
 );
 CREATE TABLE note
 (
@@ -245,37 +268,94 @@ CREATE TABLE note
     updated_at TIMESTAMP
 );
 
-CREATE TABLE cause_relationship
+CREATE TABLE owners
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     cause_id INTEGER REFERENCES cause(id) NOT NULL,
-    account_id INTEGER REFERENCES account(id),
-    landing_page_id INTEGER REFERENCES landing_page(id),
-    boycott_id INTEGER REFERENCES boycott(id),
-    election_id INTEGER REFERENCES election(id),
-    petition_id INTEGER REFERENCES petition(id),
-    volunteer_opportunity_id INTEGER REFERENCES volunteer_opportunity(id),
-    live_event_id INTEGER REFERENCES live_event(id),
-    product_id INTEGER REFERENCES product(id),
-    donation_id INTEGER REFERENCES donation(id),
-    contact_id INTEGER REFERENCES contact(id),
-    agent_id INTEGER REFERENCES agent(id),
+    account_id INTEGER REFERENCES account(id) NOT NULL,
+);
 
-    CONSTRAINT has_an_attachable
-CHECK(count_not_nulls(account_id,
-        landing_page_id,
-        boycott_id,
-        election_id,
-        petition_id,
-        volunteer_opportunity_id,
-        live_event_id,
-        product_id,
-        donation_id,
-        contact_id,
-        agent_id) = 1
-    )
+CREATE TABLE boycotts
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    boycott_id INTEGER REFERENCES boycott(id) NOT NULL,
+);
+
+CREATE TABLE elections
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    election_id INTEGER REFERENCES election(id) NOT NULL,
+);
+
+CREATE TABLE petitions
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    petition_id INTEGER REFERENCES petition(id) NOT NULL,
+);
+
+CREATE TABLE volunteer_opportunities
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    volunteer_opportunity_id INTEGER REFERENCES volunteer_opportunity(id) NOT NULL,
+);
+
+CREATE TABLE live_events
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    live_event_id INTEGER REFERENCES live_event(id) NOT NULL,
+);
+
+CREATE TABLE products
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    product_id INTEGER REFERENCES product(id) NOT NULL,
+);
+
+CREATE TABLE donations
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    donation_id INTEGER REFERENCES donation(id) NOT NULL,
+);
+
+CREATE TABLE contacts
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    contact_id INTEGER REFERENCES contact(id) NOT NULL,
+);
+
+CREATE TABLE agents
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause_id INTEGER REFERENCES cause(id) NOT NULL,
+    agent_id INTEGER REFERENCES agent(id) NOT NULL,
 );
 
 -- +migrate Down
@@ -326,5 +406,15 @@ DROP TABLE territory;
 DROP TABLE activity;
 DROP TABLE activity_type;
 DROP TABLE note;
+DROP TABLE owners;
+DROP TABLE coycotts;
+DROP TABLE elections;
+DROP TABLE petitions;
+DROP TABLE volunteer_opportunties;
+DROP TABLE live_events;
+DROP TABLE products;
+DROP TABLE donations;
+DROP TABLE contacts;
+DROP TABLE agents;
 
 DROP FUNCTION count_not_nulls;
