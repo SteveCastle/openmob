@@ -205,13 +205,15 @@ CREATE TABLE customer_order
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    customer_cart INTEGER REFERENCES customer_cart(id) NOT NULL
 );
 CREATE TABLE payment
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    customer_order INTEGER REFERENCES customer_order(id) NOT NULL
 );
 CREATE TABLE delivery
 (
@@ -274,15 +276,19 @@ CREATE TABLE activity
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     title VARCHAR(255) NOT NULL,
-    activity_type INTEGER REFERENCES activity_type(id) NOT NULL
+    activity_type INTEGER REFERENCES activity_type(id) NOT NULL,
+    contact INTEGER REFERENCES contact(id) NOT NULL
 );
 CREATE TABLE note
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    body TEXT
 );
 
+-- Primary Many to Many with Cause Relationships
 CREATE TABLE owners
 (
     id serial PRIMARY KEY,
@@ -396,9 +402,9 @@ DROP TABLE photo;
 DROP TABLE product;
 DROP TABLE product_type;
 DROP TABLE donation;
-DROP TABLE customer_cart;
-DROP TABLE customer_order;
 DROP TABLE payment;
+DROP TABLE customer_order;
+DROP TABLE customer_cart;
 DROP TABLE delivery;
 
 --CMS TABLES
@@ -422,13 +428,12 @@ DROP TABLE company;
 DROP TABLE voter;
 DROP TABLE petition_signer;
 DROP TABLE volunteer;
-DROP TABLE contact;
 DROP TABLE agent;
 DROP TABLE territory;
 DROP TABLE activity;
 DROP TABLE activity_type;
 DROP TABLE note;
-
+DROP TABLE contact;
 -- CORE TABLES
 DROP TABLE cause;
 DROP TABLE account;
