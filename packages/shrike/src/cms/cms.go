@@ -8,5 +8,5 @@ type LandingPage struct {
 
 // GetAllLandingPages Returns all the landing pages for a cause.
 func GetAllLandingPages(c int) LandingPage {
-	return LandingPage{Title: "My landing page."}
+	return LandingPage{Title: "Hello World."}
 }
