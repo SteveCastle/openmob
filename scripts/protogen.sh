@@ -1,0 +1,1 @@
+protoc -I/Users/tracer/dev/openmob/packages/shrike/src/api/v1:$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis:/Users/tracer/go/src openmob.proto --go_out=plugins=grpc:openmob
