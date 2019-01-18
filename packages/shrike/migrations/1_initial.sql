@@ -295,6 +295,14 @@ CREATE TABLE volunteer
     volunteer_opportunity INTEGER REFERENCES volunteer_opportunity (id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL
 );
+CREATE TABLE follower
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    contact INTEGER REFERENCES contact(id) NOT NULL
+);
 CREATE TABLE agent
 (
     id serial PRIMARY KEY,
@@ -377,7 +385,7 @@ CREATE TABLE polls
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     cause INTEGER REFERENCES cause(id) NOT NULL,
-    petition INTEGER REFERENCES petition(id) NOT NULL  
+    petition INTEGER REFERENCES petition(id) NOT NULL
 );
 
 CREATE TABLE volunteer_opportunities
@@ -457,6 +465,7 @@ DROP TABLE poll_respondant;
 DROP TABLE purchaser;
 DROP TABLE donor;
 DROP TABLE event_attendee;
+DROP TABLE follower;
 DROP TABLE volunteer;
 DROP TABLE agent;
 DROP TABLE territory;
