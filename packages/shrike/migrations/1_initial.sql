@@ -233,6 +233,80 @@ CREATE TABLE delivery
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP
 );
+
+--CMS MEMBERSHIPS
+CREATE TABLE boycott_membership
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    boycott INTEGER REFERENCES boycott(id) NOT NULL
+);
+
+CREATE TABLE election_membership
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    election INTEGER REFERENCES election(id) NOT NULL
+);
+
+CREATE TABLE petition_membership
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    petition INTEGER REFERENCES petition(id) NOT NULL
+);
+
+CREATE TABLE poll_membership
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    petition INTEGER REFERENCES petition(id) NOT NULL
+);
+
+CREATE TABLE volunteer_opportunity_membership
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    volunteer_opportunity INTEGER REFERENCES volunteer_opportunity(id) NOT NULL
+);
+
+CREATE TABLE live_event_membership
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    live_event INTEGER REFERENCES live_event(id) NOT NULL
+);
+
+CREATE TABLE product_membership
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    product INTEGER REFERENCES product(id) NOT NULL
+);
+
+CREATE TABLE donation_campaign_membership
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
+    donation_campaign INTEGER REFERENCES donation_campaign(id) NOT NULL
+);
+
 -- CRM FIELDS
 CREATE TABLE contact
 (
@@ -246,7 +320,8 @@ CREATE TABLE petition_signer
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     petition INTEGER REFERENCES petition(id) NOT NULL,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE poll_respondant
 (
@@ -254,7 +329,8 @@ CREATE TABLE poll_respondant
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     poll INTEGER REFERENCES poll(id) NOT NULL,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE purchaser
 (
@@ -262,15 +338,17 @@ CREATE TABLE purchaser
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     customer_order INTEGER REFERENCES customer_order(id) NOT NULL,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE donor
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
-    donation_campaign INTEGER REFERENCES donation_campaign(id) NOT NULL,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    customer_order INTEGER REFERENCES customer_order(id) NOT NULL,
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE event_attendee
 (
@@ -278,14 +356,16 @@ CREATE TABLE event_attendee
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     live_event INTEGER REFERENCES live_event(id) NOT NULL,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE voter
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE volunteer
 (
@@ -293,15 +373,16 @@ CREATE TABLE volunteer
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     volunteer_opportunity INTEGER REFERENCES volunteer_opportunity (id) NOT NULL,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE follower
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE agent
 (
@@ -331,7 +412,8 @@ CREATE TABLE activity
     updated_at TIMESTAMP,
     title VARCHAR(255) NOT NULL,
     activity_type INTEGER REFERENCES activity_type(id) NOT NULL,
-    contact INTEGER REFERENCES contact(id) NOT NULL
+    contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE note
 (
@@ -339,11 +421,12 @@ CREATE TABLE note
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     contact INTEGER REFERENCES contact(id) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
     body TEXT
 );
 
--- MANY TO MANY WITH CAUSES
-CREATE TABLE owners
+-- CMS MEMBERSHIPS
+CREATE TABLE owner_membership
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
@@ -352,79 +435,7 @@ CREATE TABLE owners
     account INTEGER REFERENCES account(id) NOT NULL
 );
 
-CREATE TABLE boycotts
-(
-    id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    boycott INTEGER REFERENCES boycott(id) NOT NULL
-);
-
-CREATE TABLE elections
-(
-    id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    election INTEGER REFERENCES election(id) NOT NULL
-);
-
-CREATE TABLE petitions
-(
-    id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    petition INTEGER REFERENCES petition(id) NOT NULL
-);
-
-CREATE TABLE polls
-(
-    id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    petition INTEGER REFERENCES petition(id) NOT NULL
-);
-
-CREATE TABLE volunteer_opportunities
-(
-    id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    volunteer_opportunity INTEGER REFERENCES volunteer_opportunity(id) NOT NULL
-);
-
-CREATE TABLE live_events
-(
-    id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    live_event INTEGER REFERENCES live_event(id) NOT NULL
-);
-
-CREATE TABLE products
-(
-    id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    product INTEGER REFERENCES product(id) NOT NULL
-);
-
-CREATE TABLE donation_campaigns
-(
-    id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
-    cause INTEGER REFERENCES cause(id) NOT NULL,
-    donation_campaign INTEGER REFERENCES donation_campaign(id) NOT NULL
-);
-
-CREATE TABLE contacts
+CREATE TABLE contact_membership
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
@@ -433,7 +444,7 @@ CREATE TABLE contacts
     contact INTEGER REFERENCES contact(id) NOT NULL
 );
 
-CREATE TABLE agents
+CREATE TABLE agent_membership
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
@@ -445,18 +456,9 @@ CREATE TABLE agents
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
 
--- JOIN TABLES
-DROP TABLE owners;
-DROP TABLE boycotts;
-DROP TABLE elections;
-DROP TABLE polls;
-DROP TABLE petitions;
-DROP TABLE volunteer_opportunities;
-DROP TABLE live_events;
-DROP TABLE products;
-DROP TABLE donation_campaigns;
-DROP TABLE contacts;
-DROP TABLE agents;
+-- CMS MEMBERSHIPS
+DROP TABLE contact_membership;
+DROP TABLE agent_membership;
 
 -- CRM TABLES
 DROP TABLE voter;
@@ -473,6 +475,17 @@ DROP TABLE activity;
 DROP TABLE activity_type;
 DROP TABLE note;
 DROP TABLE contact;
+
+--CRM AND COMMERCE MEMBERSHIPS
+DROP TABLE owner_membership;
+DROP TABLE boycott_membership;
+DROP TABLE election_membership;
+DROP TABLE poll_membership;
+DROP TABLE petition_membership;
+DROP TABLE volunteer_opportunity_membership;
+DROP TABLE live_event_membership;
+DROP TABLE product_membership;
+DROP TABLE donation_campaign_membership;
 
 --CMS TABLES
 DROP TABLE experiment;

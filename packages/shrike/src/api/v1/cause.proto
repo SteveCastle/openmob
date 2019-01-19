@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package openmob.v1;
+package cause.v1;
 
-option go_package = "openmob";
+option go_package = "cause";
 
 import "google/api/annotations.proto";
 

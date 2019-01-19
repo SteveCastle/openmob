@@ -1,4 +1,4 @@
-module github.com/SteveCastle/openmob
+module github.com/SteveCastle/openmob/packages/shrike
 
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect

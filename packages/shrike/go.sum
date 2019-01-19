@@ -2,6 +2,7 @@ cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMT
 cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/SteveCastle/openmob v0.0.0-20190113232722-501415098fda h1:vibC5QjwxJ8L8JMGNPhp1ppZL9+Q71UhP7BifLRPVwA=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cridenour/go-postgis v1.0.0 h1:yK82fCY6k0MBCkyeEZDFijalxLNqPECekyNlcjC/B9Q=
 github.com/cridenour/go-postgis v1.0.0/go.mod h1:AtTeWrKgwtl5WjwG1oJwcc3AHIf/EC1ngklA0XZKLls=
