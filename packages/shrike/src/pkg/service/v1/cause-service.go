@@ -44,16 +44,15 @@ func (s *causeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCaus
 		return nil, err
 	}
 	defer c.Close()
-
+	var id int64
 	// insert Cause entity data
-	res, err := c.ExecContext(ctx, "INSERT INTO Cause(`Title`) VALUES(?)",
-		req.Item.Title)
+	err = c.QueryRowContext(ctx, "INSERT INTO cause (title) VALUES($1)  RETURNING id;",
+		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Cause-> "+err.Error())
 	}
 
 	// get ID of creates Cause
-	id, err := res.LastInsertId()
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Cause-> "+err.Error())
 	}
@@ -74,7 +73,7 @@ func (s *causeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseReque
 	defer c.Close()
 
 	// query Cause by ID
-	rows, err := c.QueryContext(ctx, "SELECT `id`, `title` FROM cause WHERE `id`=?",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM cause WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Cause-> "+err.Error())

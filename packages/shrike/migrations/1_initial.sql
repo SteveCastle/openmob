@@ -11,15 +11,15 @@ $$ LANGUAGE SQL IMMUTABLE;
 CREATE TABLE cause
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE account
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     username VARCHAR(255) NOT NULL
 
 );
@@ -33,8 +33,8 @@ CREATE TABLE acl
 CREATE TABLE mailing_address
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     street_address VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     state VARCHAR(255) NOT NULL,
@@ -44,75 +44,75 @@ CREATE TABLE mailing_address
 CREATE TABLE phone_number
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     phone_number VARCHAR(255) NOT NULL
 );
 CREATE TABLE email_address
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     address VARCHAR(255) NOT NULL
 );
 CREATE TABLE photo
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     img_url VARCHAR(255) NOT NULL
 );
 -- CMS TABLES
 CREATE TABLE landing_page
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 
 );
 CREATE TABLE experiment
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
     landing_page INTEGER REFERENCES landing_page(id)
 );
 CREATE TABLE election
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE issue
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
     election INTEGER REFERENCES election(id) NOT NULL
 );
 CREATE TABLE candidate
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     election INTEGER REFERENCES election(id) NOT NULL
 );
 CREATE TABLE district_type
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE district
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     geom geometry(Polygon,
     28992),
     title VARCHAR(255) NOT NULL,
@@ -121,90 +121,90 @@ CREATE TABLE district
 CREATE TABLE office
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
     election INTEGER REFERENCES election(id)
 );
 CREATE TABLE petition
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE poll
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE volunteer_opportunity_type
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE volunteer_opportunity
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
     election_type INTEGER REFERENCES volunteer_opportunity_type(id)
 );
 CREATE TABLE live_event_type
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE live_event
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
     live_event_type INTEGER REFERENCES live_event_type(id) NOT NULL
 );
 CREATE TABLE boycott
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE company
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 --COMMERCE TABLES
 CREATE TABLE product_type
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE product
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
     product_type INTEGER REFERENCES product_type(id) NOT NULL
 );
 CREATE TABLE donation_campaign
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE customer_cart
@@ -216,15 +216,15 @@ CREATE TABLE customer_cart
 CREATE TABLE customer_order
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     customer_cart INTEGER REFERENCES customer_cart(id) NOT NULL
 );
 CREATE TABLE payment
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     customer_order INTEGER REFERENCES customer_order(id) NOT NULL
 );
 CREATE TABLE delivery
@@ -238,8 +238,8 @@ CREATE TABLE delivery
 CREATE TABLE boycott_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     boycott INTEGER REFERENCES boycott(id) NOT NULL
 );
@@ -247,8 +247,8 @@ CREATE TABLE boycott_membership
 CREATE TABLE election_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     election INTEGER REFERENCES election(id) NOT NULL
 );
@@ -256,8 +256,8 @@ CREATE TABLE election_membership
 CREATE TABLE petition_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     petition INTEGER REFERENCES petition(id) NOT NULL
 );
@@ -265,8 +265,8 @@ CREATE TABLE petition_membership
 CREATE TABLE poll_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     petition INTEGER REFERENCES petition(id) NOT NULL
 );
@@ -274,8 +274,8 @@ CREATE TABLE poll_membership
 CREATE TABLE volunteer_opportunity_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     volunteer_opportunity INTEGER REFERENCES volunteer_opportunity(id) NOT NULL
 );
@@ -283,8 +283,8 @@ CREATE TABLE volunteer_opportunity_membership
 CREATE TABLE live_event_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     live_event INTEGER REFERENCES live_event(id) NOT NULL
 );
@@ -292,8 +292,8 @@ CREATE TABLE live_event_membership
 CREATE TABLE product_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     product INTEGER REFERENCES product(id) NOT NULL
 );
@@ -301,8 +301,8 @@ CREATE TABLE product_membership
 CREATE TABLE donation_campaign_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     donation_campaign INTEGER REFERENCES donation_campaign(id) NOT NULL
 );
@@ -317,8 +317,8 @@ CREATE TABLE contact
 CREATE TABLE petition_signer
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     petition INTEGER REFERENCES petition(id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL
@@ -326,8 +326,8 @@ CREATE TABLE petition_signer
 CREATE TABLE poll_respondant
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     poll INTEGER REFERENCES poll(id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL
@@ -335,8 +335,8 @@ CREATE TABLE poll_respondant
 CREATE TABLE purchaser
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     customer_order INTEGER REFERENCES customer_order(id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL
@@ -344,8 +344,8 @@ CREATE TABLE purchaser
 CREATE TABLE donor
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     customer_order INTEGER REFERENCES customer_order(id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL
@@ -353,8 +353,8 @@ CREATE TABLE donor
 CREATE TABLE event_attendee
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     live_event INTEGER REFERENCES live_event(id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL
@@ -362,16 +362,16 @@ CREATE TABLE event_attendee
 CREATE TABLE voter
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE volunteer
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     volunteer_opportunity INTEGER REFERENCES volunteer_opportunity (id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL
@@ -379,37 +379,37 @@ CREATE TABLE volunteer
 CREATE TABLE follower
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL
 );
 CREATE TABLE agent
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     account INTEGER REFERENCES account(id) NOT NULL
 );
 CREATE TABLE territory
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE activity_type
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
 CREATE TABLE activity
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
     activity_type INTEGER REFERENCES activity_type(id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL,
@@ -418,8 +418,8 @@ CREATE TABLE activity
 CREATE TABLE note
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     contact INTEGER REFERENCES contact(id) NOT NULL,
     cause INTEGER REFERENCES cause(id) NOT NULL,
     body TEXT
@@ -429,8 +429,8 @@ CREATE TABLE note
 CREATE TABLE owner_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     account INTEGER REFERENCES account(id) NOT NULL
 );
@@ -438,8 +438,8 @@ CREATE TABLE owner_membership
 CREATE TABLE contact_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL
 );
@@ -447,8 +447,8 @@ CREATE TABLE contact_membership
 CREATE TABLE agent_membership
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     cause INTEGER REFERENCES cause(id) NOT NULL,
     agent INTEGER REFERENCES agent(id) NOT NULL
 );
