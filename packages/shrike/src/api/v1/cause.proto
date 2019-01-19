@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cause.v1;
 
-option go_package = "cause";
+option go_package = "v1";
 
 import "google/api/annotations.proto";
 
@@ -14,49 +14,15 @@ service CauseService {
 		};
 	}
 
-	// Bulk version of CreateCause
-	rpc CreateCauses(CreateCausesRequest) returns (CreateCausesResponse) {
-		option (google.api.http) ={
-			post: "/v1/cause/bulk"
-			body: "*"
-		};
-	}
-
 	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
 		option (google.api.http) ={
 			get: "/v1/cause/{id}"
 		};
 	}
-
-	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
-		option (google.api.http) ={
-			get: "/v1/cause"
-		};
-	}
-
-	rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse) {
-		option (google.api.http) ={
-			delete: "/v1/cause/{id}"
-		};
-	}
-
-	rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse) {
-		option (google.api.http) ={
-			put: "/v1/cause"
-			body: "item"
-		};
-	}
-
-	rpc UpdateCauses(UpdateCausesRequest) returns (UpdateCausesResponse) {
-		option (google.api.http) ={
-			put: "/v1/cause/bulk"
-			body: "*"
-		};
-	}
 }
 
 message Cause {
-	string id = 1;
+	int64 id = 1;
 	string title = 2;
 }
 
@@ -65,48 +31,13 @@ message CreateCauseRequest {
 }
 
 message CreateCauseResponse {
-	string id = 1;
+	int64 id = 1;
+	
 }
-
-message CreateCausesRequest {
-	repeated Cause items = 1;
-}
-
-message CreateCausesResponse {
-	repeated string ids = 1;
-}
-
 message GetCauseRequest {
-	string id = 1;
+	int64 id = 1;
 }
 
 message GetCauseResponse {
 	Cause item = 1;
 }
-
-message ListCauseRequest {
-	int32 limit = 1;
-	bool not_completed = 2;
-}
-
-message ListCauseResponse {
-	repeated Cause items = 1;
-}
-
-message DeleteCauseRequest {
-	string id = 1;
-}
-
-message DeleteCauseResponse {}
-
-message UpdateCauseRequest {
-	Cause item = 1;
-}
-
-message UpdateCauseResponse {}
-
-message UpdateCausesRequest {
-	repeated Cause items = 1;
-}
-
-message UpdateCausesResponse {}
