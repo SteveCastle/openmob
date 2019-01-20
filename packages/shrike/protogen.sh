@@ -1,2 +1,1 @@
-# protoc -I/Users/tracer/dev/openmob/packages/shrike/src/api/v1:$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis:/Users/tracer/go/src cause.proto --go_out=plugins=grpc:src/pkg/api/v1 cause.proto
 protoc --proto_path=src/api/proto/v1 --proto_path=third_party --go_out=plugins=grpc:src/pkg/api/v1 cause.proto
