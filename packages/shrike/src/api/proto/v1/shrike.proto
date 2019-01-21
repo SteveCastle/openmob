@@ -46,6 +46,12 @@ service ShrikeService {
 			get: "/v1/cause/{id}"
 		};
 	}
+
+	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
+	option (google.api.http) ={
+		get: "/v1/cause"
+	};
+}
 }
 
 message Cause {
@@ -54,17 +60,31 @@ message Cause {
 }
 
 message CreateCauseRequest {
-	Cause item = 1;
+	string api = 1;
+	Cause item = 2;
 }
 
 message CreateCauseResponse {
-	int64 id = 1;
+	string api = 1;
+	int64 id = 2;
 	
 }
 message GetCauseRequest {
-	int64 id = 1;
+	string api = 1;
+	int64 id = 2;
 }
 
 message GetCauseResponse {
-	Cause item = 1;
+	string api = 1;
+	Cause item = 2;
+}
+
+message ListCauseRequest {
+	string api = 1;
+	int32 limit = 2;
+}
+
+message ListCauseResponse {
+	string api = 1;
+	repeated Cause items = 2;
 }

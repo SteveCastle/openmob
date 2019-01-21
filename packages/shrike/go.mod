@@ -1,7 +1,7 @@
 module github.com/SteveCastle/openmob/packages/shrike
 
 require (
-	github.com/cridenour/go-postgis v1.0.0 // indirect
+	github.com/cridenour/go-postgis v1.0.0
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/golang/protobuf v1.2.0
 	github.com/grpc-ecosystem/grpc-gateway v1.6.4

@@ -20,6 +20,41 @@
   ],
   "paths": {
     "/v1/cause": {
+      "get": {
+        "operationId": "ListCause",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListCauseResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
       "post": {
         "operationId": "CreateCause",
         "responses": {
@@ -75,6 +110,12 @@
             "required": true,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -99,6 +140,9 @@
     "v1CreateCauseRequest": {
       "type": "object",
       "properties": {
+        "api": {
+          "type": "string"
+        },
         "item": {
           "$ref": "#/definitions/v1Cause"
         }
@@ -107,6 +151,9 @@
     "v1CreateCauseResponse": {
       "type": "object",
       "properties": {
+        "api": {
+          "type": "string"
+        },
         "id": {
           "type": "string",
           "format": "int64"
@@ -116,8 +163,25 @@
     "v1GetCauseResponse": {
       "type": "object",
       "properties": {
+        "api": {
+          "type": "string"
+        },
         "item": {
           "$ref": "#/definitions/v1Cause"
+        }
+      }
+    },
+    "v1ListCauseResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Cause"
+          }
         }
       }
     }

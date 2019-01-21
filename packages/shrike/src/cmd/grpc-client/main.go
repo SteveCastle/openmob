@@ -35,6 +35,7 @@ func main() {
 
 	// Call Create
 	req1 := v1.CreateCauseRequest{
+		Api: apiVersion,
 		Item: &v1.Cause{
 			Title: "My Cool Cause",
 		},
@@ -49,11 +50,23 @@ func main() {
 
 	// Read
 	req2 := v1.GetCauseRequest{
-		Id: id,
+		Api: apiVersion,
+		Id:  id,
 	}
 	res2, err := c.GetCause(ctx, &req2)
 	if err != nil {
 		log.Fatalf("Read failed: %v", err)
 	}
 	log.Printf("Read result: <%+v>\n\n", res2)
+
+	// List
+	req3 := v1.ListCauseRequest{
+		Api:   apiVersion,
+		Limit: 1,
+	}
+	res3, err := c.ListCause(ctx, &req3)
+	if err != nil {
+		log.Fatalf("Read failed: %v", err)
+	}
+	log.Printf("Read result: <%+v>\n\n", res3)
 }
