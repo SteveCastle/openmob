@@ -16,18 +16,18 @@ const (
 	apiVersion = "v1"
 )
 
-// causeServiceServer is implementation of v1.CauseServiceServer proto interface
-type causeServiceServer struct {
+// shrikeServiceServer is implementation of v1.ShrikeServiceServer proto interface
+type shrikeServiceServer struct {
 	db *sql.DB
 }
 
-// NewCauseServiceServer creates Cause service
-func NewCauseServiceServer(db *sql.DB) v1.CauseServiceServer {
-	return &causeServiceServer{db: db}
+// NewShrikeServiceServer creates Cause service
+func NewShrikeServiceServer(db *sql.DB) v1.ShrikeServiceServer {
+	return &shrikeServiceServer{db: db}
 }
 
 // connect returns SQL database connection from the pool
-func (s *causeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
+func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	c, err := s.db.Conn(ctx)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to connect to database-> "+err.Error())
@@ -36,7 +36,7 @@ func (s *causeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 }
 
 // Create new todo task
-func (s *causeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCauseRequest) (*v1.CreateCauseResponse, error) {
+func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCauseRequest) (*v1.CreateCauseResponse, error) {
 
 	// get SQL connection from pool
 	c, err := s.connect(ctx)
@@ -63,7 +63,7 @@ func (s *causeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCaus
 }
 
 // Read todo task
-func (s *causeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequest) (*v1.GetCauseResponse, error) {
+func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequest) (*v1.GetCauseResponse, error) {
 
 	// get SQL connection from pool
 	c, err := s.connect(ctx)

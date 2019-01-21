@@ -66,7 +66,7 @@ func RunServer() error {
 	}
 	defer db.Close()
 
-	v1API := v1.NewCauseServiceServer(db)
+	v1API := v1.NewShrikeServiceServer(db)
 	// run HTTP gateway
 	go func() {
 		_ = rest.RunServer(ctx, cfg.GRPCPort, cfg.HTTPPort)

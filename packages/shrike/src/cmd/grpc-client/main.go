@@ -28,7 +28,7 @@ func main() {
 	}
 	defer conn.Close()
 
-	c := v1.NewCauseServiceClient(conn)
+	c := v1.NewShrikeServiceClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()

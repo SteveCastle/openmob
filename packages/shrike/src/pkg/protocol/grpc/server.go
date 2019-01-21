@@ -13,7 +13,7 @@ import (
 )
 
 // RunServer runs gRPC service to publish Cause service
-func RunServer(ctx context.Context, v1API v1.CauseServiceServer, port string) error {
+func RunServer(ctx context.Context, v1API v1.ShrikeServiceServer, port string) error {
 	listen, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		return err
@@ -21,7 +21,7 @@ func RunServer(ctx context.Context, v1API v1.CauseServiceServer, port string) er
 
 	// register service
 	server := grpc.NewServer()
-	v1.RegisterCauseServiceServer(server, v1API)
+	v1.RegisterShrikeServiceServer(server, v1API)
 
 	// graceful shutdown
 	c := make(chan os.Signal, 1)

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cause.v1;
+package shrike.v1;
 
 option go_package = "v1";
 
@@ -33,7 +33,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 	}
 };
 
-service CauseService {
+service ShrikeService {
 	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
 		option (google.api.http) ={
 			post: "/v1/cause"
