@@ -73,7 +73,8 @@ func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCau
 	}
 
 	return &v1.CreateCauseResponse{
-		Id: id,
+		Api: apiVersion,
+		Id:  id,
 	}, nil
 }
 
@@ -118,6 +119,7 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	}
 
 	return &v1.GetCauseResponse{
+		Api:  apiVersion,
 		Item: &td,
 	}, nil
 

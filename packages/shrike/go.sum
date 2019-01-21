@@ -3,6 +3,7 @@ github.com/SteveCastle/openmob v0.0.0-20190119194114-623410663353 h1:HbDl9He4Lgx
 github.com/SteveCastle/openmob v0.0.0-20190119204252-eed4799c4d17 h1:2iMmA/nqXk5+Ka3DR3pUk+qyT/M2gCztsbNnX5h8Onw=
 github.com/SteveCastle/openmob v0.0.0-20190121042731-0f63e347be18 h1:ARlhtPhkeKGLj5Q48n7l9FdNGpPzfEEGCy5bvXSazrQ=
 github.com/SteveCastle/openmob v0.0.0-20190121044536-11c777355e62 h1:+uEJzvrYfatxXZY7s+wGfJDfaa/fM77EAqHcvTBVzZ4=
+github.com/SteveCastle/openmob v0.0.0-20190121071316-9dbcad4c9f22 h1:BqXM9EJjIXbcOn3beMRIsCy3jCMOc8etWUNS/zwx+F8=
 github.com/amsokol/go-grpc-http-rest-microservice-tutorial v0.0.0-20180918193307-017ec2aae0ec h1:e56FA3qgFWWB3nwAy26MFCVCFDb4+7E/B8MDHoRSr1g=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cridenour/go-postgis v1.0.0 h1:yK82fCY6k0MBCkyeEZDFijalxLNqPECekyNlcjC/B9Q=
