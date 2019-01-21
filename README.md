@@ -1,5 +1,9 @@
 # OpenMob
 
+A free and open source control center and platform for the modern civil society
+organization. Empowers best practice fund raising, campaigning, and resource
+coordination.
+
 ## Project Goals
 
 1. A Web platform for non profits and socially beneficial organizations.
@@ -17,6 +21,6 @@
    accessability in low bandwidth regions, and low hosting costs.
 2. Plugin based hosting, phone contact, and payment fullfilment to avoid
    corporate lock in.
-3. Consider serverless first deployment.. if it can avoid provider lock in.
+3. Simple lock in free self deployment.
 4. One command CLI deploy and application manager.
 5. Provide best practice accessibility out of the box.
