@@ -164,3 +164,76 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 		Items: list,
 	}, nil
 }
+
+// Update todo task
+func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCauseRequest) (*v1.UpdateCauseResponse, error) {
+	// check if the API version requested by client is supported by server
+	if err := s.checkAPI(req.Api); err != nil {
+		return nil, err
+	}
+
+	// get SQL connection from pool
+	c, err := s.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// update cause
+	res, err := c.ExecContext(ctx, "UPDATE cause SET title=$1 WHERE id=$2",
+		req.Item.Title, req.Item.Id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to update cause-> "+err.Error())
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
+	}
+
+	if rows == 0 {
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("cause with ID='%d' is not found",
+			req.Item.Id))
+	}
+
+	return &v1.UpdateCauseResponse{
+		Api:     apiVersion,
+		Updated: rows,
+	}, nil
+}
+
+// Delete todo task
+func (s *shrikeServiceServer) DeleteCause(ctx context.Context, req *v1.DeleteCauseRequest) (*v1.DeleteCauseResponse, error) {
+	// check if the API version requested by client is supported by server
+	if err := s.checkAPI(req.Api); err != nil {
+		return nil, err
+	}
+
+	// get SQL connection from pool
+	c, err := s.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// delete cause
+	res, err := c.ExecContext(ctx, "DELETE FROM cause WHERE id=$1", req.Id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to delete cause-> "+err.Error())
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
+	}
+
+	if rows == 0 {
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("cause with ID='%d' is not found",
+			req.Id))
+	}
+
+	return &v1.DeleteCauseResponse{
+		Api:     apiVersion,
+		Deleted: rows,
+	}, nil
+}

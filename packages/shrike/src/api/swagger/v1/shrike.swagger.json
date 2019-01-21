@@ -121,6 +121,122 @@
         "tags": [
           "ShrikeService"
         ]
+      },
+      "delete": {
+        "summary": "Delete cause",
+        "operationId": "DeleteCause",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteCauseResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Unique integer identifier of the cause to delete",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "api",
+            "description": "API versioning: it is my best practice to specify version explicitly.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/cause/{item.id}": {
+      "put": {
+        "summary": "Update cause",
+        "operationId": "UpdateCause",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCauseResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCauseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "patch": {
+        "summary": "Update cause",
+        "operationId": "UpdateCause2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCauseResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateCauseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
       }
     }
   },
@@ -160,6 +276,21 @@
         }
       }
     },
+    "v1DeleteCauseResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string",
+          "title": "API versioning: it is my best practice to specify version explicitly"
+        },
+        "deleted": {
+          "type": "string",
+          "format": "int64",
+          "title": "Contains number of entities have beed deleted\nEquals 1 in case of succesfull delete"
+        }
+      },
+      "title": "Contains status of delete operation"
+    },
     "v1GetCauseResponse": {
       "type": "object",
       "properties": {
@@ -184,6 +315,35 @@
           }
         }
       }
+    },
+    "v1UpdateCauseRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string",
+          "title": "API versioning: it is my best practice to specify version explicitly"
+        },
+        "item": {
+          "$ref": "#/definitions/v1Cause",
+          "title": "Task entity to update"
+        }
+      },
+      "title": "Request data to update cause"
+    },
+    "v1UpdateCauseResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string",
+          "title": "API versioning: it is my best practice to specify version explicitly"
+        },
+        "updated": {
+          "type": "string",
+          "format": "int64",
+          "title": "Contains number of entities have beed updated\nEquals 1 in case of succesfull update"
+        }
+      },
+      "title": "Contains status of update operation"
     }
   }
 }
