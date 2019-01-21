@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cause service",
+    "version": "1.0",
+    "contact": {
+      "name": "openmob",
+      "url": "https://github.com/SteveCastle/openmob",
+      "email": "stephen@openmob.org"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/cause": {
+      "post": {
+        "operationId": "CreateCause",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateCauseResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateCauseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CauseService"
+        ]
+      }
+    },
+    "/v1/cause/{id}": {
+      "get": {
+        "operationId": "GetCause",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCauseResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "CauseService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1Cause": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateCauseRequest": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1Cause"
+        }
+      }
+    },
+    "v1CreateCauseResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1GetCauseResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1Cause"
+        }
+      }
+    }
+  }
+}

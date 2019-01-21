@@ -5,12 +5,39 @@ package cause.v1;
 option go_package = "v1";
 
 import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+	info: {
+		title: "Cause service";
+		version: "1.0";
+		contact: {
+			name: "openmob";
+			url: "https://github.com/SteveCastle/openmob";
+			email: "stephen@openmob.org";
+        };
+    };
+    schemes: HTTP;
+    consumes: "application/json";
+    produces: "application/json";
+    responses: {
+		key: "404";
+		value: {
+			description: "Returned when the resource does not exist.";
+			schema: {
+				json_schema: {
+					type: STRING;
+				}
+			}
+		}
+	}
+};
 
 service CauseService {
 	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
 		option (google.api.http) ={
 			post: "/v1/cause"
-			body: "item"
+			body: "*"
 		};
 	}
 
