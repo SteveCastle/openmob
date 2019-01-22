@@ -110,19 +110,20 @@ message DeleteCauseResponse{
 
 // Shrike Service Definition
 service ShrikeService {
+	// CreateCause takes a cause object to create.
 	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
 		option (google.api.http) ={
 			post: "/v1/cause"
 			body: "*"
 		};
 	}
-
+    // GetCause takes an id and returns a single cause.
 	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
 		option (google.api.http) ={
 			get: "/v1/cause/{id}"
 		};
 	}
-
+    // List cause, takes filters, limit, and cursor param.
 	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
 	option (google.api.http) ={
 		get: "/v1/cause"
