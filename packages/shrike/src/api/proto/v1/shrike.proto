@@ -14,7 +14,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 		contact: {
 			name: "openmob";
 			url: "https://github.com/SteveCastle/openmob";
-			email: "stephen@openmob.org";
+			email: "stephen@openmob.us";
         };
     };
     schemes: HTTP;
