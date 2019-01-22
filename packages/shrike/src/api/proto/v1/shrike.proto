@@ -32,52 +32,14 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 		}
 	}
 };
-
-service ShrikeService {
-	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
-		option (google.api.http) ={
-			post: "/v1/cause"
-			body: "*"
-		};
-	}
-
-	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
-		option (google.api.http) ={
-			get: "/v1/cause/{id}"
-		};
-	}
-
-	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
-	option (google.api.http) ={
-		get: "/v1/cause"
-	};
-}
-    // Update cause
-    rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse){
-        option (google.api.http) = {
-            put: "/v1/cause/{item.id}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/cause/{item.id}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete cause
-    rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse){
-        option (google.api.http) = {
-            delete: "/v1/cause/{id}"
-        };
-    }
-}
+// API Types
 
 message Cause {
 	int64 id = 1;
 	string title = 2;
 }
 
+//Request and Response Message Types
 message CreateCauseRequest {
 	string api = 1;
 	Cause item = 2;
@@ -144,4 +106,45 @@ message DeleteCauseResponse{
     // Contains number of entities have beed deleted
     // Equals 1 in case of succesfull delete
     int64 deleted = 2;
+}
+
+// Shrike Service Definition
+service ShrikeService {
+	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
+		option (google.api.http) ={
+			post: "/v1/cause"
+			body: "*"
+		};
+	}
+
+	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
+		option (google.api.http) ={
+			get: "/v1/cause/{id}"
+		};
+	}
+
+	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
+	option (google.api.http) ={
+		get: "/v1/cause"
+	};
+}
+    // Update cause
+    rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse){
+        option (google.api.http) = {
+            put: "/v1/cause/{item.id}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/cause/{item.id}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete cause
+    rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse){
+        option (google.api.http) = {
+            delete: "/v1/cause/{id}"
+        };
+    }
 }
