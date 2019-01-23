@@ -37,7 +37,7 @@ func main() {
 	req1 := v1.CreateCauseRequest{
 		Api: apiVersion,
 		Item: &v1.Cause{
-			Title: "My Cool Cause",
+			Title: "Mrs. Frisby's Class",
 		},
 	}
 	res1, err := c.CreateCause(ctx, &req1)
@@ -47,6 +47,19 @@ func main() {
 	log.Printf("Create result: <%+v>\n\n", res1)
 
 	id := res1.Id
+	// Call Create
+	req1 = v1.CreateCauseRequest{
+		Api: apiVersion,
+		Item: &v1.Cause{
+			Title: "Save Red Rock",
+		},
+	}
+	res1, err = c.CreateCause(ctx, &req1)
+	if err != nil {
+		log.Fatalf("Create 2 failed: %v", err)
+	}
+	log.Printf("Create result 2: <%+v>\n\n", res1)
+	id2 := res1.Id
 
 	// Read
 	req2 := v1.GetCauseRequest{
@@ -58,7 +71,6 @@ func main() {
 		log.Fatalf("Read failed: %v", err)
 	}
 	log.Printf("Read result: <%+v>\n\n", res2)
-
 	// List
 	req3 := v1.ListCauseRequest{
 		Api:   apiVersion,
@@ -73,8 +85,8 @@ func main() {
 	req4 := v1.UpdateCauseRequest{
 		Api: apiVersion,
 		Item: &v1.Cause{
-			Id:    2,
-			Title: "My New Cool Cause",
+			Id:    id,
+			Title: "Global Warming",
 		},
 	}
 	res4, err := c.UpdateCause(ctx, &req4)
@@ -82,12 +94,33 @@ func main() {
 		log.Fatalf("Update failed: %v", err)
 	}
 	log.Printf("Update result: <%+v>\n\n", res4)
+	// List
+	req3 = v1.ListCauseRequest{
+		Api:   apiVersion,
+		Limit: 1,
+	}
+	res3, err = c.ListCause(ctx, &req3)
+	if err != nil {
+		log.Fatalf("List 2 failed: %v", err)
+	}
+	log.Printf("List result after update: <%+v>\n\n", res3)
+
 	// Delete
 	req5 := v1.DeleteCauseRequest{
 		Api: apiVersion,
 		Id:  id,
 	}
 	res5, err := c.DeleteCause(ctx, &req5)
+	if err != nil {
+		log.Fatalf("Delete failed: %v", err)
+	}
+	log.Printf("Delete result: <%+v>\n\n", res5)
+	// Delete
+	req5 = v1.DeleteCauseRequest{
+		Api: apiVersion,
+		Id:  id2,
+	}
+	res5, err = c.DeleteCause(ctx, &req5)
 	if err != nil {
 		log.Fatalf("Delete failed: %v", err)
 	}
