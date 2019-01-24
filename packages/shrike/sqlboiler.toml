@@ -1,8 +1,0 @@
-[psql]
-  dbname    = "tern"
-  host      = "localhost"
-  port      = 5432
-  user      = "tern"
-  pass      = "tern"
-  sslmode   = "disable"
-  blacklist = ["migrations"]

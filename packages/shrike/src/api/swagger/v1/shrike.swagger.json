@@ -6,7 +6,7 @@
     "contact": {
       "name": "openmob",
       "url": "https://github.com/SteveCastle/openmob",
-      "email": "stephen@openmob.org"
+      "email": "stephen@openmob.us"
     }
   },
   "schemes": [
@@ -21,6 +21,7 @@
   "paths": {
     "/v1/cause": {
       "get": {
+        "summary": "List cause, takes filters, limit, and cursor param.",
         "operationId": "ListCause",
         "responses": {
           "200": {
@@ -56,6 +57,7 @@
         ]
       },
       "post": {
+        "summary": "CreateCause takes a cause object to create.",
         "operationId": "CreateCause",
         "responses": {
           "200": {
@@ -88,6 +90,7 @@
     },
     "/v1/cause/{id}": {
       "get": {
+        "summary": "GetCause takes an id and returns a single cause.",
         "operationId": "GetCause",
         "responses": {
           "200": {
@@ -262,7 +265,8 @@
         "item": {
           "$ref": "#/definitions/v1Cause"
         }
-      }
+      },
+      "title": "Request and Response Message Types"
     },
     "v1CreateCauseResponse": {
       "type": "object",
