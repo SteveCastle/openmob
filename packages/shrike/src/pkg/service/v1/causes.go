@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	}, nil
 }
 
-// Delete todo task
+// Delete cause
 func (s *shrikeServiceServer) DeleteCause(ctx context.Context, req *v1.DeleteCauseRequest) (*v1.DeleteCauseResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

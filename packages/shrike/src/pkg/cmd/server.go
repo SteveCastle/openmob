@@ -6,7 +6,7 @@ import (
 	"flag"
 	"fmt"
 
-	// mysql driver
+	// postgres driver
 	_ "github.com/lib/pq"
 
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/protocol/grpc"
