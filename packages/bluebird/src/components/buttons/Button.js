@@ -6,10 +6,12 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 4px;
   color: #a5aed5;
+  display: block;
   font-size: 1rem;
   padding: 16px;
+  ${props => (props.block ? 'width: 100%;' : null)}
 `;
 
-export default function Button({ label }) {
-  return <StyledButton>{label}</StyledButton>;
+export default function Button({ label, block = true }) {
+  return <StyledButton block={block}>{label}</StyledButton>;
 }
