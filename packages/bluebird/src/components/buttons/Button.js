@@ -2,16 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  background-color: #000000;
+  background-color: ${props => props.theme.main};
   border: none;
   border-radius: 4px;
-  color: #a5aed5;
+  color: ${props => props.theme.text};
   display: block;
   font-size: 1rem;
   padding: 16px;
   ${props => (props.block ? 'width: 100%;' : null)}
 `;
 
-export default function Button({ label, block = true }) {
-  return <StyledButton block={block}>{label}</StyledButton>;
+export default function Button({ onClick, label, block }) {
+  return (
+    <StyledButton block={block} onClick={onClick}>
+      {label}
+    </StyledButton>
+  );
 }

@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "storybook-addon-styled-component-theme": "^1.1.1"
+  }
+}
