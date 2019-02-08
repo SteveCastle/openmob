@@ -7,5 +7,5 @@ import { linkTo } from '@storybook/addon-links';
 import Button from '../components/buttons/Button';
 
 storiesOf('Button', module).add('with text', () => (
-  <Button onClick={action('clicked')}>Hello Button</Button>
+  <Button onClick={action('clicked')} label="Hello Button" />
 ));

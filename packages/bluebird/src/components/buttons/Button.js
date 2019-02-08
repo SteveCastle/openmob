@@ -10,6 +10,6 @@ const StyledButton = styled.button`
   padding: 16px;
 `;
 
-export default function Button({ children }) {
-  return <StyledButton>{children}</StyledButton>;
+export default function Button({ label }) {
+  return <StyledButton>{label}</StyledButton>;
 }
