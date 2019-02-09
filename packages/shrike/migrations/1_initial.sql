@@ -63,14 +63,89 @@ CREATE TABLE photo
     img_url VARCHAR(255) NOT NULL
 );
 -- CMS TABLES
-CREATE TABLE landing_page
+-- LAYOUT TABLES
+CREATE TABLE layout_type
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
-
 );
+
+CREATE TABLE layout
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    layout_type INTEGER REFERENCES layout_type(id)
+);
+
+CREATE TABLE layout_row
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    layout INTEGER REFERENCES layout(id) NOT NULL
+);
+
+CREATE TABLE layout_column
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    layout_row INTEGER REFERENCES layout_row(id) NOT NULL
+);
+
+CREATE TABLE component_implementation
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE component_type
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE component
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    component_type INTEGER REFERENCES component_type(id) NOT NULL,
+    layout_column INTEGER REFERENCES layout_column(id)
+);
+
+CREATE TABLE field_type
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE field
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    field_type INTEGER REFERENCES field_type(id) NOT NULL,
+    component INTEGER REFERENCES component(id)
+);
+
+CREATE TABLE landing_page
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL,
+    layout INTEGER REFERENCES layout(id)
+);
+
 CREATE TABLE experiment
 (
     id serial PRIMARY KEY,
@@ -79,6 +154,10 @@ CREATE TABLE experiment
     title VARCHAR(255) NOT NULL,
     landing_page INTEGER REFERENCES landing_page(id)
 );
+
+
+-- END LAYOUT TABLES
+-- CONTENT TABLES
 CREATE TABLE election
 (
     id serial PRIMARY KEY,
@@ -488,8 +567,17 @@ DROP TABLE product_membership;
 DROP TABLE donation_campaign_membership;
 
 --CMS TABLES
+DROP TABLE field;
+DROP TABLE field_type;
+DROP TABLE component;
+DROP TABLE component_type;
+DROP TABLE component_implementation;
+DROP TABLE layout_column;
+DROP TABLE layout_row;
 DROP TABLE experiment;
 DROP TABLE landing_page;
+DROP TABLE layout;
+DROP TABLE layout_type;
 DROP TABLE issue;
 DROP TABLE candidate;
 DROP TABLE district;
