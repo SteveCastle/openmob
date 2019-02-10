@@ -1,13 +1,8 @@
 -- +migrate Up
 -- SQL in section 'Up' is executed when this migration is applied
 
-CREATE FUNCTION count_not_nulls(variadic p_array anyarray)
-RETURNS BIGINT AS
-$$
-    SELECT count(x) FROM unnest($1) AS x
-$$ LANGUAGE SQL IMMUTABLE;
-
 -- CORE TABLES
+
 CREATE TABLE cause
 (
     id serial PRIMARY KEY,
@@ -23,7 +18,6 @@ CREATE TABLE account
     username VARCHAR(255) NOT NULL
 
 );
-
 CREATE TABLE acl
 (
     id serial PRIMARY KEY
@@ -79,7 +73,6 @@ CREATE TABLE layout
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     layout_type INTEGER REFERENCES layout_type(id)
 );
-
 CREATE TABLE layout_row
 (
     id serial PRIMARY KEY,
@@ -95,7 +88,6 @@ CREATE TABLE layout_column
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     layout_row INTEGER REFERENCES layout_row(id) NOT NULL
 );
-
 CREATE TABLE component_implementation
 (
     id serial PRIMARY KEY,
@@ -110,7 +102,6 @@ CREATE TABLE component_type
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
-
 CREATE TABLE component
 (
     id serial PRIMARY KEY,
@@ -127,7 +118,6 @@ CREATE TABLE field_type
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
-
 CREATE TABLE field
 (
     id serial PRIMARY KEY,
@@ -145,7 +135,6 @@ CREATE TABLE landing_page
     title VARCHAR(255) NOT NULL,
     layout INTEGER REFERENCES layout(id)
 );
-
 CREATE TABLE experiment
 (
     id serial PRIMARY KEY,
@@ -322,7 +311,6 @@ CREATE TABLE boycott_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     boycott INTEGER REFERENCES boycott(id) NOT NULL
 );
-
 CREATE TABLE election_membership
 (
     id serial PRIMARY KEY,
@@ -340,7 +328,6 @@ CREATE TABLE petition_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     petition INTEGER REFERENCES petition(id) NOT NULL
 );
-
 CREATE TABLE poll_membership
 (
     id serial PRIMARY KEY,
@@ -358,7 +345,6 @@ CREATE TABLE volunteer_opportunity_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     volunteer_opportunity INTEGER REFERENCES volunteer_opportunity(id) NOT NULL
 );
-
 CREATE TABLE live_event_membership
 (
     id serial PRIMARY KEY,
@@ -367,7 +353,6 @@ CREATE TABLE live_event_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     live_event INTEGER REFERENCES live_event(id) NOT NULL
 );
-
 CREATE TABLE product_membership
 (
     id serial PRIMARY KEY,
@@ -376,7 +361,6 @@ CREATE TABLE product_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     product INTEGER REFERENCES product(id) NOT NULL
 );
-
 CREATE TABLE donation_campaign_membership
 (
     id serial PRIMARY KEY,
@@ -385,7 +369,6 @@ CREATE TABLE donation_campaign_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     donation_campaign INTEGER REFERENCES donation_campaign(id) NOT NULL
 );
-
 -- CRM FIELDS
 CREATE TABLE contact
 (
@@ -513,7 +496,6 @@ CREATE TABLE owner_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     account INTEGER REFERENCES account(id) NOT NULL
 );
-
 CREATE TABLE contact_membership
 (
     id serial PRIMARY KEY,
@@ -522,7 +504,6 @@ CREATE TABLE contact_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     contact INTEGER REFERENCES contact(id) NOT NULL
 );
-
 CREATE TABLE agent_membership
 (
     id serial PRIMARY KEY,
@@ -531,7 +512,6 @@ CREATE TABLE agent_membership
     cause INTEGER REFERENCES cause(id) NOT NULL,
     agent INTEGER REFERENCES agent(id) NOT NULL
 );
-
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
 
@@ -612,7 +592,3 @@ DROP TABLE mailing_address;
 DROP TABLE phone_number;
 DROP TABLE email_address;
 DROP TABLE photo;
-
-
--- DROP FUNCTIONS
-DROP FUNCTION count_not_nulls;
