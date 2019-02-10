@@ -23,7 +23,7 @@ PluginDirs = ["plugins"]
 # regular functions.  The "." value is the DB name of the item. Thus, to make an
 # item's Name the same as its DBName, you'd use a template of "{{.}}". To make
 # the Name the PascalCase version, you'd use "{{pascal .}}".
-NameConversion = "{{.}}"
+NameConversion = "{{pascal .}}"
 
 # IncludeTables is a whitelist of tables to generate data for. Tables not
 # in this list will not be included in data geenrated by gnorm. You cannot
