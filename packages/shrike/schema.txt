@@ -1,0 +1,1126 @@
+Schema: Public(public)
+
+Table: ACL(public.acl)
++------+--------+------+---------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| Name | DBName | Type | DBType  | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++------+--------+------+---------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID   | id     | int  | integer | false   | true         | false | false    |      0 | false       | false    | true       |         |
++------+--------+------+---------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------+----------+----------+---------+
+|  Name   |  DBName  | IsUnique | Columns |
++---------+----------+----------+---------+
+| ACLPkey | acl_pkey | true     | ID      |
++---------+----------+----------+---------+
+
+
+Table: MailingAddress(public.mailing_address)
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name      |     DBName     |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID            | id             | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt     | created_at     | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt     | updated_at     | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| StreetAddress | street_address | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| City          | city           | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| State         | state          | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| ZipCode       | zip_code       | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------------+----------------------+----------+---------+
+|        Name        |        DBName        | IsUnique | Columns |
++--------------------+----------------------+----------+---------+
+| MailingAddressPkey | mailing_address_pkey | true     | ID      |
++--------------------+----------------------+----------+---------+
+
+
+Table: PhoneNumber(public.phone_number)
++-------------+--------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|    Name     |    DBName    |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-------------+--------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID          | id           | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt   | created_at   | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt   | updated_at   | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| PhoneNumber | phone_number | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-------------+--------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------------+-------------------+----------+---------+
+|      Name       |      DBName       | IsUnique | Columns |
++-----------------+-------------------+----------+---------+
+| PhoneNumberPkey | phone_number_pkey | true     | ID      |
++-----------------+-------------------+----------+---------+
+
+
+Table: EmailAddress(public.email_address)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Address   | address    | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------+--------------------+----------+---------+
+|       Name       |       DBName       | IsUnique | Columns |
++------------------+--------------------+----------+---------+
+| EmailAddressPkey | email_address_pkey | true     | ID      |
++------------------+--------------------+----------+---------+
+
+
+Table: Photo(public.photo)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| ImgURL    | img_url    | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------+------------+----------+---------+
+|   Name    |   DBName   | IsUnique | Columns |
++-----------+------------+----------+---------+
+| PhotoPkey | photo_pkey | true     | ID      |
++-----------+------------+----------+---------+
+
+
+Table: LayoutType(public.layout_type)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++----------------+------------------+----------+---------+
+|      Name      |      DBName      | IsUnique | Columns |
++----------------+------------------+----------+---------+
+| LayoutTypePkey | layout_type_pkey | true     | ID      |
++----------------+------------------+----------+---------+
+
+
+Table: LayoutRow(public.layout_row)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Layout    | layout     | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------+-----------------+----------+---------+
+|     Name      |     DBName      | IsUnique | Columns |
++---------------+-----------------+----------+---------+
+| LayoutRowPkey | layout_row_pkey | true     | ID      |
++---------------+-----------------+----------+---------+
+
+
+Table: ComponentImplementation(public.component_implementation)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------------------------+-------------------------------+----------+---------+
+|            Name             |            DBName             | IsUnique | Columns |
++-----------------------------+-------------------------------+----------+---------+
+| ComponentImplementationPkey | component_implementation_pkey | true     | ID      |
++-----------------------------+-------------------------------+----------+---------+
+
+
+Table: ComponentType(public.component_type)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------------+---------------------+----------+---------+
+|       Name        |       DBName        | IsUnique | Columns |
++-------------------+---------------------+----------+---------+
+| ComponentTypePkey | component_type_pkey | true     | ID      |
++-------------------+---------------------+----------+---------+
+
+
+Table: LayoutColumn(public.layout_column)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| LayoutRow | layout_row | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------+--------------------+----------+---------+
+|       Name       |       DBName       | IsUnique | Columns |
++------------------+--------------------+----------+---------+
+| LayoutColumnPkey | layout_column_pkey | true     | ID      |
++------------------+--------------------+----------+---------+
+
+
+Table: FieldType(public.field_type)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------+-----------------+----------+---------+
+|     Name      |     DBName      | IsUnique | Columns |
++---------------+-----------------+----------+---------+
+| FieldTypePkey | field_type_pkey | true     | ID      |
++---------------+-----------------+----------+---------+
+
+
+Table: Component(public.component)
++---------------+----------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name      |     DBName     |     Type      |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++---------------+----------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID            | id             | int           | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt     | created_at     | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt     | updated_at     | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| ComponentType | component_type | int           | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| LayoutColumn  | layout_column  | sql.NullInt64 | integer                  | false   | false        | true  | false    |      0 | false       | true     | false      |         |
++---------------+----------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------+----------------+----------+---------+
+|     Name      |     DBName     | IsUnique | Columns |
++---------------+----------------+----------+---------+
+| ComponentPkey | component_pkey | true     | ID      |
++---------------+----------------+----------+---------+
+
+
+Table: Field(public.field)
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |     Type      |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int           | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| FieldType | field_type | int           | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Component | component  | sql.NullInt64 | integer                  | false   | false        | true  | false    |      0 | false       | true     | false      |         |
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------+------------+----------+---------+
+|   Name    |   DBName   | IsUnique | Columns |
++-----------+------------+----------+---------+
+| FieldPkey | field_pkey | true     | ID      |
++-----------+------------+----------+---------+
+
+
+Table: Layout(public.layout)
++------------+-------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|    Name    |   DBName    |     Type      |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++------------+-------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID         | id          | int           | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt  | created_at  | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt  | updated_at  | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| LayoutType | layout_type | sql.NullInt64 | integer                  | false   | false        | true  | false    |      0 | false       | true     | false      |         |
++------------+-------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------+-------------+----------+---------+
+|    Name    |   DBName    | IsUnique | Columns |
++------------+-------------+----------+---------+
+| LayoutPkey | layout_pkey | true     | ID      |
++------------+-------------+----------+---------+
+
+
+Table: LandingPage(public.landing_page)
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |     Type      |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int           | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string        | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| Layout    | layout     | sql.NullInt64 | integer                  | false   | false        | true  | false    |      0 | false       | true     | false      |         |
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------------+-------------------+----------+---------+
+|      Name       |      DBName       | IsUnique | Columns |
++-----------------+-------------------+----------+---------+
+| LandingPagePkey | landing_page_pkey | true     | ID      |
++-----------------+-------------------+----------+---------+
+
+
+Table: Experiment(public.experiment)
++-------------+--------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|    Name     |    DBName    |     Type      |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-------------+--------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID          | id           | int           | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt   | created_at   | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt   | updated_at   | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title       | title        | string        | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| LandingPage | landing_page | sql.NullInt64 | integer                  | false   | false        | true  | false    |      0 | false       | true     | false      |         |
++-------------+--------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++----------------+-----------------+----------+---------+
+|      Name      |     DBName      | IsUnique | Columns |
++----------------+-----------------+----------+---------+
+| ExperimentPkey | experiment_pkey | true     | ID      |
++----------------+-----------------+----------+---------+
+
+
+Table: Issue(public.issue)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| Election  | election   | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------+------------+----------+---------+
+|   Name    |   DBName   | IsUnique | Columns |
++-----------+------------+----------+---------+
+| IssuePkey | issue_pkey | true     | ID      |
++-----------+------------+----------+---------+
+
+
+Table: Candidate(public.candidate)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Election  | election   | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------+----------------+----------+---------+
+|     Name      |     DBName     | IsUnique | Columns |
++---------------+----------------+----------+---------+
+| CandidatePkey | candidate_pkey | true     | ID      |
++---------------+----------------+----------+---------+
+
+
+Table: DistrictType(public.district_type)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------+--------------------+----------+---------+
+|       Name       |       DBName       | IsUnique | Columns |
++------------------+--------------------+----------+---------+
+| DistrictTypePkey | district_type_pkey | true     | ID      |
++------------------+--------------------+----------+---------+
+
+
+Table: District(public.district)
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name     |    DBName     |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID           | id            | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt    | created_at    | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt    | updated_at    | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Geom         | geom          |           | geometry                 | false   | false        | false | false    |      0 | true        | true     | false      |         |
+| Title        | title         | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| DistrictType | district_type | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------+---------------+----------+---------+
+|     Name     |    DBName     | IsUnique | Columns |
++--------------+---------------+----------+---------+
+| DistrictPkey | district_pkey | true     | ID      |
++--------------+---------------+----------+---------+
+
+
+Table: Office(public.office)
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |     Type      |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int           | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string        | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| Election  | election   | sql.NullInt64 | integer                  | false   | false        | true  | false    |      0 | false       | true     | false      |         |
++-----------+------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------+-------------+----------+---------+
+|    Name    |   DBName    | IsUnique | Columns |
++------------+-------------+----------+---------+
+| OfficePkey | office_pkey | true     | ID      |
++------------+-------------+----------+---------+
+
+
+Table: VolunteerOpportunityType(public.volunteer_opportunity_type)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------------------+---------------------------------+----------+---------+
+|             Name             |             DBName              | IsUnique | Columns |
++------------------------------+---------------------------------+----------+---------+
+| VolunteerOpportunityTypePkey | volunteer_opportunity_type_pkey | true     | ID      |
++------------------------------+---------------------------------+----------+---------+
+
+
+Table: LiveEventType(public.live_event_type)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------------+----------------------+----------+---------+
+|       Name        |        DBName        | IsUnique | Columns |
++-------------------+----------------------+----------+---------+
+| LiveEventTypePkey | live_event_type_pkey | true     | ID      |
++-------------------+----------------------+----------+---------+
+
+
+Table: Company(public.company)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------+--------------+----------+---------+
+|    Name     |    DBName    | IsUnique | Columns |
++-------------+--------------+----------+---------+
+| CompanyPkey | company_pkey | true     | ID      |
++-------------+--------------+----------+---------+
+
+
+Table: ProductType(public.product_type)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------------+-------------------+----------+---------+
+|      Name       |      DBName       | IsUnique | Columns |
++-----------------+-------------------+----------+---------+
+| ProductTypePkey | product_type_pkey | true     | ID      |
++-----------------+-------------------+----------+---------+
+
+
+Table: CustomerCart(public.customer_cart)
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   | Type |           DBType            | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int  | integer                     | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at |      | timestamp without time zone | false   | false        | false | false    |      0 | false       | false    | false      |         |
+| UpdatedAt | updated_at |      | timestamp without time zone | false   | false        | false | false    |      0 | false       | true     | false      |         |
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------+--------------------+----------+---------+
+|       Name       |       DBName       | IsUnique | Columns |
++------------------+--------------------+----------+---------+
+| CustomerCartPkey | customer_cart_pkey | true     | ID      |
++------------------+--------------------+----------+---------+
+
+
+Table: Payment(public.payment)
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name      |     DBName     |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID            | id             | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt     | created_at     | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt     | updated_at     | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| CustomerOrder | customer_order | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------+--------------+----------+---------+
+|    Name     |    DBName    | IsUnique | Columns |
++-------------+--------------+----------+---------+
+| PaymentPkey | payment_pkey | true     | ID      |
++-------------+--------------+----------+---------+
+
+
+Table: Delivery(public.delivery)
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   | Type |           DBType            | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int  | integer                     | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at |      | timestamp without time zone | false   | false        | false | false    |      0 | false       | false    | false      |         |
+| UpdatedAt | updated_at |      | timestamp without time zone | false   | false        | false | false    |      0 | false       | true     | false      |         |
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------+---------------+----------+---------+
+|     Name     |    DBName     | IsUnique | Columns |
++--------------+---------------+----------+---------+
+| DeliveryPkey | delivery_pkey | true     | ID      |
++--------------+---------------+----------+---------+
+
+
+Table: Boycott(public.boycott)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------+--------------+----------+---------+
+|    Name     |    DBName    | IsUnique | Columns |
++-------------+--------------+----------+---------+
+| BoycottPkey | boycott_pkey | true     | ID      |
++-------------+--------------+----------+---------+
+
+
+Table: BoycottMembership(public.boycott_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Boycott   | boycott    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------------------+-------------------------+----------+---------+
+|         Name          |         DBName          | IsUnique | Columns |
++-----------------------+-------------------------+----------+---------+
+| BoycottMembershipPkey | boycott_membership_pkey | true     | ID      |
++-----------------------+-------------------------+----------+---------+
+
+
+Table: Election(public.election)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------+---------------+----------+---------+
+|     Name     |    DBName     | IsUnique | Columns |
++--------------+---------------+----------+---------+
+| ElectionPkey | election_pkey | true     | ID      |
++--------------+---------------+----------+---------+
+
+
+Table: ElectionMembership(public.election_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Election  | election   | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------------+--------------------------+----------+---------+
+|          Name          |          DBName          | IsUnique | Columns |
++------------------------+--------------------------+----------+---------+
+| ElectionMembershipPkey | election_membership_pkey | true     | ID      |
++------------------------+--------------------------+----------+---------+
+
+
+Table: PetitionMembership(public.petition_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Petition  | petition   | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------------+--------------------------+----------+---------+
+|          Name          |          DBName          | IsUnique | Columns |
++------------------------+--------------------------+----------+---------+
+| PetitionMembershipPkey | petition_membership_pkey | true     | ID      |
++------------------------+--------------------------+----------+---------+
+
+
+Table: PollMembership(public.poll_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Petition  | petition   | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------------+----------------------+----------+---------+
+|        Name        |        DBName        | IsUnique | Columns |
++--------------------+----------------------+----------+---------+
+| PollMembershipPkey | poll_membership_pkey | true     | ID      |
++--------------------+----------------------+----------+---------+
+
+
+Table: VolunteerOpportunityMembership(public.volunteer_opportunity_membership)
++----------------------+-----------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|         Name         |        DBName         |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++----------------------+-----------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID                   | id                    | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt            | created_at            | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt            | updated_at            | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause                | cause                 | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| VolunteerOpportunity | volunteer_opportunity | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++----------------------+-----------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------------------------+---------------------------------------+----------+---------+
+|                Name                |                DBName                 | IsUnique | Columns |
++------------------------------------+---------------------------------------+----------+---------+
+| VolunteerOpportunityMembershipPkey | volunteer_opportunity_membership_pkey | true     | ID      |
++------------------------------------+---------------------------------------+----------+---------+
+
+
+Table: LiveEventMembership(public.live_event_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| LiveEvent | live_event | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------------------+----------------------------+----------+---------+
+|          Name           |           DBName           | IsUnique | Columns |
++-------------------------+----------------------------+----------+---------+
+| LiveEventMembershipPkey | live_event_membership_pkey | true     | ID      |
++-------------------------+----------------------------+----------+---------+
+
+
+Table: Product(public.product)
++-------------+--------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|    Name     |    DBName    |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-------------+--------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID          | id           | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt   | created_at   | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt   | updated_at   | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title       | title        | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| ProductType | product_type | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-------------+--------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------+--------------+----------+---------+
+|    Name     |    DBName    | IsUnique | Columns |
++-------------+--------------+----------+---------+
+| ProductPkey | product_pkey | true     | ID      |
++-------------+--------------+----------+---------+
+
+
+Table: ProductMembership(public.product_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Product   | product    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------------------+-------------------------+----------+---------+
+|         Name          |         DBName          | IsUnique | Columns |
++-----------------------+-------------------------+----------+---------+
+| ProductMembershipPkey | product_membership_pkey | true     | ID      |
++-----------------------+-------------------------+----------+---------+
+
+
+Table: DonationCampaign(public.donation_campaign)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++----------------------+------------------------+----------+---------+
+|         Name         |         DBName         | IsUnique | Columns |
++----------------------+------------------------+----------+---------+
+| DonationCampaignPkey | donation_campaign_pkey | true     | ID      |
++----------------------+------------------------+----------+---------+
+
+
+Table: DonationCampaignMembership(public.donation_campaign_membership)
++------------------+-------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|       Name       |      DBName       |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++------------------+-------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID               | id                | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt        | created_at        | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt        | updated_at        | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause            | cause             | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| DonationCampaign | donation_campaign | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++------------------+-------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------------------------+-----------------------------------+----------+---------+
+|              Name              |              DBName               | IsUnique | Columns |
++--------------------------------+-----------------------------------+----------+---------+
+| DonationCampaignMembershipPkey | donation_campaign_membership_pkey | true     | ID      |
++--------------------------------+-----------------------------------+----------+---------+
+
+
+Table: Petition(public.petition)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------+---------------+----------+---------+
+|     Name     |    DBName     | IsUnique | Columns |
++--------------+---------------+----------+---------+
+| PetitionPkey | petition_pkey | true     | ID      |
++--------------+---------------+----------+---------+
+
+
+Table: PetitionSigner(public.petition_signer)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Petition  | petition   | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Contact   | contact    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------------+----------------------+----------+---------+
+|        Name        |        DBName        | IsUnique | Columns |
++--------------------+----------------------+----------+---------+
+| PetitionSignerPkey | petition_signer_pkey | true     | ID      |
++--------------------+----------------------+----------+---------+
+
+
+Table: Poll(public.poll)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++----------+-----------+----------+---------+
+|   Name   |  DBName   | IsUnique | Columns |
++----------+-----------+----------+---------+
+| PollPkey | poll_pkey | true     | ID      |
++----------+-----------+----------+---------+
+
+
+Table: PollRespondant(public.poll_respondant)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Poll      | poll       | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Contact   | contact    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------------+----------------------+----------+---------+
+|        Name        |        DBName        | IsUnique | Columns |
++--------------------+----------------------+----------+---------+
+| PollRespondantPkey | poll_respondant_pkey | true     | ID      |
++--------------------+----------------------+----------+---------+
+
+
+Table: Purchaser(public.purchaser)
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name      |     DBName     |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID            | id             | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt     | created_at     | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt     | updated_at     | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| CustomerOrder | customer_order | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Contact       | contact        | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause         | cause          | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------+----------------+----------+---------+
+|     Name      |     DBName     | IsUnique | Columns |
++---------------+----------------+----------+---------+
+| PurchaserPkey | purchaser_pkey | true     | ID      |
++---------------+----------------+----------+---------+
+
+
+Table: CustomerOrder(public.customer_order)
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name     |    DBName     |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID           | id            | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt    | created_at    | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt    | updated_at    | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| CustomerCart | customer_cart | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------------+---------------------+----------+---------+
+|       Name        |       DBName        | IsUnique | Columns |
++-------------------+---------------------+----------+---------+
+| CustomerOrderPkey | customer_order_pkey | true     | ID      |
++-------------------+---------------------+----------+---------+
+
+
+Table: Donor(public.donor)
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name      |     DBName     |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID            | id             | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt     | created_at     | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt     | updated_at     | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| CustomerOrder | customer_order | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Contact       | contact        | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause         | cause          | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++---------------+----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------+------------+----------+---------+
+|   Name    |   DBName   | IsUnique | Columns |
++-----------+------------+----------+---------+
+| DonorPkey | donor_pkey | true     | ID      |
++-----------+------------+----------+---------+
+
+
+Table: LiveEvent(public.live_event)
++---------------+-----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name      |     DBName      |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++---------------+-----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID            | id              | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt     | created_at      | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt     | updated_at      | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title         | title           | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| LiveEventType | live_event_type | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++---------------+-----------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------+-----------------+----------+---------+
+|     Name      |     DBName      | IsUnique | Columns |
++---------------+-----------------+----------+---------+
+| LiveEventPkey | live_event_pkey | true     | ID      |
++---------------+-----------------+----------+---------+
+
+
+Table: EventAttendee(public.event_attendee)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| LiveEvent | live_event | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Contact   | contact    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------------+---------------------+----------+---------+
+|       Name        |       DBName        | IsUnique | Columns |
++-------------------+---------------------+----------+---------+
+| EventAttendeePkey | event_attendee_pkey | true     | ID      |
++-------------------+---------------------+----------+---------+
+
+
+Table: Voter(public.voter)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Contact   | contact    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------+------------+----------+---------+
+|   Name    |   DBName   | IsUnique | Columns |
++-----------+------------+----------+---------+
+| VoterPkey | voter_pkey | true     | ID      |
++-----------+------------+----------+---------+
+
+
+Table: VolunteerOpportunity(public.volunteer_opportunity)
++--------------+---------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name     |    DBName     |     Type      |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++--------------+---------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID           | id            | int           | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt    | created_at    | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt    | updated_at    | time.Time     | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title        | title         | string        | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| ElectionType | election_type | sql.NullInt64 | integer                  | false   | false        | true  | false    |      0 | false       | true     | false      |         |
++--------------+---------------+---------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------------------+----------------------------+----------+---------+
+|           Name           |           DBName           | IsUnique | Columns |
++--------------------------+----------------------------+----------+---------+
+| VolunteerOpportunityPkey | volunteer_opportunity_pkey | true     | ID      |
++--------------------------+----------------------------+----------+---------+
+
+
+Table: Volunteer(public.volunteer)
++----------------------+-----------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|         Name         |        DBName         |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++----------------------+-----------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID                   | id                    | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt            | created_at            | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt            | updated_at            | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| VolunteerOpportunity | volunteer_opportunity | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Contact              | contact               | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause                | cause                 | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++----------------------+-----------------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------+----------------+----------+---------+
+|     Name      |     DBName     | IsUnique | Columns |
++---------------+----------------+----------+---------+
+| VolunteerPkey | volunteer_pkey | true     | ID      |
++---------------+----------------+----------+---------+
+
+
+Table: Follower(public.follower)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Contact   | contact    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------+---------------+----------+---------+
+|     Name     |    DBName     | IsUnique | Columns |
++--------------+---------------+----------+---------+
+| FollowerPkey | follower_pkey | true     | ID      |
++--------------+---------------+----------+---------+
+
+
+Table: Territory(public.territory)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------+----------------+----------+---------+
+|     Name      |     DBName     | IsUnique | Columns |
++---------------+----------------+----------+---------+
+| TerritoryPkey | territory_pkey | true     | ID      |
++---------------+----------------+----------+---------+
+
+
+Table: ActivityType(public.activity_type)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++------------------+--------------------+----------+---------+
+|       Name       |       DBName       | IsUnique | Columns |
++------------------+--------------------+----------+---------+
+| ActivityTypePkey | activity_type_pkey | true     | ID      |
++------------------+--------------------+----------+---------+
+
+
+Table: Activity(public.activity)
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|     Name     |    DBName     |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID           | id            | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt    | created_at    | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt    | updated_at    | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title        | title         | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
+| ActivityType | activity_type | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Contact      | contact       | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause        | cause         | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++--------------+---------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++--------------+---------------+----------+---------+
+|     Name     |    DBName     | IsUnique | Columns |
++--------------+---------------+----------+---------+
+| ActivityPkey | activity_pkey | true     | ID      |
++--------------+---------------+----------+---------+
+
+
+Table: Note(public.note)
++-----------+------------+----------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |      Type      |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+----------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int            | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time      | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time      | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Contact   | contact    | int            | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Cause     | cause      | int            | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Body      | body       | sql.NullString | text                     | false   | false        | false | false    |      0 | false       | true     | false      |         |
++-----------+------------+----------------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++----------+-----------+----------+---------+
+|   Name   |  DBName   | IsUnique | Columns |
++----------+-----------+----------+---------+
+| NotePkey | note_pkey | true     | ID      |
++----------+-----------+----------+---------+
+
+
+Table: Account(public.account)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Username  | username   | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------+--------------+----------+---------+
+|    Name     |    DBName    | IsUnique | Columns |
++-------------+--------------+----------+---------+
+| AccountPkey | account_pkey | true     | ID      |
++-------------+--------------+----------+---------+
+
+
+Table: OwnerMembership(public.owner_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Account   | account    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------------+-----------------------+----------+---------+
+|        Name         |        DBName         | IsUnique | Columns |
++---------------------+-----------------------+----------+---------+
+| OwnerMembershipPkey | owner_membership_pkey | true     | ID      |
++---------------------+-----------------------+----------+---------+
+
+
+Table: Contact(public.contact)
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   | Type |           DBType            | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int  | integer                     | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at |      | timestamp without time zone | false   | false        | false | false    |      0 | false       | false    | false      |         |
+| UpdatedAt | updated_at |      | timestamp without time zone | false   | false        | false | false    |      0 | false       | true     | false      |         |
++-----------+------------+------+-----------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-------------+--------------+----------+---------+
+|    Name     |    DBName    | IsUnique | Columns |
++-------------+--------------+----------+---------+
+| ContactPkey | contact_pkey | true     | ID      |
++-------------+--------------+----------+---------+
+
+
+Table: ContactMembership(public.contact_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Contact   | contact    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------------------+-------------------------+----------+---------+
+|         Name          |         DBName          | IsUnique | Columns |
++-----------------------+-------------------------+----------+---------+
+| ContactMembershipPkey | contact_membership_pkey | true     | ID      |
++-----------------------+-------------------------+----------+---------+
+
+
+Table: Cause(public.cause)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Title     | title      | string    | character varying        | false   | false        | false | false    |    255 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------+------------+----------+---------+
+|   Name    |   DBName   | IsUnique | Columns |
++-----------+------------+----------+---------+
+| CausePkey | cause_pkey | true     | ID      |
++-----------+------------+----------+---------+
+
+
+Table: Agent(public.agent)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | true     |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Account   | account    | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++-----------+------------+----------+---------+
+|   Name    |   DBName   | IsUnique | Columns |
++-----------+------------+----------+---------+
+| AgentPkey | agent_pkey | true     | ID      |
++-----------+------------+----------+---------+
+
+
+Table: AgentMembership(public.agent_membership)
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+|   Name    |   DBName   |   Type    |          DBType          | IsArray | IsPrimaryKey | IsFK  | HasFKRef | Length | UserDefined | Nullable | HasDefault | Comment |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+| ID        | id         | int       | integer                  | false   | true         | false | false    |      0 | false       | false    | true       |         |
+| CreatedAt | created_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| UpdatedAt | updated_at | time.Time | timestamp with time zone | false   | false        | false | false    |      0 | false       | false    | true       |         |
+| Cause     | cause      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
+| Agent     | agent      | int       | integer                  | false   | false        | true  | false    |      0 | false       | false    | false      |         |
++-----------+------------+-----------+--------------------------+---------+--------------+-------+----------+--------+-------------+----------+------------+---------+
+Indexes:
++---------------------+-----------------------+----------+---------+
+|        Name         |        DBName         | IsUnique | Columns |
++---------------------+-----------------------+----------+---------+
+| AgentMembershipPkey | agent_membership_pkey | true     | ID      |
++---------------------+-----------------------+----------+---------+
+

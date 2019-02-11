@@ -1,0 +1,151 @@
+syntax = "proto3";
+
+package shrike.v1;
+
+option go_package = "v1";
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+	info: {
+		title: "Shrike service";
+		version: "1.0";
+		contact: {
+			name: "openmob";
+			url: "https://github.com/SteveCastle/openmob";
+			email: "stephen@openmob.us";
+        };
+    };
+    schemes: HTTP;
+    consumes: "application/json";
+    produces: "application/json";
+    responses: {
+		key: "404";
+		value: {
+			description: "Returned when the resource does not exist.";
+			schema: {
+				json_schema: {
+					type: STRING;
+				}
+			}
+		}
+	}
+};
+// API Types
+
+message Cause {
+	int64 id = 1;
+	string title = 2;
+}
+
+//Request and Response Message Types
+message CreateCauseRequest {
+	string api = 1;
+	Cause item = 2;
+}
+
+message CreateCauseResponse {
+	string api = 1;
+	int64 id = 2;
+	
+}
+message GetCauseRequest {
+	string api = 1;
+	int64 id = 2;
+}
+
+message GetCauseResponse {
+	string api = 1;
+	Cause item = 2;
+}
+
+message ListCauseRequest {
+	string api = 1;
+	int32 limit = 2;
+}
+
+message ListCauseResponse {
+	string api = 1;
+	repeated Cause items = 2;
+}
+
+// Request data to update cause
+message UpdateCauseRequest{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Task entity to update
+    Cause item = 2;
+}
+
+// Contains status of update operation
+message UpdateCauseResponse{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete cause
+message DeleteCauseRequest{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Unique integer identifier of the cause to delete
+    int64 id = 2;
+}
+
+// Contains status of delete operation
+message DeleteCauseResponse{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
+// Shrike Service Definition
+service ShrikeService {
+	// CreateCause takes a cause object to create.
+	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
+		option (google.api.http) ={
+			post: "/v1/cause"
+			body: "*"
+		};
+	}
+    // GetCause takes an id and returns a single cause.
+	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
+		option (google.api.http) ={
+			get: "/v1/cause/{id}"
+		};
+	}
+    // List cause, takes filters, limit, and cursor param.
+	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
+	option (google.api.http) ={
+		get: "/v1/cause"
+	};
+}
+    // Update cause
+    rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse){
+        option (google.api.http) = {
+            put: "/v1/cause/{item.id}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/cause/{item.id}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete cause
+    rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse){
+        option (google.api.http) = {
+            delete: "/v1/cause/{id}"
+        };
+    }
+}

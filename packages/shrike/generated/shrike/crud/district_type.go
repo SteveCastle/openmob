@@ -1,0 +1,239 @@
+package v1
+
+import (
+	"context"
+	"database/sql"
+	"fmt"
+
+	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+)
+
+const (
+	// apiVersion is version of API is provided by server
+	apiVersion = "v1"
+)
+
+// shrikeServiceServer is implementation of v1.ShrikeServiceServer proto interface
+type shrikeServiceServer struct {
+	db *sql.DB
+}
+
+// NewShrikeServiceServer creates DistrictType service
+func NewShrikeServiceServer(db *sql.DB) v1.ShrikeServiceServer {
+	return &shrikeServiceServer{db: db}
+}
+
+// checkAPI checks if the API version requested by client is supported by server
+func (s *shrikeServiceServer) checkAPI(api string) error {
+	// API version is "" means use current version of the service
+	if len(api) > 0 {
+		if apiVersion != api {
+			return status.Errorf(codes.Unimplemented,
+				"unsupported API version: service implements API version '%s', but asked for '%s'", apiVersion, api)
+		}
+	}
+	return nil
+}
+
+// connect returns SQL database connection from the pool
+func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
+	c, err := s.db.Conn(ctx)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to connect to database-> "+err.Error())
+	}
+	return c, nil
+}
+
+// Create new todo task
+func (s *shrikeServiceServer) CreateDistrictType(ctx context.Context, req *v1.CreateDistrictTypeRequest) (*v1.CreateDistrictTypeResponse, error) {
+	// check if the API version requested by client is supported by server
+	if err := s.checkAPI(req.Api); err != nil {
+		return nil, err
+	}
+	// get SQL connection from pool
+	c, err := s.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+	var id int64
+	// insert DistrictType entity data
+	err = c.QueryRowContext(ctx, "INSERT INTO districttype (title) VALUES($1)  RETURNING id;",
+		req.Item.Title).Scan(&id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to insert into DistrictType-> "+err.Error())
+	}
+
+	// get ID of creates DistrictType
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve id for created DistrictType-> "+err.Error())
+	}
+
+	return &v1.CreateDistrictTypeResponse{
+		Api: apiVersion,
+		Id:  id,
+	}, nil
+}
+
+// Get districttype by id.
+func (s *shrikeServiceServer) GetDistrictType(ctx context.Context, req *v1.GetDistrictTypeRequest) (*v1.GetDistrictTypeResponse, error) {
+	// check if the API version requested by client is supported by server
+	if err := s.checkAPI(req.Api); err != nil {
+		return nil, err
+	}
+	// get SQL connection from pool
+	c, err := s.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// query DistrictType by ID
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM districttype WHERE id=$1",
+		req.Id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to select from DistrictType-> "+err.Error())
+	}
+	defer rows.Close()
+
+	if !rows.Next() {
+		if err := rows.Err(); err != nil {
+			return nil, status.Error(codes.Unknown, "failed to retrieve data from DistrictType-> "+err.Error())
+		}
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DistrictType with ID='%d' is not found",
+			req.Id))
+	}
+
+	// get DistrictType data
+	var td v1.DistrictType
+	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DistrictType row-> "+err.Error())
+	}
+
+	if rows.Next() {
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple DistrictType rows with ID='%d'",
+			req.Id))
+	}
+
+	return &v1.GetDistrictTypeResponse{
+		Api:  apiVersion,
+		Item: &td,
+	}, nil
+
+}
+
+// Read all todo tasks
+func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.ListDistrictTypeRequest) (*v1.ListDistrictTypeResponse, error) {
+	// check if the API version requested by client is supported by server
+	if err := s.checkAPI(req.Api); err != nil {
+		return nil, err
+	}
+
+	// get SQL connection from pool
+	c, err := s.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// get DistrictType list
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM DistrictType")
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to select from DistrictType-> "+err.Error())
+	}
+	defer rows.Close()
+
+	list := []*v1.DistrictType{}
+	for rows.Next() {
+		td := new(v1.DistrictType)
+		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DistrictType row-> "+err.Error())
+		}
+		list = append(list, td)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve data from DistrictType-> "+err.Error())
+	}
+
+	return &v1.ListDistrictTypeResponse{
+		Api:   apiVersion,
+		Items: list,
+	}, nil
+}
+
+// Update todo task
+func (s *shrikeServiceServer) UpdateDistrictType(ctx context.Context, req *v1.UpdateDistrictTypeRequest) (*v1.UpdateDistrictTypeResponse, error) {
+	// check if the API version requested by client is supported by server
+	if err := s.checkAPI(req.Api); err != nil {
+		return nil, err
+	}
+
+	// get SQL connection from pool
+	c, err := s.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// update districttype
+	res, err := c.ExecContext(ctx, "UPDATE districttype SET title=$1 WHERE id=$2",
+		req.Item.Title, req.Item.Id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to update districttype-> "+err.Error())
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
+	}
+
+	if rows == 0 {
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("districttype with ID='%d' is not found",
+			req.Item.Id))
+	}
+
+	return &v1.UpdateDistrictTypeResponse{
+		Api:     apiVersion,
+		Updated: rows,
+	}, nil
+}
+
+// Delete districttype
+func (s *shrikeServiceServer) DeleteDistrictType(ctx context.Context, req *v1.DeleteDistrictTypeRequest) (*v1.DeleteDistrictTypeResponse, error) {
+	// check if the API version requested by client is supported by server
+	if err := s.checkAPI(req.Api); err != nil {
+		return nil, err
+	}
+
+	// get SQL connection from pool
+	c, err := s.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// delete districttype
+	res, err := c.ExecContext(ctx, "DELETE FROM districttype WHERE id=$1", req.Id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to delete districttype-> "+err.Error())
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
+	}
+
+	if rows == 0 {
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("districttype with ID='%d' is not found",
+			req.Id))
+	}
+
+	return &v1.DeleteDistrictTypeResponse{
+		Api:     apiVersion,
+		Deleted: rows,
+	}, nil
+}
