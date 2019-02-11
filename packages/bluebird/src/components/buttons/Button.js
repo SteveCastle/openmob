@@ -1,20 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import { space, width, fontSize, color } from 'styled-system';
 
 const StyledButton = styled.button`
-  background-color: ${props => props.theme.main};
   border: none;
   border-radius: 4px;
-  color: ${props => props.theme.text};
-  display: block;
-  font-size: 1rem;
-  padding: 16px;
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
   ${props => (props.block ? 'width: 100%;' : null)}
 `;
 
 export default function Button({ onClick, label, block }) {
   return (
-    <StyledButton block={block} onClick={onClick}>
+    <StyledButton
+      block={block}
+      onClick={onClick}
+      p={3}
+      bg="buttons.darkBackground"
+      color="buttons.lightText"
+    >
       {label}
     </StyledButton>
   );

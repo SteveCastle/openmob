@@ -32,8 +32,8 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 		}
 	}
 };
-// API Types
 
+// API Types
 message Cause {
 	int64 id = 1;
 	string title = 2;
