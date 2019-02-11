@@ -7,9 +7,12 @@ import { linkTo } from '@storybook/addon-links';
 import Button from '../components/buttons/Button';
 
 storiesOf('Button', module)
-  .add('with text', () => (
+  .add('Defaults', () => (
     <Button onClick={action('clicked')} label="Hello Button" />
   ))
-  .add('block mode', () => (
+  .add('Block mode', () => (
     <Button onClick={action('clicked')} label="Hello Button" block />
+  ))
+  .add('Dark Mode', () => (
+    <Button onClick={action('clicked')} label="Hello Button" dark />
   ));

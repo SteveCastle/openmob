@@ -195,7 +195,12 @@ const theme = {
   maxWidths: [16, 32, 64, 128, 256, 512, 768, 1024, 1536],
   colors: {
     ...colors,
-    buttons: { darkBackground: colors.gray[9], lightText: colors.lime[0] }
+    buttons: {
+      darkBackground: colors.gray[9],
+      lightText: colors.lime[0],
+      lightBackground: colors.gray[1],
+      darkText: colors.gray[9]
+    }
   }
 };
 
