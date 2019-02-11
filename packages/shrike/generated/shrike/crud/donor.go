@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 	defer c.Close()
 
 	// get Donor list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Donor")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM donor")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Donor-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateDonor(ctx context.Context, req *v1.UpdateDon
 	res, err := c.ExecContext(ctx, "UPDATE donor SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update donor-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Donor-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateDonor(ctx context.Context, req *v1.UpdateDon
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("donor with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteDonor(ctx context.Context, req *v1.DeleteDon
 	// delete donor
 	res, err := c.ExecContext(ctx, "DELETE FROM donor WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete donor-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Donor-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteDonor(ctx context.Context, req *v1.DeleteDon
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("donor with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%d' is not found",
 			req.Id))
 	}
 

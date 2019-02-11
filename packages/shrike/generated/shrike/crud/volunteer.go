@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListVolunteer(ctx context.Context, req *v1.ListVol
 	defer c.Close()
 
 	// get Volunteer list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Volunteer")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM volunteer")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Volunteer-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateVolunteer(ctx context.Context, req *v1.Updat
 	res, err := c.ExecContext(ctx, "UPDATE volunteer SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update volunteer-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Volunteer-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateVolunteer(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("volunteer with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Volunteer with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteVolunteer(ctx context.Context, req *v1.Delet
 	// delete volunteer
 	res, err := c.ExecContext(ctx, "DELETE FROM volunteer WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete volunteer-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Volunteer-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteVolunteer(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("volunteer with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Volunteer with ID='%d' is not found",
 			req.Id))
 	}
 

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityType(ctx context.Context
 	defer c.Close()
 	var id int64
 	// insert VolunteerOpportunityType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteeropportunitytype (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunityType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityType(ctx context.Context
 	}, nil
 }
 
-// Get volunteeropportunitytype by id.
+// Get volunteer_opportunity_type by id.
 func (s *shrikeServiceServer) GetVolunteerOpportunityType(ctx context.Context, req *v1.GetVolunteerOpportunityTypeRequest) (*v1.GetVolunteerOpportunityTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityType(ctx context.Context, r
 	defer c.Close()
 
 	// query VolunteerOpportunityType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM volunteeropportunitytype WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM volunteer_opportunity_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityType-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityType(ctx context.Context, 
 	defer c.Close()
 
 	// get VolunteerOpportunityType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM VolunteerOpportunityType")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM volunteer_opportunity_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityType-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityType(ctx context.Context
 	}
 	defer c.Close()
 
-	// update volunteeropportunitytype
-	res, err := c.ExecContext(ctx, "UPDATE volunteeropportunitytype SET title=$1 WHERE id=$2",
+	// update volunteer_opportunity_type
+	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_type SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update volunteeropportunitytype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunityType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityType(ctx context.Context
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("volunteeropportunitytype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityType(ctx context.Context
 	}, nil
 }
 
-// Delete volunteeropportunitytype
+// Delete volunteer_opportunity_type
 func (s *shrikeServiceServer) DeleteVolunteerOpportunityType(ctx context.Context, req *v1.DeleteVolunteerOpportunityTypeRequest) (*v1.DeleteVolunteerOpportunityTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunityType(ctx context.Context
 	}
 	defer c.Close()
 
-	// delete volunteeropportunitytype
-	res, err := c.ExecContext(ctx, "DELETE FROM volunteeropportunitytype WHERE id=$1", req.Id)
+	// delete volunteer_opportunity_type
+	res, err := c.ExecContext(ctx, "DELETE FROM volunteer_opportunity_type WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete volunteeropportunitytype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete VolunteerOpportunityType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunityType(ctx context.Context
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("volunteeropportunitytype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%d' is not found",
 			req.Id))
 	}
 

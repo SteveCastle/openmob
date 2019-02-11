@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateProductMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert ProductMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO productmembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO product_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ProductMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateProductMembership(ctx context.Context, req *
 	}, nil
 }
 
-// Get productmembership by id.
+// Get product_membership by id.
 func (s *shrikeServiceServer) GetProductMembership(ctx context.Context, req *v1.GetProductMembershipRequest) (*v1.GetProductMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetProductMembership(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// query ProductMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM productmembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM product_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListProductMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// get ProductMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM ProductMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM product_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateProductMembership(ctx context.Context, req *
 	}
 	defer c.Close()
 
-	// update productmembership
-	res, err := c.ExecContext(ctx, "UPDATE productmembership SET title=$1 WHERE id=$2",
+	// update product_membership
+	res, err := c.ExecContext(ctx, "UPDATE product_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update productmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update ProductMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateProductMembership(ctx context.Context, req *
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("productmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ProductMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateProductMembership(ctx context.Context, req *
 	}, nil
 }
 
-// Delete productmembership
+// Delete product_membership
 func (s *shrikeServiceServer) DeleteProductMembership(ctx context.Context, req *v1.DeleteProductMembershipRequest) (*v1.DeleteProductMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteProductMembership(ctx context.Context, req *
 	}
 	defer c.Close()
 
-	// delete productmembership
-	res, err := c.ExecContext(ctx, "DELETE FROM productmembership WHERE id=$1", req.Id)
+	// delete product_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM product_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete productmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete ProductMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteProductMembership(ctx context.Context, req *
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("productmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ProductMembership with ID='%d' is not found",
 			req.Id))
 	}
 

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityMembership(ctx context.C
 	defer c.Close()
 	var id int64
 	// insert VolunteerOpportunityMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteeropportunitymembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunityMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityMembership(ctx context.C
 	}, nil
 }
 
-// Get volunteeropportunitymembership by id.
+// Get volunteer_opportunity_membership by id.
 func (s *shrikeServiceServer) GetVolunteerOpportunityMembership(ctx context.Context, req *v1.GetVolunteerOpportunityMembershipRequest) (*v1.GetVolunteerOpportunityMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityMembership(ctx context.Cont
 	defer c.Close()
 
 	// query VolunteerOpportunityMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM volunteeropportunitymembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM volunteer_opportunity_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityMembership(ctx context.Con
 	defer c.Close()
 
 	// get VolunteerOpportunityMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM VolunteerOpportunityMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM volunteer_opportunity_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityMembership(ctx context.C
 	}
 	defer c.Close()
 
-	// update volunteeropportunitymembership
-	res, err := c.ExecContext(ctx, "UPDATE volunteeropportunitymembership SET title=$1 WHERE id=$2",
+	// update volunteer_opportunity_membership
+	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update volunteeropportunitymembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunityMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityMembership(ctx context.C
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("volunteeropportunitymembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityMembership(ctx context.C
 	}, nil
 }
 
-// Delete volunteeropportunitymembership
+// Delete volunteer_opportunity_membership
 func (s *shrikeServiceServer) DeleteVolunteerOpportunityMembership(ctx context.Context, req *v1.DeleteVolunteerOpportunityMembershipRequest) (*v1.DeleteVolunteerOpportunityMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunityMembership(ctx context.C
 	}
 	defer c.Close()
 
-	// delete volunteeropportunitymembership
-	res, err := c.ExecContext(ctx, "DELETE FROM volunteeropportunitymembership WHERE id=$1", req.Id)
+	// delete volunteer_opportunity_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM volunteer_opportunity_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete volunteeropportunitymembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete VolunteerOpportunityMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunityMembership(ctx context.C
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("volunteeropportunitymembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityMembership with ID='%d' is not found",
 			req.Id))
 	}
 

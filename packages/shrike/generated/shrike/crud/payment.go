@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPayme
 	defer c.Close()
 
 	// get Payment list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Payment")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM payment")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Payment-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdatePayment(ctx context.Context, req *v1.UpdateP
 	res, err := c.ExecContext(ctx, "UPDATE payment SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update payment-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Payment-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdatePayment(ctx context.Context, req *v1.UpdateP
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("payment with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Payment with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeletePayment(ctx context.Context, req *v1.DeleteP
 	// delete payment
 	res, err := c.ExecContext(ctx, "DELETE FROM payment WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete payment-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Payment-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeletePayment(ctx context.Context, req *v1.DeleteP
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("payment with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Payment with ID='%d' is not found",
 			req.Id))
 	}
 

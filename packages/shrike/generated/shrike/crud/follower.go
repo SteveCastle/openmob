@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListFollower(ctx context.Context, req *v1.ListFoll
 	defer c.Close()
 
 	// get Follower list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Follower")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM follower")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Follower-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateFollower(ctx context.Context, req *v1.Update
 	res, err := c.ExecContext(ctx, "UPDATE follower SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update follower-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Follower-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateFollower(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("follower with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Follower with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteFollower(ctx context.Context, req *v1.Delete
 	// delete follower
 	res, err := c.ExecContext(ctx, "DELETE FROM follower WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete follower-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Follower-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteFollower(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("follower with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Follower with ID='%d' is not found",
 			req.Id))
 	}
 

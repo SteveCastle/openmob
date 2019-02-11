@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTer
 	defer c.Close()
 
 	// get Territory list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Territory")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM territory")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Territory-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateTerritory(ctx context.Context, req *v1.Updat
 	res, err := c.ExecContext(ctx, "UPDATE territory SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update territory-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Territory-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateTerritory(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("territory with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Territory with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteTerritory(ctx context.Context, req *v1.Delet
 	// delete territory
 	res, err := c.ExecContext(ctx, "DELETE FROM territory WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete territory-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Territory-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteTerritory(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("territory with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Territory with ID='%d' is not found",
 			req.Id))
 	}
 

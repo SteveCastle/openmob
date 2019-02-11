@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListField(ctx context.Context, req *v1.ListFieldRe
 	defer c.Close()
 
 	// get Field list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Field")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM field")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Field-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateField(ctx context.Context, req *v1.UpdateFie
 	res, err := c.ExecContext(ctx, "UPDATE field SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update field-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Field-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateField(ctx context.Context, req *v1.UpdateFie
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("field with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Field with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteField(ctx context.Context, req *v1.DeleteFie
 	// delete field
 	res, err := c.ExecContext(ctx, "DELETE FROM field WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete field-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Field-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteField(ctx context.Context, req *v1.DeleteFie
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("field with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Field with ID='%d' is not found",
 			req.Id))
 	}
 

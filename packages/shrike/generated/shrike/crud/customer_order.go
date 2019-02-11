@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert CustomerOrder entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customerorder (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_order (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerOrder-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.C
 	}, nil
 }
 
-// Get customerorder by id.
+// Get customer_order by id.
 func (s *shrikeServiceServer) GetCustomerOrder(ctx context.Context, req *v1.GetCustomerOrderRequest) (*v1.GetCustomerOrderResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetCustomerOrder(ctx context.Context, req *v1.GetC
 	defer c.Close()
 
 	// query CustomerOrder by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM customerorder WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM customer_order WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerOrder-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCustomerOrder(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get CustomerOrder list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM CustomerOrder")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM customer_order")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerOrder-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateCustomerOrder(ctx context.Context, req *v1.U
 	}
 	defer c.Close()
 
-	// update customerorder
-	res, err := c.ExecContext(ctx, "UPDATE customerorder SET title=$1 WHERE id=$2",
+	// update customer_order
+	res, err := c.ExecContext(ctx, "UPDATE customer_order SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update customerorder-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update CustomerOrder-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateCustomerOrder(ctx context.Context, req *v1.U
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("customerorder with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerOrder with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateCustomerOrder(ctx context.Context, req *v1.U
 	}, nil
 }
 
-// Delete customerorder
+// Delete customer_order
 func (s *shrikeServiceServer) DeleteCustomerOrder(ctx context.Context, req *v1.DeleteCustomerOrderRequest) (*v1.DeleteCustomerOrderResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteCustomerOrder(ctx context.Context, req *v1.D
 	}
 	defer c.Close()
 
-	// delete customerorder
-	res, err := c.ExecContext(ctx, "DELETE FROM customerorder WHERE id=$1", req.Id)
+	// delete customer_order
+	res, err := c.ExecContext(ctx, "DELETE FROM customer_order WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete customerorder-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete CustomerOrder-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteCustomerOrder(ctx context.Context, req *v1.D
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("customerorder with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerOrder with ID='%d' is not found",
 			req.Id))
 	}
 

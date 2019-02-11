@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCandidate(ctx context.Context, req *v1.ListCan
 	defer c.Close()
 
 	// get Candidate list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Candidate")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM candidate")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Candidate-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateCandidate(ctx context.Context, req *v1.Updat
 	res, err := c.ExecContext(ctx, "UPDATE candidate SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update candidate-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Candidate-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateCandidate(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("candidate with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteCandidate(ctx context.Context, req *v1.Delet
 	// delete candidate
 	res, err := c.ExecContext(ctx, "DELETE FROM candidate WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete candidate-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Candidate-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteCandidate(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("candidate with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%d' is not found",
 			req.Id))
 	}
 

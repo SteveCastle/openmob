@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req
 	defer c.Close()
 	var id int64
 	// insert LiveEventMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO liveeventmembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEventMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req
 	}, nil
 }
 
-// Get liveeventmembership by id.
+// Get live_event_membership by id.
 func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v1.GetLiveEventMembershipRequest) (*v1.GetLiveEventMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 	defer c.Close()
 
 	// query LiveEventMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM liveeventmembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM live_event_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 	defer c.Close()
 
 	// get LiveEventMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM LiveEventMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM live_event_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateLiveEventMembership(ctx context.Context, req
 	}
 	defer c.Close()
 
-	// update liveeventmembership
-	res, err := c.ExecContext(ctx, "UPDATE liveeventmembership SET title=$1 WHERE id=$2",
+	// update live_event_membership
+	res, err := c.ExecContext(ctx, "UPDATE live_event_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update liveeventmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update LiveEventMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateLiveEventMembership(ctx context.Context, req
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("liveeventmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateLiveEventMembership(ctx context.Context, req
 	}, nil
 }
 
-// Delete liveeventmembership
+// Delete live_event_membership
 func (s *shrikeServiceServer) DeleteLiveEventMembership(ctx context.Context, req *v1.DeleteLiveEventMembershipRequest) (*v1.DeleteLiveEventMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteLiveEventMembership(ctx context.Context, req
 	}
 	defer c.Close()
 
-	// delete liveeventmembership
-	res, err := c.ExecContext(ctx, "DELETE FROM liveeventmembership WHERE id=$1", req.Id)
+	// delete live_event_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM live_event_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete liveeventmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete LiveEventMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteLiveEventMembership(ctx context.Context, req
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("liveeventmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventMembership with ID='%d' is not found",
 			req.Id))
 	}
 

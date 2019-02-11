@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunity(ctx context.Context, re
 	defer c.Close()
 	var id int64
 	// insert VolunteerOpportunity entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteeropportunity (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunity-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunity(ctx context.Context, re
 	}, nil
 }
 
-// Get volunteeropportunity by id.
+// Get volunteer_opportunity by id.
 func (s *shrikeServiceServer) GetVolunteerOpportunity(ctx context.Context, req *v1.GetVolunteerOpportunityRequest) (*v1.GetVolunteerOpportunityResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunity(ctx context.Context, req *
 	defer c.Close()
 
 	// query VolunteerOpportunity by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM volunteeropportunity WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM volunteer_opportunity WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunity-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunity(ctx context.Context, req 
 	defer c.Close()
 
 	// get VolunteerOpportunity list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM VolunteerOpportunity")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM volunteer_opportunity")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunity-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunity(ctx context.Context, re
 	}
 	defer c.Close()
 
-	// update volunteeropportunity
-	res, err := c.ExecContext(ctx, "UPDATE volunteeropportunity SET title=$1 WHERE id=$2",
+	// update volunteer_opportunity
+	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update volunteeropportunity-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunity-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunity(ctx context.Context, re
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("volunteeropportunity with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunity with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunity(ctx context.Context, re
 	}, nil
 }
 
-// Delete volunteeropportunity
+// Delete volunteer_opportunity
 func (s *shrikeServiceServer) DeleteVolunteerOpportunity(ctx context.Context, req *v1.DeleteVolunteerOpportunityRequest) (*v1.DeleteVolunteerOpportunityResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunity(ctx context.Context, re
 	}
 	defer c.Close()
 
-	// delete volunteeropportunity
-	res, err := c.ExecContext(ctx, "DELETE FROM volunteeropportunity WHERE id=$1", req.Id)
+	// delete volunteer_opportunity
+	res, err := c.ExecContext(ctx, "DELETE FROM volunteer_opportunity WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete volunteeropportunity-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete VolunteerOpportunity-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunity(ctx context.Context, re
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("volunteeropportunity with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunity with ID='%d' is not found",
 			req.Id))
 	}
 

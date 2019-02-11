@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	defer c.Close()
 	var id int64
 	// insert ComponentImplementation entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO componentimplementation (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentImplementation-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	}, nil
 }
 
-// Get componentimplementation by id.
+// Get component_implementation by id.
 func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, req *v1.GetComponentImplementationRequest) (*v1.GetComponentImplementationResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 	defer c.Close()
 
 	// query ComponentImplementation by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM componentimplementation WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM component_implementation WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	defer c.Close()
 
 	// get ComponentImplementation list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM ComponentImplementation")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM component_implementation")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	}
 	defer c.Close()
 
-	// update componentimplementation
-	res, err := c.ExecContext(ctx, "UPDATE componentimplementation SET title=$1 WHERE id=$2",
+	// update component_implementation
+	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update componentimplementation-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update ComponentImplementation-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("componentimplementation with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	}, nil
 }
 
-// Delete componentimplementation
+// Delete component_implementation
 func (s *shrikeServiceServer) DeleteComponentImplementation(ctx context.Context, req *v1.DeleteComponentImplementationRequest) (*v1.DeleteComponentImplementationResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteComponentImplementation(ctx context.Context,
 	}
 	defer c.Close()
 
-	// delete componentimplementation
-	res, err := c.ExecContext(ctx, "DELETE FROM componentimplementation WHERE id=$1", req.Id)
+	// delete component_implementation
+	res, err := c.ExecContext(ctx, "DELETE FROM component_implementation WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete componentimplementation-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete ComponentImplementation-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteComponentImplementation(ctx context.Context,
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("componentimplementation with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%d' is not found",
 			req.Id))
 	}
 

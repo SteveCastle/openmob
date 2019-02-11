@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 	defer c.Close()
 
 	// get Cause list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Cause")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM cause")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Cause-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	res, err := c.ExecContext(ctx, "UPDATE cause SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update cause-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Cause-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("cause with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteCause(ctx context.Context, req *v1.DeleteCau
 	// delete cause
 	res, err := c.ExecContext(ctx, "DELETE FROM cause WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete cause-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Cause-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteCause(ctx context.Context, req *v1.DeleteCau
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("cause with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%d' is not found",
 			req.Id))
 	}
 

@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequ
 	defer c.Close()
 
 	// get Note list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Note")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM note")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Note-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateNote(ctx context.Context, req *v1.UpdateNote
 	res, err := c.ExecContext(ctx, "UPDATE note SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update note-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Note-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateNote(ctx context.Context, req *v1.UpdateNote
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("note with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Note with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteNote(ctx context.Context, req *v1.DeleteNote
 	// delete note
 	res, err := c.ExecContext(ctx, "DELETE FROM note WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete note-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Note-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteNote(ctx context.Context, req *v1.DeleteNote
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("note with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Note with ID='%d' is not found",
 			req.Id))
 	}
 

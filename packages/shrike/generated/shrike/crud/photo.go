@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 	defer c.Close()
 
 	// get Photo list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Photo")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM photo")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Photo-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdatePhoto(ctx context.Context, req *v1.UpdatePho
 	res, err := c.ExecContext(ctx, "UPDATE photo SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update photo-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Photo-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdatePhoto(ctx context.Context, req *v1.UpdatePho
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("photo with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Photo with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeletePhoto(ctx context.Context, req *v1.DeletePho
 	// delete photo
 	res, err := c.ExecContext(ctx, "DELETE FROM photo WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete photo-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Photo-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeletePhoto(ctx context.Context, req *v1.DeletePho
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("photo with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Photo with ID='%d' is not found",
 			req.Id))
 	}
 

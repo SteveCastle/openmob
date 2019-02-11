@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert OwnerMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO ownermembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO owner_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into OwnerMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1
 	}, nil
 }
 
-// Get ownermembership by id.
+// Get owner_membership by id.
 func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.GetOwnerMembershipRequest) (*v1.GetOwnerMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query OwnerMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM ownermembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM owner_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from OwnerMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListOwnerMembership(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get OwnerMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM OwnerMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM owner_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from OwnerMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateOwnerMembership(ctx context.Context, req *v1
 	}
 	defer c.Close()
 
-	// update ownermembership
-	res, err := c.ExecContext(ctx, "UPDATE ownermembership SET title=$1 WHERE id=$2",
+	// update owner_membership
+	res, err := c.ExecContext(ctx, "UPDATE owner_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update ownermembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update OwnerMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateOwnerMembership(ctx context.Context, req *v1
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ownermembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("OwnerMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateOwnerMembership(ctx context.Context, req *v1
 	}, nil
 }
 
-// Delete ownermembership
+// Delete owner_membership
 func (s *shrikeServiceServer) DeleteOwnerMembership(ctx context.Context, req *v1.DeleteOwnerMembershipRequest) (*v1.DeleteOwnerMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteOwnerMembership(ctx context.Context, req *v1
 	}
 	defer c.Close()
 
-	// delete ownermembership
-	res, err := c.ExecContext(ctx, "DELETE FROM ownermembership WHERE id=$1", req.Id)
+	// delete owner_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM owner_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete ownermembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete OwnerMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteOwnerMembership(ctx context.Context, req *v1
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ownermembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("OwnerMembership with ID='%d' is not found",
 			req.Id))
 	}
 

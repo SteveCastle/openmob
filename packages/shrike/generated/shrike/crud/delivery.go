@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 	defer c.Close()
 
 	// get Delivery list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Delivery")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM delivery")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Delivery-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateDelivery(ctx context.Context, req *v1.Update
 	res, err := c.ExecContext(ctx, "UPDATE delivery SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update delivery-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Delivery-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateDelivery(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("delivery with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteDelivery(ctx context.Context, req *v1.Delete
 	// delete delivery
 	res, err := c.ExecContext(ctx, "DELETE FROM delivery WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete delivery-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Delivery-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteDelivery(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("delivery with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%d' is not found",
 			req.Id))
 	}
 

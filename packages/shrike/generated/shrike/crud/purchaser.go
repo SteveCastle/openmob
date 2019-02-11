@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 	defer c.Close()
 
 	// get Purchaser list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Purchaser")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM purchaser")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Purchaser-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdatePurchaser(ctx context.Context, req *v1.Updat
 	res, err := c.ExecContext(ctx, "UPDATE purchaser SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update purchaser-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Purchaser-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdatePurchaser(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("purchaser with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Purchaser with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeletePurchaser(ctx context.Context, req *v1.Delet
 	// delete purchaser
 	res, err := c.ExecContext(ctx, "DELETE FROM purchaser WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete purchaser-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Purchaser-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeletePurchaser(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("purchaser with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Purchaser with ID='%d' is not found",
 			req.Id))
 	}
 

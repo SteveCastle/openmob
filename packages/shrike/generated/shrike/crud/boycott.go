@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListBoycott(ctx context.Context, req *v1.ListBoyco
 	defer c.Close()
 
 	// get Boycott list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Boycott")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM boycott")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Boycott-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateBoycott(ctx context.Context, req *v1.UpdateB
 	res, err := c.ExecContext(ctx, "UPDATE boycott SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update boycott-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Boycott-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateBoycott(ctx context.Context, req *v1.UpdateB
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("boycott with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteBoycott(ctx context.Context, req *v1.DeleteB
 	// delete boycott
 	res, err := c.ExecContext(ctx, "DELETE FROM boycott WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete boycott-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Boycott-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteBoycott(ctx context.Context, req *v1.DeleteB
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("boycott with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%d' is not found",
 			req.Id))
 	}
 

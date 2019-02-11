@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePhoneNumber(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert PhoneNumber entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO phonenumber (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO phone_number (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PhoneNumber-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreatePhoneNumber(ctx context.Context, req *v1.Cre
 	}, nil
 }
 
-// Get phonenumber by id.
+// Get phone_number by id.
 func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPhoneNumberRequest) (*v1.GetPhoneNumberResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 	defer c.Close()
 
 	// query PhoneNumber by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM phonenumber WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM phone_number WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PhoneNumber-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPhoneNumber(ctx context.Context, req *v1.ListP
 	defer c.Close()
 
 	// get PhoneNumber list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM PhoneNumber")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM phone_number")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PhoneNumber-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdatePhoneNumber(ctx context.Context, req *v1.Upd
 	}
 	defer c.Close()
 
-	// update phonenumber
-	res, err := c.ExecContext(ctx, "UPDATE phonenumber SET title=$1 WHERE id=$2",
+	// update phone_number
+	res, err := c.ExecContext(ctx, "UPDATE phone_number SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update phonenumber-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update PhoneNumber-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdatePhoneNumber(ctx context.Context, req *v1.Upd
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("phonenumber with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PhoneNumber with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdatePhoneNumber(ctx context.Context, req *v1.Upd
 	}, nil
 }
 
-// Delete phonenumber
+// Delete phone_number
 func (s *shrikeServiceServer) DeletePhoneNumber(ctx context.Context, req *v1.DeletePhoneNumberRequest) (*v1.DeletePhoneNumberResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeletePhoneNumber(ctx context.Context, req *v1.Del
 	}
 	defer c.Close()
 
-	// delete phonenumber
-	res, err := c.ExecContext(ctx, "DELETE FROM phonenumber WHERE id=$1", req.Id)
+	// delete phone_number
+	res, err := c.ExecContext(ctx, "DELETE FROM phone_number WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete phonenumber-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete PhoneNumber-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeletePhoneNumber(ctx context.Context, req *v1.Del
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("phonenumber with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PhoneNumber with ID='%d' is not found",
 			req.Id))
 	}
 

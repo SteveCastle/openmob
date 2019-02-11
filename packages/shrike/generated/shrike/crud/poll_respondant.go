@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePollRespondant(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PollRespondant entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO pollrespondant (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO poll_respondant (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PollRespondant-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreatePollRespondant(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Get pollrespondant by id.
+// Get poll_respondant by id.
 func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.GetPollRespondantRequest) (*v1.GetPollRespondantResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query PollRespondant by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM pollrespondant WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM poll_respondant WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollRespondant-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPollRespondant(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get PollRespondant list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM PollRespondant")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM poll_respondant")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollRespondant-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdatePollRespondant(ctx context.Context, req *v1.
 	}
 	defer c.Close()
 
-	// update pollrespondant
-	res, err := c.ExecContext(ctx, "UPDATE pollrespondant SET title=$1 WHERE id=$2",
+	// update poll_respondant
+	res, err := c.ExecContext(ctx, "UPDATE poll_respondant SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update pollrespondant-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update PollRespondant-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdatePollRespondant(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("pollrespondant with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollRespondant with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdatePollRespondant(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Delete pollrespondant
+// Delete poll_respondant
 func (s *shrikeServiceServer) DeletePollRespondant(ctx context.Context, req *v1.DeletePollRespondantRequest) (*v1.DeletePollRespondantResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeletePollRespondant(ctx context.Context, req *v1.
 	}
 	defer c.Close()
 
-	// delete pollrespondant
-	res, err := c.ExecContext(ctx, "DELETE FROM pollrespondant WHERE id=$1", req.Id)
+	// delete poll_respondant
+	res, err := c.ExecContext(ctx, "DELETE FROM poll_respondant WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete pollrespondant-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete PollRespondant-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeletePollRespondant(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("pollrespondant with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollRespondant with ID='%d' is not found",
 			req.Id))
 	}
 

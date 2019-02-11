@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateProductType(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert ProductType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO producttype (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO product_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ProductType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateProductType(ctx context.Context, req *v1.Cre
 	}, nil
 }
 
-// Get producttype by id.
+// Get product_type by id.
 func (s *shrikeServiceServer) GetProductType(ctx context.Context, req *v1.GetProductTypeRequest) (*v1.GetProductTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetProductType(ctx context.Context, req *v1.GetPro
 	defer c.Close()
 
 	// query ProductType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM producttype WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM product_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductType-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 	defer c.Close()
 
 	// get ProductType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM ProductType")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM product_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductType-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateProductType(ctx context.Context, req *v1.Upd
 	}
 	defer c.Close()
 
-	// update producttype
-	res, err := c.ExecContext(ctx, "UPDATE producttype SET title=$1 WHERE id=$2",
+	// update product_type
+	res, err := c.ExecContext(ctx, "UPDATE product_type SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update producttype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update ProductType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateProductType(ctx context.Context, req *v1.Upd
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("producttype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ProductType with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateProductType(ctx context.Context, req *v1.Upd
 	}, nil
 }
 
-// Delete producttype
+// Delete product_type
 func (s *shrikeServiceServer) DeleteProductType(ctx context.Context, req *v1.DeleteProductTypeRequest) (*v1.DeleteProductTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteProductType(ctx context.Context, req *v1.Del
 	}
 	defer c.Close()
 
-	// delete producttype
-	res, err := c.ExecContext(ctx, "DELETE FROM producttype WHERE id=$1", req.Id)
+	// delete product_type
+	res, err := c.ExecContext(ctx, "DELETE FROM product_type WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete producttype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete ProductType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteProductType(ctx context.Context, req *v1.Del
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("producttype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ProductType with ID='%d' is not found",
 			req.Id))
 	}
 

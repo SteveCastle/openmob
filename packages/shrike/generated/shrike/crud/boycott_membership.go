@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert BoycottMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO boycottmembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO boycott_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into BoycottMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *
 	}, nil
 }
 
-// Get boycottmembership by id.
+// Get boycott_membership by id.
 func (s *shrikeServiceServer) GetBoycottMembership(ctx context.Context, req *v1.GetBoycottMembershipRequest) (*v1.GetBoycottMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetBoycottMembership(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// query BoycottMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM boycottmembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM boycott_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from BoycottMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListBoycottMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// get BoycottMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM BoycottMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM boycott_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from BoycottMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateBoycottMembership(ctx context.Context, req *
 	}
 	defer c.Close()
 
-	// update boycottmembership
-	res, err := c.ExecContext(ctx, "UPDATE boycottmembership SET title=$1 WHERE id=$2",
+	// update boycott_membership
+	res, err := c.ExecContext(ctx, "UPDATE boycott_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update boycottmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update BoycottMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateBoycottMembership(ctx context.Context, req *
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("boycottmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("BoycottMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateBoycottMembership(ctx context.Context, req *
 	}, nil
 }
 
-// Delete boycottmembership
+// Delete boycott_membership
 func (s *shrikeServiceServer) DeleteBoycottMembership(ctx context.Context, req *v1.DeleteBoycottMembershipRequest) (*v1.DeleteBoycottMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteBoycottMembership(ctx context.Context, req *
 	}
 	defer c.Close()
 
-	// delete boycottmembership
-	res, err := c.ExecContext(ctx, "DELETE FROM boycottmembership WHERE id=$1", req.Id)
+	// delete boycott_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM boycott_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete boycottmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete BoycottMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteBoycottMembership(ctx context.Context, req *
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("boycottmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("BoycottMembership with ID='%d' is not found",
 			req.Id))
 	}
 

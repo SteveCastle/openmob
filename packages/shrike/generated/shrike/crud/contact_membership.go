@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateContactMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert ContactMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contactmembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO contact_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ContactMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateContactMembership(ctx context.Context, req *
 	}, nil
 }
 
-// Get contactmembership by id.
+// Get contact_membership by id.
 func (s *shrikeServiceServer) GetContactMembership(ctx context.Context, req *v1.GetContactMembershipRequest) (*v1.GetContactMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetContactMembership(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// query ContactMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM contactmembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM contact_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ContactMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListContactMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// get ContactMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM ContactMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM contact_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ContactMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateContactMembership(ctx context.Context, req *
 	}
 	defer c.Close()
 
-	// update contactmembership
-	res, err := c.ExecContext(ctx, "UPDATE contactmembership SET title=$1 WHERE id=$2",
+	// update contact_membership
+	res, err := c.ExecContext(ctx, "UPDATE contact_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update contactmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update ContactMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateContactMembership(ctx context.Context, req *
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("contactmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ContactMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateContactMembership(ctx context.Context, req *
 	}, nil
 }
 
-// Delete contactmembership
+// Delete contact_membership
 func (s *shrikeServiceServer) DeleteContactMembership(ctx context.Context, req *v1.DeleteContactMembershipRequest) (*v1.DeleteContactMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteContactMembership(ctx context.Context, req *
 	}
 	defer c.Close()
 
-	// delete contactmembership
-	res, err := c.ExecContext(ctx, "DELETE FROM contactmembership WHERE id=$1", req.Id)
+	// delete contact_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM contact_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete contactmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete ContactMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteContactMembership(ctx context.Context, req *
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("contactmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ContactMembership with ID='%d' is not found",
 			req.Id))
 	}
 

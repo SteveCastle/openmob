@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListAgent(ctx context.Context, req *v1.ListAgentRe
 	defer c.Close()
 
 	// get Agent list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Agent")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM agent")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Agent-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateAgent(ctx context.Context, req *v1.UpdateAge
 	res, err := c.ExecContext(ctx, "UPDATE agent SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update agent-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Agent-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateAgent(ctx context.Context, req *v1.UpdateAge
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("agent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteAgent(ctx context.Context, req *v1.DeleteAge
 	// delete agent
 	res, err := c.ExecContext(ctx, "DELETE FROM agent WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete agent-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Agent-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteAgent(ctx context.Context, req *v1.DeleteAge
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("agent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%d' is not found",
 			req.Id))
 	}
 

@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLReques
 	defer c.Close()
 
 	// get ACL list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM ACL")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM acl")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ACL-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateACL(ctx context.Context, req *v1.UpdateACLRe
 	res, err := c.ExecContext(ctx, "UPDATE acl SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update acl-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update ACL-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateACL(ctx context.Context, req *v1.UpdateACLRe
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("acl with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ACL with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteACL(ctx context.Context, req *v1.DeleteACLRe
 	// delete acl
 	res, err := c.ExecContext(ctx, "DELETE FROM acl WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete acl-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete ACL-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteACL(ctx context.Context, req *v1.DeleteACLRe
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("acl with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ACL with ID='%d' is not found",
 			req.Id))
 	}
 

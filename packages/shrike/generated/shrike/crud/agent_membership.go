@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert AgentMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO agentmembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into AgentMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1
 	}, nil
 }
 
-// Get agentmembership by id.
+// Get agent_membership by id.
 func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.GetAgentMembershipRequest) (*v1.GetAgentMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query AgentMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM agentmembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM agent_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from AgentMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get AgentMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM AgentMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM agent_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from AgentMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateAgentMembership(ctx context.Context, req *v1
 	}
 	defer c.Close()
 
-	// update agentmembership
-	res, err := c.ExecContext(ctx, "UPDATE agentmembership SET title=$1 WHERE id=$2",
+	// update agent_membership
+	res, err := c.ExecContext(ctx, "UPDATE agent_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update agentmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update AgentMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateAgentMembership(ctx context.Context, req *v1
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("agentmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("AgentMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateAgentMembership(ctx context.Context, req *v1
 	}, nil
 }
 
-// Delete agentmembership
+// Delete agent_membership
 func (s *shrikeServiceServer) DeleteAgentMembership(ctx context.Context, req *v1.DeleteAgentMembershipRequest) (*v1.DeleteAgentMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteAgentMembership(ctx context.Context, req *v1
 	}
 	defer c.Close()
 
-	// delete agentmembership
-	res, err := c.ExecContext(ctx, "DELETE FROM agentmembership WHERE id=$1", req.Id)
+	// delete agent_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM agent_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete agentmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete AgentMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteAgentMembership(ctx context.Context, req *v1
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("agentmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("AgentMembership with ID='%d' is not found",
 			req.Id))
 	}
 

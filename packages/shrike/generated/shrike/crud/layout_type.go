@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLayoutType(ctx context.Context, req *v1.Crea
 	defer c.Close()
 	var id int64
 	// insert LayoutType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layouttype (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO layout_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LayoutType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateLayoutType(ctx context.Context, req *v1.Crea
 	}, nil
 }
 
-// Get layouttype by id.
+// Get layout_type by id.
 func (s *shrikeServiceServer) GetLayoutType(ctx context.Context, req *v1.GetLayoutTypeRequest) (*v1.GetLayoutTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLayoutType(ctx context.Context, req *v1.GetLayo
 	defer c.Close()
 
 	// query LayoutType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM layouttype WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM layout_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutType-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLayoutType(ctx context.Context, req *v1.ListLa
 	defer c.Close()
 
 	// get LayoutType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM LayoutType")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM layout_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutType-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateLayoutType(ctx context.Context, req *v1.Upda
 	}
 	defer c.Close()
 
-	// update layouttype
-	res, err := c.ExecContext(ctx, "UPDATE layouttype SET title=$1 WHERE id=$2",
+	// update layout_type
+	res, err := c.ExecContext(ctx, "UPDATE layout_type SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update layouttype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update LayoutType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateLayoutType(ctx context.Context, req *v1.Upda
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("layouttype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutType with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateLayoutType(ctx context.Context, req *v1.Upda
 	}, nil
 }
 
-// Delete layouttype
+// Delete layout_type
 func (s *shrikeServiceServer) DeleteLayoutType(ctx context.Context, req *v1.DeleteLayoutTypeRequest) (*v1.DeleteLayoutTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteLayoutType(ctx context.Context, req *v1.Dele
 	}
 	defer c.Close()
 
-	// delete layouttype
-	res, err := c.ExecContext(ctx, "DELETE FROM layouttype WHERE id=$1", req.Id)
+	// delete layout_type
+	res, err := c.ExecContext(ctx, "DELETE FROM layout_type WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete layouttype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete LayoutType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteLayoutType(ctx context.Context, req *v1.Dele
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("layouttype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutType with ID='%d' is not found",
 			req.Id))
 	}
 

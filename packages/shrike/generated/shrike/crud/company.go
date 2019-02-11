@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCompany(ctx context.Context, req *v1.ListCompa
 	defer c.Close()
 
 	// get Company list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Company")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM company")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Company-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateCompany(ctx context.Context, req *v1.UpdateC
 	res, err := c.ExecContext(ctx, "UPDATE company SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update company-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Company-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateCompany(ctx context.Context, req *v1.UpdateC
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("company with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Company with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteCompany(ctx context.Context, req *v1.DeleteC
 	// delete company
 	res, err := c.ExecContext(ctx, "DELETE FROM company WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete company-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Company-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteCompany(ctx context.Context, req *v1.DeleteC
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("company with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Company with ID='%d' is not found",
 			req.Id))
 	}
 

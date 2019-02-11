@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateDonationCampaign(ctx context.Context, req *v
 	defer c.Close()
 	var id int64
 	// insert DonationCampaign entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donationcampaign (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DonationCampaign-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateDonationCampaign(ctx context.Context, req *v
 	}, nil
 }
 
-// Get donationcampaign by id.
+// Get donation_campaign by id.
 func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.GetDonationCampaignRequest) (*v1.GetDonationCampaignResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.G
 	defer c.Close()
 
 	// query DonationCampaign by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM donationcampaign WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM donation_campaign WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaign-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDonationCampaign(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// get DonationCampaign list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM DonationCampaign")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM donation_campaign")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaign-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateDonationCampaign(ctx context.Context, req *v
 	}
 	defer c.Close()
 
-	// update donationcampaign
-	res, err := c.ExecContext(ctx, "UPDATE donationcampaign SET title=$1 WHERE id=$2",
+	// update donation_campaign
+	res, err := c.ExecContext(ctx, "UPDATE donation_campaign SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update donationcampaign-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update DonationCampaign-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateDonationCampaign(ctx context.Context, req *v
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("donationcampaign with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaign with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateDonationCampaign(ctx context.Context, req *v
 	}, nil
 }
 
-// Delete donationcampaign
+// Delete donation_campaign
 func (s *shrikeServiceServer) DeleteDonationCampaign(ctx context.Context, req *v1.DeleteDonationCampaignRequest) (*v1.DeleteDonationCampaignResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteDonationCampaign(ctx context.Context, req *v
 	}
 	defer c.Close()
 
-	// delete donationcampaign
-	res, err := c.ExecContext(ctx, "DELETE FROM donationcampaign WHERE id=$1", req.Id)
+	// delete donation_campaign
+	res, err := c.ExecContext(ctx, "DELETE FROM donation_campaign WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete donationcampaign-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete DonationCampaign-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteDonationCampaign(ctx context.Context, req *v
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("donationcampaign with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaign with ID='%d' is not found",
 			req.Id))
 	}
 

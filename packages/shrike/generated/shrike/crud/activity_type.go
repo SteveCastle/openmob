@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateActivityType(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert ActivityType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO activitytype (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO activity_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ActivityType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateActivityType(ctx context.Context, req *v1.Cr
 	}, nil
 }
 
-// Get activitytype by id.
+// Get activity_type by id.
 func (s *shrikeServiceServer) GetActivityType(ctx context.Context, req *v1.GetActivityTypeRequest) (*v1.GetActivityTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetActivityType(ctx context.Context, req *v1.GetAc
 	defer c.Close()
 
 	// query ActivityType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM activitytype WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM activity_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ActivityType-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListActivityType(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get ActivityType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM ActivityType")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM activity_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ActivityType-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateActivityType(ctx context.Context, req *v1.Up
 	}
 	defer c.Close()
 
-	// update activitytype
-	res, err := c.ExecContext(ctx, "UPDATE activitytype SET title=$1 WHERE id=$2",
+	// update activity_type
+	res, err := c.ExecContext(ctx, "UPDATE activity_type SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update activitytype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update ActivityType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateActivityType(ctx context.Context, req *v1.Up
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("activitytype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ActivityType with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateActivityType(ctx context.Context, req *v1.Up
 	}, nil
 }
 
-// Delete activitytype
+// Delete activity_type
 func (s *shrikeServiceServer) DeleteActivityType(ctx context.Context, req *v1.DeleteActivityTypeRequest) (*v1.DeleteActivityTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteActivityType(ctx context.Context, req *v1.De
 	}
 	defer c.Close()
 
-	// delete activitytype
-	res, err := c.ExecContext(ctx, "DELETE FROM activitytype WHERE id=$1", req.Id)
+	// delete activity_type
+	res, err := c.ExecContext(ctx, "DELETE FROM activity_type WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete activitytype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete ActivityType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteActivityType(ctx context.Context, req *v1.De
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("activitytype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ActivityType with ID='%d' is not found",
 			req.Id))
 	}
 

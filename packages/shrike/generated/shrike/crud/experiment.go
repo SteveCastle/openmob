@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 	defer c.Close()
 
 	// get Experiment list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Experiment")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM experiment")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Experiment-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateExperiment(ctx context.Context, req *v1.Upda
 	res, err := c.ExecContext(ctx, "UPDATE experiment SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update experiment-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Experiment-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateExperiment(ctx context.Context, req *v1.Upda
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("experiment with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Experiment with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteExperiment(ctx context.Context, req *v1.Dele
 	// delete experiment
 	res, err := c.ExecContext(ctx, "DELETE FROM experiment WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete experiment-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Experiment-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteExperiment(ctx context.Context, req *v1.Dele
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("experiment with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Experiment with ID='%d' is not found",
 			req.Id))
 	}
 

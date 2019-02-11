@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 	defer c.Close()
 
 	// get Account list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Account")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM account")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Account-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateAccount(ctx context.Context, req *v1.UpdateA
 	res, err := c.ExecContext(ctx, "UPDATE account SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update account-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Account-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateAccount(ctx context.Context, req *v1.UpdateA
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("account with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteAccount(ctx context.Context, req *v1.DeleteA
 	// delete account
 	res, err := c.ExecContext(ctx, "DELETE FROM account WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete account-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Account-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteAccount(ctx context.Context, req *v1.DeleteA
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("account with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%d' is not found",
 			req.Id))
 	}
 

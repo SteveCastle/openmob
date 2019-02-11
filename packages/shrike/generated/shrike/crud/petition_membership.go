@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req 
 	defer c.Close()
 	var id int64
 	// insert PetitionMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petitionmembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO petition_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PetitionMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req 
 	}, nil
 }
 
-// Get petitionmembership by id.
+// Get petition_membership by id.
 func (s *shrikeServiceServer) GetPetitionMembership(ctx context.Context, req *v1.GetPetitionMembershipRequest) (*v1.GetPetitionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPetitionMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// query PetitionMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM petitionmembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM petition_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v
 	defer c.Close()
 
 	// get PetitionMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM PetitionMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM petition_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdatePetitionMembership(ctx context.Context, req 
 	}
 	defer c.Close()
 
-	// update petitionmembership
-	res, err := c.ExecContext(ctx, "UPDATE petitionmembership SET title=$1 WHERE id=$2",
+	// update petition_membership
+	res, err := c.ExecContext(ctx, "UPDATE petition_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update petitionmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update PetitionMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdatePetitionMembership(ctx context.Context, req 
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("petitionmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PetitionMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdatePetitionMembership(ctx context.Context, req 
 	}, nil
 }
 
-// Delete petitionmembership
+// Delete petition_membership
 func (s *shrikeServiceServer) DeletePetitionMembership(ctx context.Context, req *v1.DeletePetitionMembershipRequest) (*v1.DeletePetitionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeletePetitionMembership(ctx context.Context, req 
 	}
 	defer c.Close()
 
-	// delete petitionmembership
-	res, err := c.ExecContext(ctx, "DELETE FROM petitionmembership WHERE id=$1", req.Id)
+	// delete petition_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM petition_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete petitionmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete PetitionMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeletePetitionMembership(ctx context.Context, req 
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("petitionmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PetitionMembership with ID='%d' is not found",
 			req.Id))
 	}
 

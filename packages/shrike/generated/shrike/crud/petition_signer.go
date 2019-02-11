@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePetitionSigner(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PetitionSigner entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petitionsigner (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO petition_signer (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PetitionSigner-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreatePetitionSigner(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Get petitionsigner by id.
+// Get petition_signer by id.
 func (s *shrikeServiceServer) GetPetitionSigner(ctx context.Context, req *v1.GetPetitionSignerRequest) (*v1.GetPetitionSignerResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPetitionSigner(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query PetitionSigner by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM petitionsigner WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM petition_signer WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionSigner-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPetitionSigner(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get PetitionSigner list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM PetitionSigner")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM petition_signer")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionSigner-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdatePetitionSigner(ctx context.Context, req *v1.
 	}
 	defer c.Close()
 
-	// update petitionsigner
-	res, err := c.ExecContext(ctx, "UPDATE petitionsigner SET title=$1 WHERE id=$2",
+	// update petition_signer
+	res, err := c.ExecContext(ctx, "UPDATE petition_signer SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update petitionsigner-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update PetitionSigner-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdatePetitionSigner(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("petitionsigner with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PetitionSigner with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdatePetitionSigner(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Delete petitionsigner
+// Delete petition_signer
 func (s *shrikeServiceServer) DeletePetitionSigner(ctx context.Context, req *v1.DeletePetitionSignerRequest) (*v1.DeletePetitionSignerResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeletePetitionSigner(ctx context.Context, req *v1.
 	}
 	defer c.Close()
 
-	// delete petitionsigner
-	res, err := c.ExecContext(ctx, "DELETE FROM petitionsigner WHERE id=$1", req.Id)
+	// delete petition_signer
+	res, err := c.ExecContext(ctx, "DELETE FROM petition_signer WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete petitionsigner-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete PetitionSigner-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeletePetitionSigner(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("petitionsigner with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PetitionSigner with ID='%d' is not found",
 			req.Id))
 	}
 

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert EventAttendee entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO eventattendee (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into EventAttendee-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.C
 	}, nil
 }
 
-// Get eventattendee by id.
+// Get event_attendee by id.
 func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetEventAttendeeRequest) (*v1.GetEventAttendeeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetE
 	defer c.Close()
 
 	// query EventAttendee by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM eventattendee WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM event_attendee WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from EventAttendee-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get EventAttendee list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM EventAttendee")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM event_attendee")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from EventAttendee-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateEventAttendee(ctx context.Context, req *v1.U
 	}
 	defer c.Close()
 
-	// update eventattendee
-	res, err := c.ExecContext(ctx, "UPDATE eventattendee SET title=$1 WHERE id=$2",
+	// update event_attendee
+	res, err := c.ExecContext(ctx, "UPDATE event_attendee SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update eventattendee-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update EventAttendee-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateEventAttendee(ctx context.Context, req *v1.U
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("eventattendee with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("EventAttendee with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateEventAttendee(ctx context.Context, req *v1.U
 	}, nil
 }
 
-// Delete eventattendee
+// Delete event_attendee
 func (s *shrikeServiceServer) DeleteEventAttendee(ctx context.Context, req *v1.DeleteEventAttendeeRequest) (*v1.DeleteEventAttendeeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteEventAttendee(ctx context.Context, req *v1.D
 	}
 	defer c.Close()
 
-	// delete eventattendee
-	res, err := c.ExecContext(ctx, "DELETE FROM eventattendee WHERE id=$1", req.Id)
+	// delete event_attendee
+	res, err := c.ExecContext(ctx, "DELETE FROM event_attendee WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete eventattendee-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete EventAttendee-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteEventAttendee(ctx context.Context, req *v1.D
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("eventattendee with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("EventAttendee with ID='%d' is not found",
 			req.Id))
 	}
 

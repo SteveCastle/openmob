@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLayout(ctx context.Context, req *v1.ListLayout
 	defer c.Close()
 
 	// get Layout list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Layout")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM layout")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Layout-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateLayout(ctx context.Context, req *v1.UpdateLa
 	res, err := c.ExecContext(ctx, "UPDATE layout SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update layout-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Layout-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateLayout(ctx context.Context, req *v1.UpdateLa
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("layout with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Layout with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteLayout(ctx context.Context, req *v1.DeleteLa
 	// delete layout
 	res, err := c.ExecContext(ctx, "DELETE FROM layout WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete layout-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Layout-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteLayout(ctx context.Context, req *v1.DeleteLa
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("layout with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Layout with ID='%d' is not found",
 			req.Id))
 	}
 

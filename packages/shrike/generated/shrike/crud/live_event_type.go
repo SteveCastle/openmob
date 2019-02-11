@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLiveEventType(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert LiveEventType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO liveeventtype (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEventType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateLiveEventType(ctx context.Context, req *v1.C
 	}, nil
 }
 
-// Get liveeventtype by id.
+// Get live_event_type by id.
 func (s *shrikeServiceServer) GetLiveEventType(ctx context.Context, req *v1.GetLiveEventTypeRequest) (*v1.GetLiveEventTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLiveEventType(ctx context.Context, req *v1.GetL
 	defer c.Close()
 
 	// query LiveEventType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM liveeventtype WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM live_event_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventType-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLiveEventType(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get LiveEventType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM LiveEventType")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM live_event_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventType-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateLiveEventType(ctx context.Context, req *v1.U
 	}
 	defer c.Close()
 
-	// update liveeventtype
-	res, err := c.ExecContext(ctx, "UPDATE liveeventtype SET title=$1 WHERE id=$2",
+	// update live_event_type
+	res, err := c.ExecContext(ctx, "UPDATE live_event_type SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update liveeventtype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update LiveEventType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateLiveEventType(ctx context.Context, req *v1.U
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("liveeventtype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventType with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateLiveEventType(ctx context.Context, req *v1.U
 	}, nil
 }
 
-// Delete liveeventtype
+// Delete live_event_type
 func (s *shrikeServiceServer) DeleteLiveEventType(ctx context.Context, req *v1.DeleteLiveEventTypeRequest) (*v1.DeleteLiveEventTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteLiveEventType(ctx context.Context, req *v1.D
 	}
 	defer c.Close()
 
-	// delete liveeventtype
-	res, err := c.ExecContext(ctx, "DELETE FROM liveeventtype WHERE id=$1", req.Id)
+	// delete live_event_type
+	res, err := c.ExecContext(ctx, "DELETE FROM live_event_type WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete liveeventtype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete LiveEventType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteLiveEventType(ctx context.Context, req *v1.D
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("liveeventtype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventType with ID='%d' is not found",
 			req.Id))
 	}
 

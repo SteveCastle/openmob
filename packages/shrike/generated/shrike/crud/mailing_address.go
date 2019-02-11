@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert MailingAddress entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO mailingaddress (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into MailingAddress-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Get mailingaddress by id.
+// Get mailing_address by id.
 func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.GetMailingAddressRequest) (*v1.GetMailingAddressResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query MailingAddress by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM mailingaddress WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM mailing_address WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from MailingAddress-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get MailingAddress list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM MailingAddress")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM mailing_address")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from MailingAddress-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateMailingAddress(ctx context.Context, req *v1.
 	}
 	defer c.Close()
 
-	// update mailingaddress
-	res, err := c.ExecContext(ctx, "UPDATE mailingaddress SET title=$1 WHERE id=$2",
+	// update mailing_address
+	res, err := c.ExecContext(ctx, "UPDATE mailing_address SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update mailingaddress-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update MailingAddress-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateMailingAddress(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("mailingaddress with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("MailingAddress with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateMailingAddress(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Delete mailingaddress
+// Delete mailing_address
 func (s *shrikeServiceServer) DeleteMailingAddress(ctx context.Context, req *v1.DeleteMailingAddressRequest) (*v1.DeleteMailingAddressResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteMailingAddress(ctx context.Context, req *v1.
 	}
 	defer c.Close()
 
-	// delete mailingaddress
-	res, err := c.ExecContext(ctx, "DELETE FROM mailingaddress WHERE id=$1", req.Id)
+	// delete mailing_address
+	res, err := c.ExecContext(ctx, "DELETE FROM mailing_address WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete mailingaddress-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete MailingAddress-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteMailingAddress(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("mailingaddress with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("MailingAddress with ID='%d' is not found",
 			req.Id))
 	}
 

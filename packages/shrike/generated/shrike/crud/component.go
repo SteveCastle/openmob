@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListComponent(ctx context.Context, req *v1.ListCom
 	defer c.Close()
 
 	// get Component list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Component")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM component")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Component-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateComponent(ctx context.Context, req *v1.Updat
 	res, err := c.ExecContext(ctx, "UPDATE component SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update component-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Component-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateComponent(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("component with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Component with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteComponent(ctx context.Context, req *v1.Delet
 	// delete component
 	res, err := c.ExecContext(ctx, "DELETE FROM component WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete component-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Component-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteComponent(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("component with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Component with ID='%d' is not found",
 			req.Id))
 	}
 

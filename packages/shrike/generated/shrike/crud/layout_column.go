@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLayoutColumn(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert LayoutColumn entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layoutcolumn (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO layout_column (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LayoutColumn-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateLayoutColumn(ctx context.Context, req *v1.Cr
 	}, nil
 }
 
-// Get layoutcolumn by id.
+// Get layout_column by id.
 func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLayoutColumnRequest) (*v1.GetLayoutColumnResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLa
 	defer c.Close()
 
 	// query LayoutColumn by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM layoutcolumn WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM layout_column WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutColumn-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLayoutColumn(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get LayoutColumn list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM LayoutColumn")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM layout_column")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutColumn-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateLayoutColumn(ctx context.Context, req *v1.Up
 	}
 	defer c.Close()
 
-	// update layoutcolumn
-	res, err := c.ExecContext(ctx, "UPDATE layoutcolumn SET title=$1 WHERE id=$2",
+	// update layout_column
+	res, err := c.ExecContext(ctx, "UPDATE layout_column SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update layoutcolumn-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update LayoutColumn-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateLayoutColumn(ctx context.Context, req *v1.Up
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("layoutcolumn with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutColumn with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateLayoutColumn(ctx context.Context, req *v1.Up
 	}, nil
 }
 
-// Delete layoutcolumn
+// Delete layout_column
 func (s *shrikeServiceServer) DeleteLayoutColumn(ctx context.Context, req *v1.DeleteLayoutColumnRequest) (*v1.DeleteLayoutColumnResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteLayoutColumn(ctx context.Context, req *v1.De
 	}
 	defer c.Close()
 
-	// delete layoutcolumn
-	res, err := c.ExecContext(ctx, "DELETE FROM layoutcolumn WHERE id=$1", req.Id)
+	// delete layout_column
+	res, err := c.ExecContext(ctx, "DELETE FROM layout_column WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete layoutcolumn-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete LayoutColumn-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteLayoutColumn(ctx context.Context, req *v1.De
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("layoutcolumn with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutColumn with ID='%d' is not found",
 			req.Id))
 	}
 

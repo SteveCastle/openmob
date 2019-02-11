@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert LandingPage entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO landingpage (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO landing_page (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LandingPage-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.Cre
 	}, nil
 }
 
-// Get landingpage by id.
+// Get landing_page by id.
 func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLandingPageRequest) (*v1.GetLandingPageResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 	defer c.Close()
 
 	// query LandingPage by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM landingpage WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM landing_page WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LandingPage-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListL
 	defer c.Close()
 
 	// get LandingPage list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM LandingPage")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM landing_page")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LandingPage-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.Upd
 	}
 	defer c.Close()
 
-	// update landingpage
-	res, err := c.ExecContext(ctx, "UPDATE landingpage SET title=$1 WHERE id=$2",
+	// update landing_page
+	res, err := c.ExecContext(ctx, "UPDATE landing_page SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update landingpage-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update LandingPage-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.Upd
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("landingpage with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LandingPage with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.Upd
 	}, nil
 }
 
-// Delete landingpage
+// Delete landing_page
 func (s *shrikeServiceServer) DeleteLandingPage(ctx context.Context, req *v1.DeleteLandingPageRequest) (*v1.DeleteLandingPageResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteLandingPage(ctx context.Context, req *v1.Del
 	}
 	defer c.Close()
 
-	// delete landingpage
-	res, err := c.ExecContext(ctx, "DELETE FROM landingpage WHERE id=$1", req.Id)
+	// delete landing_page
+	res, err := c.ExecContext(ctx, "DELETE FROM landing_page WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete landingpage-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete LandingPage-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteLandingPage(ctx context.Context, req *v1.Del
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("landingpage with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LandingPage with ID='%d' is not found",
 			req.Id))
 	}
 

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert FieldType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO fieldtype (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO field_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into FieldType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.Creat
 	}, nil
 }
 
-// Get fieldtype by id.
+// Get field_type by id.
 func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetFieldTypeRequest) (*v1.GetFieldTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 	defer c.Close()
 
 	// query FieldType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM fieldtype WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM field_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from FieldType-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 	defer c.Close()
 
 	// get FieldType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM FieldType")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM field_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from FieldType-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateFieldType(ctx context.Context, req *v1.Updat
 	}
 	defer c.Close()
 
-	// update fieldtype
-	res, err := c.ExecContext(ctx, "UPDATE fieldtype SET title=$1 WHERE id=$2",
+	// update field_type
+	res, err := c.ExecContext(ctx, "UPDATE field_type SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update fieldtype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update FieldType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateFieldType(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("fieldtype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("FieldType with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateFieldType(ctx context.Context, req *v1.Updat
 	}, nil
 }
 
-// Delete fieldtype
+// Delete field_type
 func (s *shrikeServiceServer) DeleteFieldType(ctx context.Context, req *v1.DeleteFieldTypeRequest) (*v1.DeleteFieldTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteFieldType(ctx context.Context, req *v1.Delet
 	}
 	defer c.Close()
 
-	// delete fieldtype
-	res, err := c.ExecContext(ctx, "DELETE FROM fieldtype WHERE id=$1", req.Id)
+	// delete field_type
+	res, err := c.ExecContext(ctx, "DELETE FROM field_type WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete fieldtype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete FieldType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteFieldType(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("fieldtype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("FieldType with ID='%d' is not found",
 			req.Id))
 	}
 

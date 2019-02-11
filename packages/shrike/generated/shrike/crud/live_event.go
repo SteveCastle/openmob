@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert LiveEvent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO liveevent (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEvent-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.Creat
 	}, nil
 }
 
-// Get liveevent by id.
+// Get live_event by id.
 func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveEventRequest) (*v1.GetLiveEventResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 	defer c.Close()
 
 	// query LiveEvent by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM liveevent WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM live_event WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 	defer c.Close()
 
 	// get LiveEvent list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM LiveEvent")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM live_event")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateLiveEvent(ctx context.Context, req *v1.Updat
 	}
 	defer c.Close()
 
-	// update liveevent
-	res, err := c.ExecContext(ctx, "UPDATE liveevent SET title=$1 WHERE id=$2",
+	// update live_event
+	res, err := c.ExecContext(ctx, "UPDATE live_event SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update liveevent-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update LiveEvent-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateLiveEvent(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("liveevent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateLiveEvent(ctx context.Context, req *v1.Updat
 	}, nil
 }
 
-// Delete liveevent
+// Delete live_event
 func (s *shrikeServiceServer) DeleteLiveEvent(ctx context.Context, req *v1.DeleteLiveEventRequest) (*v1.DeleteLiveEventResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteLiveEvent(ctx context.Context, req *v1.Delet
 	}
 	defer c.Close()
 
-	// delete liveevent
-	res, err := c.ExecContext(ctx, "DELETE FROM liveevent WHERE id=$1", req.Id)
+	// delete live_event
+	res, err := c.ExecContext(ctx, "DELETE FROM live_event WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete liveevent-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete LiveEvent-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteLiveEvent(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("liveevent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%d' is not found",
 			req.Id))
 	}
 

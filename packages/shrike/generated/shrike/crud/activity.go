@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListActivity(ctx context.Context, req *v1.ListActi
 	defer c.Close()
 
 	// get Activity list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Activity")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM activity")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Activity-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateActivity(ctx context.Context, req *v1.Update
 	res, err := c.ExecContext(ctx, "UPDATE activity SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update activity-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Activity-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateActivity(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("activity with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Activity with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteActivity(ctx context.Context, req *v1.Delete
 	// delete activity
 	res, err := c.ExecContext(ctx, "DELETE FROM activity WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete activity-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Activity-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteActivity(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("activity with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Activity with ID='%d' is not found",
 			req.Id))
 	}
 

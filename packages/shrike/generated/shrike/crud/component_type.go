@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateComponentType(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert ComponentType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO componenttype (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO component_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateComponentType(ctx context.Context, req *v1.C
 	}, nil
 }
 
-// Get componenttype by id.
+// Get component_type by id.
 func (s *shrikeServiceServer) GetComponentType(ctx context.Context, req *v1.GetComponentTypeRequest) (*v1.GetComponentTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetComponentType(ctx context.Context, req *v1.GetC
 	defer c.Close()
 
 	// query ComponentType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM componenttype WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM component_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentType-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListComponentType(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get ComponentType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM ComponentType")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM component_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentType-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateComponentType(ctx context.Context, req *v1.U
 	}
 	defer c.Close()
 
-	// update componenttype
-	res, err := c.ExecContext(ctx, "UPDATE componenttype SET title=$1 WHERE id=$2",
+	// update component_type
+	res, err := c.ExecContext(ctx, "UPDATE component_type SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update componenttype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update ComponentType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateComponentType(ctx context.Context, req *v1.U
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("componenttype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentType with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateComponentType(ctx context.Context, req *v1.U
 	}, nil
 }
 
-// Delete componenttype
+// Delete component_type
 func (s *shrikeServiceServer) DeleteComponentType(ctx context.Context, req *v1.DeleteComponentTypeRequest) (*v1.DeleteComponentTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteComponentType(ctx context.Context, req *v1.D
 	}
 	defer c.Close()
 
-	// delete componenttype
-	res, err := c.ExecContext(ctx, "DELETE FROM componenttype WHERE id=$1", req.Id)
+	// delete component_type
+	res, err := c.ExecContext(ctx, "DELETE FROM component_type WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete componenttype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete ComponentType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteComponentType(ctx context.Context, req *v1.D
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("componenttype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentType with ID='%d' is not found",
 			req.Id))
 	}
 

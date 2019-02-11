@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert CustomerCart entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customercart (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerCart-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.Cr
 	}, nil
 }
 
-// Get customercart by id.
+// Get customer_cart by id.
 func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCustomerCartRequest) (*v1.GetCustomerCartResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 	defer c.Close()
 
 	// query CustomerCart by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM customercart WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM customer_cart WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerCart-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get CustomerCart list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM CustomerCart")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM customer_cart")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerCart-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.Up
 	}
 	defer c.Close()
 
-	// update customercart
-	res, err := c.ExecContext(ctx, "UPDATE customercart SET title=$1 WHERE id=$2",
+	// update customer_cart
+	res, err := c.ExecContext(ctx, "UPDATE customer_cart SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update customercart-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update CustomerCart-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.Up
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("customercart with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerCart with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.Up
 	}, nil
 }
 
-// Delete customercart
+// Delete customer_cart
 func (s *shrikeServiceServer) DeleteCustomerCart(ctx context.Context, req *v1.DeleteCustomerCartRequest) (*v1.DeleteCustomerCartResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteCustomerCart(ctx context.Context, req *v1.De
 	}
 	defer c.Close()
 
-	// delete customercart
-	res, err := c.ExecContext(ctx, "DELETE FROM customercart WHERE id=$1", req.Id)
+	// delete customer_cart
+	res, err := c.ExecContext(ctx, "DELETE FROM customer_cart WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete customercart-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete CustomerCart-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteCustomerCart(ctx context.Context, req *v1.De
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("customercart with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerCart with ID='%d' is not found",
 			req.Id))
 	}
 

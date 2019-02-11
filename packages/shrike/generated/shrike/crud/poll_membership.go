@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePollMembership(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PollMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO pollmembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO poll_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PollMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreatePollMembership(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Get pollmembership by id.
+// Get poll_membership by id.
 func (s *shrikeServiceServer) GetPollMembership(ctx context.Context, req *v1.GetPollMembershipRequest) (*v1.GetPollMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPollMembership(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query PollMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM pollmembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM poll_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPollMembership(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get PollMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM PollMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM poll_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdatePollMembership(ctx context.Context, req *v1.
 	}
 	defer c.Close()
 
-	// update pollmembership
-	res, err := c.ExecContext(ctx, "UPDATE pollmembership SET title=$1 WHERE id=$2",
+	// update poll_membership
+	res, err := c.ExecContext(ctx, "UPDATE poll_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update pollmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update PollMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdatePollMembership(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("pollmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdatePollMembership(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Delete pollmembership
+// Delete poll_membership
 func (s *shrikeServiceServer) DeletePollMembership(ctx context.Context, req *v1.DeletePollMembershipRequest) (*v1.DeletePollMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeletePollMembership(ctx context.Context, req *v1.
 	}
 	defer c.Close()
 
-	// delete pollmembership
-	res, err := c.ExecContext(ctx, "DELETE FROM pollmembership WHERE id=$1", req.Id)
+	// delete poll_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM poll_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete pollmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete PollMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeletePollMembership(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("pollmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollMembership with ID='%d' is not found",
 			req.Id))
 	}
 

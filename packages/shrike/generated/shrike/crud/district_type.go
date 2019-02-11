@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateDistrictType(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert DistrictType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO districttype (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO district_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DistrictType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateDistrictType(ctx context.Context, req *v1.Cr
 	}, nil
 }
 
-// Get districttype by id.
+// Get district_type by id.
 func (s *shrikeServiceServer) GetDistrictType(ctx context.Context, req *v1.GetDistrictTypeRequest) (*v1.GetDistrictTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetDistrictType(ctx context.Context, req *v1.GetDi
 	defer c.Close()
 
 	// query DistrictType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM districttype WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM district_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DistrictType-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get DistrictType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM DistrictType")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM district_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DistrictType-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateDistrictType(ctx context.Context, req *v1.Up
 	}
 	defer c.Close()
 
-	// update districttype
-	res, err := c.ExecContext(ctx, "UPDATE districttype SET title=$1 WHERE id=$2",
+	// update district_type
+	res, err := c.ExecContext(ctx, "UPDATE district_type SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update districttype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update DistrictType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateDistrictType(ctx context.Context, req *v1.Up
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("districttype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DistrictType with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateDistrictType(ctx context.Context, req *v1.Up
 	}, nil
 }
 
-// Delete districttype
+// Delete district_type
 func (s *shrikeServiceServer) DeleteDistrictType(ctx context.Context, req *v1.DeleteDistrictTypeRequest) (*v1.DeleteDistrictTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteDistrictType(ctx context.Context, req *v1.De
 	}
 	defer c.Close()
 
-	// delete districttype
-	res, err := c.ExecContext(ctx, "DELETE FROM districttype WHERE id=$1", req.Id)
+	// delete district_type
+	res, err := c.ExecContext(ctx, "DELETE FROM district_type WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete districttype-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete DistrictType-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteDistrictType(ctx context.Context, req *v1.De
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("districttype with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DistrictType with ID='%d' is not found",
 			req.Id))
 	}
 

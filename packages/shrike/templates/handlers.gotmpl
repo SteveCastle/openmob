@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert {{.Table.Name}} entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO {{toLower .Table.Name}} (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into {{.Table.Name}}-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	}, nil
 }
 
-// Get {{toLower .Table.Name}} by id.
+// Get {{snake .Table.Name}} by id.
 func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Get{{.Table.Name}}Request) (*v1.Get{{.Table.Name}}Response, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query {{.Table.Name}} by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM {{toLower .Table.Name}} WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM {{snake .Table.Name}} WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get {{.Table.Name}} list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM {{.Table.Name}}")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM {{snake .Table.Name}}")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	}
 	defer c.Close()
 
-	// update {{toLower .Table.Name}}
-	res, err := c.ExecContext(ctx, "UPDATE {{toLower .Table.Name}} SET title=$1 WHERE id=$2",
+	// update {{snake .Table.Name}}
+	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update {{toLower .Table.Name}}-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update {{.Table.Name}}-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{toLower .Table.Name}} with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	}, nil
 }
 
-// Delete {{toLower .Table.Name}}
+// Delete {{snake .Table.Name}}
 func (s *shrikeServiceServer) Delete{{.Table.Name}}(ctx context.Context, req *v1.Delete{{.Table.Name}}Request) (*v1.Delete{{.Table.Name}}Response, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) Delete{{.Table.Name}}(ctx context.Context, req *v1
 	}
 	defer c.Close()
 
-	// delete {{toLower .Table.Name}}
-	res, err := c.ExecContext(ctx, "DELETE FROM {{toLower .Table.Name}} WHERE id=$1", req.Id)
+	// delete {{snake .Table.Name}}
+	res, err := c.ExecContext(ctx, "DELETE FROM {{snake .Table.Name}} WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete {{toLower .Table.Name}}-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete {{.Table.Name}}-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) Delete{{.Table.Name}}(ctx context.Context, req *v1
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{toLower .Table.Name}} with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%d' is not found",
 			req.Id))
 	}
 

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Conte
 	defer c.Close()
 	var id int64
 	// insert DonationCampaignMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donationcampaignmembership (title) VALUES($1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign_membership (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DonationCampaignMembership-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Conte
 	}, nil
 }
 
-// Get donationcampaignmembership by id.
+// Get donation_campaign_membership by id.
 func (s *shrikeServiceServer) GetDonationCampaignMembership(ctx context.Context, req *v1.GetDonationCampaignMembershipRequest) (*v1.GetDonationCampaignMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetDonationCampaignMembership(ctx context.Context,
 	defer c.Close()
 
 	// query DonationCampaignMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM donationcampaignmembership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, title FROM donation_campaign_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaignMembership-> "+err.Error())
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context
 	defer c.Close()
 
 	// get DonationCampaignMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM DonationCampaignMembership")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM donation_campaign_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaignMembership-> "+err.Error())
 	}
@@ -179,11 +179,11 @@ func (s *shrikeServiceServer) UpdateDonationCampaignMembership(ctx context.Conte
 	}
 	defer c.Close()
 
-	// update donationcampaignmembership
-	res, err := c.ExecContext(ctx, "UPDATE donationcampaignmembership SET title=$1 WHERE id=$2",
+	// update donation_campaign_membership
+	res, err := c.ExecContext(ctx, "UPDATE donation_campaign_membership SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update donationcampaignmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update DonationCampaignMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateDonationCampaignMembership(ctx context.Conte
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("donationcampaignmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaignMembership with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -202,7 +202,7 @@ func (s *shrikeServiceServer) UpdateDonationCampaignMembership(ctx context.Conte
 	}, nil
 }
 
-// Delete donationcampaignmembership
+// Delete donation_campaign_membership
 func (s *shrikeServiceServer) DeleteDonationCampaignMembership(ctx context.Context, req *v1.DeleteDonationCampaignMembershipRequest) (*v1.DeleteDonationCampaignMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -216,10 +216,10 @@ func (s *shrikeServiceServer) DeleteDonationCampaignMembership(ctx context.Conte
 	}
 	defer c.Close()
 
-	// delete donationcampaignmembership
-	res, err := c.ExecContext(ctx, "DELETE FROM donationcampaignmembership WHERE id=$1", req.Id)
+	// delete donation_campaign_membership
+	res, err := c.ExecContext(ctx, "DELETE FROM donation_campaign_membership WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete donationcampaignmembership-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete DonationCampaignMembership-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteDonationCampaignMembership(ctx context.Conte
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("donationcampaignmembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaignMembership with ID='%d' is not found",
 			req.Id))
 	}
 

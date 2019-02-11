@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 	defer c.Close()
 
 	// get Office list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Office")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM office")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Office-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateOffice(ctx context.Context, req *v1.UpdateOf
 	res, err := c.ExecContext(ctx, "UPDATE office SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update office-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Office-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateOffice(ctx context.Context, req *v1.UpdateOf
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("office with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Office with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteOffice(ctx context.Context, req *v1.DeleteOf
 	// delete office
 	res, err := c.ExecContext(ctx, "DELETE FROM office WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete office-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Office-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteOffice(ctx context.Context, req *v1.DeleteOf
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("office with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Office with ID='%d' is not found",
 			req.Id))
 	}
 

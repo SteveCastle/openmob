@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 	defer c.Close()
 
 	// get Contact list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM Contact")
+	rows, err := c.QueryContext(ctx, "SELECT id,title FROM contact")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
 	}
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateC
 	res, err := c.ExecContext(ctx, "UPDATE contact SET title=$1 WHERE id=$2",
 		req.Item.Title, req.Item.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update contact-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to update Contact-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -192,7 +192,7 @@ func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateC
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("contact with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%d' is not found",
 			req.Item.Id))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteContact(ctx context.Context, req *v1.DeleteC
 	// delete contact
 	res, err := c.ExecContext(ctx, "DELETE FROM contact WHERE id=$1", req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete contact-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "failed to delete Contact-> "+err.Error())
 	}
 
 	rows, err := res.RowsAffected()
@@ -228,7 +228,7 @@ func (s *shrikeServiceServer) DeleteContact(ctx context.Context, req *v1.DeleteC
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("contact with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%d' is not found",
 			req.Id))
 	}
 
