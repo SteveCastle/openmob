@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
   space,
@@ -19,7 +20,7 @@ const StyledButton = styled.button`
   outline: none;
 `;
 
-export default function Button({ onClick, label, block, dark }) {
+function Button({ onClick, label, block, dark }) {
   return (
     <StyledButton
       block={block}
@@ -36,3 +37,14 @@ export default function Button({ onClick, label, block, dark }) {
     </StyledButton>
   );
 }
+
+Button.propTypes = {
+  onClick: PropTypes.func,
+  label: PropTypes.string,
+  icon: PropTypes.element,
+  loader: PropTypes.element,
+  state: PropTypes.oneOf(['ready', 'loading', 'success', 'error']),
+  block: PropTypes.bool,
+  dark: PropTypes.bool
+};
+export default Button;

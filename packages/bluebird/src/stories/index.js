@@ -7,6 +7,11 @@ import { linkTo } from '@storybook/addon-links';
 import Button from '../components/buttons/Button';
 
 storiesOf('Button', module)
+  .addParameters({
+    info: {
+      inline: true
+    }
+  })
   .add('Defaults', () => (
     <Button onClick={action('clicked')} label="Hello Button" />
   ))
