@@ -278,8 +278,8 @@ CREATE TABLE donation_campaign
 CREATE TABLE customer_cart
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    created_at TIMESTAMPTZ NOT NULL,
+    updated_at TIMESTAMPTZ NOT NULL
 );
 CREATE TABLE customer_order
 (
@@ -298,8 +298,8 @@ CREATE TABLE payment
 CREATE TABLE delivery
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    created_at TIMESTAMPTZ NOT NULL,
+    updated_at TIMESTAMPTZ NOT NULL
 );
 
 --CMS MEMBERSHIPS
@@ -373,8 +373,8 @@ CREATE TABLE donation_campaign_membership
 CREATE TABLE contact
 (
     id serial PRIMARY KEY,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP
+    created_at TIMESTAMPTZ NOT NULL,
+    updated_at TIMESTAMPTZ NOT NULL
 );
 CREATE TABLE petition_signer
 (

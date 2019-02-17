@@ -128,6 +128,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 "character varying" = "string"
 "integer" = "int64"
 "numeric" = "float64"
+"geometry" = "int64"
 
 # NullableTypeMap is a mapping of database type names to replacement type names
 # (generally types from your language for deserialization), specifically for
@@ -138,14 +139,14 @@ NoOverwriteGlobs = ["*.perm.go"]
 # of your configuration file.
 # Example for mapping postgres types to Go types:
 [NullableTypeMap]
-"timestamp with time zone" = "pq.NullTime"
-"text" = "sql.NullString"
-"boolean" = "sql.NullBool"
-"uuid" = "uuid.NullUUID"
-"character varying" = "sql.NullString"
-"integer" = "sql.NullInt64"
-"numeric" = "sql.NullFloat64"
-
+"timestamp with time zone" = "google.protobuf.Timestamp"
+"text" = "string"
+"boolean" = "bool"
+"uuid" = "uuid.UUID"
+"character varying" = "string"
+"integer" = "int64"
+"numeric" = "float64"
+"geometry" = "int64"
 
 # Params contains any data you may want to pass to your templates.  This is a
 # good way to make templates reusable with different configuration values for
