@@ -20,7 +20,7 @@ const StyledButton = styled.button`
   outline: none;
 `;
 
-function Button({ onClick, label, block, dark }) {
+function Button({ onClick, label, block, dark, state }) {
   return (
     <StyledButton
       block={block}
@@ -41,10 +41,14 @@ function Button({ onClick, label, block, dark }) {
 Button.propTypes = {
   onClick: PropTypes.func,
   label: PropTypes.string,
-  icon: PropTypes.element,
-  loader: PropTypes.element,
-  state: PropTypes.oneOf(['ready', 'loading', 'success', 'error']),
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  loader: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  state: PropTypes.oneOf(['ready', 'loading', 'success', 'error']).isRequired,
   block: PropTypes.bool,
   dark: PropTypes.bool
 };
+Button.defaultProps = {
+  state: 'ready'
+};
+
 export default Button;
