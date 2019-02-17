@@ -38,7 +38,7 @@ storiesOf('Layout', module)
       inline: true
     }
   })
-  .add('Layout', () => (
+  .add('Reponsive Flexbox Grid', () => (
     <Layout tracing={5}>
       <Row tracing={5}>
         <Column tracing={5} size={12} />
@@ -82,7 +82,7 @@ storiesOf('Layout', module)
       </Row>
     </Layout>
   ))
-  .add('Container', () => (
+  .add('Flexbox Container', () => (
     <Layout tracing={5}>
       <Container tracing={5}>
         <Row tracing={5}>
@@ -102,14 +102,38 @@ storiesOf('Buttons', module)
       inline: true
     }
   })
-  .add('Defaults', () => (
+  .add('Basic Buttons', () => (
+    <>
+      <Button onClick={action('clicked')} label="Primary Button" />
+      <Button
+        onClick={action('clicked')}
+        label="Outline Button"
+        variant="outline"
+      />
+      <Button onClick={action('clicked')} label="Dark Button" variant="dark" />
+      <Button
+        onClick={action('clicked')}
+        label="Warning Button"
+        variant="dark"
+      />
+    </>
+  ))
+  .add('Button States', () => (
+    <>
+      <Button onClick={action('clicked')} label="Ready" />
+      <Button onClick={action('clicked')} label="Loading" />
+      <Button onClick={action('clicked')} label="Success" />
+      <Button onClick={action('clicked')} label="Disabled" />
+    </>
+  ))
+  .add('With confirmation modal', () => (
+    <Button onClick={action('clicked')} label="Hello Button" />
+  ))
+  .add('Icon Buttons', () => (
     <Button onClick={action('clicked')} label="Hello Button" />
   ))
   .add('Block mode', () => (
     <Button onClick={action('clicked')} label="Hello Button" block />
-  ))
-  .add('Dark Mode', () => (
-    <Button onClick={action('clicked')} label="Hello Button" dark />
   ));
 
 storiesOf('Forms', module)
