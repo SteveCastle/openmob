@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Poll
 func (s *shrikeServiceServer) CreatePoll(ctx context.Context, req *v1.CreatePollRequest) (*v1.CreatePollResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePoll(ctx context.Context, req *v1.CreatePoll
 	defer c.Close()
 	var id int64
 	// insert Poll entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO poll (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO poll ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Poll-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPoll(ctx context.Context, req *v1.GetPollReques
 	}
 
 	// get Poll data
-	var td v1.Poll
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var poll v1.Poll
+	if err := rows.Scan(&poll.Id, &poll.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Poll row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPoll(ctx context.Context, req *v1.GetPollReques
 
 	return &v1.GetPollResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &poll,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Poll
 func (s *shrikeServiceServer) ListPoll(ctx context.Context, req *v1.ListPollRequest) (*v1.ListPollResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPoll(ctx context.Context, req *v1.ListPollRequ
 
 	list := []*v1.Poll{}
 	for rows.Next() {
-		td := new(v1.Poll)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		poll := new(v1.Poll)
+		if err := rows.Scan(&poll.Id, &poll.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Poll row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, poll)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPoll(ctx context.Context, req *v1.ListPollRequ
 	}, nil
 }
 
-// Update todo task
+// Update Poll
 func (s *shrikeServiceServer) UpdatePoll(ctx context.Context, req *v1.UpdatePollRequest) (*v1.UpdatePollResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

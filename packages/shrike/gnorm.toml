@@ -121,12 +121,12 @@ NoOverwriteGlobs = ["*.perm.go"]
 # of your configuration file.
 # Example for mapping postgres types to Go types:
 [TypeMap]
-"timestamp with time zone" = "time.Time"
+"timestamp with time zone" = "google.protobuf.Timestamp"
 "text" = "string"
 "boolean" = "bool"
 "uuid" = "uuid.UUID"
 "character varying" = "string"
-"integer" = "int"
+"integer" = "int64"
 "numeric" = "float64"
 
 # NullableTypeMap is a mapping of database type names to replacement type names

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Photo
 func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePhotoRequest) (*v1.CreatePhotoResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePho
 	defer c.Close()
 	var id int64
 	// insert Photo entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO photo (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO photo ( id  created_at  updated_at  img_url ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemImgURL ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Photo-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 	}
 
 	// get Photo data
-	var td v1.Photo
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var photo v1.Photo
+	if err := rows.Scan(&photo.Id, &photo.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Photo row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 
 	return &v1.GetPhotoResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &photo,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Photo
 func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRequest) (*v1.ListPhotoResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 
 	list := []*v1.Photo{}
 	for rows.Next() {
-		td := new(v1.Photo)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		photo := new(v1.Photo)
+		if err := rows.Scan(&photo.Id, &photo.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Photo row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, photo)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 	}, nil
 }
 
-// Update todo task
+// Update Photo
 func (s *shrikeServiceServer) UpdatePhoto(ctx context.Context, req *v1.UpdatePhotoRequest) (*v1.UpdatePhotoResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

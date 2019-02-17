@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new DonationCampaign
 func (s *shrikeServiceServer) CreateDonationCampaign(ctx context.Context, req *v1.CreateDonationCampaignRequest) (*v1.CreateDonationCampaignResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateDonationCampaign(ctx context.Context, req *v
 	defer c.Close()
 	var id int64
 	// insert DonationCampaign entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DonationCampaign-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.G
 	}
 
 	// get DonationCampaign data
-	var td v1.DonationCampaign
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var donationcampaign v1.DonationCampaign
+	if err := rows.Scan(&donationcampaign.Id, &donationcampaign.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaign row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.G
 
 	return &v1.GetDonationCampaignResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &donationcampaign,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all DonationCampaign
 func (s *shrikeServiceServer) ListDonationCampaign(ctx context.Context, req *v1.ListDonationCampaignRequest) (*v1.ListDonationCampaignResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListDonationCampaign(ctx context.Context, req *v1.
 
 	list := []*v1.DonationCampaign{}
 	for rows.Next() {
-		td := new(v1.DonationCampaign)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		donationcampaign := new(v1.DonationCampaign)
+		if err := rows.Scan(&donationcampaign.Id, &donationcampaign.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaign row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, donationcampaign)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListDonationCampaign(ctx context.Context, req *v1.
 	}, nil
 }
 
-// Update todo task
+// Update DonationCampaign
 func (s *shrikeServiceServer) UpdateDonationCampaign(ctx context.Context, req *v1.UpdateDonationCampaignRequest) (*v1.UpdateDonationCampaignResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Layout
 func (s *shrikeServiceServer) CreateLayout(ctx context.Context, req *v1.CreateLayoutRequest) (*v1.CreateLayoutResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateLayout(ctx context.Context, req *v1.CreateLa
 	defer c.Close()
 	var id int64
 	// insert Layout entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layout (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO layout ( id  created_at  updated_at  layout_type ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemLayoutType ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Layout-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetLayout(ctx context.Context, req *v1.GetLayoutRe
 	}
 
 	// get Layout data
-	var td v1.Layout
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var layout v1.Layout
+	if err := rows.Scan(&layout.Id, &layout.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Layout row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetLayout(ctx context.Context, req *v1.GetLayoutRe
 
 	return &v1.GetLayoutResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &layout,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Layout
 func (s *shrikeServiceServer) ListLayout(ctx context.Context, req *v1.ListLayoutRequest) (*v1.ListLayoutResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListLayout(ctx context.Context, req *v1.ListLayout
 
 	list := []*v1.Layout{}
 	for rows.Next() {
-		td := new(v1.Layout)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		layout := new(v1.Layout)
+		if err := rows.Scan(&layout.Id, &layout.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Layout row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, layout)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListLayout(ctx context.Context, req *v1.ListLayout
 	}, nil
 }
 
-// Update todo task
+// Update Layout
 func (s *shrikeServiceServer) UpdateLayout(ctx context.Context, req *v1.UpdateLayoutRequest) (*v1.UpdateLayoutResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

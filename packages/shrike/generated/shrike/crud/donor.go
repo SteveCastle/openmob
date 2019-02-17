@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Donor
 func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDonorRequest) (*v1.CreateDonorResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDon
 	defer c.Close()
 	var id int64
 	// insert Donor entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donor (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO donor ( id  created_at  updated_at  customer_order  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCustomerOrder  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Donor-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 	}
 
 	// get Donor data
-	var td v1.Donor
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var donor v1.Donor
+	if err := rows.Scan(&donor.Id, &donor.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Donor row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 
 	return &v1.GetDonorResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &donor,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Donor
 func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRequest) (*v1.ListDonorResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 
 	list := []*v1.Donor{}
 	for rows.Next() {
-		td := new(v1.Donor)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		donor := new(v1.Donor)
+		if err := rows.Scan(&donor.Id, &donor.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Donor row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, donor)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 	}, nil
 }
 
-// Update todo task
+// Update Donor
 func (s *shrikeServiceServer) UpdateDonor(ctx context.Context, req *v1.UpdateDonorRequest) (*v1.UpdateDonorResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Office
 func (s *shrikeServiceServer) CreateOffice(ctx context.Context, req *v1.CreateOfficeRequest) (*v1.CreateOfficeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateOffice(ctx context.Context, req *v1.CreateOf
 	defer c.Close()
 	var id int64
 	// insert Office entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO office (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO office ( id  created_at  updated_at  title  election ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemElection ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Office-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 	}
 
 	// get Office data
-	var td v1.Office
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var office v1.Office
+	if err := rows.Scan(&office.Id, &office.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Office row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 
 	return &v1.GetOfficeResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &office,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Office
 func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOfficeRequest) (*v1.ListOfficeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 
 	list := []*v1.Office{}
 	for rows.Next() {
-		td := new(v1.Office)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		office := new(v1.Office)
+		if err := rows.Scan(&office.Id, &office.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Office row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, office)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 	}, nil
 }
 
-// Update todo task
+// Update Office
 func (s *shrikeServiceServer) UpdateOffice(ctx context.Context, req *v1.UpdateOfficeRequest) (*v1.UpdateOfficeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

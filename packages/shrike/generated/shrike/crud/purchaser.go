@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Purchaser
 func (s *shrikeServiceServer) CreatePurchaser(ctx context.Context, req *v1.CreatePurchaserRequest) (*v1.CreatePurchaserResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePurchaser(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Purchaser entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO purchaser (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO purchaser ( id  created_at  updated_at  customer_order  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCustomerOrder  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Purchaser-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPurchaser(ctx context.Context, req *v1.GetPurch
 	}
 
 	// get Purchaser data
-	var td v1.Purchaser
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var purchaser v1.Purchaser
+	if err := rows.Scan(&purchaser.Id, &purchaser.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Purchaser row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPurchaser(ctx context.Context, req *v1.GetPurch
 
 	return &v1.GetPurchaserResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &purchaser,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Purchaser
 func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPurchaserRequest) (*v1.ListPurchaserResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 
 	list := []*v1.Purchaser{}
 	for rows.Next() {
-		td := new(v1.Purchaser)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		purchaser := new(v1.Purchaser)
+		if err := rows.Scan(&purchaser.Id, &purchaser.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Purchaser row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, purchaser)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 	}, nil
 }
 
-// Update todo task
+// Update Purchaser
 func (s *shrikeServiceServer) UpdatePurchaser(ctx context.Context, req *v1.UpdatePurchaserRequest) (*v1.UpdatePurchaserResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Delivery
 func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.CreateDeliveryRequest) (*v1.CreateDeliveryResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Delivery entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO delivery (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO delivery ( id  created_at  updated_at ) VALUES( $1 $2 $3)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Delivery-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 	}
 
 	// get Delivery data
-	var td v1.Delivery
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var delivery v1.Delivery
+	if err := rows.Scan(&delivery.Id, &delivery.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Delivery row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 
 	return &v1.GetDeliveryResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &delivery,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Delivery
 func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeliveryRequest) (*v1.ListDeliveryResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 
 	list := []*v1.Delivery{}
 	for rows.Next() {
-		td := new(v1.Delivery)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		delivery := new(v1.Delivery)
+		if err := rows.Scan(&delivery.Id, &delivery.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Delivery row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, delivery)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 	}, nil
 }
 
-// Update todo task
+// Update Delivery
 func (s *shrikeServiceServer) UpdateDelivery(ctx context.Context, req *v1.UpdateDeliveryRequest) (*v1.UpdateDeliveryResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

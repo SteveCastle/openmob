@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new ContactMembership
 func (s *shrikeServiceServer) CreateContactMembership(ctx context.Context, req *v1.CreateContactMembershipRequest) (*v1.CreateContactMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateContactMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert ContactMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contact_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO contact_membership ( id  created_at  updated_at  cause  contact ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemContact ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ContactMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetContactMembership(ctx context.Context, req *v1.
 	}
 
 	// get ContactMembership data
-	var td v1.ContactMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var contactmembership v1.ContactMembership
+	if err := rows.Scan(&contactmembership.Id, &contactmembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ContactMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetContactMembership(ctx context.Context, req *v1.
 
 	return &v1.GetContactMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &contactmembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all ContactMembership
 func (s *shrikeServiceServer) ListContactMembership(ctx context.Context, req *v1.ListContactMembershipRequest) (*v1.ListContactMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListContactMembership(ctx context.Context, req *v1
 
 	list := []*v1.ContactMembership{}
 	for rows.Next() {
-		td := new(v1.ContactMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		contactmembership := new(v1.ContactMembership)
+		if err := rows.Scan(&contactmembership.Id, &contactmembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ContactMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, contactmembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListContactMembership(ctx context.Context, req *v1
 	}, nil
 }
 
-// Update todo task
+// Update ContactMembership
 func (s *shrikeServiceServer) UpdateContactMembership(ctx context.Context, req *v1.UpdateContactMembershipRequest) (*v1.UpdateContactMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

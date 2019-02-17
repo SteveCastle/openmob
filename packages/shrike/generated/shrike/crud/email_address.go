@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new EmailAddress
 func (s *shrikeServiceServer) CreateEmailAddress(ctx context.Context, req *v1.CreateEmailAddressRequest) (*v1.CreateEmailAddressResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateEmailAddress(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert EmailAddress entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO email_address (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO email_address ( id  created_at  updated_at  address ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemAddress ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into EmailAddress-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetEmailAddress(ctx context.Context, req *v1.GetEm
 	}
 
 	// get EmailAddress data
-	var td v1.EmailAddress
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var emailaddress v1.EmailAddress
+	if err := rows.Scan(&emailaddress.Id, &emailaddress.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from EmailAddress row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetEmailAddress(ctx context.Context, req *v1.GetEm
 
 	return &v1.GetEmailAddressResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &emailaddress,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all EmailAddress
 func (s *shrikeServiceServer) ListEmailAddress(ctx context.Context, req *v1.ListEmailAddressRequest) (*v1.ListEmailAddressResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListEmailAddress(ctx context.Context, req *v1.List
 
 	list := []*v1.EmailAddress{}
 	for rows.Next() {
-		td := new(v1.EmailAddress)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		emailaddress := new(v1.EmailAddress)
+		if err := rows.Scan(&emailaddress.Id, &emailaddress.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from EmailAddress row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, emailaddress)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListEmailAddress(ctx context.Context, req *v1.List
 	}, nil
 }
 
-// Update todo task
+// Update EmailAddress
 func (s *shrikeServiceServer) UpdateEmailAddress(ctx context.Context, req *v1.UpdateEmailAddressRequest) (*v1.UpdateEmailAddressResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new AgentMembership
 func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1.CreateAgentMembershipRequest) (*v1.CreateAgentMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert AgentMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership ( id  created_at  updated_at  cause  agent ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemAgent ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into AgentMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.Ge
 	}
 
 	// get AgentMembership data
-	var td v1.AgentMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var agentmembership v1.AgentMembership
+	if err := rows.Scan(&agentmembership.Id, &agentmembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from AgentMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.Ge
 
 	return &v1.GetAgentMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &agentmembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all AgentMembership
 func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.ListAgentMembershipRequest) (*v1.ListAgentMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.L
 
 	list := []*v1.AgentMembership{}
 	for rows.Next() {
-		td := new(v1.AgentMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		agentmembership := new(v1.AgentMembership)
+		if err := rows.Scan(&agentmembership.Id, &agentmembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from AgentMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, agentmembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.L
 	}, nil
 }
 
-// Update todo task
+// Update AgentMembership
 func (s *shrikeServiceServer) UpdateAgentMembership(ctx context.Context, req *v1.UpdateAgentMembershipRequest) (*v1.UpdateAgentMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new MailingAddress
 func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.CreateMailingAddressRequest) (*v1.CreateMailingAddressResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert MailingAddress entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address ( id  created_at  updated_at  street_address  city  state  zip_code ) VALUES( $1 $2 $3 $4 $5 $6 $7)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemStreetAddress  req.ItemCity  req.ItemState  req.ItemZipCode ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into MailingAddress-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 	}
 
 	// get MailingAddress data
-	var td v1.MailingAddress
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var mailingaddress v1.MailingAddress
+	if err := rows.Scan(&mailingaddress.Id, &mailingaddress.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from MailingAddress row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 
 	return &v1.GetMailingAddressResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &mailingaddress,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all MailingAddress
 func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.ListMailingAddressRequest) (*v1.ListMailingAddressResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 
 	list := []*v1.MailingAddress{}
 	for rows.Next() {
-		td := new(v1.MailingAddress)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		mailingaddress := new(v1.MailingAddress)
+		if err := rows.Scan(&mailingaddress.Id, &mailingaddress.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from MailingAddress row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, mailingaddress)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 	}, nil
 }
 
-// Update todo task
+// Update MailingAddress
 func (s *shrikeServiceServer) UpdateMailingAddress(ctx context.Context, req *v1.UpdateMailingAddressRequest) (*v1.UpdateMailingAddressResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Experiment
 func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.CreateExperimentRequest) (*v1.CreateExperimentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.Crea
 	defer c.Close()
 	var id int64
 	// insert Experiment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO experiment (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO experiment ( id  created_at  updated_at  title  landing_page ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemLandingPage ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Experiment-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 	}
 
 	// get Experiment data
-	var td v1.Experiment
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var experiment v1.Experiment
+	if err := rows.Scan(&experiment.Id, &experiment.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Experiment row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 
 	return &v1.GetExperimentResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &experiment,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Experiment
 func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListExperimentRequest) (*v1.ListExperimentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 
 	list := []*v1.Experiment{}
 	for rows.Next() {
-		td := new(v1.Experiment)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		experiment := new(v1.Experiment)
+		if err := rows.Scan(&experiment.Id, &experiment.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Experiment row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, experiment)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 	}, nil
 }
 
-// Update todo task
+// Update Experiment
 func (s *shrikeServiceServer) UpdateExperiment(ctx context.Context, req *v1.UpdateExperimentRequest) (*v1.UpdateExperimentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

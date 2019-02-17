@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Volunteer
 func (s *shrikeServiceServer) CreateVolunteer(ctx context.Context, req *v1.CreateVolunteerRequest) (*v1.CreateVolunteerResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateVolunteer(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Volunteer entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteer (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer ( id  created_at  updated_at  volunteer_opportunity  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemVolunteerOpportunity  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Volunteer-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetVolunteer(ctx context.Context, req *v1.GetVolun
 	}
 
 	// get Volunteer data
-	var td v1.Volunteer
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var volunteer v1.Volunteer
+	if err := rows.Scan(&volunteer.Id, &volunteer.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Volunteer row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetVolunteer(ctx context.Context, req *v1.GetVolun
 
 	return &v1.GetVolunteerResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &volunteer,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Volunteer
 func (s *shrikeServiceServer) ListVolunteer(ctx context.Context, req *v1.ListVolunteerRequest) (*v1.ListVolunteerResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListVolunteer(ctx context.Context, req *v1.ListVol
 
 	list := []*v1.Volunteer{}
 	for rows.Next() {
-		td := new(v1.Volunteer)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		volunteer := new(v1.Volunteer)
+		if err := rows.Scan(&volunteer.Id, &volunteer.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Volunteer row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, volunteer)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListVolunteer(ctx context.Context, req *v1.ListVol
 	}, nil
 }
 
-// Update todo task
+// Update Volunteer
 func (s *shrikeServiceServer) UpdateVolunteer(ctx context.Context, req *v1.UpdateVolunteerRequest) (*v1.UpdateVolunteerResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

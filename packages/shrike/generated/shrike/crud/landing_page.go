@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new LandingPage
 func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.CreateLandingPageRequest) (*v1.CreateLandingPageResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert LandingPage entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO landing_page (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO landing_page ( id  created_at  updated_at  title  layout ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemLayout ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LandingPage-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 	}
 
 	// get LandingPage data
-	var td v1.LandingPage
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var landingpage v1.LandingPage
+	if err := rows.Scan(&landingpage.Id, &landingpage.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LandingPage row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 
 	return &v1.GetLandingPageResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &landingpage,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all LandingPage
 func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListLandingPageRequest) (*v1.ListLandingPageResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListL
 
 	list := []*v1.LandingPage{}
 	for rows.Next() {
-		td := new(v1.LandingPage)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		landingpage := new(v1.LandingPage)
+		if err := rows.Scan(&landingpage.Id, &landingpage.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LandingPage row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, landingpage)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListL
 	}, nil
 }
 
-// Update todo task
+// Update LandingPage
 func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.UpdateLandingPageRequest) (*v1.UpdateLandingPageResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Agent
 func (s *shrikeServiceServer) CreateAgent(ctx context.Context, req *v1.CreateAgentRequest) (*v1.CreateAgentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateAgent(ctx context.Context, req *v1.CreateAge
 	defer c.Close()
 	var id int64
 	// insert Agent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO agent (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO agent ( id  created_at  updated_at  account ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemAccount ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Agent-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetAgent(ctx context.Context, req *v1.GetAgentRequ
 	}
 
 	// get Agent data
-	var td v1.Agent
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var agent v1.Agent
+	if err := rows.Scan(&agent.Id, &agent.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Agent row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetAgent(ctx context.Context, req *v1.GetAgentRequ
 
 	return &v1.GetAgentResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &agent,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Agent
 func (s *shrikeServiceServer) ListAgent(ctx context.Context, req *v1.ListAgentRequest) (*v1.ListAgentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListAgent(ctx context.Context, req *v1.ListAgentRe
 
 	list := []*v1.Agent{}
 	for rows.Next() {
-		td := new(v1.Agent)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		agent := new(v1.Agent)
+		if err := rows.Scan(&agent.Id, &agent.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Agent row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, agent)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListAgent(ctx context.Context, req *v1.ListAgentRe
 	}, nil
 }
 
-// Update todo task
+// Update Agent
 func (s *shrikeServiceServer) UpdateAgent(ctx context.Context, req *v1.UpdateAgentRequest) (*v1.UpdateAgentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

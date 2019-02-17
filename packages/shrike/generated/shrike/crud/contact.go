@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Contact
 func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateContactRequest) (*v1.CreateContactResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateC
 	defer c.Close()
 	var id int64
 	// insert Contact entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contact (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO contact ( id  created_at  updated_at ) VALUES( $1 $2 $3)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Contact-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 	}
 
 	// get Contact data
-	var td v1.Contact
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var contact v1.Contact
+	if err := rows.Scan(&contact.Id, &contact.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 
 	return &v1.GetContactResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &contact,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Contact
 func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListContactRequest) (*v1.ListContactResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 
 	list := []*v1.Contact{}
 	for rows.Next() {
-		td := new(v1.Contact)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		contact := new(v1.Contact)
+		if err := rows.Scan(&contact.Id, &contact.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, contact)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 	}, nil
 }
 
-// Update todo task
+// Update Contact
 func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateContactRequest) (*v1.UpdateContactResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

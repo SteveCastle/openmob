@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Account
 func (s *shrikeServiceServer) CreateAccount(ctx context.Context, req *v1.CreateAccountRequest) (*v1.CreateAccountResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateAccount(ctx context.Context, req *v1.CreateA
 	defer c.Close()
 	var id int64
 	// insert Account entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO account (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO account ( id  created_at  updated_at  username ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemUsername ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Account-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 	}
 
 	// get Account data
-	var td v1.Account
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var account v1.Account
+	if err := rows.Scan(&account.Id, &account.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 
 	return &v1.GetAccountResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &account,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Account
 func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccountRequest) (*v1.ListAccountResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 
 	list := []*v1.Account{}
 	for rows.Next() {
-		td := new(v1.Account)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		account := new(v1.Account)
+		if err := rows.Scan(&account.Id, &account.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, account)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 	}, nil
 }
 
-// Update todo task
+// Update Account
 func (s *shrikeServiceServer) UpdateAccount(ctx context.Context, req *v1.UpdateAccountRequest) (*v1.UpdateAccountResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

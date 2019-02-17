@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new PetitionMembership
 func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req *v1.CreatePetitionMembershipRequest) (*v1.CreatePetitionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req 
 	defer c.Close()
 	var id int64
 	// insert PetitionMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO petition_membership ( id  created_at  updated_at  cause  petition ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemPetition ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PetitionMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPetitionMembership(ctx context.Context, req *v1
 	}
 
 	// get PetitionMembership data
-	var td v1.PetitionMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var petitionmembership v1.PetitionMembership
+	if err := rows.Scan(&petitionmembership.Id, &petitionmembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from PetitionMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPetitionMembership(ctx context.Context, req *v1
 
 	return &v1.GetPetitionMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &petitionmembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all PetitionMembership
 func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v1.ListPetitionMembershipRequest) (*v1.ListPetitionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v
 
 	list := []*v1.PetitionMembership{}
 	for rows.Next() {
-		td := new(v1.PetitionMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		petitionmembership := new(v1.PetitionMembership)
+		if err := rows.Scan(&petitionmembership.Id, &petitionmembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from PetitionMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, petitionmembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v
 	}, nil
 }
 
-// Update todo task
+// Update PetitionMembership
 func (s *shrikeServiceServer) UpdatePetitionMembership(ctx context.Context, req *v1.UpdatePetitionMembershipRequest) (*v1.UpdatePetitionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

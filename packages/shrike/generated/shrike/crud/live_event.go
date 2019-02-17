@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new LiveEvent
 func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.CreateLiveEventRequest) (*v1.CreateLiveEventResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert LiveEvent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event ( id  created_at  updated_at  title  live_event_type ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemLiveEventType ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEvent-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 	}
 
 	// get LiveEvent data
-	var td v1.LiveEvent
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var liveevent v1.LiveEvent
+	if err := rows.Scan(&liveevent.Id, &liveevent.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEvent row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 
 	return &v1.GetLiveEventResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &liveevent,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all LiveEvent
 func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiveEventRequest) (*v1.ListLiveEventResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 
 	list := []*v1.LiveEvent{}
 	for rows.Next() {
-		td := new(v1.LiveEvent)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		liveevent := new(v1.LiveEvent)
+		if err := rows.Scan(&liveevent.Id, &liveevent.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEvent row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, liveevent)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 	}, nil
 }
 
-// Update todo task
+// Update LiveEvent
 func (s *shrikeServiceServer) UpdateLiveEvent(ctx context.Context, req *v1.UpdateLiveEventRequest) (*v1.UpdateLiveEventResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new PetitionSigner
 func (s *shrikeServiceServer) CreatePetitionSigner(ctx context.Context, req *v1.CreatePetitionSignerRequest) (*v1.CreatePetitionSignerResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePetitionSigner(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PetitionSigner entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition_signer (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO petition_signer ( id  created_at  updated_at  petition  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemPetition  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PetitionSigner-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPetitionSigner(ctx context.Context, req *v1.Get
 	}
 
 	// get PetitionSigner data
-	var td v1.PetitionSigner
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var petitionsigner v1.PetitionSigner
+	if err := rows.Scan(&petitionsigner.Id, &petitionsigner.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from PetitionSigner row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPetitionSigner(ctx context.Context, req *v1.Get
 
 	return &v1.GetPetitionSignerResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &petitionsigner,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all PetitionSigner
 func (s *shrikeServiceServer) ListPetitionSigner(ctx context.Context, req *v1.ListPetitionSignerRequest) (*v1.ListPetitionSignerResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPetitionSigner(ctx context.Context, req *v1.Li
 
 	list := []*v1.PetitionSigner{}
 	for rows.Next() {
-		td := new(v1.PetitionSigner)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		petitionsigner := new(v1.PetitionSigner)
+		if err := rows.Scan(&petitionsigner.Id, &petitionsigner.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from PetitionSigner row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, petitionsigner)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPetitionSigner(ctx context.Context, req *v1.Li
 	}, nil
 }
 
-// Update todo task
+// Update PetitionSigner
 func (s *shrikeServiceServer) UpdatePetitionSigner(ctx context.Context, req *v1.UpdatePetitionSignerRequest) (*v1.UpdatePetitionSignerResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

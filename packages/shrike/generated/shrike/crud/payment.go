@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Payment
 func (s *shrikeServiceServer) CreatePayment(ctx context.Context, req *v1.CreatePaymentRequest) (*v1.CreatePaymentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePayment(ctx context.Context, req *v1.CreateP
 	defer c.Close()
 	var id int64
 	// insert Payment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO payment (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO payment ( id  created_at  updated_at  customer_order ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCustomerOrder ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Payment-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 	}
 
 	// get Payment data
-	var td v1.Payment
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var payment v1.Payment
+	if err := rows.Scan(&payment.Id, &payment.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Payment row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 
 	return &v1.GetPaymentResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &payment,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Payment
 func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPaymentRequest) (*v1.ListPaymentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPayme
 
 	list := []*v1.Payment{}
 	for rows.Next() {
-		td := new(v1.Payment)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		payment := new(v1.Payment)
+		if err := rows.Scan(&payment.Id, &payment.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Payment row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, payment)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPayme
 	}, nil
 }
 
-// Update todo task
+// Update Payment
 func (s *shrikeServiceServer) UpdatePayment(ctx context.Context, req *v1.UpdatePaymentRequest) (*v1.UpdatePaymentResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

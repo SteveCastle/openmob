@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new LiveEventMembership
 func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req *v1.CreateLiveEventMembershipRequest) (*v1.CreateLiveEventMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req
 	defer c.Close()
 	var id int64
 	// insert LiveEventMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event_membership ( id  created_at  updated_at  cause  live_event ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemLiveEvent ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEventMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 	}
 
 	// get LiveEventMembership data
-	var td v1.LiveEventMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var liveeventmembership v1.LiveEventMembership
+	if err := rows.Scan(&liveeventmembership.Id, &liveeventmembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEventMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 
 	return &v1.GetLiveEventMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &liveeventmembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all LiveEventMembership
 func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *v1.ListLiveEventMembershipRequest) (*v1.ListLiveEventMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 
 	list := []*v1.LiveEventMembership{}
 	for rows.Next() {
-		td := new(v1.LiveEventMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		liveeventmembership := new(v1.LiveEventMembership)
+		if err := rows.Scan(&liveeventmembership.Id, &liveeventmembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEventMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, liveeventmembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 	}, nil
 }
 
-// Update todo task
+// Update LiveEventMembership
 func (s *shrikeServiceServer) UpdateLiveEventMembership(ctx context.Context, req *v1.UpdateLiveEventMembershipRequest) (*v1.UpdateLiveEventMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

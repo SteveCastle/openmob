@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Territory
 func (s *shrikeServiceServer) CreateTerritory(ctx context.Context, req *v1.CreateTerritoryRequest) (*v1.CreateTerritoryResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateTerritory(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Territory entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO territory (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO territory ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Territory-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetTerritory(ctx context.Context, req *v1.GetTerri
 	}
 
 	// get Territory data
-	var td v1.Territory
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var territory v1.Territory
+	if err := rows.Scan(&territory.Id, &territory.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Territory row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetTerritory(ctx context.Context, req *v1.GetTerri
 
 	return &v1.GetTerritoryResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &territory,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Territory
 func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTerritoryRequest) (*v1.ListTerritoryResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTer
 
 	list := []*v1.Territory{}
 	for rows.Next() {
-		td := new(v1.Territory)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		territory := new(v1.Territory)
+		if err := rows.Scan(&territory.Id, &territory.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Territory row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, territory)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTer
 	}, nil
 }
 
-// Update todo task
+// Update Territory
 func (s *shrikeServiceServer) UpdateTerritory(ctx context.Context, req *v1.UpdateTerritoryRequest) (*v1.UpdateTerritoryResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

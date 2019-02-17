@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new BoycottMembership
 func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *v1.CreateBoycottMembershipRequest) (*v1.CreateBoycottMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert BoycottMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO boycott_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO boycott_membership ( id  created_at  updated_at  cause  boycott ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemBoycott ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into BoycottMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetBoycottMembership(ctx context.Context, req *v1.
 	}
 
 	// get BoycottMembership data
-	var td v1.BoycottMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var boycottmembership v1.BoycottMembership
+	if err := rows.Scan(&boycottmembership.Id, &boycottmembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from BoycottMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetBoycottMembership(ctx context.Context, req *v1.
 
 	return &v1.GetBoycottMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &boycottmembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all BoycottMembership
 func (s *shrikeServiceServer) ListBoycottMembership(ctx context.Context, req *v1.ListBoycottMembershipRequest) (*v1.ListBoycottMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListBoycottMembership(ctx context.Context, req *v1
 
 	list := []*v1.BoycottMembership{}
 	for rows.Next() {
-		td := new(v1.BoycottMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		boycottmembership := new(v1.BoycottMembership)
+		if err := rows.Scan(&boycottmembership.Id, &boycottmembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from BoycottMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, boycottmembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListBoycottMembership(ctx context.Context, req *v1
 	}, nil
 }
 
-// Update todo task
+// Update BoycottMembership
 func (s *shrikeServiceServer) UpdateBoycottMembership(ctx context.Context, req *v1.UpdateBoycottMembershipRequest) (*v1.UpdateBoycottMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

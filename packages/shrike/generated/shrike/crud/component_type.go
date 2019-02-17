@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new ComponentType
 func (s *shrikeServiceServer) CreateComponentType(ctx context.Context, req *v1.CreateComponentTypeRequest) (*v1.CreateComponentTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateComponentType(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert ComponentType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component_type (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO component_type ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentType-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetComponentType(ctx context.Context, req *v1.GetC
 	}
 
 	// get ComponentType data
-	var td v1.ComponentType
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var componenttype v1.ComponentType
+	if err := rows.Scan(&componenttype.Id, &componenttype.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentType row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetComponentType(ctx context.Context, req *v1.GetC
 
 	return &v1.GetComponentTypeResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &componenttype,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all ComponentType
 func (s *shrikeServiceServer) ListComponentType(ctx context.Context, req *v1.ListComponentTypeRequest) (*v1.ListComponentTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListComponentType(ctx context.Context, req *v1.Lis
 
 	list := []*v1.ComponentType{}
 	for rows.Next() {
-		td := new(v1.ComponentType)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		componenttype := new(v1.ComponentType)
+		if err := rows.Scan(&componenttype.Id, &componenttype.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentType row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, componenttype)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListComponentType(ctx context.Context, req *v1.Lis
 	}, nil
 }
 
-// Update todo task
+// Update ComponentType
 func (s *shrikeServiceServer) UpdateComponentType(ctx context.Context, req *v1.UpdateComponentTypeRequest) (*v1.UpdateComponentTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Petition
 func (s *shrikeServiceServer) CreatePetition(ctx context.Context, req *v1.CreatePetitionRequest) (*v1.CreatePetitionResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePetition(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Petition entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO petition ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Petition-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPetition(ctx context.Context, req *v1.GetPetiti
 	}
 
 	// get Petition data
-	var td v1.Petition
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var petition v1.Petition
+	if err := rows.Scan(&petition.Id, &petition.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Petition row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPetition(ctx context.Context, req *v1.GetPetiti
 
 	return &v1.GetPetitionResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &petition,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Petition
 func (s *shrikeServiceServer) ListPetition(ctx context.Context, req *v1.ListPetitionRequest) (*v1.ListPetitionResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPetition(ctx context.Context, req *v1.ListPeti
 
 	list := []*v1.Petition{}
 	for rows.Next() {
-		td := new(v1.Petition)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		petition := new(v1.Petition)
+		if err := rows.Scan(&petition.Id, &petition.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Petition row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, petition)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPetition(ctx context.Context, req *v1.ListPeti
 	}, nil
 }
 
-// Update todo task
+// Update Petition
 func (s *shrikeServiceServer) UpdatePetition(ctx context.Context, req *v1.UpdatePetitionRequest) (*v1.UpdatePetitionResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new PhoneNumber
 func (s *shrikeServiceServer) CreatePhoneNumber(ctx context.Context, req *v1.CreatePhoneNumberRequest) (*v1.CreatePhoneNumberResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePhoneNumber(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert PhoneNumber entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO phone_number (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO phone_number ( id  created_at  updated_at  phone_number ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemPhoneNumber ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PhoneNumber-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 	}
 
 	// get PhoneNumber data
-	var td v1.PhoneNumber
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var phonenumber v1.PhoneNumber
+	if err := rows.Scan(&phonenumber.Id, &phonenumber.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from PhoneNumber row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 
 	return &v1.GetPhoneNumberResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &phonenumber,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all PhoneNumber
 func (s *shrikeServiceServer) ListPhoneNumber(ctx context.Context, req *v1.ListPhoneNumberRequest) (*v1.ListPhoneNumberResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPhoneNumber(ctx context.Context, req *v1.ListP
 
 	list := []*v1.PhoneNumber{}
 	for rows.Next() {
-		td := new(v1.PhoneNumber)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		phonenumber := new(v1.PhoneNumber)
+		if err := rows.Scan(&phonenumber.Id, &phonenumber.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from PhoneNumber row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, phonenumber)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPhoneNumber(ctx context.Context, req *v1.ListP
 	}, nil
 }
 
-// Update todo task
+// Update PhoneNumber
 func (s *shrikeServiceServer) UpdatePhoneNumber(ctx context.Context, req *v1.UpdatePhoneNumberRequest) (*v1.UpdatePhoneNumberResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

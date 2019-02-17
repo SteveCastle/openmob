@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new {{.Table.Name}}
 func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1.Create{{.Table.Name}}Request) (*v1.Create{{.Table.Name}}Response, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert {{.Table.Name}} entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range .Table.Columns}} {{.DBName}} {{end}}) VALUES({{range $index, $value := .Table.Columns}} ${{inc $index}}{{end}})  RETURNING id;",
+		{{range .Table.Columns}} req.Item{{.Name}} {{end}}).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into {{.Table.Name}}-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 	}
 
 	// get {{.Table.Name}} data
-	var td v1.{{.Table.Name}}
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var {{toLower .Table.Name}} v1.{{.Table.Name}}
+	if err := rows.Scan(&{{toLower .Table.Name}}.Id, &{{toLower .Table.Name}}.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 
 	return &v1.Get{{.Table.Name}}Response{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &{{toLower .Table.Name}},
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all {{.Table.Name}}
 func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.List{{.Table.Name}}Request) (*v1.List{{.Table.Name}}Response, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 
 	list := []*v1.{{.Table.Name}}{}
 	for rows.Next() {
-		td := new(v1.{{.Table.Name}})
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		{{toLower .Table.Name}} := new(v1.{{.Table.Name}})
+		if err := rows.Scan(&{{toLower .Table.Name}}.Id, &{{toLower .Table.Name}}.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, {{toLower .Table.Name}})
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 	}, nil
 }
 
-// Update todo task
+// Update {{.Table.Name}}
 func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1.Update{{.Table.Name}}Request) (*v1.Update{{.Table.Name}}Response, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

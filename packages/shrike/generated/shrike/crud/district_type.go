@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new DistrictType
 func (s *shrikeServiceServer) CreateDistrictType(ctx context.Context, req *v1.CreateDistrictTypeRequest) (*v1.CreateDistrictTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateDistrictType(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert DistrictType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO district_type (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO district_type ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DistrictType-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetDistrictType(ctx context.Context, req *v1.GetDi
 	}
 
 	// get DistrictType data
-	var td v1.DistrictType
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var districttype v1.DistrictType
+	if err := rows.Scan(&districttype.Id, &districttype.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DistrictType row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetDistrictType(ctx context.Context, req *v1.GetDi
 
 	return &v1.GetDistrictTypeResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &districttype,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all DistrictType
 func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.ListDistrictTypeRequest) (*v1.ListDistrictTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.List
 
 	list := []*v1.DistrictType{}
 	for rows.Next() {
-		td := new(v1.DistrictType)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		districttype := new(v1.DistrictType)
+		if err := rows.Scan(&districttype.Id, &districttype.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DistrictType row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, districttype)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.List
 	}, nil
 }
 
-// Update todo task
+// Update DistrictType
 func (s *shrikeServiceServer) UpdateDistrictType(ctx context.Context, req *v1.UpdateDistrictTypeRequest) (*v1.UpdateDistrictTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

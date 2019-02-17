@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new ProductType
 func (s *shrikeServiceServer) CreateProductType(ctx context.Context, req *v1.CreateProductTypeRequest) (*v1.CreateProductTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateProductType(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert ProductType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product_type (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO product_type ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ProductType-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetProductType(ctx context.Context, req *v1.GetPro
 	}
 
 	// get ProductType data
-	var td v1.ProductType
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var producttype v1.ProductType
+	if err := rows.Scan(&producttype.Id, &producttype.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ProductType row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetProductType(ctx context.Context, req *v1.GetPro
 
 	return &v1.GetProductTypeResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &producttype,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all ProductType
 func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListProductTypeRequest) (*v1.ListProductTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 
 	list := []*v1.ProductType{}
 	for rows.Next() {
-		td := new(v1.ProductType)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		producttype := new(v1.ProductType)
+		if err := rows.Scan(&producttype.Id, &producttype.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ProductType row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, producttype)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 	}, nil
 }
 
-// Update todo task
+// Update ProductType
 func (s *shrikeServiceServer) UpdateProductType(ctx context.Context, req *v1.UpdateProductTypeRequest) (*v1.UpdateProductTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

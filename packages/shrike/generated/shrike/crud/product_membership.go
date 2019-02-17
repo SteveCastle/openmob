@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new ProductMembership
 func (s *shrikeServiceServer) CreateProductMembership(ctx context.Context, req *v1.CreateProductMembershipRequest) (*v1.CreateProductMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateProductMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert ProductMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO product_membership ( id  created_at  updated_at  cause  product ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemProduct ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ProductMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetProductMembership(ctx context.Context, req *v1.
 	}
 
 	// get ProductMembership data
-	var td v1.ProductMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var productmembership v1.ProductMembership
+	if err := rows.Scan(&productmembership.Id, &productmembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ProductMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetProductMembership(ctx context.Context, req *v1.
 
 	return &v1.GetProductMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &productmembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all ProductMembership
 func (s *shrikeServiceServer) ListProductMembership(ctx context.Context, req *v1.ListProductMembershipRequest) (*v1.ListProductMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListProductMembership(ctx context.Context, req *v1
 
 	list := []*v1.ProductMembership{}
 	for rows.Next() {
-		td := new(v1.ProductMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		productmembership := new(v1.ProductMembership)
+		if err := rows.Scan(&productmembership.Id, &productmembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ProductMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, productmembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListProductMembership(ctx context.Context, req *v1
 	}, nil
 }
 
-// Update todo task
+// Update ProductMembership
 func (s *shrikeServiceServer) UpdateProductMembership(ctx context.Context, req *v1.UpdateProductMembershipRequest) (*v1.UpdateProductMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

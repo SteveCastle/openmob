@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new CustomerOrder
 func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.CreateCustomerOrderRequest) (*v1.CreateCustomerOrderResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert CustomerOrder entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customer_order (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_order ( id  created_at  updated_at  customer_cart ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCustomerCart ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerOrder-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetCustomerOrder(ctx context.Context, req *v1.GetC
 	}
 
 	// get CustomerOrder data
-	var td v1.CustomerOrder
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var customerorder v1.CustomerOrder
+	if err := rows.Scan(&customerorder.Id, &customerorder.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerOrder row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetCustomerOrder(ctx context.Context, req *v1.GetC
 
 	return &v1.GetCustomerOrderResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &customerorder,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all CustomerOrder
 func (s *shrikeServiceServer) ListCustomerOrder(ctx context.Context, req *v1.ListCustomerOrderRequest) (*v1.ListCustomerOrderResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListCustomerOrder(ctx context.Context, req *v1.Lis
 
 	list := []*v1.CustomerOrder{}
 	for rows.Next() {
-		td := new(v1.CustomerOrder)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		customerorder := new(v1.CustomerOrder)
+		if err := rows.Scan(&customerorder.Id, &customerorder.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerOrder row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, customerorder)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListCustomerOrder(ctx context.Context, req *v1.Lis
 	}, nil
 }
 
-// Update todo task
+// Update CustomerOrder
 func (s *shrikeServiceServer) UpdateCustomerOrder(ctx context.Context, req *v1.UpdateCustomerOrderRequest) (*v1.UpdateCustomerOrderResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

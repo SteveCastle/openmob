@@ -6,6 +6,7 @@ option go_package = "v1";
 
 import "google/api/annotations.proto";
 import "protoc-gen-swagger/options/annotations.proto";
+import "google/protobuf/timestamp.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 	info: {
@@ -32,55 +33,58 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 		}
 	}
 };
-// API Types
 
-message Cause {
-	int64 id = 1;
-	string title = 2;
+// Generated Types and Message Schema
+{{range .Schema.Tables}}
+message {{.Name}} {
+	// Generated Types and Message Schema
+    {{range $index, $value := .Columns}}
+	{{.Type}} {{.Name}} = {{$index}};
+	{{end}}
 }
 
 //Request and Response Message Types
-message CreateCauseRequest {
+message Create{{.Name}}Request {
 	string api = 1;
-	Cause item = 2;
+	{{.Name}} item = 2;
 }
 
-message CreateCauseResponse {
+message Create{{.Name}}Response {
 	string api = 1;
 	int64 id = 2;
 	
 }
-message GetCauseRequest {
+message Get{{.Name}}Request {
 	string api = 1;
 	int64 id = 2;
 }
 
-message GetCauseResponse {
+message Get{{.Name}}Response {
 	string api = 1;
-	Cause item = 2;
+	{{.Name}} item = 2;
 }
 
-message ListCauseRequest {
+message List{{.Name}}Request {
 	string api = 1;
-	int32 limit = 2;
+	int64 limit = 2;
 }
 
-message ListCauseResponse {
+message List{{.Name}}Response {
 	string api = 1;
-	repeated Cause items = 2;
+	repeated {{.Name}} items = 2;
 }
 
-// Request data to update cause
-message UpdateCauseRequest{
+// Request data to update {{.Name}}
+message Update{{.Name}}Request{
     // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
-    // Task entity to update
-    Cause item = 2;
+    // {{.Name}} entity to update
+    {{.Name}} item = 2;
 }
 
 // Contains status of update operation
-message UpdateCauseResponse{
+message Update{{.Name}}Response{
     // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
@@ -89,17 +93,17 @@ message UpdateCauseResponse{
     int64 updated = 2;
 }
 
-// Request data to delete cause
-message DeleteCauseRequest{
+// Request data to delete {{.Name}}
+message Delete{{.Name}}Request{
     // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
-    // Unique integer identifier of the cause to delete
+    // Unique integer identifier of the {{.Name}} to delete
     int64 id = 2;
 }
 
 // Contains status of delete operation
-message DeleteCauseResponse{
+message Delete{{.Name}}Response{
     // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
@@ -107,45 +111,48 @@ message DeleteCauseResponse{
     // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
+{{end}}
 
-// Shrike Service Definition
+// Generated Shrike Service Definition
 service ShrikeService {
-	// CreateCause takes a cause object to create.
-	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
+	{{ range .Schema.Tables }}
+	// Create{{.Name}} takes a {{.Name}} object to create.
+	rpc Create{{.Name}}(Create{{.Name}}Request) returns (Create{{.Name}}Response) {
 		option (google.api.http) ={
-			post: "/v1/cause"
+			post: "/v1/{{toLower .Name}}"
 			body: "*"
 		};
 	}
-    // GetCause takes an id and returns a single cause.
-	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
+    // Get{{.Name}} takes an id and returns a single {{.Name}}.
+	rpc Get{{.Name}}(Get{{.Name}}Request) returns (Get{{.Name}}Response) {
 		option (google.api.http) ={
-			get: "/v1/cause/{id}"
+			get: "/v1/{{toLower .Name}}/{id}"
 		};
 	}
-    // List cause, takes filters, limit, and cursor param.
-	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
+    // List {{.Name}}, takes filters, limit, and cursor param.
+	rpc List{{.Name}}(List{{.Name}}Request) returns (List{{.Name}}Response) {
 	option (google.api.http) ={
-		get: "/v1/cause"
+		get: "/v1/{{toLower .Name}}"
 	};
 }
-    // Update cause
-    rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse){
+    // Update {{.Name}}
+    rpc Update{{.Name}}(Update{{.Name}}Request) returns (Update{{.Name}}Response){
         option (google.api.http) = {
-            put: "/v1/cause/{item.id}"
+            put: "/v1/{{toLower .Name}}/{item.id}"
             body: "*"
 
             additional_bindings {
-                patch: "/v1/cause/{item.id}"
+                patch: "/v1/{{toLower .Name}}/{item.id}"
                 body: "*"
             }
         };
     }
 
-    // Delete cause
-    rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse){
+    // Delete {{.Name}}
+    rpc Delete{{.Name}}(Delete{{.Name}}Request) returns (Delete{{.Name}}Response){
         option (google.api.http) = {
-            delete: "/v1/cause/{id}"
+            delete: "/v1/{{toLower .Name}}/{id}"
         };
     }
+	{{end}}
 }

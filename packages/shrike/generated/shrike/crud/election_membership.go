@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new ElectionMembership
 func (s *shrikeServiceServer) CreateElectionMembership(ctx context.Context, req *v1.CreateElectionMembershipRequest) (*v1.CreateElectionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateElectionMembership(ctx context.Context, req 
 	defer c.Close()
 	var id int64
 	// insert ElectionMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO election_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO election_membership ( id  created_at  updated_at  cause  election ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemElection ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ElectionMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 	}
 
 	// get ElectionMembership data
-	var td v1.ElectionMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var electionmembership v1.ElectionMembership
+	if err := rows.Scan(&electionmembership.Id, &electionmembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ElectionMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 
 	return &v1.GetElectionMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &electionmembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all ElectionMembership
 func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v1.ListElectionMembershipRequest) (*v1.ListElectionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v
 
 	list := []*v1.ElectionMembership{}
 	for rows.Next() {
-		td := new(v1.ElectionMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		electionmembership := new(v1.ElectionMembership)
+		if err := rows.Scan(&electionmembership.Id, &electionmembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ElectionMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, electionmembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v
 	}, nil
 }
 
-// Update todo task
+// Update ElectionMembership
 func (s *shrikeServiceServer) UpdateElectionMembership(ctx context.Context, req *v1.UpdateElectionMembershipRequest) (*v1.UpdateElectionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

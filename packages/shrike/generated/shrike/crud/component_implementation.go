@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new ComponentImplementation
 func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context, req *v1.CreateComponentImplementationRequest) (*v1.CreateComponentImplementationResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	defer c.Close()
 	var id int64
 	// insert ComponentImplementation entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation ( id  created_at  updated_at ) VALUES( $1 $2 $3)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentImplementation-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 	}
 
 	// get ComponentImplementation data
-	var td v1.ComponentImplementation
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var componentimplementation v1.ComponentImplementation
+	if err := rows.Scan(&componentimplementation.Id, &componentimplementation.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 
 	return &v1.GetComponentImplementationResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &componentimplementation,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all ComponentImplementation
 func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, req *v1.ListComponentImplementationRequest) (*v1.ListComponentImplementationResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 
 	list := []*v1.ComponentImplementation{}
 	for rows.Next() {
-		td := new(v1.ComponentImplementation)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		componentimplementation := new(v1.ComponentImplementation)
+		if err := rows.Scan(&componentimplementation.Id, &componentimplementation.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, componentimplementation)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	}, nil
 }
 
-// Update todo task
+// Update ComponentImplementation
 func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context, req *v1.UpdateComponentImplementationRequest) (*v1.UpdateComponentImplementationResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

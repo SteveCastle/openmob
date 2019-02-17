@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new ACL
 func (s *shrikeServiceServer) CreateACL(ctx context.Context, req *v1.CreateACLRequest) (*v1.CreateACLResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateACL(ctx context.Context, req *v1.CreateACLRe
 	defer c.Close()
 	var id int64
 	// insert ACL entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO acl (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO acl ( id ) VALUES( $1)  RETURNING id;",
+		 req.ItemID ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ACL-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 	}
 
 	// get ACL data
-	var td v1.ACL
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var acl v1.ACL
+	if err := rows.Scan(&acl.Id, &acl.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ACL row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 
 	return &v1.GetACLResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &acl,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all ACL
 func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLRequest) (*v1.ListACLResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLReques
 
 	list := []*v1.ACL{}
 	for rows.Next() {
-		td := new(v1.ACL)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		acl := new(v1.ACL)
+		if err := rows.Scan(&acl.Id, &acl.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ACL row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, acl)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLReques
 	}, nil
 }
 
-// Update todo task
+// Update ACL
 func (s *shrikeServiceServer) UpdateACL(ctx context.Context, req *v1.UpdateACLRequest) (*v1.UpdateACLResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new FieldType
 func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.CreateFieldTypeRequest) (*v1.CreateFieldTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert FieldType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO field_type (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO field_type ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into FieldType-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 	}
 
 	// get FieldType data
-	var td v1.FieldType
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var fieldtype v1.FieldType
+	if err := rows.Scan(&fieldtype.Id, &fieldtype.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from FieldType row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 
 	return &v1.GetFieldTypeResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &fieldtype,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all FieldType
 func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFieldTypeRequest) (*v1.ListFieldTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 
 	list := []*v1.FieldType{}
 	for rows.Next() {
-		td := new(v1.FieldType)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		fieldtype := new(v1.FieldType)
+		if err := rows.Scan(&fieldtype.Id, &fieldtype.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from FieldType row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, fieldtype)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 	}, nil
 }
 
-// Update todo task
+// Update FieldType
 func (s *shrikeServiceServer) UpdateFieldType(ctx context.Context, req *v1.UpdateFieldTypeRequest) (*v1.UpdateFieldTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

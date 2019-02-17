@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Activity
 func (s *shrikeServiceServer) CreateActivity(ctx context.Context, req *v1.CreateActivityRequest) (*v1.CreateActivityResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateActivity(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Activity entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO activity (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO activity ( id  created_at  updated_at  title  activity_type  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6 $7)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemActivityType  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Activity-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetActivity(ctx context.Context, req *v1.GetActivi
 	}
 
 	// get Activity data
-	var td v1.Activity
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var activity v1.Activity
+	if err := rows.Scan(&activity.Id, &activity.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Activity row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetActivity(ctx context.Context, req *v1.GetActivi
 
 	return &v1.GetActivityResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &activity,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Activity
 func (s *shrikeServiceServer) ListActivity(ctx context.Context, req *v1.ListActivityRequest) (*v1.ListActivityResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListActivity(ctx context.Context, req *v1.ListActi
 
 	list := []*v1.Activity{}
 	for rows.Next() {
-		td := new(v1.Activity)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		activity := new(v1.Activity)
+		if err := rows.Scan(&activity.Id, &activity.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Activity row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, activity)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListActivity(ctx context.Context, req *v1.ListActi
 	}, nil
 }
 
-// Update todo task
+// Update Activity
 func (s *shrikeServiceServer) UpdateActivity(ctx context.Context, req *v1.UpdateActivityRequest) (*v1.UpdateActivityResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

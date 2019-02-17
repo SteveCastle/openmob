@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Company
 func (s *shrikeServiceServer) CreateCompany(ctx context.Context, req *v1.CreateCompanyRequest) (*v1.CreateCompanyResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateCompany(ctx context.Context, req *v1.CreateC
 	defer c.Close()
 	var id int64
 	// insert Company entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO company (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO company ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Company-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetCompany(ctx context.Context, req *v1.GetCompany
 	}
 
 	// get Company data
-	var td v1.Company
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var company v1.Company
+	if err := rows.Scan(&company.Id, &company.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Company row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetCompany(ctx context.Context, req *v1.GetCompany
 
 	return &v1.GetCompanyResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &company,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Company
 func (s *shrikeServiceServer) ListCompany(ctx context.Context, req *v1.ListCompanyRequest) (*v1.ListCompanyResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListCompany(ctx context.Context, req *v1.ListCompa
 
 	list := []*v1.Company{}
 	for rows.Next() {
-		td := new(v1.Company)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		company := new(v1.Company)
+		if err := rows.Scan(&company.Id, &company.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Company row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, company)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListCompany(ctx context.Context, req *v1.ListCompa
 	}, nil
 }
 
-// Update todo task
+// Update Company
 func (s *shrikeServiceServer) UpdateCompany(ctx context.Context, req *v1.UpdateCompanyRequest) (*v1.UpdateCompanyResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

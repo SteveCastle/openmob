@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Election
 func (s *shrikeServiceServer) CreateElection(ctx context.Context, req *v1.CreateElectionRequest) (*v1.CreateElectionResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateElection(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Election entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO election (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO election ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Election-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetElection(ctx context.Context, req *v1.GetElecti
 	}
 
 	// get Election data
-	var td v1.Election
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var election v1.Election
+	if err := rows.Scan(&election.Id, &election.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Election row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetElection(ctx context.Context, req *v1.GetElecti
 
 	return &v1.GetElectionResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &election,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Election
 func (s *shrikeServiceServer) ListElection(ctx context.Context, req *v1.ListElectionRequest) (*v1.ListElectionResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListElection(ctx context.Context, req *v1.ListElec
 
 	list := []*v1.Election{}
 	for rows.Next() {
-		td := new(v1.Election)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		election := new(v1.Election)
+		if err := rows.Scan(&election.Id, &election.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Election row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, election)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListElection(ctx context.Context, req *v1.ListElec
 	}, nil
 }
 
-// Update todo task
+// Update Election
 func (s *shrikeServiceServer) UpdateElection(ctx context.Context, req *v1.UpdateElectionRequest) (*v1.UpdateElectionResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

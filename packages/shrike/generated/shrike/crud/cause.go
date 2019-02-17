@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Cause
 func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCauseRequest) (*v1.CreateCauseResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCau
 	defer c.Close()
 	var id int64
 	// insert Cause entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO cause (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO cause ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Cause-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	}
 
 	// get Cause data
-	var td v1.Cause
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var cause v1.Cause
+	if err := rows.Scan(&cause.Id, &cause.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Cause row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 
 	return &v1.GetCauseResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &cause,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Cause
 func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRequest) (*v1.ListCauseResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 
 	list := []*v1.Cause{}
 	for rows.Next() {
-		td := new(v1.Cause)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		cause := new(v1.Cause)
+		if err := rows.Scan(&cause.Id, &cause.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Cause row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, cause)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 	}, nil
 }
 
-// Update todo task
+// Update Cause
 func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCauseRequest) (*v1.UpdateCauseResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

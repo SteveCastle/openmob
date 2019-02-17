@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new EventAttendee
 func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.CreateEventAttendeeRequest) (*v1.CreateEventAttendeeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert EventAttendee entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee ( id  created_at  updated_at  live_event  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemLiveEvent  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into EventAttendee-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetE
 	}
 
 	// get EventAttendee data
-	var td v1.EventAttendee
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var eventattendee v1.EventAttendee
+	if err := rows.Scan(&eventattendee.Id, &eventattendee.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from EventAttendee row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetE
 
 	return &v1.GetEventAttendeeResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &eventattendee,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all EventAttendee
 func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.ListEventAttendeeRequest) (*v1.ListEventAttendeeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 
 	list := []*v1.EventAttendee{}
 	for rows.Next() {
-		td := new(v1.EventAttendee)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		eventattendee := new(v1.EventAttendee)
+		if err := rows.Scan(&eventattendee.Id, &eventattendee.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from EventAttendee row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, eventattendee)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 	}, nil
 }
 
-// Update todo task
+// Update EventAttendee
 func (s *shrikeServiceServer) UpdateEventAttendee(ctx context.Context, req *v1.UpdateEventAttendeeRequest) (*v1.UpdateEventAttendeeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

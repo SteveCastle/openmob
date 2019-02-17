@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new District
 func (s *shrikeServiceServer) CreateDistrict(ctx context.Context, req *v1.CreateDistrictRequest) (*v1.CreateDistrictResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateDistrict(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert District entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO district (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO district ( id  created_at  updated_at  geom  title  district_type ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemGeom  req.ItemTitle  req.ItemDistrictType ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into District-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetDistrict(ctx context.Context, req *v1.GetDistri
 	}
 
 	// get District data
-	var td v1.District
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var district v1.District
+	if err := rows.Scan(&district.Id, &district.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from District row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetDistrict(ctx context.Context, req *v1.GetDistri
 
 	return &v1.GetDistrictResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &district,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all District
 func (s *shrikeServiceServer) ListDistrict(ctx context.Context, req *v1.ListDistrictRequest) (*v1.ListDistrictResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListDistrict(ctx context.Context, req *v1.ListDist
 
 	list := []*v1.District{}
 	for rows.Next() {
-		td := new(v1.District)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		district := new(v1.District)
+		if err := rows.Scan(&district.Id, &district.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from District row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, district)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListDistrict(ctx context.Context, req *v1.ListDist
 	}, nil
 }
 
-// Update todo task
+// Update District
 func (s *shrikeServiceServer) UpdateDistrict(ctx context.Context, req *v1.UpdateDistrictRequest) (*v1.UpdateDistrictResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new Note
 func (s *shrikeServiceServer) CreateNote(ctx context.Context, req *v1.CreateNoteRequest) (*v1.CreateNoteResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateNote(ctx context.Context, req *v1.CreateNote
 	defer c.Close()
 	var id int64
 	// insert Note entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO note (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO note ( id  created_at  updated_at  contact  cause  body ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemContact  req.ItemCause  req.ItemBody ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Note-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 	}
 
 	// get Note data
-	var td v1.Note
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var note v1.Note
+	if err := rows.Scan(&note.Id, &note.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Note row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 
 	return &v1.GetNoteResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &note,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all Note
 func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequest) (*v1.ListNoteResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequ
 
 	list := []*v1.Note{}
 	for rows.Next() {
-		td := new(v1.Note)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		note := new(v1.Note)
+		if err := rows.Scan(&note.Id, &note.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Note row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, note)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequ
 	}, nil
 }
 
-// Update todo task
+// Update Note
 func (s *shrikeServiceServer) UpdateNote(ctx context.Context, req *v1.UpdateNoteRequest) (*v1.UpdateNoteResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

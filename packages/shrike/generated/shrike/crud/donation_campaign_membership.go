@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new DonationCampaignMembership
 func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Context, req *v1.CreateDonationCampaignMembershipRequest) (*v1.CreateDonationCampaignMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Conte
 	defer c.Close()
 	var id int64
 	// insert DonationCampaignMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign_membership ( id  created_at  updated_at  cause  donation_campaign ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemDonationCampaign ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DonationCampaignMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetDonationCampaignMembership(ctx context.Context,
 	}
 
 	// get DonationCampaignMembership data
-	var td v1.DonationCampaignMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var donationcampaignmembership v1.DonationCampaignMembership
+	if err := rows.Scan(&donationcampaignmembership.Id, &donationcampaignmembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaignMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetDonationCampaignMembership(ctx context.Context,
 
 	return &v1.GetDonationCampaignMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &donationcampaignmembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all DonationCampaignMembership
 func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context, req *v1.ListDonationCampaignMembershipRequest) (*v1.ListDonationCampaignMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context
 
 	list := []*v1.DonationCampaignMembership{}
 	for rows.Next() {
-		td := new(v1.DonationCampaignMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		donationcampaignmembership := new(v1.DonationCampaignMembership)
+		if err := rows.Scan(&donationcampaignmembership.Id, &donationcampaignmembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaignMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, donationcampaignmembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context
 	}, nil
 }
 
-// Update todo task
+// Update DonationCampaignMembership
 func (s *shrikeServiceServer) UpdateDonationCampaignMembership(ctx context.Context, req *v1.UpdateDonationCampaignMembershipRequest) (*v1.UpdateDonationCampaignMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

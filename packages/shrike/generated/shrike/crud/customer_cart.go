@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new CustomerCart
 func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.CreateCustomerCartRequest) (*v1.CreateCustomerCartResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert CustomerCart entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart ( id  created_at  updated_at ) VALUES( $1 $2 $3)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerCart-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 	}
 
 	// get CustomerCart data
-	var td v1.CustomerCart
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var customercart v1.CustomerCart
+	if err := rows.Scan(&customercart.Id, &customercart.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerCart row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 
 	return &v1.GetCustomerCartResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &customercart,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all CustomerCart
 func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.ListCustomerCartRequest) (*v1.ListCustomerCartResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.List
 
 	list := []*v1.CustomerCart{}
 	for rows.Next() {
-		td := new(v1.CustomerCart)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		customercart := new(v1.CustomerCart)
+		if err := rows.Scan(&customercart.Id, &customercart.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerCart row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, customercart)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.List
 	}, nil
 }
 
-// Update todo task
+// Update CustomerCart
 func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.UpdateCustomerCartRequest) (*v1.UpdateCustomerCartResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

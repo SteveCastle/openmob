@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new OwnerMembership
 func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1.CreateOwnerMembershipRequest) (*v1.CreateOwnerMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert OwnerMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO owner_membership (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO owner_membership ( id  created_at  updated_at  cause  account ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemAccount ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into OwnerMembership-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 	}
 
 	// get OwnerMembership data
-	var td v1.OwnerMembership
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var ownermembership v1.OwnerMembership
+	if err := rows.Scan(&ownermembership.Id, &ownermembership.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from OwnerMembership row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 
 	return &v1.GetOwnerMembershipResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &ownermembership,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all OwnerMembership
 func (s *shrikeServiceServer) ListOwnerMembership(ctx context.Context, req *v1.ListOwnerMembershipRequest) (*v1.ListOwnerMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListOwnerMembership(ctx context.Context, req *v1.L
 
 	list := []*v1.OwnerMembership{}
 	for rows.Next() {
-		td := new(v1.OwnerMembership)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		ownermembership := new(v1.OwnerMembership)
+		if err := rows.Scan(&ownermembership.Id, &ownermembership.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from OwnerMembership row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, ownermembership)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListOwnerMembership(ctx context.Context, req *v1.L
 	}, nil
 }
 
-// Update todo task
+// Update OwnerMembership
 func (s *shrikeServiceServer) UpdateOwnerMembership(ctx context.Context, req *v1.UpdateOwnerMembershipRequest) (*v1.UpdateOwnerMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {

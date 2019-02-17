@@ -47,7 +47,7 @@ func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
 	return c, nil
 }
 
-// Create new todo task
+// Create new PollRespondant
 func (s *shrikeServiceServer) CreatePollRespondant(ctx context.Context, req *v1.CreatePollRespondantRequest) (*v1.CreatePollRespondantResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -61,8 +61,8 @@ func (s *shrikeServiceServer) CreatePollRespondant(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PollRespondant entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO poll_respondant (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO poll_respondant ( id  created_at  updated_at  poll  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemPoll  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PollRespondant-> "+err.Error())
 	}
@@ -108,8 +108,8 @@ func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.Get
 	}
 
 	// get PollRespondant data
-	var td v1.PollRespondant
-	if err := rows.Scan(&td.Id, &td.Title); err != nil {
+	var pollrespondant v1.PollRespondant
+	if err := rows.Scan(&pollrespondant.Id, &pollrespondant.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from PollRespondant row-> "+err.Error())
 	}
 
@@ -120,12 +120,12 @@ func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.Get
 
 	return &v1.GetPollRespondantResponse{
 		Api:  apiVersion,
-		Item: &td,
+		Item: &pollrespondant,
 	}, nil
 
 }
 
-// Read all todo tasks
+// Read all PollRespondant
 func (s *shrikeServiceServer) ListPollRespondant(ctx context.Context, req *v1.ListPollRespondantRequest) (*v1.ListPollRespondantResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
@@ -148,11 +148,11 @@ func (s *shrikeServiceServer) ListPollRespondant(ctx context.Context, req *v1.Li
 
 	list := []*v1.PollRespondant{}
 	for rows.Next() {
-		td := new(v1.PollRespondant)
-		if err := rows.Scan(&td.Id, &td.Title); err != nil {
+		pollrespondant := new(v1.PollRespondant)
+		if err := rows.Scan(&pollrespondant.Id, &pollrespondant.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from PollRespondant row-> "+err.Error())
 		}
-		list = append(list, td)
+		list = append(list, pollrespondant)
 	}
 
 	if err := rows.Err(); err != nil {
@@ -165,7 +165,7 @@ func (s *shrikeServiceServer) ListPollRespondant(ctx context.Context, req *v1.Li
 	}, nil
 }
 
-// Update todo task
+// Update PollRespondant
 func (s *shrikeServiceServer) UpdatePollRespondant(ctx context.Context, req *v1.UpdatePollRespondantRequest) (*v1.UpdatePollRespondantResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
