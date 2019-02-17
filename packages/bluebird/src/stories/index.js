@@ -12,6 +12,7 @@ import Layout from '../components/layout/Layout';
 import Row from '../components/layout/Row';
 import Column from '../components/layout/Column';
 import Container from '../components/layout/Container';
+import Form from '../components/forms/Form';
 
 storiesOf('Typography', module)
   .addParameters({
@@ -31,8 +32,44 @@ storiesOf('Layout', module)
   .add('Layout', () => (
     <Layout tracing={5}>
       <Row tracing={5}>
-        <Column tracing={5} />
-        <Column tracing={5} />
+        <Column tracing={5} size={12} />
+      </Row>
+      <Row tracing={5}>
+        <Column tracing={5} size={6} />
+        <Column tracing={5} size={6} />
+      </Row>
+      <Row tracing={5}>
+        <Column tracing={5} size={6} />
+        <Column tracing={5} size={6} />
+        <Column tracing={5} size={6} />
+      </Row>
+      <Row tracing={5}>
+        <Column tracing={5} size={3} />
+        <Column tracing={5} size={3} />
+        <Column tracing={5} size={3} />
+        <Column tracing={5} size={3} />
+      </Row>
+      <Row tracing={5}>
+        <Column tracing={5} size={2} />
+        <Column tracing={5} size={2} />
+        <Column tracing={5} size={2} />
+        <Column tracing={5} size={2} />
+        <Column tracing={5} size={2} />
+        <Column tracing={5} size={2} />
+      </Row>
+      <Row tracing={5}>
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
+        <Column tracing={5} size={1} />
       </Row>
     </Layout>
   ))
@@ -41,6 +78,10 @@ storiesOf('Layout', module)
       <Container tracing={5}>
         <Row tracing={5}>
           <Column tracing={5} />
+        </Row>
+        <Row tracing={5}>
+          <Column tracing={5} size={6} />
+          <Column tracing={5} size={6} />
         </Row>
       </Container>
     </Layout>
@@ -68,6 +109,6 @@ storiesOf('Forms', module)
       inline: true
     }
   })
-  .add('Form', () => <Input onClick={action('clicked')} />)
+  .add('Form', () => <Form onClick={action('clicked')} />)
   .add('Input', () => <Input onClick={action('clicked')} block />)
   .add('DropDown', () => <Input onClick={action('clicked')} dark />);

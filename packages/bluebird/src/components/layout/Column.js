@@ -17,13 +17,16 @@ const StyledColumn = styled.div`
   ${width}
   ${fontSize}
   ${color}
+  box-sizing: border-box;
 `;
 
-function Column({ dark, children, tracing }) {
+function Column({ dark, children, tracing, size }) {
   return (
     <StyledColumn
       border={0}
       p={3}
+      mx={2}
+      width={size / 12}
       bg={
         tracing
           ? `blue.${tracing}`
@@ -41,9 +44,10 @@ function Column({ dark, children, tracing }) {
 
 Column.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
+  size: PropTypes.number,
   dark: PropTypes.bool,
   tracing: PropTypes.number
 };
-Column.defaultProps = {};
+Column.defaultProps = { size: 12 };
 
 export default Column;

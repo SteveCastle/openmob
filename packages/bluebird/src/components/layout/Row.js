@@ -7,7 +7,8 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
+  display
 } from 'styled-system';
 
 const StyledRow = styled.div`
@@ -17,13 +18,18 @@ const StyledRow = styled.div`
   ${width}
   ${fontSize}
   ${color}
+  ${display}
+  box-sizing: border-box;
+
 `;
 
 function Row({ dark, children, tracing }) {
   return (
     <StyledRow
+      display={'flex'}
       border={0}
-      p={3}
+      py={3}
+      width={1}
       bg={
         tracing
           ? `fuschia.${tracing}`

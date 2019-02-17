@@ -20,12 +20,11 @@ const StyledInput = styled.input`
   outline: none;
 `;
 
-function Input({ onClick, label, block, dark }) {
+function Input({ onChange, label, block, dark }) {
   return (
     <StyledInput
-      block={block}
       border={0}
-      onClick={onClick}
+      onChange={onChange}
       p={3}
       bg={dark ? 'forms.darkBackground' : 'forms.lightBackground'}
       fontSize={1}
@@ -38,10 +37,8 @@ function Input({ onClick, label, block, dark }) {
 }
 
 Input.propTypes = {
-  onClick: PropTypes.func,
+  onChange: PropTypes.func,
   label: PropTypes.string,
-  icon: PropTypes.element,
-  loader: PropTypes.element,
   state: PropTypes.oneOf(['ready', 'valid', 'error']),
   block: PropTypes.bool,
   dark: PropTypes.bool

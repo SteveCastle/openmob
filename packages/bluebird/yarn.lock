@@ -10125,6 +10125,13 @@ realpath-native@^1.0.0:
   dependencies:
     util.promisify "^1.0.0"
 
+rebass@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/rebass/-/rebass-3.0.1.tgz#140230f4e4eceaf7adb682bcf380ceb0fff82d2f"
+  integrity sha512-IiETPunFNc3zoZoHpDsCS2Gk+OvTF6tDOSBeZzDSk9d2RMg/5DeRaXgnXnaYm+4XY1tcj7iV3psURqWpIcSdtg==
+  dependencies:
+    styled-system "^3.2.1"
+
 recast@^0.14.7:
   version "0.14.7"
   resolved "https://registry.yarnpkg.com/recast/-/recast-0.14.7.tgz#4f1497c2b5826d42a66e8e3c9d80c512983ff61d"

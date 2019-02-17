@@ -7,7 +7,9 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
+  display,
+  flexWrap
 } from 'styled-system';
 
 const StyledLayout = styled.div`
@@ -16,14 +18,19 @@ const StyledLayout = styled.div`
   ${space}
   ${width}
   ${fontSize}
+  ${flexWrap}
   ${color}
+  ${display}
 `;
 
 function Layout({ dark, children, tracing }) {
   return (
     <StyledLayout
+      display={'flex'}
       border={0}
-      p={3}
+      py={3}
+      flexWrap="wrap"
+      width={1}
       bg={
         tracing
           ? `green.${tracing}`

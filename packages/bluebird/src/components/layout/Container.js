@@ -7,7 +7,10 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
+  display,
+  flexWrap,
+  maxWidth
 } from 'styled-system';
 
 const StyledContainer = styled.div`
@@ -17,13 +20,22 @@ const StyledContainer = styled.div`
   ${width}
   ${fontSize}
   ${color}
+  ${display}
+  ${flexWrap}
+  ${maxWidth}
+
 `;
 
 function Container({ dark, children, tracing }) {
   return (
     <StyledContainer
+      display={'flex'}
       border={0}
-      p={3}
+      py={3}
+      flexWrap="wrap"
+      m="auto"
+      width={1}
+      maxWidth={7}
       bg={
         tracing
           ? `violet.${tracing}`
