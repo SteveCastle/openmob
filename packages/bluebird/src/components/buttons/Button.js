@@ -20,7 +20,7 @@ const StyledButton = styled.button`
   outline: none;
 `;
 
-function Button({ onClick, label, block, dark, state }) {
+function Button({ onClick, label, icon, loader, block, dark, state }) {
   return (
     <StyledButton
       block={block}

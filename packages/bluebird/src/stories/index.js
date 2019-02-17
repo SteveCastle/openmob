@@ -109,6 +109,6 @@ storiesOf('Forms', module)
       inline: true
     }
   })
-  .add('Form', () => <Form onClick={action('clicked')} />)
-  .add('Input', () => <Input onClick={action('clicked')} block />)
-  .add('DropDown', () => <Input onClick={action('clicked')} dark />);
+  .add('Form', () => <Form onChange={action('change')} />)
+  .add('Input', () => <Input onChange={action('change')} block />)
+  .add('DropDown', () => <Input onChange={action('change')} dark />);

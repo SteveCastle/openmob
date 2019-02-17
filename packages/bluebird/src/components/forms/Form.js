@@ -19,12 +19,12 @@ const StyledForm = styled.form`
   ${color}
 `;
 
-function Form({}) {
+function Form({ onChange, state }) {
   return <StyledForm border={0} p={3} fontSize={1} />;
 }
 
 Form.propTypes = {
-  onClick: PropTypes.func,
+  onChange: PropTypes.func,
   state: PropTypes.oneOf(['ready', 'valid', 'error'])
 };
 export default Form;
