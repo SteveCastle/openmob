@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@rebass/components": "^4.0.0-1",
+    "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.3",
