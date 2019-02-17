@@ -26,7 +26,8 @@ function Column({ dark, children, tracing, size }) {
       border={0}
       p={3}
       mx={2}
-      width={size / 12}
+      my={2}
+      width={[1, size / 12]}
       bg={
         tracing
           ? `blue.${tracing}`

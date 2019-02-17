@@ -22,9 +22,9 @@ const StyledParagraph = styled.p`
 function Paragraph({ children, dark }) {
   return (
     <StyledParagraph
-      border={0}
       p={3}
-      fontSize={1}
+      fontSize={3}
+      width={1}
       color={dark ? 'forms.lightText' : 'forms.darkText'}
     >
       {children}

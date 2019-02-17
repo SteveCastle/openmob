@@ -28,7 +28,6 @@ function Layout({ dark, children, tracing }) {
     <StyledLayout
       display={'flex'}
       border={0}
-      py={3}
       flexWrap="wrap"
       width={1}
       bg={

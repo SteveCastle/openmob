@@ -10,7 +10,7 @@ import {
   borderRadius
 } from 'styled-system';
 
-const StyledHeader = styled.h1`
+const StyledSubHeader = styled.h2`
   ${borders}
   ${borderRadius}
   ${space}
@@ -19,21 +19,21 @@ const StyledHeader = styled.h1`
   ${color}
 `;
 
-function Header({ children, dark }) {
+function SubHeader({ children, dark }) {
   return (
-    <StyledHeader
+    <StyledSubHeader
       p={3}
-      fontSize={6}
+      fontSize={4}
       width={1}
       color={dark ? 'forms.lightText' : 'forms.darkText'}
     >
       {children}
-    </StyledHeader>
+    </StyledSubHeader>
   );
 }
 
-Header.propTypes = {
+SubHeader.propTypes = {
   children: PropTypes.element.isRequired,
   dark: PropTypes.bool
 };
-export default Header;
+export default SubHeader;

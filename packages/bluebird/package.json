@@ -41,6 +41,7 @@
     "@storybook/addons": "^4.1.11",
     "@storybook/react": "^4.1.11",
     "babel-loader": "^8.0.5",
+    "faker": "^4.1.0",
     "storybook-addon-styled-component-theme": "^1.1.1"
   }
 }

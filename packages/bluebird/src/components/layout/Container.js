@@ -31,7 +31,6 @@ function Container({ dark, children, tracing }) {
     <StyledContainer
       display={'flex'}
       border={0}
-      py={3}
       flexWrap="wrap"
       m="auto"
       width={1}

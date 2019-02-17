@@ -8,7 +8,8 @@ import {
   color,
   borders,
   borderRadius,
-  display
+  display,
+  flexWrap
 } from 'styled-system';
 
 const StyledRow = styled.div`
@@ -19,6 +20,7 @@ const StyledRow = styled.div`
   ${fontSize}
   ${color}
   ${display}
+  ${flexWrap}
   box-sizing: border-box;
 
 `;
@@ -27,8 +29,10 @@ function Row({ dark, children, tracing }) {
   return (
     <StyledRow
       display={'flex'}
+      flexWrap={['wrap', 'nowrap']}
       border={0}
-      py={3}
+      mx={2}
+      my={1}
       width={1}
       bg={
         tracing

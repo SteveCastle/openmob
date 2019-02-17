@@ -2,7 +2,7 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
+import faker from 'faker';
 import Button from '../components/buttons/Button';
 import Input from '../components/forms/Input';
 import Header from '../components/type/Header';
@@ -14,6 +14,7 @@ import Column from '../components/layout/Column';
 import Container from '../components/layout/Container';
 import Form from '../components/forms/Form';
 import Masonry from '../components/photos/Masonry';
+import SubHeader from '../components/type/SubHeader';
 
 storiesOf('Typography', module)
   .addParameters({
@@ -21,8 +22,15 @@ storiesOf('Typography', module)
       inline: true
     }
   })
-  .add('Header', () => <Header>Nice Header</Header>)
-  .add('Paragraph', () => <Paragraph>A nice paragraph.</Paragraph>);
+  .add('Content Type Stack', () => (
+    <Layout>
+      <Container>
+        <Header>{faker.name.findName()}</Header>
+        <SubHeader>{faker.company.catchPhrase()}</SubHeader>
+        <Paragraph>{faker.lorem.paragraph()}</Paragraph>
+      </Container>
+    </Layout>
+  ));
 
 storiesOf('Layout', module)
   .addParameters({
