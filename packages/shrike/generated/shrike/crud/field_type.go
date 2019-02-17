@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert FieldType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO field_type ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO field_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into FieldType-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 	defer c.Close()
 
 	// query FieldType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM field_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM field_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from FieldType-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 
 	// get FieldType data
 	var fieldtype v1.FieldType
-	if err := rows.Scan(&fieldtype.Id, &fieldtype.Title); err != nil {
+	if err := rows.Scan( &fieldtype.ID,  &fieldtype.CreatedAt,  &fieldtype.UpdatedAt,  &fieldtype.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from FieldType row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 	defer c.Close()
 
 	// get FieldType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM field_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM field_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from FieldType-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 	list := []*v1.FieldType{}
 	for rows.Next() {
 		fieldtype := new(v1.FieldType)
-		if err := rows.Scan(&fieldtype.Id, &fieldtype.Title); err != nil {
+		if err := rows.Scan( &fieldtype.ID,  &fieldtype.CreatedAt,  &fieldtype.UpdatedAt,  &fieldtype.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from FieldType row-> "+err.Error())
 		}
 		list = append(list, fieldtype)

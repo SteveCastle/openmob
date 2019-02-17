@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert MailingAddress entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address ( id  created_at  updated_at  street_address  city  state  zip_code ) VALUES( $1 $2 $3 $4 $5 $6 $7)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address (id, created_at, updated_at, street_address, city, state, zip_code, ) VALUES($1, $2, $3, $4, $5, $6, $7, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemStreetAddress  req.ItemCity  req.ItemState  req.ItemZipCode ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into MailingAddress-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query MailingAddress by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM mailing_address WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, street_address, city, state, zip_code,  FROM mailing_address WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from MailingAddress-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 
 	// get MailingAddress data
 	var mailingaddress v1.MailingAddress
-	if err := rows.Scan(&mailingaddress.Id, &mailingaddress.Title); err != nil {
+	if err := rows.Scan( &mailingaddress.ID,  &mailingaddress.CreatedAt,  &mailingaddress.UpdatedAt,  &mailingaddress.StreetAddress,  &mailingaddress.City,  &mailingaddress.State,  &mailingaddress.ZipCode, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from MailingAddress row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get MailingAddress list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM mailing_address")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, street_address, city, state, zip_code,  FROM mailing_address")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from MailingAddress-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 	list := []*v1.MailingAddress{}
 	for rows.Next() {
 		mailingaddress := new(v1.MailingAddress)
-		if err := rows.Scan(&mailingaddress.Id, &mailingaddress.Title); err != nil {
+		if err := rows.Scan( &mailingaddress.ID,  &mailingaddress.CreatedAt,  &mailingaddress.UpdatedAt,  &mailingaddress.StreetAddress,  &mailingaddress.City,  &mailingaddress.State,  &mailingaddress.ZipCode, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from MailingAddress row-> "+err.Error())
 		}
 		list = append(list, mailingaddress)

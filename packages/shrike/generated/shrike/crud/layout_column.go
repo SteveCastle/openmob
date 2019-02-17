@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLayoutColumn(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert LayoutColumn entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layout_column ( id  created_at  updated_at  layout_row ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO layout_column (id, created_at, updated_at, layout_row, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemLayoutRow ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LayoutColumn-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLa
 	defer c.Close()
 
 	// query LayoutColumn by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM layout_column WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_row,  FROM layout_column WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutColumn-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLa
 
 	// get LayoutColumn data
 	var layoutcolumn v1.LayoutColumn
-	if err := rows.Scan(&layoutcolumn.Id, &layoutcolumn.Title); err != nil {
+	if err := rows.Scan( &layoutcolumn.ID,  &layoutcolumn.CreatedAt,  &layoutcolumn.UpdatedAt,  &layoutcolumn.LayoutRow, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutColumn row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLayoutColumn(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get LayoutColumn list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM layout_column")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_row,  FROM layout_column")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutColumn-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListLayoutColumn(ctx context.Context, req *v1.List
 	list := []*v1.LayoutColumn{}
 	for rows.Next() {
 		layoutcolumn := new(v1.LayoutColumn)
-		if err := rows.Scan(&layoutcolumn.Id, &layoutcolumn.Title); err != nil {
+		if err := rows.Scan( &layoutcolumn.ID,  &layoutcolumn.CreatedAt,  &layoutcolumn.UpdatedAt,  &layoutcolumn.LayoutRow, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutColumn row-> "+err.Error())
 		}
 		list = append(list, layoutcolumn)

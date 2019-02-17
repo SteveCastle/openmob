@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDon
 	defer c.Close()
 	var id int64
 	// insert Donor entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donor ( id  created_at  updated_at  customer_order  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO donor (id, created_at, updated_at, customer_order, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCustomerOrder  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Donor-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 	defer c.Close()
 
 	// query Donor by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM donor WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause,  FROM donor WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Donor-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 
 	// get Donor data
 	var donor v1.Donor
-	if err := rows.Scan(&donor.Id, &donor.Title); err != nil {
+	if err := rows.Scan( &donor.ID,  &donor.CreatedAt,  &donor.UpdatedAt,  &donor.CustomerOrder,  &donor.Contact,  &donor.Cause, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Donor row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 	defer c.Close()
 
 	// get Donor list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM donor")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause,  FROM donor")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Donor-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 	list := []*v1.Donor{}
 	for rows.Next() {
 		donor := new(v1.Donor)
-		if err := rows.Scan(&donor.Id, &donor.Title); err != nil {
+		if err := rows.Scan( &donor.ID,  &donor.CreatedAt,  &donor.UpdatedAt,  &donor.CustomerOrder,  &donor.Contact,  &donor.Cause, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Donor row-> "+err.Error())
 		}
 		list = append(list, donor)

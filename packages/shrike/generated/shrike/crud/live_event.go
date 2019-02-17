@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert LiveEvent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event ( id  created_at  updated_at  title  live_event_type ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event (id, created_at, updated_at, title, live_event_type, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemLiveEventType ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEvent-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 	defer c.Close()
 
 	// query LiveEvent by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM live_event WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, live_event_type,  FROM live_event WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 
 	// get LiveEvent data
 	var liveevent v1.LiveEvent
-	if err := rows.Scan(&liveevent.Id, &liveevent.Title); err != nil {
+	if err := rows.Scan( &liveevent.ID,  &liveevent.CreatedAt,  &liveevent.UpdatedAt,  &liveevent.Title,  &liveevent.LiveEventType, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEvent row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 	defer c.Close()
 
 	// get LiveEvent list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM live_event")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, live_event_type,  FROM live_event")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 	list := []*v1.LiveEvent{}
 	for rows.Next() {
 		liveevent := new(v1.LiveEvent)
-		if err := rows.Scan(&liveevent.Id, &liveevent.Title); err != nil {
+		if err := rows.Scan( &liveevent.ID,  &liveevent.CreatedAt,  &liveevent.UpdatedAt,  &liveevent.Title,  &liveevent.LiveEventType, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEvent row-> "+err.Error())
 		}
 		list = append(list, liveevent)

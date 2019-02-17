@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateIssue(ctx context.Context, req *v1.CreateIss
 	defer c.Close()
 	var id int64
 	// insert Issue entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO issue ( id  created_at  updated_at  title  election ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO issue (id, created_at, updated_at, title, election, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemElection ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Issue-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetIssue(ctx context.Context, req *v1.GetIssueRequ
 	defer c.Close()
 
 	// query Issue by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM issue WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election,  FROM issue WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Issue-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetIssue(ctx context.Context, req *v1.GetIssueRequ
 
 	// get Issue data
 	var issue v1.Issue
-	if err := rows.Scan(&issue.Id, &issue.Title); err != nil {
+	if err := rows.Scan( &issue.ID,  &issue.CreatedAt,  &issue.UpdatedAt,  &issue.Title,  &issue.Election, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Issue row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListIssue(ctx context.Context, req *v1.ListIssueRe
 	defer c.Close()
 
 	// get Issue list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM issue")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election,  FROM issue")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Issue-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListIssue(ctx context.Context, req *v1.ListIssueRe
 	list := []*v1.Issue{}
 	for rows.Next() {
 		issue := new(v1.Issue)
-		if err := rows.Scan(&issue.Id, &issue.Title); err != nil {
+		if err := rows.Scan( &issue.ID,  &issue.CreatedAt,  &issue.UpdatedAt,  &issue.Title,  &issue.Election, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Issue row-> "+err.Error())
 		}
 		list = append(list, issue)

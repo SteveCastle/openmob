@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert OwnerMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO owner_membership ( id  created_at  updated_at  cause  account ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO owner_membership (id, created_at, updated_at, cause, account, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemAccount ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into OwnerMembership-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query OwnerMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM owner_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, account,  FROM owner_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from OwnerMembership-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 
 	// get OwnerMembership data
 	var ownermembership v1.OwnerMembership
-	if err := rows.Scan(&ownermembership.Id, &ownermembership.Title); err != nil {
+	if err := rows.Scan( &ownermembership.ID,  &ownermembership.CreatedAt,  &ownermembership.UpdatedAt,  &ownermembership.Cause,  &ownermembership.Account, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from OwnerMembership row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListOwnerMembership(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get OwnerMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM owner_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, account,  FROM owner_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from OwnerMembership-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListOwnerMembership(ctx context.Context, req *v1.L
 	list := []*v1.OwnerMembership{}
 	for rows.Next() {
 		ownermembership := new(v1.OwnerMembership)
-		if err := rows.Scan(&ownermembership.Id, &ownermembership.Title); err != nil {
+		if err := rows.Scan( &ownermembership.ID,  &ownermembership.CreatedAt,  &ownermembership.UpdatedAt,  &ownermembership.Cause,  &ownermembership.Account, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from OwnerMembership row-> "+err.Error())
 		}
 		list = append(list, ownermembership)

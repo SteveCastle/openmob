@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateComponent(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Component entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component ( id  created_at  updated_at  component_type  layout_column ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO component (id, created_at, updated_at, component_type, layout_column, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemComponentType  req.ItemLayoutColumn ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Component-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetComponent(ctx context.Context, req *v1.GetCompo
 	defer c.Close()
 
 	// query Component by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM component WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, component_type, layout_column,  FROM component WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Component-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetComponent(ctx context.Context, req *v1.GetCompo
 
 	// get Component data
 	var component v1.Component
-	if err := rows.Scan(&component.Id, &component.Title); err != nil {
+	if err := rows.Scan( &component.ID,  &component.CreatedAt,  &component.UpdatedAt,  &component.ComponentType,  &component.LayoutColumn, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Component row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListComponent(ctx context.Context, req *v1.ListCom
 	defer c.Close()
 
 	// get Component list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM component")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, component_type, layout_column,  FROM component")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Component-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListComponent(ctx context.Context, req *v1.ListCom
 	list := []*v1.Component{}
 	for rows.Next() {
 		component := new(v1.Component)
-		if err := rows.Scan(&component.Id, &component.Title); err != nil {
+		if err := rows.Scan( &component.ID,  &component.CreatedAt,  &component.UpdatedAt,  &component.ComponentType,  &component.LayoutColumn, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Component row-> "+err.Error())
 		}
 		list = append(list, component)

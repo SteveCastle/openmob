@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateAccount(ctx context.Context, req *v1.CreateA
 	defer c.Close()
 	var id int64
 	// insert Account entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO account ( id  created_at  updated_at  username ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO account (id, created_at, updated_at, username, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemUsername ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Account-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 	defer c.Close()
 
 	// query Account by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM account WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, username,  FROM account WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Account-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 
 	// get Account data
 	var account v1.Account
-	if err := rows.Scan(&account.Id, &account.Title); err != nil {
+	if err := rows.Scan( &account.ID,  &account.CreatedAt,  &account.UpdatedAt,  &account.Username, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 	defer c.Close()
 
 	// get Account list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM account")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, username,  FROM account")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Account-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 	list := []*v1.Account{}
 	for rows.Next() {
 		account := new(v1.Account)
-		if err := rows.Scan(&account.Id, &account.Title); err != nil {
+		if err := rows.Scan( &account.ID,  &account.CreatedAt,  &account.UpdatedAt,  &account.Username, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
 		}
 		list = append(list, account)

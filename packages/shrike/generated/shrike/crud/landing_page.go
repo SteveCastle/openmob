@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert LandingPage entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO landing_page ( id  created_at  updated_at  title  layout ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO landing_page (id, created_at, updated_at, title, layout, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemLayout ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LandingPage-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 	defer c.Close()
 
 	// query LandingPage by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM landing_page WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, layout,  FROM landing_page WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LandingPage-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 
 	// get LandingPage data
 	var landingpage v1.LandingPage
-	if err := rows.Scan(&landingpage.Id, &landingpage.Title); err != nil {
+	if err := rows.Scan( &landingpage.ID,  &landingpage.CreatedAt,  &landingpage.UpdatedAt,  &landingpage.Title,  &landingpage.Layout, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LandingPage row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListL
 	defer c.Close()
 
 	// get LandingPage list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM landing_page")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, layout,  FROM landing_page")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LandingPage-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListL
 	list := []*v1.LandingPage{}
 	for rows.Next() {
 		landingpage := new(v1.LandingPage)
-		if err := rows.Scan(&landingpage.Id, &landingpage.Title); err != nil {
+		if err := rows.Scan( &landingpage.ID,  &landingpage.CreatedAt,  &landingpage.UpdatedAt,  &landingpage.Title,  &landingpage.Layout, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LandingPage row-> "+err.Error())
 		}
 		list = append(list, landingpage)

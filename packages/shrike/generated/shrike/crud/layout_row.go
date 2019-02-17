@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLayoutRow(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert LayoutRow entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layout_row ( id  created_at  updated_at  layout ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO layout_row (id, created_at, updated_at, layout, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemLayout ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LayoutRow-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLayoutRow(ctx context.Context, req *v1.GetLayou
 	defer c.Close()
 
 	// query LayoutRow by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM layout_row WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout,  FROM layout_row WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutRow-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetLayoutRow(ctx context.Context, req *v1.GetLayou
 
 	// get LayoutRow data
 	var layoutrow v1.LayoutRow
-	if err := rows.Scan(&layoutrow.Id, &layoutrow.Title); err != nil {
+	if err := rows.Scan( &layoutrow.ID,  &layoutrow.CreatedAt,  &layoutrow.UpdatedAt,  &layoutrow.Layout, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutRow row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLayoutRow(ctx context.Context, req *v1.ListLay
 	defer c.Close()
 
 	// get LayoutRow list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM layout_row")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout,  FROM layout_row")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutRow-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListLayoutRow(ctx context.Context, req *v1.ListLay
 	list := []*v1.LayoutRow{}
 	for rows.Next() {
 		layoutrow := new(v1.LayoutRow)
-		if err := rows.Scan(&layoutrow.Id, &layoutrow.Title); err != nil {
+		if err := rows.Scan( &layoutrow.ID,  &layoutrow.CreatedAt,  &layoutrow.UpdatedAt,  &layoutrow.Layout, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutRow row-> "+err.Error())
 		}
 		list = append(list, layoutrow)

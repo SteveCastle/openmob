@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateFollower(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Follower entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO follower ( id  created_at  updated_at  contact  cause ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO follower (id, created_at, updated_at, contact, cause, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Follower-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetFollower(ctx context.Context, req *v1.GetFollow
 	defer c.Close()
 
 	// query Follower by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM follower WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause,  FROM follower WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Follower-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetFollower(ctx context.Context, req *v1.GetFollow
 
 	// get Follower data
 	var follower v1.Follower
-	if err := rows.Scan(&follower.Id, &follower.Title); err != nil {
+	if err := rows.Scan( &follower.ID,  &follower.CreatedAt,  &follower.UpdatedAt,  &follower.Contact,  &follower.Cause, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Follower row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListFollower(ctx context.Context, req *v1.ListFoll
 	defer c.Close()
 
 	// get Follower list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM follower")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause,  FROM follower")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Follower-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListFollower(ctx context.Context, req *v1.ListFoll
 	list := []*v1.Follower{}
 	for rows.Next() {
 		follower := new(v1.Follower)
-		if err := rows.Scan(&follower.Id, &follower.Title); err != nil {
+		if err := rows.Scan( &follower.ID,  &follower.CreatedAt,  &follower.UpdatedAt,  &follower.Contact,  &follower.Cause, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Follower row-> "+err.Error())
 		}
 		list = append(list, follower)

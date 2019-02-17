@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req 
 	defer c.Close()
 	var id int64
 	// insert PetitionMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition_membership ( id  created_at  updated_at  cause  petition ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO petition_membership (id, created_at, updated_at, cause, petition, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemPetition ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PetitionMembership-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPetitionMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// query PetitionMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM petition_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, petition,  FROM petition_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionMembership-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetPetitionMembership(ctx context.Context, req *v1
 
 	// get PetitionMembership data
 	var petitionmembership v1.PetitionMembership
-	if err := rows.Scan(&petitionmembership.Id, &petitionmembership.Title); err != nil {
+	if err := rows.Scan( &petitionmembership.ID,  &petitionmembership.CreatedAt,  &petitionmembership.UpdatedAt,  &petitionmembership.Cause,  &petitionmembership.Petition, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from PetitionMembership row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v
 	defer c.Close()
 
 	// get PetitionMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM petition_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, petition,  FROM petition_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionMembership-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v
 	list := []*v1.PetitionMembership{}
 	for rows.Next() {
 		petitionmembership := new(v1.PetitionMembership)
-		if err := rows.Scan(&petitionmembership.Id, &petitionmembership.Title); err != nil {
+		if err := rows.Scan( &petitionmembership.ID,  &petitionmembership.CreatedAt,  &petitionmembership.UpdatedAt,  &petitionmembership.Cause,  &petitionmembership.Petition, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from PetitionMembership row-> "+err.Error())
 		}
 		list = append(list, petitionmembership)

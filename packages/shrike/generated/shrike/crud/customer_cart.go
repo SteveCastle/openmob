@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert CustomerCart entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart ( id  created_at  updated_at ) VALUES( $1 $2 $3)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart (id, created_at, updated_at, ) VALUES($1, $2, $3, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerCart-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 	defer c.Close()
 
 	// query CustomerCart by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM customer_cart WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM customer_cart WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerCart-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 
 	// get CustomerCart data
 	var customercart v1.CustomerCart
-	if err := rows.Scan(&customercart.Id, &customercart.Title); err != nil {
+	if err := rows.Scan( &customercart.ID,  &customercart.CreatedAt,  &customercart.UpdatedAt, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerCart row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get CustomerCart list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM customer_cart")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM customer_cart")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerCart-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.List
 	list := []*v1.CustomerCart{}
 	for rows.Next() {
 		customercart := new(v1.CustomerCart)
-		if err := rows.Scan(&customercart.Id, &customercart.Title); err != nil {
+		if err := rows.Scan( &customercart.ID,  &customercart.CreatedAt,  &customercart.UpdatedAt, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerCart row-> "+err.Error())
 		}
 		list = append(list, customercart)

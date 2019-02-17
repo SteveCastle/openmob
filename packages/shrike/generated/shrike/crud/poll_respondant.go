@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePollRespondant(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PollRespondant entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO poll_respondant ( id  created_at  updated_at  poll  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO poll_respondant (id, created_at, updated_at, poll, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemPoll  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PollRespondant-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query PollRespondant by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM poll_respondant WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, poll, contact, cause,  FROM poll_respondant WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollRespondant-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.Get
 
 	// get PollRespondant data
 	var pollrespondant v1.PollRespondant
-	if err := rows.Scan(&pollrespondant.Id, &pollrespondant.Title); err != nil {
+	if err := rows.Scan( &pollrespondant.ID,  &pollrespondant.CreatedAt,  &pollrespondant.UpdatedAt,  &pollrespondant.Poll,  &pollrespondant.Contact,  &pollrespondant.Cause, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from PollRespondant row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPollRespondant(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get PollRespondant list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM poll_respondant")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, poll, contact, cause,  FROM poll_respondant")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollRespondant-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListPollRespondant(ctx context.Context, req *v1.Li
 	list := []*v1.PollRespondant{}
 	for rows.Next() {
 		pollrespondant := new(v1.PollRespondant)
-		if err := rows.Scan(&pollrespondant.Id, &pollrespondant.Title); err != nil {
+		if err := rows.Scan( &pollrespondant.ID,  &pollrespondant.CreatedAt,  &pollrespondant.UpdatedAt,  &pollrespondant.Poll,  &pollrespondant.Contact,  &pollrespondant.Cause, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from PollRespondant row-> "+err.Error())
 		}
 		list = append(list, pollrespondant)

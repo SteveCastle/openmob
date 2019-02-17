@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert CustomerOrder entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customer_order ( id  created_at  updated_at  customer_cart ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_order (id, created_at, updated_at, customer_cart, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCustomerCart ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerOrder-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetCustomerOrder(ctx context.Context, req *v1.GetC
 	defer c.Close()
 
 	// query CustomerOrder by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM customer_order WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_cart,  FROM customer_order WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerOrder-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetCustomerOrder(ctx context.Context, req *v1.GetC
 
 	// get CustomerOrder data
 	var customerorder v1.CustomerOrder
-	if err := rows.Scan(&customerorder.Id, &customerorder.Title); err != nil {
+	if err := rows.Scan( &customerorder.ID,  &customerorder.CreatedAt,  &customerorder.UpdatedAt,  &customerorder.CustomerCart, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerOrder row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCustomerOrder(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get CustomerOrder list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM customer_order")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_cart,  FROM customer_order")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerOrder-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListCustomerOrder(ctx context.Context, req *v1.Lis
 	list := []*v1.CustomerOrder{}
 	for rows.Next() {
 		customerorder := new(v1.CustomerOrder)
-		if err := rows.Scan(&customerorder.Id, &customerorder.Title); err != nil {
+		if err := rows.Scan( &customerorder.ID,  &customerorder.CreatedAt,  &customerorder.UpdatedAt,  &customerorder.CustomerCart, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerOrder row-> "+err.Error())
 		}
 		list = append(list, customerorder)

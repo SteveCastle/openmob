@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateDonationCampaign(ctx context.Context, req *v
 	defer c.Close()
 	var id int64
 	// insert DonationCampaign entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DonationCampaign-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.G
 	defer c.Close()
 
 	// query DonationCampaign by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM donation_campaign WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM donation_campaign WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaign-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.G
 
 	// get DonationCampaign data
 	var donationcampaign v1.DonationCampaign
-	if err := rows.Scan(&donationcampaign.Id, &donationcampaign.Title); err != nil {
+	if err := rows.Scan( &donationcampaign.ID,  &donationcampaign.CreatedAt,  &donationcampaign.UpdatedAt,  &donationcampaign.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaign row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDonationCampaign(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// get DonationCampaign list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM donation_campaign")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM donation_campaign")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaign-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListDonationCampaign(ctx context.Context, req *v1.
 	list := []*v1.DonationCampaign{}
 	for rows.Next() {
 		donationcampaign := new(v1.DonationCampaign)
-		if err := rows.Scan(&donationcampaign.Id, &donationcampaign.Title); err != nil {
+		if err := rows.Scan( &donationcampaign.ID,  &donationcampaign.CreatedAt,  &donationcampaign.UpdatedAt,  &donationcampaign.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaign row-> "+err.Error())
 		}
 		list = append(list, donationcampaign)

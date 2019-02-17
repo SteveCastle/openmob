@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunity(ctx context.Context, re
 	defer c.Close()
 	var id int64
 	// insert VolunteerOpportunity entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity ( id  created_at  updated_at  title  election_type ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity (id, created_at, updated_at, title, election_type, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemElectionType ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunity-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunity(ctx context.Context, req *
 	defer c.Close()
 
 	// query VolunteerOpportunity by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM volunteer_opportunity WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election_type,  FROM volunteer_opportunity WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunity-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunity(ctx context.Context, req *
 
 	// get VolunteerOpportunity data
 	var volunteeropportunity v1.VolunteerOpportunity
-	if err := rows.Scan(&volunteeropportunity.Id, &volunteeropportunity.Title); err != nil {
+	if err := rows.Scan( &volunteeropportunity.ID,  &volunteeropportunity.CreatedAt,  &volunteeropportunity.UpdatedAt,  &volunteeropportunity.Title,  &volunteeropportunity.ElectionType, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunity row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunity(ctx context.Context, req 
 	defer c.Close()
 
 	// get VolunteerOpportunity list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM volunteer_opportunity")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election_type,  FROM volunteer_opportunity")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunity-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunity(ctx context.Context, req 
 	list := []*v1.VolunteerOpportunity{}
 	for rows.Next() {
 		volunteeropportunity := new(v1.VolunteerOpportunity)
-		if err := rows.Scan(&volunteeropportunity.Id, &volunteeropportunity.Title); err != nil {
+		if err := rows.Scan( &volunteeropportunity.ID,  &volunteeropportunity.CreatedAt,  &volunteeropportunity.UpdatedAt,  &volunteeropportunity.Title,  &volunteeropportunity.ElectionType, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunity row-> "+err.Error())
 		}
 		list = append(list, volunteeropportunity)

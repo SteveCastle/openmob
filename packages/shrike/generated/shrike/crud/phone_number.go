@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePhoneNumber(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert PhoneNumber entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO phone_number ( id  created_at  updated_at  phone_number ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO phone_number (id, created_at, updated_at, phone_number, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemPhoneNumber ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PhoneNumber-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 	defer c.Close()
 
 	// query PhoneNumber by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM phone_number WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, phone_number,  FROM phone_number WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PhoneNumber-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 
 	// get PhoneNumber data
 	var phonenumber v1.PhoneNumber
-	if err := rows.Scan(&phonenumber.Id, &phonenumber.Title); err != nil {
+	if err := rows.Scan( &phonenumber.ID,  &phonenumber.CreatedAt,  &phonenumber.UpdatedAt,  &phonenumber.PhoneNumber, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from PhoneNumber row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPhoneNumber(ctx context.Context, req *v1.ListP
 	defer c.Close()
 
 	// get PhoneNumber list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM phone_number")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, phone_number,  FROM phone_number")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PhoneNumber-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListPhoneNumber(ctx context.Context, req *v1.ListP
 	list := []*v1.PhoneNumber{}
 	for rows.Next() {
 		phonenumber := new(v1.PhoneNumber)
-		if err := rows.Scan(&phonenumber.Id, &phonenumber.Title); err != nil {
+		if err := rows.Scan( &phonenumber.ID,  &phonenumber.CreatedAt,  &phonenumber.UpdatedAt,  &phonenumber.PhoneNumber, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from PhoneNumber row-> "+err.Error())
 		}
 		list = append(list, phonenumber)

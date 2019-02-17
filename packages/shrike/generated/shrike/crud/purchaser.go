@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePurchaser(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Purchaser entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO purchaser ( id  created_at  updated_at  customer_order  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO purchaser (id, created_at, updated_at, customer_order, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCustomerOrder  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Purchaser-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPurchaser(ctx context.Context, req *v1.GetPurch
 	defer c.Close()
 
 	// query Purchaser by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM purchaser WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause,  FROM purchaser WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Purchaser-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetPurchaser(ctx context.Context, req *v1.GetPurch
 
 	// get Purchaser data
 	var purchaser v1.Purchaser
-	if err := rows.Scan(&purchaser.Id, &purchaser.Title); err != nil {
+	if err := rows.Scan( &purchaser.ID,  &purchaser.CreatedAt,  &purchaser.UpdatedAt,  &purchaser.CustomerOrder,  &purchaser.Contact,  &purchaser.Cause, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Purchaser row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 	defer c.Close()
 
 	// get Purchaser list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM purchaser")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause,  FROM purchaser")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Purchaser-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 	list := []*v1.Purchaser{}
 	for rows.Next() {
 		purchaser := new(v1.Purchaser)
-		if err := rows.Scan(&purchaser.Id, &purchaser.Title); err != nil {
+		if err := rows.Scan( &purchaser.ID,  &purchaser.CreatedAt,  &purchaser.UpdatedAt,  &purchaser.CustomerOrder,  &purchaser.Contact,  &purchaser.Cause, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Purchaser row-> "+err.Error())
 		}
 		list = append(list, purchaser)

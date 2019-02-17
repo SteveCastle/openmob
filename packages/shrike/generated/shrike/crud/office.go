@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateOffice(ctx context.Context, req *v1.CreateOf
 	defer c.Close()
 	var id int64
 	// insert Office entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO office ( id  created_at  updated_at  title  election ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO office (id, created_at, updated_at, title, election, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemElection ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Office-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 	defer c.Close()
 
 	// query Office by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM office WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election,  FROM office WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Office-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 
 	// get Office data
 	var office v1.Office
-	if err := rows.Scan(&office.Id, &office.Title); err != nil {
+	if err := rows.Scan( &office.ID,  &office.CreatedAt,  &office.UpdatedAt,  &office.Title,  &office.Election, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Office row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 	defer c.Close()
 
 	// get Office list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM office")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election,  FROM office")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Office-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 	list := []*v1.Office{}
 	for rows.Next() {
 		office := new(v1.Office)
-		if err := rows.Scan(&office.Id, &office.Title); err != nil {
+		if err := rows.Scan( &office.ID,  &office.CreatedAt,  &office.UpdatedAt,  &office.Title,  &office.Election, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Office row-> "+err.Error())
 		}
 		list = append(list, office)

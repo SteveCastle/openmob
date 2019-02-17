@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateCandidate(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Candidate entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO candidate ( id  created_at  updated_at  election ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO candidate (id, created_at, updated_at, election, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemElection ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Candidate-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetCandidate(ctx context.Context, req *v1.GetCandi
 	defer c.Close()
 
 	// query Candidate by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM candidate WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, election,  FROM candidate WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Candidate-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetCandidate(ctx context.Context, req *v1.GetCandi
 
 	// get Candidate data
 	var candidate v1.Candidate
-	if err := rows.Scan(&candidate.Id, &candidate.Title); err != nil {
+	if err := rows.Scan( &candidate.ID,  &candidate.CreatedAt,  &candidate.UpdatedAt,  &candidate.Election, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Candidate row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCandidate(ctx context.Context, req *v1.ListCan
 	defer c.Close()
 
 	// get Candidate list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM candidate")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, election,  FROM candidate")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Candidate-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListCandidate(ctx context.Context, req *v1.ListCan
 	list := []*v1.Candidate{}
 	for rows.Next() {
 		candidate := new(v1.Candidate)
-		if err := rows.Scan(&candidate.Id, &candidate.Title); err != nil {
+		if err := rows.Scan( &candidate.ID,  &candidate.CreatedAt,  &candidate.UpdatedAt,  &candidate.Election, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Candidate row-> "+err.Error())
 		}
 		list = append(list, candidate)

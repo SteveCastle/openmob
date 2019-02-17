@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateBoycott(ctx context.Context, req *v1.CreateB
 	defer c.Close()
 	var id int64
 	// insert Boycott entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO boycott ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO boycott (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Boycott-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetBoycott(ctx context.Context, req *v1.GetBoycott
 	defer c.Close()
 
 	// query Boycott by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM boycott WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM boycott WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Boycott-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetBoycott(ctx context.Context, req *v1.GetBoycott
 
 	// get Boycott data
 	var boycott v1.Boycott
-	if err := rows.Scan(&boycott.Id, &boycott.Title); err != nil {
+	if err := rows.Scan( &boycott.ID,  &boycott.CreatedAt,  &boycott.UpdatedAt,  &boycott.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Boycott row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListBoycott(ctx context.Context, req *v1.ListBoyco
 	defer c.Close()
 
 	// get Boycott list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM boycott")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM boycott")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Boycott-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListBoycott(ctx context.Context, req *v1.ListBoyco
 	list := []*v1.Boycott{}
 	for rows.Next() {
 		boycott := new(v1.Boycott)
-		if err := rows.Scan(&boycott.Id, &boycott.Title); err != nil {
+		if err := rows.Scan( &boycott.ID,  &boycott.CreatedAt,  &boycott.UpdatedAt,  &boycott.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Boycott row-> "+err.Error())
 		}
 		list = append(list, boycott)

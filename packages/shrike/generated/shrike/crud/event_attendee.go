@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert EventAttendee entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee ( id  created_at  updated_at  live_event  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee (id, created_at, updated_at, live_event, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemLiveEvent  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into EventAttendee-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetE
 	defer c.Close()
 
 	// query EventAttendee by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM event_attendee WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, live_event, contact, cause,  FROM event_attendee WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from EventAttendee-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetE
 
 	// get EventAttendee data
 	var eventattendee v1.EventAttendee
-	if err := rows.Scan(&eventattendee.Id, &eventattendee.Title); err != nil {
+	if err := rows.Scan( &eventattendee.ID,  &eventattendee.CreatedAt,  &eventattendee.UpdatedAt,  &eventattendee.LiveEvent,  &eventattendee.Contact,  &eventattendee.Cause, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from EventAttendee row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get EventAttendee list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM event_attendee")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, live_event, contact, cause,  FROM event_attendee")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from EventAttendee-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 	list := []*v1.EventAttendee{}
 	for rows.Next() {
 		eventattendee := new(v1.EventAttendee)
-		if err := rows.Scan(&eventattendee.Id, &eventattendee.Title); err != nil {
+		if err := rows.Scan( &eventattendee.ID,  &eventattendee.CreatedAt,  &eventattendee.UpdatedAt,  &eventattendee.LiveEvent,  &eventattendee.Contact,  &eventattendee.Cause, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from EventAttendee row-> "+err.Error())
 		}
 		list = append(list, eventattendee)

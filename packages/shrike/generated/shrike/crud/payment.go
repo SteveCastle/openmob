@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePayment(ctx context.Context, req *v1.CreateP
 	defer c.Close()
 	var id int64
 	// insert Payment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO payment ( id  created_at  updated_at  customer_order ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO payment (id, created_at, updated_at, customer_order, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCustomerOrder ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Payment-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 	defer c.Close()
 
 	// query Payment by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM payment WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order,  FROM payment WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Payment-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 
 	// get Payment data
 	var payment v1.Payment
-	if err := rows.Scan(&payment.Id, &payment.Title); err != nil {
+	if err := rows.Scan( &payment.ID,  &payment.CreatedAt,  &payment.UpdatedAt,  &payment.CustomerOrder, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Payment row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPayme
 	defer c.Close()
 
 	// get Payment list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM payment")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order,  FROM payment")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Payment-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPayme
 	list := []*v1.Payment{}
 	for rows.Next() {
 		payment := new(v1.Payment)
-		if err := rows.Scan(&payment.Id, &payment.Title); err != nil {
+		if err := rows.Scan( &payment.ID,  &payment.CreatedAt,  &payment.UpdatedAt,  &payment.CustomerOrder, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Payment row-> "+err.Error())
 		}
 		list = append(list, payment)

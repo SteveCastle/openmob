@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateProductType(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert ProductType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product_type ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO product_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ProductType-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetProductType(ctx context.Context, req *v1.GetPro
 	defer c.Close()
 
 	// query ProductType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM product_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM product_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductType-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetProductType(ctx context.Context, req *v1.GetPro
 
 	// get ProductType data
 	var producttype v1.ProductType
-	if err := rows.Scan(&producttype.Id, &producttype.Title); err != nil {
+	if err := rows.Scan( &producttype.ID,  &producttype.CreatedAt,  &producttype.UpdatedAt,  &producttype.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ProductType row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 	defer c.Close()
 
 	// get ProductType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM product_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM product_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductType-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 	list := []*v1.ProductType{}
 	for rows.Next() {
 		producttype := new(v1.ProductType)
-		if err := rows.Scan(&producttype.Id, &producttype.Title); err != nil {
+		if err := rows.Scan( &producttype.ID,  &producttype.CreatedAt,  &producttype.UpdatedAt,  &producttype.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ProductType row-> "+err.Error())
 		}
 		list = append(list, producttype)

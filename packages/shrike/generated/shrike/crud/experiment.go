@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.Crea
 	defer c.Close()
 	var id int64
 	// insert Experiment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO experiment ( id  created_at  updated_at  title  landing_page ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO experiment (id, created_at, updated_at, title, landing_page, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemLandingPage ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Experiment-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 	defer c.Close()
 
 	// query Experiment by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM experiment WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, landing_page,  FROM experiment WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Experiment-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 
 	// get Experiment data
 	var experiment v1.Experiment
-	if err := rows.Scan(&experiment.Id, &experiment.Title); err != nil {
+	if err := rows.Scan( &experiment.ID,  &experiment.CreatedAt,  &experiment.UpdatedAt,  &experiment.Title,  &experiment.LandingPage, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Experiment row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 	defer c.Close()
 
 	// get Experiment list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM experiment")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, landing_page,  FROM experiment")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Experiment-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 	list := []*v1.Experiment{}
 	for rows.Next() {
 		experiment := new(v1.Experiment)
-		if err := rows.Scan(&experiment.Id, &experiment.Title); err != nil {
+		if err := rows.Scan( &experiment.ID,  &experiment.CreatedAt,  &experiment.UpdatedAt,  &experiment.Title,  &experiment.LandingPage, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Experiment row-> "+err.Error())
 		}
 		list = append(list, experiment)

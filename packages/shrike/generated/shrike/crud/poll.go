@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePoll(ctx context.Context, req *v1.CreatePoll
 	defer c.Close()
 	var id int64
 	// insert Poll entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO poll ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO poll (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Poll-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPoll(ctx context.Context, req *v1.GetPollReques
 	defer c.Close()
 
 	// query Poll by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM poll WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM poll WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Poll-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetPoll(ctx context.Context, req *v1.GetPollReques
 
 	// get Poll data
 	var poll v1.Poll
-	if err := rows.Scan(&poll.Id, &poll.Title); err != nil {
+	if err := rows.Scan( &poll.ID,  &poll.CreatedAt,  &poll.UpdatedAt,  &poll.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Poll row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPoll(ctx context.Context, req *v1.ListPollRequ
 	defer c.Close()
 
 	// get Poll list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM poll")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM poll")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Poll-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListPoll(ctx context.Context, req *v1.ListPollRequ
 	list := []*v1.Poll{}
 	for rows.Next() {
 		poll := new(v1.Poll)
-		if err := rows.Scan(&poll.Id, &poll.Title); err != nil {
+		if err := rows.Scan( &poll.ID,  &poll.CreatedAt,  &poll.UpdatedAt,  &poll.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Poll row-> "+err.Error())
 		}
 		list = append(list, poll)

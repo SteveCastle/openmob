@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateLayoutType(ctx context.Context, req *v1.Crea
 	defer c.Close()
 	var id int64
 	// insert LayoutType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layout_type ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO layout_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LayoutType-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetLayoutType(ctx context.Context, req *v1.GetLayo
 	defer c.Close()
 
 	// query LayoutType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM layout_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM layout_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutType-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetLayoutType(ctx context.Context, req *v1.GetLayo
 
 	// get LayoutType data
 	var layouttype v1.LayoutType
-	if err := rows.Scan(&layouttype.Id, &layouttype.Title); err != nil {
+	if err := rows.Scan( &layouttype.ID,  &layouttype.CreatedAt,  &layouttype.UpdatedAt,  &layouttype.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutType row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListLayoutType(ctx context.Context, req *v1.ListLa
 	defer c.Close()
 
 	// get LayoutType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM layout_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM layout_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutType-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListLayoutType(ctx context.Context, req *v1.ListLa
 	list := []*v1.LayoutType{}
 	for rows.Next() {
 		layouttype := new(v1.LayoutType)
-		if err := rows.Scan(&layouttype.Id, &layouttype.Title); err != nil {
+		if err := rows.Scan( &layouttype.ID,  &layouttype.CreatedAt,  &layouttype.UpdatedAt,  &layouttype.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutType row-> "+err.Error())
 		}
 		list = append(list, layouttype)

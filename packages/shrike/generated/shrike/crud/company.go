@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateCompany(ctx context.Context, req *v1.CreateC
 	defer c.Close()
 	var id int64
 	// insert Company entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO company ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO company (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Company-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetCompany(ctx context.Context, req *v1.GetCompany
 	defer c.Close()
 
 	// query Company by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM company WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM company WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Company-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetCompany(ctx context.Context, req *v1.GetCompany
 
 	// get Company data
 	var company v1.Company
-	if err := rows.Scan(&company.Id, &company.Title); err != nil {
+	if err := rows.Scan( &company.ID,  &company.CreatedAt,  &company.UpdatedAt,  &company.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Company row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListCompany(ctx context.Context, req *v1.ListCompa
 	defer c.Close()
 
 	// get Company list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM company")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM company")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Company-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListCompany(ctx context.Context, req *v1.ListCompa
 	list := []*v1.Company{}
 	for rows.Next() {
 		company := new(v1.Company)
-		if err := rows.Scan(&company.Id, &company.Title); err != nil {
+		if err := rows.Scan( &company.ID,  &company.CreatedAt,  &company.UpdatedAt,  &company.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Company row-> "+err.Error())
 		}
 		list = append(list, company)

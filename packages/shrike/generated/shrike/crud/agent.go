@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateAgent(ctx context.Context, req *v1.CreateAge
 	defer c.Close()
 	var id int64
 	// insert Agent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO agent ( id  created_at  updated_at  account ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO agent (id, created_at, updated_at, account, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemAccount ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Agent-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetAgent(ctx context.Context, req *v1.GetAgentRequ
 	defer c.Close()
 
 	// query Agent by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM agent WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, account,  FROM agent WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Agent-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetAgent(ctx context.Context, req *v1.GetAgentRequ
 
 	// get Agent data
 	var agent v1.Agent
-	if err := rows.Scan(&agent.Id, &agent.Title); err != nil {
+	if err := rows.Scan( &agent.ID,  &agent.CreatedAt,  &agent.UpdatedAt,  &agent.Account, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Agent row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListAgent(ctx context.Context, req *v1.ListAgentRe
 	defer c.Close()
 
 	// get Agent list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM agent")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, account,  FROM agent")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Agent-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListAgent(ctx context.Context, req *v1.ListAgentRe
 	list := []*v1.Agent{}
 	for rows.Next() {
 		agent := new(v1.Agent)
-		if err := rows.Scan(&agent.Id, &agent.Title); err != nil {
+		if err := rows.Scan( &agent.ID,  &agent.CreatedAt,  &agent.UpdatedAt,  &agent.Account, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Agent row-> "+err.Error())
 		}
 		list = append(list, agent)

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateContactMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert ContactMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contact_membership ( id  created_at  updated_at  cause  contact ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO contact_membership (id, created_at, updated_at, cause, contact, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemContact ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ContactMembership-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetContactMembership(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// query ContactMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM contact_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, contact,  FROM contact_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ContactMembership-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetContactMembership(ctx context.Context, req *v1.
 
 	// get ContactMembership data
 	var contactmembership v1.ContactMembership
-	if err := rows.Scan(&contactmembership.Id, &contactmembership.Title); err != nil {
+	if err := rows.Scan( &contactmembership.ID,  &contactmembership.CreatedAt,  &contactmembership.UpdatedAt,  &contactmembership.Cause,  &contactmembership.Contact, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ContactMembership row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListContactMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// get ContactMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM contact_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, contact,  FROM contact_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ContactMembership-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListContactMembership(ctx context.Context, req *v1
 	list := []*v1.ContactMembership{}
 	for rows.Next() {
 		contactmembership := new(v1.ContactMembership)
-		if err := rows.Scan(&contactmembership.Id, &contactmembership.Title); err != nil {
+		if err := rows.Scan( &contactmembership.ID,  &contactmembership.CreatedAt,  &contactmembership.UpdatedAt,  &contactmembership.Cause,  &contactmembership.Contact, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ContactMembership row-> "+err.Error())
 		}
 		list = append(list, contactmembership)

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateTerritory(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Territory entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO territory ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO territory (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Territory-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetTerritory(ctx context.Context, req *v1.GetTerri
 	defer c.Close()
 
 	// query Territory by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM territory WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM territory WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Territory-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetTerritory(ctx context.Context, req *v1.GetTerri
 
 	// get Territory data
 	var territory v1.Territory
-	if err := rows.Scan(&territory.Id, &territory.Title); err != nil {
+	if err := rows.Scan( &territory.ID,  &territory.CreatedAt,  &territory.UpdatedAt,  &territory.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Territory row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTer
 	defer c.Close()
 
 	// get Territory list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM territory")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM territory")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Territory-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTer
 	list := []*v1.Territory{}
 	for rows.Next() {
 		territory := new(v1.Territory)
-		if err := rows.Scan(&territory.Id, &territory.Title); err != nil {
+		if err := rows.Scan( &territory.ID,  &territory.CreatedAt,  &territory.UpdatedAt,  &territory.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Territory row-> "+err.Error())
 		}
 		list = append(list, territory)

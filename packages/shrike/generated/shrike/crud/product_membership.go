@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateProductMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert ProductMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product_membership ( id  created_at  updated_at  cause  product ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO product_membership (id, created_at, updated_at, cause, product, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemProduct ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ProductMembership-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetProductMembership(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// query ProductMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM product_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, product,  FROM product_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductMembership-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetProductMembership(ctx context.Context, req *v1.
 
 	// get ProductMembership data
 	var productmembership v1.ProductMembership
-	if err := rows.Scan(&productmembership.Id, &productmembership.Title); err != nil {
+	if err := rows.Scan( &productmembership.ID,  &productmembership.CreatedAt,  &productmembership.UpdatedAt,  &productmembership.Cause,  &productmembership.Product, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ProductMembership row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListProductMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// get ProductMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM product_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, product,  FROM product_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductMembership-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListProductMembership(ctx context.Context, req *v1
 	list := []*v1.ProductMembership{}
 	for rows.Next() {
 		productmembership := new(v1.ProductMembership)
-		if err := rows.Scan(&productmembership.Id, &productmembership.Title); err != nil {
+		if err := rows.Scan( &productmembership.ID,  &productmembership.CreatedAt,  &productmembership.UpdatedAt,  &productmembership.Cause,  &productmembership.Product, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ProductMembership row-> "+err.Error())
 		}
 		list = append(list, productmembership)

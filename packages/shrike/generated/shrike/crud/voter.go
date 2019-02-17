@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateVoter(ctx context.Context, req *v1.CreateVot
 	defer c.Close()
 	var id int64
 	// insert Voter entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO voter ( id  created_at  updated_at  contact  cause ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO voter (id, created_at, updated_at, contact, cause, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Voter-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetVoter(ctx context.Context, req *v1.GetVoterRequ
 	defer c.Close()
 
 	// query Voter by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM voter WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause,  FROM voter WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Voter-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetVoter(ctx context.Context, req *v1.GetVoterRequ
 
 	// get Voter data
 	var voter v1.Voter
-	if err := rows.Scan(&voter.Id, &voter.Title); err != nil {
+	if err := rows.Scan( &voter.ID,  &voter.CreatedAt,  &voter.UpdatedAt,  &voter.Contact,  &voter.Cause, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Voter row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListVoter(ctx context.Context, req *v1.ListVoterRe
 	defer c.Close()
 
 	// get Voter list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM voter")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause,  FROM voter")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Voter-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListVoter(ctx context.Context, req *v1.ListVoterRe
 	list := []*v1.Voter{}
 	for rows.Next() {
 		voter := new(v1.Voter)
-		if err := rows.Scan(&voter.Id, &voter.Title); err != nil {
+		if err := rows.Scan( &voter.ID,  &voter.CreatedAt,  &voter.UpdatedAt,  &voter.Contact,  &voter.Cause, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Voter row-> "+err.Error())
 		}
 		list = append(list, voter)

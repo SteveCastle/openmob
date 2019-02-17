@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert AgentMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership ( id  created_at  updated_at  cause  agent ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership (id, created_at, updated_at, cause, agent, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemAgent ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into AgentMembership-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query AgentMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM agent_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, agent,  FROM agent_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from AgentMembership-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.Ge
 
 	// get AgentMembership data
 	var agentmembership v1.AgentMembership
-	if err := rows.Scan(&agentmembership.Id, &agentmembership.Title); err != nil {
+	if err := rows.Scan( &agentmembership.ID,  &agentmembership.CreatedAt,  &agentmembership.UpdatedAt,  &agentmembership.Cause,  &agentmembership.Agent, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from AgentMembership row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get AgentMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM agent_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, agent,  FROM agent_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from AgentMembership-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.L
 	list := []*v1.AgentMembership{}
 	for rows.Next() {
 		agentmembership := new(v1.AgentMembership)
-		if err := rows.Scan(&agentmembership.Id, &agentmembership.Title); err != nil {
+		if err := rows.Scan( &agentmembership.ID,  &agentmembership.CreatedAt,  &agentmembership.UpdatedAt,  &agentmembership.Cause,  &agentmembership.Agent, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from AgentMembership row-> "+err.Error())
 		}
 		list = append(list, agentmembership)

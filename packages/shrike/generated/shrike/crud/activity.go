@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateActivity(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Activity entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO activity ( id  created_at  updated_at  title  activity_type  contact  cause ) VALUES( $1 $2 $3 $4 $5 $6 $7)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO activity (id, created_at, updated_at, title, activity_type, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, $7, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemActivityType  req.ItemContact  req.ItemCause ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Activity-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetActivity(ctx context.Context, req *v1.GetActivi
 	defer c.Close()
 
 	// query Activity by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM activity WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, activity_type, contact, cause,  FROM activity WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Activity-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetActivity(ctx context.Context, req *v1.GetActivi
 
 	// get Activity data
 	var activity v1.Activity
-	if err := rows.Scan(&activity.Id, &activity.Title); err != nil {
+	if err := rows.Scan( &activity.ID,  &activity.CreatedAt,  &activity.UpdatedAt,  &activity.Title,  &activity.ActivityType,  &activity.Contact,  &activity.Cause, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Activity row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListActivity(ctx context.Context, req *v1.ListActi
 	defer c.Close()
 
 	// get Activity list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM activity")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, activity_type, contact, cause,  FROM activity")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Activity-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListActivity(ctx context.Context, req *v1.ListActi
 	list := []*v1.Activity{}
 	for rows.Next() {
 		activity := new(v1.Activity)
-		if err := rows.Scan(&activity.Id, &activity.Title); err != nil {
+		if err := rows.Scan( &activity.ID,  &activity.CreatedAt,  &activity.UpdatedAt,  &activity.Title,  &activity.ActivityType,  &activity.Contact,  &activity.Cause, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Activity row-> "+err.Error())
 		}
 		list = append(list, activity)

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateNote(ctx context.Context, req *v1.CreateNote
 	defer c.Close()
 	var id int64
 	// insert Note entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO note ( id  created_at  updated_at  contact  cause  body ) VALUES( $1 $2 $3 $4 $5 $6)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO note (id, created_at, updated_at, contact, cause, body, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemContact  req.ItemCause  req.ItemBody ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Note-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 	defer c.Close()
 
 	// query Note by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM note WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause, body,  FROM note WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Note-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 
 	// get Note data
 	var note v1.Note
-	if err := rows.Scan(&note.Id, &note.Title); err != nil {
+	if err := rows.Scan( &note.ID,  &note.CreatedAt,  &note.UpdatedAt,  &note.Contact,  &note.Cause,  &note.Body, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Note row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequ
 	defer c.Close()
 
 	// get Note list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM note")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause, body,  FROM note")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Note-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequ
 	list := []*v1.Note{}
 	for rows.Next() {
 		note := new(v1.Note)
-		if err := rows.Scan(&note.Id, &note.Title); err != nil {
+		if err := rows.Scan( &note.ID,  &note.CreatedAt,  &note.UpdatedAt,  &note.Contact,  &note.Cause,  &note.Body, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Note row-> "+err.Error())
 		}
 		list = append(list, note)

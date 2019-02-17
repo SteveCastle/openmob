@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateProduct(ctx context.Context, req *v1.CreateP
 	defer c.Close()
 	var id int64
 	// insert Product entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product ( id  created_at  updated_at  title  product_type ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO product (id, created_at, updated_at, title, product_type, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle  req.ItemProductType ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Product-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetProduct(ctx context.Context, req *v1.GetProduct
 	defer c.Close()
 
 	// query Product by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM product WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, product_type,  FROM product WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Product-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetProduct(ctx context.Context, req *v1.GetProduct
 
 	// get Product data
 	var product v1.Product
-	if err := rows.Scan(&product.Id, &product.Title); err != nil {
+	if err := rows.Scan( &product.ID,  &product.CreatedAt,  &product.UpdatedAt,  &product.Title,  &product.ProductType, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Product row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListProduct(ctx context.Context, req *v1.ListProdu
 	defer c.Close()
 
 	// get Product list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM product")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, product_type,  FROM product")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Product-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListProduct(ctx context.Context, req *v1.ListProdu
 	list := []*v1.Product{}
 	for rows.Next() {
 		product := new(v1.Product)
-		if err := rows.Scan(&product.Id, &product.Title); err != nil {
+		if err := rows.Scan( &product.ID,  &product.CreatedAt,  &product.UpdatedAt,  &product.Title,  &product.ProductType, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Product row-> "+err.Error())
 		}
 		list = append(list, product)

@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Delivery entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO delivery ( id  created_at  updated_at ) VALUES( $1 $2 $3)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO delivery (id, created_at, updated_at, ) VALUES($1, $2, $3, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Delivery-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 	defer c.Close()
 
 	// query Delivery by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM delivery WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM delivery WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Delivery-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 
 	// get Delivery data
 	var delivery v1.Delivery
-	if err := rows.Scan(&delivery.Id, &delivery.Title); err != nil {
+	if err := rows.Scan( &delivery.ID,  &delivery.CreatedAt,  &delivery.UpdatedAt, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Delivery row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 	defer c.Close()
 
 	// get Delivery list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM delivery")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM delivery")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Delivery-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 	list := []*v1.Delivery{}
 	for rows.Next() {
 		delivery := new(v1.Delivery)
-		if err := rows.Scan(&delivery.Id, &delivery.Title); err != nil {
+		if err := rows.Scan( &delivery.ID,  &delivery.CreatedAt,  &delivery.UpdatedAt, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Delivery row-> "+err.Error())
 		}
 		list = append(list, delivery)

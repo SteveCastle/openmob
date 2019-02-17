@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateDistrictType(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert DistrictType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO district_type ( id  created_at  updated_at  title ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO district_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemTitle ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DistrictType-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetDistrictType(ctx context.Context, req *v1.GetDi
 	defer c.Close()
 
 	// query DistrictType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM district_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM district_type WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DistrictType-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetDistrictType(ctx context.Context, req *v1.GetDi
 
 	// get DistrictType data
 	var districttype v1.DistrictType
-	if err := rows.Scan(&districttype.Id, &districttype.Title); err != nil {
+	if err := rows.Scan( &districttype.ID,  &districttype.CreatedAt,  &districttype.UpdatedAt,  &districttype.Title, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DistrictType row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get DistrictType list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM district_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM district_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DistrictType-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.List
 	list := []*v1.DistrictType{}
 	for rows.Next() {
 		districttype := new(v1.DistrictType)
-		if err := rows.Scan(&districttype.Id, &districttype.Title); err != nil {
+		if err := rows.Scan( &districttype.ID,  &districttype.CreatedAt,  &districttype.UpdatedAt,  &districttype.Title, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DistrictType row-> "+err.Error())
 		}
 		list = append(list, districttype)

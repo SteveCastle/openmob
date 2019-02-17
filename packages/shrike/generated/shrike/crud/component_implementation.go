@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	defer c.Close()
 	var id int64
 	// insert ComponentImplementation entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation ( id  created_at  updated_at ) VALUES( $1 $2 $3)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (id, created_at, updated_at, ) VALUES($1, $2, $3, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentImplementation-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 	defer c.Close()
 
 	// query ComponentImplementation by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM component_implementation WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM component_implementation WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 
 	// get ComponentImplementation data
 	var componentimplementation v1.ComponentImplementation
-	if err := rows.Scan(&componentimplementation.Id, &componentimplementation.Title); err != nil {
+	if err := rows.Scan( &componentimplementation.ID,  &componentimplementation.CreatedAt,  &componentimplementation.UpdatedAt, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	defer c.Close()
 
 	// get ComponentImplementation list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM component_implementation")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM component_implementation")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	list := []*v1.ComponentImplementation{}
 	for rows.Next() {
 		componentimplementation := new(v1.ComponentImplementation)
-		if err := rows.Scan(&componentimplementation.Id, &componentimplementation.Title); err != nil {
+		if err := rows.Scan( &componentimplementation.ID,  &componentimplementation.CreatedAt,  &componentimplementation.UpdatedAt, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
 		}
 		list = append(list, componentimplementation)

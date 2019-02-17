@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateACL(ctx context.Context, req *v1.CreateACLRe
 	defer c.Close()
 	var id int64
 	// insert ACL entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO acl ( id ) VALUES( $1)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO acl (id, ) VALUES($1, )  RETURNING id;",
 		 req.ItemID ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ACL-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 	defer c.Close()
 
 	// query ACL by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM acl WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id,  FROM acl WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ACL-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 
 	// get ACL data
 	var acl v1.ACL
-	if err := rows.Scan(&acl.Id, &acl.Title); err != nil {
+	if err := rows.Scan( &acl.ID, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ACL row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLReques
 	defer c.Close()
 
 	// get ACL list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM acl")
+	rows, err := c.QueryContext(ctx, "SELECT id,  FROM acl")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ACL-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLReques
 	list := []*v1.ACL{}
 	for rows.Next() {
 		acl := new(v1.ACL)
-		if err := rows.Scan(&acl.Id, &acl.Title); err != nil {
+		if err := rows.Scan( &acl.ID, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ACL row-> "+err.Error())
 		}
 		list = append(list, acl)

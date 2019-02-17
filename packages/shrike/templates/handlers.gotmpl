@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert {{.Table.Name}} entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range .Table.Columns}} {{.DBName}} {{end}}) VALUES({{range $index, $value := .Table.Columns}} ${{inc $index}}{{end}})  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range .Table.Columns}}{{.DBName}}, {{end}}) VALUES({{range $index, $value := .Table.Columns}}${{inc $index}}, {{end}})  RETURNING id;",
 		{{range .Table.Columns}} req.Item{{.Name}} {{end}}).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into {{.Table.Name}}-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query {{.Table.Name}} by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM {{snake .Table.Name}} WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT {{range .Table.Columns}}{{.DBName}}, {{end}} FROM {{snake .Table.Name}} WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 
 	// get {{.Table.Name}} data
 	var {{toLower .Table.Name}} v1.{{.Table.Name}}
-	if err := rows.Scan(&{{toLower .Table.Name}}.Id, &{{toLower .Table.Name}}.Title); err != nil {
+	if err := rows.Scan({{range .Table.Columns}} &{{toLower .Table.Name}}.{{.Name}}, {{end}}); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get {{.Table.Name}} list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM {{snake .Table.Name}}")
+	rows, err := c.QueryContext(ctx, "SELECT {{range .Table.Columns}}{{.DBName}}, {{end}} FROM {{snake .Table.Name}}")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 	list := []*v1.{{.Table.Name}}{}
 	for rows.Next() {
 		{{toLower .Table.Name}} := new(v1.{{.Table.Name}})
-		if err := rows.Scan(&{{toLower .Table.Name}}.Id, &{{toLower .Table.Name}}.Title); err != nil {
+		if err := rows.Scan({{range .Table.Columns}} &{{toLower .Table.Name}}.{{.Name}}, {{end}}); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
 		}
 		list = append(list, {{toLower .Table.Name}})

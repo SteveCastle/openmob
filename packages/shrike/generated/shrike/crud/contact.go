@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateC
 	defer c.Close()
 	var id int64
 	// insert Contact entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contact ( id  created_at  updated_at ) VALUES( $1 $2 $3)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO contact (id, created_at, updated_at, ) VALUES($1, $2, $3, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Contact-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 	defer c.Close()
 
 	// query Contact by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM contact WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM contact WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 
 	// get Contact data
 	var contact v1.Contact
-	if err := rows.Scan(&contact.Id, &contact.Title); err != nil {
+	if err := rows.Scan( &contact.ID,  &contact.CreatedAt,  &contact.UpdatedAt, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 	defer c.Close()
 
 	// get Contact list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM contact")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM contact")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 	list := []*v1.Contact{}
 	for rows.Next() {
 		contact := new(v1.Contact)
-		if err := rows.Scan(&contact.Id, &contact.Title); err != nil {
+		if err := rows.Scan( &contact.ID,  &contact.CreatedAt,  &contact.UpdatedAt, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
 		}
 		list = append(list, contact)

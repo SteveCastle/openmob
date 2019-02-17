@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateField(ctx context.Context, req *v1.CreateFie
 	defer c.Close()
 	var id int64
 	// insert Field entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO field ( id  created_at  updated_at  field_type  component ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO field (id, created_at, updated_at, field_type, component, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemFieldType  req.ItemComponent ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Field-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetField(ctx context.Context, req *v1.GetFieldRequ
 	defer c.Close()
 
 	// query Field by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM field WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, component,  FROM field WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Field-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetField(ctx context.Context, req *v1.GetFieldRequ
 
 	// get Field data
 	var field v1.Field
-	if err := rows.Scan(&field.Id, &field.Title); err != nil {
+	if err := rows.Scan( &field.ID,  &field.CreatedAt,  &field.UpdatedAt,  &field.FieldType,  &field.Component, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Field row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListField(ctx context.Context, req *v1.ListFieldRe
 	defer c.Close()
 
 	// get Field list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM field")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, component,  FROM field")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Field-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListField(ctx context.Context, req *v1.ListFieldRe
 	list := []*v1.Field{}
 	for rows.Next() {
 		field := new(v1.Field)
-		if err := rows.Scan(&field.Id, &field.Title); err != nil {
+		if err := rows.Scan( &field.ID,  &field.CreatedAt,  &field.UpdatedAt,  &field.FieldType,  &field.Component, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Field row-> "+err.Error())
 		}
 		list = append(list, field)

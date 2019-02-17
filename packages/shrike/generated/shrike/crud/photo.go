@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePho
 	defer c.Close()
 	var id int64
 	// insert Photo entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO photo ( id  created_at  updated_at  img_url ) VALUES( $1 $2 $3 $4)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO photo (id, created_at, updated_at, img_url, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemImgURL ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Photo-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 	defer c.Close()
 
 	// query Photo by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM photo WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, img_url,  FROM photo WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Photo-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 
 	// get Photo data
 	var photo v1.Photo
-	if err := rows.Scan(&photo.Id, &photo.Title); err != nil {
+	if err := rows.Scan( &photo.ID,  &photo.CreatedAt,  &photo.UpdatedAt,  &photo.ImgURL, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Photo row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 	defer c.Close()
 
 	// get Photo list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM photo")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, img_url,  FROM photo")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Photo-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 	list := []*v1.Photo{}
 	for rows.Next() {
 		photo := new(v1.Photo)
-		if err := rows.Scan(&photo.Id, &photo.Title); err != nil {
+		if err := rows.Scan( &photo.ID,  &photo.CreatedAt,  &photo.UpdatedAt,  &photo.ImgURL, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Photo row-> "+err.Error())
 		}
 		list = append(list, photo)

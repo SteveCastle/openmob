@@ -61,7 +61,7 @@ func (s *shrikeServiceServer) CreateElectionMembership(ctx context.Context, req 
 	defer c.Close()
 	var id int64
 	// insert ElectionMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO election_membership ( id  created_at  updated_at  cause  election ) VALUES( $1 $2 $3 $4 $5)  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO election_membership (id, created_at, updated_at, cause, election, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
 		 req.ItemID  req.ItemCreatedAt  req.ItemUpdatedAt  req.ItemCause  req.ItemElection ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ElectionMembership-> "+err.Error())
@@ -92,7 +92,7 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// query ElectionMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, title FROM election_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, election,  FROM election_membership WHERE id=$1",
 		req.Id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ElectionMembership-> "+err.Error())
@@ -109,7 +109,7 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 
 	// get ElectionMembership data
 	var electionmembership v1.ElectionMembership
-	if err := rows.Scan(&electionmembership.Id, &electionmembership.Title); err != nil {
+	if err := rows.Scan( &electionmembership.ID,  &electionmembership.CreatedAt,  &electionmembership.UpdatedAt,  &electionmembership.Cause,  &electionmembership.Election, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ElectionMembership row-> "+err.Error())
 	}
 
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v
 	defer c.Close()
 
 	// get ElectionMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id,title FROM election_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, election,  FROM election_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ElectionMembership-> "+err.Error())
 	}
@@ -149,7 +149,7 @@ func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v
 	list := []*v1.ElectionMembership{}
 	for rows.Next() {
 		electionmembership := new(v1.ElectionMembership)
-		if err := rows.Scan(&electionmembership.Id, &electionmembership.Title); err != nil {
+		if err := rows.Scan( &electionmembership.ID,  &electionmembership.CreatedAt,  &electionmembership.UpdatedAt,  &electionmembership.Cause,  &electionmembership.Election, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ElectionMembership row-> "+err.Error())
 		}
 		list = append(list, electionmembership)
