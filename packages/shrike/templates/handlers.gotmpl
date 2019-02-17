@@ -2,7 +2,6 @@ package v1
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
@@ -11,41 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-const (
-	// apiVersion is version of API is provided by server
-	apiVersion = "v1"
-)
-
-// shrikeServiceServer is implementation of v1.ShrikeServiceServer proto interface
-type shrikeServiceServer struct {
-	db *sql.DB
-}
-
-// NewShrikeServiceServer creates {{.Table.Name}} service
-func NewShrikeServiceServer(db *sql.DB) v1.ShrikeServiceServer {
-	return &shrikeServiceServer{db: db}
-}
-
-// checkAPI checks if the API version requested by client is supported by server
-func (s *shrikeServiceServer) checkAPI(api string) error {
-	// API version is "" means use current version of the service
-	if len(api) > 0 {
-		if apiVersion != api {
-			return status.Errorf(codes.Unimplemented,
-				"unsupported API version: service implements API version '%s', but asked for '%s'", apiVersion, api)
-		}
-	}
-	return nil
-}
-
-// connect returns SQL database connection from the pool
-func (s *shrikeServiceServer) connect(ctx context.Context) (*sql.Conn, error) {
-	c, err := s.db.Conn(ctx)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to connect to database-> "+err.Error())
-	}
-	return c, nil
-}
 
 // Create new {{.Table.Name}}
 func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1.Create{{.Table.Name}}Request) (*v1.Create{{.Table.Name}}Response, error) {
@@ -62,7 +26,7 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	var id int64
 	// insert {{.Table.Name}} entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range .Table.Columns}}{{.DBName}}, {{end}}) VALUES({{range $index, $value := .Table.Columns}}${{inc $index}}, {{end}})  RETURNING id;",
-		{{range .Table.Columns}} req.Item{{.Name}} {{end}}).Scan(&id)
+		{{range .Table.Columns}} req.Item.{{.Name}}, {{end}}).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into {{.Table.Name}}-> "+err.Error())
 	}
@@ -74,7 +38,7 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 
 	return &v1.Create{{.Table.Name}}Response{
 		Api: apiVersion,
-		Id:  id,
+		ID:  id,
 	}, nil
 }
 
@@ -93,7 +57,7 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 
 	// query {{.Table.Name}} by ID
 	rows, err := c.QueryContext(ctx, "SELECT {{range .Table.Columns}}{{.DBName}}, {{end}} FROM {{snake .Table.Name}} WHERE id=$1",
-		req.Id)
+		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
 	}
@@ -104,7 +68,7 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from {{.Table.Name}}-> "+err.Error())
 		}
 		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%d' is not found",
-			req.Id))
+			req.ID))
 	}
 
 	// get {{.Table.Name}} data
@@ -115,7 +79,7 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 
 	if rows.Next() {
 		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple {{.Table.Name}} rows with ID='%d'",
-			req.Id))
+			req.ID))
 	}
 
 	return &v1.Get{{.Table.Name}}Response{
@@ -180,8 +144,8 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 
 	// update {{snake .Table.Name}}
-	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET title=$1 WHERE id=$2",
-		req.Item.Title, req.Item.Id)
+	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}${{inc $index}}, {{end}} WHERE id=$1",
+		{{range .Table.Columns}}req.Item.{{.Name}},{{end}} )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update {{.Table.Name}}-> "+err.Error())
 	}
@@ -193,7 +157,7 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 
 	if rows == 0 {
 		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%d' is not found",
-			req.Item.Id))
+			req.Item.ID))
 	}
 
 	return &v1.Update{{.Table.Name}}Response{
@@ -217,7 +181,7 @@ func (s *shrikeServiceServer) Delete{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 
 	// delete {{snake .Table.Name}}
-	res, err := c.ExecContext(ctx, "DELETE FROM {{snake .Table.Name}} WHERE id=$1", req.Id)
+	res, err := c.ExecContext(ctx, "DELETE FROM {{snake .Table.Name}} WHERE id=$1", req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete {{.Table.Name}}-> "+err.Error())
 	}
@@ -229,7 +193,7 @@ func (s *shrikeServiceServer) Delete{{.Table.Name}}(ctx context.Context, req *v1
 
 	if rows == 0 {
 		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%d' is not found",
-			req.Id))
+			req.ID))
 	}
 
 	return &v1.Delete{{.Table.Name}}Response{
