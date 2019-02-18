@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new ProductMembership
 func (s *shrikeServiceServer) CreateProductMembership(ctx context.Context, req *v1.CreateProductMembershipRequest) (*v1.CreateProductMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateProductMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert ProductMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product_membership (id, created_at, updated_at, cause, product, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO product_membership (id, created_at, updated_at, cause, product) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.Product, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ProductMembership-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetProductMembership(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// query ProductMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, product,  FROM product_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, product FROM product_membership WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductMembership-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListProductMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// get ProductMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, product,  FROM product_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, product FROM product_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductMembership-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateProductMembership(ctx context.Context, req *
 	defer c.Close()
 
 	// update product_membership
-	res, err := c.ExecContext(ctx, "UPDATE product_membership SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE product_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Product, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ProductMembership-> "+err.Error())

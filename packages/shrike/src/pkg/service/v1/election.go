@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Election
 func (s *shrikeServiceServer) CreateElection(ctx context.Context, req *v1.CreateElectionRequest) (*v1.CreateElectionResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateElection(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Election entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO election (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO election (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Election-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetElection(ctx context.Context, req *v1.GetElecti
 	defer c.Close()
 
 	// query Election by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM election WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM election WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Election-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListElection(ctx context.Context, req *v1.ListElec
 	defer c.Close()
 
 	// get Election list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM election")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM election")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Election-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateElection(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update election
-	res, err := c.ExecContext(ctx, "UPDATE election SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE election SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Election-> "+err.Error())

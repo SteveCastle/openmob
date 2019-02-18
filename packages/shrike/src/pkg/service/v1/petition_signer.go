@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new PetitionSigner
 func (s *shrikeServiceServer) CreatePetitionSigner(ctx context.Context, req *v1.CreatePetitionSignerRequest) (*v1.CreatePetitionSignerResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreatePetitionSigner(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PetitionSigner entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition_signer (id, created_at, updated_at, petition, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO petition_signer (id, created_at, updated_at, petition, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Petition,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PetitionSigner-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetPetitionSigner(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query PetitionSigner by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, petition, contact, cause,  FROM petition_signer WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, petition, contact, cause FROM petition_signer WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionSigner-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListPetitionSigner(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get PetitionSigner list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, petition, contact, cause,  FROM petition_signer")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, petition, contact, cause FROM petition_signer")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionSigner-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePetitionSigner(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// update petition_signer
-	res, err := c.ExecContext(ctx, "UPDATE petition_signer SET $1, $2, $3, $4, $5, $6,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE petition_signer SET $1 ,$2 ,$3 ,$4 ,$5 ,$6  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Petition,req.Item.Contact,req.Item.Cause, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update PetitionSigner-> "+err.Error())

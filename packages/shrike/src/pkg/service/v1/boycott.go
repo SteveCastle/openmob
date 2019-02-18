@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Boycott
 func (s *shrikeServiceServer) CreateBoycott(ctx context.Context, req *v1.CreateBoycottRequest) (*v1.CreateBoycottResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateBoycott(ctx context.Context, req *v1.CreateB
 	defer c.Close()
 	var id int64
 	// insert Boycott entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO boycott (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO boycott (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Boycott-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetBoycott(ctx context.Context, req *v1.GetBoycott
 	defer c.Close()
 
 	// query Boycott by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM boycott WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM boycott WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Boycott-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListBoycott(ctx context.Context, req *v1.ListBoyco
 	defer c.Close()
 
 	// get Boycott list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM boycott")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM boycott")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Boycott-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateBoycott(ctx context.Context, req *v1.UpdateB
 	defer c.Close()
 
 	// update boycott
-	res, err := c.ExecContext(ctx, "UPDATE boycott SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE boycott SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Boycott-> "+err.Error())

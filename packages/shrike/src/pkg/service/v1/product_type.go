@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new ProductType
 func (s *shrikeServiceServer) CreateProductType(ctx context.Context, req *v1.CreateProductTypeRequest) (*v1.CreateProductTypeResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateProductType(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert ProductType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO product_type (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ProductType-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetProductType(ctx context.Context, req *v1.GetPro
 	defer c.Close()
 
 	// query ProductType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM product_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM product_type WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductType-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 	defer c.Close()
 
 	// get ProductType list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM product_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM product_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductType-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateProductType(ctx context.Context, req *v1.Upd
 	defer c.Close()
 
 	// update product_type
-	res, err := c.ExecContext(ctx, "UPDATE product_type SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE product_type SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ProductType-> "+err.Error())

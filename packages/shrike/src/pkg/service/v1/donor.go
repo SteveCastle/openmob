@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Donor
 func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDonorRequest) (*v1.CreateDonorResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDon
 	defer c.Close()
 	var id int64
 	// insert Donor entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donor (id, created_at, updated_at, customer_order, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO donor (id, created_at, updated_at, customer_order, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.CustomerOrder,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Donor-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 	defer c.Close()
 
 	// query Donor by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause,  FROM donor WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause FROM donor WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Donor-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 	defer c.Close()
 
 	// get Donor list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause,  FROM donor")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause FROM donor")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Donor-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateDonor(ctx context.Context, req *v1.UpdateDon
 	defer c.Close()
 
 	// update donor
-	res, err := c.ExecContext(ctx, "UPDATE donor SET $1, $2, $3, $4, $5, $6,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE donor SET $1 ,$2 ,$3 ,$4 ,$5 ,$6  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.CustomerOrder,req.Item.Contact,req.Item.Cause, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Donor-> "+err.Error())

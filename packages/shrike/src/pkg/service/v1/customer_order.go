@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new CustomerOrder
 func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.CreateCustomerOrderRequest) (*v1.CreateCustomerOrderResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert CustomerOrder entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customer_order (id, created_at, updated_at, customer_cart, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_order (id, created_at, updated_at, customer_cart) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.CustomerCart, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerOrder-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetCustomerOrder(ctx context.Context, req *v1.GetC
 	defer c.Close()
 
 	// query CustomerOrder by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_cart,  FROM customer_order WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_cart FROM customer_order WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerOrder-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListCustomerOrder(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get CustomerOrder list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_cart,  FROM customer_order")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_cart FROM customer_order")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerOrder-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateCustomerOrder(ctx context.Context, req *v1.U
 	defer c.Close()
 
 	// update customer_order
-	res, err := c.ExecContext(ctx, "UPDATE customer_order SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE customer_order SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.CustomerCart, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update CustomerOrder-> "+err.Error())

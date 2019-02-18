@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Delivery
 func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.CreateDeliveryRequest) (*v1.CreateDeliveryResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Delivery entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO delivery (id, created_at, updated_at, ) VALUES($1, $2, $3, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO delivery (id, created_at, updated_at) VALUES($1, $2, $3)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Delivery-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 	defer c.Close()
 
 	// query Delivery by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM delivery WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM delivery WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Delivery-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 	defer c.Close()
 
 	// get Delivery list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM delivery")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM delivery")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Delivery-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateDelivery(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update delivery
-	res, err := c.ExecContext(ctx, "UPDATE delivery SET $1, $2, $3,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE delivery SET $1 ,$2 ,$3  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Delivery-> "+err.Error())

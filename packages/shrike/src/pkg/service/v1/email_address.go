@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new EmailAddress
 func (s *shrikeServiceServer) CreateEmailAddress(ctx context.Context, req *v1.CreateEmailAddressRequest) (*v1.CreateEmailAddressResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateEmailAddress(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert EmailAddress entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO email_address (id, created_at, updated_at, address, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO email_address (id, created_at, updated_at, address) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Address, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into EmailAddress-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetEmailAddress(ctx context.Context, req *v1.GetEm
 	defer c.Close()
 
 	// query EmailAddress by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, address,  FROM email_address WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, address FROM email_address WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from EmailAddress-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListEmailAddress(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get EmailAddress list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, address,  FROM email_address")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, address FROM email_address")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from EmailAddress-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateEmailAddress(ctx context.Context, req *v1.Up
 	defer c.Close()
 
 	// update email_address
-	res, err := c.ExecContext(ctx, "UPDATE email_address SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE email_address SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Address, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update EmailAddress-> "+err.Error())

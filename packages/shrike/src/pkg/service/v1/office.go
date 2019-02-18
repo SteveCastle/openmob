@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Office
 func (s *shrikeServiceServer) CreateOffice(ctx context.Context, req *v1.CreateOfficeRequest) (*v1.CreateOfficeResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateOffice(ctx context.Context, req *v1.CreateOf
 	defer c.Close()
 	var id int64
 	// insert Office entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO office (id, created_at, updated_at, title, election, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO office (id, created_at, updated_at, title, election) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.Election, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Office-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 	defer c.Close()
 
 	// query Office by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election,  FROM office WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election FROM office WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Office-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 	defer c.Close()
 
 	// get Office list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election,  FROM office")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election FROM office")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Office-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateOffice(ctx context.Context, req *v1.UpdateOf
 	defer c.Close()
 
 	// update office
-	res, err := c.ExecContext(ctx, "UPDATE office SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE office SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.Election, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Office-> "+err.Error())

@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new VolunteerOpportunityType
 func (s *shrikeServiceServer) CreateVolunteerOpportunityType(ctx context.Context, req *v1.CreateVolunteerOpportunityTypeRequest) (*v1.CreateVolunteerOpportunityTypeResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityType(ctx context.Context
 	defer c.Close()
 	var id int64
 	// insert VolunteerOpportunityType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_type (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunityType-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityType(ctx context.Context, r
 	defer c.Close()
 
 	// query VolunteerOpportunityType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM volunteer_opportunity_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM volunteer_opportunity_type WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityType-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityType(ctx context.Context, 
 	defer c.Close()
 
 	// get VolunteerOpportunityType list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM volunteer_opportunity_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM volunteer_opportunity_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityType-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityType(ctx context.Context
 	defer c.Close()
 
 	// update volunteer_opportunity_type
-	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_type SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_type SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunityType-> "+err.Error())

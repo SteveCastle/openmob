@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new ElectionMembership
 func (s *shrikeServiceServer) CreateElectionMembership(ctx context.Context, req *v1.CreateElectionMembershipRequest) (*v1.CreateElectionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateElectionMembership(ctx context.Context, req 
 	defer c.Close()
 	var id int64
 	// insert ElectionMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO election_membership (id, created_at, updated_at, cause, election, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO election_membership (id, created_at, updated_at, cause, election) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.Election, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ElectionMembership-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// query ElectionMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, election,  FROM election_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, election FROM election_membership WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ElectionMembership-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v
 	defer c.Close()
 
 	// get ElectionMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, election,  FROM election_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, election FROM election_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ElectionMembership-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateElectionMembership(ctx context.Context, req 
 	defer c.Close()
 
 	// update election_membership
-	res, err := c.ExecContext(ctx, "UPDATE election_membership SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE election_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Election, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ElectionMembership-> "+err.Error())

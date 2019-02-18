@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new DonationCampaignMembership
 func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Context, req *v1.CreateDonationCampaignMembershipRequest) (*v1.CreateDonationCampaignMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Conte
 	defer c.Close()
 	var id int64
 	// insert DonationCampaignMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign_membership (id, created_at, updated_at, cause, donation_campaign, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign_membership (id, created_at, updated_at, cause, donation_campaign) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.DonationCampaign, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DonationCampaignMembership-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetDonationCampaignMembership(ctx context.Context,
 	defer c.Close()
 
 	// query DonationCampaignMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, donation_campaign,  FROM donation_campaign_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, donation_campaign FROM donation_campaign_membership WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaignMembership-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context
 	defer c.Close()
 
 	// get DonationCampaignMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, donation_campaign,  FROM donation_campaign_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, donation_campaign FROM donation_campaign_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaignMembership-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateDonationCampaignMembership(ctx context.Conte
 	defer c.Close()
 
 	// update donation_campaign_membership
-	res, err := c.ExecContext(ctx, "UPDATE donation_campaign_membership SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE donation_campaign_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.DonationCampaign, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update DonationCampaignMembership-> "+err.Error())

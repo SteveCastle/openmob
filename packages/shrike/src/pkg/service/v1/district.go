@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new District
 func (s *shrikeServiceServer) CreateDistrict(ctx context.Context, req *v1.CreateDistrictRequest) (*v1.CreateDistrictResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateDistrict(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert District entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO district (id, created_at, updated_at, geom, title, district_type, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO district (id, created_at, updated_at, geom, title, district_type) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Geom,  req.Item.Title,  req.Item.DistrictType, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into District-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetDistrict(ctx context.Context, req *v1.GetDistri
 	defer c.Close()
 
 	// query District by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, geom, title, district_type,  FROM district WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, geom, title, district_type FROM district WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from District-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListDistrict(ctx context.Context, req *v1.ListDist
 	defer c.Close()
 
 	// get District list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, geom, title, district_type,  FROM district")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, geom, title, district_type FROM district")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from District-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateDistrict(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update district
-	res, err := c.ExecContext(ctx, "UPDATE district SET $1, $2, $3, $4, $5, $6,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE district SET $1 ,$2 ,$3 ,$4 ,$5 ,$6  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Geom,req.Item.Title,req.Item.DistrictType, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update District-> "+err.Error())

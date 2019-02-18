@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new PollRespondant
 func (s *shrikeServiceServer) CreatePollRespondant(ctx context.Context, req *v1.CreatePollRespondantRequest) (*v1.CreatePollRespondantResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreatePollRespondant(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PollRespondant entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO poll_respondant (id, created_at, updated_at, poll, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO poll_respondant (id, created_at, updated_at, poll, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Poll,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PollRespondant-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query PollRespondant by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, poll, contact, cause,  FROM poll_respondant WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, poll, contact, cause FROM poll_respondant WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollRespondant-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListPollRespondant(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get PollRespondant list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, poll, contact, cause,  FROM poll_respondant")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, poll, contact, cause FROM poll_respondant")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollRespondant-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePollRespondant(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// update poll_respondant
-	res, err := c.ExecContext(ctx, "UPDATE poll_respondant SET $1, $2, $3, $4, $5, $6,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE poll_respondant SET $1 ,$2 ,$3 ,$4 ,$5 ,$6  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Poll,req.Item.Contact,req.Item.Cause, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update PollRespondant-> "+err.Error())

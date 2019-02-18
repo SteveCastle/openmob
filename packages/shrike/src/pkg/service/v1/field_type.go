@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new FieldType
 func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.CreateFieldTypeRequest) (*v1.CreateFieldTypeResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert FieldType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO field_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO field_type (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into FieldType-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 	defer c.Close()
 
 	// query FieldType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM field_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM field_type WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from FieldType-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 	defer c.Close()
 
 	// get FieldType list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM field_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM field_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from FieldType-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateFieldType(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update field_type
-	res, err := c.ExecContext(ctx, "UPDATE field_type SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE field_type SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update FieldType-> "+err.Error())

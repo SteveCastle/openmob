@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new ComponentType
 func (s *shrikeServiceServer) CreateComponentType(ctx context.Context, req *v1.CreateComponentTypeRequest) (*v1.CreateComponentTypeResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateComponentType(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert ComponentType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO component_type (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentType-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetComponentType(ctx context.Context, req *v1.GetC
 	defer c.Close()
 
 	// query ComponentType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM component_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM component_type WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentType-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListComponentType(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get ComponentType list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM component_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM component_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentType-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateComponentType(ctx context.Context, req *v1.U
 	defer c.Close()
 
 	// update component_type
-	res, err := c.ExecContext(ctx, "UPDATE component_type SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE component_type SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ComponentType-> "+err.Error())

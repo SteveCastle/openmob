@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new LiveEvent
 func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.CreateLiveEventRequest) (*v1.CreateLiveEventResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert LiveEvent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event (id, created_at, updated_at, title, live_event_type, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event (id, created_at, updated_at, title, live_event_type) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.LiveEventType, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEvent-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 	defer c.Close()
 
 	// query LiveEvent by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, live_event_type,  FROM live_event WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, live_event_type FROM live_event WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 	defer c.Close()
 
 	// get LiveEvent list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, live_event_type,  FROM live_event")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, live_event_type FROM live_event")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateLiveEvent(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update live_event
-	res, err := c.ExecContext(ctx, "UPDATE live_event SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE live_event SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.LiveEventType, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LiveEvent-> "+err.Error())

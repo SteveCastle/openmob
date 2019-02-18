@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new MailingAddress
 func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.CreateMailingAddressRequest) (*v1.CreateMailingAddressResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert MailingAddress entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address (id, created_at, updated_at, street_address, city, state, zip_code, ) VALUES($1, $2, $3, $4, $5, $6, $7, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address (id, created_at, updated_at, street_address, city, state, zip_code) VALUES($1, $2, $3, $4, $5, $6, $7)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.StreetAddress,  req.Item.City,  req.Item.State,  req.Item.ZipCode, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into MailingAddress-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 	defer c.Close()
 
 	// query MailingAddress by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, street_address, city, state, zip_code,  FROM mailing_address WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, street_address, city, state, zip_code FROM mailing_address WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from MailingAddress-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 	defer c.Close()
 
 	// get MailingAddress list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, street_address, city, state, zip_code,  FROM mailing_address")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, street_address, city, state, zip_code FROM mailing_address")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from MailingAddress-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateMailingAddress(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// update mailing_address
-	res, err := c.ExecContext(ctx, "UPDATE mailing_address SET $1, $2, $3, $4, $5, $6, $7,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE mailing_address SET $1 ,$2 ,$3 ,$4 ,$5 ,$6 ,$7  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.StreetAddress,req.Item.City,req.Item.State,req.Item.ZipCode, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update MailingAddress-> "+err.Error())

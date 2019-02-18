@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Product
 func (s *shrikeServiceServer) CreateProduct(ctx context.Context, req *v1.CreateProductRequest) (*v1.CreateProductResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateProduct(ctx context.Context, req *v1.CreateP
 	defer c.Close()
 	var id int64
 	// insert Product entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product (id, created_at, updated_at, title, product_type, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO product (id, created_at, updated_at, title, product_type) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.ProductType, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Product-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetProduct(ctx context.Context, req *v1.GetProduct
 	defer c.Close()
 
 	// query Product by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, product_type,  FROM product WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, product_type FROM product WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Product-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListProduct(ctx context.Context, req *v1.ListProdu
 	defer c.Close()
 
 	// get Product list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, product_type,  FROM product")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, product_type FROM product")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Product-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateProduct(ctx context.Context, req *v1.UpdateP
 	defer c.Close()
 
 	// update product
-	res, err := c.ExecContext(ctx, "UPDATE product SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE product SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.ProductType, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Product-> "+err.Error())

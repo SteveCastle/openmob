@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new AgentMembership
 func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1.CreateAgentMembershipRequest) (*v1.CreateAgentMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert AgentMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership (id, created_at, updated_at, cause, agent, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership (id, created_at, updated_at, cause, agent) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.Agent, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into AgentMembership-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query AgentMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, agent,  FROM agent_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, agent FROM agent_membership WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from AgentMembership-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get AgentMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, agent,  FROM agent_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, agent FROM agent_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from AgentMembership-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateAgentMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// update agent_membership
-	res, err := c.ExecContext(ctx, "UPDATE agent_membership SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE agent_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Agent, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update AgentMembership-> "+err.Error())

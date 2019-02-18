@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new EventAttendee
 func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.CreateEventAttendeeRequest) (*v1.CreateEventAttendeeResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert EventAttendee entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee (id, created_at, updated_at, live_event, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee (id, created_at, updated_at, live_event, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.LiveEvent,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into EventAttendee-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetE
 	defer c.Close()
 
 	// query EventAttendee by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, live_event, contact, cause,  FROM event_attendee WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, live_event, contact, cause FROM event_attendee WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from EventAttendee-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get EventAttendee list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, live_event, contact, cause,  FROM event_attendee")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, live_event, contact, cause FROM event_attendee")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from EventAttendee-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateEventAttendee(ctx context.Context, req *v1.U
 	defer c.Close()
 
 	// update event_attendee
-	res, err := c.ExecContext(ctx, "UPDATE event_attendee SET $1, $2, $3, $4, $5, $6,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE event_attendee SET $1 ,$2 ,$3 ,$4 ,$5 ,$6  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.LiveEvent,req.Item.Contact,req.Item.Cause, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update EventAttendee-> "+err.Error())

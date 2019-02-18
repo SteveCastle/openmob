@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Note
 func (s *shrikeServiceServer) CreateNote(ctx context.Context, req *v1.CreateNoteRequest) (*v1.CreateNoteResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateNote(ctx context.Context, req *v1.CreateNote
 	defer c.Close()
 	var id int64
 	// insert Note entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO note (id, created_at, updated_at, contact, cause, body, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO note (id, created_at, updated_at, contact, cause, body) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Contact,  req.Item.Cause,  req.Item.Body, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Note-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 	defer c.Close()
 
 	// query Note by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause, body,  FROM note WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause, body FROM note WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Note-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequ
 	defer c.Close()
 
 	// get Note list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause, body,  FROM note")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause, body FROM note")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Note-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateNote(ctx context.Context, req *v1.UpdateNote
 	defer c.Close()
 
 	// update note
-	res, err := c.ExecContext(ctx, "UPDATE note SET $1, $2, $3, $4, $5, $6,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE note SET $1 ,$2 ,$3 ,$4 ,$5 ,$6  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Contact,req.Item.Cause,req.Item.Body, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Note-> "+err.Error())

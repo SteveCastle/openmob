@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new ActivityType
 func (s *shrikeServiceServer) CreateActivityType(ctx context.Context, req *v1.CreateActivityTypeRequest) (*v1.CreateActivityTypeResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateActivityType(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert ActivityType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO activity_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO activity_type (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ActivityType-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetActivityType(ctx context.Context, req *v1.GetAc
 	defer c.Close()
 
 	// query ActivityType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM activity_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM activity_type WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ActivityType-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListActivityType(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get ActivityType list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM activity_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM activity_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ActivityType-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateActivityType(ctx context.Context, req *v1.Up
 	defer c.Close()
 
 	// update activity_type
-	res, err := c.ExecContext(ctx, "UPDATE activity_type SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE activity_type SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ActivityType-> "+err.Error())

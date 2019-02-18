@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new OwnerMembership
 func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1.CreateOwnerMembershipRequest) (*v1.CreateOwnerMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert OwnerMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO owner_membership (id, created_at, updated_at, cause, account, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO owner_membership (id, created_at, updated_at, cause, account) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.Account, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into OwnerMembership-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query OwnerMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, account,  FROM owner_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, account FROM owner_membership WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from OwnerMembership-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListOwnerMembership(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get OwnerMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, account,  FROM owner_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, account FROM owner_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from OwnerMembership-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateOwnerMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// update owner_membership
-	res, err := c.ExecContext(ctx, "UPDATE owner_membership SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE owner_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Account, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update OwnerMembership-> "+err.Error())

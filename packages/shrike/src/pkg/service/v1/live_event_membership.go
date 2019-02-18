@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new LiveEventMembership
 func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req *v1.CreateLiveEventMembershipRequest) (*v1.CreateLiveEventMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req
 	defer c.Close()
 	var id int64
 	// insert LiveEventMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event_membership (id, created_at, updated_at, cause, live_event, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event_membership (id, created_at, updated_at, cause, live_event) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.LiveEvent, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEventMembership-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 	defer c.Close()
 
 	// query LiveEventMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, live_event,  FROM live_event_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, live_event FROM live_event_membership WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventMembership-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 	defer c.Close()
 
 	// get LiveEventMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, live_event,  FROM live_event_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, live_event FROM live_event_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventMembership-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateLiveEventMembership(ctx context.Context, req
 	defer c.Close()
 
 	// update live_event_membership
-	res, err := c.ExecContext(ctx, "UPDATE live_event_membership SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE live_event_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.LiveEvent, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LiveEventMembership-> "+err.Error())

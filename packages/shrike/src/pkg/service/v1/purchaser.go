@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Purchaser
 func (s *shrikeServiceServer) CreatePurchaser(ctx context.Context, req *v1.CreatePurchaserRequest) (*v1.CreatePurchaserResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreatePurchaser(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Purchaser entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO purchaser (id, created_at, updated_at, customer_order, contact, cause, ) VALUES($1, $2, $3, $4, $5, $6, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO purchaser (id, created_at, updated_at, customer_order, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.CustomerOrder,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Purchaser-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetPurchaser(ctx context.Context, req *v1.GetPurch
 	defer c.Close()
 
 	// query Purchaser by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause,  FROM purchaser WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause FROM purchaser WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Purchaser-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 	defer c.Close()
 
 	// get Purchaser list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause,  FROM purchaser")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause FROM purchaser")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Purchaser-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePurchaser(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update purchaser
-	res, err := c.ExecContext(ctx, "UPDATE purchaser SET $1, $2, $3, $4, $5, $6,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE purchaser SET $1 ,$2 ,$3 ,$4 ,$5 ,$6  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.CustomerOrder,req.Item.Contact,req.Item.Cause, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Purchaser-> "+err.Error())

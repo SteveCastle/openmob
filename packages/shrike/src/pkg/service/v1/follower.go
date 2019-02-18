@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Follower
 func (s *shrikeServiceServer) CreateFollower(ctx context.Context, req *v1.CreateFollowerRequest) (*v1.CreateFollowerResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateFollower(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Follower entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO follower (id, created_at, updated_at, contact, cause, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO follower (id, created_at, updated_at, contact, cause) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Follower-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetFollower(ctx context.Context, req *v1.GetFollow
 	defer c.Close()
 
 	// query Follower by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause,  FROM follower WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause FROM follower WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Follower-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListFollower(ctx context.Context, req *v1.ListFoll
 	defer c.Close()
 
 	// get Follower list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause,  FROM follower")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause FROM follower")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Follower-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateFollower(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update follower
-	res, err := c.ExecContext(ctx, "UPDATE follower SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE follower SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Contact,req.Item.Cause, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Follower-> "+err.Error())

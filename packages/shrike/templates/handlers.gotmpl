@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new {{.Table.Name}}
 func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1.Create{{.Table.Name}}Request) (*v1.Create{{.Table.Name}}Response, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert {{.Table.Name}} entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range .Table.Columns}}{{.DBName}}, {{end}}) VALUES({{range $index, $value := .Table.Columns}}${{inc $index}}, {{end}})  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}{{end}}) VALUES({{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}${{inc $index}}{{end}})  RETURNING id;",
 		{{range .Table.Columns}} req.Item.{{.Name}}, {{end}}).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into {{.Table.Name}}-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 	defer c.Close()
 
 	// query {{.Table.Name}} by ID
-	rows, err := c.QueryContext(ctx, "SELECT {{range .Table.Columns}}{{.DBName}}, {{end}} FROM {{snake .Table.Name}} WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT {{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}{{end}} FROM {{snake .Table.Name}} WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 	defer c.Close()
 
 	// get {{.Table.Name}} list
-	rows, err := c.QueryContext(ctx, "SELECT {{range .Table.Columns}}{{.DBName}}, {{end}} FROM {{snake .Table.Name}}")
+	rows, err := c.QueryContext(ctx, "SELECT {{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}{{end}} FROM {{snake .Table.Name}}")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 
 	// update {{snake .Table.Name}}
-	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}${{inc $index}}, {{end}} WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}{{if $index}},{{end}}${{inc $index}} {{end}} WHERE id=$1",
 		{{range .Table.Columns}}req.Item.{{.Name}},{{end}} )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update {{.Table.Name}}-> "+err.Error())

@@ -24,8 +24,8 @@ func (s *shrikeServiceServer) CreateAccount(ctx context.Context, req *v1.CreateA
 	defer c.Close()
 	var id int64
 	// insert Account entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO account (id, created_at, updated_at, username, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
-		req.Item.ID, req.Item.CreatedAt, req.Item.UpdatedAt, req.Item.Username).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO account (id, created_at, updated_at, username) VALUES($1, $2, $3, $4)  RETURNING id;",
+		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Username, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Account-> "+err.Error())
 	}
@@ -55,7 +55,7 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 	defer c.Close()
 
 	// query Account by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, username,  FROM account WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, username FROM account WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Account-> "+err.Error())
@@ -72,7 +72,7 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 
 	// get Account data
 	var account v1.Account
-	if err := rows.Scan(&account.ID, &account.CreatedAt, &account.UpdatedAt, &account.Username); err != nil {
+	if err := rows.Scan( &account.ID,  &account.CreatedAt,  &account.UpdatedAt,  &account.Username, ); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
 	}
 
@@ -103,7 +103,7 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 	defer c.Close()
 
 	// get Account list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, username,  FROM account")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, username FROM account")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Account-> "+err.Error())
 	}
@@ -112,7 +112,7 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 	list := []*v1.Account{}
 	for rows.Next() {
 		account := new(v1.Account)
-		if err := rows.Scan(&account.ID, &account.CreatedAt, &account.UpdatedAt, &account.Username); err != nil {
+		if err := rows.Scan( &account.ID,  &account.CreatedAt,  &account.UpdatedAt,  &account.Username, ); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
 		}
 		list = append(list, account)
@@ -143,8 +143,8 @@ func (s *shrikeServiceServer) UpdateAccount(ctx context.Context, req *v1.UpdateA
 	defer c.Close()
 
 	// update account
-	res, err := c.ExecContext(ctx, "UPDATE account SET $1, $2, $3, $4,  WHERE id=$1",
-		req.Item.ID, req.Item.CreatedAt, req.Item.UpdatedAt, req.Item.Username)
+	res, err := c.ExecContext(ctx, "UPDATE account SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
+		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Username, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Account-> "+err.Error())
 	}

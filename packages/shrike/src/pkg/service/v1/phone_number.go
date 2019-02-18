@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new PhoneNumber
 func (s *shrikeServiceServer) CreatePhoneNumber(ctx context.Context, req *v1.CreatePhoneNumberRequest) (*v1.CreatePhoneNumberResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreatePhoneNumber(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert PhoneNumber entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO phone_number (id, created_at, updated_at, phone_number, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO phone_number (id, created_at, updated_at, phone_number) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.PhoneNumber, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PhoneNumber-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 	defer c.Close()
 
 	// query PhoneNumber by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, phone_number,  FROM phone_number WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, phone_number FROM phone_number WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PhoneNumber-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListPhoneNumber(ctx context.Context, req *v1.ListP
 	defer c.Close()
 
 	// get PhoneNumber list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, phone_number,  FROM phone_number")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, phone_number FROM phone_number")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PhoneNumber-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePhoneNumber(ctx context.Context, req *v1.Upd
 	defer c.Close()
 
 	// update phone_number
-	res, err := c.ExecContext(ctx, "UPDATE phone_number SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE phone_number SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.PhoneNumber, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update PhoneNumber-> "+err.Error())

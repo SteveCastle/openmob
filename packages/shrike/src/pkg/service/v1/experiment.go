@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Experiment
 func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.CreateExperimentRequest) (*v1.CreateExperimentResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.Crea
 	defer c.Close()
 	var id int64
 	// insert Experiment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO experiment (id, created_at, updated_at, title, landing_page, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO experiment (id, created_at, updated_at, title, landing_page) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.LandingPage, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Experiment-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 	defer c.Close()
 
 	// query Experiment by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, landing_page,  FROM experiment WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, landing_page FROM experiment WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Experiment-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 	defer c.Close()
 
 	// get Experiment list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, landing_page,  FROM experiment")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, landing_page FROM experiment")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Experiment-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateExperiment(ctx context.Context, req *v1.Upda
 	defer c.Close()
 
 	// update experiment
-	res, err := c.ExecContext(ctx, "UPDATE experiment SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE experiment SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.LandingPage, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Experiment-> "+err.Error())

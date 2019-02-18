@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new PetitionMembership
 func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req *v1.CreatePetitionMembershipRequest) (*v1.CreatePetitionMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req 
 	defer c.Close()
 	var id int64
 	// insert PetitionMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition_membership (id, created_at, updated_at, cause, petition, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO petition_membership (id, created_at, updated_at, cause, petition) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.Petition, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PetitionMembership-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetPetitionMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// query PetitionMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, petition,  FROM petition_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, petition FROM petition_membership WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionMembership-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v
 	defer c.Close()
 
 	// get PetitionMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, petition,  FROM petition_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, petition FROM petition_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionMembership-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePetitionMembership(ctx context.Context, req 
 	defer c.Close()
 
 	// update petition_membership
-	res, err := c.ExecContext(ctx, "UPDATE petition_membership SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE petition_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Petition, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update PetitionMembership-> "+err.Error())

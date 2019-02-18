@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Payment
 func (s *shrikeServiceServer) CreatePayment(ctx context.Context, req *v1.CreatePaymentRequest) (*v1.CreatePaymentResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreatePayment(ctx context.Context, req *v1.CreateP
 	defer c.Close()
 	var id int64
 	// insert Payment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO payment (id, created_at, updated_at, customer_order, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO payment (id, created_at, updated_at, customer_order) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.CustomerOrder, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Payment-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 	defer c.Close()
 
 	// query Payment by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order,  FROM payment WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order FROM payment WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Payment-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPayme
 	defer c.Close()
 
 	// get Payment list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order,  FROM payment")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order FROM payment")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Payment-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePayment(ctx context.Context, req *v1.UpdateP
 	defer c.Close()
 
 	// update payment
-	res, err := c.ExecContext(ctx, "UPDATE payment SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE payment SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.CustomerOrder, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Payment-> "+err.Error())

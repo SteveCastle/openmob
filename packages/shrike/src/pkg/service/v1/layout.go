@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Layout
 func (s *shrikeServiceServer) CreateLayout(ctx context.Context, req *v1.CreateLayoutRequest) (*v1.CreateLayoutResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateLayout(ctx context.Context, req *v1.CreateLa
 	defer c.Close()
 	var id int64
 	// insert Layout entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layout (id, created_at, updated_at, layout_type, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO layout (id, created_at, updated_at, layout_type) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.LayoutType, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Layout-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetLayout(ctx context.Context, req *v1.GetLayoutRe
 	defer c.Close()
 
 	// query Layout by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_type,  FROM layout WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_type FROM layout WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Layout-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListLayout(ctx context.Context, req *v1.ListLayout
 	defer c.Close()
 
 	// get Layout list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_type,  FROM layout")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_type FROM layout")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Layout-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateLayout(ctx context.Context, req *v1.UpdateLa
 	defer c.Close()
 
 	// update layout
-	res, err := c.ExecContext(ctx, "UPDATE layout SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE layout SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.LayoutType, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Layout-> "+err.Error())

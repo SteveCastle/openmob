@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Contact
 func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateContactRequest) (*v1.CreateContactResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateC
 	defer c.Close()
 	var id int64
 	// insert Contact entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contact (id, created_at, updated_at, ) VALUES($1, $2, $3, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO contact (id, created_at, updated_at) VALUES($1, $2, $3)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Contact-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 	defer c.Close()
 
 	// query Contact by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM contact WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM contact WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 	defer c.Close()
 
 	// get Contact list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM contact")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM contact")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateC
 	defer c.Close()
 
 	// update contact
-	res, err := c.ExecContext(ctx, "UPDATE contact SET $1, $2, $3,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE contact SET $1 ,$2 ,$3  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Contact-> "+err.Error())

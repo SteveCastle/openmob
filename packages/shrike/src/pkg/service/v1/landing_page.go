@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new LandingPage
 func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.CreateLandingPageRequest) (*v1.CreateLandingPageResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert LandingPage entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO landing_page (id, created_at, updated_at, title, layout, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO landing_page (id, created_at, updated_at, title, layout) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.Layout, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LandingPage-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 	defer c.Close()
 
 	// query LandingPage by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, layout,  FROM landing_page WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, layout FROM landing_page WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LandingPage-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListL
 	defer c.Close()
 
 	// get LandingPage list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, layout,  FROM landing_page")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, layout FROM landing_page")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LandingPage-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.Upd
 	defer c.Close()
 
 	// update landing_page
-	res, err := c.ExecContext(ctx, "UPDATE landing_page SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE landing_page SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.Layout, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LandingPage-> "+err.Error())

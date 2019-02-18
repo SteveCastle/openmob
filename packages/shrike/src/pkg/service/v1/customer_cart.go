@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new CustomerCart
 func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.CreateCustomerCartRequest) (*v1.CreateCustomerCartResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert CustomerCart entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart (id, created_at, updated_at, ) VALUES($1, $2, $3, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart (id, created_at, updated_at) VALUES($1, $2, $3)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerCart-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 	defer c.Close()
 
 	// query CustomerCart by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM customer_cart WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM customer_cart WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerCart-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.List
 	defer c.Close()
 
 	// get CustomerCart list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM customer_cart")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM customer_cart")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from CustomerCart-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.Up
 	defer c.Close()
 
 	// update customer_cart
-	res, err := c.ExecContext(ctx, "UPDATE customer_cart SET $1, $2, $3,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE customer_cart SET $1 ,$2 ,$3  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update CustomerCart-> "+err.Error())

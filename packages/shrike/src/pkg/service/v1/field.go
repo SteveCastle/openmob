@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Field
 func (s *shrikeServiceServer) CreateField(ctx context.Context, req *v1.CreateFieldRequest) (*v1.CreateFieldResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateField(ctx context.Context, req *v1.CreateFie
 	defer c.Close()
 	var id int64
 	// insert Field entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO field (id, created_at, updated_at, field_type, component, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO field (id, created_at, updated_at, field_type, component) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.FieldType,  req.Item.Component, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Field-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetField(ctx context.Context, req *v1.GetFieldRequ
 	defer c.Close()
 
 	// query Field by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, component,  FROM field WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, component FROM field WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Field-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListField(ctx context.Context, req *v1.ListFieldRe
 	defer c.Close()
 
 	// get Field list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, component,  FROM field")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, component FROM field")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Field-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateField(ctx context.Context, req *v1.UpdateFie
 	defer c.Close()
 
 	// update field
-	res, err := c.ExecContext(ctx, "UPDATE field SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE field SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.FieldType,req.Item.Component, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Field-> "+err.Error())

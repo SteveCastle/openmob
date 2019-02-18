@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Petition
 func (s *shrikeServiceServer) CreatePetition(ctx context.Context, req *v1.CreatePetitionRequest) (*v1.CreatePetitionResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreatePetition(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Petition entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO petition (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Petition-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetPetition(ctx context.Context, req *v1.GetPetiti
 	defer c.Close()
 
 	// query Petition by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM petition WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM petition WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Petition-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListPetition(ctx context.Context, req *v1.ListPeti
 	defer c.Close()
 
 	// get Petition list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM petition")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM petition")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Petition-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePetition(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update petition
-	res, err := c.ExecContext(ctx, "UPDATE petition SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE petition SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Petition-> "+err.Error())

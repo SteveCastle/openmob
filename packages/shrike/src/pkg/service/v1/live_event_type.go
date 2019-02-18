@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new LiveEventType
 func (s *shrikeServiceServer) CreateLiveEventType(ctx context.Context, req *v1.CreateLiveEventTypeRequest) (*v1.CreateLiveEventTypeResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateLiveEventType(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert LiveEventType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event_type (id, created_at, updated_at, title, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event_type (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEventType-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetLiveEventType(ctx context.Context, req *v1.GetL
 	defer c.Close()
 
 	// query LiveEventType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM live_event_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM live_event_type WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventType-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListLiveEventType(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get LiveEventType list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title,  FROM live_event_type")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM live_event_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventType-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateLiveEventType(ctx context.Context, req *v1.U
 	defer c.Close()
 
 	// update live_event_type
-	res, err := c.ExecContext(ctx, "UPDATE live_event_type SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE live_event_type SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LiveEventType-> "+err.Error())

@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new ComponentImplementation
 func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context, req *v1.CreateComponentImplementationRequest) (*v1.CreateComponentImplementationResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	defer c.Close()
 	var id int64
 	// insert ComponentImplementation entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (id, created_at, updated_at, ) VALUES($1, $2, $3, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (id, created_at, updated_at) VALUES($1, $2, $3)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentImplementation-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 	defer c.Close()
 
 	// query ComponentImplementation by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM component_implementation WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM component_implementation WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	defer c.Close()
 
 	// get ComponentImplementation list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at,  FROM component_implementation")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM component_implementation")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	defer c.Close()
 
 	// update component_implementation
-	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET $1, $2, $3,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET $1 ,$2 ,$3  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ComponentImplementation-> "+err.Error())

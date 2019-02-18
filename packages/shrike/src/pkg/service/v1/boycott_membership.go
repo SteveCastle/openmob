@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new BoycottMembership
 func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *v1.CreateBoycottMembershipRequest) (*v1.CreateBoycottMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert BoycottMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO boycott_membership (id, created_at, updated_at, cause, boycott, ) VALUES($1, $2, $3, $4, $5, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO boycott_membership (id, created_at, updated_at, cause, boycott) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.Boycott, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into BoycottMembership-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetBoycottMembership(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// query BoycottMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, boycott,  FROM boycott_membership WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, boycott FROM boycott_membership WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from BoycottMembership-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListBoycottMembership(ctx context.Context, req *v1
 	defer c.Close()
 
 	// get BoycottMembership list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, boycott,  FROM boycott_membership")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, boycott FROM boycott_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from BoycottMembership-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdateBoycottMembership(ctx context.Context, req *
 	defer c.Close()
 
 	// update boycott_membership
-	res, err := c.ExecContext(ctx, "UPDATE boycott_membership SET $1, $2, $3, $4, $5,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE boycott_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Boycott, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update BoycottMembership-> "+err.Error())

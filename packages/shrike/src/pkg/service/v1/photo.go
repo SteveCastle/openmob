@@ -10,7 +10,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 // Create new Photo
 func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePhotoRequest) (*v1.CreatePhotoResponse, error) {
 	// check if the API version requested by client is supported by server
@@ -25,7 +24,7 @@ func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePho
 	defer c.Close()
 	var id int64
 	// insert Photo entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO photo (id, created_at, updated_at, img_url, ) VALUES($1, $2, $3, $4, )  RETURNING id;",
+	err = c.QueryRowContext(ctx, "INSERT INTO photo (id, created_at, updated_at, img_url) VALUES($1, $2, $3, $4)  RETURNING id;",
 		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.ImgURL, ).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Photo-> "+err.Error())
@@ -56,7 +55,7 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 	defer c.Close()
 
 	// query Photo by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, img_url,  FROM photo WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, img_url FROM photo WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Photo-> "+err.Error())
@@ -104,7 +103,7 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 	defer c.Close()
 
 	// get Photo list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, img_url,  FROM photo")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, img_url FROM photo")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Photo-> "+err.Error())
 	}
@@ -144,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePhoto(ctx context.Context, req *v1.UpdatePho
 	defer c.Close()
 
 	// update photo
-	res, err := c.ExecContext(ctx, "UPDATE photo SET $1, $2, $3, $4,  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE photo SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.ImgURL, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Photo-> "+err.Error())
