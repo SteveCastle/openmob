@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateOffice(ctx context.Context, req *v1.UpdateOf
 	defer c.Close()
 
 	// update office
-	res, err := c.ExecContext(ctx, "UPDATE office SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE office SET id=$1, created_at=$2, updated_at=$3, title=$4, election=$5 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.Election, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Office-> "+err.Error())

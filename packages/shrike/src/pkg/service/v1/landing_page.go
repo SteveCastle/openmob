@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.Upd
 	defer c.Close()
 
 	// update landing_page
-	res, err := c.ExecContext(ctx, "UPDATE landing_page SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE landing_page SET id=$1, created_at=$2, updated_at=$3, title=$4, layout=$5 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.Layout, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LandingPage-> "+err.Error())

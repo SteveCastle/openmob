@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateFollower(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update follower
-	res, err := c.ExecContext(ctx, "UPDATE follower SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE follower SET id=$1, created_at=$2, updated_at=$3, contact=$4, cause=$5 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Contact,req.Item.Cause, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Follower-> "+err.Error())

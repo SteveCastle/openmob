@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 
 	// update {{snake .Table.Name}}
-	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}{{if $index}},{{end}}${{inc $index}} {{end}} WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}=${{inc $index}}{{end}} WHERE id=$1",
 		{{range .Table.Columns}}req.Item.{{.Name}},{{end}} )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update {{.Table.Name}}-> "+err.Error())

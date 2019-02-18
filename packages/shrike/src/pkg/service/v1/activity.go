@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateActivity(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update activity
-	res, err := c.ExecContext(ctx, "UPDATE activity SET $1 ,$2 ,$3 ,$4 ,$5 ,$6 ,$7  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE activity SET id=$1, created_at=$2, updated_at=$3, title=$4, activity_type=$5, contact=$6, cause=$7 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.ActivityType,req.Item.Contact,req.Item.Cause, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Activity-> "+err.Error())

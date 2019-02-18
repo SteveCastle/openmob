@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateField(ctx context.Context, req *v1.UpdateFie
 	defer c.Close()
 
 	// update field
-	res, err := c.ExecContext(ctx, "UPDATE field SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE field SET id=$1, created_at=$2, updated_at=$3, field_type=$4, component=$5 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.FieldType,req.Item.Component, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Field-> "+err.Error())

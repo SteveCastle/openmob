@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	defer c.Close()
 
 	// update component_implementation
-	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET $1 ,$2 ,$3  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET id=$1, created_at=$2, updated_at=$3 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ComponentImplementation-> "+err.Error())

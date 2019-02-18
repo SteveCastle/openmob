@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateNote(ctx context.Context, req *v1.UpdateNote
 	defer c.Close()
 
 	// update note
-	res, err := c.ExecContext(ctx, "UPDATE note SET $1 ,$2 ,$3 ,$4 ,$5 ,$6  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE note SET id=$1, created_at=$2, updated_at=$3, contact=$4, cause=$5, body=$6 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Contact,req.Item.Cause,req.Item.Body, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Note-> "+err.Error())

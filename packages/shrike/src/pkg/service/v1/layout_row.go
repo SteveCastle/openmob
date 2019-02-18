@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateLayoutRow(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update layout_row
-	res, err := c.ExecContext(ctx, "UPDATE layout_row SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE layout_row SET id=$1, created_at=$2, updated_at=$3, layout=$4 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Layout, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LayoutRow-> "+err.Error())

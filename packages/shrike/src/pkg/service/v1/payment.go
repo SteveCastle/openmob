@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePayment(ctx context.Context, req *v1.UpdateP
 	defer c.Close()
 
 	// update payment
-	res, err := c.ExecContext(ctx, "UPDATE payment SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE payment SET id=$1, created_at=$2, updated_at=$3, customer_order=$4 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.CustomerOrder, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Payment-> "+err.Error())

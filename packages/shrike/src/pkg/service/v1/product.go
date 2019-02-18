@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateProduct(ctx context.Context, req *v1.UpdateP
 	defer c.Close()
 
 	// update product
-	res, err := c.ExecContext(ctx, "UPDATE product SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE product SET id=$1, created_at=$2, updated_at=$3, title=$4, product_type=$5 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.ProductType, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Product-> "+err.Error())

@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateAgent(ctx context.Context, req *v1.UpdateAge
 	defer c.Close()
 
 	// update agent
-	res, err := c.ExecContext(ctx, "UPDATE agent SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE agent SET id=$1, created_at=$2, updated_at=$3, account=$4 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Account, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Agent-> "+err.Error())

@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	defer c.Close()
 
 	// update cause
-	res, err := c.ExecContext(ctx, "UPDATE cause SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE cause SET id=$1, created_at=$2, updated_at=$3, title=$4 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Cause-> "+err.Error())

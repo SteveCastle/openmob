@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateComponent(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update component
-	res, err := c.ExecContext(ctx, "UPDATE component SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE component SET id=$1, created_at=$2, updated_at=$3, component_type=$4, layout_column=$5 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.ComponentType,req.Item.LayoutColumn, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Component-> "+err.Error())

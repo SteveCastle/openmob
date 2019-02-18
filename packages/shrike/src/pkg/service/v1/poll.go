@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdatePoll(ctx context.Context, req *v1.UpdatePoll
 	defer c.Close()
 
 	// update poll
-	res, err := c.ExecContext(ctx, "UPDATE poll SET $1 ,$2 ,$3 ,$4  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE poll SET id=$1, created_at=$2, updated_at=$3, title=$4 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Poll-> "+err.Error())

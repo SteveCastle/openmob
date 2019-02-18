@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.Up
 	defer c.Close()
 
 	// update customer_cart
-	res, err := c.ExecContext(ctx, "UPDATE customer_cart SET $1 ,$2 ,$3  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE customer_cart SET id=$1, created_at=$2, updated_at=$3 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update CustomerCart-> "+err.Error())

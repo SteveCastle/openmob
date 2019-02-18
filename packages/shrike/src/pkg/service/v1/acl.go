@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateACL(ctx context.Context, req *v1.UpdateACLRe
 	defer c.Close()
 
 	// update acl
-	res, err := c.ExecContext(ctx, "UPDATE acl SET $1  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE acl SET id=$1 WHERE id=$1",
 		req.Item.ID, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ACL-> "+err.Error())

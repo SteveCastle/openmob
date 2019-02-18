@@ -143,7 +143,7 @@ func (s *shrikeServiceServer) UpdateElectionMembership(ctx context.Context, req 
 	defer c.Close()
 
 	// update election_membership
-	res, err := c.ExecContext(ctx, "UPDATE election_membership SET $1 ,$2 ,$3 ,$4 ,$5  WHERE id=$1",
+	res, err := c.ExecContext(ctx, "UPDATE election_membership SET id=$1, created_at=$2, updated_at=$3, cause=$4, election=$5 WHERE id=$1",
 		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Election, )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ElectionMembership-> "+err.Error())
