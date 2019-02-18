@@ -37,7 +37,6 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 // Generated Types and Message Schema
 {{range .Schema.Tables}}
 message {{.Name}} {
-	// Generated Types and Message Schema
     {{range $index, $value := .Columns}}
 	{{.Type}} {{.Name}} = {{inc $index}};
 	{{end}}
@@ -76,7 +75,6 @@ message List{{.Name}}Response {
 
 // Request data to update {{.Name}}
 message Update{{.Name}}Request{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // {{.Name}} entity to update
@@ -85,7 +83,6 @@ message Update{{.Name}}Request{
 
 // Contains status of update operation
 message Update{{.Name}}Response{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -95,7 +92,6 @@ message Update{{.Name}}Response{
 
 // Request data to delete {{.Name}}
 message Delete{{.Name}}Request{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the {{.Name}} to delete
@@ -104,7 +100,6 @@ message Delete{{.Name}}Request{
 
 // Contains status of delete operation
 message Delete{{.Name}}Response{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
