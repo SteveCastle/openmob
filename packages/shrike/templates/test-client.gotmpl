@@ -1,0 +1,136 @@
+package main
+
+import (
+	"context"
+	"flag"
+	"log"
+	"time"
+
+	"google.golang.org/grpc"
+
+	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+)
+
+const (
+	// apiVersion is version of API is provided by server
+	apiVersion = "v1"
+)
+
+func main() {
+	// get configuration
+	address := flag.String("server", "", "gRPC server in format host:port")
+	flag.Parse()
+
+	// Set up a connection to the server.
+	conn, err := grpc.Dial(*address, grpc.WithInsecure())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	defer conn.Close()
+
+	c := v1.NewShrikeServiceClient(conn)
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+    {{range .Schema.Tables}}
+	// Call Create
+	{{toLower .Name}}req1 := v1.Create{{.Name}}Request{
+		Api: apiVersion,
+		Item: &v1.{{.Name}}{
+			{{range $index, $value := .Columns}}
+			{{if ne .Name "ID"}}{{if eq .Type "string"}}{{.Name}}: "Mrs. Frisby's Class",{{end}}{{end}}
+			{{end}}
+		},
+	}
+	{{toLower .Name}}res1, err := c.Create{{.Name}}(ctx, &{{toLower .Name}}req1)
+	if err != nil {
+		log.Fatalf("Create failed: %v", err)
+	}
+	log.Printf("Create result: <%+v>\n\n", {{toLower .Name}}res1)
+
+	{{toLower .Name}}id := {{toLower .Name}}res1.ID
+	// Call Create
+	{{toLower .Name}}req1 = v1.Create{{.Name}}Request{
+		Api: apiVersion,
+		Item: &v1.{{.Name}}{
+			{{range $index, $value := .Columns}}
+			{{if ne .Name "ID"}}{{if eq .Type "string"}}{{.Name}}: "Mrs. Frisby's Class",{{end}}{{end}}
+			{{end}}
+		},
+	}
+	{{toLower .Name}}res1, err = c.Create{{.Name}}(ctx, &{{toLower .Name}}req1)
+	if err != nil {
+		log.Fatalf("Create 2 failed: %v", err)
+	}
+	log.Printf("Create result 2: <%+v>\n\n", {{toLower .Name}}res1)
+	{{toLower .Name}}id2 := {{toLower .Name}}res1.ID
+
+	// Read
+	{{toLower .Name}}req2 := v1.Get{{.Name}}Request{
+		Api: apiVersion,
+		ID:  {{toLower .Name}}id,
+	}
+	{{toLower .Name}}res2, err := c.Get{{.Name}}(ctx, &{{toLower .Name}}req2)
+	if err != nil {
+		log.Fatalf("Read failed: %v", err)
+	}
+	log.Printf("Read result: <%+v>\n\n", {{toLower .Name}}res2)
+	// List
+	{{toLower .Name}}req3 := v1.List{{.Name}}Request{
+		Api:   apiVersion,
+		Limit: 1,
+	}
+	{{toLower .Name}}res3, err := c.List{{.Name}}(ctx, &{{toLower .Name}}req3)
+	if err != nil {
+		log.Fatalf("List failed: %v", err)
+	}
+	log.Printf("List result: <%+v>\n\n", {{toLower .Name}}res3)
+	// Update
+	{{toLower .Name}}req4 := v1.Update{{.Name}}Request{
+		Api: apiVersion,
+		Item: &v1.{{.Name}}{
+			ID:    {{toLower .Name}}id,
+			{{range $index, $value := .Columns}}
+			{{if ne .Name "ID"}}{{if eq .Type "string"}}{{.Name}}: "Mrs. Frisby's Class",{{end}}{{end}}
+			{{end}}
+		},
+	}
+	{{toLower .Name}}res4, err := c.Update{{.Name}}(ctx, &{{toLower .Name}}req4)
+	if err != nil {
+		log.Fatalf("Update failed: %v", err)
+	}
+	log.Printf("Update result: <%+v>\n\n", {{toLower .Name}}res4)
+	// List
+	{{toLower .Name}}req3 = v1.List{{.Name}}Request{
+		Api:   apiVersion,
+		Limit: 1,
+	}
+	{{toLower .Name}}res3, err = c.List{{.Name}}(ctx, &{{toLower .Name}}req3)
+	if err != nil {
+		log.Fatalf("List 2 failed: %v", err)
+	}
+	log.Printf("List result after update: <%+v>\n\n", {{toLower .Name}}res3)
+
+	// Delete
+	{{toLower .Name}}req5 := v1.Delete{{.Name}}Request{
+		Api: apiVersion,
+		ID:  {{toLower .Name}}id,
+	}
+	{{toLower .Name}}res5, err := c.Delete{{.Name}}(ctx, &{{toLower .Name}}req5)
+	if err != nil {
+		log.Fatalf("Delete failed: %v", err)
+	}
+	log.Printf("Delete result: <%+v>\n\n", {{toLower .Name}}res5)
+	// Delete
+	{{toLower .Name}}req5 = v1.Delete{{.Name}}Request{
+		Api: apiVersion,
+		ID:  {{toLower .Name}}id2,
+	}
+	{{toLower .Name}}res5, err = c.Delete{{.Name}}(ctx, &{{toLower .Name}}req5)
+	if err != nil {
+		log.Fatalf("Delete failed: %v", err)
+	}
+	log.Printf("Delete result: <%+v>\n\n", {{toLower .Name}}res5)
+	{{end}}
+}
