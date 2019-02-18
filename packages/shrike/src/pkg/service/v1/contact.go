@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,7 @@ func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateC
 	defer c.Close()
 	var id int64
 	// insert Contact entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contact (id, created_at, updated_at) VALUES($1, $2, $3)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO contact () VALUES()  RETURNING id;").Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Contact-> "+err.Error())
 	}
@@ -70,10 +70,23 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 			req.ID))
 	}
 
-	// get Contact data
+	// scan Contact data into protobuf model
 	var contact v1.Contact
-	if err := rows.Scan( &contact.ID,  &contact.CreatedAt,  &contact.UpdatedAt, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&contact.ID, &createdAt, &updatedAt); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	contact.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	contact.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +122,26 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Contact{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		contact := new(v1.Contact)
-		if err := rows.Scan( &contact.ID,  &contact.CreatedAt,  &contact.UpdatedAt, ); err != nil {
+		if err := rows.Scan(&contact.ID, &createdAt, &updatedAt); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		contact.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		contact.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, contact)
 	}
 
@@ -143,8 +170,8 @@ func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateC
 	defer c.Close()
 
 	// update contact
-	res, err := c.ExecContext(ctx, "UPDATE contact SET id=$1, created_at=$2, updated_at=$3 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
+	res, err := c.ExecContext(ctx, "UPDATE contact SET  WHERE id=$1",
+		req.Item.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Contact-> "+err.Error())
 	}

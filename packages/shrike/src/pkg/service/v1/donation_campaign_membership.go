@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Conte
 	defer c.Close()
 	var id int64
 	// insert DonationCampaignMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign_membership (id, created_at, updated_at, cause, donation_campaign) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.DonationCampaign, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign_membership (cause, donation_campaign) VALUES($1, $2)  RETURNING id;",
+		req.Item.Cause, req.Item.DonationCampaign).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DonationCampaignMembership-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetDonationCampaignMembership(ctx context.Context,
 			req.ID))
 	}
 
-	// get DonationCampaignMembership data
+	// scan DonationCampaignMembership data into protobuf model
 	var donationcampaignmembership v1.DonationCampaignMembership
-	if err := rows.Scan( &donationcampaignmembership.ID,  &donationcampaignmembership.CreatedAt,  &donationcampaignmembership.UpdatedAt,  &donationcampaignmembership.Cause,  &donationcampaignmembership.DonationCampaign, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&donationcampaignmembership.ID, &createdAt, &updatedAt, &donationcampaignmembership.Cause, &donationcampaignmembership.DonationCampaign); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaignMembership row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	donationcampaignmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	donationcampaignmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.DonationCampaignMembership{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		donationcampaignmembership := new(v1.DonationCampaignMembership)
-		if err := rows.Scan( &donationcampaignmembership.ID,  &donationcampaignmembership.CreatedAt,  &donationcampaignmembership.UpdatedAt,  &donationcampaignmembership.Cause,  &donationcampaignmembership.DonationCampaign, ); err != nil {
+		if err := rows.Scan(&donationcampaignmembership.ID, &createdAt, &updatedAt, &donationcampaignmembership.Cause, &donationcampaignmembership.DonationCampaign); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaignMembership row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		donationcampaignmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		donationcampaignmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, donationcampaignmembership)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateDonationCampaignMembership(ctx context.Conte
 	defer c.Close()
 
 	// update donation_campaign_membership
-	res, err := c.ExecContext(ctx, "UPDATE donation_campaign_membership SET id=$1, created_at=$2, updated_at=$3, cause=$4, donation_campaign=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.DonationCampaign, )
+	res, err := c.ExecContext(ctx, "UPDATE donation_campaign_membership SET cause=$2, donation_campaign=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Cause, req.Item.DonationCampaign)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update DonationCampaignMembership-> "+err.Error())
 	}

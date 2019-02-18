@@ -14316,6 +14316,14 @@
         "ID": {
           "type": "string",
           "format": "int64"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },

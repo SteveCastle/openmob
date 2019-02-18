@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 	var id int64
 	// insert {{.Table.Name}} entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}{{end}}) VALUES({{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}${{inc $index}}{{end}})  RETURNING id;",
-		{{range .Table.Columns}} req.Item.{{.Name}}, {{end}}).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}{{.DBName}}{{end}}{{end}}) VALUES({{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}${{dec (dec $index)}}{{end}}{{end}})  RETURNING id;",
+		{{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}req.Item.{{.Name}}{{end}}{{end}}).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into {{.Table.Name}}-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 			req.ID))
 	}
 
-	// get {{.Table.Name}} data
+	// scan {{.Table.Name}} data into protobuf model
 	var {{toLower .Table.Name}} v1.{{.Table.Name}}
-	if err := rows.Scan({{range .Table.Columns}} &{{toLower .Table.Name}}.{{.Name}}, {{end}}); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan({{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}&{{camel .Name}}{{end}}{{if ne .Type "google.protobuf.Timestamp"}}&{{toLower .Table.Name}}.{{.Name}}{{end}}, {{end}}); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	{{toLower .Table.Name}}.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	{{toLower .Table.Name}}.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 	}
 	defer rows.Close()
 
+    // Variables to store results returned by database.
 	list := []*v1.{{.Table.Name}}{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		{{toLower .Table.Name}} := new(v1.{{.Table.Name}})
-		if err := rows.Scan({{range .Table.Columns}} &{{toLower .Table.Name}}.{{.Name}}, {{end}}); err != nil {
+		if err := rows.Scan({{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}&{{camel .Name}}{{end}}{{if ne .Type "google.protobuf.Timestamp"}}&{{toLower .Table.Name}}.{{.Name}}{{end}}, {{end}}); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
 		}
+	// Convert time.Time from database into proto timestamp.
+	{{toLower .Table.Name}}.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	{{toLower .Table.Name}}.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+	}
+
 		list = append(list, {{toLower .Table.Name}})
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	defer c.Close()
 
 	// update {{snake .Table.Name}}
-	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}=${{inc $index}}{{end}} WHERE id=$1",
-		{{range .Table.Columns}}req.Item.{{.Name}},{{end}} )
+	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}{{.DBName}}=${{dec $index}}{{end}}{{end}} WHERE id=$1",
+		{{range $index, $value := .Table.Columns}}{{if ne $index 1}}{{if ne $index 2}}req.Item.{{.Name}},{{end}}{{end}}{{end}} )
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update {{.Table.Name}}-> "+err.Error())
 	}

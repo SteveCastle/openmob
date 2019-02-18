@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.Crea
 	defer c.Close()
 	var id int64
 	// insert Experiment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO experiment (id, created_at, updated_at, title, landing_page) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.LandingPage, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO experiment (title, landing_page) VALUES($1, $2)  RETURNING id;",
+		req.Item.Title, req.Item.LandingPage).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Experiment-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 			req.ID))
 	}
 
-	// get Experiment data
+	// scan Experiment data into protobuf model
 	var experiment v1.Experiment
-	if err := rows.Scan( &experiment.ID,  &experiment.CreatedAt,  &experiment.UpdatedAt,  &experiment.Title,  &experiment.LandingPage, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&experiment.ID, &createdAt, &updatedAt, &experiment.Title, &experiment.LandingPage); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Experiment row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	experiment.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	experiment.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Experiment{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		experiment := new(v1.Experiment)
-		if err := rows.Scan( &experiment.ID,  &experiment.CreatedAt,  &experiment.UpdatedAt,  &experiment.Title,  &experiment.LandingPage, ); err != nil {
+		if err := rows.Scan(&experiment.ID, &createdAt, &updatedAt, &experiment.Title, &experiment.LandingPage); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Experiment row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		experiment.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		experiment.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, experiment)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateExperiment(ctx context.Context, req *v1.Upda
 	defer c.Close()
 
 	// update experiment
-	res, err := c.ExecContext(ctx, "UPDATE experiment SET id=$1, created_at=$2, updated_at=$3, title=$4, landing_page=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.LandingPage, )
+	res, err := c.ExecContext(ctx, "UPDATE experiment SET title=$2, landing_page=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.LandingPage)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Experiment-> "+err.Error())
 	}

@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityType(ctx context.Context
 	defer c.Close()
 	var id int64
 	// insert VolunteerOpportunityType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_type (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_type (title) VALUES($1)  RETURNING id;",
+		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunityType-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityType(ctx context.Context, r
 			req.ID))
 	}
 
-	// get VolunteerOpportunityType data
+	// scan VolunteerOpportunityType data into protobuf model
 	var volunteeropportunitytype v1.VolunteerOpportunityType
-	if err := rows.Scan( &volunteeropportunitytype.ID,  &volunteeropportunitytype.CreatedAt,  &volunteeropportunitytype.UpdatedAt,  &volunteeropportunitytype.Title, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&volunteeropportunitytype.ID, &createdAt, &updatedAt, &volunteeropportunitytype.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunityType row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	volunteeropportunitytype.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	volunteeropportunitytype.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityType(ctx context.Context, 
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.VolunteerOpportunityType{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		volunteeropportunitytype := new(v1.VolunteerOpportunityType)
-		if err := rows.Scan( &volunteeropportunitytype.ID,  &volunteeropportunitytype.CreatedAt,  &volunteeropportunitytype.UpdatedAt,  &volunteeropportunitytype.Title, ); err != nil {
+		if err := rows.Scan(&volunteeropportunitytype.ID, &createdAt, &updatedAt, &volunteeropportunitytype.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunityType row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		volunteeropportunitytype.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		volunteeropportunitytype.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, volunteeropportunitytype)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityType(ctx context.Context
 	defer c.Close()
 
 	// update volunteer_opportunity_type
-	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_type SET id=$1, created_at=$2, updated_at=$3, title=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
+	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_type SET title=$2 WHERE id=$1",
+		req.Item.ID, req.Item.Title)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunityType-> "+err.Error())
 	}

@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePho
 	defer c.Close()
 	var id int64
 	// insert Photo entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO photo (id, created_at, updated_at, img_url) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.ImgURL, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO photo (img_url) VALUES($1)  RETURNING id;",
+		req.Item.ImgURL).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Photo-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 			req.ID))
 	}
 
-	// get Photo data
+	// scan Photo data into protobuf model
 	var photo v1.Photo
-	if err := rows.Scan( &photo.ID,  &photo.CreatedAt,  &photo.UpdatedAt,  &photo.ImgURL, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&photo.ID, &createdAt, &updatedAt, &photo.ImgURL); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Photo row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	photo.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	photo.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Photo{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		photo := new(v1.Photo)
-		if err := rows.Scan( &photo.ID,  &photo.CreatedAt,  &photo.UpdatedAt,  &photo.ImgURL, ); err != nil {
+		if err := rows.Scan(&photo.ID, &createdAt, &updatedAt, &photo.ImgURL); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Photo row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		photo.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		photo.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, photo)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdatePhoto(ctx context.Context, req *v1.UpdatePho
 	defer c.Close()
 
 	// update photo
-	res, err := c.ExecContext(ctx, "UPDATE photo SET id=$1, created_at=$2, updated_at=$3, img_url=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.ImgURL, )
+	res, err := c.ExecContext(ctx, "UPDATE photo SET img_url=$2 WHERE id=$1",
+		req.Item.ID, req.Item.ImgURL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Photo-> "+err.Error())
 	}

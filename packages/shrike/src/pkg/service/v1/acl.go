@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,7 @@ func (s *shrikeServiceServer) CreateACL(ctx context.Context, req *v1.CreateACLRe
 	defer c.Close()
 	var id int64
 	// insert ACL entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO acl (id) VALUES($1)  RETURNING id;",
-		 req.Item.ID, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO acl () VALUES()  RETURNING id;").Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ACL-> "+err.Error())
 	}
@@ -55,7 +55,7 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 	defer c.Close()
 
 	// query ACL by ID
-	rows, err := c.QueryContext(ctx, "SELECT id FROM acl WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM acl WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ACL-> "+err.Error())
@@ -70,10 +70,23 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 			req.ID))
 	}
 
-	// get ACL data
+	// scan ACL data into protobuf model
 	var acl v1.ACL
-	if err := rows.Scan( &acl.ID, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&acl.ID, &createdAt, &updatedAt); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ACL row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	acl.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	acl.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -103,18 +116,32 @@ func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLReques
 	defer c.Close()
 
 	// get ACL list
-	rows, err := c.QueryContext(ctx, "SELECT id FROM acl")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM acl")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ACL-> "+err.Error())
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.ACL{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		acl := new(v1.ACL)
-		if err := rows.Scan( &acl.ID, ); err != nil {
+		if err := rows.Scan(&acl.ID, &createdAt, &updatedAt); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ACL row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		acl.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		acl.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, acl)
 	}
 
@@ -143,8 +170,8 @@ func (s *shrikeServiceServer) UpdateACL(ctx context.Context, req *v1.UpdateACLRe
 	defer c.Close()
 
 	// update acl
-	res, err := c.ExecContext(ctx, "UPDATE acl SET id=$1 WHERE id=$1",
-		req.Item.ID, )
+	res, err := c.ExecContext(ctx, "UPDATE acl SET  WHERE id=$1",
+		req.Item.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ACL-> "+err.Error())
 	}

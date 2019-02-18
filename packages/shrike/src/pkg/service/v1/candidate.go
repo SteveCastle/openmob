@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateCandidate(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Candidate entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO candidate (id, created_at, updated_at, election) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Election, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO candidate (election) VALUES($1)  RETURNING id;",
+		req.Item.Election).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Candidate-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetCandidate(ctx context.Context, req *v1.GetCandi
 			req.ID))
 	}
 
-	// get Candidate data
+	// scan Candidate data into protobuf model
 	var candidate v1.Candidate
-	if err := rows.Scan( &candidate.ID,  &candidate.CreatedAt,  &candidate.UpdatedAt,  &candidate.Election, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&candidate.ID, &createdAt, &updatedAt, &candidate.Election); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Candidate row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	candidate.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	candidate.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListCandidate(ctx context.Context, req *v1.ListCan
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Candidate{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		candidate := new(v1.Candidate)
-		if err := rows.Scan( &candidate.ID,  &candidate.CreatedAt,  &candidate.UpdatedAt,  &candidate.Election, ); err != nil {
+		if err := rows.Scan(&candidate.ID, &createdAt, &updatedAt, &candidate.Election); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Candidate row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		candidate.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		candidate.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, candidate)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateCandidate(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update candidate
-	res, err := c.ExecContext(ctx, "UPDATE candidate SET id=$1, created_at=$2, updated_at=$3, election=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Election, )
+	res, err := c.ExecContext(ctx, "UPDATE candidate SET election=$2 WHERE id=$1",
+		req.Item.ID, req.Item.Election)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Candidate-> "+err.Error())
 	}

@@ -36,6 +36,86 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 
 // Generated Types and Message Schema
 
+message ACL {
+	// Generated Types and Message Schema
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+}
+
+//Request and Response Message Types
+message CreateACLRequest {
+	string api = 1;
+	ACL item = 2;
+}
+
+message CreateACLResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetACLRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetACLResponse {
+	string api = 1;
+	ACL item = 2;
+}
+
+message ListACLRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListACLResponse {
+	string api = 1;
+	repeated ACL items = 2;
+}
+
+// Request data to update ACL
+message UpdateACLRequest{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // ACL entity to update
+    ACL item = 2;
+}
+
+// Contains status of update operation
+message UpdateACLResponse{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete ACL
+message DeleteACLRequest{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Unique integer IDentifier of the ACL to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteACLResponse{
+    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
 message MailingAddress {
 	// Generated Types and Message Schema
     
@@ -444,82 +524,6 @@ message DeleteLayoutTypeRequest{
 
 // Contains status of delete operation
 message DeleteLayoutTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
-message ACL {
-	// Generated Types and Message Schema
-    
-	int64 ID = 1;
-	
-}
-
-//Request and Response Message Types
-message CreateACLRequest {
-	string api = 1;
-	ACL item = 2;
-}
-
-message CreateACLResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetACLRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetACLResponse {
-	string api = 1;
-	ACL item = 2;
-}
-
-message ListACLRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListACLResponse {
-	string api = 1;
-	repeated ACL items = 2;
-}
-
-// Request data to update ACL
-message UpdateACLRequest{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // ACL entity to update
-    ACL item = 2;
-}
-
-// Contains status of update operation
-message UpdateACLResponse{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete ACL
-message DeleteACLRequest{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Unique integer IDentifier of the ACL to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteACLResponse{
     // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
@@ -5362,6 +5366,45 @@ message DeleteAgentMembershipResponse{
 // Generated Shrike Service Definition
 service ShrikeService {
 	
+	// CreateACL takes a ACL object to create.
+	rpc CreateACL(CreateACLRequest) returns (CreateACLResponse) {
+		option (google.api.http) ={
+			post: "/v1/acl"
+			body: "*"
+		};
+	}
+    // GetACL takes an ID and returns a single ACL.
+	rpc GetACL(GetACLRequest) returns (GetACLResponse) {
+		option (google.api.http) ={
+			get: "/v1/acl/{ID}"
+		};
+	}
+    // List ACL, takes filters, limit, and cursor param.
+	rpc ListACL(ListACLRequest) returns (ListACLResponse) {
+	option (google.api.http) ={
+		get: "/v1/acl"
+	};
+}
+    // Update ACL
+    rpc UpdateACL(UpdateACLRequest) returns (UpdateACLResponse){
+        option (google.api.http) = {
+            put: "/v1/acl/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/acl/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete ACL
+    rpc DeleteACL(DeleteACLRequest) returns (DeleteACLResponse){
+        option (google.api.http) = {
+            delete: "/v1/acl/{ID}"
+        };
+    }
+	
 	// CreateMailingAddress takes a MailingAddress object to create.
 	rpc CreateMailingAddress(CreateMailingAddressRequest) returns (CreateMailingAddressResponse) {
 		option (google.api.http) ={
@@ -5554,45 +5597,6 @@ service ShrikeService {
     rpc DeleteLayoutType(DeleteLayoutTypeRequest) returns (DeleteLayoutTypeResponse){
         option (google.api.http) = {
             delete: "/v1/layouttype/{ID}"
-        };
-    }
-	
-	// CreateACL takes a ACL object to create.
-	rpc CreateACL(CreateACLRequest) returns (CreateACLResponse) {
-		option (google.api.http) ={
-			post: "/v1/acl"
-			body: "*"
-		};
-	}
-    // GetACL takes an ID and returns a single ACL.
-	rpc GetACL(GetACLRequest) returns (GetACLResponse) {
-		option (google.api.http) ={
-			get: "/v1/acl/{ID}"
-		};
-	}
-    // List ACL, takes filters, limit, and cursor param.
-	rpc ListACL(ListACLRequest) returns (ListACLResponse) {
-	option (google.api.http) ={
-		get: "/v1/acl"
-	};
-}
-    // Update ACL
-    rpc UpdateACL(UpdateACLRequest) returns (UpdateACLResponse){
-        option (google.api.http) = {
-            put: "/v1/acl/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/acl/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete ACL
-    rpc DeleteACL(DeleteACLRequest) returns (DeleteACLResponse){
-        option (google.api.http) = {
-            delete: "/v1/acl/{ID}"
         };
     }
 	

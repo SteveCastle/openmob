@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDon
 	defer c.Close()
 	var id int64
 	// insert Donor entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donor (id, created_at, updated_at, customer_order, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.CustomerOrder,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO donor (customer_order, contact, cause) VALUES($1, $2, $3)  RETURNING id;",
+		req.Item.CustomerOrder, req.Item.Contact, req.Item.Cause).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Donor-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 			req.ID))
 	}
 
-	// get Donor data
+	// scan Donor data into protobuf model
 	var donor v1.Donor
-	if err := rows.Scan( &donor.ID,  &donor.CreatedAt,  &donor.UpdatedAt,  &donor.CustomerOrder,  &donor.Contact,  &donor.Cause, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&donor.ID, &createdAt, &updatedAt, &donor.CustomerOrder, &donor.Contact, &donor.Cause); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Donor row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	donor.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	donor.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Donor{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		donor := new(v1.Donor)
-		if err := rows.Scan( &donor.ID,  &donor.CreatedAt,  &donor.UpdatedAt,  &donor.CustomerOrder,  &donor.Contact,  &donor.Cause, ); err != nil {
+		if err := rows.Scan(&donor.ID, &createdAt, &updatedAt, &donor.CustomerOrder, &donor.Contact, &donor.Cause); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Donor row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		donor.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		donor.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, donor)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateDonor(ctx context.Context, req *v1.UpdateDon
 	defer c.Close()
 
 	// update donor
-	res, err := c.ExecContext(ctx, "UPDATE donor SET id=$1, created_at=$2, updated_at=$3, customer_order=$4, contact=$5, cause=$6 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.CustomerOrder,req.Item.Contact,req.Item.Cause, )
+	res, err := c.ExecContext(ctx, "UPDATE donor SET customer_order=$2, contact=$3, cause=$4 WHERE id=$1",
+		req.Item.ID, req.Item.CustomerOrder, req.Item.Contact, req.Item.Cause)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Donor-> "+err.Error())
 	}

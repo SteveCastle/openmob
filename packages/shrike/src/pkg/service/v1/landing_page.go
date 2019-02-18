@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.Cre
 	defer c.Close()
 	var id int64
 	// insert LandingPage entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO landing_page (id, created_at, updated_at, title, layout) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.Layout, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO landing_page (title, layout) VALUES($1, $2)  RETURNING id;",
+		req.Item.Title, req.Item.Layout).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LandingPage-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 			req.ID))
 	}
 
-	// get LandingPage data
+	// scan LandingPage data into protobuf model
 	var landingpage v1.LandingPage
-	if err := rows.Scan( &landingpage.ID,  &landingpage.CreatedAt,  &landingpage.UpdatedAt,  &landingpage.Title,  &landingpage.Layout, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&landingpage.ID, &createdAt, &updatedAt, &landingpage.Title, &landingpage.Layout); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LandingPage row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	landingpage.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	landingpage.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListL
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.LandingPage{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		landingpage := new(v1.LandingPage)
-		if err := rows.Scan( &landingpage.ID,  &landingpage.CreatedAt,  &landingpage.UpdatedAt,  &landingpage.Title,  &landingpage.Layout, ); err != nil {
+		if err := rows.Scan(&landingpage.ID, &createdAt, &updatedAt, &landingpage.Title, &landingpage.Layout); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LandingPage row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		landingpage.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		landingpage.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, landingpage)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.Upd
 	defer c.Close()
 
 	// update landing_page
-	res, err := c.ExecContext(ctx, "UPDATE landing_page SET id=$1, created_at=$2, updated_at=$3, title=$4, layout=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.Layout, )
+	res, err := c.ExecContext(ctx, "UPDATE landing_page SET title=$2, layout=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.Layout)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LandingPage-> "+err.Error())
 	}

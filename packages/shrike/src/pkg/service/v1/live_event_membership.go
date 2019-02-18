@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req
 	defer c.Close()
 	var id int64
 	// insert LiveEventMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event_membership (id, created_at, updated_at, cause, live_event) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.LiveEvent, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event_membership (cause, live_event) VALUES($1, $2)  RETURNING id;",
+		req.Item.Cause, req.Item.LiveEvent).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEventMembership-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 			req.ID))
 	}
 
-	// get LiveEventMembership data
+	// scan LiveEventMembership data into protobuf model
 	var liveeventmembership v1.LiveEventMembership
-	if err := rows.Scan( &liveeventmembership.ID,  &liveeventmembership.CreatedAt,  &liveeventmembership.UpdatedAt,  &liveeventmembership.Cause,  &liveeventmembership.LiveEvent, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&liveeventmembership.ID, &createdAt, &updatedAt, &liveeventmembership.Cause, &liveeventmembership.LiveEvent); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEventMembership row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	liveeventmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	liveeventmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.LiveEventMembership{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		liveeventmembership := new(v1.LiveEventMembership)
-		if err := rows.Scan( &liveeventmembership.ID,  &liveeventmembership.CreatedAt,  &liveeventmembership.UpdatedAt,  &liveeventmembership.Cause,  &liveeventmembership.LiveEvent, ); err != nil {
+		if err := rows.Scan(&liveeventmembership.ID, &createdAt, &updatedAt, &liveeventmembership.Cause, &liveeventmembership.LiveEvent); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEventMembership row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		liveeventmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		liveeventmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, liveeventmembership)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateLiveEventMembership(ctx context.Context, req
 	defer c.Close()
 
 	// update live_event_membership
-	res, err := c.ExecContext(ctx, "UPDATE live_event_membership SET id=$1, created_at=$2, updated_at=$3, cause=$4, live_event=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.LiveEvent, )
+	res, err := c.ExecContext(ctx, "UPDATE live_event_membership SET cause=$2, live_event=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Cause, req.Item.LiveEvent)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LiveEventMembership-> "+err.Error())
 	}

@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateAccount(ctx context.Context, req *v1.CreateA
 	defer c.Close()
 	var id int64
 	// insert Account entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO account (id, created_at, updated_at, username) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Username, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO account (username) VALUES($1)  RETURNING id;",
+		req.Item.Username).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Account-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 			req.ID))
 	}
 
-	// get Account data
+	// scan Account data into protobuf model
 	var account v1.Account
-	if err := rows.Scan( &account.ID,  &account.CreatedAt,  &account.UpdatedAt,  &account.Username, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&account.ID, &createdAt, &updatedAt, &account.Username); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	account.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	account.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Account{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		account := new(v1.Account)
-		if err := rows.Scan( &account.ID,  &account.CreatedAt,  &account.UpdatedAt,  &account.Username, ); err != nil {
+		if err := rows.Scan(&account.ID, &createdAt, &updatedAt, &account.Username); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		account.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		account.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, account)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateAccount(ctx context.Context, req *v1.UpdateA
 	defer c.Close()
 
 	// update account
-	res, err := c.ExecContext(ctx, "UPDATE account SET id=$1, created_at=$2, updated_at=$3, username=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Username, )
+	res, err := c.ExecContext(ctx, "UPDATE account SET username=$2 WHERE id=$1",
+		req.Item.ID, req.Item.Username)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Account-> "+err.Error())
 	}

@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.C
 	defer c.Close()
 	var id int64
 	// insert EventAttendee entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee (id, created_at, updated_at, live_event, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.LiveEvent,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee (live_event, contact, cause) VALUES($1, $2, $3)  RETURNING id;",
+		req.Item.LiveEvent, req.Item.Contact, req.Item.Cause).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into EventAttendee-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetE
 			req.ID))
 	}
 
-	// get EventAttendee data
+	// scan EventAttendee data into protobuf model
 	var eventattendee v1.EventAttendee
-	if err := rows.Scan( &eventattendee.ID,  &eventattendee.CreatedAt,  &eventattendee.UpdatedAt,  &eventattendee.LiveEvent,  &eventattendee.Contact,  &eventattendee.Cause, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&eventattendee.ID, &createdAt, &updatedAt, &eventattendee.LiveEvent, &eventattendee.Contact, &eventattendee.Cause); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from EventAttendee row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	eventattendee.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	eventattendee.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.EventAttendee{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		eventattendee := new(v1.EventAttendee)
-		if err := rows.Scan( &eventattendee.ID,  &eventattendee.CreatedAt,  &eventattendee.UpdatedAt,  &eventattendee.LiveEvent,  &eventattendee.Contact,  &eventattendee.Cause, ); err != nil {
+		if err := rows.Scan(&eventattendee.ID, &createdAt, &updatedAt, &eventattendee.LiveEvent, &eventattendee.Contact, &eventattendee.Cause); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from EventAttendee row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		eventattendee.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		eventattendee.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, eventattendee)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateEventAttendee(ctx context.Context, req *v1.U
 	defer c.Close()
 
 	// update event_attendee
-	res, err := c.ExecContext(ctx, "UPDATE event_attendee SET id=$1, created_at=$2, updated_at=$3, live_event=$4, contact=$5, cause=$6 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.LiveEvent,req.Item.Contact,req.Item.Cause, )
+	res, err := c.ExecContext(ctx, "UPDATE event_attendee SET live_event=$2, contact=$3, cause=$4 WHERE id=$1",
+		req.Item.ID, req.Item.LiveEvent, req.Item.Contact, req.Item.Cause)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update EventAttendee-> "+err.Error())
 	}

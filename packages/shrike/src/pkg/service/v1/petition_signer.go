@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreatePetitionSigner(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert PetitionSigner entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition_signer (id, created_at, updated_at, petition, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Petition,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO petition_signer (petition, contact, cause) VALUES($1, $2, $3)  RETURNING id;",
+		req.Item.Petition, req.Item.Contact, req.Item.Cause).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into PetitionSigner-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetPetitionSigner(ctx context.Context, req *v1.Get
 			req.ID))
 	}
 
-	// get PetitionSigner data
+	// scan PetitionSigner data into protobuf model
 	var petitionsigner v1.PetitionSigner
-	if err := rows.Scan( &petitionsigner.ID,  &petitionsigner.CreatedAt,  &petitionsigner.UpdatedAt,  &petitionsigner.Petition,  &petitionsigner.Contact,  &petitionsigner.Cause, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&petitionsigner.ID, &createdAt, &updatedAt, &petitionsigner.Petition, &petitionsigner.Contact, &petitionsigner.Cause); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from PetitionSigner row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	petitionsigner.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	petitionsigner.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListPetitionSigner(ctx context.Context, req *v1.Li
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.PetitionSigner{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		petitionsigner := new(v1.PetitionSigner)
-		if err := rows.Scan( &petitionsigner.ID,  &petitionsigner.CreatedAt,  &petitionsigner.UpdatedAt,  &petitionsigner.Petition,  &petitionsigner.Contact,  &petitionsigner.Cause, ); err != nil {
+		if err := rows.Scan(&petitionsigner.ID, &createdAt, &updatedAt, &petitionsigner.Petition, &petitionsigner.Contact, &petitionsigner.Cause); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from PetitionSigner row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		petitionsigner.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		petitionsigner.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, petitionsigner)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdatePetitionSigner(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// update petition_signer
-	res, err := c.ExecContext(ctx, "UPDATE petition_signer SET id=$1, created_at=$2, updated_at=$3, petition=$4, contact=$5, cause=$6 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Petition,req.Item.Contact,req.Item.Cause, )
+	res, err := c.ExecContext(ctx, "UPDATE petition_signer SET petition=$2, contact=$3, cause=$4 WHERE id=$1",
+		req.Item.ID, req.Item.Petition, req.Item.Contact, req.Item.Cause)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update PetitionSigner-> "+err.Error())
 	}

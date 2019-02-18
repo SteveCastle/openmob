@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateField(ctx context.Context, req *v1.CreateFie
 	defer c.Close()
 	var id int64
 	// insert Field entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO field (id, created_at, updated_at, field_type, component) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.FieldType,  req.Item.Component, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO field (field_type, component) VALUES($1, $2)  RETURNING id;",
+		req.Item.FieldType, req.Item.Component).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Field-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetField(ctx context.Context, req *v1.GetFieldRequ
 			req.ID))
 	}
 
-	// get Field data
+	// scan Field data into protobuf model
 	var field v1.Field
-	if err := rows.Scan( &field.ID,  &field.CreatedAt,  &field.UpdatedAt,  &field.FieldType,  &field.Component, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&field.ID, &createdAt, &updatedAt, &field.FieldType, &field.Component); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Field row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	field.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	field.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListField(ctx context.Context, req *v1.ListFieldRe
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Field{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		field := new(v1.Field)
-		if err := rows.Scan( &field.ID,  &field.CreatedAt,  &field.UpdatedAt,  &field.FieldType,  &field.Component, ); err != nil {
+		if err := rows.Scan(&field.ID, &createdAt, &updatedAt, &field.FieldType, &field.Component); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Field row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		field.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		field.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, field)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateField(ctx context.Context, req *v1.UpdateFie
 	defer c.Close()
 
 	// update field
-	res, err := c.ExecContext(ctx, "UPDATE field SET id=$1, created_at=$2, updated_at=$3, field_type=$4, component=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.FieldType,req.Item.Component, )
+	res, err := c.ExecContext(ctx, "UPDATE field SET field_type=$2, component=$3 WHERE id=$1",
+		req.Item.ID, req.Item.FieldType, req.Item.Component)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Field-> "+err.Error())
 	}

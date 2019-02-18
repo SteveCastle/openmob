@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateActivity(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Activity entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO activity (id, created_at, updated_at, title, activity_type, contact, cause) VALUES($1, $2, $3, $4, $5, $6, $7)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.ActivityType,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO activity (title, activity_type, contact, cause) VALUES($1, $2, $3, $4)  RETURNING id;",
+		req.Item.Title, req.Item.ActivityType, req.Item.Contact, req.Item.Cause).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Activity-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetActivity(ctx context.Context, req *v1.GetActivi
 			req.ID))
 	}
 
-	// get Activity data
+	// scan Activity data into protobuf model
 	var activity v1.Activity
-	if err := rows.Scan( &activity.ID,  &activity.CreatedAt,  &activity.UpdatedAt,  &activity.Title,  &activity.ActivityType,  &activity.Contact,  &activity.Cause, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&activity.ID, &createdAt, &updatedAt, &activity.Title, &activity.ActivityType, &activity.Contact, &activity.Cause); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Activity row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	activity.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	activity.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListActivity(ctx context.Context, req *v1.ListActi
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Activity{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		activity := new(v1.Activity)
-		if err := rows.Scan( &activity.ID,  &activity.CreatedAt,  &activity.UpdatedAt,  &activity.Title,  &activity.ActivityType,  &activity.Contact,  &activity.Cause, ); err != nil {
+		if err := rows.Scan(&activity.ID, &createdAt, &updatedAt, &activity.Title, &activity.ActivityType, &activity.Contact, &activity.Cause); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Activity row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		activity.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		activity.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, activity)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateActivity(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update activity
-	res, err := c.ExecContext(ctx, "UPDATE activity SET id=$1, created_at=$2, updated_at=$3, title=$4, activity_type=$5, contact=$6, cause=$7 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.ActivityType,req.Item.Contact,req.Item.Cause, )
+	res, err := c.ExecContext(ctx, "UPDATE activity SET title=$2, activity_type=$3, contact=$4, cause=$5 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.ActivityType, req.Item.Contact, req.Item.Cause)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Activity-> "+err.Error())
 	}

@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityMembership(ctx context.C
 	defer c.Close()
 	var id int64
 	// insert VolunteerOpportunityMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_membership (id, created_at, updated_at, cause, volunteer_opportunity) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.VolunteerOpportunity, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_membership (cause, volunteer_opportunity) VALUES($1, $2)  RETURNING id;",
+		req.Item.Cause, req.Item.VolunteerOpportunity).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunityMembership-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityMembership(ctx context.Cont
 			req.ID))
 	}
 
-	// get VolunteerOpportunityMembership data
+	// scan VolunteerOpportunityMembership data into protobuf model
 	var volunteeropportunitymembership v1.VolunteerOpportunityMembership
-	if err := rows.Scan( &volunteeropportunitymembership.ID,  &volunteeropportunitymembership.CreatedAt,  &volunteeropportunitymembership.UpdatedAt,  &volunteeropportunitymembership.Cause,  &volunteeropportunitymembership.VolunteerOpportunity, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&volunteeropportunitymembership.ID, &createdAt, &updatedAt, &volunteeropportunitymembership.Cause, &volunteeropportunitymembership.VolunteerOpportunity); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunityMembership row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	volunteeropportunitymembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	volunteeropportunitymembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityMembership(ctx context.Con
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.VolunteerOpportunityMembership{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		volunteeropportunitymembership := new(v1.VolunteerOpportunityMembership)
-		if err := rows.Scan( &volunteeropportunitymembership.ID,  &volunteeropportunitymembership.CreatedAt,  &volunteeropportunitymembership.UpdatedAt,  &volunteeropportunitymembership.Cause,  &volunteeropportunitymembership.VolunteerOpportunity, ); err != nil {
+		if err := rows.Scan(&volunteeropportunitymembership.ID, &createdAt, &updatedAt, &volunteeropportunitymembership.Cause, &volunteeropportunitymembership.VolunteerOpportunity); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunityMembership row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		volunteeropportunitymembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		volunteeropportunitymembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, volunteeropportunitymembership)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityMembership(ctx context.C
 	defer c.Close()
 
 	// update volunteer_opportunity_membership
-	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_membership SET id=$1, created_at=$2, updated_at=$3, cause=$4, volunteer_opportunity=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.VolunteerOpportunity, )
+	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_membership SET cause=$2, volunteer_opportunity=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Cause, req.Item.VolunteerOpportunity)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunityMembership-> "+err.Error())
 	}

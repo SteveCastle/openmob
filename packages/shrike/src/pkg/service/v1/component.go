@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateComponent(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Component entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component (id, created_at, updated_at, component_type, layout_column) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.ComponentType,  req.Item.LayoutColumn, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO component (component_type, layout_column) VALUES($1, $2)  RETURNING id;",
+		req.Item.ComponentType, req.Item.LayoutColumn).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Component-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetComponent(ctx context.Context, req *v1.GetCompo
 			req.ID))
 	}
 
-	// get Component data
+	// scan Component data into protobuf model
 	var component v1.Component
-	if err := rows.Scan( &component.ID,  &component.CreatedAt,  &component.UpdatedAt,  &component.ComponentType,  &component.LayoutColumn, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&component.ID, &createdAt, &updatedAt, &component.ComponentType, &component.LayoutColumn); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Component row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	component.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	component.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListComponent(ctx context.Context, req *v1.ListCom
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Component{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		component := new(v1.Component)
-		if err := rows.Scan( &component.ID,  &component.CreatedAt,  &component.UpdatedAt,  &component.ComponentType,  &component.LayoutColumn, ); err != nil {
+		if err := rows.Scan(&component.ID, &createdAt, &updatedAt, &component.ComponentType, &component.LayoutColumn); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Component row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		component.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		component.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, component)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateComponent(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update component
-	res, err := c.ExecContext(ctx, "UPDATE component SET id=$1, created_at=$2, updated_at=$3, component_type=$4, layout_column=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.ComponentType,req.Item.LayoutColumn, )
+	res, err := c.ExecContext(ctx, "UPDATE component SET component_type=$2, layout_column=$3 WHERE id=$1",
+		req.Item.ID, req.Item.ComponentType, req.Item.LayoutColumn)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Component-> "+err.Error())
 	}

@@ -20,7 +20,9 @@ CREATE TABLE account
 );
 CREATE TABLE acl
 (
-    id serial PRIMARY KEY
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 -- HELPER TABLES

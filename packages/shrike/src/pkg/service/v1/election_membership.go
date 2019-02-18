@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateElectionMembership(ctx context.Context, req 
 	defer c.Close()
 	var id int64
 	// insert ElectionMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO election_membership (id, created_at, updated_at, cause, election) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.Election, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO election_membership (cause, election) VALUES($1, $2)  RETURNING id;",
+		req.Item.Cause, req.Item.Election).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ElectionMembership-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 			req.ID))
 	}
 
-	// get ElectionMembership data
+	// scan ElectionMembership data into protobuf model
 	var electionmembership v1.ElectionMembership
-	if err := rows.Scan( &electionmembership.ID,  &electionmembership.CreatedAt,  &electionmembership.UpdatedAt,  &electionmembership.Cause,  &electionmembership.Election, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&electionmembership.ID, &createdAt, &updatedAt, &electionmembership.Cause, &electionmembership.Election); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ElectionMembership row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	electionmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	electionmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.ElectionMembership{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		electionmembership := new(v1.ElectionMembership)
-		if err := rows.Scan( &electionmembership.ID,  &electionmembership.CreatedAt,  &electionmembership.UpdatedAt,  &electionmembership.Cause,  &electionmembership.Election, ); err != nil {
+		if err := rows.Scan(&electionmembership.ID, &createdAt, &updatedAt, &electionmembership.Cause, &electionmembership.Election); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ElectionMembership row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		electionmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		electionmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, electionmembership)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateElectionMembership(ctx context.Context, req 
 	defer c.Close()
 
 	// update election_membership
-	res, err := c.ExecContext(ctx, "UPDATE election_membership SET id=$1, created_at=$2, updated_at=$3, cause=$4, election=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Election, )
+	res, err := c.ExecContext(ctx, "UPDATE election_membership SET cause=$2, election=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Cause, req.Item.Election)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ElectionMembership-> "+err.Error())
 	}

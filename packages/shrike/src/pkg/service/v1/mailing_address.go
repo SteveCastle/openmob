@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.
 	defer c.Close()
 	var id int64
 	// insert MailingAddress entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address (id, created_at, updated_at, street_address, city, state, zip_code) VALUES($1, $2, $3, $4, $5, $6, $7)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.StreetAddress,  req.Item.City,  req.Item.State,  req.Item.ZipCode, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO mailing_address (street_address, city, state, zip_code) VALUES($1, $2, $3, $4)  RETURNING id;",
+		req.Item.StreetAddress, req.Item.City, req.Item.State, req.Item.ZipCode).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into MailingAddress-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 			req.ID))
 	}
 
-	// get MailingAddress data
+	// scan MailingAddress data into protobuf model
 	var mailingaddress v1.MailingAddress
-	if err := rows.Scan( &mailingaddress.ID,  &mailingaddress.CreatedAt,  &mailingaddress.UpdatedAt,  &mailingaddress.StreetAddress,  &mailingaddress.City,  &mailingaddress.State,  &mailingaddress.ZipCode, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&mailingaddress.ID, &createdAt, &updatedAt, &mailingaddress.StreetAddress, &mailingaddress.City, &mailingaddress.State, &mailingaddress.ZipCode); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from MailingAddress row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	mailingaddress.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	mailingaddress.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.MailingAddress{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		mailingaddress := new(v1.MailingAddress)
-		if err := rows.Scan( &mailingaddress.ID,  &mailingaddress.CreatedAt,  &mailingaddress.UpdatedAt,  &mailingaddress.StreetAddress,  &mailingaddress.City,  &mailingaddress.State,  &mailingaddress.ZipCode, ); err != nil {
+		if err := rows.Scan(&mailingaddress.ID, &createdAt, &updatedAt, &mailingaddress.StreetAddress, &mailingaddress.City, &mailingaddress.State, &mailingaddress.ZipCode); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from MailingAddress row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		mailingaddress.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		mailingaddress.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, mailingaddress)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateMailingAddress(ctx context.Context, req *v1.
 	defer c.Close()
 
 	// update mailing_address
-	res, err := c.ExecContext(ctx, "UPDATE mailing_address SET id=$1, created_at=$2, updated_at=$3, street_address=$4, city=$5, state=$6, zip_code=$7 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.StreetAddress,req.Item.City,req.Item.State,req.Item.ZipCode, )
+	res, err := c.ExecContext(ctx, "UPDATE mailing_address SET street_address=$2, city=$3, state=$4, zip_code=$5 WHERE id=$1",
+		req.Item.ID, req.Item.StreetAddress, req.Item.City, req.Item.State, req.Item.ZipCode)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update MailingAddress-> "+err.Error())
 	}

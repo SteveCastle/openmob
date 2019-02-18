@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert LiveEvent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event (id, created_at, updated_at, title, live_event_type) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.LiveEventType, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO live_event (title, live_event_type) VALUES($1, $2)  RETURNING id;",
+		req.Item.Title, req.Item.LiveEventType).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LiveEvent-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 			req.ID))
 	}
 
-	// get LiveEvent data
+	// scan LiveEvent data into protobuf model
 	var liveevent v1.LiveEvent
-	if err := rows.Scan( &liveevent.ID,  &liveevent.CreatedAt,  &liveevent.UpdatedAt,  &liveevent.Title,  &liveevent.LiveEventType, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&liveevent.ID, &createdAt, &updatedAt, &liveevent.Title, &liveevent.LiveEventType); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEvent row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	liveevent.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	liveevent.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.LiveEvent{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		liveevent := new(v1.LiveEvent)
-		if err := rows.Scan( &liveevent.ID,  &liveevent.CreatedAt,  &liveevent.UpdatedAt,  &liveevent.Title,  &liveevent.LiveEventType, ); err != nil {
+		if err := rows.Scan(&liveevent.ID, &createdAt, &updatedAt, &liveevent.Title, &liveevent.LiveEventType); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEvent row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		liveevent.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		liveevent.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, liveevent)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateLiveEvent(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update live_event
-	res, err := c.ExecContext(ctx, "UPDATE live_event SET id=$1, created_at=$2, updated_at=$3, title=$4, live_event_type=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.LiveEventType, )
+	res, err := c.ExecContext(ctx, "UPDATE live_event SET title=$2, live_event_type=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.LiveEventType)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LiveEvent-> "+err.Error())
 	}

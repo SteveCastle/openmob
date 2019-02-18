@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *
 	defer c.Close()
 	var id int64
 	// insert BoycottMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO boycott_membership (id, created_at, updated_at, cause, boycott) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Cause,  req.Item.Boycott, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO boycott_membership (cause, boycott) VALUES($1, $2)  RETURNING id;",
+		req.Item.Cause, req.Item.Boycott).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into BoycottMembership-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetBoycottMembership(ctx context.Context, req *v1.
 			req.ID))
 	}
 
-	// get BoycottMembership data
+	// scan BoycottMembership data into protobuf model
 	var boycottmembership v1.BoycottMembership
-	if err := rows.Scan( &boycottmembership.ID,  &boycottmembership.CreatedAt,  &boycottmembership.UpdatedAt,  &boycottmembership.Cause,  &boycottmembership.Boycott, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&boycottmembership.ID, &createdAt, &updatedAt, &boycottmembership.Cause, &boycottmembership.Boycott); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from BoycottMembership row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	boycottmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	boycottmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListBoycottMembership(ctx context.Context, req *v1
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.BoycottMembership{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		boycottmembership := new(v1.BoycottMembership)
-		if err := rows.Scan( &boycottmembership.ID,  &boycottmembership.CreatedAt,  &boycottmembership.UpdatedAt,  &boycottmembership.Cause,  &boycottmembership.Boycott, ); err != nil {
+		if err := rows.Scan(&boycottmembership.ID, &createdAt, &updatedAt, &boycottmembership.Cause, &boycottmembership.Boycott); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from BoycottMembership row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		boycottmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		boycottmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, boycottmembership)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateBoycottMembership(ctx context.Context, req *
 	defer c.Close()
 
 	// update boycott_membership
-	res, err := c.ExecContext(ctx, "UPDATE boycott_membership SET id=$1, created_at=$2, updated_at=$3, cause=$4, boycott=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Cause,req.Item.Boycott, )
+	res, err := c.ExecContext(ctx, "UPDATE boycott_membership SET cause=$2, boycott=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Cause, req.Item.Boycott)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update BoycottMembership-> "+err.Error())
 	}

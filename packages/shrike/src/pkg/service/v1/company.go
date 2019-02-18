@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateCompany(ctx context.Context, req *v1.CreateC
 	defer c.Close()
 	var id int64
 	// insert Company entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO company (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO company (title) VALUES($1)  RETURNING id;",
+		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Company-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetCompany(ctx context.Context, req *v1.GetCompany
 			req.ID))
 	}
 
-	// get Company data
+	// scan Company data into protobuf model
 	var company v1.Company
-	if err := rows.Scan( &company.ID,  &company.CreatedAt,  &company.UpdatedAt,  &company.Title, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&company.ID, &createdAt, &updatedAt, &company.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Company row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	company.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	company.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListCompany(ctx context.Context, req *v1.ListCompa
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Company{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		company := new(v1.Company)
-		if err := rows.Scan( &company.ID,  &company.CreatedAt,  &company.UpdatedAt,  &company.Title, ); err != nil {
+		if err := rows.Scan(&company.ID, &createdAt, &updatedAt, &company.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Company row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		company.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		company.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, company)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateCompany(ctx context.Context, req *v1.UpdateC
 	defer c.Close()
 
 	// update company
-	res, err := c.ExecContext(ctx, "UPDATE company SET id=$1, created_at=$2, updated_at=$3, title=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
+	res, err := c.ExecContext(ctx, "UPDATE company SET title=$2 WHERE id=$1",
+		req.Item.ID, req.Item.Title)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Company-> "+err.Error())
 	}

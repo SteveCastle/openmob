@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreatePurchaser(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id int64
 	// insert Purchaser entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO purchaser (id, created_at, updated_at, customer_order, contact, cause) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.CustomerOrder,  req.Item.Contact,  req.Item.Cause, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO purchaser (customer_order, contact, cause) VALUES($1, $2, $3)  RETURNING id;",
+		req.Item.CustomerOrder, req.Item.Contact, req.Item.Cause).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Purchaser-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetPurchaser(ctx context.Context, req *v1.GetPurch
 			req.ID))
 	}
 
-	// get Purchaser data
+	// scan Purchaser data into protobuf model
 	var purchaser v1.Purchaser
-	if err := rows.Scan( &purchaser.ID,  &purchaser.CreatedAt,  &purchaser.UpdatedAt,  &purchaser.CustomerOrder,  &purchaser.Contact,  &purchaser.Cause, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&purchaser.ID, &createdAt, &updatedAt, &purchaser.CustomerOrder, &purchaser.Contact, &purchaser.Cause); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Purchaser row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	purchaser.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	purchaser.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Purchaser{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		purchaser := new(v1.Purchaser)
-		if err := rows.Scan( &purchaser.ID,  &purchaser.CreatedAt,  &purchaser.UpdatedAt,  &purchaser.CustomerOrder,  &purchaser.Contact,  &purchaser.Cause, ); err != nil {
+		if err := rows.Scan(&purchaser.ID, &createdAt, &updatedAt, &purchaser.CustomerOrder, &purchaser.Contact, &purchaser.Cause); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Purchaser row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		purchaser.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		purchaser.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, purchaser)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdatePurchaser(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update purchaser
-	res, err := c.ExecContext(ctx, "UPDATE purchaser SET id=$1, created_at=$2, updated_at=$3, customer_order=$4, contact=$5, cause=$6 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.CustomerOrder,req.Item.Contact,req.Item.Cause, )
+	res, err := c.ExecContext(ctx, "UPDATE purchaser SET customer_order=$2, contact=$3, cause=$4 WHERE id=$1",
+		req.Item.ID, req.Item.CustomerOrder, req.Item.Contact, req.Item.Cause)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Purchaser-> "+err.Error())
 	}

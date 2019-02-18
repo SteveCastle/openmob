@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,7 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	defer c.Close()
 	var id int64
 	// insert ComponentImplementation entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (id, created_at, updated_at) VALUES($1, $2, $3)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation () VALUES()  RETURNING id;").Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentImplementation-> "+err.Error())
 	}
@@ -70,10 +70,23 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 			req.ID))
 	}
 
-	// get ComponentImplementation data
+	// scan ComponentImplementation data into protobuf model
 	var componentimplementation v1.ComponentImplementation
-	if err := rows.Scan( &componentimplementation.ID,  &componentimplementation.CreatedAt,  &componentimplementation.UpdatedAt, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&componentimplementation.ID, &createdAt, &updatedAt); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	componentimplementation.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	componentimplementation.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +122,26 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.ComponentImplementation{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		componentimplementation := new(v1.ComponentImplementation)
-		if err := rows.Scan( &componentimplementation.ID,  &componentimplementation.CreatedAt,  &componentimplementation.UpdatedAt, ); err != nil {
+		if err := rows.Scan(&componentimplementation.ID, &createdAt, &updatedAt); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		componentimplementation.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		componentimplementation.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, componentimplementation)
 	}
 
@@ -143,8 +170,8 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	defer c.Close()
 
 	// update component_implementation
-	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET id=$1, created_at=$2, updated_at=$3 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
+	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET  WHERE id=$1",
+		req.Item.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ComponentImplementation-> "+err.Error())
 	}

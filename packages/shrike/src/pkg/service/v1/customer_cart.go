@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,7 @@ func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert CustomerCart entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart (id, created_at, updated_at) VALUES($1, $2, $3)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO customer_cart () VALUES()  RETURNING id;").Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into CustomerCart-> "+err.Error())
 	}
@@ -70,10 +70,23 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 			req.ID))
 	}
 
-	// get CustomerCart data
+	// scan CustomerCart data into protobuf model
 	var customercart v1.CustomerCart
-	if err := rows.Scan( &customercart.ID,  &customercart.CreatedAt,  &customercart.UpdatedAt, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&customercart.ID, &createdAt, &updatedAt); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerCart row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	customercart.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	customercart.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +122,26 @@ func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.List
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.CustomerCart{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		customercart := new(v1.CustomerCart)
-		if err := rows.Scan( &customercart.ID,  &customercart.CreatedAt,  &customercart.UpdatedAt, ); err != nil {
+		if err := rows.Scan(&customercart.ID, &createdAt, &updatedAt); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from CustomerCart row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		customercart.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		customercart.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, customercart)
 	}
 
@@ -143,8 +170,8 @@ func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.Up
 	defer c.Close()
 
 	// update customer_cart
-	res, err := c.ExecContext(ctx, "UPDATE customer_cart SET id=$1, created_at=$2, updated_at=$3 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
+	res, err := c.ExecContext(ctx, "UPDATE customer_cart SET  WHERE id=$1",
+		req.Item.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update CustomerCart-> "+err.Error())
 	}

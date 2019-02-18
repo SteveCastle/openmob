@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateDistrictType(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert DistrictType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO district_type (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO district_type (title) VALUES($1)  RETURNING id;",
+		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into DistrictType-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetDistrictType(ctx context.Context, req *v1.GetDi
 			req.ID))
 	}
 
-	// get DistrictType data
+	// scan DistrictType data into protobuf model
 	var districttype v1.DistrictType
-	if err := rows.Scan( &districttype.ID,  &districttype.CreatedAt,  &districttype.UpdatedAt,  &districttype.Title, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&districttype.ID, &createdAt, &updatedAt, &districttype.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DistrictType row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	districttype.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	districttype.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.List
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.DistrictType{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		districttype := new(v1.DistrictType)
-		if err := rows.Scan( &districttype.ID,  &districttype.CreatedAt,  &districttype.UpdatedAt,  &districttype.Title, ); err != nil {
+		if err := rows.Scan(&districttype.ID, &createdAt, &updatedAt, &districttype.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DistrictType row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		districttype.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		districttype.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, districttype)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateDistrictType(ctx context.Context, req *v1.Up
 	defer c.Close()
 
 	// update district_type
-	res, err := c.ExecContext(ctx, "UPDATE district_type SET id=$1, created_at=$2, updated_at=$3, title=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
+	res, err := c.ExecContext(ctx, "UPDATE district_type SET title=$2 WHERE id=$1",
+		req.Item.ID, req.Item.Title)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update DistrictType-> "+err.Error())
 	}

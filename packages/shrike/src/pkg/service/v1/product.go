@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateProduct(ctx context.Context, req *v1.CreateP
 	defer c.Close()
 	var id int64
 	// insert Product entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO product (id, created_at, updated_at, title, product_type) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.ProductType, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO product (title, product_type) VALUES($1, $2)  RETURNING id;",
+		req.Item.Title, req.Item.ProductType).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Product-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetProduct(ctx context.Context, req *v1.GetProduct
 			req.ID))
 	}
 
-	// get Product data
+	// scan Product data into protobuf model
 	var product v1.Product
-	if err := rows.Scan( &product.ID,  &product.CreatedAt,  &product.UpdatedAt,  &product.Title,  &product.ProductType, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&product.ID, &createdAt, &updatedAt, &product.Title, &product.ProductType); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Product row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	product.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	product.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListProduct(ctx context.Context, req *v1.ListProdu
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Product{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		product := new(v1.Product)
-		if err := rows.Scan( &product.ID,  &product.CreatedAt,  &product.UpdatedAt,  &product.Title,  &product.ProductType, ); err != nil {
+		if err := rows.Scan(&product.ID, &createdAt, &updatedAt, &product.Title, &product.ProductType); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Product row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		product.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		product.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, product)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateProduct(ctx context.Context, req *v1.UpdateP
 	defer c.Close()
 
 	// update product
-	res, err := c.ExecContext(ctx, "UPDATE product SET id=$1, created_at=$2, updated_at=$3, title=$4, product_type=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.ProductType, )
+	res, err := c.ExecContext(ctx, "UPDATE product SET title=$2, product_type=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.ProductType)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Product-> "+err.Error())
 	}

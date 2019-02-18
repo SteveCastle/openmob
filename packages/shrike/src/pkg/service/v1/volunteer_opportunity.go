@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunity(ctx context.Context, re
 	defer c.Close()
 	var id int64
 	// insert VolunteerOpportunity entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity (id, created_at, updated_at, title, election_type) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title,  req.Item.ElectionType, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity (title, election_type) VALUES($1, $2)  RETURNING id;",
+		req.Item.Title, req.Item.ElectionType).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunity-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetVolunteerOpportunity(ctx context.Context, req *
 			req.ID))
 	}
 
-	// get VolunteerOpportunity data
+	// scan VolunteerOpportunity data into protobuf model
 	var volunteeropportunity v1.VolunteerOpportunity
-	if err := rows.Scan( &volunteeropportunity.ID,  &volunteeropportunity.CreatedAt,  &volunteeropportunity.UpdatedAt,  &volunteeropportunity.Title,  &volunteeropportunity.ElectionType, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&volunteeropportunity.ID, &createdAt, &updatedAt, &volunteeropportunity.Title, &volunteeropportunity.ElectionType); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunity row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	volunteeropportunity.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	volunteeropportunity.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListVolunteerOpportunity(ctx context.Context, req 
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.VolunteerOpportunity{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		volunteeropportunity := new(v1.VolunteerOpportunity)
-		if err := rows.Scan( &volunteeropportunity.ID,  &volunteeropportunity.CreatedAt,  &volunteeropportunity.UpdatedAt,  &volunteeropportunity.Title,  &volunteeropportunity.ElectionType, ); err != nil {
+		if err := rows.Scan(&volunteeropportunity.ID, &createdAt, &updatedAt, &volunteeropportunity.Title, &volunteeropportunity.ElectionType); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunity row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		volunteeropportunity.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		volunteeropportunity.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, volunteeropportunity)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunity(ctx context.Context, re
 	defer c.Close()
 
 	// update volunteer_opportunity
-	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity SET id=$1, created_at=$2, updated_at=$3, title=$4, election_type=$5 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title,req.Item.ElectionType, )
+	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity SET title=$2, election_type=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.ElectionType)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunity-> "+err.Error())
 	}

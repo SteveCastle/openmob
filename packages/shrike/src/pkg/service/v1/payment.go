@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreatePayment(ctx context.Context, req *v1.CreateP
 	defer c.Close()
 	var id int64
 	// insert Payment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO payment (id, created_at, updated_at, customer_order) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.CustomerOrder, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO payment (customer_order) VALUES($1)  RETURNING id;",
+		req.Item.CustomerOrder).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Payment-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 			req.ID))
 	}
 
-	// get Payment data
+	// scan Payment data into protobuf model
 	var payment v1.Payment
-	if err := rows.Scan( &payment.ID,  &payment.CreatedAt,  &payment.UpdatedAt,  &payment.CustomerOrder, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&payment.ID, &createdAt, &updatedAt, &payment.CustomerOrder); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Payment row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	payment.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	payment.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPayme
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Payment{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		payment := new(v1.Payment)
-		if err := rows.Scan( &payment.ID,  &payment.CreatedAt,  &payment.UpdatedAt,  &payment.CustomerOrder, ); err != nil {
+		if err := rows.Scan(&payment.ID, &createdAt, &updatedAt, &payment.CustomerOrder); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Payment row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		payment.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		payment.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, payment)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdatePayment(ctx context.Context, req *v1.UpdateP
 	defer c.Close()
 
 	// update payment
-	res, err := c.ExecContext(ctx, "UPDATE payment SET id=$1, created_at=$2, updated_at=$3, customer_order=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.CustomerOrder, )
+	res, err := c.ExecContext(ctx, "UPDATE payment SET customer_order=$2 WHERE id=$1",
+		req.Item.ID, req.Item.CustomerOrder)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Payment-> "+err.Error())
 	}

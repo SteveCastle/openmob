@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,7 @@ func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id int64
 	// insert Delivery entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO delivery (id, created_at, updated_at) VALUES($1, $2, $3)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO delivery () VALUES()  RETURNING id;").Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Delivery-> "+err.Error())
 	}
@@ -70,10 +70,23 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 			req.ID))
 	}
 
-	// get Delivery data
+	// scan Delivery data into protobuf model
 	var delivery v1.Delivery
-	if err := rows.Scan( &delivery.ID,  &delivery.CreatedAt,  &delivery.UpdatedAt, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&delivery.ID, &createdAt, &updatedAt); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Delivery row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	delivery.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	delivery.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +122,26 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Delivery{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		delivery := new(v1.Delivery)
-		if err := rows.Scan( &delivery.ID,  &delivery.CreatedAt,  &delivery.UpdatedAt, ); err != nil {
+		if err := rows.Scan(&delivery.ID, &createdAt, &updatedAt); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Delivery row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		delivery.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		delivery.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, delivery)
 	}
 
@@ -143,8 +170,8 @@ func (s *shrikeServiceServer) UpdateDelivery(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update delivery
-	res, err := c.ExecContext(ctx, "UPDATE delivery SET id=$1, created_at=$2, updated_at=$3 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt, )
+	res, err := c.ExecContext(ctx, "UPDATE delivery SET  WHERE id=$1",
+		req.Item.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Delivery-> "+err.Error())
 	}

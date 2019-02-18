@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreatePoll(ctx context.Context, req *v1.CreatePoll
 	defer c.Close()
 	var id int64
 	// insert Poll entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO poll (id, created_at, updated_at, title) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Title, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO poll (title) VALUES($1)  RETURNING id;",
+		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Poll-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetPoll(ctx context.Context, req *v1.GetPollReques
 			req.ID))
 	}
 
-	// get Poll data
+	// scan Poll data into protobuf model
 	var poll v1.Poll
-	if err := rows.Scan( &poll.ID,  &poll.CreatedAt,  &poll.UpdatedAt,  &poll.Title, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&poll.ID, &createdAt, &updatedAt, &poll.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Poll row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	poll.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	poll.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListPoll(ctx context.Context, req *v1.ListPollRequ
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Poll{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		poll := new(v1.Poll)
-		if err := rows.Scan( &poll.ID,  &poll.CreatedAt,  &poll.UpdatedAt,  &poll.Title, ); err != nil {
+		if err := rows.Scan(&poll.ID, &createdAt, &updatedAt, &poll.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Poll row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		poll.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		poll.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, poll)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdatePoll(ctx context.Context, req *v1.UpdatePoll
 	defer c.Close()
 
 	// update poll
-	res, err := c.ExecContext(ctx, "UPDATE poll SET id=$1, created_at=$2, updated_at=$3, title=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Title, )
+	res, err := c.ExecContext(ctx, "UPDATE poll SET title=$2 WHERE id=$1",
+		req.Item.ID, req.Item.Title)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Poll-> "+err.Error())
 	}

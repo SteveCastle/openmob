@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateEmailAddress(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id int64
 	// insert EmailAddress entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO email_address (id, created_at, updated_at, address) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Address, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO email_address (address) VALUES($1)  RETURNING id;",
+		req.Item.Address).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into EmailAddress-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetEmailAddress(ctx context.Context, req *v1.GetEm
 			req.ID))
 	}
 
-	// get EmailAddress data
+	// scan EmailAddress data into protobuf model
 	var emailaddress v1.EmailAddress
-	if err := rows.Scan( &emailaddress.ID,  &emailaddress.CreatedAt,  &emailaddress.UpdatedAt,  &emailaddress.Address, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&emailaddress.ID, &createdAt, &updatedAt, &emailaddress.Address); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from EmailAddress row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	emailaddress.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	emailaddress.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListEmailAddress(ctx context.Context, req *v1.List
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.EmailAddress{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		emailaddress := new(v1.EmailAddress)
-		if err := rows.Scan( &emailaddress.ID,  &emailaddress.CreatedAt,  &emailaddress.UpdatedAt,  &emailaddress.Address, ); err != nil {
+		if err := rows.Scan(&emailaddress.ID, &createdAt, &updatedAt, &emailaddress.Address); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from EmailAddress row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		emailaddress.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		emailaddress.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, emailaddress)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateEmailAddress(ctx context.Context, req *v1.Up
 	defer c.Close()
 
 	// update email_address
-	res, err := c.ExecContext(ctx, "UPDATE email_address SET id=$1, created_at=$2, updated_at=$3, address=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Address, )
+	res, err := c.ExecContext(ctx, "UPDATE email_address SET address=$2 WHERE id=$1",
+		req.Item.ID, req.Item.Address)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update EmailAddress-> "+err.Error())
 	}

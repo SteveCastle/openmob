@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateNote(ctx context.Context, req *v1.CreateNote
 	defer c.Close()
 	var id int64
 	// insert Note entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO note (id, created_at, updated_at, contact, cause, body) VALUES($1, $2, $3, $4, $5, $6)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.Contact,  req.Item.Cause,  req.Item.Body, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO note (contact, cause, body) VALUES($1, $2, $3)  RETURNING id;",
+		req.Item.Contact, req.Item.Cause, req.Item.Body).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Note-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 			req.ID))
 	}
 
-	// get Note data
+	// scan Note data into protobuf model
 	var note v1.Note
-	if err := rows.Scan( &note.ID,  &note.CreatedAt,  &note.UpdatedAt,  &note.Contact,  &note.Cause,  &note.Body, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&note.ID, &createdAt, &updatedAt, &note.Contact, &note.Cause, &note.Body); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Note row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	note.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	note.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequ
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Note{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		note := new(v1.Note)
-		if err := rows.Scan( &note.ID,  &note.CreatedAt,  &note.UpdatedAt,  &note.Contact,  &note.Cause,  &note.Body, ); err != nil {
+		if err := rows.Scan(&note.ID, &createdAt, &updatedAt, &note.Contact, &note.Cause, &note.Body); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Note row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		note.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		note.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, note)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateNote(ctx context.Context, req *v1.UpdateNote
 	defer c.Close()
 
 	// update note
-	res, err := c.ExecContext(ctx, "UPDATE note SET id=$1, created_at=$2, updated_at=$3, contact=$4, cause=$5, body=$6 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.Contact,req.Item.Cause,req.Item.Body, )
+	res, err := c.ExecContext(ctx, "UPDATE note SET contact=$2, cause=$3, body=$4 WHERE id=$1",
+		req.Item.ID, req.Item.Contact, req.Item.Cause, req.Item.Body)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Note-> "+err.Error())
 	}

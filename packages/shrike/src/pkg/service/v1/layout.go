@@ -3,9 +3,10 @@ package v1
 import (
 	"context"
 	"fmt"
+	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-
+	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -24,8 +25,8 @@ func (s *shrikeServiceServer) CreateLayout(ctx context.Context, req *v1.CreateLa
 	defer c.Close()
 	var id int64
 	// insert Layout entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layout (id, created_at, updated_at, layout_type) VALUES($1, $2, $3, $4)  RETURNING id;",
-		 req.Item.ID,  req.Item.CreatedAt,  req.Item.UpdatedAt,  req.Item.LayoutType, ).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO layout (layout_type) VALUES($1)  RETURNING id;",
+		req.Item.LayoutType).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Layout-> "+err.Error())
 	}
@@ -70,10 +71,23 @@ func (s *shrikeServiceServer) GetLayout(ctx context.Context, req *v1.GetLayoutRe
 			req.ID))
 	}
 
-	// get Layout data
+	// scan Layout data into protobuf model
 	var layout v1.Layout
-	if err := rows.Scan( &layout.ID,  &layout.CreatedAt,  &layout.UpdatedAt,  &layout.LayoutType, ); err != nil {
+	var createdAt time.Time
+	var updatedAt time.Time
+
+	if err := rows.Scan(&layout.ID, &createdAt, &updatedAt, &layout.LayoutType); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Layout row-> "+err.Error())
+	}
+
+	// Convert time.Time from database into proto timestamp.
+	layout.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	}
+	layout.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -109,12 +123,26 @@ func (s *shrikeServiceServer) ListLayout(ctx context.Context, req *v1.ListLayout
 	}
 	defer rows.Close()
 
+	// Variables to store results returned by database.
 	list := []*v1.Layout{}
+	var createdAt time.Time
+	var updatedAt time.Time
+
 	for rows.Next() {
 		layout := new(v1.Layout)
-		if err := rows.Scan( &layout.ID,  &layout.CreatedAt,  &layout.UpdatedAt,  &layout.LayoutType, ); err != nil {
+		if err := rows.Scan(&layout.ID, &createdAt, &updatedAt, &layout.LayoutType); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Layout row-> "+err.Error())
 		}
+		// Convert time.Time from database into proto timestamp.
+		layout.CreatedAt, err = ptypes.TimestampProto(createdAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
+		layout.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		}
+
 		list = append(list, layout)
 	}
 
@@ -143,8 +171,8 @@ func (s *shrikeServiceServer) UpdateLayout(ctx context.Context, req *v1.UpdateLa
 	defer c.Close()
 
 	// update layout
-	res, err := c.ExecContext(ctx, "UPDATE layout SET id=$1, created_at=$2, updated_at=$3, layout_type=$4 WHERE id=$1",
-		req.Item.ID,req.Item.CreatedAt,req.Item.UpdatedAt,req.Item.LayoutType, )
+	res, err := c.ExecContext(ctx, "UPDATE layout SET layout_type=$2 WHERE id=$1",
+		req.Item.ID, req.Item.LayoutType)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Layout-> "+err.Error())
 	}
