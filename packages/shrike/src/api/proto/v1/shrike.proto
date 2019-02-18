@@ -10,24 +10,24 @@ import "google/protobuf/timestamp.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 	info: {
-		title: "Shrike service";
-		version: "1.0";
+		title: "Shrike service",
+		version: "1.0",
 		contact: {
-			name: "openmob";
-			url: "https://github.com/SteveCastle/openmob";
-			email: "stephen@openmob.us";
-        };
-    };
-    schemes: HTTP;
-    consumes: "application/json";
-    produces: "application/json";
+			name: "openmob",
+			url: "https://github.com/SteveCastle/openmob",
+			email: "stephen@openmob.us",
+        },
+    },
+    schemes: HTTP,
+    consumes: "application/json",
+    produces: "application/json",
     responses: {
-		key: "404";
+		key: "404",
 		value: {
-			description: "Returned when the resource does not exist.";
+			description: "Returned when the resource does not exist.",
 			schema: {
 				json_schema: {
-					type: STRING;
+					type: STRING,
 				}
 			}
 		}

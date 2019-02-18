@@ -41,7 +41,9 @@ install:
 	go get -u github.com/golang/protobuf/protoc-gen-go
 	go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 	go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-generate:
+codegen:
+	gnorm gen
+generate: codegen
 	curl -OL https://github.com/google/protobuf/releases/download/v3.3.0/$(PROTOC_ZIP)
 	sudo unzip -o $(PROTOC_ZIP) -d /usr/local bin/protoc
 	rm -f $(PROTOC_ZIP)
@@ -56,3 +58,5 @@ start: build-server
 e2e: build-client
 	cd src/cmd/grpc-client;./grpc-client -server=localhost:9090
 bootstrap: startdb install init generate build
+swagger:
+	./scripts/start-swagger.sh
