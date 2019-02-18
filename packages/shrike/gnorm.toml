@@ -45,7 +45,8 @@ ExcludeTables = ["migrations", "spatial_ref_sys", "geometry_columns", "geography
 # environment variable may be used, which will expand to the name of the file
 # that was just generated.
 # Example to run goimports on each output file:
-PostRun = ["echo", "$GNORMFILE"]
+PostRun = ["gofmt", "-w", "$GNORMFILE"]
+#PostRun = ["echo", "$GNORMFILE"]
 
 # OutputDir is the directory relative to the project root (where the
 # gnorm.toml file is located) in which all the generated files are written
@@ -53,7 +54,7 @@ PostRun = ["echo", "$GNORMFILE"]
 #
 # This defaults to the current working directory i.e the directory in which
 # gnorm.toml is found.
-OutputDir = "generated"
+OutputDir = "src"
 
 # StaticDir is the directory relative to the project root (where the
 # gnorm.toml file is located) in which all static files , which are
@@ -80,7 +81,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 # "tables.gotmpl" would render tables.gotmpl template with data from the the
 # "public.users" table to ./public/users/users.go.
 [TablePaths]
-"shrike/crud/{{snake .Table}}.go" = "templates/handlers.gotmpl"
+"pkg/service/v1/{{snake .Table}}.go" = "templates/handlers.gotmpl"
 
 # SchemaPaths iis a map of output paths to template paths that tells Gnorm how
 # to render and output its schema info.  Each template will be rendered with
@@ -94,8 +95,9 @@ NoOverwriteGlobs = ["*.perm.go"]
 # schemas.gotmpl template with the "public" schema and output to
 # ./schemas/public/public.go
 [SchemaPaths]
-"shrike.proto" = "templates/protobuf.gotmpl"
-"shrike.graphql" = "templates/graphql.gotmpl"
+# "cmd/grpc-client/main.go" = "templates/test-client.gotmpl"
+# "api/proto/v1/shrike.proto" = "templates/protobuf.gotmpl"
+# "api/graphsql/shrike.graphql" = "templates/graphql.gotmpl"
 # EnumPaths is a is a map of output paths to template paths that tells Gnorm how
 # to render and output its enum info.  Each template will be rendered with each
 # enum in turn and written out to the given output path. If no pairs are
@@ -128,6 +130,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 "character varying" = "string"
 "integer" = "int64"
 "numeric" = "float64"
+"geometry" = "int64"
 
 # NullableTypeMap is a mapping of database type names to replacement type names
 # (generally types from your language for deserialization), specifically for
@@ -138,14 +141,14 @@ NoOverwriteGlobs = ["*.perm.go"]
 # of your configuration file.
 # Example for mapping postgres types to Go types:
 [NullableTypeMap]
-"timestamp with time zone" = "pq.NullTime"
-"text" = "sql.NullString"
-"boolean" = "sql.NullBool"
-"uuid" = "uuid.NullUUID"
-"character varying" = "sql.NullString"
-"integer" = "sql.NullInt64"
-"numeric" = "sql.NullFloat64"
-
+"timestamp with time zone" = "google.protobuf.Timestamp"
+"text" = "string"
+"boolean" = "bool"
+"uuid" = "uuid.UUID"
+"character varying" = "string"
+"integer" = "int64"
+"numeric" = "float64"
+"geometry" = "int64"
 
 # Params contains any data you may want to pass to your templates.  This is a
 # good way to make templates reusable with different configuration values for

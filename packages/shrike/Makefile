@@ -51,8 +51,8 @@ build-server:
 build-client:
 	cd src/cmd/grpc-client; go build .
 build: build-server build-client
-start: build
+start: build-server
 	cd src/cmd/grpc-server;./grpc-server
-test-client:
+e2e: build-client
 	cd src/cmd/grpc-client;./grpc-client -server=localhost:9090
 bootstrap: startdb install init generate build

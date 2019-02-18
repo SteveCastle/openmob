@@ -46,7 +46,7 @@ func main() {
 	}
 	log.Printf("Create result: <%+v>\n\n", res1)
 
-	id := res1.Id
+	id := res1.ID
 	// Call Create
 	req1 = v1.CreateCauseRequest{
 		Api: apiVersion,
@@ -59,12 +59,12 @@ func main() {
 		log.Fatalf("Create 2 failed: %v", err)
 	}
 	log.Printf("Create result 2: <%+v>\n\n", res1)
-	id2 := res1.Id
+	id2 := res1.ID
 
 	// Read
 	req2 := v1.GetCauseRequest{
 		Api: apiVersion,
-		Id:  id,
+		ID:  id,
 	}
 	res2, err := c.GetCause(ctx, &req2)
 	if err != nil {
@@ -85,7 +85,7 @@ func main() {
 	req4 := v1.UpdateCauseRequest{
 		Api: apiVersion,
 		Item: &v1.Cause{
-			Id:    id,
+			ID:    id,
 			Title: "Global Warming",
 		},
 	}
@@ -108,7 +108,7 @@ func main() {
 	// Delete
 	req5 := v1.DeleteCauseRequest{
 		Api: apiVersion,
-		Id:  id,
+		ID:  id,
 	}
 	res5, err := c.DeleteCause(ctx, &req5)
 	if err != nil {
@@ -118,7 +118,7 @@ func main() {
 	// Delete
 	req5 = v1.DeleteCauseRequest{
 		Api: apiVersion,
-		Id:  id2,
+		ID:  id2,
 	}
 	res5, err = c.DeleteCause(ctx, &req5)
 	if err != nil {
