@@ -37,7 +37,6 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 // Generated Types and Message Schema
 
 message ACL {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -80,7 +79,6 @@ message ListACLResponse {
 
 // Request data to update ACL
 message UpdateACLRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // ACL entity to update
@@ -89,7 +87,6 @@ message UpdateACLRequest{
 
 // Contains status of update operation
 message UpdateACLResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -99,7 +96,6 @@ message UpdateACLResponse{
 
 // Request data to delete ACL
 message DeleteACLRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the ACL to delete
@@ -108,7 +104,6 @@ message DeleteACLRequest{
 
 // Contains status of delete operation
 message DeleteACLResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -117,7 +112,6 @@ message DeleteACLResponse{
 }
 
 message MailingAddress {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -168,7 +162,6 @@ message ListMailingAddressResponse {
 
 // Request data to update MailingAddress
 message UpdateMailingAddressRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // MailingAddress entity to update
@@ -177,7 +170,6 @@ message UpdateMailingAddressRequest{
 
 // Contains status of update operation
 message UpdateMailingAddressResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -187,7 +179,6 @@ message UpdateMailingAddressResponse{
 
 // Request data to delete MailingAddress
 message DeleteMailingAddressRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the MailingAddress to delete
@@ -196,7 +187,6 @@ message DeleteMailingAddressRequest{
 
 // Contains status of delete operation
 message DeleteMailingAddressResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -205,7 +195,6 @@ message DeleteMailingAddressResponse{
 }
 
 message PhoneNumber {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -250,7 +239,6 @@ message ListPhoneNumberResponse {
 
 // Request data to update PhoneNumber
 message UpdatePhoneNumberRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // PhoneNumber entity to update
@@ -259,7 +247,6 @@ message UpdatePhoneNumberRequest{
 
 // Contains status of update operation
 message UpdatePhoneNumberResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -269,7 +256,6 @@ message UpdatePhoneNumberResponse{
 
 // Request data to delete PhoneNumber
 message DeletePhoneNumberRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the PhoneNumber to delete
@@ -278,7 +264,6 @@ message DeletePhoneNumberRequest{
 
 // Contains status of delete operation
 message DeletePhoneNumberResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -287,7 +272,6 @@ message DeletePhoneNumberResponse{
 }
 
 message EmailAddress {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -332,7 +316,6 @@ message ListEmailAddressResponse {
 
 // Request data to update EmailAddress
 message UpdateEmailAddressRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // EmailAddress entity to update
@@ -341,7 +324,6 @@ message UpdateEmailAddressRequest{
 
 // Contains status of update operation
 message UpdateEmailAddressResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -351,7 +333,6 @@ message UpdateEmailAddressResponse{
 
 // Request data to delete EmailAddress
 message DeleteEmailAddressRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the EmailAddress to delete
@@ -360,7 +341,6 @@ message DeleteEmailAddressRequest{
 
 // Contains status of delete operation
 message DeleteEmailAddressResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -369,7 +349,6 @@ message DeleteEmailAddressResponse{
 }
 
 message Photo {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -414,7 +393,6 @@ message ListPhotoResponse {
 
 // Request data to update Photo
 message UpdatePhotoRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Photo entity to update
@@ -423,7 +401,6 @@ message UpdatePhotoRequest{
 
 // Contains status of update operation
 message UpdatePhotoResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -433,7 +410,6 @@ message UpdatePhotoResponse{
 
 // Request data to delete Photo
 message DeletePhotoRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Photo to delete
@@ -442,7 +418,6 @@ message DeletePhotoRequest{
 
 // Contains status of delete operation
 message DeletePhotoResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -451,7 +426,6 @@ message DeletePhotoResponse{
 }
 
 message LayoutType {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -496,7 +470,6 @@ message ListLayoutTypeResponse {
 
 // Request data to update LayoutType
 message UpdateLayoutTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // LayoutType entity to update
@@ -505,7 +478,6 @@ message UpdateLayoutTypeRequest{
 
 // Contains status of update operation
 message UpdateLayoutTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -515,7 +487,6 @@ message UpdateLayoutTypeResponse{
 
 // Request data to delete LayoutType
 message DeleteLayoutTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the LayoutType to delete
@@ -524,7 +495,6 @@ message DeleteLayoutTypeRequest{
 
 // Contains status of delete operation
 message DeleteLayoutTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -533,7 +503,6 @@ message DeleteLayoutTypeResponse{
 }
 
 message LayoutRow {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -578,7 +547,6 @@ message ListLayoutRowResponse {
 
 // Request data to update LayoutRow
 message UpdateLayoutRowRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // LayoutRow entity to update
@@ -587,7 +555,6 @@ message UpdateLayoutRowRequest{
 
 // Contains status of update operation
 message UpdateLayoutRowResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -597,7 +564,6 @@ message UpdateLayoutRowResponse{
 
 // Request data to delete LayoutRow
 message DeleteLayoutRowRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the LayoutRow to delete
@@ -606,7 +572,6 @@ message DeleteLayoutRowRequest{
 
 // Contains status of delete operation
 message DeleteLayoutRowResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -615,7 +580,6 @@ message DeleteLayoutRowResponse{
 }
 
 message ComponentImplementation {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -658,7 +622,6 @@ message ListComponentImplementationResponse {
 
 // Request data to update ComponentImplementation
 message UpdateComponentImplementationRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // ComponentImplementation entity to update
@@ -667,7 +630,6 @@ message UpdateComponentImplementationRequest{
 
 // Contains status of update operation
 message UpdateComponentImplementationResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -677,7 +639,6 @@ message UpdateComponentImplementationResponse{
 
 // Request data to delete ComponentImplementation
 message DeleteComponentImplementationRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the ComponentImplementation to delete
@@ -686,7 +647,6 @@ message DeleteComponentImplementationRequest{
 
 // Contains status of delete operation
 message DeleteComponentImplementationResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -695,7 +655,6 @@ message DeleteComponentImplementationResponse{
 }
 
 message ComponentType {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -740,7 +699,6 @@ message ListComponentTypeResponse {
 
 // Request data to update ComponentType
 message UpdateComponentTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // ComponentType entity to update
@@ -749,7 +707,6 @@ message UpdateComponentTypeRequest{
 
 // Contains status of update operation
 message UpdateComponentTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -759,7 +716,6 @@ message UpdateComponentTypeResponse{
 
 // Request data to delete ComponentType
 message DeleteComponentTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the ComponentType to delete
@@ -768,7 +724,6 @@ message DeleteComponentTypeRequest{
 
 // Contains status of delete operation
 message DeleteComponentTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -777,7 +732,6 @@ message DeleteComponentTypeResponse{
 }
 
 message LayoutColumn {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -822,7 +776,6 @@ message ListLayoutColumnResponse {
 
 // Request data to update LayoutColumn
 message UpdateLayoutColumnRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // LayoutColumn entity to update
@@ -831,7 +784,6 @@ message UpdateLayoutColumnRequest{
 
 // Contains status of update operation
 message UpdateLayoutColumnResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -841,7 +793,6 @@ message UpdateLayoutColumnResponse{
 
 // Request data to delete LayoutColumn
 message DeleteLayoutColumnRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the LayoutColumn to delete
@@ -850,7 +801,83 @@ message DeleteLayoutColumnRequest{
 
 // Contains status of delete operation
 message DeleteLayoutColumnResponse{
-    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
+message Layout {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	int64 LayoutType = 4;
+	
+}
+
+//Request and Response Message Types
+message CreateLayoutRequest {
+	string api = 1;
+	Layout item = 2;
+}
+
+message CreateLayoutResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetLayoutRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetLayoutResponse {
+	string api = 1;
+	Layout item = 2;
+}
+
+message ListLayoutRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListLayoutResponse {
+	string api = 1;
+	repeated Layout items = 2;
+}
+
+// Request data to update Layout
+message UpdateLayoutRequest{
+    string api = 1;
+
+    // Layout entity to update
+    Layout item = 2;
+}
+
+// Contains status of update operation
+message UpdateLayoutResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete Layout
+message DeleteLayoutRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the Layout to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteLayoutResponse{
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -859,7 +886,6 @@ message DeleteLayoutColumnResponse{
 }
 
 message FieldType {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -904,7 +930,6 @@ message ListFieldTypeResponse {
 
 // Request data to update FieldType
 message UpdateFieldTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // FieldType entity to update
@@ -913,7 +938,6 @@ message UpdateFieldTypeRequest{
 
 // Contains status of update operation
 message UpdateFieldTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -923,7 +947,6 @@ message UpdateFieldTypeResponse{
 
 // Request data to delete FieldType
 message DeleteFieldTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the FieldType to delete
@@ -932,7 +955,6 @@ message DeleteFieldTypeRequest{
 
 // Contains status of delete operation
 message DeleteFieldTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -941,7 +963,6 @@ message DeleteFieldTypeResponse{
 }
 
 message Component {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -988,7 +1009,6 @@ message ListComponentResponse {
 
 // Request data to update Component
 message UpdateComponentRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Component entity to update
@@ -997,7 +1017,6 @@ message UpdateComponentRequest{
 
 // Contains status of update operation
 message UpdateComponentResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1007,7 +1026,6 @@ message UpdateComponentResponse{
 
 // Request data to delete Component
 message DeleteComponentRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Component to delete
@@ -1016,7 +1034,6 @@ message DeleteComponentRequest{
 
 // Contains status of delete operation
 message DeleteComponentResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1025,7 +1042,6 @@ message DeleteComponentResponse{
 }
 
 message Field {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1072,7 +1088,6 @@ message ListFieldResponse {
 
 // Request data to update Field
 message UpdateFieldRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Field entity to update
@@ -1081,7 +1096,6 @@ message UpdateFieldRequest{
 
 // Contains status of update operation
 message UpdateFieldResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1091,7 +1105,6 @@ message UpdateFieldResponse{
 
 // Request data to delete Field
 message DeleteFieldRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Field to delete
@@ -1100,89 +1113,6 @@ message DeleteFieldRequest{
 
 // Contains status of delete operation
 message DeleteFieldResponse{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
-message Layout {
-	// Generated Types and Message Schema
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	int64 LayoutType = 4;
-	
-}
-
-//Request and Response Message Types
-message CreateLayoutRequest {
-	string api = 1;
-	Layout item = 2;
-}
-
-message CreateLayoutResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetLayoutRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetLayoutResponse {
-	string api = 1;
-	Layout item = 2;
-}
-
-message ListLayoutRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListLayoutResponse {
-	string api = 1;
-	repeated Layout items = 2;
-}
-
-// Request data to update Layout
-message UpdateLayoutRequest{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Layout entity to update
-    Layout item = 2;
-}
-
-// Contains status of update operation
-message UpdateLayoutResponse{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete Layout
-message DeleteLayoutRequest{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Unique integer IDentifier of the Layout to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteLayoutResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1191,7 +1121,6 @@ message DeleteLayoutResponse{
 }
 
 message LandingPage {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1238,7 +1167,6 @@ message ListLandingPageResponse {
 
 // Request data to update LandingPage
 message UpdateLandingPageRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // LandingPage entity to update
@@ -1247,7 +1175,6 @@ message UpdateLandingPageRequest{
 
 // Contains status of update operation
 message UpdateLandingPageResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1257,7 +1184,6 @@ message UpdateLandingPageResponse{
 
 // Request data to delete LandingPage
 message DeleteLandingPageRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the LandingPage to delete
@@ -1266,7 +1192,6 @@ message DeleteLandingPageRequest{
 
 // Contains status of delete operation
 message DeleteLandingPageResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1275,7 +1200,6 @@ message DeleteLandingPageResponse{
 }
 
 message Experiment {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1322,7 +1246,6 @@ message ListExperimentResponse {
 
 // Request data to update Experiment
 message UpdateExperimentRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Experiment entity to update
@@ -1331,7 +1254,6 @@ message UpdateExperimentRequest{
 
 // Contains status of update operation
 message UpdateExperimentResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1341,7 +1263,6 @@ message UpdateExperimentResponse{
 
 // Request data to delete Experiment
 message DeleteExperimentRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Experiment to delete
@@ -1350,7 +1271,6 @@ message DeleteExperimentRequest{
 
 // Contains status of delete operation
 message DeleteExperimentResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1359,7 +1279,6 @@ message DeleteExperimentResponse{
 }
 
 message Issue {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1406,7 +1325,6 @@ message ListIssueResponse {
 
 // Request data to update Issue
 message UpdateIssueRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Issue entity to update
@@ -1415,7 +1333,6 @@ message UpdateIssueRequest{
 
 // Contains status of update operation
 message UpdateIssueResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1425,7 +1342,6 @@ message UpdateIssueResponse{
 
 // Request data to delete Issue
 message DeleteIssueRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Issue to delete
@@ -1434,7 +1350,6 @@ message DeleteIssueRequest{
 
 // Contains status of delete operation
 message DeleteIssueResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1443,7 +1358,6 @@ message DeleteIssueResponse{
 }
 
 message Candidate {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1488,7 +1402,6 @@ message ListCandidateResponse {
 
 // Request data to update Candidate
 message UpdateCandidateRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Candidate entity to update
@@ -1497,7 +1410,6 @@ message UpdateCandidateRequest{
 
 // Contains status of update operation
 message UpdateCandidateResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1507,7 +1419,6 @@ message UpdateCandidateResponse{
 
 // Request data to delete Candidate
 message DeleteCandidateRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Candidate to delete
@@ -1516,7 +1427,6 @@ message DeleteCandidateRequest{
 
 // Contains status of delete operation
 message DeleteCandidateResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1525,7 +1435,6 @@ message DeleteCandidateResponse{
 }
 
 message DistrictType {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1570,7 +1479,6 @@ message ListDistrictTypeResponse {
 
 // Request data to update DistrictType
 message UpdateDistrictTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // DistrictType entity to update
@@ -1579,7 +1487,6 @@ message UpdateDistrictTypeRequest{
 
 // Contains status of update operation
 message UpdateDistrictTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1589,7 +1496,6 @@ message UpdateDistrictTypeResponse{
 
 // Request data to delete DistrictType
 message DeleteDistrictTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the DistrictType to delete
@@ -1598,7 +1504,6 @@ message DeleteDistrictTypeRequest{
 
 // Contains status of delete operation
 message DeleteDistrictTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1607,7 +1512,6 @@ message DeleteDistrictTypeResponse{
 }
 
 message District {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1656,7 +1560,6 @@ message ListDistrictResponse {
 
 // Request data to update District
 message UpdateDistrictRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // District entity to update
@@ -1665,7 +1568,6 @@ message UpdateDistrictRequest{
 
 // Contains status of update operation
 message UpdateDistrictResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1675,7 +1577,6 @@ message UpdateDistrictResponse{
 
 // Request data to delete District
 message DeleteDistrictRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the District to delete
@@ -1684,7 +1585,6 @@ message DeleteDistrictRequest{
 
 // Contains status of delete operation
 message DeleteDistrictResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1693,7 +1593,6 @@ message DeleteDistrictResponse{
 }
 
 message Office {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1740,7 +1639,6 @@ message ListOfficeResponse {
 
 // Request data to update Office
 message UpdateOfficeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Office entity to update
@@ -1749,7 +1647,6 @@ message UpdateOfficeRequest{
 
 // Contains status of update operation
 message UpdateOfficeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1759,7 +1656,6 @@ message UpdateOfficeResponse{
 
 // Request data to delete Office
 message DeleteOfficeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Office to delete
@@ -1768,7 +1664,6 @@ message DeleteOfficeRequest{
 
 // Contains status of delete operation
 message DeleteOfficeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1777,7 +1672,6 @@ message DeleteOfficeResponse{
 }
 
 message VolunteerOpportunityType {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1822,7 +1716,6 @@ message ListVolunteerOpportunityTypeResponse {
 
 // Request data to update VolunteerOpportunityType
 message UpdateVolunteerOpportunityTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // VolunteerOpportunityType entity to update
@@ -1831,7 +1724,6 @@ message UpdateVolunteerOpportunityTypeRequest{
 
 // Contains status of update operation
 message UpdateVolunteerOpportunityTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1841,7 +1733,6 @@ message UpdateVolunteerOpportunityTypeResponse{
 
 // Request data to delete VolunteerOpportunityType
 message DeleteVolunteerOpportunityTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the VolunteerOpportunityType to delete
@@ -1850,7 +1741,6 @@ message DeleteVolunteerOpportunityTypeRequest{
 
 // Contains status of delete operation
 message DeleteVolunteerOpportunityTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1859,7 +1749,6 @@ message DeleteVolunteerOpportunityTypeResponse{
 }
 
 message LiveEventType {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1904,7 +1793,6 @@ message ListLiveEventTypeResponse {
 
 // Request data to update LiveEventType
 message UpdateLiveEventTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // LiveEventType entity to update
@@ -1913,7 +1801,6 @@ message UpdateLiveEventTypeRequest{
 
 // Contains status of update operation
 message UpdateLiveEventTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -1923,7 +1810,6 @@ message UpdateLiveEventTypeResponse{
 
 // Request data to delete LiveEventType
 message DeleteLiveEventTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the LiveEventType to delete
@@ -1932,7 +1818,6 @@ message DeleteLiveEventTypeRequest{
 
 // Contains status of delete operation
 message DeleteLiveEventTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -1941,7 +1826,6 @@ message DeleteLiveEventTypeResponse{
 }
 
 message Company {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -1986,7 +1870,6 @@ message ListCompanyResponse {
 
 // Request data to update Company
 message UpdateCompanyRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Company entity to update
@@ -1995,7 +1878,6 @@ message UpdateCompanyRequest{
 
 // Contains status of update operation
 message UpdateCompanyResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2005,7 +1887,6 @@ message UpdateCompanyResponse{
 
 // Request data to delete Company
 message DeleteCompanyRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Company to delete
@@ -2014,7 +1895,6 @@ message DeleteCompanyRequest{
 
 // Contains status of delete operation
 message DeleteCompanyResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2023,7 +1903,6 @@ message DeleteCompanyResponse{
 }
 
 message ProductType {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2068,7 +1947,6 @@ message ListProductTypeResponse {
 
 // Request data to update ProductType
 message UpdateProductTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // ProductType entity to update
@@ -2077,7 +1955,6 @@ message UpdateProductTypeRequest{
 
 // Contains status of update operation
 message UpdateProductTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2087,7 +1964,6 @@ message UpdateProductTypeResponse{
 
 // Request data to delete ProductType
 message DeleteProductTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the ProductType to delete
@@ -2096,7 +1972,6 @@ message DeleteProductTypeRequest{
 
 // Contains status of delete operation
 message DeleteProductTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2105,7 +1980,6 @@ message DeleteProductTypeResponse{
 }
 
 message CustomerCart {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2148,7 +2022,6 @@ message ListCustomerCartResponse {
 
 // Request data to update CustomerCart
 message UpdateCustomerCartRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // CustomerCart entity to update
@@ -2157,7 +2030,6 @@ message UpdateCustomerCartRequest{
 
 // Contains status of update operation
 message UpdateCustomerCartResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2167,7 +2039,6 @@ message UpdateCustomerCartResponse{
 
 // Request data to delete CustomerCart
 message DeleteCustomerCartRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the CustomerCart to delete
@@ -2176,7 +2047,6 @@ message DeleteCustomerCartRequest{
 
 // Contains status of delete operation
 message DeleteCustomerCartResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2185,7 +2055,6 @@ message DeleteCustomerCartResponse{
 }
 
 message Payment {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2230,7 +2099,6 @@ message ListPaymentResponse {
 
 // Request data to update Payment
 message UpdatePaymentRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Payment entity to update
@@ -2239,7 +2107,6 @@ message UpdatePaymentRequest{
 
 // Contains status of update operation
 message UpdatePaymentResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2249,7 +2116,6 @@ message UpdatePaymentResponse{
 
 // Request data to delete Payment
 message DeletePaymentRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Payment to delete
@@ -2258,7 +2124,6 @@ message DeletePaymentRequest{
 
 // Contains status of delete operation
 message DeletePaymentResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2267,7 +2132,6 @@ message DeletePaymentResponse{
 }
 
 message Delivery {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2310,7 +2174,6 @@ message ListDeliveryResponse {
 
 // Request data to update Delivery
 message UpdateDeliveryRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Delivery entity to update
@@ -2319,7 +2182,6 @@ message UpdateDeliveryRequest{
 
 // Contains status of update operation
 message UpdateDeliveryResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2329,7 +2191,6 @@ message UpdateDeliveryResponse{
 
 // Request data to delete Delivery
 message DeleteDeliveryRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Delivery to delete
@@ -2338,7 +2199,6 @@ message DeleteDeliveryRequest{
 
 // Contains status of delete operation
 message DeleteDeliveryResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2347,7 +2207,6 @@ message DeleteDeliveryResponse{
 }
 
 message Boycott {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2392,7 +2251,6 @@ message ListBoycottResponse {
 
 // Request data to update Boycott
 message UpdateBoycottRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Boycott entity to update
@@ -2401,7 +2259,6 @@ message UpdateBoycottRequest{
 
 // Contains status of update operation
 message UpdateBoycottResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2411,7 +2268,6 @@ message UpdateBoycottResponse{
 
 // Request data to delete Boycott
 message DeleteBoycottRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Boycott to delete
@@ -2420,7 +2276,6 @@ message DeleteBoycottRequest{
 
 // Contains status of delete operation
 message DeleteBoycottResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2429,7 +2284,6 @@ message DeleteBoycottResponse{
 }
 
 message BoycottMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2476,7 +2330,6 @@ message ListBoycottMembershipResponse {
 
 // Request data to update BoycottMembership
 message UpdateBoycottMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // BoycottMembership entity to update
@@ -2485,7 +2338,6 @@ message UpdateBoycottMembershipRequest{
 
 // Contains status of update operation
 message UpdateBoycottMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2495,7 +2347,6 @@ message UpdateBoycottMembershipResponse{
 
 // Request data to delete BoycottMembership
 message DeleteBoycottMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the BoycottMembership to delete
@@ -2504,7 +2355,6 @@ message DeleteBoycottMembershipRequest{
 
 // Contains status of delete operation
 message DeleteBoycottMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2513,7 +2363,6 @@ message DeleteBoycottMembershipResponse{
 }
 
 message Election {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2558,7 +2407,6 @@ message ListElectionResponse {
 
 // Request data to update Election
 message UpdateElectionRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Election entity to update
@@ -2567,7 +2415,6 @@ message UpdateElectionRequest{
 
 // Contains status of update operation
 message UpdateElectionResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2577,7 +2424,6 @@ message UpdateElectionResponse{
 
 // Request data to delete Election
 message DeleteElectionRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Election to delete
@@ -2586,7 +2432,6 @@ message DeleteElectionRequest{
 
 // Contains status of delete operation
 message DeleteElectionResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2595,7 +2440,6 @@ message DeleteElectionResponse{
 }
 
 message ElectionMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2642,7 +2486,6 @@ message ListElectionMembershipResponse {
 
 // Request data to update ElectionMembership
 message UpdateElectionMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // ElectionMembership entity to update
@@ -2651,7 +2494,6 @@ message UpdateElectionMembershipRequest{
 
 // Contains status of update operation
 message UpdateElectionMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2661,7 +2503,6 @@ message UpdateElectionMembershipResponse{
 
 // Request data to delete ElectionMembership
 message DeleteElectionMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the ElectionMembership to delete
@@ -2670,7 +2511,6 @@ message DeleteElectionMembershipRequest{
 
 // Contains status of delete operation
 message DeleteElectionMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2679,7 +2519,6 @@ message DeleteElectionMembershipResponse{
 }
 
 message PetitionMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2726,7 +2565,6 @@ message ListPetitionMembershipResponse {
 
 // Request data to update PetitionMembership
 message UpdatePetitionMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // PetitionMembership entity to update
@@ -2735,7 +2573,6 @@ message UpdatePetitionMembershipRequest{
 
 // Contains status of update operation
 message UpdatePetitionMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2745,7 +2582,6 @@ message UpdatePetitionMembershipResponse{
 
 // Request data to delete PetitionMembership
 message DeletePetitionMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the PetitionMembership to delete
@@ -2754,7 +2590,6 @@ message DeletePetitionMembershipRequest{
 
 // Contains status of delete operation
 message DeletePetitionMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2763,7 +2598,6 @@ message DeletePetitionMembershipResponse{
 }
 
 message PollMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2810,7 +2644,6 @@ message ListPollMembershipResponse {
 
 // Request data to update PollMembership
 message UpdatePollMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // PollMembership entity to update
@@ -2819,7 +2652,6 @@ message UpdatePollMembershipRequest{
 
 // Contains status of update operation
 message UpdatePollMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2829,7 +2661,6 @@ message UpdatePollMembershipResponse{
 
 // Request data to delete PollMembership
 message DeletePollMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the PollMembership to delete
@@ -2838,7 +2669,6 @@ message DeletePollMembershipRequest{
 
 // Contains status of delete operation
 message DeletePollMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2847,7 +2677,6 @@ message DeletePollMembershipResponse{
 }
 
 message VolunteerOpportunityMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2894,7 +2723,6 @@ message ListVolunteerOpportunityMembershipResponse {
 
 // Request data to update VolunteerOpportunityMembership
 message UpdateVolunteerOpportunityMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // VolunteerOpportunityMembership entity to update
@@ -2903,7 +2731,6 @@ message UpdateVolunteerOpportunityMembershipRequest{
 
 // Contains status of update operation
 message UpdateVolunteerOpportunityMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2913,7 +2740,6 @@ message UpdateVolunteerOpportunityMembershipResponse{
 
 // Request data to delete VolunteerOpportunityMembership
 message DeleteVolunteerOpportunityMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the VolunteerOpportunityMembership to delete
@@ -2922,7 +2748,6 @@ message DeleteVolunteerOpportunityMembershipRequest{
 
 // Contains status of delete operation
 message DeleteVolunteerOpportunityMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -2931,7 +2756,6 @@ message DeleteVolunteerOpportunityMembershipResponse{
 }
 
 message LiveEventMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -2978,7 +2802,6 @@ message ListLiveEventMembershipResponse {
 
 // Request data to update LiveEventMembership
 message UpdateLiveEventMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // LiveEventMembership entity to update
@@ -2987,7 +2810,6 @@ message UpdateLiveEventMembershipRequest{
 
 // Contains status of update operation
 message UpdateLiveEventMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -2997,7 +2819,6 @@ message UpdateLiveEventMembershipResponse{
 
 // Request data to delete LiveEventMembership
 message DeleteLiveEventMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the LiveEventMembership to delete
@@ -3006,7 +2827,6 @@ message DeleteLiveEventMembershipRequest{
 
 // Contains status of delete operation
 message DeleteLiveEventMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3015,7 +2835,6 @@ message DeleteLiveEventMembershipResponse{
 }
 
 message Product {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3062,7 +2881,6 @@ message ListProductResponse {
 
 // Request data to update Product
 message UpdateProductRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Product entity to update
@@ -3071,7 +2889,6 @@ message UpdateProductRequest{
 
 // Contains status of update operation
 message UpdateProductResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3081,7 +2898,6 @@ message UpdateProductResponse{
 
 // Request data to delete Product
 message DeleteProductRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Product to delete
@@ -3090,7 +2906,6 @@ message DeleteProductRequest{
 
 // Contains status of delete operation
 message DeleteProductResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3099,7 +2914,6 @@ message DeleteProductResponse{
 }
 
 message ProductMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3146,7 +2960,6 @@ message ListProductMembershipResponse {
 
 // Request data to update ProductMembership
 message UpdateProductMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // ProductMembership entity to update
@@ -3155,7 +2968,6 @@ message UpdateProductMembershipRequest{
 
 // Contains status of update operation
 message UpdateProductMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3165,7 +2977,6 @@ message UpdateProductMembershipResponse{
 
 // Request data to delete ProductMembership
 message DeleteProductMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the ProductMembership to delete
@@ -3174,7 +2985,6 @@ message DeleteProductMembershipRequest{
 
 // Contains status of delete operation
 message DeleteProductMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3183,7 +2993,6 @@ message DeleteProductMembershipResponse{
 }
 
 message DonationCampaign {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3228,7 +3037,6 @@ message ListDonationCampaignResponse {
 
 // Request data to update DonationCampaign
 message UpdateDonationCampaignRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // DonationCampaign entity to update
@@ -3237,7 +3045,6 @@ message UpdateDonationCampaignRequest{
 
 // Contains status of update operation
 message UpdateDonationCampaignResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3247,7 +3054,6 @@ message UpdateDonationCampaignResponse{
 
 // Request data to delete DonationCampaign
 message DeleteDonationCampaignRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the DonationCampaign to delete
@@ -3256,7 +3062,6 @@ message DeleteDonationCampaignRequest{
 
 // Contains status of delete operation
 message DeleteDonationCampaignResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3265,7 +3070,6 @@ message DeleteDonationCampaignResponse{
 }
 
 message DonationCampaignMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3312,7 +3116,6 @@ message ListDonationCampaignMembershipResponse {
 
 // Request data to update DonationCampaignMembership
 message UpdateDonationCampaignMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // DonationCampaignMembership entity to update
@@ -3321,7 +3124,6 @@ message UpdateDonationCampaignMembershipRequest{
 
 // Contains status of update operation
 message UpdateDonationCampaignMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3331,7 +3133,6 @@ message UpdateDonationCampaignMembershipResponse{
 
 // Request data to delete DonationCampaignMembership
 message DeleteDonationCampaignMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the DonationCampaignMembership to delete
@@ -3340,7 +3141,6 @@ message DeleteDonationCampaignMembershipRequest{
 
 // Contains status of delete operation
 message DeleteDonationCampaignMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3349,7 +3149,6 @@ message DeleteDonationCampaignMembershipResponse{
 }
 
 message Petition {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3394,7 +3193,6 @@ message ListPetitionResponse {
 
 // Request data to update Petition
 message UpdatePetitionRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Petition entity to update
@@ -3403,7 +3201,6 @@ message UpdatePetitionRequest{
 
 // Contains status of update operation
 message UpdatePetitionResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3413,7 +3210,6 @@ message UpdatePetitionResponse{
 
 // Request data to delete Petition
 message DeletePetitionRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Petition to delete
@@ -3422,7 +3218,6 @@ message DeletePetitionRequest{
 
 // Contains status of delete operation
 message DeletePetitionResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3431,7 +3226,6 @@ message DeletePetitionResponse{
 }
 
 message PetitionSigner {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3480,7 +3274,6 @@ message ListPetitionSignerResponse {
 
 // Request data to update PetitionSigner
 message UpdatePetitionSignerRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // PetitionSigner entity to update
@@ -3489,7 +3282,6 @@ message UpdatePetitionSignerRequest{
 
 // Contains status of update operation
 message UpdatePetitionSignerResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3499,7 +3291,6 @@ message UpdatePetitionSignerResponse{
 
 // Request data to delete PetitionSigner
 message DeletePetitionSignerRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the PetitionSigner to delete
@@ -3508,7 +3299,6 @@ message DeletePetitionSignerRequest{
 
 // Contains status of delete operation
 message DeletePetitionSignerResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3517,7 +3307,6 @@ message DeletePetitionSignerResponse{
 }
 
 message Poll {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3562,7 +3351,6 @@ message ListPollResponse {
 
 // Request data to update Poll
 message UpdatePollRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Poll entity to update
@@ -3571,7 +3359,6 @@ message UpdatePollRequest{
 
 // Contains status of update operation
 message UpdatePollResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3581,7 +3368,6 @@ message UpdatePollResponse{
 
 // Request data to delete Poll
 message DeletePollRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Poll to delete
@@ -3590,7 +3376,6 @@ message DeletePollRequest{
 
 // Contains status of delete operation
 message DeletePollResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3599,7 +3384,6 @@ message DeletePollResponse{
 }
 
 message PollRespondant {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3648,7 +3432,6 @@ message ListPollRespondantResponse {
 
 // Request data to update PollRespondant
 message UpdatePollRespondantRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // PollRespondant entity to update
@@ -3657,7 +3440,6 @@ message UpdatePollRespondantRequest{
 
 // Contains status of update operation
 message UpdatePollRespondantResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3667,7 +3449,6 @@ message UpdatePollRespondantResponse{
 
 // Request data to delete PollRespondant
 message DeletePollRespondantRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the PollRespondant to delete
@@ -3676,7 +3457,6 @@ message DeletePollRespondantRequest{
 
 // Contains status of delete operation
 message DeletePollRespondantResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3685,7 +3465,6 @@ message DeletePollRespondantResponse{
 }
 
 message Purchaser {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3734,7 +3513,6 @@ message ListPurchaserResponse {
 
 // Request data to update Purchaser
 message UpdatePurchaserRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Purchaser entity to update
@@ -3743,7 +3521,6 @@ message UpdatePurchaserRequest{
 
 // Contains status of update operation
 message UpdatePurchaserResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3753,7 +3530,6 @@ message UpdatePurchaserResponse{
 
 // Request data to delete Purchaser
 message DeletePurchaserRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Purchaser to delete
@@ -3762,7 +3538,6 @@ message DeletePurchaserRequest{
 
 // Contains status of delete operation
 message DeletePurchaserResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3771,7 +3546,6 @@ message DeletePurchaserResponse{
 }
 
 message CustomerOrder {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3816,7 +3590,6 @@ message ListCustomerOrderResponse {
 
 // Request data to update CustomerOrder
 message UpdateCustomerOrderRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // CustomerOrder entity to update
@@ -3825,7 +3598,6 @@ message UpdateCustomerOrderRequest{
 
 // Contains status of update operation
 message UpdateCustomerOrderResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3835,7 +3607,6 @@ message UpdateCustomerOrderResponse{
 
 // Request data to delete CustomerOrder
 message DeleteCustomerOrderRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the CustomerOrder to delete
@@ -3844,7 +3615,6 @@ message DeleteCustomerOrderRequest{
 
 // Contains status of delete operation
 message DeleteCustomerOrderResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3853,7 +3623,6 @@ message DeleteCustomerOrderResponse{
 }
 
 message Donor {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3902,7 +3671,6 @@ message ListDonorResponse {
 
 // Request data to update Donor
 message UpdateDonorRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Donor entity to update
@@ -3911,7 +3679,6 @@ message UpdateDonorRequest{
 
 // Contains status of update operation
 message UpdateDonorResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -3921,7 +3688,6 @@ message UpdateDonorResponse{
 
 // Request data to delete Donor
 message DeleteDonorRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Donor to delete
@@ -3930,7 +3696,6 @@ message DeleteDonorRequest{
 
 // Contains status of delete operation
 message DeleteDonorResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -3939,7 +3704,6 @@ message DeleteDonorResponse{
 }
 
 message LiveEvent {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -3986,7 +3750,6 @@ message ListLiveEventResponse {
 
 // Request data to update LiveEvent
 message UpdateLiveEventRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // LiveEvent entity to update
@@ -3995,7 +3758,6 @@ message UpdateLiveEventRequest{
 
 // Contains status of update operation
 message UpdateLiveEventResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4005,7 +3767,6 @@ message UpdateLiveEventResponse{
 
 // Request data to delete LiveEvent
 message DeleteLiveEventRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the LiveEvent to delete
@@ -4014,7 +3775,6 @@ message DeleteLiveEventRequest{
 
 // Contains status of delete operation
 message DeleteLiveEventResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4023,7 +3783,6 @@ message DeleteLiveEventResponse{
 }
 
 message EventAttendee {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4072,7 +3831,6 @@ message ListEventAttendeeResponse {
 
 // Request data to update EventAttendee
 message UpdateEventAttendeeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // EventAttendee entity to update
@@ -4081,7 +3839,6 @@ message UpdateEventAttendeeRequest{
 
 // Contains status of update operation
 message UpdateEventAttendeeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4091,7 +3848,6 @@ message UpdateEventAttendeeResponse{
 
 // Request data to delete EventAttendee
 message DeleteEventAttendeeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the EventAttendee to delete
@@ -4100,91 +3856,6 @@ message DeleteEventAttendeeRequest{
 
 // Contains status of delete operation
 message DeleteEventAttendeeResponse{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
-message Voter {
-	// Generated Types and Message Schema
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	int64 Contact = 4;
-	
-	int64 Cause = 5;
-	
-}
-
-//Request and Response Message Types
-message CreateVoterRequest {
-	string api = 1;
-	Voter item = 2;
-}
-
-message CreateVoterResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetVoterRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetVoterResponse {
-	string api = 1;
-	Voter item = 2;
-}
-
-message ListVoterRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListVoterResponse {
-	string api = 1;
-	repeated Voter items = 2;
-}
-
-// Request data to update Voter
-message UpdateVoterRequest{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Voter entity to update
-    Voter item = 2;
-}
-
-// Contains status of update operation
-message UpdateVoterResponse{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete Voter
-message DeleteVoterRequest{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Unique integer IDentifier of the Voter to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteVoterResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4193,7 +3864,6 @@ message DeleteVoterResponse{
 }
 
 message VolunteerOpportunity {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4240,7 +3910,6 @@ message ListVolunteerOpportunityResponse {
 
 // Request data to update VolunteerOpportunity
 message UpdateVolunteerOpportunityRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // VolunteerOpportunity entity to update
@@ -4249,7 +3918,6 @@ message UpdateVolunteerOpportunityRequest{
 
 // Contains status of update operation
 message UpdateVolunteerOpportunityResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4259,7 +3927,6 @@ message UpdateVolunteerOpportunityResponse{
 
 // Request data to delete VolunteerOpportunity
 message DeleteVolunteerOpportunityRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the VolunteerOpportunity to delete
@@ -4268,7 +3935,85 @@ message DeleteVolunteerOpportunityRequest{
 
 // Contains status of delete operation
 message DeleteVolunteerOpportunityResponse{
-    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
+message Voter {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	int64 Contact = 4;
+	
+	int64 Cause = 5;
+	
+}
+
+//Request and Response Message Types
+message CreateVoterRequest {
+	string api = 1;
+	Voter item = 2;
+}
+
+message CreateVoterResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetVoterRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetVoterResponse {
+	string api = 1;
+	Voter item = 2;
+}
+
+message ListVoterRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListVoterResponse {
+	string api = 1;
+	repeated Voter items = 2;
+}
+
+// Request data to update Voter
+message UpdateVoterRequest{
+    string api = 1;
+
+    // Voter entity to update
+    Voter item = 2;
+}
+
+// Contains status of update operation
+message UpdateVoterResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete Voter
+message DeleteVoterRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the Voter to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteVoterResponse{
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4277,7 +4022,6 @@ message DeleteVolunteerOpportunityResponse{
 }
 
 message Volunteer {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4326,7 +4070,6 @@ message ListVolunteerResponse {
 
 // Request data to update Volunteer
 message UpdateVolunteerRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Volunteer entity to update
@@ -4335,7 +4078,6 @@ message UpdateVolunteerRequest{
 
 // Contains status of update operation
 message UpdateVolunteerResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4345,7 +4087,6 @@ message UpdateVolunteerResponse{
 
 // Request data to delete Volunteer
 message DeleteVolunteerRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Volunteer to delete
@@ -4354,7 +4095,6 @@ message DeleteVolunteerRequest{
 
 // Contains status of delete operation
 message DeleteVolunteerResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4363,7 +4103,6 @@ message DeleteVolunteerResponse{
 }
 
 message Follower {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4410,7 +4149,6 @@ message ListFollowerResponse {
 
 // Request data to update Follower
 message UpdateFollowerRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Follower entity to update
@@ -4419,7 +4157,6 @@ message UpdateFollowerRequest{
 
 // Contains status of update operation
 message UpdateFollowerResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4429,7 +4166,6 @@ message UpdateFollowerResponse{
 
 // Request data to delete Follower
 message DeleteFollowerRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Follower to delete
@@ -4438,7 +4174,6 @@ message DeleteFollowerRequest{
 
 // Contains status of delete operation
 message DeleteFollowerResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4447,7 +4182,6 @@ message DeleteFollowerResponse{
 }
 
 message Territory {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4492,7 +4226,6 @@ message ListTerritoryResponse {
 
 // Request data to update Territory
 message UpdateTerritoryRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Territory entity to update
@@ -4501,7 +4234,6 @@ message UpdateTerritoryRequest{
 
 // Contains status of update operation
 message UpdateTerritoryResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4511,7 +4243,6 @@ message UpdateTerritoryResponse{
 
 // Request data to delete Territory
 message DeleteTerritoryRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Territory to delete
@@ -4520,7 +4251,6 @@ message DeleteTerritoryRequest{
 
 // Contains status of delete operation
 message DeleteTerritoryResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4529,7 +4259,6 @@ message DeleteTerritoryResponse{
 }
 
 message ActivityType {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4574,7 +4303,6 @@ message ListActivityTypeResponse {
 
 // Request data to update ActivityType
 message UpdateActivityTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // ActivityType entity to update
@@ -4583,7 +4311,6 @@ message UpdateActivityTypeRequest{
 
 // Contains status of update operation
 message UpdateActivityTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4593,7 +4320,6 @@ message UpdateActivityTypeResponse{
 
 // Request data to delete ActivityType
 message DeleteActivityTypeRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the ActivityType to delete
@@ -4602,7 +4328,6 @@ message DeleteActivityTypeRequest{
 
 // Contains status of delete operation
 message DeleteActivityTypeResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4611,7 +4336,6 @@ message DeleteActivityTypeResponse{
 }
 
 message Activity {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4662,7 +4386,6 @@ message ListActivityResponse {
 
 // Request data to update Activity
 message UpdateActivityRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Activity entity to update
@@ -4671,7 +4394,6 @@ message UpdateActivityRequest{
 
 // Contains status of update operation
 message UpdateActivityResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4681,7 +4403,6 @@ message UpdateActivityResponse{
 
 // Request data to delete Activity
 message DeleteActivityRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Activity to delete
@@ -4690,7 +4411,6 @@ message DeleteActivityRequest{
 
 // Contains status of delete operation
 message DeleteActivityResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4699,7 +4419,6 @@ message DeleteActivityResponse{
 }
 
 message Note {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4748,7 +4467,6 @@ message ListNoteResponse {
 
 // Request data to update Note
 message UpdateNoteRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Note entity to update
@@ -4757,7 +4475,6 @@ message UpdateNoteRequest{
 
 // Contains status of update operation
 message UpdateNoteResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4767,7 +4484,6 @@ message UpdateNoteResponse{
 
 // Request data to delete Note
 message DeleteNoteRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Note to delete
@@ -4776,7 +4492,6 @@ message DeleteNoteRequest{
 
 // Contains status of delete operation
 message DeleteNoteResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4785,7 +4500,6 @@ message DeleteNoteResponse{
 }
 
 message Account {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4830,7 +4544,6 @@ message ListAccountResponse {
 
 // Request data to update Account
 message UpdateAccountRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Account entity to update
@@ -4839,7 +4552,6 @@ message UpdateAccountRequest{
 
 // Contains status of update operation
 message UpdateAccountResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4849,7 +4561,6 @@ message UpdateAccountResponse{
 
 // Request data to delete Account
 message DeleteAccountRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Account to delete
@@ -4858,7 +4569,6 @@ message DeleteAccountRequest{
 
 // Contains status of delete operation
 message DeleteAccountResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4867,7 +4577,6 @@ message DeleteAccountResponse{
 }
 
 message OwnerMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4914,7 +4623,6 @@ message ListOwnerMembershipResponse {
 
 // Request data to update OwnerMembership
 message UpdateOwnerMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // OwnerMembership entity to update
@@ -4923,7 +4631,6 @@ message UpdateOwnerMembershipRequest{
 
 // Contains status of update operation
 message UpdateOwnerMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -4933,7 +4640,6 @@ message UpdateOwnerMembershipResponse{
 
 // Request data to delete OwnerMembership
 message DeleteOwnerMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the OwnerMembership to delete
@@ -4942,7 +4648,85 @@ message DeleteOwnerMembershipRequest{
 
 // Contains status of delete operation
 message DeleteOwnerMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
+message Cause {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	string Title = 4;
+	
+	string Summary = 5;
+	
+}
+
+//Request and Response Message Types
+message CreateCauseRequest {
+	string api = 1;
+	Cause item = 2;
+}
+
+message CreateCauseResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetCauseRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetCauseResponse {
+	string api = 1;
+	Cause item = 2;
+}
+
+message ListCauseRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListCauseResponse {
+	string api = 1;
+	repeated Cause items = 2;
+}
+
+// Request data to update Cause
+message UpdateCauseRequest{
+    string api = 1;
+
+    // Cause entity to update
+    Cause item = 2;
+}
+
+// Contains status of update operation
+message UpdateCauseResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete Cause
+message DeleteCauseRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the Cause to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteCauseResponse{
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4951,7 +4735,6 @@ message DeleteOwnerMembershipResponse{
 }
 
 message Contact {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -4994,7 +4777,6 @@ message ListContactResponse {
 
 // Request data to update Contact
 message UpdateContactRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contact entity to update
@@ -5003,7 +4785,6 @@ message UpdateContactRequest{
 
 // Contains status of update operation
 message UpdateContactResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -5013,7 +4794,6 @@ message UpdateContactResponse{
 
 // Request data to delete Contact
 message DeleteContactRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Contact to delete
@@ -5022,7 +4802,6 @@ message DeleteContactRequest{
 
 // Contains status of delete operation
 message DeleteContactResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -5031,7 +4810,6 @@ message DeleteContactResponse{
 }
 
 message ContactMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -5078,7 +4856,6 @@ message ListContactMembershipResponse {
 
 // Request data to update ContactMembership
 message UpdateContactMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // ContactMembership entity to update
@@ -5087,7 +4864,6 @@ message UpdateContactMembershipRequest{
 
 // Contains status of update operation
 message UpdateContactMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -5097,7 +4873,6 @@ message UpdateContactMembershipResponse{
 
 // Request data to delete ContactMembership
 message DeleteContactMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the ContactMembership to delete
@@ -5106,89 +4881,6 @@ message DeleteContactMembershipRequest{
 
 // Contains status of delete operation
 message DeleteContactMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
-message Cause {
-	// Generated Types and Message Schema
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	string Title = 4;
-	
-}
-
-//Request and Response Message Types
-message CreateCauseRequest {
-	string api = 1;
-	Cause item = 2;
-}
-
-message CreateCauseResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetCauseRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetCauseResponse {
-	string api = 1;
-	Cause item = 2;
-}
-
-message ListCauseRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListCauseResponse {
-	string api = 1;
-	repeated Cause items = 2;
-}
-
-// Request data to update Cause
-message UpdateCauseRequest{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Cause entity to update
-    Cause item = 2;
-}
-
-// Contains status of update operation
-message UpdateCauseResponse{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete Cause
-message DeleteCauseRequest{
-    // API versioning: it is my best practice to specify version explicitly
-    string api = 1;
-
-    // Unique integer IDentifier of the Cause to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteCauseResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -5197,7 +4889,6 @@ message DeleteCauseResponse{
 }
 
 message Agent {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -5242,7 +4933,6 @@ message ListAgentResponse {
 
 // Request data to update Agent
 message UpdateAgentRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Agent entity to update
@@ -5251,7 +4941,6 @@ message UpdateAgentRequest{
 
 // Contains status of update operation
 message UpdateAgentResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -5261,7 +4950,6 @@ message UpdateAgentResponse{
 
 // Request data to delete Agent
 message DeleteAgentRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the Agent to delete
@@ -5270,7 +4958,6 @@ message DeleteAgentRequest{
 
 // Contains status of delete operation
 message DeleteAgentResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -5279,7 +4966,6 @@ message DeleteAgentResponse{
 }
 
 message AgentMembership {
-	// Generated Types and Message Schema
     
 	int64 ID = 1;
 	
@@ -5326,7 +5012,6 @@ message ListAgentMembershipResponse {
 
 // Request data to update AgentMembership
 message UpdateAgentMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // AgentMembership entity to update
@@ -5335,7 +5020,6 @@ message UpdateAgentMembershipRequest{
 
 // Contains status of update operation
 message UpdateAgentMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed updated
@@ -5345,7 +5029,6 @@ message UpdateAgentMembershipResponse{
 
 // Request data to delete AgentMembership
 message DeleteAgentMembershipRequest{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Unique integer IDentifier of the AgentMembership to delete
@@ -5354,7 +5037,6 @@ message DeleteAgentMembershipRequest{
 
 // Contains status of delete operation
 message DeleteAgentMembershipResponse{
-    // API versioning: it is my best practice to specify version explicitly
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -5756,6 +5438,45 @@ service ShrikeService {
         };
     }
 	
+	// CreateLayout takes a Layout object to create.
+	rpc CreateLayout(CreateLayoutRequest) returns (CreateLayoutResponse) {
+		option (google.api.http) ={
+			post: "/v1/layout"
+			body: "*"
+		};
+	}
+    // GetLayout takes an ID and returns a single Layout.
+	rpc GetLayout(GetLayoutRequest) returns (GetLayoutResponse) {
+		option (google.api.http) ={
+			get: "/v1/layout/{ID}"
+		};
+	}
+    // List Layout, takes filters, limit, and cursor param.
+	rpc ListLayout(ListLayoutRequest) returns (ListLayoutResponse) {
+	option (google.api.http) ={
+		get: "/v1/layout"
+	};
+}
+    // Update Layout
+    rpc UpdateLayout(UpdateLayoutRequest) returns (UpdateLayoutResponse){
+        option (google.api.http) = {
+            put: "/v1/layout/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/layout/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Layout
+    rpc DeleteLayout(DeleteLayoutRequest) returns (DeleteLayoutResponse){
+        option (google.api.http) = {
+            delete: "/v1/layout/{ID}"
+        };
+    }
+	
 	// CreateFieldType takes a FieldType object to create.
 	rpc CreateFieldType(CreateFieldTypeRequest) returns (CreateFieldTypeResponse) {
 		option (google.api.http) ={
@@ -5870,45 +5591,6 @@ service ShrikeService {
     rpc DeleteField(DeleteFieldRequest) returns (DeleteFieldResponse){
         option (google.api.http) = {
             delete: "/v1/field/{ID}"
-        };
-    }
-	
-	// CreateLayout takes a Layout object to create.
-	rpc CreateLayout(CreateLayoutRequest) returns (CreateLayoutResponse) {
-		option (google.api.http) ={
-			post: "/v1/layout"
-			body: "*"
-		};
-	}
-    // GetLayout takes an ID and returns a single Layout.
-	rpc GetLayout(GetLayoutRequest) returns (GetLayoutResponse) {
-		option (google.api.http) ={
-			get: "/v1/layout/{ID}"
-		};
-	}
-    // List Layout, takes filters, limit, and cursor param.
-	rpc ListLayout(ListLayoutRequest) returns (ListLayoutResponse) {
-	option (google.api.http) ={
-		get: "/v1/layout"
-	};
-}
-    // Update Layout
-    rpc UpdateLayout(UpdateLayoutRequest) returns (UpdateLayoutResponse){
-        option (google.api.http) = {
-            put: "/v1/layout/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/layout/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Layout
-    rpc DeleteLayout(DeleteLayoutRequest) returns (DeleteLayoutResponse){
-        option (google.api.http) = {
-            delete: "/v1/layout/{ID}"
         };
     }
 	
@@ -7277,45 +6959,6 @@ service ShrikeService {
         };
     }
 	
-	// CreateVoter takes a Voter object to create.
-	rpc CreateVoter(CreateVoterRequest) returns (CreateVoterResponse) {
-		option (google.api.http) ={
-			post: "/v1/voter"
-			body: "*"
-		};
-	}
-    // GetVoter takes an ID and returns a single Voter.
-	rpc GetVoter(GetVoterRequest) returns (GetVoterResponse) {
-		option (google.api.http) ={
-			get: "/v1/voter/{ID}"
-		};
-	}
-    // List Voter, takes filters, limit, and cursor param.
-	rpc ListVoter(ListVoterRequest) returns (ListVoterResponse) {
-	option (google.api.http) ={
-		get: "/v1/voter"
-	};
-}
-    // Update Voter
-    rpc UpdateVoter(UpdateVoterRequest) returns (UpdateVoterResponse){
-        option (google.api.http) = {
-            put: "/v1/voter/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/voter/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Voter
-    rpc DeleteVoter(DeleteVoterRequest) returns (DeleteVoterResponse){
-        option (google.api.http) = {
-            delete: "/v1/voter/{ID}"
-        };
-    }
-	
 	// CreateVolunteerOpportunity takes a VolunteerOpportunity object to create.
 	rpc CreateVolunteerOpportunity(CreateVolunteerOpportunityRequest) returns (CreateVolunteerOpportunityResponse) {
 		option (google.api.http) ={
@@ -7352,6 +6995,45 @@ service ShrikeService {
     rpc DeleteVolunteerOpportunity(DeleteVolunteerOpportunityRequest) returns (DeleteVolunteerOpportunityResponse){
         option (google.api.http) = {
             delete: "/v1/volunteeropportunity/{ID}"
+        };
+    }
+	
+	// CreateVoter takes a Voter object to create.
+	rpc CreateVoter(CreateVoterRequest) returns (CreateVoterResponse) {
+		option (google.api.http) ={
+			post: "/v1/voter"
+			body: "*"
+		};
+	}
+    // GetVoter takes an ID and returns a single Voter.
+	rpc GetVoter(GetVoterRequest) returns (GetVoterResponse) {
+		option (google.api.http) ={
+			get: "/v1/voter/{ID}"
+		};
+	}
+    // List Voter, takes filters, limit, and cursor param.
+	rpc ListVoter(ListVoterRequest) returns (ListVoterResponse) {
+	option (google.api.http) ={
+		get: "/v1/voter"
+	};
+}
+    // Update Voter
+    rpc UpdateVoter(UpdateVoterRequest) returns (UpdateVoterResponse){
+        option (google.api.http) = {
+            put: "/v1/voter/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/voter/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Voter
+    rpc DeleteVoter(DeleteVoterRequest) returns (DeleteVoterResponse){
+        option (google.api.http) = {
+            delete: "/v1/voter/{ID}"
         };
     }
 	
@@ -7667,6 +7349,45 @@ service ShrikeService {
         };
     }
 	
+	// CreateCause takes a Cause object to create.
+	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
+		option (google.api.http) ={
+			post: "/v1/cause"
+			body: "*"
+		};
+	}
+    // GetCause takes an ID and returns a single Cause.
+	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
+		option (google.api.http) ={
+			get: "/v1/cause/{ID}"
+		};
+	}
+    // List Cause, takes filters, limit, and cursor param.
+	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
+	option (google.api.http) ={
+		get: "/v1/cause"
+	};
+}
+    // Update Cause
+    rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse){
+        option (google.api.http) = {
+            put: "/v1/cause/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/cause/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Cause
+    rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse){
+        option (google.api.http) = {
+            delete: "/v1/cause/{ID}"
+        };
+    }
+	
 	// CreateContact takes a Contact object to create.
 	rpc CreateContact(CreateContactRequest) returns (CreateContactResponse) {
 		option (google.api.http) ={
@@ -7742,45 +7463,6 @@ service ShrikeService {
     rpc DeleteContactMembership(DeleteContactMembershipRequest) returns (DeleteContactMembershipResponse){
         option (google.api.http) = {
             delete: "/v1/contactmembership/{ID}"
-        };
-    }
-	
-	// CreateCause takes a Cause object to create.
-	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
-		option (google.api.http) ={
-			post: "/v1/cause"
-			body: "*"
-		};
-	}
-    // GetCause takes an ID and returns a single Cause.
-	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
-		option (google.api.http) ={
-			get: "/v1/cause/{ID}"
-		};
-	}
-    // List Cause, takes filters, limit, and cursor param.
-	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
-	option (google.api.http) ={
-		get: "/v1/cause"
-	};
-}
-    // Update Cause
-    rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse){
-        option (google.api.http) = {
-            put: "/v1/cause/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/cause/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Cause
-    rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse){
-        option (google.api.http) = {
-            delete: "/v1/cause/{ID}"
         };
     }
 	

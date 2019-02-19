@@ -153,7 +153,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -376,7 +375,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -599,7 +597,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -822,7 +819,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1045,7 +1041,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1268,7 +1263,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1491,7 +1485,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1714,7 +1707,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -1937,7 +1929,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -2160,7 +2151,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -2383,7 +2373,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -2606,7 +2595,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -2829,7 +2817,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -3052,7 +3039,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -3275,7 +3261,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -3498,7 +3483,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -3721,7 +3705,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -3944,7 +3927,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -4167,7 +4149,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -4390,7 +4371,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -4613,7 +4593,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -4836,7 +4815,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -5059,7 +5037,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -5282,7 +5259,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -5505,7 +5481,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -5728,7 +5703,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -5951,7 +5925,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -6174,7 +6147,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -6397,7 +6369,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -6620,7 +6591,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -6843,7 +6813,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -7066,7 +7035,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -7289,7 +7257,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -7512,7 +7479,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -7735,7 +7701,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -7958,7 +7923,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -8181,7 +8145,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -8404,7 +8367,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -8627,7 +8589,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -8850,7 +8811,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -9073,7 +9033,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -9296,7 +9255,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -9519,7 +9477,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -9742,7 +9699,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -9965,7 +9921,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -10188,7 +10143,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -10411,7 +10365,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -10634,7 +10587,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -10857,7 +10809,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -11080,7 +11031,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -11303,7 +11253,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -11526,7 +11475,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -11749,7 +11697,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -11972,7 +11919,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -12195,7 +12141,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -12418,7 +12363,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -12641,7 +12585,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -12864,7 +12807,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -13087,7 +13029,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -13310,7 +13251,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -13533,7 +13473,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -13756,7 +13695,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -13979,7 +13917,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -14202,7 +14139,6 @@
           },
           {
             "name": "api",
-            "description": "API versioning: it is my best practice to specify version explicitly.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -14527,6 +14463,9 @@
           "format": "date-time"
         },
         "Title": {
+          "type": "string"
+        },
+        "Summary": {
           "type": "string"
         }
       }
@@ -16216,8 +16155,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16231,8 +16169,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16246,8 +16183,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16261,8 +16197,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16276,8 +16211,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16291,8 +16225,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16306,8 +16239,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16321,8 +16253,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16336,8 +16267,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16351,8 +16281,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16366,8 +16295,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16381,8 +16309,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16396,8 +16323,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16411,8 +16337,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16426,8 +16351,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16441,8 +16365,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16456,8 +16379,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16471,8 +16393,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16486,8 +16407,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16501,8 +16421,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16516,8 +16435,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16531,8 +16449,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16546,8 +16463,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16561,8 +16477,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16576,8 +16491,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16591,8 +16505,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16606,8 +16519,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16621,8 +16533,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16636,8 +16547,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16651,8 +16561,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16666,8 +16575,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16681,8 +16589,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16696,8 +16603,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16711,8 +16617,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16726,8 +16631,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16741,8 +16645,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16756,8 +16659,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16771,8 +16673,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16786,8 +16687,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16801,8 +16701,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16816,8 +16715,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16831,8 +16729,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16846,8 +16743,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16861,8 +16757,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16876,8 +16771,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16891,8 +16785,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16906,8 +16799,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16921,8 +16813,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16936,8 +16827,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16951,8 +16841,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16966,8 +16855,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16981,8 +16869,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -16996,8 +16883,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17011,8 +16897,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17026,8 +16911,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17041,8 +16925,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17056,8 +16939,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17071,8 +16953,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17086,8 +16967,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17101,8 +16981,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17116,8 +16995,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17131,8 +17009,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17146,8 +17023,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -17161,8 +17037,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "deleted": {
           "type": "string",
@@ -19736,8 +19611,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1ACL",
@@ -19750,8 +19624,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19765,8 +19638,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Account",
@@ -19779,8 +19651,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19794,8 +19665,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Activity",
@@ -19808,8 +19678,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19823,8 +19692,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1ActivityType",
@@ -19837,8 +19705,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19852,8 +19719,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1AgentMembership",
@@ -19866,8 +19732,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19881,8 +19746,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Agent",
@@ -19895,8 +19759,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19910,8 +19773,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1BoycottMembership",
@@ -19924,8 +19786,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19939,8 +19800,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Boycott",
@@ -19953,8 +19813,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19968,8 +19827,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Candidate",
@@ -19982,8 +19840,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -19997,8 +19854,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Cause",
@@ -20011,8 +19867,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20026,8 +19881,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Company",
@@ -20040,8 +19894,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20055,8 +19908,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1ComponentImplementation",
@@ -20069,8 +19921,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20084,8 +19935,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Component",
@@ -20098,8 +19948,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20113,8 +19962,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1ComponentType",
@@ -20127,8 +19975,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20142,8 +19989,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1ContactMembership",
@@ -20156,8 +20002,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20171,8 +20016,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/shrikev1Contact",
@@ -20185,8 +20029,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20200,8 +20043,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1CustomerCart",
@@ -20214,8 +20056,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20229,8 +20070,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1CustomerOrder",
@@ -20243,8 +20083,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20258,8 +20097,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Delivery",
@@ -20272,8 +20110,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20287,8 +20124,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1District",
@@ -20301,8 +20137,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20316,8 +20151,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1DistrictType",
@@ -20330,8 +20164,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20345,8 +20178,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1DonationCampaignMembership",
@@ -20359,8 +20191,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20374,8 +20205,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1DonationCampaign",
@@ -20388,8 +20218,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20403,8 +20232,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Donor",
@@ -20417,8 +20245,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20432,8 +20259,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1ElectionMembership",
@@ -20446,8 +20272,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20461,8 +20286,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Election",
@@ -20475,8 +20299,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20490,8 +20313,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1EmailAddress",
@@ -20504,8 +20326,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20519,8 +20340,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1EventAttendee",
@@ -20533,8 +20353,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20548,8 +20367,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Experiment",
@@ -20562,8 +20380,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20577,8 +20394,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Field",
@@ -20591,8 +20407,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20606,8 +20421,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1FieldType",
@@ -20620,8 +20434,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20635,8 +20448,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Follower",
@@ -20649,8 +20461,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20664,8 +20475,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Issue",
@@ -20678,8 +20488,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20693,8 +20502,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1LandingPage",
@@ -20707,8 +20515,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20722,8 +20529,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1LayoutColumn",
@@ -20736,8 +20542,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20751,8 +20556,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Layout",
@@ -20765,8 +20569,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20780,8 +20583,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1LayoutRow",
@@ -20794,8 +20596,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20809,8 +20610,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1LayoutType",
@@ -20823,8 +20623,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20838,8 +20637,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1LiveEventMembership",
@@ -20852,8 +20650,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20867,8 +20664,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1LiveEvent",
@@ -20881,8 +20677,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20896,8 +20691,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1LiveEventType",
@@ -20910,8 +20704,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20925,8 +20718,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1MailingAddress",
@@ -20939,8 +20731,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20954,8 +20745,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Note",
@@ -20968,8 +20758,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -20983,8 +20772,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Office",
@@ -20997,8 +20785,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21012,8 +20799,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1OwnerMembership",
@@ -21026,8 +20812,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21041,8 +20826,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Payment",
@@ -21055,8 +20839,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21070,8 +20853,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1PetitionMembership",
@@ -21084,8 +20866,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21099,8 +20880,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Petition",
@@ -21113,8 +20893,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21128,8 +20907,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1PetitionSigner",
@@ -21142,8 +20920,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21157,8 +20934,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1PhoneNumber",
@@ -21171,8 +20947,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21186,8 +20961,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Photo",
@@ -21200,8 +20974,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21215,8 +20988,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1PollMembership",
@@ -21229,8 +21001,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21244,8 +21015,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Poll",
@@ -21258,8 +21028,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1PollRespondant",
@@ -21272,8 +21041,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21287,8 +21055,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21302,8 +21069,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1ProductMembership",
@@ -21316,8 +21082,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21331,8 +21096,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Product",
@@ -21345,8 +21109,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21360,8 +21123,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1ProductType",
@@ -21374,8 +21136,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21389,8 +21150,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Purchaser",
@@ -21403,8 +21163,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21418,8 +21177,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Territory",
@@ -21432,8 +21190,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21447,8 +21204,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunityMembership",
@@ -21461,8 +21217,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21476,8 +21231,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunity",
@@ -21490,8 +21244,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21505,8 +21258,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunityType",
@@ -21519,8 +21271,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21534,8 +21285,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Volunteer",
@@ -21548,8 +21298,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",
@@ -21563,8 +21312,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "item": {
           "$ref": "#/definitions/v1Voter",
@@ -21577,8 +21325,7 @@
       "type": "object",
       "properties": {
         "api": {
-          "type": "string",
-          "title": "API versioning: it is my best practice to specify version explicitly"
+          "type": "string"
         },
         "updated": {
           "type": "string",

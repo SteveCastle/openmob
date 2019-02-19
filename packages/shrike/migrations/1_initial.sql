@@ -8,7 +8,8 @@ CREATE TABLE cause
     id serial PRIMARY KEY,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    title VARCHAR(255) NOT NULL
+    title VARCHAR(255) NOT NULL,
+    summary TEXT
 );
 CREATE TABLE account
 (

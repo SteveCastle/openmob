@@ -31,7 +31,7 @@ endif
 
 startdb:
 	./scripts/start-db.sh
-init:
+initial-migration:
 	./scripts/initialize-db.sh
 destroy:
 	./scripts/purge-db.sh
@@ -41,13 +41,14 @@ install:
 	go get -u github.com/golang/protobuf/protoc-gen-go
 	go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 	go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+	./scripts/install-protoc.sh
+
 codegen:
 	gnorm gen
-generate: codegen
-	curl -OL https://github.com/google/protobuf/releases/download/v3.3.0/$(PROTOC_ZIP)
-	sudo unzip -o $(PROTOC_ZIP) -d /usr/local bin/protoc
-	rm -f $(PROTOC_ZIP)
+protogen:
 	./scripts/protogen.sh
+generate: codegen protogen
+
 build-server:
 	cd src/cmd/grpc-server; go build .
 build-client:
@@ -57,6 +58,8 @@ start: build-server
 	cd src/cmd/grpc-server;./grpc-server
 e2e: build-client
 	cd src/cmd/grpc-client;./grpc-client -server=localhost:9090
-bootstrap: startdb install init generate build
+bootstrap: startdb install initial-migration generate build
+schema-update: destroy initial-migration generate build
+
 swagger:
 	./scripts/start-swagger.sh
