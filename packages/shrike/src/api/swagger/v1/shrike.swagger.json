@@ -18120,6 +18120,10 @@
         "Title": {
           "type": "string"
         },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
         "Layout": {
           "type": "string",
           "format": "int64"

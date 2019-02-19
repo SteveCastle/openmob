@@ -808,83 +808,6 @@ message DeleteLayoutColumnResponse{
     int64 deleted = 2;
 }
 
-message Layout {
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	int64 LayoutType = 4;
-	
-}
-
-//Request and Response Message Types
-message CreateLayoutRequest {
-	string api = 1;
-	Layout item = 2;
-}
-
-message CreateLayoutResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetLayoutRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetLayoutResponse {
-	string api = 1;
-	Layout item = 2;
-}
-
-message ListLayoutRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListLayoutResponse {
-	string api = 1;
-	repeated Layout items = 2;
-}
-
-// Request data to update Layout
-message UpdateLayoutRequest{
-    string api = 1;
-
-    // Layout entity to update
-    Layout item = 2;
-}
-
-// Contains status of update operation
-message UpdateLayoutResponse{
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete Layout
-message DeleteLayoutRequest{
-    string api = 1;
-
-    // Unique integer IDentifier of the Layout to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteLayoutResponse{
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
 message FieldType {
     
 	int64 ID = 1;
@@ -1120,6 +1043,83 @@ message DeleteFieldResponse{
     int64 deleted = 2;
 }
 
+message Layout {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	int64 LayoutType = 4;
+	
+}
+
+//Request and Response Message Types
+message CreateLayoutRequest {
+	string api = 1;
+	Layout item = 2;
+}
+
+message CreateLayoutResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetLayoutRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetLayoutResponse {
+	string api = 1;
+	Layout item = 2;
+}
+
+message ListLayoutRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListLayoutResponse {
+	string api = 1;
+	repeated Layout items = 2;
+}
+
+// Request data to update Layout
+message UpdateLayoutRequest{
+    string api = 1;
+
+    // Layout entity to update
+    Layout item = 2;
+}
+
+// Contains status of update operation
+message UpdateLayoutResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete Layout
+message DeleteLayoutRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the Layout to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteLayoutResponse{
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
 message LandingPage {
     
 	int64 ID = 1;
@@ -1130,7 +1130,9 @@ message LandingPage {
 	
 	string Title = 4;
 	
-	int64 Layout = 5;
+	int64 Cause = 5;
+	
+	int64 Layout = 6;
 	
 }
 
@@ -3863,85 +3865,6 @@ message DeleteEventAttendeeResponse{
     int64 deleted = 2;
 }
 
-message VolunteerOpportunity {
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	string Title = 4;
-	
-	int64 ElectionType = 5;
-	
-}
-
-//Request and Response Message Types
-message CreateVolunteerOpportunityRequest {
-	string api = 1;
-	VolunteerOpportunity item = 2;
-}
-
-message CreateVolunteerOpportunityResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetVolunteerOpportunityRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetVolunteerOpportunityResponse {
-	string api = 1;
-	VolunteerOpportunity item = 2;
-}
-
-message ListVolunteerOpportunityRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListVolunteerOpportunityResponse {
-	string api = 1;
-	repeated VolunteerOpportunity items = 2;
-}
-
-// Request data to update VolunteerOpportunity
-message UpdateVolunteerOpportunityRequest{
-    string api = 1;
-
-    // VolunteerOpportunity entity to update
-    VolunteerOpportunity item = 2;
-}
-
-// Contains status of update operation
-message UpdateVolunteerOpportunityResponse{
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete VolunteerOpportunity
-message DeleteVolunteerOpportunityRequest{
-    string api = 1;
-
-    // Unique integer IDentifier of the VolunteerOpportunity to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteVolunteerOpportunityResponse{
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
 message Voter {
     
 	int64 ID = 1;
@@ -4014,6 +3937,85 @@ message DeleteVoterRequest{
 
 // Contains status of delete operation
 message DeleteVoterResponse{
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
+message VolunteerOpportunity {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	string Title = 4;
+	
+	int64 ElectionType = 5;
+	
+}
+
+//Request and Response Message Types
+message CreateVolunteerOpportunityRequest {
+	string api = 1;
+	VolunteerOpportunity item = 2;
+}
+
+message CreateVolunteerOpportunityResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetVolunteerOpportunityRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetVolunteerOpportunityResponse {
+	string api = 1;
+	VolunteerOpportunity item = 2;
+}
+
+message ListVolunteerOpportunityRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListVolunteerOpportunityResponse {
+	string api = 1;
+	repeated VolunteerOpportunity items = 2;
+}
+
+// Request data to update VolunteerOpportunity
+message UpdateVolunteerOpportunityRequest{
+    string api = 1;
+
+    // VolunteerOpportunity entity to update
+    VolunteerOpportunity item = 2;
+}
+
+// Contains status of update operation
+message UpdateVolunteerOpportunityResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete VolunteerOpportunity
+message DeleteVolunteerOpportunityRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the VolunteerOpportunity to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteVolunteerOpportunityResponse{
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -4655,85 +4657,6 @@ message DeleteOwnerMembershipResponse{
     int64 deleted = 2;
 }
 
-message Cause {
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	string Title = 4;
-	
-	string Summary = 5;
-	
-}
-
-//Request and Response Message Types
-message CreateCauseRequest {
-	string api = 1;
-	Cause item = 2;
-}
-
-message CreateCauseResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetCauseRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetCauseResponse {
-	string api = 1;
-	Cause item = 2;
-}
-
-message ListCauseRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListCauseResponse {
-	string api = 1;
-	repeated Cause items = 2;
-}
-
-// Request data to update Cause
-message UpdateCauseRequest{
-    string api = 1;
-
-    // Cause entity to update
-    Cause item = 2;
-}
-
-// Contains status of update operation
-message UpdateCauseResponse{
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete Cause
-message DeleteCauseRequest{
-    string api = 1;
-
-    // Unique integer IDentifier of the Cause to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteCauseResponse{
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
 message Contact {
     
 	int64 ID = 1;
@@ -4881,6 +4804,85 @@ message DeleteContactMembershipRequest{
 
 // Contains status of delete operation
 message DeleteContactMembershipResponse{
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
+message Cause {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	string Title = 4;
+	
+	string Summary = 5;
+	
+}
+
+//Request and Response Message Types
+message CreateCauseRequest {
+	string api = 1;
+	Cause item = 2;
+}
+
+message CreateCauseResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetCauseRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetCauseResponse {
+	string api = 1;
+	Cause item = 2;
+}
+
+message ListCauseRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListCauseResponse {
+	string api = 1;
+	repeated Cause items = 2;
+}
+
+// Request data to update Cause
+message UpdateCauseRequest{
+    string api = 1;
+
+    // Cause entity to update
+    Cause item = 2;
+}
+
+// Contains status of update operation
+message UpdateCauseResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete Cause
+message DeleteCauseRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the Cause to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteCauseResponse{
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -5438,45 +5440,6 @@ service ShrikeService {
         };
     }
 	
-	// CreateLayout takes a Layout object to create.
-	rpc CreateLayout(CreateLayoutRequest) returns (CreateLayoutResponse) {
-		option (google.api.http) ={
-			post: "/v1/layout"
-			body: "*"
-		};
-	}
-    // GetLayout takes an ID and returns a single Layout.
-	rpc GetLayout(GetLayoutRequest) returns (GetLayoutResponse) {
-		option (google.api.http) ={
-			get: "/v1/layout/{ID}"
-		};
-	}
-    // List Layout, takes filters, limit, and cursor param.
-	rpc ListLayout(ListLayoutRequest) returns (ListLayoutResponse) {
-	option (google.api.http) ={
-		get: "/v1/layout"
-	};
-}
-    // Update Layout
-    rpc UpdateLayout(UpdateLayoutRequest) returns (UpdateLayoutResponse){
-        option (google.api.http) = {
-            put: "/v1/layout/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/layout/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Layout
-    rpc DeleteLayout(DeleteLayoutRequest) returns (DeleteLayoutResponse){
-        option (google.api.http) = {
-            delete: "/v1/layout/{ID}"
-        };
-    }
-	
 	// CreateFieldType takes a FieldType object to create.
 	rpc CreateFieldType(CreateFieldTypeRequest) returns (CreateFieldTypeResponse) {
 		option (google.api.http) ={
@@ -5591,6 +5554,45 @@ service ShrikeService {
     rpc DeleteField(DeleteFieldRequest) returns (DeleteFieldResponse){
         option (google.api.http) = {
             delete: "/v1/field/{ID}"
+        };
+    }
+	
+	// CreateLayout takes a Layout object to create.
+	rpc CreateLayout(CreateLayoutRequest) returns (CreateLayoutResponse) {
+		option (google.api.http) ={
+			post: "/v1/layout"
+			body: "*"
+		};
+	}
+    // GetLayout takes an ID and returns a single Layout.
+	rpc GetLayout(GetLayoutRequest) returns (GetLayoutResponse) {
+		option (google.api.http) ={
+			get: "/v1/layout/{ID}"
+		};
+	}
+    // List Layout, takes filters, limit, and cursor param.
+	rpc ListLayout(ListLayoutRequest) returns (ListLayoutResponse) {
+	option (google.api.http) ={
+		get: "/v1/layout"
+	};
+}
+    // Update Layout
+    rpc UpdateLayout(UpdateLayoutRequest) returns (UpdateLayoutResponse){
+        option (google.api.http) = {
+            put: "/v1/layout/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/layout/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Layout
+    rpc DeleteLayout(DeleteLayoutRequest) returns (DeleteLayoutResponse){
+        option (google.api.http) = {
+            delete: "/v1/layout/{ID}"
         };
     }
 	
@@ -6959,45 +6961,6 @@ service ShrikeService {
         };
     }
 	
-	// CreateVolunteerOpportunity takes a VolunteerOpportunity object to create.
-	rpc CreateVolunteerOpportunity(CreateVolunteerOpportunityRequest) returns (CreateVolunteerOpportunityResponse) {
-		option (google.api.http) ={
-			post: "/v1/volunteeropportunity"
-			body: "*"
-		};
-	}
-    // GetVolunteerOpportunity takes an ID and returns a single VolunteerOpportunity.
-	rpc GetVolunteerOpportunity(GetVolunteerOpportunityRequest) returns (GetVolunteerOpportunityResponse) {
-		option (google.api.http) ={
-			get: "/v1/volunteeropportunity/{ID}"
-		};
-	}
-    // List VolunteerOpportunity, takes filters, limit, and cursor param.
-	rpc ListVolunteerOpportunity(ListVolunteerOpportunityRequest) returns (ListVolunteerOpportunityResponse) {
-	option (google.api.http) ={
-		get: "/v1/volunteeropportunity"
-	};
-}
-    // Update VolunteerOpportunity
-    rpc UpdateVolunteerOpportunity(UpdateVolunteerOpportunityRequest) returns (UpdateVolunteerOpportunityResponse){
-        option (google.api.http) = {
-            put: "/v1/volunteeropportunity/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/volunteeropportunity/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete VolunteerOpportunity
-    rpc DeleteVolunteerOpportunity(DeleteVolunteerOpportunityRequest) returns (DeleteVolunteerOpportunityResponse){
-        option (google.api.http) = {
-            delete: "/v1/volunteeropportunity/{ID}"
-        };
-    }
-	
 	// CreateVoter takes a Voter object to create.
 	rpc CreateVoter(CreateVoterRequest) returns (CreateVoterResponse) {
 		option (google.api.http) ={
@@ -7034,6 +6997,45 @@ service ShrikeService {
     rpc DeleteVoter(DeleteVoterRequest) returns (DeleteVoterResponse){
         option (google.api.http) = {
             delete: "/v1/voter/{ID}"
+        };
+    }
+	
+	// CreateVolunteerOpportunity takes a VolunteerOpportunity object to create.
+	rpc CreateVolunteerOpportunity(CreateVolunteerOpportunityRequest) returns (CreateVolunteerOpportunityResponse) {
+		option (google.api.http) ={
+			post: "/v1/volunteeropportunity"
+			body: "*"
+		};
+	}
+    // GetVolunteerOpportunity takes an ID and returns a single VolunteerOpportunity.
+	rpc GetVolunteerOpportunity(GetVolunteerOpportunityRequest) returns (GetVolunteerOpportunityResponse) {
+		option (google.api.http) ={
+			get: "/v1/volunteeropportunity/{ID}"
+		};
+	}
+    // List VolunteerOpportunity, takes filters, limit, and cursor param.
+	rpc ListVolunteerOpportunity(ListVolunteerOpportunityRequest) returns (ListVolunteerOpportunityResponse) {
+	option (google.api.http) ={
+		get: "/v1/volunteeropportunity"
+	};
+}
+    // Update VolunteerOpportunity
+    rpc UpdateVolunteerOpportunity(UpdateVolunteerOpportunityRequest) returns (UpdateVolunteerOpportunityResponse){
+        option (google.api.http) = {
+            put: "/v1/volunteeropportunity/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/volunteeropportunity/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete VolunteerOpportunity
+    rpc DeleteVolunteerOpportunity(DeleteVolunteerOpportunityRequest) returns (DeleteVolunteerOpportunityResponse){
+        option (google.api.http) = {
+            delete: "/v1/volunteeropportunity/{ID}"
         };
     }
 	
@@ -7349,45 +7351,6 @@ service ShrikeService {
         };
     }
 	
-	// CreateCause takes a Cause object to create.
-	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
-		option (google.api.http) ={
-			post: "/v1/cause"
-			body: "*"
-		};
-	}
-    // GetCause takes an ID and returns a single Cause.
-	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
-		option (google.api.http) ={
-			get: "/v1/cause/{ID}"
-		};
-	}
-    // List Cause, takes filters, limit, and cursor param.
-	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
-	option (google.api.http) ={
-		get: "/v1/cause"
-	};
-}
-    // Update Cause
-    rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse){
-        option (google.api.http) = {
-            put: "/v1/cause/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/cause/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Cause
-    rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse){
-        option (google.api.http) = {
-            delete: "/v1/cause/{ID}"
-        };
-    }
-	
 	// CreateContact takes a Contact object to create.
 	rpc CreateContact(CreateContactRequest) returns (CreateContactResponse) {
 		option (google.api.http) ={
@@ -7463,6 +7426,45 @@ service ShrikeService {
     rpc DeleteContactMembership(DeleteContactMembershipRequest) returns (DeleteContactMembershipResponse){
         option (google.api.http) = {
             delete: "/v1/contactmembership/{ID}"
+        };
+    }
+	
+	// CreateCause takes a Cause object to create.
+	rpc CreateCause(CreateCauseRequest) returns (CreateCauseResponse) {
+		option (google.api.http) ={
+			post: "/v1/cause"
+			body: "*"
+		};
+	}
+    // GetCause takes an ID and returns a single Cause.
+	rpc GetCause(GetCauseRequest) returns (GetCauseResponse) {
+		option (google.api.http) ={
+			get: "/v1/cause/{ID}"
+		};
+	}
+    // List Cause, takes filters, limit, and cursor param.
+	rpc ListCause(ListCauseRequest) returns (ListCauseResponse) {
+	option (google.api.http) ={
+		get: "/v1/cause"
+	};
+}
+    // Update Cause
+    rpc UpdateCause(UpdateCauseRequest) returns (UpdateCauseResponse){
+        option (google.api.http) = {
+            put: "/v1/cause/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/cause/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Cause
+    rpc DeleteCause(DeleteCauseRequest) returns (DeleteCauseResponse){
+        option (google.api.http) = {
+            delete: "/v1/cause/{ID}"
         };
     }
 	

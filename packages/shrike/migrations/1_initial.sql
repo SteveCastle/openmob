@@ -136,6 +136,7 @@ CREATE TABLE landing_page
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
+    cause INTEGER REFERENCES cause(id) NOT NULL,
     layout INTEGER REFERENCES layout(id)
 );
 CREATE TABLE experiment
