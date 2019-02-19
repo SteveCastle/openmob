@@ -1,168 +1,490 @@
-type File @model {
-  contentType: String!
-  createdAt: DateTime!
-  id: ID! @isUnique
-  name: String!
-  secret: String! @isUnique
-  size: Int!
-  updatedAt: DateTime!
-  url: String! @isUnique
+
+type ACL @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
 }
 ​
-type Validator @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  lastEdited: DateTime
+type MailingAddress @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  streetAddress: String!
+  city: String!
+  state: String!
+  zipCode: String!
+}
+​
+type PhoneNumber @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  phoneNumber: String!
+}
+​
+type EmailAddress @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  address: String!
+}
+​
+type Photo @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  imgURL: String!
+}
+​
+type LayoutType @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
   title: String!
-  fields: [FieldType!]! @relation(name: "FieldValidators")
-  errorMessage: String
-  regex: String
 }
 ​
-type Widget @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  title: String!
-  componentName: String!
-  override: String
-  fieldTypes: [FieldType!]! @relation(name: "FieldTypeWidgets")
+type LayoutRow @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  layout: String!
 }
 ​
-type Option @model {
-  id: ID! @isUnique
-  propType: PropType!
-  title: String
-  value: String
-  fields: FieldType @relation(name: "FieldOptions")
-}
-​
-type FieldType @model {
-  id: ID! @isUnique
-  title: String!
-  propName: String!
-  createdAt: DateTime!
-  lastEdited: DateTime
-  propType: PropType!
-  stringValue: String
-  intValue: Int
-  floatValue: Float
-  booleanValue: Boolean
-  dateTimeValue: DateTime
-  componentListValue: [ComponentListItem!]! @relation(name: "ComponentListFieldType")
-  widget: Widget @relation(name: "FieldTypeWidgets")
-  options: [Option!]! @relation(name: "FieldOptions")
-  fields: [Field!]! @relation(name: "FieldsOfType")
-  parentOf: [FieldType!]! @relation(name: "ChildrenFields")
-  childOf: [FieldType!]! @relation(name: "ChildrenFields")
-  validators: [Validator!]! @relation(name: "FieldValidators")
-  componentTypes: [ComponentType!]! @relation(name: "FieldTypes")
-}
-​
-type ComponentListItem @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  fieldType: FieldType @relation(name: "ComponentListFieldType")
-  componentType: ComponentType @relation(name: "ComponentListComponentType")
-  weight: Int! @defaultValue(value: 0)
-}
-​
-type Field @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  author: User @relation(name: "FieldAuthor")
-  admin: [User!]! @relation(name: "FieldAdmin")
-  fieldType: FieldType! @relation(name: "FieldsOfType")
-  weight: Int! @defaultValue(value: 0)
-  stringValue: String
-  intValue: Int
-  floatValue: Float
-  booleanValue: Boolean
-  dateTimeValue: DateTime
-  componentType: ComponentType @relation(name: "FieldComponentType")
-  components: [Component!]! @relation(name: "ComponentFields")
-  parentOf: [Field!]! @relation(name: "ChildField")
-  childOf: Field @relation(name: "ChildField")
-  previousState: Field @relation(name: "FieldHistory")
-  nextState: Field @relation(name: "FieldHistory")
-}
-​
-type ComponentDefinition @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  lastEdited: DateTime
-  title: String!
-  componentPath: String @isUnique
-  override: String
-  componentTypes: [ComponentType!]! @relation(name: "ComponentTypeDefinition")
-  components: [Component!]! @relation(name: "ComponentDefinitionUsed")
-  componentTypeDefaults: [ComponentType!]! @relation(name: "ComponentTypeDefinitionDefault")
+type ComponentImplementation @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
 }
 ​
 type ComponentType @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  lastEdited: DateTime
+  id: String!
+  createdAt: String!
+  updatedAt: String!
   title: String!
-  isTopLevel: Boolean!
-  allowedComponentDefinitions: [ComponentDefinition!]! @relation(name: "ComponentTypeDefinition")
-  defaultComponentDefinition: ComponentDefinition @relation(name: "ComponentTypeDefinitionDefault")
-  allowAllChildren: Boolean!
-  parentOf: [ComponentType!]! @relation(name: "ChildrenTypes")
-  childOf: [ComponentType!]! @relation(name: "ChildrenTypes")
-  allowedOnPageTypes: [PageType!]! @relation(name: "AllowedPageComponentTypes")
-  components: [Component!]! @relation(name: "ComponentsOfType")
-  fieldValues: [Field!]! @relation(name: "FieldComponentType")
-  fieldTypes: [FieldType!]! @relation(name: "FieldTypes")
-  defaultofPageTypes: [PageType!]! @relation(name: "PageComponent")
-  belongsToFieldList: [ComponentListItem!]! @relation(name: "ComponentListComponentType")
+}
+​
+type LayoutColumn @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  layoutRow: String!
+}
+​
+type FieldType @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
 }
 ​
 type Component @model {
-  id: ID! @isUnique
-  admin: [User!]! @relation(name: "ComponentAdmin")
-  createdAt: DateTime!
-  lastEdited: DateTime
-  componentType: ComponentType! @relation(name: "ComponentsOfType")
-  definition: ComponentDefinition! @relation(name: "ComponentDefinitionUsed")
-  weight: Int! @defaultValue(value: 0)
-  fields: [Field!]! @relation(name: "ComponentFields")
-  page: Page! @relation(name: "PageLevelComponent")
-  childrenComponents: [Component!]! @relation(name: "NestedComponent")
-  component: Component! @relation(name: "NestedComponent")
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  componentType: String!
+  layoutColumn: String!
 }
 ​
-type PageType @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
+type Field @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  fieldType: String!
+  component: String!
+}
+​
+type Layout @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  layoutType: String!
+}
+​
+type LandingPage @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
   title: String!
-  allowedComponentTypes: [ComponentType!]! @relation(name: "AllowedPageComponentTypes")
-  defaultComponentType: ComponentType @relation(name: "PageComponent")
-  pages: [Page!]! @relation(name: "PagesOfType")
+  cause: String!
+  layout: String!
 }
 ​
-type Page @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  lastEdited: DateTime
-  author: User @relation(name: "Author")
-  published: Boolean! @defaultValue(value: false)
-  admin: [User!]! @relation(name: "Admin")
-  pageType: PageType! @relation(name: "PagesOfType")
+type Experiment @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
   title: String!
-  url: String! @isUnique
-  pageLevelComponent: Component! @relation(name: "PageLevelComponent")
+  landingPage: String!
 }
 ​
-type User @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  pages: [Page!]! @relation(name: "Author")
-  pagesAdmin: [Page!]! @relation(name: "Admin")
-  fieldsAdmin: [Field!]! @relation(name: "FieldAdmin")
-  author: [Field!]! @relation(name: "FieldAuthor")
-  componentsAdmin: [Component!]! @relation(name: "ComponentAdmin")
-  updatedAt: DateTime!
-  email: String!
-  firstName: String!
-  lastName: String!
+type Issue @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+  election: String!
 }
+​
+type Candidate @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  election: String!
+}
+​
+type DistrictType @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type District @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  geom: String!
+  title: String!
+  districtType: String!
+}
+​
+type Office @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+  election: String!
+}
+​
+type VolunteerOpportunityType @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type LiveEventType @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type Company @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type ProductType @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type CustomerCart @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+}
+​
+type Payment @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  customerOrder: String!
+}
+​
+type Delivery @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+}
+​
+type Boycott @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type BoycottMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  boycott: String!
+}
+​
+type Election @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type ElectionMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  election: String!
+}
+​
+type PetitionMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  petition: String!
+}
+​
+type PollMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  petition: String!
+}
+​
+type VolunteerOpportunityMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  volunteerOpportunity: String!
+}
+​
+type LiveEventMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  liveEvent: String!
+}
+​
+type Product @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+  productType: String!
+}
+​
+type ProductMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  product: String!
+}
+​
+type DonationCampaign @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type DonationCampaignMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  donationCampaign: String!
+}
+​
+type Petition @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type PetitionSigner @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  petition: String!
+  contact: String!
+  cause: String!
+}
+​
+type Poll @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type PollRespondant @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  poll: String!
+  contact: String!
+  cause: String!
+}
+​
+type Purchaser @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  customerOrder: String!
+  contact: String!
+  cause: String!
+}
+​
+type CustomerOrder @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  customerCart: String!
+}
+​
+type Donor @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  customerOrder: String!
+  contact: String!
+  cause: String!
+}
+​
+type LiveEvent @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+  liveEventType: String!
+}
+​
+type EventAttendee @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  liveEvent: String!
+  contact: String!
+  cause: String!
+}
+​
+type Voter @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  contact: String!
+  cause: String!
+}
+​
+type VolunteerOpportunity @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+  electionType: String!
+}
+​
+type Volunteer @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  volunteerOpportunity: String!
+  contact: String!
+  cause: String!
+}
+​
+type Territory @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type Follower @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  contact: String!
+  cause: String!
+}
+​
+type ActivityType @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+}
+​
+type Activity @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+  activityType: String!
+  contact: String!
+  cause: String!
+}
+​
+type Note @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  contact: String!
+  cause: String!
+  body: String!
+}
+​
+type Account @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  username: String!
+}
+​
+type OwnerMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  account: String!
+}
+​
+type Contact @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+}
+​
+type ContactMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  contact: String!
+}
+​
+type Cause @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  title: String!
+  summary: String!
+}
+​
+type Agent @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  account: String!
+}
+​
+type AgentMembership @model {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  cause: String!
+  agent: String!
+}
+​

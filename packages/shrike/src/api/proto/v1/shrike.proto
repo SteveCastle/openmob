@@ -3203,99 +3203,6 @@ message DeleteVolunteerOpportunityMembershipResponse{
     int64 deleted = 2;
 }
 
-message Product {
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	string Title = 4;
-	
-	int64 ProductType = 5;
-	
-}
-
-message CreateProduct {
-    
-	
-	
-	
-	
-	
-	
-	string Title = 1;
-	
-	int64 ProductType = 2;
-	
-}
-
-//Request and Response Message Types
-message CreateProductRequest {
-	string api = 1;
-	CreateProduct item = 2;
-}
-
-message CreateProductResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetProductRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetProductResponse {
-	string api = 1;
-	Product item = 2;
-}
-
-message ListProductRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListProductResponse {
-	string api = 1;
-	repeated Product items = 2;
-}
-
-// Request data to update Product
-message UpdateProductRequest{
-    string api = 1;
-
-    // Product entity to update
-    Product item = 2;
-}
-
-// Contains status of update operation
-message UpdateProductResponse{
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete Product
-message DeleteProductRequest{
-    string api = 1;
-
-    // Unique integer IDentifier of the Product to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteProductResponse{
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
 message LiveEventMembership {
     
 	int64 ID = 1;
@@ -3382,6 +3289,99 @@ message DeleteLiveEventMembershipRequest{
 
 // Contains status of delete operation
 message DeleteLiveEventMembershipResponse{
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
+message Product {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	string Title = 4;
+	
+	int64 ProductType = 5;
+	
+}
+
+message CreateProduct {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 ProductType = 2;
+	
+}
+
+//Request and Response Message Types
+message CreateProductRequest {
+	string api = 1;
+	CreateProduct item = 2;
+}
+
+message CreateProductResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetProductRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetProductResponse {
+	string api = 1;
+	Product item = 2;
+}
+
+message ListProductRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListProductResponse {
+	string api = 1;
+	repeated Product items = 2;
+}
+
+// Request data to update Product
+message UpdateProductRequest{
+    string api = 1;
+
+    // Product entity to update
+    Product item = 2;
+}
+
+// Contains status of update operation
+message UpdateProductResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete Product
+message DeleteProductRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the Product to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteProductResponse{
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -7265,45 +7265,6 @@ service ShrikeService {
         };
     }
 	
-	// CreateProduct takes a Product object to create.
-	rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
-		option (google.api.http) ={
-			post: "/v1/product"
-			body: "*"
-		};
-	}
-    // GetProduct takes an ID and returns a single Product.
-	rpc GetProduct(GetProductRequest) returns (GetProductResponse) {
-		option (google.api.http) ={
-			get: "/v1/product/{ID}"
-		};
-	}
-    // List Product, takes filters, limit, and cursor param.
-	rpc ListProduct(ListProductRequest) returns (ListProductResponse) {
-	option (google.api.http) ={
-		get: "/v1/product"
-	};
-}
-    // Update Product
-    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse){
-        option (google.api.http) = {
-            put: "/v1/product/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/product/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Product
-    rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse){
-        option (google.api.http) = {
-            delete: "/v1/product/{ID}"
-        };
-    }
-	
 	// CreateLiveEventMembership takes a LiveEventMembership object to create.
 	rpc CreateLiveEventMembership(CreateLiveEventMembershipRequest) returns (CreateLiveEventMembershipResponse) {
 		option (google.api.http) ={
@@ -7340,6 +7301,45 @@ service ShrikeService {
     rpc DeleteLiveEventMembership(DeleteLiveEventMembershipRequest) returns (DeleteLiveEventMembershipResponse){
         option (google.api.http) = {
             delete: "/v1/liveeventmembership/{ID}"
+        };
+    }
+	
+	// CreateProduct takes a Product object to create.
+	rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
+		option (google.api.http) ={
+			post: "/v1/product"
+			body: "*"
+		};
+	}
+    // GetProduct takes an ID and returns a single Product.
+	rpc GetProduct(GetProductRequest) returns (GetProductResponse) {
+		option (google.api.http) ={
+			get: "/v1/product/{ID}"
+		};
+	}
+    // List Product, takes filters, limit, and cursor param.
+	rpc ListProduct(ListProductRequest) returns (ListProductResponse) {
+	option (google.api.http) ={
+		get: "/v1/product"
+	};
+}
+    // Update Product
+    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse){
+        option (google.api.http) = {
+            put: "/v1/product/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/product/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Product
+    rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse){
+        option (google.api.http) = {
+            delete: "/v1/product/{ID}"
         };
     }
 	
