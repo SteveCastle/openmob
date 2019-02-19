@@ -14577,6 +14577,9 @@
         }
       }
     },
+    "v1CreateACL": {
+      "type": "object"
+    },
     "v1CreateACLRequest": {
       "type": "object",
       "properties": {
@@ -14584,7 +14587,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1ACL"
+          "$ref": "#/definitions/v1CreateACL"
         }
       },
       "title": "Request and Response Message Types"
@@ -14601,6 +14604,14 @@
         }
       }
     },
+    "v1CreateAccount": {
+      "type": "object",
+      "properties": {
+        "Username": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateAccountRequest": {
       "type": "object",
       "properties": {
@@ -14608,7 +14619,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Account"
+          "$ref": "#/definitions/v1CreateAccount"
         }
       },
       "title": "Request and Response Message Types"
@@ -14625,6 +14636,26 @@
         }
       }
     },
+    "v1CreateActivity": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "ActivityType": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateActivityRequest": {
       "type": "object",
       "properties": {
@@ -14632,7 +14663,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Activity"
+          "$ref": "#/definitions/v1CreateActivity"
         }
       },
       "title": "Request and Response Message Types"
@@ -14649,6 +14680,14 @@
         }
       }
     },
+    "v1CreateActivityType": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateActivityTypeRequest": {
       "type": "object",
       "properties": {
@@ -14656,7 +14695,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1ActivityType"
+          "$ref": "#/definitions/v1CreateActivityType"
         }
       },
       "title": "Request and Response Message Types"
@@ -14673,6 +14712,28 @@
         }
       }
     },
+    "v1CreateAgent": {
+      "type": "object",
+      "properties": {
+        "Account": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateAgentMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Agent": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateAgentMembershipRequest": {
       "type": "object",
       "properties": {
@@ -14680,7 +14741,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1AgentMembership"
+          "$ref": "#/definitions/v1CreateAgentMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -14704,7 +14765,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Agent"
+          "$ref": "#/definitions/v1CreateAgent"
         }
       },
       "title": "Request and Response Message Types"
@@ -14721,6 +14782,27 @@
         }
       }
     },
+    "v1CreateBoycott": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateBoycottMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Boycott": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateBoycottMembershipRequest": {
       "type": "object",
       "properties": {
@@ -14728,7 +14810,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1BoycottMembership"
+          "$ref": "#/definitions/v1CreateBoycottMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -14752,7 +14834,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Boycott"
+          "$ref": "#/definitions/v1CreateBoycott"
         }
       },
       "title": "Request and Response Message Types"
@@ -14769,6 +14851,15 @@
         }
       }
     },
+    "v1CreateCandidate": {
+      "type": "object",
+      "properties": {
+        "Election": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateCandidateRequest": {
       "type": "object",
       "properties": {
@@ -14776,7 +14867,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Candidate"
+          "$ref": "#/definitions/v1CreateCandidate"
         }
       },
       "title": "Request and Response Message Types"
@@ -14793,6 +14884,17 @@
         }
       }
     },
+    "v1CreateCause": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Summary": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateCauseRequest": {
       "type": "object",
       "properties": {
@@ -14800,7 +14902,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Cause"
+          "$ref": "#/definitions/v1CreateCause"
         }
       },
       "title": "Request and Response Message Types"
@@ -14817,6 +14919,14 @@
         }
       }
     },
+    "v1CreateCompany": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateCompanyRequest": {
       "type": "object",
       "properties": {
@@ -14824,7 +14934,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Company"
+          "$ref": "#/definitions/v1CreateCompany"
         }
       },
       "title": "Request and Response Message Types"
@@ -14841,6 +14951,22 @@
         }
       }
     },
+    "v1CreateComponent": {
+      "type": "object",
+      "properties": {
+        "ComponentType": {
+          "type": "string",
+          "format": "int64"
+        },
+        "LayoutColumn": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateComponentImplementation": {
+      "type": "object"
+    },
     "v1CreateComponentImplementationRequest": {
       "type": "object",
       "properties": {
@@ -14848,7 +14974,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1ComponentImplementation"
+          "$ref": "#/definitions/v1CreateComponentImplementation"
         }
       },
       "title": "Request and Response Message Types"
@@ -14872,7 +14998,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Component"
+          "$ref": "#/definitions/v1CreateComponent"
         }
       },
       "title": "Request and Response Message Types"
@@ -14889,6 +15015,14 @@
         }
       }
     },
+    "v1CreateComponentType": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateComponentTypeRequest": {
       "type": "object",
       "properties": {
@@ -14896,7 +15030,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1ComponentType"
+          "$ref": "#/definitions/v1CreateComponentType"
         }
       },
       "title": "Request and Response Message Types"
@@ -14913,6 +15047,22 @@
         }
       }
     },
+    "v1CreateContact": {
+      "type": "object"
+    },
+    "v1CreateContactMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateContactMembershipRequest": {
       "type": "object",
       "properties": {
@@ -14920,7 +15070,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1ContactMembership"
+          "$ref": "#/definitions/v1CreateContactMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -14944,7 +15094,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/shrikev1Contact"
+          "$ref": "#/definitions/v1CreateContact"
         }
       },
       "title": "Request and Response Message Types"
@@ -14961,6 +15111,9 @@
         }
       }
     },
+    "v1CreateCustomerCart": {
+      "type": "object"
+    },
     "v1CreateCustomerCartRequest": {
       "type": "object",
       "properties": {
@@ -14968,7 +15121,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1CustomerCart"
+          "$ref": "#/definitions/v1CreateCustomerCart"
         }
       },
       "title": "Request and Response Message Types"
@@ -14985,6 +15138,15 @@
         }
       }
     },
+    "v1CreateCustomerOrder": {
+      "type": "object",
+      "properties": {
+        "CustomerCart": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateCustomerOrderRequest": {
       "type": "object",
       "properties": {
@@ -14992,7 +15154,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1CustomerOrder"
+          "$ref": "#/definitions/v1CreateCustomerOrder"
         }
       },
       "title": "Request and Response Message Types"
@@ -15009,6 +15171,9 @@
         }
       }
     },
+    "v1CreateDelivery": {
+      "type": "object"
+    },
     "v1CreateDeliveryRequest": {
       "type": "object",
       "properties": {
@@ -15016,7 +15181,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Delivery"
+          "$ref": "#/definitions/v1CreateDelivery"
         }
       },
       "title": "Request and Response Message Types"
@@ -15033,6 +15198,22 @@
         }
       }
     },
+    "v1CreateDistrict": {
+      "type": "object",
+      "properties": {
+        "Geom": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "DistrictType": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateDistrictRequest": {
       "type": "object",
       "properties": {
@@ -15040,7 +15221,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1District"
+          "$ref": "#/definitions/v1CreateDistrict"
         }
       },
       "title": "Request and Response Message Types"
@@ -15057,6 +15238,14 @@
         }
       }
     },
+    "v1CreateDistrictType": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateDistrictTypeRequest": {
       "type": "object",
       "properties": {
@@ -15064,7 +15253,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1DistrictType"
+          "$ref": "#/definitions/v1CreateDistrictType"
         }
       },
       "title": "Request and Response Message Types"
@@ -15081,6 +15270,27 @@
         }
       }
     },
+    "v1CreateDonationCampaign": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateDonationCampaignMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "DonationCampaign": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateDonationCampaignMembershipRequest": {
       "type": "object",
       "properties": {
@@ -15088,7 +15298,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1DonationCampaignMembership"
+          "$ref": "#/definitions/v1CreateDonationCampaignMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -15112,7 +15322,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1DonationCampaign"
+          "$ref": "#/definitions/v1CreateDonationCampaign"
         }
       },
       "title": "Request and Response Message Types"
@@ -15129,6 +15339,23 @@
         }
       }
     },
+    "v1CreateDonor": {
+      "type": "object",
+      "properties": {
+        "CustomerOrder": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateDonorRequest": {
       "type": "object",
       "properties": {
@@ -15136,7 +15363,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Donor"
+          "$ref": "#/definitions/v1CreateDonor"
         }
       },
       "title": "Request and Response Message Types"
@@ -15153,6 +15380,27 @@
         }
       }
     },
+    "v1CreateElection": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateElectionMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Election": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateElectionMembershipRequest": {
       "type": "object",
       "properties": {
@@ -15160,7 +15408,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1ElectionMembership"
+          "$ref": "#/definitions/v1CreateElectionMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -15184,7 +15432,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Election"
+          "$ref": "#/definitions/v1CreateElection"
         }
       },
       "title": "Request and Response Message Types"
@@ -15201,6 +15449,14 @@
         }
       }
     },
+    "v1CreateEmailAddress": {
+      "type": "object",
+      "properties": {
+        "Address": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateEmailAddressRequest": {
       "type": "object",
       "properties": {
@@ -15208,7 +15464,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1EmailAddress"
+          "$ref": "#/definitions/v1CreateEmailAddress"
         }
       },
       "title": "Request and Response Message Types"
@@ -15225,6 +15481,23 @@
         }
       }
     },
+    "v1CreateEventAttendee": {
+      "type": "object",
+      "properties": {
+        "LiveEvent": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateEventAttendeeRequest": {
       "type": "object",
       "properties": {
@@ -15232,7 +15505,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1EventAttendee"
+          "$ref": "#/definitions/v1CreateEventAttendee"
         }
       },
       "title": "Request and Response Message Types"
@@ -15249,6 +15522,18 @@
         }
       }
     },
+    "v1CreateExperiment": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "LandingPage": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateExperimentRequest": {
       "type": "object",
       "properties": {
@@ -15256,7 +15541,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Experiment"
+          "$ref": "#/definitions/v1CreateExperiment"
         }
       },
       "title": "Request and Response Message Types"
@@ -15273,6 +15558,19 @@
         }
       }
     },
+    "v1CreateField": {
+      "type": "object",
+      "properties": {
+        "FieldType": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Component": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateFieldRequest": {
       "type": "object",
       "properties": {
@@ -15280,7 +15578,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Field"
+          "$ref": "#/definitions/v1CreateField"
         }
       },
       "title": "Request and Response Message Types"
@@ -15297,6 +15595,14 @@
         }
       }
     },
+    "v1CreateFieldType": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateFieldTypeRequest": {
       "type": "object",
       "properties": {
@@ -15304,7 +15610,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1FieldType"
+          "$ref": "#/definitions/v1CreateFieldType"
         }
       },
       "title": "Request and Response Message Types"
@@ -15321,6 +15627,19 @@
         }
       }
     },
+    "v1CreateFollower": {
+      "type": "object",
+      "properties": {
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateFollowerRequest": {
       "type": "object",
       "properties": {
@@ -15328,7 +15647,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Follower"
+          "$ref": "#/definitions/v1CreateFollower"
         }
       },
       "title": "Request and Response Message Types"
@@ -15345,6 +15664,18 @@
         }
       }
     },
+    "v1CreateIssue": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Election": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateIssueRequest": {
       "type": "object",
       "properties": {
@@ -15352,7 +15683,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Issue"
+          "$ref": "#/definitions/v1CreateIssue"
         }
       },
       "title": "Request and Response Message Types"
@@ -15369,6 +15700,22 @@
         }
       }
     },
+    "v1CreateLandingPage": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Layout": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateLandingPageRequest": {
       "type": "object",
       "properties": {
@@ -15376,7 +15723,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1LandingPage"
+          "$ref": "#/definitions/v1CreateLandingPage"
         }
       },
       "title": "Request and Response Message Types"
@@ -15393,6 +15740,24 @@
         }
       }
     },
+    "v1CreateLayout": {
+      "type": "object",
+      "properties": {
+        "LayoutType": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateLayoutColumn": {
+      "type": "object",
+      "properties": {
+        "LayoutRow": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateLayoutColumnRequest": {
       "type": "object",
       "properties": {
@@ -15400,7 +15765,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1LayoutColumn"
+          "$ref": "#/definitions/v1CreateLayoutColumn"
         }
       },
       "title": "Request and Response Message Types"
@@ -15424,7 +15789,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Layout"
+          "$ref": "#/definitions/v1CreateLayout"
         }
       },
       "title": "Request and Response Message Types"
@@ -15441,6 +15806,15 @@
         }
       }
     },
+    "v1CreateLayoutRow": {
+      "type": "object",
+      "properties": {
+        "Layout": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateLayoutRowRequest": {
       "type": "object",
       "properties": {
@@ -15448,7 +15822,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1LayoutRow"
+          "$ref": "#/definitions/v1CreateLayoutRow"
         }
       },
       "title": "Request and Response Message Types"
@@ -15465,6 +15839,14 @@
         }
       }
     },
+    "v1CreateLayoutType": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateLayoutTypeRequest": {
       "type": "object",
       "properties": {
@@ -15472,7 +15854,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1LayoutType"
+          "$ref": "#/definitions/v1CreateLayoutType"
         }
       },
       "title": "Request and Response Message Types"
@@ -15489,6 +15871,31 @@
         }
       }
     },
+    "v1CreateLiveEvent": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "LiveEventType": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateLiveEventMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "LiveEvent": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateLiveEventMembershipRequest": {
       "type": "object",
       "properties": {
@@ -15496,7 +15903,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1LiveEventMembership"
+          "$ref": "#/definitions/v1CreateLiveEventMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -15520,7 +15927,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1LiveEvent"
+          "$ref": "#/definitions/v1CreateLiveEvent"
         }
       },
       "title": "Request and Response Message Types"
@@ -15537,6 +15944,14 @@
         }
       }
     },
+    "v1CreateLiveEventType": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateLiveEventTypeRequest": {
       "type": "object",
       "properties": {
@@ -15544,7 +15959,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1LiveEventType"
+          "$ref": "#/definitions/v1CreateLiveEventType"
         }
       },
       "title": "Request and Response Message Types"
@@ -15561,6 +15976,23 @@
         }
       }
     },
+    "v1CreateMailingAddress": {
+      "type": "object",
+      "properties": {
+        "StreetAddress": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "ZipCode": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateMailingAddressRequest": {
       "type": "object",
       "properties": {
@@ -15568,7 +16000,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1MailingAddress"
+          "$ref": "#/definitions/v1CreateMailingAddress"
         }
       },
       "title": "Request and Response Message Types"
@@ -15585,6 +16017,22 @@
         }
       }
     },
+    "v1CreateNote": {
+      "type": "object",
+      "properties": {
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Body": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateNoteRequest": {
       "type": "object",
       "properties": {
@@ -15592,7 +16040,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Note"
+          "$ref": "#/definitions/v1CreateNote"
         }
       },
       "title": "Request and Response Message Types"
@@ -15609,6 +16057,18 @@
         }
       }
     },
+    "v1CreateOffice": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Election": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateOfficeRequest": {
       "type": "object",
       "properties": {
@@ -15616,7 +16076,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Office"
+          "$ref": "#/definitions/v1CreateOffice"
         }
       },
       "title": "Request and Response Message Types"
@@ -15633,6 +16093,19 @@
         }
       }
     },
+    "v1CreateOwnerMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Account": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateOwnerMembershipRequest": {
       "type": "object",
       "properties": {
@@ -15640,7 +16113,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1OwnerMembership"
+          "$ref": "#/definitions/v1CreateOwnerMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -15657,6 +16130,15 @@
         }
       }
     },
+    "v1CreatePayment": {
+      "type": "object",
+      "properties": {
+        "CustomerOrder": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreatePaymentRequest": {
       "type": "object",
       "properties": {
@@ -15664,7 +16146,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Payment"
+          "$ref": "#/definitions/v1CreatePayment"
         }
       },
       "title": "Request and Response Message Types"
@@ -15681,6 +16163,27 @@
         }
       }
     },
+    "v1CreatePetition": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreatePetitionMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Petition": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreatePetitionMembershipRequest": {
       "type": "object",
       "properties": {
@@ -15688,7 +16191,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1PetitionMembership"
+          "$ref": "#/definitions/v1CreatePetitionMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -15712,7 +16215,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Petition"
+          "$ref": "#/definitions/v1CreatePetition"
         }
       },
       "title": "Request and Response Message Types"
@@ -15729,6 +16232,23 @@
         }
       }
     },
+    "v1CreatePetitionSigner": {
+      "type": "object",
+      "properties": {
+        "Petition": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreatePetitionSignerRequest": {
       "type": "object",
       "properties": {
@@ -15736,7 +16256,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1PetitionSigner"
+          "$ref": "#/definitions/v1CreatePetitionSigner"
         }
       },
       "title": "Request and Response Message Types"
@@ -15753,6 +16273,14 @@
         }
       }
     },
+    "v1CreatePhoneNumber": {
+      "type": "object",
+      "properties": {
+        "PhoneNumber": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreatePhoneNumberRequest": {
       "type": "object",
       "properties": {
@@ -15760,7 +16288,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1PhoneNumber"
+          "$ref": "#/definitions/v1CreatePhoneNumber"
         }
       },
       "title": "Request and Response Message Types"
@@ -15777,6 +16305,14 @@
         }
       }
     },
+    "v1CreatePhoto": {
+      "type": "object",
+      "properties": {
+        "ImgURL": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreatePhotoRequest": {
       "type": "object",
       "properties": {
@@ -15784,7 +16320,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Photo"
+          "$ref": "#/definitions/v1CreatePhoto"
         }
       },
       "title": "Request and Response Message Types"
@@ -15801,6 +16337,27 @@
         }
       }
     },
+    "v1CreatePoll": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreatePollMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Petition": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreatePollMembershipRequest": {
       "type": "object",
       "properties": {
@@ -15808,7 +16365,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1PollMembership"
+          "$ref": "#/definitions/v1CreatePollMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -15832,10 +16389,27 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Poll"
+          "$ref": "#/definitions/v1CreatePoll"
         }
       },
       "title": "Request and Response Message Types"
+    },
+    "v1CreatePollRespondant": {
+      "type": "object",
+      "properties": {
+        "Poll": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "v1CreatePollRespondantRequest": {
       "type": "object",
@@ -15844,7 +16418,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1PollRespondant"
+          "$ref": "#/definitions/v1CreatePollRespondant"
         }
       },
       "title": "Request and Response Message Types"
@@ -15873,6 +16447,31 @@
         }
       }
     },
+    "v1CreateProduct": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "ProductType": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateProductMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Product": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateProductMembershipRequest": {
       "type": "object",
       "properties": {
@@ -15880,7 +16479,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1ProductMembership"
+          "$ref": "#/definitions/v1CreateProductMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -15904,7 +16503,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Product"
+          "$ref": "#/definitions/v1CreateProduct"
         }
       },
       "title": "Request and Response Message Types"
@@ -15921,6 +16520,14 @@
         }
       }
     },
+    "v1CreateProductType": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateProductTypeRequest": {
       "type": "object",
       "properties": {
@@ -15928,7 +16535,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1ProductType"
+          "$ref": "#/definitions/v1CreateProductType"
         }
       },
       "title": "Request and Response Message Types"
@@ -15945,6 +16552,23 @@
         }
       }
     },
+    "v1CreatePurchaser": {
+      "type": "object",
+      "properties": {
+        "CustomerOrder": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreatePurchaserRequest": {
       "type": "object",
       "properties": {
@@ -15952,7 +16576,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Purchaser"
+          "$ref": "#/definitions/v1CreatePurchaser"
         }
       },
       "title": "Request and Response Message Types"
@@ -15969,6 +16593,14 @@
         }
       }
     },
+    "v1CreateTerritory": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateTerritoryRequest": {
       "type": "object",
       "properties": {
@@ -15976,7 +16608,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Territory"
+          "$ref": "#/definitions/v1CreateTerritory"
         }
       },
       "title": "Request and Response Message Types"
@@ -15993,6 +16625,48 @@
         }
       }
     },
+    "v1CreateVolunteer": {
+      "type": "object",
+      "properties": {
+        "VolunteerOpportunity": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateVolunteerOpportunity": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "ElectionType": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateVolunteerOpportunityMembership": {
+      "type": "object",
+      "properties": {
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "VolunteerOpportunity": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateVolunteerOpportunityMembershipRequest": {
       "type": "object",
       "properties": {
@@ -16000,7 +16674,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembership"
+          "$ref": "#/definitions/v1CreateVolunteerOpportunityMembership"
         }
       },
       "title": "Request and Response Message Types"
@@ -16024,7 +16698,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1VolunteerOpportunity"
+          "$ref": "#/definitions/v1CreateVolunteerOpportunity"
         }
       },
       "title": "Request and Response Message Types"
@@ -16041,6 +16715,14 @@
         }
       }
     },
+    "v1CreateVolunteerOpportunityType": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateVolunteerOpportunityTypeRequest": {
       "type": "object",
       "properties": {
@@ -16048,7 +16730,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1VolunteerOpportunityType"
+          "$ref": "#/definitions/v1CreateVolunteerOpportunityType"
         }
       },
       "title": "Request and Response Message Types"
@@ -16072,7 +16754,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Volunteer"
+          "$ref": "#/definitions/v1CreateVolunteer"
         }
       },
       "title": "Request and Response Message Types"
@@ -16089,6 +16771,19 @@
         }
       }
     },
+    "v1CreateVoter": {
+      "type": "object",
+      "properties": {
+        "Contact": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreateVoterRequest": {
       "type": "object",
       "properties": {
@@ -16096,7 +16791,7 @@
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/v1Voter"
+          "$ref": "#/definitions/v1CreateVoter"
         }
       },
       "title": "Request and Response Message Types"

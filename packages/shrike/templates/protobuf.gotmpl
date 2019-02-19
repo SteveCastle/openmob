@@ -42,10 +42,16 @@ message {{.Name}} {
 	{{end}}
 }
 
+message Create{{.Name}} {
+    {{range $index, $value := .Columns}}
+	{{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};{{end}}{{end}}{{end}}
+	{{end}}
+}
+
 //Request and Response Message Types
 message Create{{.Name}}Request {
 	string api = 1;
-	{{.Name}} item = 2;
+	Create{{.Name}} item = 2;
 }
 
 message Create{{.Name}}Response {

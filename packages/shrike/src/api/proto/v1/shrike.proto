@@ -46,10 +46,20 @@ message ACL {
 	
 }
 
+message CreateACL {
+    
+	
+	
+	
+	
+	
+	
+}
+
 //Request and Response Message Types
 message CreateACLRequest {
 	string api = 1;
-	ACL item = 2;
+	CreateACL item = 2;
 }
 
 message CreateACLResponse {
@@ -129,10 +139,28 @@ message MailingAddress {
 	
 }
 
+message CreateMailingAddress {
+    
+	
+	
+	
+	
+	
+	
+	string StreetAddress = 1;
+	
+	string City = 2;
+	
+	string State = 3;
+	
+	string ZipCode = 4;
+	
+}
+
 //Request and Response Message Types
 message CreateMailingAddressRequest {
 	string api = 1;
-	MailingAddress item = 2;
+	CreateMailingAddress item = 2;
 }
 
 message CreateMailingAddressResponse {
@@ -206,10 +234,22 @@ message PhoneNumber {
 	
 }
 
+message CreatePhoneNumber {
+    
+	
+	
+	
+	
+	
+	
+	string PhoneNumber = 1;
+	
+}
+
 //Request and Response Message Types
 message CreatePhoneNumberRequest {
 	string api = 1;
-	PhoneNumber item = 2;
+	CreatePhoneNumber item = 2;
 }
 
 message CreatePhoneNumberResponse {
@@ -283,10 +323,22 @@ message EmailAddress {
 	
 }
 
+message CreateEmailAddress {
+    
+	
+	
+	
+	
+	
+	
+	string Address = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateEmailAddressRequest {
 	string api = 1;
-	EmailAddress item = 2;
+	CreateEmailAddress item = 2;
 }
 
 message CreateEmailAddressResponse {
@@ -360,10 +412,22 @@ message Photo {
 	
 }
 
+message CreatePhoto {
+    
+	
+	
+	
+	
+	
+	
+	string ImgURL = 1;
+	
+}
+
 //Request and Response Message Types
 message CreatePhotoRequest {
 	string api = 1;
-	Photo item = 2;
+	CreatePhoto item = 2;
 }
 
 message CreatePhotoResponse {
@@ -437,10 +501,22 @@ message LayoutType {
 	
 }
 
+message CreateLayoutType {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateLayoutTypeRequest {
 	string api = 1;
-	LayoutType item = 2;
+	CreateLayoutType item = 2;
 }
 
 message CreateLayoutTypeResponse {
@@ -514,10 +590,22 @@ message LayoutRow {
 	
 }
 
+message CreateLayoutRow {
+    
+	
+	
+	
+	
+	
+	
+	int64 Layout = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateLayoutRowRequest {
 	string api = 1;
-	LayoutRow item = 2;
+	CreateLayoutRow item = 2;
 }
 
 message CreateLayoutRowResponse {
@@ -589,10 +677,20 @@ message ComponentImplementation {
 	
 }
 
+message CreateComponentImplementation {
+    
+	
+	
+	
+	
+	
+	
+}
+
 //Request and Response Message Types
 message CreateComponentImplementationRequest {
 	string api = 1;
-	ComponentImplementation item = 2;
+	CreateComponentImplementation item = 2;
 }
 
 message CreateComponentImplementationResponse {
@@ -666,10 +764,22 @@ message ComponentType {
 	
 }
 
+message CreateComponentType {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateComponentTypeRequest {
 	string api = 1;
-	ComponentType item = 2;
+	CreateComponentType item = 2;
 }
 
 message CreateComponentTypeResponse {
@@ -743,10 +853,22 @@ message LayoutColumn {
 	
 }
 
+message CreateLayoutColumn {
+    
+	
+	
+	
+	
+	
+	
+	int64 LayoutRow = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateLayoutColumnRequest {
 	string api = 1;
-	LayoutColumn item = 2;
+	CreateLayoutColumn item = 2;
 }
 
 message CreateLayoutColumnResponse {
@@ -820,10 +942,22 @@ message FieldType {
 	
 }
 
+message CreateFieldType {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateFieldTypeRequest {
 	string api = 1;
-	FieldType item = 2;
+	CreateFieldType item = 2;
 }
 
 message CreateFieldTypeResponse {
@@ -899,10 +1033,24 @@ message Component {
 	
 }
 
+message CreateComponent {
+    
+	
+	
+	
+	
+	
+	
+	int64 ComponentType = 1;
+	
+	int64 LayoutColumn = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateComponentRequest {
 	string api = 1;
-	Component item = 2;
+	CreateComponent item = 2;
 }
 
 message CreateComponentResponse {
@@ -978,10 +1126,24 @@ message Field {
 	
 }
 
+message CreateField {
+    
+	
+	
+	
+	
+	
+	
+	int64 FieldType = 1;
+	
+	int64 Component = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateFieldRequest {
 	string api = 1;
-	Field item = 2;
+	CreateField item = 2;
 }
 
 message CreateFieldResponse {
@@ -1055,10 +1217,22 @@ message Layout {
 	
 }
 
+message CreateLayout {
+    
+	
+	
+	
+	
+	
+	
+	int64 LayoutType = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateLayoutRequest {
 	string api = 1;
-	Layout item = 2;
+	CreateLayout item = 2;
 }
 
 message CreateLayoutResponse {
@@ -1136,10 +1310,26 @@ message LandingPage {
 	
 }
 
+message CreateLandingPage {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 Cause = 2;
+	
+	int64 Layout = 3;
+	
+}
+
 //Request and Response Message Types
 message CreateLandingPageRequest {
 	string api = 1;
-	LandingPage item = 2;
+	CreateLandingPage item = 2;
 }
 
 message CreateLandingPageResponse {
@@ -1215,10 +1405,24 @@ message Experiment {
 	
 }
 
+message CreateExperiment {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 LandingPage = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateExperimentRequest {
 	string api = 1;
-	Experiment item = 2;
+	CreateExperiment item = 2;
 }
 
 message CreateExperimentResponse {
@@ -1294,10 +1498,24 @@ message Issue {
 	
 }
 
+message CreateIssue {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 Election = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateIssueRequest {
 	string api = 1;
-	Issue item = 2;
+	CreateIssue item = 2;
 }
 
 message CreateIssueResponse {
@@ -1371,10 +1589,22 @@ message Candidate {
 	
 }
 
+message CreateCandidate {
+    
+	
+	
+	
+	
+	
+	
+	int64 Election = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateCandidateRequest {
 	string api = 1;
-	Candidate item = 2;
+	CreateCandidate item = 2;
 }
 
 message CreateCandidateResponse {
@@ -1448,10 +1678,22 @@ message DistrictType {
 	
 }
 
+message CreateDistrictType {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateDistrictTypeRequest {
 	string api = 1;
-	DistrictType item = 2;
+	CreateDistrictType item = 2;
 }
 
 message CreateDistrictTypeResponse {
@@ -1529,10 +1771,26 @@ message District {
 	
 }
 
+message CreateDistrict {
+    
+	
+	
+	
+	
+	
+	
+	int64 Geom = 1;
+	
+	string Title = 2;
+	
+	int64 DistrictType = 3;
+	
+}
+
 //Request and Response Message Types
 message CreateDistrictRequest {
 	string api = 1;
-	District item = 2;
+	CreateDistrict item = 2;
 }
 
 message CreateDistrictResponse {
@@ -1608,10 +1866,24 @@ message Office {
 	
 }
 
+message CreateOffice {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 Election = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateOfficeRequest {
 	string api = 1;
-	Office item = 2;
+	CreateOffice item = 2;
 }
 
 message CreateOfficeResponse {
@@ -1685,10 +1957,22 @@ message VolunteerOpportunityType {
 	
 }
 
+message CreateVolunteerOpportunityType {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateVolunteerOpportunityTypeRequest {
 	string api = 1;
-	VolunteerOpportunityType item = 2;
+	CreateVolunteerOpportunityType item = 2;
 }
 
 message CreateVolunteerOpportunityTypeResponse {
@@ -1762,10 +2046,22 @@ message LiveEventType {
 	
 }
 
+message CreateLiveEventType {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateLiveEventTypeRequest {
 	string api = 1;
-	LiveEventType item = 2;
+	CreateLiveEventType item = 2;
 }
 
 message CreateLiveEventTypeResponse {
@@ -1839,10 +2135,22 @@ message Company {
 	
 }
 
+message CreateCompany {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateCompanyRequest {
 	string api = 1;
-	Company item = 2;
+	CreateCompany item = 2;
 }
 
 message CreateCompanyResponse {
@@ -1916,10 +2224,22 @@ message ProductType {
 	
 }
 
+message CreateProductType {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateProductTypeRequest {
 	string api = 1;
-	ProductType item = 2;
+	CreateProductType item = 2;
 }
 
 message CreateProductTypeResponse {
@@ -1991,10 +2311,20 @@ message CustomerCart {
 	
 }
 
+message CreateCustomerCart {
+    
+	
+	
+	
+	
+	
+	
+}
+
 //Request and Response Message Types
 message CreateCustomerCartRequest {
 	string api = 1;
-	CustomerCart item = 2;
+	CreateCustomerCart item = 2;
 }
 
 message CreateCustomerCartResponse {
@@ -2068,10 +2398,22 @@ message Payment {
 	
 }
 
+message CreatePayment {
+    
+	
+	
+	
+	
+	
+	
+	int64 CustomerOrder = 1;
+	
+}
+
 //Request and Response Message Types
 message CreatePaymentRequest {
 	string api = 1;
-	Payment item = 2;
+	CreatePayment item = 2;
 }
 
 message CreatePaymentResponse {
@@ -2143,10 +2485,20 @@ message Delivery {
 	
 }
 
+message CreateDelivery {
+    
+	
+	
+	
+	
+	
+	
+}
+
 //Request and Response Message Types
 message CreateDeliveryRequest {
 	string api = 1;
-	Delivery item = 2;
+	CreateDelivery item = 2;
 }
 
 message CreateDeliveryResponse {
@@ -2220,10 +2572,22 @@ message Boycott {
 	
 }
 
+message CreateBoycott {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateBoycottRequest {
 	string api = 1;
-	Boycott item = 2;
+	CreateBoycott item = 2;
 }
 
 message CreateBoycottResponse {
@@ -2299,10 +2663,24 @@ message BoycottMembership {
 	
 }
 
+message CreateBoycottMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 Boycott = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateBoycottMembershipRequest {
 	string api = 1;
-	BoycottMembership item = 2;
+	CreateBoycottMembership item = 2;
 }
 
 message CreateBoycottMembershipResponse {
@@ -2376,10 +2754,22 @@ message Election {
 	
 }
 
+message CreateElection {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateElectionRequest {
 	string api = 1;
-	Election item = 2;
+	CreateElection item = 2;
 }
 
 message CreateElectionResponse {
@@ -2455,10 +2845,24 @@ message ElectionMembership {
 	
 }
 
+message CreateElectionMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 Election = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateElectionMembershipRequest {
 	string api = 1;
-	ElectionMembership item = 2;
+	CreateElectionMembership item = 2;
 }
 
 message CreateElectionMembershipResponse {
@@ -2534,10 +2938,24 @@ message PetitionMembership {
 	
 }
 
+message CreatePetitionMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 Petition = 2;
+	
+}
+
 //Request and Response Message Types
 message CreatePetitionMembershipRequest {
 	string api = 1;
-	PetitionMembership item = 2;
+	CreatePetitionMembership item = 2;
 }
 
 message CreatePetitionMembershipResponse {
@@ -2613,10 +3031,24 @@ message PollMembership {
 	
 }
 
+message CreatePollMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 Petition = 2;
+	
+}
+
 //Request and Response Message Types
 message CreatePollMembershipRequest {
 	string api = 1;
-	PollMembership item = 2;
+	CreatePollMembership item = 2;
 }
 
 message CreatePollMembershipResponse {
@@ -2692,10 +3124,24 @@ message VolunteerOpportunityMembership {
 	
 }
 
+message CreateVolunteerOpportunityMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 VolunteerOpportunity = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateVolunteerOpportunityMembershipRequest {
 	string api = 1;
-	VolunteerOpportunityMembership item = 2;
+	CreateVolunteerOpportunityMembership item = 2;
 }
 
 message CreateVolunteerOpportunityMembershipResponse {
@@ -2757,85 +3203,6 @@ message DeleteVolunteerOpportunityMembershipResponse{
     int64 deleted = 2;
 }
 
-message LiveEventMembership {
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	int64 Cause = 4;
-	
-	int64 LiveEvent = 5;
-	
-}
-
-//Request and Response Message Types
-message CreateLiveEventMembershipRequest {
-	string api = 1;
-	LiveEventMembership item = 2;
-}
-
-message CreateLiveEventMembershipResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetLiveEventMembershipRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetLiveEventMembershipResponse {
-	string api = 1;
-	LiveEventMembership item = 2;
-}
-
-message ListLiveEventMembershipRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListLiveEventMembershipResponse {
-	string api = 1;
-	repeated LiveEventMembership items = 2;
-}
-
-// Request data to update LiveEventMembership
-message UpdateLiveEventMembershipRequest{
-    string api = 1;
-
-    // LiveEventMembership entity to update
-    LiveEventMembership item = 2;
-}
-
-// Contains status of update operation
-message UpdateLiveEventMembershipResponse{
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete LiveEventMembership
-message DeleteLiveEventMembershipRequest{
-    string api = 1;
-
-    // Unique integer IDentifier of the LiveEventMembership to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteLiveEventMembershipResponse{
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
 message Product {
     
 	int64 ID = 1;
@@ -2850,10 +3217,24 @@ message Product {
 	
 }
 
+message CreateProduct {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 ProductType = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateProductRequest {
 	string api = 1;
-	Product item = 2;
+	CreateProduct item = 2;
 }
 
 message CreateProductResponse {
@@ -2915,6 +3296,99 @@ message DeleteProductResponse{
     int64 deleted = 2;
 }
 
+message LiveEventMembership {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	int64 Cause = 4;
+	
+	int64 LiveEvent = 5;
+	
+}
+
+message CreateLiveEventMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 LiveEvent = 2;
+	
+}
+
+//Request and Response Message Types
+message CreateLiveEventMembershipRequest {
+	string api = 1;
+	CreateLiveEventMembership item = 2;
+}
+
+message CreateLiveEventMembershipResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetLiveEventMembershipRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetLiveEventMembershipResponse {
+	string api = 1;
+	LiveEventMembership item = 2;
+}
+
+message ListLiveEventMembershipRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListLiveEventMembershipResponse {
+	string api = 1;
+	repeated LiveEventMembership items = 2;
+}
+
+// Request data to update LiveEventMembership
+message UpdateLiveEventMembershipRequest{
+    string api = 1;
+
+    // LiveEventMembership entity to update
+    LiveEventMembership item = 2;
+}
+
+// Contains status of update operation
+message UpdateLiveEventMembershipResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete LiveEventMembership
+message DeleteLiveEventMembershipRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the LiveEventMembership to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteLiveEventMembershipResponse{
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
 message ProductMembership {
     
 	int64 ID = 1;
@@ -2929,10 +3403,24 @@ message ProductMembership {
 	
 }
 
+message CreateProductMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 Product = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateProductMembershipRequest {
 	string api = 1;
-	ProductMembership item = 2;
+	CreateProductMembership item = 2;
 }
 
 message CreateProductMembershipResponse {
@@ -3006,10 +3494,22 @@ message DonationCampaign {
 	
 }
 
+message CreateDonationCampaign {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateDonationCampaignRequest {
 	string api = 1;
-	DonationCampaign item = 2;
+	CreateDonationCampaign item = 2;
 }
 
 message CreateDonationCampaignResponse {
@@ -3085,10 +3585,24 @@ message DonationCampaignMembership {
 	
 }
 
+message CreateDonationCampaignMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 DonationCampaign = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateDonationCampaignMembershipRequest {
 	string api = 1;
-	DonationCampaignMembership item = 2;
+	CreateDonationCampaignMembership item = 2;
 }
 
 message CreateDonationCampaignMembershipResponse {
@@ -3162,10 +3676,22 @@ message Petition {
 	
 }
 
+message CreatePetition {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreatePetitionRequest {
 	string api = 1;
-	Petition item = 2;
+	CreatePetition item = 2;
 }
 
 message CreatePetitionResponse {
@@ -3243,10 +3769,26 @@ message PetitionSigner {
 	
 }
 
+message CreatePetitionSigner {
+    
+	
+	
+	
+	
+	
+	
+	int64 Petition = 1;
+	
+	int64 Contact = 2;
+	
+	int64 Cause = 3;
+	
+}
+
 //Request and Response Message Types
 message CreatePetitionSignerRequest {
 	string api = 1;
-	PetitionSigner item = 2;
+	CreatePetitionSigner item = 2;
 }
 
 message CreatePetitionSignerResponse {
@@ -3320,10 +3862,22 @@ message Poll {
 	
 }
 
+message CreatePoll {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreatePollRequest {
 	string api = 1;
-	Poll item = 2;
+	CreatePoll item = 2;
 }
 
 message CreatePollResponse {
@@ -3401,10 +3955,26 @@ message PollRespondant {
 	
 }
 
+message CreatePollRespondant {
+    
+	
+	
+	
+	
+	
+	
+	int64 Poll = 1;
+	
+	int64 Contact = 2;
+	
+	int64 Cause = 3;
+	
+}
+
 //Request and Response Message Types
 message CreatePollRespondantRequest {
 	string api = 1;
-	PollRespondant item = 2;
+	CreatePollRespondant item = 2;
 }
 
 message CreatePollRespondantResponse {
@@ -3482,10 +4052,26 @@ message Purchaser {
 	
 }
 
+message CreatePurchaser {
+    
+	
+	
+	
+	
+	
+	
+	int64 CustomerOrder = 1;
+	
+	int64 Contact = 2;
+	
+	int64 Cause = 3;
+	
+}
+
 //Request and Response Message Types
 message CreatePurchaserRequest {
 	string api = 1;
-	Purchaser item = 2;
+	CreatePurchaser item = 2;
 }
 
 message CreatePurchaserResponse {
@@ -3559,10 +4145,22 @@ message CustomerOrder {
 	
 }
 
+message CreateCustomerOrder {
+    
+	
+	
+	
+	
+	
+	
+	int64 CustomerCart = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateCustomerOrderRequest {
 	string api = 1;
-	CustomerOrder item = 2;
+	CreateCustomerOrder item = 2;
 }
 
 message CreateCustomerOrderResponse {
@@ -3640,10 +4238,26 @@ message Donor {
 	
 }
 
+message CreateDonor {
+    
+	
+	
+	
+	
+	
+	
+	int64 CustomerOrder = 1;
+	
+	int64 Contact = 2;
+	
+	int64 Cause = 3;
+	
+}
+
 //Request and Response Message Types
 message CreateDonorRequest {
 	string api = 1;
-	Donor item = 2;
+	CreateDonor item = 2;
 }
 
 message CreateDonorResponse {
@@ -3719,10 +4333,24 @@ message LiveEvent {
 	
 }
 
+message CreateLiveEvent {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 LiveEventType = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateLiveEventRequest {
 	string api = 1;
-	LiveEvent item = 2;
+	CreateLiveEvent item = 2;
 }
 
 message CreateLiveEventResponse {
@@ -3800,10 +4428,26 @@ message EventAttendee {
 	
 }
 
+message CreateEventAttendee {
+    
+	
+	
+	
+	
+	
+	
+	int64 LiveEvent = 1;
+	
+	int64 Contact = 2;
+	
+	int64 Cause = 3;
+	
+}
+
 //Request and Response Message Types
 message CreateEventAttendeeRequest {
 	string api = 1;
-	EventAttendee item = 2;
+	CreateEventAttendee item = 2;
 }
 
 message CreateEventAttendeeResponse {
@@ -3879,10 +4523,24 @@ message Voter {
 	
 }
 
+message CreateVoter {
+    
+	
+	
+	
+	
+	
+	
+	int64 Contact = 1;
+	
+	int64 Cause = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateVoterRequest {
 	string api = 1;
-	Voter item = 2;
+	CreateVoter item = 2;
 }
 
 message CreateVoterResponse {
@@ -3958,10 +4616,24 @@ message VolunteerOpportunity {
 	
 }
 
+message CreateVolunteerOpportunity {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 ElectionType = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateVolunteerOpportunityRequest {
 	string api = 1;
-	VolunteerOpportunity item = 2;
+	CreateVolunteerOpportunity item = 2;
 }
 
 message CreateVolunteerOpportunityResponse {
@@ -4039,10 +4711,26 @@ message Volunteer {
 	
 }
 
+message CreateVolunteer {
+    
+	
+	
+	
+	
+	
+	
+	int64 VolunteerOpportunity = 1;
+	
+	int64 Contact = 2;
+	
+	int64 Cause = 3;
+	
+}
+
 //Request and Response Message Types
 message CreateVolunteerRequest {
 	string api = 1;
-	Volunteer item = 2;
+	CreateVolunteer item = 2;
 }
 
 message CreateVolunteerResponse {
@@ -4104,85 +4792,6 @@ message DeleteVolunteerResponse{
     int64 deleted = 2;
 }
 
-message Follower {
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	int64 Contact = 4;
-	
-	int64 Cause = 5;
-	
-}
-
-//Request and Response Message Types
-message CreateFollowerRequest {
-	string api = 1;
-	Follower item = 2;
-}
-
-message CreateFollowerResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetFollowerRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetFollowerResponse {
-	string api = 1;
-	Follower item = 2;
-}
-
-message ListFollowerRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListFollowerResponse {
-	string api = 1;
-	repeated Follower items = 2;
-}
-
-// Request data to update Follower
-message UpdateFollowerRequest{
-    string api = 1;
-
-    // Follower entity to update
-    Follower item = 2;
-}
-
-// Contains status of update operation
-message UpdateFollowerResponse{
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete Follower
-message DeleteFollowerRequest{
-    string api = 1;
-
-    // Unique integer IDentifier of the Follower to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteFollowerResponse{
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
 message Territory {
     
 	int64 ID = 1;
@@ -4195,10 +4804,22 @@ message Territory {
 	
 }
 
+message CreateTerritory {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateTerritoryRequest {
 	string api = 1;
-	Territory item = 2;
+	CreateTerritory item = 2;
 }
 
 message CreateTerritoryResponse {
@@ -4260,6 +4881,99 @@ message DeleteTerritoryResponse{
     int64 deleted = 2;
 }
 
+message Follower {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	int64 Contact = 4;
+	
+	int64 Cause = 5;
+	
+}
+
+message CreateFollower {
+    
+	
+	
+	
+	
+	
+	
+	int64 Contact = 1;
+	
+	int64 Cause = 2;
+	
+}
+
+//Request and Response Message Types
+message CreateFollowerRequest {
+	string api = 1;
+	CreateFollower item = 2;
+}
+
+message CreateFollowerResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetFollowerRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetFollowerResponse {
+	string api = 1;
+	Follower item = 2;
+}
+
+message ListFollowerRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListFollowerResponse {
+	string api = 1;
+	repeated Follower items = 2;
+}
+
+// Request data to update Follower
+message UpdateFollowerRequest{
+    string api = 1;
+
+    // Follower entity to update
+    Follower item = 2;
+}
+
+// Contains status of update operation
+message UpdateFollowerResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete Follower
+message DeleteFollowerRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the Follower to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteFollowerResponse{
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
 message ActivityType {
     
 	int64 ID = 1;
@@ -4272,10 +4986,22 @@ message ActivityType {
 	
 }
 
+message CreateActivityType {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateActivityTypeRequest {
 	string api = 1;
-	ActivityType item = 2;
+	CreateActivityType item = 2;
 }
 
 message CreateActivityTypeResponse {
@@ -4355,10 +5081,28 @@ message Activity {
 	
 }
 
+message CreateActivity {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 ActivityType = 2;
+	
+	int64 Contact = 3;
+	
+	int64 Cause = 4;
+	
+}
+
 //Request and Response Message Types
 message CreateActivityRequest {
 	string api = 1;
-	Activity item = 2;
+	CreateActivity item = 2;
 }
 
 message CreateActivityResponse {
@@ -4436,10 +5180,26 @@ message Note {
 	
 }
 
+message CreateNote {
+    
+	
+	
+	
+	
+	
+	
+	int64 Contact = 1;
+	
+	int64 Cause = 2;
+	
+	string Body = 3;
+	
+}
+
 //Request and Response Message Types
 message CreateNoteRequest {
 	string api = 1;
-	Note item = 2;
+	CreateNote item = 2;
 }
 
 message CreateNoteResponse {
@@ -4513,10 +5273,22 @@ message Account {
 	
 }
 
+message CreateAccount {
+    
+	
+	
+	
+	
+	
+	
+	string Username = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateAccountRequest {
 	string api = 1;
-	Account item = 2;
+	CreateAccount item = 2;
 }
 
 message CreateAccountResponse {
@@ -4592,10 +5364,24 @@ message OwnerMembership {
 	
 }
 
+message CreateOwnerMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 Account = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateOwnerMembershipRequest {
 	string api = 1;
-	OwnerMembership item = 2;
+	CreateOwnerMembership item = 2;
 }
 
 message CreateOwnerMembershipResponse {
@@ -4667,10 +5453,20 @@ message Contact {
 	
 }
 
+message CreateContact {
+    
+	
+	
+	
+	
+	
+	
+}
+
 //Request and Response Message Types
 message CreateContactRequest {
 	string api = 1;
-	Contact item = 2;
+	CreateContact item = 2;
 }
 
 message CreateContactResponse {
@@ -4746,10 +5542,24 @@ message ContactMembership {
 	
 }
 
+message CreateContactMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 Contact = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateContactMembershipRequest {
 	string api = 1;
-	ContactMembership item = 2;
+	CreateContactMembership item = 2;
 }
 
 message CreateContactMembershipResponse {
@@ -4825,10 +5635,24 @@ message Cause {
 	
 }
 
+message CreateCause {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	string Summary = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateCauseRequest {
 	string api = 1;
-	Cause item = 2;
+	CreateCause item = 2;
 }
 
 message CreateCauseResponse {
@@ -4902,10 +5726,22 @@ message Agent {
 	
 }
 
+message CreateAgent {
+    
+	
+	
+	
+	
+	
+	
+	int64 Account = 1;
+	
+}
+
 //Request and Response Message Types
 message CreateAgentRequest {
 	string api = 1;
-	Agent item = 2;
+	CreateAgent item = 2;
 }
 
 message CreateAgentResponse {
@@ -4981,10 +5817,24 @@ message AgentMembership {
 	
 }
 
+message CreateAgentMembership {
+    
+	
+	
+	
+	
+	
+	
+	int64 Cause = 1;
+	
+	int64 Agent = 2;
+	
+}
+
 //Request and Response Message Types
 message CreateAgentMembershipRequest {
 	string api = 1;
-	AgentMembership item = 2;
+	CreateAgentMembership item = 2;
 }
 
 message CreateAgentMembershipResponse {
@@ -6415,45 +7265,6 @@ service ShrikeService {
         };
     }
 	
-	// CreateLiveEventMembership takes a LiveEventMembership object to create.
-	rpc CreateLiveEventMembership(CreateLiveEventMembershipRequest) returns (CreateLiveEventMembershipResponse) {
-		option (google.api.http) ={
-			post: "/v1/liveeventmembership"
-			body: "*"
-		};
-	}
-    // GetLiveEventMembership takes an ID and returns a single LiveEventMembership.
-	rpc GetLiveEventMembership(GetLiveEventMembershipRequest) returns (GetLiveEventMembershipResponse) {
-		option (google.api.http) ={
-			get: "/v1/liveeventmembership/{ID}"
-		};
-	}
-    // List LiveEventMembership, takes filters, limit, and cursor param.
-	rpc ListLiveEventMembership(ListLiveEventMembershipRequest) returns (ListLiveEventMembershipResponse) {
-	option (google.api.http) ={
-		get: "/v1/liveeventmembership"
-	};
-}
-    // Update LiveEventMembership
-    rpc UpdateLiveEventMembership(UpdateLiveEventMembershipRequest) returns (UpdateLiveEventMembershipResponse){
-        option (google.api.http) = {
-            put: "/v1/liveeventmembership/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/liveeventmembership/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete LiveEventMembership
-    rpc DeleteLiveEventMembership(DeleteLiveEventMembershipRequest) returns (DeleteLiveEventMembershipResponse){
-        option (google.api.http) = {
-            delete: "/v1/liveeventmembership/{ID}"
-        };
-    }
-	
 	// CreateProduct takes a Product object to create.
 	rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
 		option (google.api.http) ={
@@ -6490,6 +7301,45 @@ service ShrikeService {
     rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse){
         option (google.api.http) = {
             delete: "/v1/product/{ID}"
+        };
+    }
+	
+	// CreateLiveEventMembership takes a LiveEventMembership object to create.
+	rpc CreateLiveEventMembership(CreateLiveEventMembershipRequest) returns (CreateLiveEventMembershipResponse) {
+		option (google.api.http) ={
+			post: "/v1/liveeventmembership"
+			body: "*"
+		};
+	}
+    // GetLiveEventMembership takes an ID and returns a single LiveEventMembership.
+	rpc GetLiveEventMembership(GetLiveEventMembershipRequest) returns (GetLiveEventMembershipResponse) {
+		option (google.api.http) ={
+			get: "/v1/liveeventmembership/{ID}"
+		};
+	}
+    // List LiveEventMembership, takes filters, limit, and cursor param.
+	rpc ListLiveEventMembership(ListLiveEventMembershipRequest) returns (ListLiveEventMembershipResponse) {
+	option (google.api.http) ={
+		get: "/v1/liveeventmembership"
+	};
+}
+    // Update LiveEventMembership
+    rpc UpdateLiveEventMembership(UpdateLiveEventMembershipRequest) returns (UpdateLiveEventMembershipResponse){
+        option (google.api.http) = {
+            put: "/v1/liveeventmembership/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/liveeventmembership/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete LiveEventMembership
+    rpc DeleteLiveEventMembership(DeleteLiveEventMembershipRequest) returns (DeleteLiveEventMembershipResponse){
+        option (google.api.http) = {
+            delete: "/v1/liveeventmembership/{ID}"
         };
     }
 	
@@ -7078,45 +7928,6 @@ service ShrikeService {
         };
     }
 	
-	// CreateFollower takes a Follower object to create.
-	rpc CreateFollower(CreateFollowerRequest) returns (CreateFollowerResponse) {
-		option (google.api.http) ={
-			post: "/v1/follower"
-			body: "*"
-		};
-	}
-    // GetFollower takes an ID and returns a single Follower.
-	rpc GetFollower(GetFollowerRequest) returns (GetFollowerResponse) {
-		option (google.api.http) ={
-			get: "/v1/follower/{ID}"
-		};
-	}
-    // List Follower, takes filters, limit, and cursor param.
-	rpc ListFollower(ListFollowerRequest) returns (ListFollowerResponse) {
-	option (google.api.http) ={
-		get: "/v1/follower"
-	};
-}
-    // Update Follower
-    rpc UpdateFollower(UpdateFollowerRequest) returns (UpdateFollowerResponse){
-        option (google.api.http) = {
-            put: "/v1/follower/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/follower/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Follower
-    rpc DeleteFollower(DeleteFollowerRequest) returns (DeleteFollowerResponse){
-        option (google.api.http) = {
-            delete: "/v1/follower/{ID}"
-        };
-    }
-	
 	// CreateTerritory takes a Territory object to create.
 	rpc CreateTerritory(CreateTerritoryRequest) returns (CreateTerritoryResponse) {
 		option (google.api.http) ={
@@ -7153,6 +7964,45 @@ service ShrikeService {
     rpc DeleteTerritory(DeleteTerritoryRequest) returns (DeleteTerritoryResponse){
         option (google.api.http) = {
             delete: "/v1/territory/{ID}"
+        };
+    }
+	
+	// CreateFollower takes a Follower object to create.
+	rpc CreateFollower(CreateFollowerRequest) returns (CreateFollowerResponse) {
+		option (google.api.http) ={
+			post: "/v1/follower"
+			body: "*"
+		};
+	}
+    // GetFollower takes an ID and returns a single Follower.
+	rpc GetFollower(GetFollowerRequest) returns (GetFollowerResponse) {
+		option (google.api.http) ={
+			get: "/v1/follower/{ID}"
+		};
+	}
+    // List Follower, takes filters, limit, and cursor param.
+	rpc ListFollower(ListFollowerRequest) returns (ListFollowerResponse) {
+	option (google.api.http) ={
+		get: "/v1/follower"
+	};
+}
+    // Update Follower
+    rpc UpdateFollower(UpdateFollowerRequest) returns (UpdateFollowerResponse){
+        option (google.api.http) = {
+            put: "/v1/follower/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/follower/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Follower
+    rpc DeleteFollower(DeleteFollowerRequest) returns (DeleteFollowerResponse){
+        option (google.api.http) = {
+            delete: "/v1/follower/{ID}"
         };
     }
 	

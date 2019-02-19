@@ -36,7 +36,7 @@ func main() {
 	// Call Create
 	req1 := v1.CreateCauseRequest{
 		Api: apiVersion,
-		Item: &v1.Cause{
+		Item: &v1.CreateCause{
 			Title: "Mrs. Frisby's Class",
 		},
 	}
@@ -50,7 +50,7 @@ func main() {
 	// Call Create
 	req1 = v1.CreateCauseRequest{
 		Api: apiVersion,
-		Item: &v1.Cause{
+		Item: &v1.CreateCause{
 			Title: "Save Red Rock",
 		},
 	}
