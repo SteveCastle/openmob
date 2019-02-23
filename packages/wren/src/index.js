@@ -87,7 +87,7 @@ const resolvers = {
     updateCause: (_, { ID, cause }) =>
       client
         .UpdateCause()
-        .sendMessage({ api: 'v1', cause: { ID, item: { ...cause } } })
+        .sendMessage({ api: 'v1', item: { ID, ...cause } })
         .then(res => res.updated),
     deleteCause: (_, { ID }) =>
       client
