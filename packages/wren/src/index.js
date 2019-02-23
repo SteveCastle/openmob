@@ -1,4 +1,38 @@
+const path = require('path');
 const { ApolloServer, gql } = require('apollo-server');
+const protoLoader = require('@grpc/proto-loader');
+const grpc = require('grpc');
+const PROTO_PATH = path.resolve(
+  __dirname,
+  '../../shrike/src/api/proto/v1/shrike.proto'
+);
+const THIRD_PARTY = path.resolve(__dirname, '../../shrike/third_party');
+
+// Connect to Shrike gRPC server.
+var packageDefinition = protoLoader.loadSync(PROTO_PATH, {
+  keepCase: true,
+  longs: String,
+  enums: String,
+  defaults: false,
+  oneofs: true,
+  includeDirs: [THIRD_PARTY]
+});
+var shrike = grpc.loadPackageDefinition(packageDefinition).shrike.v1;
+var client = new shrike.ShrikeService(
+  'localhost:9090',
+  grpc.credentials.createInsecure()
+);
+
+client.CreateCause(
+  { api: 'v1', item: { title: 'Cool Cause', summary: 'Cool Summary' } },
+  function(err, response) {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log('Greeting:', response);
+  }
+);
 
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
@@ -6,12 +40,12 @@ const { ApolloServer, gql } = require('apollo-server');
 const books = [
   {
     title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
+    author: 'J.K. Rowling'
   },
   {
     title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
+    author: 'Michael Crichton'
+  }
 ];
 
 // Type definitions define the "shape" of your data and specify
@@ -36,8 +70,8 @@ const typeDefs = gql`
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
   Query: {
-    books: () => books,
-  },
+    books: () => books
+  }
 };
 
 // In the most basic sense, the ApolloServer can be started
