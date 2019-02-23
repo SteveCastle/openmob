@@ -34,20 +34,12 @@ client
   })
   .then(resp => console.log(resp));
 
-// This is a (sample) collection of books we'll be able to query
-// the GraphQL server for.  A more complete example might fetch
-// from an existing data source like a REST API or database.
-
-// Type definitions define the "shape" of your data and specify
-// which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
-  # Comments in GraphQL are defined with the hash (#) symbol.
-
   type Time {
     seconds: Int!
     nanos: Int!
   }
-  # This "Book" type can be used in other type declarations.
+
   type Cause {
     ID: Int!
     CreatedAt: Time
@@ -56,19 +48,15 @@ const typeDefs = gql`
     description: String
   }
 
-  # The "Query" type is the root of all GraphQL queries.
-  # (A "Mutation" type will be covered later on.)
   type Query {
     getCause(ID: Int): Cause
     listCause: [Cause]
   }
 `;
 
-// Resolvers define the technique for fetching the types in the
-// schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
   Query: {
-    listCause: () =>
+    listCause: (_, { Limit, Order, Filter }) =>
       client
         .ListCause()
         .sendMessage({ api: 'v1' })
