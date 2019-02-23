@@ -1,12 +1,12 @@
 
 type ACL @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
 }
 ​
 type MailingAddress @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   streetAddress: String!
@@ -16,475 +16,475 @@ type MailingAddress @model {
 }
 ​
 type PhoneNumber @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   phoneNumber: String!
 }
 ​
 type EmailAddress @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   address: String!
 }
 ​
 type Photo @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   imgURL: String!
 }
 ​
 type LayoutType @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type LayoutRow @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  layout: String!
+  layout: Int!
 }
 ​
 type ComponentImplementation @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
 }
 ​
 type ComponentType @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type LayoutColumn @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  layoutRow: String!
+  layoutRow: Int!
 }
 ​
 type FieldType @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type Component @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  componentType: String!
-  layoutColumn: String!
+  componentType: Int!
+  layoutColumn: Int
 }
 ​
 type Field @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  fieldType: String!
-  component: String!
+  fieldType: Int!
+  component: Int
 }
 ​
 type Layout @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  layoutType: String!
+  layoutType: Int
 }
 ​
 type LandingPage @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  cause: String!
-  layout: String!
+  cause: Int!
+  layout: Int
 }
 ​
 type Experiment @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  landingPage: String!
+  landingPage: Int
 }
 ​
 type Issue @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  election: String!
+  election: Int!
 }
 ​
 type Candidate @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  election: String!
+  election: Int!
 }
 ​
 type DistrictType @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type District @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  geom: String!
+  geom: Float
   title: String!
-  districtType: String!
+  districtType: Int!
 }
 ​
 type Office @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  election: String!
+  election: Int
 }
 ​
 type VolunteerOpportunityType @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type LiveEventType @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type Company @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type ProductType @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type CustomerCart @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
 }
 ​
 type Payment @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  customerOrder: String!
+  customerOrder: Int!
 }
 ​
 type Delivery @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
 }
 ​
 type Boycott @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type BoycottMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  boycott: String!
+  cause: Int!
+  boycott: Int!
 }
 ​
 type Election @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type ElectionMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  election: String!
+  cause: Int!
+  election: Int!
 }
 ​
 type PetitionMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  petition: String!
+  cause: Int!
+  petition: Int!
 }
 ​
 type PollMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  petition: String!
+  cause: Int!
+  petition: Int!
 }
 ​
 type VolunteerOpportunityMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  volunteerOpportunity: String!
+  cause: Int!
+  volunteerOpportunity: Int!
 }
 ​
 type LiveEventMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  liveEvent: String!
+  cause: Int!
+  liveEvent: Int!
 }
 ​
 type Product @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  productType: String!
+  productType: Int!
 }
 ​
 type ProductMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  product: String!
+  cause: Int!
+  product: Int!
 }
 ​
 type DonationCampaign @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type DonationCampaignMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  donationCampaign: String!
+  cause: Int!
+  donationCampaign: Int!
 }
 ​
 type Petition @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type PetitionSigner @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  petition: String!
-  contact: String!
-  cause: String!
+  petition: Int!
+  contact: Int!
+  cause: Int!
 }
 ​
 type Poll @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type PollRespondant @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  poll: String!
-  contact: String!
-  cause: String!
+  poll: Int!
+  contact: Int!
+  cause: Int!
 }
 ​
 type Purchaser @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  customerOrder: String!
-  contact: String!
-  cause: String!
+  customerOrder: Int!
+  contact: Int!
+  cause: Int!
 }
 ​
 type CustomerOrder @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  customerCart: String!
+  customerCart: Int!
 }
 ​
 type Donor @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  customerOrder: String!
-  contact: String!
-  cause: String!
+  customerOrder: Int!
+  contact: Int!
+  cause: Int!
 }
 ​
 type LiveEvent @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  liveEventType: String!
+  liveEventType: Int!
 }
 ​
 type EventAttendee @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  liveEvent: String!
-  contact: String!
-  cause: String!
+  liveEvent: Int!
+  contact: Int!
+  cause: Int!
 }
 ​
 type Voter @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  contact: String!
-  cause: String!
+  contact: Int!
+  cause: Int!
 }
 ​
 type VolunteerOpportunity @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  electionType: String!
+  electionType: Int
 }
 ​
 type Volunteer @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  volunteerOpportunity: String!
-  contact: String!
-  cause: String!
+  volunteerOpportunity: Int!
+  contact: Int!
+  cause: Int!
 }
 ​
 type Territory @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type Follower @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  contact: String!
-  cause: String!
+  contact: Int!
+  cause: Int!
 }
 ​
 type ActivityType @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
 }
 ​
 type Activity @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  activityType: String!
-  contact: String!
-  cause: String!
+  activityType: Int!
+  contact: Int!
+  cause: Int!
 }
 ​
 type Note @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  contact: String!
-  cause: String!
-  body: String!
+  contact: Int!
+  cause: Int!
+  body: String
 }
 ​
 type Account @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   username: String!
 }
 ​
 type OwnerMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  account: String!
+  cause: Int!
+  account: Int!
 }
 ​
 type Contact @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
 }
 ​
 type ContactMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  contact: String!
+  cause: Int!
+  contact: Int!
 }
 ​
 type Cause @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
   title: String!
-  summary: String!
+  summary: String
 }
 ​
 type Agent @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  account: String!
+  account: Int!
 }
 ​
 type AgentMembership @model {
-  id: String!
+  id: ID!
   createdAt: String!
   updatedAt: String!
-  cause: String!
-  agent: String!
+  cause: Int!
+  agent: Int!
 }
 ​
