@@ -40,6 +40,11 @@ const typeDefs = gql`
     nanos: Int!
   }
 
+  input CauseInput {
+    Title: String
+    description: String
+  }
+
   type Cause {
     ID: Int!
     CreatedAt: Time
@@ -52,11 +57,17 @@ const typeDefs = gql`
     getCause(ID: Int): Cause
     listCause: [Cause]
   }
+
+  type Mutation {
+    createCause(cause: CauseInput): Cause
+    updateCause(ID: Int, cause: CauseInput): Int
+    deleteCause(ID: Int): Int
+  }
 `;
 
 const resolvers = {
   Query: {
-    listCause: (_, { Limit, Order, Filter }) =>
+    listCause: (_, { Limit, Cursor, Order, Filter }) =>
       client
         .ListCause()
         .sendMessage({ api: 'v1' })
@@ -66,6 +77,23 @@ const resolvers = {
         .GetCause()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item)
+  },
+  Mutation: {
+    createCause: (_, { cause }) =>
+      client
+        .CreateCause()
+        .sendMessage({ api: 'v1', item: { ...cause } })
+        .then(res => ({ ID: res.ID, ...cause })),
+    updateCause: (_, { ID, cause }) =>
+      client
+        .UpdateCause()
+        .sendMessage({ api: 'v1', cause: { ID, item: { ...cause } } })
+        .then(res => res.updated),
+    deleteCause: (_, { ID }) =>
+      client
+        .DeleteCause()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted)
   }
 };
 
