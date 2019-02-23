@@ -2,6 +2,7 @@ const path = require('path');
 const { ApolloServer, gql } = require('apollo-server');
 const protoLoader = require('@grpc/proto-loader');
 const grpc = require('grpc');
+const grpc_promise = require('grpc-promise');
 const PROTO_PATH = path.resolve(
   __dirname,
   '../../shrike/src/api/proto/v1/shrike.proto'
@@ -23,46 +24,43 @@ var client = new shrike.ShrikeService(
   grpc.credentials.createInsecure()
 );
 
-client.CreateCause(
-  { api: 'v1', item: { title: 'Cool Cause', summary: 'Cool Summary' } },
-  function(err, response) {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log('Greeting:', response);
-  }
-);
+grpc_promise.promisifyAll(client);
+
+client
+  .CreateCause()
+  .sendMessage({
+    api: 'v1',
+    item: { Title: 'Cool Cause', Summary: 'Cool Summary' }
+  })
+  .then(resp => console.log(resp));
 
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
 // from an existing data source like a REST API or database.
-const books = [
-  {
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling'
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton'
-  }
-];
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
   # Comments in GraphQL are defined with the hash (#) symbol.
 
+  type Time {
+    seconds: Int!
+    nanos: Int!
+  }
   # This "Book" type can be used in other type declarations.
-  type Book {
-    title: String
-    author: String
+  type Cause {
+    ID: Int!
+    CreatedAt: Time
+    UpdatedAt: Time
+    Title: String
+    description: String
   }
 
   # The "Query" type is the root of all GraphQL queries.
   # (A "Mutation" type will be covered later on.)
   type Query {
-    books: [Book]
+    getCause(ID: Int): Cause
+    listCause: [Cause]
   }
 `;
 
@@ -70,7 +68,16 @@ const typeDefs = gql`
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
   Query: {
-    books: () => books
+    listCause: () =>
+      client
+        .ListCause()
+        .sendMessage({ api: 'v1' })
+        .then(res => res.items),
+    getCause: (_, { ID }) =>
+      client
+        .GetCause()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item)
   }
 };
 
