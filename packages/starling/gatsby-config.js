@@ -7,6 +7,17 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "WREN",
+        // This is field under which it's accessible
+        fieldName: "wren",
+        // Url to query from
+        url: "http://localhost:4000",
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
