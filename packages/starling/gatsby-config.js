@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `env/.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -14,7 +18,7 @@ module.exports = {
         // This is field under which it's accessible
         fieldName: "wren",
         // Url to query from
-        url: "http://localhost:4000",
+        url: process.env.WREN_API_URL,
       },
     },
     {
