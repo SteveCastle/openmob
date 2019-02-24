@@ -9,6 +9,10 @@ const PROTO_PATH = path.resolve(
 );
 const THIRD_PARTY = path.resolve(__dirname, '../../shrike/third_party');
 
+// Import generated API
+const generatedSchema = require('./generated/schema.js');
+
+const generatedResolvers = require('./generated/resolvers.js');
 // Connect to Shrike gRPC server.
 var packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
@@ -34,68 +38,9 @@ client
   })
   .then(resp => console.log(resp));
 
-const typeDefs = gql`
-  type Time {
-    seconds: Int!
-    nanos: Int!
-  }
+const typeDefs = generatedSchema;
 
-  input CauseInput {
-    Title: String
-    description: String
-  }
-
-  type Cause {
-    ID: Int!
-    CreatedAt: Time
-    UpdatedAt: Time
-    Title: String
-    description: String
-  }
-
-  type Query {
-    getCause(ID: Int): Cause
-    listCause: [Cause]
-  }
-
-  type Mutation {
-    createCause(cause: CauseInput): Cause
-    updateCause(ID: Int, cause: CauseInput): Int
-    deleteCause(ID: Int): Int
-  }
-`;
-
-const resolvers = {
-  Query: {
-    listCause: (_, { Limit, Cursor, Order, Filter }) =>
-      client
-        .ListCause()
-        .sendMessage({ api: 'v1' })
-        .then(res => res.items),
-    getCause: (_, { ID }) =>
-      client
-        .GetCause()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item)
-  },
-  Mutation: {
-    createCause: (_, { cause }) =>
-      client
-        .CreateCause()
-        .sendMessage({ api: 'v1', item: { ...cause } })
-        .then(res => ({ ID: res.ID, ...cause })),
-    updateCause: (_, { ID, cause }) =>
-      client
-        .UpdateCause()
-        .sendMessage({ api: 'v1', item: { ID, ...cause } })
-        .then(res => res.updated),
-    deleteCause: (_, { ID }) =>
-      client
-        .DeleteCause()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted)
-  }
-};
+const resolvers = generatedResolvers(client);
 
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers

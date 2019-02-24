@@ -54,7 +54,7 @@ PostRun = ["echo", "$GNORMFILE"]
 #
 # This defaults to the current working directory i.e the directory in which
 # gnorm.toml is found.
-OutputDir = "src"
+OutputDir = "src/generated"
 
 # StaticDir is the directory relative to the project root (where the
 # gnorm.toml file is located) in which all static files , which are
@@ -97,7 +97,9 @@ NoOverwriteGlobs = ["*.perm.go"]
 [SchemaPaths]
 # "cmd/grpc-client/main.go" = "templates/test-client.gotmpl"
 # "api/proto/v1/shrike.proto" = "templates/protobuf.gotmpl"
-"schema.graphql" = "templates/graphql.gotmpl"
+"schema.js" = "templates/schema.gotmpl"
+"resolvers.js" = "templates/resolvers.gotmpl"
+
 # EnumPaths is a is a map of output paths to template paths that tells Gnorm how
 # to render and output its enum info.  Each template will be rendered with each
 # enum in turn and written out to the given output path. If no pairs are
@@ -123,7 +125,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 # of your configuration file.
 # Example for mapping postgres types to Go types:
 [TypeMap]
-"timestamp with time zone" = "String!"
+"timestamp with time zone" = "Time!"
 "text" = "String!"
 "boolean" = "Boolean!"
 "uuid" = "ID!"
@@ -141,7 +143,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 # of your configuration file.
 # Example for mapping postgres types to Go types:
 [NullableTypeMap]
-"timestamp with time zone" = "String"
+"timestamp with time zone" = "Time"
 "text" = "String"
 "boolean" = "Boolean"
 "uuid" = "ID"

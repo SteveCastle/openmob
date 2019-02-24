@@ -1,0 +1,33 @@
+module.exports = client => ({
+  Query: {
+    {{range .Schema.Tables}}
+    list{{.Name}}: (_, { Limit, Cursor, Order, Filter }) =>
+      client
+        .List{{.Name}}()
+        .sendMessage({ api: 'v1' })
+        .then(res => res.items),
+    get{{.Name}}: (_, { ID }) =>
+      client
+        .Get{{.Name}}()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),{{end}}
+  },
+  Mutation: {
+    {{range .Schema.Tables}}
+    create{{.Name}}: (_, { {{camel .Name}} }) =>
+      client
+        .Create{{.Name}}()
+        .sendMessage({ api: 'v1', item: { ...{{camel .Name}} } })
+        .then(res => ({ ID: res.ID, ...{{camel .Name}} })),
+    update{{.Name}}: (_, { ID, {{camel .Name}} }) =>
+      client
+        .Update{{.Name}}()
+        .sendMessage({ api: 'v1', item: { ID, ...{{camel .Name}} } })
+        .then(res => res.updated),
+    delete{{.Name}}: (_, { ID }) =>
+      client
+        .Delete{{.Name}}()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),{{end}}
+  }
+});

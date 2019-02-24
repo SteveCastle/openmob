@@ -1,0 +1,32 @@
+const { gql } = require('apollo-server');
+module.exports = `type Time {
+    seconds: Int!
+    nanos: Int!
+  }
+
+{{range .Schema.Tables}}
+input {{.Name}}Input {
+  secret: Int
+{{range $i, $v := .Columns}}{{if gt $i 2}}  {{.Name}}: {{.Type}}
+{{end}}{{end}}}
+​{{end}}
+
+{{range .Schema.Tables}}
+type {{.Name}} {
+{{range .Columns}}  {{.Name}}: {{if eq .Name "ID"}}ID!{{end}}{{if ne .Name "ID"}}{{.Type}}{{end}}
+{{end}}}
+​{{end}}
+
+  type Query {
+    {{range .Schema.Tables}}
+    get{{.Name}}(ID: Int): {{.Name}}
+    list{{.Name}}: [{{.Name}}]{{end}}
+  }
+
+  type Mutation {
+    {{range .Schema.Tables}}
+    create{{.Name}}({{camel .Name}}: {{.Name}}Input): {{.Name}}
+    update{{.Name}}(ID: Int, {{camel .Name}}: {{.Name}}Input): Int
+    delete{{.Name}}(ID: Int): Int{{end}}
+  }
+  `.replace(/[\u200B-\u200D\uFEFF]/g, '');

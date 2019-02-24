@@ -1,5 +1,0 @@
-{{range .Schema.Tables}}
-type {{.Name}} @model {
-{{range .Columns}}  {{camel .Name}}: {{if eq .Name "ID"}}ID!{{end}}{{if ne .Name "ID"}}{{.Type}}{{end}}
-{{end}}}
-​{{end}}
