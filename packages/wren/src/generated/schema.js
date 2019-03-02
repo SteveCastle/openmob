@@ -120,6 +120,12 @@ input OfficeInput {
   Election: Int
 }
 ​
+input PollItemInput {
+  secret: Int
+  Title: String!
+  Poll: Int!
+}
+​
 input VolunteerOpportunityTypeInput {
   secret: Int
   Title: String!
@@ -297,15 +303,15 @@ input VolunteerInput {
   Cause: Int!
 }
 ​
-input TerritoryInput {
-  secret: Int
-  Title: String!
-}
-​
 input FollowerInput {
   secret: Int
   Contact: Int!
   Cause: Int!
+}
+​
+input TerritoryInput {
+  secret: Int
+  Title: String!
 }
 ​
 input ActivityTypeInput {
@@ -523,6 +529,14 @@ type Office {
   UpdatedAt: Time!
   Title: String!
   Election: Int
+}
+​
+type PollItem {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
+  Poll: Int!
 }
 ​
 type VolunteerOpportunityType {
@@ -764,19 +778,19 @@ type Volunteer {
   Cause: Int!
 }
 ​
-type Territory {
-  ID: ID!
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
-}
-​
 type Follower {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
   Contact: Int!
   Cause: Int!
+}
+​
+type Territory {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
 }
 ​
 type ActivityType {
@@ -902,6 +916,8 @@ type AgentMembership {
     listDistrict: [District]
     getOffice(ID: Int): Office
     listOffice: [Office]
+    getPollItem(ID: Int): PollItem
+    listPollItem: [PollItem]
     getVolunteerOpportunityType(ID: Int): VolunteerOpportunityType
     listVolunteerOpportunityType: [VolunteerOpportunityType]
     getLiveEventType(ID: Int): LiveEventType
@@ -964,10 +980,10 @@ type AgentMembership {
     listVolunteerOpportunity: [VolunteerOpportunity]
     getVolunteer(ID: Int): Volunteer
     listVolunteer: [Volunteer]
-    getTerritory(ID: Int): Territory
-    listTerritory: [Territory]
     getFollower(ID: Int): Follower
     listFollower: [Follower]
+    getTerritory(ID: Int): Territory
+    listTerritory: [Territory]
     getActivityType(ID: Int): ActivityType
     listActivityType: [ActivityType]
     getActivity(ID: Int): Activity
@@ -1055,6 +1071,9 @@ type AgentMembership {
     createOffice(office: OfficeInput): Office
     updateOffice(ID: Int, office: OfficeInput): Int
     deleteOffice(ID: Int): Int
+    createPollItem(pollItem: PollItemInput): PollItem
+    updatePollItem(ID: Int, pollItem: PollItemInput): Int
+    deletePollItem(ID: Int): Int
     createVolunteerOpportunityType(volunteerOpportunityType: VolunteerOpportunityTypeInput): VolunteerOpportunityType
     updateVolunteerOpportunityType(ID: Int, volunteerOpportunityType: VolunteerOpportunityTypeInput): Int
     deleteVolunteerOpportunityType(ID: Int): Int
@@ -1148,12 +1167,12 @@ type AgentMembership {
     createVolunteer(volunteer: VolunteerInput): Volunteer
     updateVolunteer(ID: Int, volunteer: VolunteerInput): Int
     deleteVolunteer(ID: Int): Int
-    createTerritory(territory: TerritoryInput): Territory
-    updateTerritory(ID: Int, territory: TerritoryInput): Int
-    deleteTerritory(ID: Int): Int
     createFollower(follower: FollowerInput): Follower
     updateFollower(ID: Int, follower: FollowerInput): Int
     deleteFollower(ID: Int): Int
+    createTerritory(territory: TerritoryInput): Territory
+    updateTerritory(ID: Int, territory: TerritoryInput): Int
+    deleteTerritory(ID: Int): Int
     createActivityType(activityType: ActivityTypeInput): ActivityType
     updateActivityType(ID: Int, activityType: ActivityTypeInput): Int
     deleteActivityType(ID: Int): Int

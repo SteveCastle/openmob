@@ -211,6 +211,16 @@ module.exports = client => ({
         .GetOffice()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
+    listPollItem: (_, { Limit, Cursor, Order, Filter }) =>
+      client
+        .ListPollItem()
+        .sendMessage({ api: 'v1' })
+        .then(res => res.items),
+    getPollItem: (_, { ID }) =>
+      client
+        .GetPollItem()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
     listVolunteerOpportunityType: (_, { Limit, Cursor, Order, Filter }) =>
       client
         .ListVolunteerOpportunityType()
@@ -521,16 +531,6 @@ module.exports = client => ({
         .GetVolunteer()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
-    listTerritory: (_, { Limit, Cursor, Order, Filter }) =>
-      client
-        .ListTerritory()
-        .sendMessage({ api: 'v1' })
-        .then(res => res.items),
-    getTerritory: (_, { ID }) =>
-      client
-        .GetTerritory()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
     listFollower: (_, { Limit, Cursor, Order, Filter }) =>
       client
         .ListFollower()
@@ -539,6 +539,16 @@ module.exports = client => ({
     getFollower: (_, { ID }) =>
       client
         .GetFollower()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
+    listTerritory: (_, { Limit, Cursor, Order, Filter }) =>
+      client
+        .ListTerritory()
+        .sendMessage({ api: 'v1' })
+        .then(res => res.items),
+    getTerritory: (_, { ID }) =>
+      client
+        .GetTerritory()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
     listActivityType: (_, { Limit, Cursor, Order, Filter }) =>
@@ -957,6 +967,21 @@ module.exports = client => ({
     deleteOffice: (_, { ID }) =>
       client
         .DeleteOffice()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createPollItem: (_, { pollItem }) =>
+      client
+        .CreatePollItem()
+        .sendMessage({ api: 'v1', item: { ...pollItem } })
+        .then(res => ({ ID: res.ID, ...pollItem })),
+    updatePollItem: (_, { ID, pollItem }) =>
+      client
+        .UpdatePollItem()
+        .sendMessage({ api: 'v1', item: { ID, ...pollItem } })
+        .then(res => res.updated),
+    deletePollItem: (_, { ID }) =>
+      client
+        .DeletePollItem()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createVolunteerOpportunityType: (_, { volunteerOpportunityType }) =>
@@ -1424,21 +1449,6 @@ module.exports = client => ({
         .DeleteVolunteer()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createTerritory: (_, { territory }) =>
-      client
-        .CreateTerritory()
-        .sendMessage({ api: 'v1', item: { ...territory } })
-        .then(res => ({ ID: res.ID, ...territory })),
-    updateTerritory: (_, { ID, territory }) =>
-      client
-        .UpdateTerritory()
-        .sendMessage({ api: 'v1', item: { ID, ...territory } })
-        .then(res => res.updated),
-    deleteTerritory: (_, { ID }) =>
-      client
-        .DeleteTerritory()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted),
     createFollower: (_, { follower }) =>
       client
         .CreateFollower()
@@ -1452,6 +1462,21 @@ module.exports = client => ({
     deleteFollower: (_, { ID }) =>
       client
         .DeleteFollower()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createTerritory: (_, { territory }) =>
+      client
+        .CreateTerritory()
+        .sendMessage({ api: 'v1', item: { ...territory } })
+        .then(res => ({ ID: res.ID, ...territory })),
+    updateTerritory: (_, { ID, territory }) =>
+      client
+        .UpdateTerritory()
+        .sendMessage({ api: 'v1', item: { ID, ...territory } })
+        .then(res => res.updated),
+    deleteTerritory: (_, { ID }) =>
+      client
+        .DeleteTerritory()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createActivityType: (_, { activityType }) =>

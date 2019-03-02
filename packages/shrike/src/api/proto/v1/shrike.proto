@@ -1945,6 +1945,99 @@ message DeleteOfficeResponse{
     int64 deleted = 2;
 }
 
+message PollItem {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	string Title = 4;
+	
+	int64 Poll = 5;
+	
+}
+
+message CreatePollItem {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+	int64 Poll = 2;
+	
+}
+
+//Request and Response Message Types
+message CreatePollItemRequest {
+	string api = 1;
+	CreatePollItem item = 2;
+}
+
+message CreatePollItemResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetPollItemRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetPollItemResponse {
+	string api = 1;
+	PollItem item = 2;
+}
+
+message ListPollItemRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListPollItemResponse {
+	string api = 1;
+	repeated PollItem items = 2;
+}
+
+// Request data to update PollItem
+message UpdatePollItemRequest{
+    string api = 1;
+
+    // PollItem entity to update
+    PollItem item = 2;
+}
+
+// Contains status of update operation
+message UpdatePollItemResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete PollItem
+message DeletePollItemRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the PollItem to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeletePollItemResponse{
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
 message VolunteerOpportunityType {
     
 	int64 ID = 1;
@@ -4792,95 +4885,6 @@ message DeleteVolunteerResponse{
     int64 deleted = 2;
 }
 
-message Territory {
-    
-	int64 ID = 1;
-	
-	google.protobuf.Timestamp CreatedAt = 2;
-	
-	google.protobuf.Timestamp UpdatedAt = 3;
-	
-	string Title = 4;
-	
-}
-
-message CreateTerritory {
-    
-	
-	
-	
-	
-	
-	
-	string Title = 1;
-	
-}
-
-//Request and Response Message Types
-message CreateTerritoryRequest {
-	string api = 1;
-	CreateTerritory item = 2;
-}
-
-message CreateTerritoryResponse {
-	string api = 1;
-	int64 ID = 2;
-	
-}
-message GetTerritoryRequest {
-	string api = 1;
-	int64 ID = 2;
-}
-
-message GetTerritoryResponse {
-	string api = 1;
-	Territory item = 2;
-}
-
-message ListTerritoryRequest {
-	string api = 1;
-	int64 limit = 2;
-}
-
-message ListTerritoryResponse {
-	string api = 1;
-	repeated Territory items = 2;
-}
-
-// Request data to update Territory
-message UpdateTerritoryRequest{
-    string api = 1;
-
-    // Territory entity to update
-    Territory item = 2;
-}
-
-// Contains status of update operation
-message UpdateTerritoryResponse{
-    string api = 1;
-
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
-    int64 updated = 2;
-}
-
-// Request data to delete Territory
-message DeleteTerritoryRequest{
-    string api = 1;
-
-    // Unique integer IDentifier of the Territory to delete
-    int64 ID = 2;
-}
-
-// Contains status of delete operation
-message DeleteTerritoryResponse{
-    string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
-    int64 deleted = 2;
-}
-
 message Follower {
     
 	int64 ID = 1;
@@ -4967,6 +4971,95 @@ message DeleteFollowerRequest{
 
 // Contains status of delete operation
 message DeleteFollowerResponse{
+    string api = 1;
+
+    // Contains number of entities have beed deleted
+    // Equals 1 in case of succesfull delete
+    int64 deleted = 2;
+}
+
+message Territory {
+    
+	int64 ID = 1;
+	
+	google.protobuf.Timestamp CreatedAt = 2;
+	
+	google.protobuf.Timestamp UpdatedAt = 3;
+	
+	string Title = 4;
+	
+}
+
+message CreateTerritory {
+    
+	
+	
+	
+	
+	
+	
+	string Title = 1;
+	
+}
+
+//Request and Response Message Types
+message CreateTerritoryRequest {
+	string api = 1;
+	CreateTerritory item = 2;
+}
+
+message CreateTerritoryResponse {
+	string api = 1;
+	int64 ID = 2;
+	
+}
+message GetTerritoryRequest {
+	string api = 1;
+	int64 ID = 2;
+}
+
+message GetTerritoryResponse {
+	string api = 1;
+	Territory item = 2;
+}
+
+message ListTerritoryRequest {
+	string api = 1;
+	int64 limit = 2;
+}
+
+message ListTerritoryResponse {
+	string api = 1;
+	repeated Territory items = 2;
+}
+
+// Request data to update Territory
+message UpdateTerritoryRequest{
+    string api = 1;
+
+    // Territory entity to update
+    Territory item = 2;
+}
+
+// Contains status of update operation
+message UpdateTerritoryResponse{
+    string api = 1;
+
+    // Contains number of entities have beed updated
+    // Equals 1 in case of succesfull update
+    int64 updated = 2;
+}
+
+// Request data to delete Territory
+message DeleteTerritoryRequest{
+    string api = 1;
+
+    // Unique integer IDentifier of the Territory to delete
+    int64 ID = 2;
+}
+
+// Contains status of delete operation
+message DeleteTerritoryResponse{
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -6719,6 +6812,45 @@ service ShrikeService {
         };
     }
 	
+	// CreatePollItem takes a PollItem object to create.
+	rpc CreatePollItem(CreatePollItemRequest) returns (CreatePollItemResponse) {
+		option (google.api.http) ={
+			post: "/v1/pollitem"
+			body: "*"
+		};
+	}
+    // GetPollItem takes an ID and returns a single PollItem.
+	rpc GetPollItem(GetPollItemRequest) returns (GetPollItemResponse) {
+		option (google.api.http) ={
+			get: "/v1/pollitem/{ID}"
+		};
+	}
+    // List PollItem, takes filters, limit, and cursor param.
+	rpc ListPollItem(ListPollItemRequest) returns (ListPollItemResponse) {
+	option (google.api.http) ={
+		get: "/v1/pollitem"
+	};
+}
+    // Update PollItem
+    rpc UpdatePollItem(UpdatePollItemRequest) returns (UpdatePollItemResponse){
+        option (google.api.http) = {
+            put: "/v1/pollitem/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/pollitem/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete PollItem
+    rpc DeletePollItem(DeletePollItemRequest) returns (DeletePollItemResponse){
+        option (google.api.http) = {
+            delete: "/v1/pollitem/{ID}"
+        };
+    }
+	
 	// CreateVolunteerOpportunityType takes a VolunteerOpportunityType object to create.
 	rpc CreateVolunteerOpportunityType(CreateVolunteerOpportunityTypeRequest) returns (CreateVolunteerOpportunityTypeResponse) {
 		option (google.api.http) ={
@@ -7928,45 +8060,6 @@ service ShrikeService {
         };
     }
 	
-	// CreateTerritory takes a Territory object to create.
-	rpc CreateTerritory(CreateTerritoryRequest) returns (CreateTerritoryResponse) {
-		option (google.api.http) ={
-			post: "/v1/territory"
-			body: "*"
-		};
-	}
-    // GetTerritory takes an ID and returns a single Territory.
-	rpc GetTerritory(GetTerritoryRequest) returns (GetTerritoryResponse) {
-		option (google.api.http) ={
-			get: "/v1/territory/{ID}"
-		};
-	}
-    // List Territory, takes filters, limit, and cursor param.
-	rpc ListTerritory(ListTerritoryRequest) returns (ListTerritoryResponse) {
-	option (google.api.http) ={
-		get: "/v1/territory"
-	};
-}
-    // Update Territory
-    rpc UpdateTerritory(UpdateTerritoryRequest) returns (UpdateTerritoryResponse){
-        option (google.api.http) = {
-            put: "/v1/territory/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/territory/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Territory
-    rpc DeleteTerritory(DeleteTerritoryRequest) returns (DeleteTerritoryResponse){
-        option (google.api.http) = {
-            delete: "/v1/territory/{ID}"
-        };
-    }
-	
 	// CreateFollower takes a Follower object to create.
 	rpc CreateFollower(CreateFollowerRequest) returns (CreateFollowerResponse) {
 		option (google.api.http) ={
@@ -8003,6 +8096,45 @@ service ShrikeService {
     rpc DeleteFollower(DeleteFollowerRequest) returns (DeleteFollowerResponse){
         option (google.api.http) = {
             delete: "/v1/follower/{ID}"
+        };
+    }
+	
+	// CreateTerritory takes a Territory object to create.
+	rpc CreateTerritory(CreateTerritoryRequest) returns (CreateTerritoryResponse) {
+		option (google.api.http) ={
+			post: "/v1/territory"
+			body: "*"
+		};
+	}
+    // GetTerritory takes an ID and returns a single Territory.
+	rpc GetTerritory(GetTerritoryRequest) returns (GetTerritoryResponse) {
+		option (google.api.http) ={
+			get: "/v1/territory/{ID}"
+		};
+	}
+    // List Territory, takes filters, limit, and cursor param.
+	rpc ListTerritory(ListTerritoryRequest) returns (ListTerritoryResponse) {
+	option (google.api.http) ={
+		get: "/v1/territory"
+	};
+}
+    // Update Territory
+    rpc UpdateTerritory(UpdateTerritoryRequest) returns (UpdateTerritoryResponse){
+        option (google.api.http) = {
+            put: "/v1/territory/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/territory/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Territory
+    rpc DeleteTerritory(DeleteTerritoryRequest) returns (DeleteTerritoryResponse){
+        option (google.api.http) = {
+            delete: "/v1/territory/{ID}"
         };
     }
 	

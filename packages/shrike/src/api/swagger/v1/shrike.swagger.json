@@ -11563,6 +11563,228 @@
         ]
       }
     },
+    "/v1/pollitem": {
+      "get": {
+        "summary": "List PollItem, takes filters, limit, and cursor param.",
+        "operationId": "ListPollItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListPollItemResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "post": {
+        "summary": "CreatePollItem takes a PollItem object to create.",
+        "operationId": "CreatePollItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreatePollItemResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreatePollItemRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/pollitem/{ID}": {
+      "get": {
+        "summary": "GetPollItem takes an ID and returns a single PollItem.",
+        "operationId": "GetPollItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetPollItemResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete PollItem",
+        "operationId": "DeletePollItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeletePollItemResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "description": "Unique integer IDentifier of the PollItem to delete",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/pollitem/{item.ID}": {
+      "put": {
+        "summary": "Update PollItem",
+        "operationId": "UpdatePollItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdatePollItemResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.ID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdatePollItemRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "patch": {
+        "summary": "Update PollItem",
+        "operationId": "UpdatePollItem2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdatePollItemResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.ID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdatePollItemRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
     "/v1/pollmembership": {
       "get": {
         "summary": "List PollMembership, takes filters, limit, and cursor param.",
@@ -16345,6 +16567,42 @@
         }
       }
     },
+    "v1CreatePollItem": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Poll": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreatePollItemRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1CreatePollItem"
+        }
+      },
+      "title": "Request and Response Message Types"
+    },
+    "v1CreatePollItemResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1CreatePollMembership": {
       "type": "object",
       "properties": {
@@ -17560,6 +17818,20 @@
       },
       "title": "Contains status of delete operation"
     },
+    "v1DeletePollItemResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "string",
+          "format": "int64",
+          "title": "Contains number of entities have beed deleted\nEquals 1 in case of succesfull delete"
+        }
+      },
+      "title": "Contains status of delete operation"
+    },
     "v1DeletePollMembershipResponse": {
       "type": "object",
       "properties": {
@@ -18630,6 +18902,17 @@
         }
       }
     },
+    "v1GetPollItemResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1PollItem"
+        }
+      }
+    },
     "v1GetPollMembershipResponse": {
       "type": "object",
       "properties": {
@@ -19622,6 +19905,20 @@
         }
       }
     },
+    "v1ListPollItemResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PollItem"
+          }
+        }
+      }
+    },
     "v1ListPollMembershipResponse": {
       "type": "object",
       "properties": {
@@ -20131,6 +20428,30 @@
         },
         "Title": {
           "type": "string"
+        }
+      }
+    },
+    "v1PollItem": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Poll": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -21670,6 +21991,33 @@
       "title": "Request data to update Photo"
     },
     "v1UpdatePhotoResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string",
+          "format": "int64",
+          "title": "Contains number of entities have beed updated\nEquals 1 in case of succesfull update"
+        }
+      },
+      "title": "Contains status of update operation"
+    },
+    "v1UpdatePollItemRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1PollItem",
+          "title": "PollItem entity to update"
+        }
+      },
+      "title": "Request data to update PollItem"
+    },
+    "v1UpdatePollItemResponse": {
       "type": "object",
       "properties": {
         "api": {

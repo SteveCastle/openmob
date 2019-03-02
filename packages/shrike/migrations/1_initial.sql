@@ -212,6 +212,14 @@ CREATE TABLE poll
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL
 );
+CREATE TABLE poll_item
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL,
+    poll INTEGER REFERENCES poll(id) NOT NULL
+);
 CREATE TABLE volunteer_opportunity_type
 (
     id serial PRIMARY KEY,
@@ -568,6 +576,7 @@ DROP TABLE district;
 DROP TABLE district_type;
 DROP TABLE office;
 DROP TABLE election;
+DROP TABLE poll_item;
 DROP TABLE poll;
 DROP TABLE petition;
 DROP TABLE volunteer_opportunity;
