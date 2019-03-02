@@ -1,5 +1,0 @@
-{{range .Schema.Tables}}
-type {{.Name}} @model {
-{{range .Columns}}  {{camel .Name}}: String!
-{{end}}}
-​{{end}}

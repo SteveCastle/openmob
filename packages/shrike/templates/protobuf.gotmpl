@@ -38,14 +38,12 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 {{range .Schema.Tables}}
 message {{.Name}} {
     {{range $index, $value := .Columns}}
-	{{.Type}} {{.Name}} = {{inc $index}};
-	{{end}}
+	{{.Type}} {{.Name}} = {{inc $index}};{{end}}
 }
 
 message Create{{.Name}} {
     {{range $index, $value := .Columns}}
-	{{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};{{end}}{{end}}{{end}}
-	{{end}}
+	{{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};{{end}}{{end}}{{end}}{{end}}
 }
 
 //Request and Response Message Types
@@ -57,7 +55,6 @@ message Create{{.Name}}Request {
 message Create{{.Name}}Response {
 	string api = 1;
 	int64 ID = 2;
-	
 }
 message Get{{.Name}}Request {
 	string api = 1;
@@ -82,7 +79,6 @@ message List{{.Name}}Response {
 // Request data to update {{.Name}}
 message Update{{.Name}}Request{
     string api = 1;
-
     // {{.Name}} entity to update
     {{.Name}} item = 2;
 }
@@ -90,7 +86,6 @@ message Update{{.Name}}Request{
 // Contains status of update operation
 message Update{{.Name}}Response{
     string api = 1;
-
     // Contains number of entities have beed updated
     // Equals 1 in case of succesfull update
     int64 updated = 2;
@@ -99,7 +94,6 @@ message Update{{.Name}}Response{
 // Request data to delete {{.Name}}
 message Delete{{.Name}}Request{
     string api = 1;
-
     // Unique integer IDentifier of the {{.Name}} to delete
     int64 ID = 2;
 }
