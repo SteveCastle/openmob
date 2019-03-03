@@ -902,339 +902,339 @@ type AgentMembership {
 
   type Query {
     
-    getACL(ID: Int): ACL
+    getACL(ID: ID!): ACL
     listACL: [ACL]
-    getMailingAddress(ID: Int): MailingAddress
+    getMailingAddress(ID: ID!): MailingAddress
     listMailingAddress: [MailingAddress]
-    getPhoneNumber(ID: Int): PhoneNumber
+    getPhoneNumber(ID: ID!): PhoneNumber
     listPhoneNumber: [PhoneNumber]
-    getEmailAddress(ID: Int): EmailAddress
+    getEmailAddress(ID: ID!): EmailAddress
     listEmailAddress: [EmailAddress]
-    getPhoto(ID: Int): Photo
+    getPhoto(ID: ID!): Photo
     listPhoto: [Photo]
-    getLayoutType(ID: Int): LayoutType
+    getLayoutType(ID: ID!): LayoutType
     listLayoutType: [LayoutType]
-    getLayoutRow(ID: Int): LayoutRow
+    getLayoutRow(ID: ID!): LayoutRow
     listLayoutRow: [LayoutRow]
-    getComponentImplementation(ID: Int): ComponentImplementation
+    getComponentImplementation(ID: ID!): ComponentImplementation
     listComponentImplementation: [ComponentImplementation]
-    getComponentType(ID: Int): ComponentType
+    getComponentType(ID: ID!): ComponentType
     listComponentType: [ComponentType]
-    getLayoutColumn(ID: Int): LayoutColumn
+    getLayoutColumn(ID: ID!): LayoutColumn
     listLayoutColumn: [LayoutColumn]
-    getFieldType(ID: Int): FieldType
+    getFieldType(ID: ID!): FieldType
     listFieldType: [FieldType]
-    getComponent(ID: Int): Component
+    getComponent(ID: ID!): Component
     listComponent: [Component]
-    getField(ID: Int): Field
+    getField(ID: ID!): Field
     listField: [Field]
-    getHomePage(ID: Int): HomePage
+    getHomePage(ID: ID!): HomePage
     listHomePage: [HomePage]
-    getLayout(ID: Int): Layout
+    getLayout(ID: ID!): Layout
     listLayout: [Layout]
-    getLandingPage(ID: Int): LandingPage
+    getLandingPage(ID: ID!): LandingPage
     listLandingPage: [LandingPage]
-    getExperiment(ID: Int): Experiment
+    getExperiment(ID: ID!): Experiment
     listExperiment: [Experiment]
-    getIssue(ID: Int): Issue
+    getIssue(ID: ID!): Issue
     listIssue: [Issue]
-    getCandidate(ID: Int): Candidate
+    getCandidate(ID: ID!): Candidate
     listCandidate: [Candidate]
-    getDistrictType(ID: Int): DistrictType
+    getDistrictType(ID: ID!): DistrictType
     listDistrictType: [DistrictType]
-    getDistrict(ID: Int): District
+    getDistrict(ID: ID!): District
     listDistrict: [District]
-    getOffice(ID: Int): Office
+    getOffice(ID: ID!): Office
     listOffice: [Office]
-    getPollItem(ID: Int): PollItem
+    getPollItem(ID: ID!): PollItem
     listPollItem: [PollItem]
-    getVolunteerOpportunityType(ID: Int): VolunteerOpportunityType
+    getVolunteerOpportunityType(ID: ID!): VolunteerOpportunityType
     listVolunteerOpportunityType: [VolunteerOpportunityType]
-    getLiveEventType(ID: Int): LiveEventType
+    getLiveEventType(ID: ID!): LiveEventType
     listLiveEventType: [LiveEventType]
-    getCompany(ID: Int): Company
+    getCompany(ID: ID!): Company
     listCompany: [Company]
-    getProductType(ID: Int): ProductType
+    getProductType(ID: ID!): ProductType
     listProductType: [ProductType]
-    getCustomerCart(ID: Int): CustomerCart
+    getCustomerCart(ID: ID!): CustomerCart
     listCustomerCart: [CustomerCart]
-    getPayment(ID: Int): Payment
+    getPayment(ID: ID!): Payment
     listPayment: [Payment]
-    getDelivery(ID: Int): Delivery
+    getDelivery(ID: ID!): Delivery
     listDelivery: [Delivery]
-    getBoycott(ID: Int): Boycott
+    getBoycott(ID: ID!): Boycott
     listBoycott: [Boycott]
-    getBoycottMembership(ID: Int): BoycottMembership
+    getBoycottMembership(ID: ID!): BoycottMembership
     listBoycottMembership: [BoycottMembership]
-    getElection(ID: Int): Election
+    getElection(ID: ID!): Election
     listElection: [Election]
-    getElectionMembership(ID: Int): ElectionMembership
+    getElectionMembership(ID: ID!): ElectionMembership
     listElectionMembership: [ElectionMembership]
-    getPetitionMembership(ID: Int): PetitionMembership
+    getPetitionMembership(ID: ID!): PetitionMembership
     listPetitionMembership: [PetitionMembership]
-    getPollMembership(ID: Int): PollMembership
+    getPollMembership(ID: ID!): PollMembership
     listPollMembership: [PollMembership]
-    getVolunteerOpportunityMembership(ID: Int): VolunteerOpportunityMembership
+    getVolunteerOpportunityMembership(ID: ID!): VolunteerOpportunityMembership
     listVolunteerOpportunityMembership: [VolunteerOpportunityMembership]
-    getLiveEventMembership(ID: Int): LiveEventMembership
+    getLiveEventMembership(ID: ID!): LiveEventMembership
     listLiveEventMembership: [LiveEventMembership]
-    getProduct(ID: Int): Product
+    getProduct(ID: ID!): Product
     listProduct: [Product]
-    getProductMembership(ID: Int): ProductMembership
+    getProductMembership(ID: ID!): ProductMembership
     listProductMembership: [ProductMembership]
-    getDonationCampaign(ID: Int): DonationCampaign
+    getDonationCampaign(ID: ID!): DonationCampaign
     listDonationCampaign: [DonationCampaign]
-    getDonationCampaignMembership(ID: Int): DonationCampaignMembership
+    getDonationCampaignMembership(ID: ID!): DonationCampaignMembership
     listDonationCampaignMembership: [DonationCampaignMembership]
-    getPetition(ID: Int): Petition
+    getPetition(ID: ID!): Petition
     listPetition: [Petition]
-    getPetitionSigner(ID: Int): PetitionSigner
+    getPetitionSigner(ID: ID!): PetitionSigner
     listPetitionSigner: [PetitionSigner]
-    getPoll(ID: Int): Poll
+    getPoll(ID: ID!): Poll
     listPoll: [Poll]
-    getPollRespondant(ID: Int): PollRespondant
+    getPollRespondant(ID: ID!): PollRespondant
     listPollRespondant: [PollRespondant]
-    getPurchaser(ID: Int): Purchaser
+    getPurchaser(ID: ID!): Purchaser
     listPurchaser: [Purchaser]
-    getCustomerOrder(ID: Int): CustomerOrder
+    getCustomerOrder(ID: ID!): CustomerOrder
     listCustomerOrder: [CustomerOrder]
-    getDonor(ID: Int): Donor
+    getDonor(ID: ID!): Donor
     listDonor: [Donor]
-    getLiveEvent(ID: Int): LiveEvent
+    getLiveEvent(ID: ID!): LiveEvent
     listLiveEvent: [LiveEvent]
-    getEventAttendee(ID: Int): EventAttendee
+    getEventAttendee(ID: ID!): EventAttendee
     listEventAttendee: [EventAttendee]
-    getVoter(ID: Int): Voter
+    getVoter(ID: ID!): Voter
     listVoter: [Voter]
-    getVolunteerOpportunity(ID: Int): VolunteerOpportunity
+    getVolunteerOpportunity(ID: ID!): VolunteerOpportunity
     listVolunteerOpportunity: [VolunteerOpportunity]
-    getVolunteer(ID: Int): Volunteer
+    getVolunteer(ID: ID!): Volunteer
     listVolunteer: [Volunteer]
-    getFollower(ID: Int): Follower
+    getFollower(ID: ID!): Follower
     listFollower: [Follower]
-    getTerritory(ID: Int): Territory
+    getTerritory(ID: ID!): Territory
     listTerritory: [Territory]
-    getActivityType(ID: Int): ActivityType
+    getActivityType(ID: ID!): ActivityType
     listActivityType: [ActivityType]
-    getActivity(ID: Int): Activity
+    getActivity(ID: ID!): Activity
     listActivity: [Activity]
-    getNote(ID: Int): Note
+    getNote(ID: ID!): Note
     listNote: [Note]
-    getAccount(ID: Int): Account
+    getAccount(ID: ID!): Account
     listAccount: [Account]
-    getOwnerMembership(ID: Int): OwnerMembership
+    getOwnerMembership(ID: ID!): OwnerMembership
     listOwnerMembership: [OwnerMembership]
-    getContact(ID: Int): Contact
+    getContact(ID: ID!): Contact
     listContact: [Contact]
-    getContactMembership(ID: Int): ContactMembership
+    getContactMembership(ID: ID!): ContactMembership
     listContactMembership: [ContactMembership]
-    getCause(ID: Int): Cause
+    getCause(ID: ID!): Cause
     listCause: [Cause]
-    getAgent(ID: Int): Agent
+    getAgent(ID: ID!): Agent
     listAgent: [Agent]
-    getAgentMembership(ID: Int): AgentMembership
+    getAgentMembership(ID: ID!): AgentMembership
     listAgentMembership: [AgentMembership]
   }
 
   type Mutation {
     
     createACL(acl: ACLInput): ACL
-    updateACL(ID: Int, acl: ACLInput): Int
-    deleteACL(ID: Int): Int
+    updateACL(ID: ID!, acl: ACLInput): Int
+    deleteACL(ID: ID!): Int
     createMailingAddress(mailingAddress: MailingAddressInput): MailingAddress
-    updateMailingAddress(ID: Int, mailingAddress: MailingAddressInput): Int
-    deleteMailingAddress(ID: Int): Int
+    updateMailingAddress(ID: ID!, mailingAddress: MailingAddressInput): Int
+    deleteMailingAddress(ID: ID!): Int
     createPhoneNumber(phoneNumber: PhoneNumberInput): PhoneNumber
-    updatePhoneNumber(ID: Int, phoneNumber: PhoneNumberInput): Int
-    deletePhoneNumber(ID: Int): Int
+    updatePhoneNumber(ID: ID!, phoneNumber: PhoneNumberInput): Int
+    deletePhoneNumber(ID: ID!): Int
     createEmailAddress(emailAddress: EmailAddressInput): EmailAddress
-    updateEmailAddress(ID: Int, emailAddress: EmailAddressInput): Int
-    deleteEmailAddress(ID: Int): Int
+    updateEmailAddress(ID: ID!, emailAddress: EmailAddressInput): Int
+    deleteEmailAddress(ID: ID!): Int
     createPhoto(photo: PhotoInput): Photo
-    updatePhoto(ID: Int, photo: PhotoInput): Int
-    deletePhoto(ID: Int): Int
+    updatePhoto(ID: ID!, photo: PhotoInput): Int
+    deletePhoto(ID: ID!): Int
     createLayoutType(layoutType: LayoutTypeInput): LayoutType
-    updateLayoutType(ID: Int, layoutType: LayoutTypeInput): Int
-    deleteLayoutType(ID: Int): Int
+    updateLayoutType(ID: ID!, layoutType: LayoutTypeInput): Int
+    deleteLayoutType(ID: ID!): Int
     createLayoutRow(layoutRow: LayoutRowInput): LayoutRow
-    updateLayoutRow(ID: Int, layoutRow: LayoutRowInput): Int
-    deleteLayoutRow(ID: Int): Int
+    updateLayoutRow(ID: ID!, layoutRow: LayoutRowInput): Int
+    deleteLayoutRow(ID: ID!): Int
     createComponentImplementation(componentImplementation: ComponentImplementationInput): ComponentImplementation
-    updateComponentImplementation(ID: Int, componentImplementation: ComponentImplementationInput): Int
-    deleteComponentImplementation(ID: Int): Int
+    updateComponentImplementation(ID: ID!, componentImplementation: ComponentImplementationInput): Int
+    deleteComponentImplementation(ID: ID!): Int
     createComponentType(componentType: ComponentTypeInput): ComponentType
-    updateComponentType(ID: Int, componentType: ComponentTypeInput): Int
-    deleteComponentType(ID: Int): Int
+    updateComponentType(ID: ID!, componentType: ComponentTypeInput): Int
+    deleteComponentType(ID: ID!): Int
     createLayoutColumn(layoutColumn: LayoutColumnInput): LayoutColumn
-    updateLayoutColumn(ID: Int, layoutColumn: LayoutColumnInput): Int
-    deleteLayoutColumn(ID: Int): Int
+    updateLayoutColumn(ID: ID!, layoutColumn: LayoutColumnInput): Int
+    deleteLayoutColumn(ID: ID!): Int
     createFieldType(fieldType: FieldTypeInput): FieldType
-    updateFieldType(ID: Int, fieldType: FieldTypeInput): Int
-    deleteFieldType(ID: Int): Int
+    updateFieldType(ID: ID!, fieldType: FieldTypeInput): Int
+    deleteFieldType(ID: ID!): Int
     createComponent(component: ComponentInput): Component
-    updateComponent(ID: Int, component: ComponentInput): Int
-    deleteComponent(ID: Int): Int
+    updateComponent(ID: ID!, component: ComponentInput): Int
+    deleteComponent(ID: ID!): Int
     createField(field: FieldInput): Field
-    updateField(ID: Int, field: FieldInput): Int
-    deleteField(ID: Int): Int
+    updateField(ID: ID!, field: FieldInput): Int
+    deleteField(ID: ID!): Int
     createHomePage(homePage: HomePageInput): HomePage
-    updateHomePage(ID: Int, homePage: HomePageInput): Int
-    deleteHomePage(ID: Int): Int
+    updateHomePage(ID: ID!, homePage: HomePageInput): Int
+    deleteHomePage(ID: ID!): Int
     createLayout(layout: LayoutInput): Layout
-    updateLayout(ID: Int, layout: LayoutInput): Int
-    deleteLayout(ID: Int): Int
+    updateLayout(ID: ID!, layout: LayoutInput): Int
+    deleteLayout(ID: ID!): Int
     createLandingPage(landingPage: LandingPageInput): LandingPage
-    updateLandingPage(ID: Int, landingPage: LandingPageInput): Int
-    deleteLandingPage(ID: Int): Int
+    updateLandingPage(ID: ID!, landingPage: LandingPageInput): Int
+    deleteLandingPage(ID: ID!): Int
     createExperiment(experiment: ExperimentInput): Experiment
-    updateExperiment(ID: Int, experiment: ExperimentInput): Int
-    deleteExperiment(ID: Int): Int
+    updateExperiment(ID: ID!, experiment: ExperimentInput): Int
+    deleteExperiment(ID: ID!): Int
     createIssue(issue: IssueInput): Issue
-    updateIssue(ID: Int, issue: IssueInput): Int
-    deleteIssue(ID: Int): Int
+    updateIssue(ID: ID!, issue: IssueInput): Int
+    deleteIssue(ID: ID!): Int
     createCandidate(candidate: CandidateInput): Candidate
-    updateCandidate(ID: Int, candidate: CandidateInput): Int
-    deleteCandidate(ID: Int): Int
+    updateCandidate(ID: ID!, candidate: CandidateInput): Int
+    deleteCandidate(ID: ID!): Int
     createDistrictType(districtType: DistrictTypeInput): DistrictType
-    updateDistrictType(ID: Int, districtType: DistrictTypeInput): Int
-    deleteDistrictType(ID: Int): Int
+    updateDistrictType(ID: ID!, districtType: DistrictTypeInput): Int
+    deleteDistrictType(ID: ID!): Int
     createDistrict(district: DistrictInput): District
-    updateDistrict(ID: Int, district: DistrictInput): Int
-    deleteDistrict(ID: Int): Int
+    updateDistrict(ID: ID!, district: DistrictInput): Int
+    deleteDistrict(ID: ID!): Int
     createOffice(office: OfficeInput): Office
-    updateOffice(ID: Int, office: OfficeInput): Int
-    deleteOffice(ID: Int): Int
+    updateOffice(ID: ID!, office: OfficeInput): Int
+    deleteOffice(ID: ID!): Int
     createPollItem(pollItem: PollItemInput): PollItem
-    updatePollItem(ID: Int, pollItem: PollItemInput): Int
-    deletePollItem(ID: Int): Int
+    updatePollItem(ID: ID!, pollItem: PollItemInput): Int
+    deletePollItem(ID: ID!): Int
     createVolunteerOpportunityType(volunteerOpportunityType: VolunteerOpportunityTypeInput): VolunteerOpportunityType
-    updateVolunteerOpportunityType(ID: Int, volunteerOpportunityType: VolunteerOpportunityTypeInput): Int
-    deleteVolunteerOpportunityType(ID: Int): Int
+    updateVolunteerOpportunityType(ID: ID!, volunteerOpportunityType: VolunteerOpportunityTypeInput): Int
+    deleteVolunteerOpportunityType(ID: ID!): Int
     createLiveEventType(liveEventType: LiveEventTypeInput): LiveEventType
-    updateLiveEventType(ID: Int, liveEventType: LiveEventTypeInput): Int
-    deleteLiveEventType(ID: Int): Int
+    updateLiveEventType(ID: ID!, liveEventType: LiveEventTypeInput): Int
+    deleteLiveEventType(ID: ID!): Int
     createCompany(company: CompanyInput): Company
-    updateCompany(ID: Int, company: CompanyInput): Int
-    deleteCompany(ID: Int): Int
+    updateCompany(ID: ID!, company: CompanyInput): Int
+    deleteCompany(ID: ID!): Int
     createProductType(productType: ProductTypeInput): ProductType
-    updateProductType(ID: Int, productType: ProductTypeInput): Int
-    deleteProductType(ID: Int): Int
+    updateProductType(ID: ID!, productType: ProductTypeInput): Int
+    deleteProductType(ID: ID!): Int
     createCustomerCart(customerCart: CustomerCartInput): CustomerCart
-    updateCustomerCart(ID: Int, customerCart: CustomerCartInput): Int
-    deleteCustomerCart(ID: Int): Int
+    updateCustomerCart(ID: ID!, customerCart: CustomerCartInput): Int
+    deleteCustomerCart(ID: ID!): Int
     createPayment(payment: PaymentInput): Payment
-    updatePayment(ID: Int, payment: PaymentInput): Int
-    deletePayment(ID: Int): Int
+    updatePayment(ID: ID!, payment: PaymentInput): Int
+    deletePayment(ID: ID!): Int
     createDelivery(delivery: DeliveryInput): Delivery
-    updateDelivery(ID: Int, delivery: DeliveryInput): Int
-    deleteDelivery(ID: Int): Int
+    updateDelivery(ID: ID!, delivery: DeliveryInput): Int
+    deleteDelivery(ID: ID!): Int
     createBoycott(boycott: BoycottInput): Boycott
-    updateBoycott(ID: Int, boycott: BoycottInput): Int
-    deleteBoycott(ID: Int): Int
+    updateBoycott(ID: ID!, boycott: BoycottInput): Int
+    deleteBoycott(ID: ID!): Int
     createBoycottMembership(boycottMembership: BoycottMembershipInput): BoycottMembership
-    updateBoycottMembership(ID: Int, boycottMembership: BoycottMembershipInput): Int
-    deleteBoycottMembership(ID: Int): Int
+    updateBoycottMembership(ID: ID!, boycottMembership: BoycottMembershipInput): Int
+    deleteBoycottMembership(ID: ID!): Int
     createElection(election: ElectionInput): Election
-    updateElection(ID: Int, election: ElectionInput): Int
-    deleteElection(ID: Int): Int
+    updateElection(ID: ID!, election: ElectionInput): Int
+    deleteElection(ID: ID!): Int
     createElectionMembership(electionMembership: ElectionMembershipInput): ElectionMembership
-    updateElectionMembership(ID: Int, electionMembership: ElectionMembershipInput): Int
-    deleteElectionMembership(ID: Int): Int
+    updateElectionMembership(ID: ID!, electionMembership: ElectionMembershipInput): Int
+    deleteElectionMembership(ID: ID!): Int
     createPetitionMembership(petitionMembership: PetitionMembershipInput): PetitionMembership
-    updatePetitionMembership(ID: Int, petitionMembership: PetitionMembershipInput): Int
-    deletePetitionMembership(ID: Int): Int
+    updatePetitionMembership(ID: ID!, petitionMembership: PetitionMembershipInput): Int
+    deletePetitionMembership(ID: ID!): Int
     createPollMembership(pollMembership: PollMembershipInput): PollMembership
-    updatePollMembership(ID: Int, pollMembership: PollMembershipInput): Int
-    deletePollMembership(ID: Int): Int
+    updatePollMembership(ID: ID!, pollMembership: PollMembershipInput): Int
+    deletePollMembership(ID: ID!): Int
     createVolunteerOpportunityMembership(volunteerOpportunityMembership: VolunteerOpportunityMembershipInput): VolunteerOpportunityMembership
-    updateVolunteerOpportunityMembership(ID: Int, volunteerOpportunityMembership: VolunteerOpportunityMembershipInput): Int
-    deleteVolunteerOpportunityMembership(ID: Int): Int
+    updateVolunteerOpportunityMembership(ID: ID!, volunteerOpportunityMembership: VolunteerOpportunityMembershipInput): Int
+    deleteVolunteerOpportunityMembership(ID: ID!): Int
     createLiveEventMembership(liveEventMembership: LiveEventMembershipInput): LiveEventMembership
-    updateLiveEventMembership(ID: Int, liveEventMembership: LiveEventMembershipInput): Int
-    deleteLiveEventMembership(ID: Int): Int
+    updateLiveEventMembership(ID: ID!, liveEventMembership: LiveEventMembershipInput): Int
+    deleteLiveEventMembership(ID: ID!): Int
     createProduct(product: ProductInput): Product
-    updateProduct(ID: Int, product: ProductInput): Int
-    deleteProduct(ID: Int): Int
+    updateProduct(ID: ID!, product: ProductInput): Int
+    deleteProduct(ID: ID!): Int
     createProductMembership(productMembership: ProductMembershipInput): ProductMembership
-    updateProductMembership(ID: Int, productMembership: ProductMembershipInput): Int
-    deleteProductMembership(ID: Int): Int
+    updateProductMembership(ID: ID!, productMembership: ProductMembershipInput): Int
+    deleteProductMembership(ID: ID!): Int
     createDonationCampaign(donationCampaign: DonationCampaignInput): DonationCampaign
-    updateDonationCampaign(ID: Int, donationCampaign: DonationCampaignInput): Int
-    deleteDonationCampaign(ID: Int): Int
+    updateDonationCampaign(ID: ID!, donationCampaign: DonationCampaignInput): Int
+    deleteDonationCampaign(ID: ID!): Int
     createDonationCampaignMembership(donationCampaignMembership: DonationCampaignMembershipInput): DonationCampaignMembership
-    updateDonationCampaignMembership(ID: Int, donationCampaignMembership: DonationCampaignMembershipInput): Int
-    deleteDonationCampaignMembership(ID: Int): Int
+    updateDonationCampaignMembership(ID: ID!, donationCampaignMembership: DonationCampaignMembershipInput): Int
+    deleteDonationCampaignMembership(ID: ID!): Int
     createPetition(petition: PetitionInput): Petition
-    updatePetition(ID: Int, petition: PetitionInput): Int
-    deletePetition(ID: Int): Int
+    updatePetition(ID: ID!, petition: PetitionInput): Int
+    deletePetition(ID: ID!): Int
     createPetitionSigner(petitionSigner: PetitionSignerInput): PetitionSigner
-    updatePetitionSigner(ID: Int, petitionSigner: PetitionSignerInput): Int
-    deletePetitionSigner(ID: Int): Int
+    updatePetitionSigner(ID: ID!, petitionSigner: PetitionSignerInput): Int
+    deletePetitionSigner(ID: ID!): Int
     createPoll(poll: PollInput): Poll
-    updatePoll(ID: Int, poll: PollInput): Int
-    deletePoll(ID: Int): Int
+    updatePoll(ID: ID!, poll: PollInput): Int
+    deletePoll(ID: ID!): Int
     createPollRespondant(pollRespondant: PollRespondantInput): PollRespondant
-    updatePollRespondant(ID: Int, pollRespondant: PollRespondantInput): Int
-    deletePollRespondant(ID: Int): Int
+    updatePollRespondant(ID: ID!, pollRespondant: PollRespondantInput): Int
+    deletePollRespondant(ID: ID!): Int
     createPurchaser(purchaser: PurchaserInput): Purchaser
-    updatePurchaser(ID: Int, purchaser: PurchaserInput): Int
-    deletePurchaser(ID: Int): Int
+    updatePurchaser(ID: ID!, purchaser: PurchaserInput): Int
+    deletePurchaser(ID: ID!): Int
     createCustomerOrder(customerOrder: CustomerOrderInput): CustomerOrder
-    updateCustomerOrder(ID: Int, customerOrder: CustomerOrderInput): Int
-    deleteCustomerOrder(ID: Int): Int
+    updateCustomerOrder(ID: ID!, customerOrder: CustomerOrderInput): Int
+    deleteCustomerOrder(ID: ID!): Int
     createDonor(donor: DonorInput): Donor
-    updateDonor(ID: Int, donor: DonorInput): Int
-    deleteDonor(ID: Int): Int
+    updateDonor(ID: ID!, donor: DonorInput): Int
+    deleteDonor(ID: ID!): Int
     createLiveEvent(liveEvent: LiveEventInput): LiveEvent
-    updateLiveEvent(ID: Int, liveEvent: LiveEventInput): Int
-    deleteLiveEvent(ID: Int): Int
+    updateLiveEvent(ID: ID!, liveEvent: LiveEventInput): Int
+    deleteLiveEvent(ID: ID!): Int
     createEventAttendee(eventAttendee: EventAttendeeInput): EventAttendee
-    updateEventAttendee(ID: Int, eventAttendee: EventAttendeeInput): Int
-    deleteEventAttendee(ID: Int): Int
+    updateEventAttendee(ID: ID!, eventAttendee: EventAttendeeInput): Int
+    deleteEventAttendee(ID: ID!): Int
     createVoter(voter: VoterInput): Voter
-    updateVoter(ID: Int, voter: VoterInput): Int
-    deleteVoter(ID: Int): Int
+    updateVoter(ID: ID!, voter: VoterInput): Int
+    deleteVoter(ID: ID!): Int
     createVolunteerOpportunity(volunteerOpportunity: VolunteerOpportunityInput): VolunteerOpportunity
-    updateVolunteerOpportunity(ID: Int, volunteerOpportunity: VolunteerOpportunityInput): Int
-    deleteVolunteerOpportunity(ID: Int): Int
+    updateVolunteerOpportunity(ID: ID!, volunteerOpportunity: VolunteerOpportunityInput): Int
+    deleteVolunteerOpportunity(ID: ID!): Int
     createVolunteer(volunteer: VolunteerInput): Volunteer
-    updateVolunteer(ID: Int, volunteer: VolunteerInput): Int
-    deleteVolunteer(ID: Int): Int
+    updateVolunteer(ID: ID!, volunteer: VolunteerInput): Int
+    deleteVolunteer(ID: ID!): Int
     createFollower(follower: FollowerInput): Follower
-    updateFollower(ID: Int, follower: FollowerInput): Int
-    deleteFollower(ID: Int): Int
+    updateFollower(ID: ID!, follower: FollowerInput): Int
+    deleteFollower(ID: ID!): Int
     createTerritory(territory: TerritoryInput): Territory
-    updateTerritory(ID: Int, territory: TerritoryInput): Int
-    deleteTerritory(ID: Int): Int
+    updateTerritory(ID: ID!, territory: TerritoryInput): Int
+    deleteTerritory(ID: ID!): Int
     createActivityType(activityType: ActivityTypeInput): ActivityType
-    updateActivityType(ID: Int, activityType: ActivityTypeInput): Int
-    deleteActivityType(ID: Int): Int
+    updateActivityType(ID: ID!, activityType: ActivityTypeInput): Int
+    deleteActivityType(ID: ID!): Int
     createActivity(activity: ActivityInput): Activity
-    updateActivity(ID: Int, activity: ActivityInput): Int
-    deleteActivity(ID: Int): Int
+    updateActivity(ID: ID!, activity: ActivityInput): Int
+    deleteActivity(ID: ID!): Int
     createNote(note: NoteInput): Note
-    updateNote(ID: Int, note: NoteInput): Int
-    deleteNote(ID: Int): Int
+    updateNote(ID: ID!, note: NoteInput): Int
+    deleteNote(ID: ID!): Int
     createAccount(account: AccountInput): Account
-    updateAccount(ID: Int, account: AccountInput): Int
-    deleteAccount(ID: Int): Int
+    updateAccount(ID: ID!, account: AccountInput): Int
+    deleteAccount(ID: ID!): Int
     createOwnerMembership(ownerMembership: OwnerMembershipInput): OwnerMembership
-    updateOwnerMembership(ID: Int, ownerMembership: OwnerMembershipInput): Int
-    deleteOwnerMembership(ID: Int): Int
+    updateOwnerMembership(ID: ID!, ownerMembership: OwnerMembershipInput): Int
+    deleteOwnerMembership(ID: ID!): Int
     createContact(contact: ContactInput): Contact
-    updateContact(ID: Int, contact: ContactInput): Int
-    deleteContact(ID: Int): Int
+    updateContact(ID: ID!, contact: ContactInput): Int
+    deleteContact(ID: ID!): Int
     createContactMembership(contactMembership: ContactMembershipInput): ContactMembership
-    updateContactMembership(ID: Int, contactMembership: ContactMembershipInput): Int
-    deleteContactMembership(ID: Int): Int
+    updateContactMembership(ID: ID!, contactMembership: ContactMembershipInput): Int
+    deleteContactMembership(ID: ID!): Int
     createCause(cause: CauseInput): Cause
-    updateCause(ID: Int, cause: CauseInput): Int
-    deleteCause(ID: Int): Int
+    updateCause(ID: ID!, cause: CauseInput): Int
+    deleteCause(ID: ID!): Int
     createAgent(agent: AgentInput): Agent
-    updateAgent(ID: Int, agent: AgentInput): Int
-    deleteAgent(ID: Int): Int
+    updateAgent(ID: ID!, agent: AgentInput): Int
+    deleteAgent(ID: ID!): Int
     createAgentMembership(agentMembership: AgentMembershipInput): AgentMembership
-    updateAgentMembership(ID: Int, agentMembership: AgentMembershipInput): Int
-    deleteAgentMembership(ID: Int): Int
+    updateAgentMembership(ID: ID!, agentMembership: AgentMembershipInput): Int
+    deleteAgentMembership(ID: ID!): Int
   }
   `.replace(/[\u200B-\u200D\uFEFF]/g, '');

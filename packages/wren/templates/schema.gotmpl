@@ -19,14 +19,14 @@ type {{.Name}} {
 
   type Query {
     {{range .Schema.Tables}}
-    get{{.Name}}(ID: Int): {{.Name}}
+    get{{.Name}}(ID: ID!): {{.Name}}
     list{{.Name}}: [{{.Name}}]{{end}}
   }
 
   type Mutation {
     {{range .Schema.Tables}}
     create{{.Name}}({{camel .Name}}: {{.Name}}Input): {{.Name}}
-    update{{.Name}}(ID: Int, {{camel .Name}}: {{.Name}}Input): Int
-    delete{{.Name}}(ID: Int): Int{{end}}
+    update{{.Name}}(ID: ID!, {{camel .Name}}: {{.Name}}Input): Int
+    delete{{.Name}}(ID: ID!): Int{{end}}
   }
   `.replace(/[\u200B-\u200D\uFEFF]/g, '');
