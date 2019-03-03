@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePho
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Photo entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO photo (img_url) VALUES($1)  RETURNING id;",
 		req.Item.ImgURL).Scan(&id)

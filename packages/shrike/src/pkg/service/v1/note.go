@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateNote(ctx context.Context, req *v1.CreateNote
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Note entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO note (contact, cause, body) VALUES($1, $2, $3)  RETURNING id;",
 		req.Item.Contact, req.Item.Cause, req.Item.Body).Scan(&id)

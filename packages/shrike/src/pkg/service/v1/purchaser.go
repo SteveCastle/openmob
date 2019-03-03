@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreatePurchaser(ctx context.Context, req *v1.Creat
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Purchaser entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO purchaser (customer_order, contact, cause) VALUES($1, $2, $3)  RETURNING id;",
 		req.Item.CustomerOrder, req.Item.Contact, req.Item.Cause).Scan(&id)

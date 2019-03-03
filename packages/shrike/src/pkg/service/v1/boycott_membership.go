@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert BoycottMembership entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO boycott_membership (cause, boycott) VALUES($1, $2)  RETURNING id;",
 		req.Item.Cause, req.Item.Boycott).Scan(&id)

@@ -65,7 +65,7 @@ func request_ShrikeService_GetACL_0(ctx context.Context, marshaler runtime.Marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -187,7 +187,7 @@ func request_ShrikeService_DeleteACL_0(ctx context.Context, marshaler runtime.Ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -239,7 +239,7 @@ func request_ShrikeService_GetMailingAddress_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -361,7 +361,7 @@ func request_ShrikeService_DeleteMailingAddress_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -413,7 +413,7 @@ func request_ShrikeService_GetPhoneNumber_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -535,7 +535,7 @@ func request_ShrikeService_DeletePhoneNumber_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -587,7 +587,7 @@ func request_ShrikeService_GetEmailAddress_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -709,7 +709,7 @@ func request_ShrikeService_DeleteEmailAddress_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -761,7 +761,7 @@ func request_ShrikeService_GetPhoto_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -883,7 +883,7 @@ func request_ShrikeService_DeletePhoto_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -935,7 +935,7 @@ func request_ShrikeService_GetLayoutType_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1057,7 +1057,7 @@ func request_ShrikeService_DeleteLayoutType_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1109,7 +1109,7 @@ func request_ShrikeService_GetLayoutRow_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1231,7 +1231,7 @@ func request_ShrikeService_DeleteLayoutRow_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1283,7 +1283,7 @@ func request_ShrikeService_GetComponentImplementation_0(ctx context.Context, mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1405,7 +1405,7 @@ func request_ShrikeService_DeleteComponentImplementation_0(ctx context.Context, 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1457,7 +1457,7 @@ func request_ShrikeService_GetComponentType_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1579,7 +1579,7 @@ func request_ShrikeService_DeleteComponentType_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1631,7 +1631,7 @@ func request_ShrikeService_GetLayoutColumn_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1753,7 +1753,7 @@ func request_ShrikeService_DeleteLayoutColumn_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1805,7 +1805,7 @@ func request_ShrikeService_GetFieldType_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1927,7 +1927,7 @@ func request_ShrikeService_DeleteFieldType_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -1979,7 +1979,7 @@ func request_ShrikeService_GetComponent_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2101,7 +2101,7 @@ func request_ShrikeService_DeleteComponent_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2153,7 +2153,7 @@ func request_ShrikeService_GetField_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2275,7 +2275,7 @@ func request_ShrikeService_DeleteField_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2327,7 +2327,7 @@ func request_ShrikeService_GetHomePage_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2449,7 +2449,7 @@ func request_ShrikeService_DeleteHomePage_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2501,7 +2501,7 @@ func request_ShrikeService_GetLayout_0(ctx context.Context, marshaler runtime.Ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2623,7 +2623,7 @@ func request_ShrikeService_DeleteLayout_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2675,7 +2675,7 @@ func request_ShrikeService_GetLandingPage_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2797,7 +2797,7 @@ func request_ShrikeService_DeleteLandingPage_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2849,7 +2849,7 @@ func request_ShrikeService_GetExperiment_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -2971,7 +2971,7 @@ func request_ShrikeService_DeleteExperiment_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3023,7 +3023,7 @@ func request_ShrikeService_GetIssue_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3145,7 +3145,7 @@ func request_ShrikeService_DeleteIssue_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3197,7 +3197,7 @@ func request_ShrikeService_GetCandidate_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3319,7 +3319,7 @@ func request_ShrikeService_DeleteCandidate_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3371,7 +3371,7 @@ func request_ShrikeService_GetDistrictType_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3493,7 +3493,7 @@ func request_ShrikeService_DeleteDistrictType_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3545,7 +3545,7 @@ func request_ShrikeService_GetDistrict_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3667,7 +3667,7 @@ func request_ShrikeService_DeleteDistrict_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3719,7 +3719,7 @@ func request_ShrikeService_GetOffice_0(ctx context.Context, marshaler runtime.Ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3841,7 +3841,7 @@ func request_ShrikeService_DeleteOffice_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -3893,7 +3893,7 @@ func request_ShrikeService_GetPollItem_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4015,7 +4015,7 @@ func request_ShrikeService_DeletePollItem_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4067,7 +4067,7 @@ func request_ShrikeService_GetVolunteerOpportunityType_0(ctx context.Context, ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4189,7 +4189,7 @@ func request_ShrikeService_DeleteVolunteerOpportunityType_0(ctx context.Context,
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4241,7 +4241,7 @@ func request_ShrikeService_GetLiveEventType_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4363,7 +4363,7 @@ func request_ShrikeService_DeleteLiveEventType_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4415,7 +4415,7 @@ func request_ShrikeService_GetCompany_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4537,7 +4537,7 @@ func request_ShrikeService_DeleteCompany_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4589,7 +4589,7 @@ func request_ShrikeService_GetProductType_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4711,7 +4711,7 @@ func request_ShrikeService_DeleteProductType_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4763,7 +4763,7 @@ func request_ShrikeService_GetCustomerCart_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4885,7 +4885,7 @@ func request_ShrikeService_DeleteCustomerCart_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -4937,7 +4937,7 @@ func request_ShrikeService_GetPayment_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5059,7 +5059,7 @@ func request_ShrikeService_DeletePayment_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5111,7 +5111,7 @@ func request_ShrikeService_GetDelivery_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5233,7 +5233,7 @@ func request_ShrikeService_DeleteDelivery_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5285,7 +5285,7 @@ func request_ShrikeService_GetBoycott_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5407,7 +5407,7 @@ func request_ShrikeService_DeleteBoycott_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5459,7 +5459,7 @@ func request_ShrikeService_GetBoycottMembership_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5581,7 +5581,7 @@ func request_ShrikeService_DeleteBoycottMembership_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5633,7 +5633,7 @@ func request_ShrikeService_GetElection_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5755,7 +5755,7 @@ func request_ShrikeService_DeleteElection_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5807,7 +5807,7 @@ func request_ShrikeService_GetElectionMembership_0(ctx context.Context, marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5929,7 +5929,7 @@ func request_ShrikeService_DeleteElectionMembership_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -5981,7 +5981,7 @@ func request_ShrikeService_GetPetitionMembership_0(ctx context.Context, marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6103,7 +6103,7 @@ func request_ShrikeService_DeletePetitionMembership_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6155,7 +6155,7 @@ func request_ShrikeService_GetPollMembership_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6277,7 +6277,7 @@ func request_ShrikeService_DeletePollMembership_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6329,7 +6329,7 @@ func request_ShrikeService_GetVolunteerOpportunityMembership_0(ctx context.Conte
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6451,7 +6451,7 @@ func request_ShrikeService_DeleteVolunteerOpportunityMembership_0(ctx context.Co
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6503,7 +6503,7 @@ func request_ShrikeService_GetLiveEventMembership_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6625,7 +6625,7 @@ func request_ShrikeService_DeleteLiveEventMembership_0(ctx context.Context, mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6677,7 +6677,7 @@ func request_ShrikeService_GetProduct_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6799,7 +6799,7 @@ func request_ShrikeService_DeleteProduct_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6851,7 +6851,7 @@ func request_ShrikeService_GetProductMembership_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -6973,7 +6973,7 @@ func request_ShrikeService_DeleteProductMembership_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7025,7 +7025,7 @@ func request_ShrikeService_GetDonationCampaign_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7147,7 +7147,7 @@ func request_ShrikeService_DeleteDonationCampaign_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7199,7 +7199,7 @@ func request_ShrikeService_GetDonationCampaignMembership_0(ctx context.Context, 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7321,7 +7321,7 @@ func request_ShrikeService_DeleteDonationCampaignMembership_0(ctx context.Contex
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7373,7 +7373,7 @@ func request_ShrikeService_GetPetition_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7495,7 +7495,7 @@ func request_ShrikeService_DeletePetition_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7547,7 +7547,7 @@ func request_ShrikeService_GetPetitionSigner_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7669,7 +7669,7 @@ func request_ShrikeService_DeletePetitionSigner_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7721,7 +7721,7 @@ func request_ShrikeService_GetPoll_0(ctx context.Context, marshaler runtime.Mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7843,7 +7843,7 @@ func request_ShrikeService_DeletePoll_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -7895,7 +7895,7 @@ func request_ShrikeService_GetPollRespondant_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8017,7 +8017,7 @@ func request_ShrikeService_DeletePollRespondant_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8069,7 +8069,7 @@ func request_ShrikeService_GetPurchaser_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8191,7 +8191,7 @@ func request_ShrikeService_DeletePurchaser_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8243,7 +8243,7 @@ func request_ShrikeService_GetCustomerOrder_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8365,7 +8365,7 @@ func request_ShrikeService_DeleteCustomerOrder_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8417,7 +8417,7 @@ func request_ShrikeService_GetDonor_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8539,7 +8539,7 @@ func request_ShrikeService_DeleteDonor_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8591,7 +8591,7 @@ func request_ShrikeService_GetLiveEvent_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8713,7 +8713,7 @@ func request_ShrikeService_DeleteLiveEvent_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8765,7 +8765,7 @@ func request_ShrikeService_GetEventAttendee_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8887,7 +8887,7 @@ func request_ShrikeService_DeleteEventAttendee_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -8939,7 +8939,7 @@ func request_ShrikeService_GetVoter_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9061,7 +9061,7 @@ func request_ShrikeService_DeleteVoter_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9113,7 +9113,7 @@ func request_ShrikeService_GetVolunteerOpportunity_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9235,7 +9235,7 @@ func request_ShrikeService_DeleteVolunteerOpportunity_0(ctx context.Context, mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9287,7 +9287,7 @@ func request_ShrikeService_GetVolunteer_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9409,7 +9409,7 @@ func request_ShrikeService_DeleteVolunteer_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9461,7 +9461,7 @@ func request_ShrikeService_GetFollower_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9583,7 +9583,7 @@ func request_ShrikeService_DeleteFollower_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9635,7 +9635,7 @@ func request_ShrikeService_GetTerritory_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9757,7 +9757,7 @@ func request_ShrikeService_DeleteTerritory_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9809,7 +9809,7 @@ func request_ShrikeService_GetActivityType_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9931,7 +9931,7 @@ func request_ShrikeService_DeleteActivityType_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -9983,7 +9983,7 @@ func request_ShrikeService_GetActivity_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10105,7 +10105,7 @@ func request_ShrikeService_DeleteActivity_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10157,7 +10157,7 @@ func request_ShrikeService_GetNote_0(ctx context.Context, marshaler runtime.Mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10279,7 +10279,7 @@ func request_ShrikeService_DeleteNote_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10331,7 +10331,7 @@ func request_ShrikeService_GetAccount_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10453,7 +10453,7 @@ func request_ShrikeService_DeleteAccount_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10505,7 +10505,7 @@ func request_ShrikeService_GetOwnerMembership_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10627,7 +10627,7 @@ func request_ShrikeService_DeleteOwnerMembership_0(ctx context.Context, marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10679,7 +10679,7 @@ func request_ShrikeService_GetContact_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10801,7 +10801,7 @@ func request_ShrikeService_DeleteContact_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10853,7 +10853,7 @@ func request_ShrikeService_GetContactMembership_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -10975,7 +10975,7 @@ func request_ShrikeService_DeleteContactMembership_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -11027,7 +11027,7 @@ func request_ShrikeService_GetCause_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -11149,7 +11149,7 @@ func request_ShrikeService_DeleteCause_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -11201,7 +11201,7 @@ func request_ShrikeService_GetAgent_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -11323,7 +11323,7 @@ func request_ShrikeService_DeleteAgent_0(ctx context.Context, marshaler runtime.
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -11375,7 +11375,7 @@ func request_ShrikeService_GetAgentMembership_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
@@ -11497,7 +11497,7 @@ func request_ShrikeService_DeleteAgentMembership_0(ctx context.Context, marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
 	}
 
-	protoReq.ID, err = runtime.Int64(val)
+	protoReq.ID, err = runtime.String(val)
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)

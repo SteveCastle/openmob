@@ -118,8 +118,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -155,8 +154,7 @@
             "description": "Unique integer IDentifier of the Account to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -193,8 +191,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -231,8 +228,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -347,8 +343,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -384,8 +379,7 @@
             "description": "Unique integer IDentifier of the ACL to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -422,8 +416,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -460,8 +453,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -576,8 +568,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -613,8 +604,7 @@
             "description": "Unique integer IDentifier of the Activity to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -651,8 +641,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -689,8 +678,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -805,8 +793,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -842,8 +829,7 @@
             "description": "Unique integer IDentifier of the ActivityType to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -880,8 +866,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -918,8 +903,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1034,8 +1018,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1071,8 +1054,7 @@
             "description": "Unique integer IDentifier of the Agent to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1109,8 +1091,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1147,8 +1128,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1263,8 +1243,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1300,8 +1279,7 @@
             "description": "Unique integer IDentifier of the AgentMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1338,8 +1316,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1376,8 +1353,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1492,8 +1468,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1529,8 +1504,7 @@
             "description": "Unique integer IDentifier of the Boycott to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1567,8 +1541,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1605,8 +1578,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1721,8 +1693,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1758,8 +1729,7 @@
             "description": "Unique integer IDentifier of the BoycottMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1796,8 +1766,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1834,8 +1803,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -1950,8 +1918,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -1987,8 +1954,7 @@
             "description": "Unique integer IDentifier of the Candidate to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2025,8 +1991,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2063,8 +2028,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2179,8 +2143,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2216,8 +2179,7 @@
             "description": "Unique integer IDentifier of the Cause to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2254,8 +2216,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2292,8 +2253,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2408,8 +2368,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2445,8 +2404,7 @@
             "description": "Unique integer IDentifier of the Company to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2483,8 +2441,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2521,8 +2478,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2637,8 +2593,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2674,8 +2629,7 @@
             "description": "Unique integer IDentifier of the Component to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2712,8 +2666,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2750,8 +2703,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2866,8 +2818,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2903,8 +2854,7 @@
             "description": "Unique integer IDentifier of the ComponentImplementation to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -2941,8 +2891,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -2979,8 +2928,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -3095,8 +3043,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -3132,8 +3079,7 @@
             "description": "Unique integer IDentifier of the ComponentType to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -3170,8 +3116,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -3208,8 +3153,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -3324,8 +3268,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -3361,8 +3304,7 @@
             "description": "Unique integer IDentifier of the Contact to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -3399,8 +3341,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -3437,8 +3378,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -3553,8 +3493,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -3590,8 +3529,7 @@
             "description": "Unique integer IDentifier of the ContactMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -3628,8 +3566,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -3666,8 +3603,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -3782,8 +3718,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -3819,8 +3754,7 @@
             "description": "Unique integer IDentifier of the CustomerCart to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -3857,8 +3791,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -3895,8 +3828,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4011,8 +3943,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4048,8 +3979,7 @@
             "description": "Unique integer IDentifier of the CustomerOrder to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4086,8 +4016,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4124,8 +4053,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4240,8 +4168,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4277,8 +4204,7 @@
             "description": "Unique integer IDentifier of the Delivery to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4315,8 +4241,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4353,8 +4278,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4469,8 +4393,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4506,8 +4429,7 @@
             "description": "Unique integer IDentifier of the District to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4544,8 +4466,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4582,8 +4503,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4698,8 +4618,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4735,8 +4654,7 @@
             "description": "Unique integer IDentifier of the DistrictType to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4773,8 +4691,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4811,8 +4728,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -4927,8 +4843,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -4964,8 +4879,7 @@
             "description": "Unique integer IDentifier of the DonationCampaign to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5002,8 +4916,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5040,8 +4953,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5156,8 +5068,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5193,8 +5104,7 @@
             "description": "Unique integer IDentifier of the DonationCampaignMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5231,8 +5141,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5269,8 +5178,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5385,8 +5293,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5422,8 +5329,7 @@
             "description": "Unique integer IDentifier of the Donor to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5460,8 +5366,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5498,8 +5403,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5614,8 +5518,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5651,8 +5554,7 @@
             "description": "Unique integer IDentifier of the Election to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5689,8 +5591,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5727,8 +5628,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5843,8 +5743,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5880,8 +5779,7 @@
             "description": "Unique integer IDentifier of the ElectionMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -5918,8 +5816,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -5956,8 +5853,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6072,8 +5968,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -6109,8 +6004,7 @@
             "description": "Unique integer IDentifier of the EmailAddress to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -6147,8 +6041,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6185,8 +6078,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6301,8 +6193,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -6338,8 +6229,7 @@
             "description": "Unique integer IDentifier of the EventAttendee to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -6376,8 +6266,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6414,8 +6303,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6530,8 +6418,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -6567,8 +6454,7 @@
             "description": "Unique integer IDentifier of the Experiment to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -6605,8 +6491,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6643,8 +6528,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6759,8 +6643,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -6796,8 +6679,7 @@
             "description": "Unique integer IDentifier of the Field to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -6834,8 +6716,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6872,8 +6753,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -6988,8 +6868,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7025,8 +6904,7 @@
             "description": "Unique integer IDentifier of the FieldType to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7063,8 +6941,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -7101,8 +6978,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -7217,8 +7093,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7254,8 +7129,7 @@
             "description": "Unique integer IDentifier of the Follower to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7292,8 +7166,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -7330,8 +7203,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -7446,8 +7318,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7483,8 +7354,7 @@
             "description": "Unique integer IDentifier of the HomePage to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7521,8 +7391,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -7559,8 +7428,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -7675,8 +7543,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7712,8 +7579,7 @@
             "description": "Unique integer IDentifier of the Issue to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7750,8 +7616,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -7788,8 +7653,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -7904,8 +7768,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7941,8 +7804,7 @@
             "description": "Unique integer IDentifier of the LandingPage to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -7979,8 +7841,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8017,8 +7878,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8133,8 +7993,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -8170,8 +8029,7 @@
             "description": "Unique integer IDentifier of the Layout to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -8208,8 +8066,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8246,8 +8103,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8362,8 +8218,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -8399,8 +8254,7 @@
             "description": "Unique integer IDentifier of the LayoutColumn to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -8437,8 +8291,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8475,8 +8328,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8591,8 +8443,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -8628,8 +8479,7 @@
             "description": "Unique integer IDentifier of the LayoutRow to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -8666,8 +8516,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8704,8 +8553,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8820,8 +8668,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -8857,8 +8704,7 @@
             "description": "Unique integer IDentifier of the LayoutType to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -8895,8 +8741,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -8933,8 +8778,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9049,8 +8893,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -9086,8 +8929,7 @@
             "description": "Unique integer IDentifier of the LiveEvent to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -9124,8 +8966,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9162,8 +9003,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9278,8 +9118,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -9315,8 +9154,7 @@
             "description": "Unique integer IDentifier of the LiveEventMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -9353,8 +9191,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9391,8 +9228,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9507,8 +9343,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -9544,8 +9379,7 @@
             "description": "Unique integer IDentifier of the LiveEventType to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -9582,8 +9416,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9620,8 +9453,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9736,8 +9568,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -9773,8 +9604,7 @@
             "description": "Unique integer IDentifier of the MailingAddress to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -9811,8 +9641,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9849,8 +9678,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -9965,8 +9793,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10002,8 +9829,7 @@
             "description": "Unique integer IDentifier of the Note to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10040,8 +9866,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10078,8 +9903,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10194,8 +10018,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10231,8 +10054,7 @@
             "description": "Unique integer IDentifier of the Office to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10269,8 +10091,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10307,8 +10128,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10423,8 +10243,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10460,8 +10279,7 @@
             "description": "Unique integer IDentifier of the OwnerMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10498,8 +10316,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10536,8 +10353,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10652,8 +10468,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10689,8 +10504,7 @@
             "description": "Unique integer IDentifier of the Payment to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10727,8 +10541,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10765,8 +10578,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10881,8 +10693,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10918,8 +10729,7 @@
             "description": "Unique integer IDentifier of the Petition to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -10956,8 +10766,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -10994,8 +10803,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -11110,8 +10918,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -11147,8 +10954,7 @@
             "description": "Unique integer IDentifier of the PetitionMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -11185,8 +10991,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -11223,8 +11028,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -11339,8 +11143,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -11376,8 +11179,7 @@
             "description": "Unique integer IDentifier of the PetitionSigner to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -11414,8 +11216,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -11452,8 +11253,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -11568,8 +11368,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -11605,8 +11404,7 @@
             "description": "Unique integer IDentifier of the PhoneNumber to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -11643,8 +11441,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -11681,8 +11478,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -11797,8 +11593,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -11834,8 +11629,7 @@
             "description": "Unique integer IDentifier of the Photo to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -11872,8 +11666,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -11910,8 +11703,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12026,8 +11818,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12063,8 +11854,7 @@
             "description": "Unique integer IDentifier of the Poll to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12101,8 +11891,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12139,8 +11928,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12255,8 +12043,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12292,8 +12079,7 @@
             "description": "Unique integer IDentifier of the PollItem to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12330,8 +12116,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12368,8 +12153,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12484,8 +12268,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12521,8 +12304,7 @@
             "description": "Unique integer IDentifier of the PollMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12559,8 +12341,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12597,8 +12378,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12713,8 +12493,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12750,8 +12529,7 @@
             "description": "Unique integer IDentifier of the PollRespondant to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12788,8 +12566,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12826,8 +12603,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -12942,8 +12718,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -12979,8 +12754,7 @@
             "description": "Unique integer IDentifier of the Product to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13017,8 +12791,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13055,8 +12828,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13171,8 +12943,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13208,8 +12979,7 @@
             "description": "Unique integer IDentifier of the ProductMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13246,8 +13016,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13284,8 +13053,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13400,8 +13168,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13437,8 +13204,7 @@
             "description": "Unique integer IDentifier of the ProductType to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13475,8 +13241,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13513,8 +13278,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13629,8 +13393,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13666,8 +13429,7 @@
             "description": "Unique integer IDentifier of the Purchaser to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13704,8 +13466,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13742,8 +13503,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13858,8 +13618,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13895,8 +13654,7 @@
             "description": "Unique integer IDentifier of the Territory to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -13933,8 +13691,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -13971,8 +13728,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -14087,8 +13843,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -14124,8 +13879,7 @@
             "description": "Unique integer IDentifier of the Volunteer to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -14162,8 +13916,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -14200,8 +13953,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -14316,8 +14068,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -14353,8 +14104,7 @@
             "description": "Unique integer IDentifier of the VolunteerOpportunity to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -14391,8 +14141,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -14429,8 +14178,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -14545,8 +14293,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -14582,8 +14329,7 @@
             "description": "Unique integer IDentifier of the VolunteerOpportunityMembership to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -14620,8 +14366,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -14658,8 +14403,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -14774,8 +14518,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -14811,8 +14554,7 @@
             "description": "Unique integer IDentifier of the VolunteerOpportunityType to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -14849,8 +14591,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -14887,8 +14628,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -15003,8 +14743,7 @@
             "name": "ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -15040,8 +14779,7 @@
             "description": "Unique integer IDentifier of the Voter to delete",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "api",
@@ -15078,8 +14816,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -15116,8 +14853,7 @@
             "name": "item.ID",
             "in": "path",
             "required": true,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           },
           {
             "name": "body",
@@ -15169,8 +14905,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15201,8 +14936,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15218,8 +14952,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15238,8 +14971,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15253,16 +14985,13 @@
           "type": "string"
         },
         "ActivityType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15270,8 +14999,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15290,8 +15018,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15302,8 +15029,7 @@
           "format": "date-time"
         },
         "Account": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15311,8 +15037,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15323,12 +15048,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Agent": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15336,8 +15059,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15356,8 +15078,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15368,12 +15089,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Boycott": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15381,8 +15100,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15393,8 +15111,7 @@
           "format": "date-time"
         },
         "Election": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15402,8 +15119,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15428,8 +15144,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15448,8 +15163,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15460,12 +15174,10 @@
           "format": "date-time"
         },
         "ComponentType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "LayoutColumn": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15473,8 +15185,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15490,8 +15201,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15510,8 +15220,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -15522,12 +15231,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15553,8 +15260,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15585,8 +15291,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15597,16 +15302,13 @@
           "type": "string"
         },
         "ActivityType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15629,8 +15331,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15661,8 +15362,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15670,8 +15370,7 @@
       "type": "object",
       "properties": {
         "Account": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15679,12 +15378,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Agent": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15707,8 +15404,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15731,8 +15427,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15748,12 +15443,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Boycott": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15776,8 +15469,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15800,8 +15492,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15809,8 +15500,7 @@
       "type": "object",
       "properties": {
         "Election": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15833,8 +15523,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15871,8 +15560,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15903,8 +15591,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15912,12 +15599,10 @@
       "type": "object",
       "properties": {
         "ComponentType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "LayoutColumn": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15943,8 +15628,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15967,8 +15651,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -15999,8 +15682,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16028,12 +15710,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16056,8 +15736,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16080,8 +15759,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16107,8 +15785,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16116,8 +15793,7 @@
       "type": "object",
       "properties": {
         "CustomerCart": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16140,8 +15816,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16167,8 +15842,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16183,8 +15857,7 @@
           "type": "string"
         },
         "DistrictType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16207,8 +15880,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16239,8 +15911,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16256,12 +15927,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "DonationCampaign": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16284,8 +15953,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16308,8 +15976,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16317,16 +15984,13 @@
       "type": "object",
       "properties": {
         "CustomerOrder": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16349,8 +16013,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16366,12 +16029,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Election": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16394,8 +16055,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16418,8 +16078,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16450,8 +16109,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16459,16 +16117,13 @@
       "type": "object",
       "properties": {
         "LiveEvent": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16491,8 +16146,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16503,8 +16157,7 @@
           "type": "string"
         },
         "LandingPage": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16527,8 +16180,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16536,12 +16188,10 @@
       "type": "object",
       "properties": {
         "FieldType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Component": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16564,8 +16214,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16596,8 +16245,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16605,12 +16253,10 @@
       "type": "object",
       "properties": {
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16633,8 +16279,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16645,12 +16290,10 @@
           "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Layout": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16673,8 +16316,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16685,8 +16327,7 @@
           "type": "string"
         },
         "Election": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16709,8 +16350,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16721,12 +16361,10 @@
           "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Layout": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16749,8 +16387,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16758,8 +16395,7 @@
       "type": "object",
       "properties": {
         "LayoutType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16767,8 +16403,7 @@
       "type": "object",
       "properties": {
         "LayoutRow": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16791,8 +16426,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16815,8 +16449,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16824,8 +16457,7 @@
       "type": "object",
       "properties": {
         "Layout": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16848,8 +16480,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16880,8 +16511,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16892,8 +16522,7 @@
           "type": "string"
         },
         "LiveEventType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16901,12 +16530,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "LiveEvent": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16929,8 +16556,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16953,8 +16579,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -16985,8 +16610,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17026,8 +16650,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17035,12 +16658,10 @@
       "type": "object",
       "properties": {
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Body": {
           "type": "string"
@@ -17066,8 +16687,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17078,8 +16698,7 @@
           "type": "string"
         },
         "Election": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17102,8 +16721,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17111,12 +16729,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Account": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17139,8 +16755,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17148,8 +16763,7 @@
       "type": "object",
       "properties": {
         "CustomerOrder": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17172,8 +16786,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17189,12 +16802,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Petition": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17217,8 +16828,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17241,8 +16851,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17250,16 +16859,13 @@
       "type": "object",
       "properties": {
         "Petition": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17282,8 +16888,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17314,8 +16919,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17346,8 +16950,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17366,8 +16969,7 @@
           "type": "string"
         },
         "Poll": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17390,8 +16992,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17399,12 +17000,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Petition": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17427,8 +17026,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17448,16 +17046,13 @@
       "type": "object",
       "properties": {
         "Poll": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17480,8 +17075,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17492,8 +17086,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17504,8 +17097,7 @@
           "type": "string"
         },
         "ProductType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17513,12 +17105,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Product": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17541,8 +17131,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17565,8 +17154,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17597,8 +17185,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17606,16 +17193,13 @@
       "type": "object",
       "properties": {
         "CustomerOrder": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17638,8 +17222,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17670,8 +17253,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17679,16 +17261,13 @@
       "type": "object",
       "properties": {
         "VolunteerOpportunity": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17699,8 +17278,7 @@
           "type": "string"
         },
         "ElectionType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17708,12 +17286,10 @@
       "type": "object",
       "properties": {
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "VolunteerOpportunity": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17736,8 +17312,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17760,8 +17335,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17792,8 +17366,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17816,8 +17389,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17825,12 +17397,10 @@
       "type": "object",
       "properties": {
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17853,8 +17423,7 @@
           "type": "string"
         },
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -17862,8 +17431,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -17879,8 +17447,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -17891,8 +17458,7 @@
           "format": "date-time"
         },
         "CustomerCart": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -18824,8 +18390,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -18841,8 +18406,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -18860,8 +18424,7 @@
           "type": "string"
         },
         "DistrictType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -18869,8 +18432,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -18889,8 +18451,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -18909,8 +18470,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -18921,12 +18481,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "DonationCampaign": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -18934,8 +18492,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -18946,16 +18503,13 @@
           "format": "date-time"
         },
         "CustomerOrder": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -18963,8 +18517,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -18983,8 +18536,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -18995,12 +18547,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Election": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -19008,8 +18558,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19028,8 +18577,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19040,16 +18588,13 @@
           "format": "date-time"
         },
         "LiveEvent": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -19057,8 +18602,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19072,8 +18616,7 @@
           "type": "string"
         },
         "LandingPage": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -19081,8 +18624,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19093,12 +18635,10 @@
           "format": "date-time"
         },
         "FieldType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Component": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -19106,8 +18646,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19154,8 +18693,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19166,12 +18704,10 @@
           "format": "date-time"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -19905,8 +19441,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19920,12 +19455,10 @@
           "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Layout": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -19933,8 +19466,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19948,8 +19480,7 @@
           "type": "string"
         },
         "Election": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -19957,8 +19488,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19972,12 +19502,10 @@
           "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Layout": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -19985,8 +19513,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -19997,8 +19524,7 @@
           "format": "date-time"
         },
         "LayoutType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -20006,8 +19532,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -20018,8 +19543,7 @@
           "format": "date-time"
         },
         "LayoutRow": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -20027,8 +19551,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -20039,8 +19562,7 @@
           "format": "date-time"
         },
         "Layout": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -20048,8 +19570,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -20992,8 +20513,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21007,8 +20527,7 @@
           "type": "string"
         },
         "LiveEventType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21016,8 +20535,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21028,12 +20546,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "LiveEvent": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21041,8 +20557,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21061,8 +20576,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21090,8 +20604,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21102,12 +20615,10 @@
           "format": "date-time"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Body": {
           "type": "string"
@@ -21118,8 +20629,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21133,8 +20643,7 @@
           "type": "string"
         },
         "Election": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21164,8 +20673,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21176,12 +20684,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Account": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21189,8 +20695,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21201,8 +20706,7 @@
           "format": "date-time"
         },
         "CustomerOrder": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21210,8 +20714,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21230,8 +20733,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21242,12 +20744,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Petition": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21255,8 +20755,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21267,16 +20766,13 @@
           "format": "date-time"
         },
         "Petition": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21284,8 +20780,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21304,8 +20799,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21324,8 +20818,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21344,8 +20837,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21359,8 +20851,7 @@
           "type": "string"
         },
         "Poll": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21368,8 +20859,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21380,12 +20870,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Petition": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21393,8 +20881,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21405,16 +20892,13 @@
           "format": "date-time"
         },
         "Poll": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21422,8 +20906,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21437,8 +20920,7 @@
           "type": "string"
         },
         "ProductType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21446,8 +20928,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21458,12 +20939,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Product": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21471,8 +20950,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21491,8 +20969,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -21503,16 +20980,13 @@
           "format": "date-time"
         },
         "CustomerOrder": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -21520,8 +20994,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -23322,8 +22795,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -23334,16 +22806,13 @@
           "format": "date-time"
         },
         "VolunteerOpportunity": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -23351,8 +22820,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -23366,8 +22834,7 @@
           "type": "string"
         },
         "ElectionType": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -23375,8 +22842,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -23387,12 +22853,10 @@
           "format": "date-time"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "VolunteerOpportunity": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -23400,8 +22864,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -23420,8 +22883,7 @@
       "type": "object",
       "properties": {
         "ID": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "CreatedAt": {
           "type": "string",
@@ -23432,12 +22894,10 @@
           "format": "date-time"
         },
         "Contact": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         },
         "Cause": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     }

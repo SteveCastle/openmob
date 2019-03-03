@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreatePayment(ctx context.Context, req *v1.CreateP
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Payment entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO payment (customer_order) VALUES($1)  RETURNING id;",
 		req.Item.CustomerOrder).Scan(&id)

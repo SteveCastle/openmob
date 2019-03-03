@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateOffice(ctx context.Context, req *v1.CreateOf
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Office entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO office (title, election) VALUES($1, $2)  RETURNING id;",
 		req.Item.Title, req.Item.Election).Scan(&id)

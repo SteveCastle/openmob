@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreatePollItem(ctx context.Context, req *v1.Create
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert PollItem entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO poll_item (title, poll) VALUES($1, $2)  RETURNING id;",
 		req.Item.Title, req.Item.Poll).Scan(&id)

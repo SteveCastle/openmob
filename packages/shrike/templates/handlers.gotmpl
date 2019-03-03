@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert {{.Table.Name}} entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}{{.DBName}}{{end}}{{end}}) VALUES({{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}${{dec (dec $index)}}{{end}}{{end}})  RETURNING id;",
 		{{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}req.Item.{{.Name}}{{end}}{{end}}).Scan(&id)

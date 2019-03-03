@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDon
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Donor entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO donor (customer_order, contact, cause) VALUES($1, $2, $3)  RETURNING id;",
 		req.Item.CustomerOrder, req.Item.Contact, req.Item.Cause).Scan(&id)

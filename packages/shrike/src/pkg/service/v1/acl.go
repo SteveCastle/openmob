@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateACL(ctx context.Context, req *v1.CreateACLRe
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert ACL entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO acl () VALUES()  RETURNING id;").Scan(&id)
 	if err != nil {

@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert ComponentImplementation entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation () VALUES()  RETURNING id;").Scan(&id)
 	if err != nil {

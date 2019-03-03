@@ -39,7 +39,7 @@ input LayoutTypeInput {
 ​
 input LayoutRowInput {
   secret: Int
-  Layout: Int!
+  Layout: ID!
 }
 ​
 input ComponentImplementationInput {
@@ -53,7 +53,7 @@ input ComponentTypeInput {
 ​
 input LayoutColumnInput {
   secret: Int
-  LayoutRow: Int!
+  LayoutRow: ID!
 }
 ​
 input FieldTypeInput {
@@ -63,50 +63,50 @@ input FieldTypeInput {
 ​
 input ComponentInput {
   secret: Int
-  ComponentType: Int!
-  LayoutColumn: Int
+  ComponentType: ID!
+  LayoutColumn: ID
 }
 ​
 input FieldInput {
   secret: Int
-  FieldType: Int!
-  Component: Int
+  FieldType: ID!
+  Component: ID
 }
 ​
 input HomePageInput {
   secret: Int
   Title: String!
-  Cause: Int!
-  Layout: Int
+  Cause: ID!
+  Layout: ID
 }
 ​
 input LayoutInput {
   secret: Int
-  LayoutType: Int
+  LayoutType: ID
 }
 ​
 input LandingPageInput {
   secret: Int
   Title: String!
-  Cause: Int!
-  Layout: Int
+  Cause: ID!
+  Layout: ID
 }
 ​
 input ExperimentInput {
   secret: Int
   Title: String!
-  LandingPage: Int
+  LandingPage: ID
 }
 ​
 input IssueInput {
   secret: Int
   Title: String!
-  Election: Int!
+  Election: ID!
 }
 ​
 input CandidateInput {
   secret: Int
-  Election: Int!
+  Election: ID!
 }
 ​
 input DistrictTypeInput {
@@ -118,19 +118,19 @@ input DistrictInput {
   secret: Int
   Geom: Float
   Title: String!
-  DistrictType: Int!
+  DistrictType: ID!
 }
 ​
 input OfficeInput {
   secret: Int
   Title: String!
-  Election: Int
+  Election: ID
 }
 ​
 input PollItemInput {
   secret: Int
   Title: String!
-  Poll: Int!
+  Poll: ID!
 }
 ​
 input VolunteerOpportunityTypeInput {
@@ -159,7 +159,7 @@ input CustomerCartInput {
 ​
 input PaymentInput {
   secret: Int
-  CustomerOrder: Int!
+  CustomerOrder: ID!
 }
 ​
 input DeliveryInput {
@@ -173,8 +173,8 @@ input BoycottInput {
 ​
 input BoycottMembershipInput {
   secret: Int
-  Cause: Int!
-  Boycott: Int!
+  Cause: ID!
+  Boycott: ID!
 }
 ​
 input ElectionInput {
@@ -184,44 +184,44 @@ input ElectionInput {
 ​
 input ElectionMembershipInput {
   secret: Int
-  Cause: Int!
-  Election: Int!
+  Cause: ID!
+  Election: ID!
 }
 ​
 input PetitionMembershipInput {
   secret: Int
-  Cause: Int!
-  Petition: Int!
+  Cause: ID!
+  Petition: ID!
 }
 ​
 input PollMembershipInput {
   secret: Int
-  Cause: Int!
-  Petition: Int!
+  Cause: ID!
+  Petition: ID!
 }
 ​
 input VolunteerOpportunityMembershipInput {
   secret: Int
-  Cause: Int!
-  VolunteerOpportunity: Int!
+  Cause: ID!
+  VolunteerOpportunity: ID!
 }
 ​
 input LiveEventMembershipInput {
   secret: Int
-  Cause: Int!
-  LiveEvent: Int!
+  Cause: ID!
+  LiveEvent: ID!
 }
 ​
 input ProductInput {
   secret: Int
   Title: String!
-  ProductType: Int!
+  ProductType: ID!
 }
 ​
 input ProductMembershipInput {
   secret: Int
-  Cause: Int!
-  Product: Int!
+  Cause: ID!
+  Product: ID!
 }
 ​
 input DonationCampaignInput {
@@ -231,8 +231,8 @@ input DonationCampaignInput {
 ​
 input DonationCampaignMembershipInput {
   secret: Int
-  Cause: Int!
-  DonationCampaign: Int!
+  Cause: ID!
+  DonationCampaign: ID!
 }
 ​
 input PetitionInput {
@@ -242,9 +242,9 @@ input PetitionInput {
 ​
 input PetitionSignerInput {
   secret: Int
-  Petition: Int!
-  Contact: Int!
-  Cause: Int!
+  Petition: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input PollInput {
@@ -254,66 +254,66 @@ input PollInput {
 ​
 input PollRespondantInput {
   secret: Int
-  Poll: Int!
-  Contact: Int!
-  Cause: Int!
+  Poll: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input PurchaserInput {
   secret: Int
-  CustomerOrder: Int!
-  Contact: Int!
-  Cause: Int!
+  CustomerOrder: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input CustomerOrderInput {
   secret: Int
-  CustomerCart: Int!
+  CustomerCart: ID!
 }
 ​
 input DonorInput {
   secret: Int
-  CustomerOrder: Int!
-  Contact: Int!
-  Cause: Int!
+  CustomerOrder: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input LiveEventInput {
   secret: Int
   Title: String!
-  LiveEventType: Int!
+  LiveEventType: ID!
 }
 ​
 input EventAttendeeInput {
   secret: Int
-  LiveEvent: Int!
-  Contact: Int!
-  Cause: Int!
+  LiveEvent: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input VoterInput {
   secret: Int
-  Contact: Int!
-  Cause: Int!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input VolunteerOpportunityInput {
   secret: Int
   Title: String!
-  ElectionType: Int
+  ElectionType: ID
 }
 ​
 input VolunteerInput {
   secret: Int
-  VolunteerOpportunity: Int!
-  Contact: Int!
-  Cause: Int!
+  VolunteerOpportunity: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input FollowerInput {
   secret: Int
-  Contact: Int!
-  Cause: Int!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input TerritoryInput {
@@ -329,15 +329,15 @@ input ActivityTypeInput {
 input ActivityInput {
   secret: Int
   Title: String!
-  ActivityType: Int!
-  Contact: Int!
-  Cause: Int!
+  ActivityType: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 input NoteInput {
   secret: Int
-  Contact: Int!
-  Cause: Int!
+  Contact: ID!
+  Cause: ID!
   Body: String
 }
 ​
@@ -348,8 +348,8 @@ input AccountInput {
 ​
 input OwnerMembershipInput {
   secret: Int
-  Cause: Int!
-  Account: Int!
+  Cause: ID!
+  Account: ID!
 }
 ​
 input ContactInput {
@@ -363,8 +363,8 @@ input ContactInput {
 ​
 input ContactMembershipInput {
   secret: Int
-  Cause: Int!
-  Contact: Int!
+  Cause: ID!
+  Contact: ID!
 }
 ​
 input CauseInput {
@@ -376,13 +376,13 @@ input CauseInput {
 ​
 input AgentInput {
   secret: Int
-  Account: Int!
+  Account: ID!
 }
 ​
 input AgentMembershipInput {
   secret: Int
-  Cause: Int!
-  Agent: Int!
+  Cause: ID!
+  Agent: ID!
 }
 ​
 
@@ -435,7 +435,7 @@ type LayoutRow {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Layout: Int!
+  Layout: ID!
 }
 ​
 type ComponentImplementation {
@@ -455,7 +455,7 @@ type LayoutColumn {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  LayoutRow: Int!
+  LayoutRow: ID!
 }
 ​
 type FieldType {
@@ -469,16 +469,16 @@ type Component {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  ComponentType: Int!
-  LayoutColumn: Int
+  ComponentType: ID!
+  LayoutColumn: ID
 }
 ​
 type Field {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  FieldType: Int!
-  Component: Int
+  FieldType: ID!
+  Component: ID
 }
 ​
 type HomePage {
@@ -486,15 +486,15 @@ type HomePage {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Cause: Int!
-  Layout: Int
+  Cause: ID!
+  Layout: ID
 }
 ​
 type Layout {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  LayoutType: Int
+  LayoutType: ID
 }
 ​
 type LandingPage {
@@ -502,8 +502,8 @@ type LandingPage {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Cause: Int!
-  Layout: Int
+  Cause: ID!
+  Layout: ID
 }
 ​
 type Experiment {
@@ -511,7 +511,7 @@ type Experiment {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  LandingPage: Int
+  LandingPage: ID
 }
 ​
 type Issue {
@@ -519,14 +519,14 @@ type Issue {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Election: Int!
+  Election: ID!
 }
 ​
 type Candidate {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Election: Int!
+  Election: ID!
 }
 ​
 type DistrictType {
@@ -542,7 +542,7 @@ type District {
   UpdatedAt: Time!
   Geom: Float
   Title: String!
-  DistrictType: Int!
+  DistrictType: ID!
 }
 ​
 type Office {
@@ -550,7 +550,7 @@ type Office {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Election: Int
+  Election: ID
 }
 ​
 type PollItem {
@@ -558,7 +558,7 @@ type PollItem {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Poll: Int!
+  Poll: ID!
 }
 ​
 type VolunteerOpportunityType {
@@ -599,7 +599,7 @@ type Payment {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  CustomerOrder: Int!
+  CustomerOrder: ID!
 }
 ​
 type Delivery {
@@ -619,8 +619,8 @@ type BoycottMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  Boycott: Int!
+  Cause: ID!
+  Boycott: ID!
 }
 ​
 type Election {
@@ -634,40 +634,40 @@ type ElectionMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  Election: Int!
+  Cause: ID!
+  Election: ID!
 }
 ​
 type PetitionMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  Petition: Int!
+  Cause: ID!
+  Petition: ID!
 }
 ​
 type PollMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  Petition: Int!
+  Cause: ID!
+  Petition: ID!
 }
 ​
 type VolunteerOpportunityMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  VolunteerOpportunity: Int!
+  Cause: ID!
+  VolunteerOpportunity: ID!
 }
 ​
 type LiveEventMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  LiveEvent: Int!
+  Cause: ID!
+  LiveEvent: ID!
 }
 ​
 type Product {
@@ -675,15 +675,15 @@ type Product {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  ProductType: Int!
+  ProductType: ID!
 }
 ​
 type ProductMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  Product: Int!
+  Cause: ID!
+  Product: ID!
 }
 ​
 type DonationCampaign {
@@ -697,8 +697,8 @@ type DonationCampaignMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  DonationCampaign: Int!
+  Cause: ID!
+  DonationCampaign: ID!
 }
 ​
 type Petition {
@@ -712,9 +712,9 @@ type PetitionSigner {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Petition: Int!
-  Contact: Int!
-  Cause: Int!
+  Petition: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type Poll {
@@ -728,34 +728,34 @@ type PollRespondant {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Poll: Int!
-  Contact: Int!
-  Cause: Int!
+  Poll: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type Purchaser {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  CustomerOrder: Int!
-  Contact: Int!
-  Cause: Int!
+  CustomerOrder: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type CustomerOrder {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  CustomerCart: Int!
+  CustomerCart: ID!
 }
 ​
 type Donor {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  CustomerOrder: Int!
-  Contact: Int!
-  Cause: Int!
+  CustomerOrder: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type LiveEvent {
@@ -763,24 +763,24 @@ type LiveEvent {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  LiveEventType: Int!
+  LiveEventType: ID!
 }
 ​
 type EventAttendee {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  LiveEvent: Int!
-  Contact: Int!
-  Cause: Int!
+  LiveEvent: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type Voter {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Contact: Int!
-  Cause: Int!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type VolunteerOpportunity {
@@ -788,24 +788,24 @@ type VolunteerOpportunity {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  ElectionType: Int
+  ElectionType: ID
 }
 ​
 type Volunteer {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  VolunteerOpportunity: Int!
-  Contact: Int!
-  Cause: Int!
+  VolunteerOpportunity: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type Follower {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Contact: Int!
-  Cause: Int!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type Territory {
@@ -827,17 +827,17 @@ type Activity {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  ActivityType: Int!
-  Contact: Int!
-  Cause: Int!
+  ActivityType: ID!
+  Contact: ID!
+  Cause: ID!
 }
 ​
 type Note {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Contact: Int!
-  Cause: Int!
+  Contact: ID!
+  Cause: ID!
   Body: String
 }
 ​
@@ -852,8 +852,8 @@ type OwnerMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  Account: Int!
+  Cause: ID!
+  Account: ID!
 }
 ​
 type Contact {
@@ -871,8 +871,8 @@ type ContactMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  Contact: Int!
+  Cause: ID!
+  Contact: ID!
 }
 ​
 type Cause {
@@ -888,15 +888,15 @@ type Agent {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Account: Int!
+  Account: ID!
 }
 ​
 type AgentMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: Int!
-  Agent: Int!
+  Cause: ID!
+  Agent: ID!
 }
 ​
 

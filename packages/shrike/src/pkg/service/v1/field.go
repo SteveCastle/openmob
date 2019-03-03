@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateField(ctx context.Context, req *v1.CreateFie
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Field entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO field (field_type, component) VALUES($1, $2)  RETURNING id;",
 		req.Item.FieldType, req.Item.Component).Scan(&id)

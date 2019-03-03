@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.Create
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Delivery entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO delivery () VALUES()  RETURNING id;").Scan(&id)
 	if err != nil {

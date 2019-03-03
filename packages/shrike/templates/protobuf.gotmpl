@@ -88,12 +88,12 @@ message Create{{.Name}}Request {
 
 message Create{{.Name}}Response {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message Get{{.Name}}Request {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message Get{{.Name}}Response {
@@ -133,7 +133,7 @@ message Update{{.Name}}Response{
 message Delete{{.Name}}Request{
     string api = 1;
     // Unique integer IDentifier of the {{.Name}} to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation

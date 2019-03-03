@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateHomePage(ctx context.Context, req *v1.Create
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert HomePage entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO home_page (title, cause, layout) VALUES($1, $2, $3)  RETURNING id;",
 		req.Item.Title, req.Item.Cause, req.Item.Layout).Scan(&id)

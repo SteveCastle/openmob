@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert OwnerMembership entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO owner_membership (cause, account) VALUES($1, $2)  RETURNING id;",
 		req.Item.Cause, req.Item.Account).Scan(&id)

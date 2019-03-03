@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateFollower(ctx context.Context, req *v1.Create
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Follower entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO follower (contact, cause) VALUES($1, $2)  RETURNING id;",
 		req.Item.Contact, req.Item.Cause).Scan(&id)

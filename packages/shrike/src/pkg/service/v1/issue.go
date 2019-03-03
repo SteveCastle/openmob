@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateIssue(ctx context.Context, req *v1.CreateIss
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Issue entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO issue (title, election) VALUES($1, $2)  RETURNING id;",
 		req.Item.Title, req.Item.Election).Scan(&id)

@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.Crea
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Experiment entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO experiment (title, landing_page) VALUES($1, $2)  RETURNING id;",
 		req.Item.Title, req.Item.LandingPage).Scan(&id)

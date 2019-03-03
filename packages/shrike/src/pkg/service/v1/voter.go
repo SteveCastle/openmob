@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateVoter(ctx context.Context, req *v1.CreateVot
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Voter entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO voter (contact, cause) VALUES($1, $2)  RETURNING id;",
 		req.Item.Contact, req.Item.Cause).Scan(&id)

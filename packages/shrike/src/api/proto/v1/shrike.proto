@@ -73,7 +73,7 @@ message Filter {
 // Generated Types and Message Schema
 
 message ACL {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 }
@@ -90,12 +90,12 @@ message CreateACLRequest {
 
 message CreateACLResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetACLRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetACLResponse {
@@ -135,7 +135,7 @@ message UpdateACLResponse{
 message DeleteACLRequest{
     string api = 1;
     // Unique integer IDentifier of the ACL to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -148,7 +148,7 @@ message DeleteACLResponse{
 }
 
 message MailingAddress {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string StreetAddress = 4;
@@ -169,12 +169,12 @@ message CreateMailingAddressRequest {
 
 message CreateMailingAddressResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetMailingAddressRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetMailingAddressResponse {
@@ -214,7 +214,7 @@ message UpdateMailingAddressResponse{
 message DeleteMailingAddressRequest{
     string api = 1;
     // Unique integer IDentifier of the MailingAddress to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -227,7 +227,7 @@ message DeleteMailingAddressResponse{
 }
 
 message PhoneNumber {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string PhoneNumber = 4;
@@ -245,12 +245,12 @@ message CreatePhoneNumberRequest {
 
 message CreatePhoneNumberResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPhoneNumberRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPhoneNumberResponse {
@@ -290,7 +290,7 @@ message UpdatePhoneNumberResponse{
 message DeletePhoneNumberRequest{
     string api = 1;
     // Unique integer IDentifier of the PhoneNumber to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -303,7 +303,7 @@ message DeletePhoneNumberResponse{
 }
 
 message EmailAddress {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Address = 4;
@@ -321,12 +321,12 @@ message CreateEmailAddressRequest {
 
 message CreateEmailAddressResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetEmailAddressRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetEmailAddressResponse {
@@ -366,7 +366,7 @@ message UpdateEmailAddressResponse{
 message DeleteEmailAddressRequest{
     string api = 1;
     // Unique integer IDentifier of the EmailAddress to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -379,7 +379,7 @@ message DeleteEmailAddressResponse{
 }
 
 message Photo {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string ImgURL = 4;
@@ -397,12 +397,12 @@ message CreatePhotoRequest {
 
 message CreatePhotoResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPhotoRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPhotoResponse {
@@ -442,7 +442,7 @@ message UpdatePhotoResponse{
 message DeletePhotoRequest{
     string api = 1;
     // Unique integer IDentifier of the Photo to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -455,7 +455,7 @@ message DeletePhotoResponse{
 }
 
 message LayoutType {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -473,12 +473,12 @@ message CreateLayoutTypeRequest {
 
 message CreateLayoutTypeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLayoutTypeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLayoutTypeResponse {
@@ -518,7 +518,7 @@ message UpdateLayoutTypeResponse{
 message DeleteLayoutTypeRequest{
     string api = 1;
     // Unique integer IDentifier of the LayoutType to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -531,14 +531,14 @@ message DeleteLayoutTypeResponse{
 }
 
 message LayoutRow {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Layout = 4;
+string Layout = 4;
 }
 
 message CreateLayoutRow {
-    int64 Layout = 1;
+    string Layout = 1;
 }
 
 //Request and Response Message Types
@@ -549,12 +549,12 @@ message CreateLayoutRowRequest {
 
 message CreateLayoutRowResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLayoutRowRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLayoutRowResponse {
@@ -594,7 +594,7 @@ message UpdateLayoutRowResponse{
 message DeleteLayoutRowRequest{
     string api = 1;
     // Unique integer IDentifier of the LayoutRow to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -607,7 +607,7 @@ message DeleteLayoutRowResponse{
 }
 
 message ComponentImplementation {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 }
@@ -624,12 +624,12 @@ message CreateComponentImplementationRequest {
 
 message CreateComponentImplementationResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetComponentImplementationRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetComponentImplementationResponse {
@@ -669,7 +669,7 @@ message UpdateComponentImplementationResponse{
 message DeleteComponentImplementationRequest{
     string api = 1;
     // Unique integer IDentifier of the ComponentImplementation to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -682,7 +682,7 @@ message DeleteComponentImplementationResponse{
 }
 
 message ComponentType {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -700,12 +700,12 @@ message CreateComponentTypeRequest {
 
 message CreateComponentTypeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetComponentTypeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetComponentTypeResponse {
@@ -745,7 +745,7 @@ message UpdateComponentTypeResponse{
 message DeleteComponentTypeRequest{
     string api = 1;
     // Unique integer IDentifier of the ComponentType to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -758,14 +758,14 @@ message DeleteComponentTypeResponse{
 }
 
 message LayoutColumn {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 LayoutRow = 4;
+string LayoutRow = 4;
 }
 
 message CreateLayoutColumn {
-    int64 LayoutRow = 1;
+    string LayoutRow = 1;
 }
 
 //Request and Response Message Types
@@ -776,12 +776,12 @@ message CreateLayoutColumnRequest {
 
 message CreateLayoutColumnResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLayoutColumnRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLayoutColumnResponse {
@@ -821,7 +821,7 @@ message UpdateLayoutColumnResponse{
 message DeleteLayoutColumnRequest{
     string api = 1;
     // Unique integer IDentifier of the LayoutColumn to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -834,7 +834,7 @@ message DeleteLayoutColumnResponse{
 }
 
 message FieldType {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -852,12 +852,12 @@ message CreateFieldTypeRequest {
 
 message CreateFieldTypeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetFieldTypeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetFieldTypeResponse {
@@ -897,7 +897,7 @@ message UpdateFieldTypeResponse{
 message DeleteFieldTypeRequest{
     string api = 1;
     // Unique integer IDentifier of the FieldType to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -910,15 +910,15 @@ message DeleteFieldTypeResponse{
 }
 
 message Component {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 ComponentType = 4;
-int64 LayoutColumn = 5;
+string ComponentType = 4;
+string LayoutColumn = 5;
 }
 
 message CreateComponent {
-    int64 ComponentType = 1;int64 LayoutColumn = 2;
+    string ComponentType = 1;string LayoutColumn = 2;
 }
 
 //Request and Response Message Types
@@ -929,12 +929,12 @@ message CreateComponentRequest {
 
 message CreateComponentResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetComponentRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetComponentResponse {
@@ -974,7 +974,7 @@ message UpdateComponentResponse{
 message DeleteComponentRequest{
     string api = 1;
     // Unique integer IDentifier of the Component to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -987,15 +987,15 @@ message DeleteComponentResponse{
 }
 
 message Field {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 FieldType = 4;
-int64 Component = 5;
+string FieldType = 4;
+string Component = 5;
 }
 
 message CreateField {
-    int64 FieldType = 1;int64 Component = 2;
+    string FieldType = 1;string Component = 2;
 }
 
 //Request and Response Message Types
@@ -1006,12 +1006,12 @@ message CreateFieldRequest {
 
 message CreateFieldResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetFieldRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetFieldResponse {
@@ -1051,7 +1051,7 @@ message UpdateFieldResponse{
 message DeleteFieldRequest{
     string api = 1;
     // Unique integer IDentifier of the Field to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1064,16 +1064,16 @@ message DeleteFieldResponse{
 }
 
 message HomePage {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 Cause = 5;
-int64 Layout = 6;
+string Cause = 5;
+string Layout = 6;
 }
 
 message CreateHomePage {
-    string Title = 1;int64 Cause = 2;int64 Layout = 3;
+    string Title = 1;string Cause = 2;string Layout = 3;
 }
 
 //Request and Response Message Types
@@ -1084,12 +1084,12 @@ message CreateHomePageRequest {
 
 message CreateHomePageResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetHomePageRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetHomePageResponse {
@@ -1129,7 +1129,7 @@ message UpdateHomePageResponse{
 message DeleteHomePageRequest{
     string api = 1;
     // Unique integer IDentifier of the HomePage to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1142,14 +1142,14 @@ message DeleteHomePageResponse{
 }
 
 message Layout {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 LayoutType = 4;
+string LayoutType = 4;
 }
 
 message CreateLayout {
-    int64 LayoutType = 1;
+    string LayoutType = 1;
 }
 
 //Request and Response Message Types
@@ -1160,12 +1160,12 @@ message CreateLayoutRequest {
 
 message CreateLayoutResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLayoutRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLayoutResponse {
@@ -1205,7 +1205,7 @@ message UpdateLayoutResponse{
 message DeleteLayoutRequest{
     string api = 1;
     // Unique integer IDentifier of the Layout to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1218,16 +1218,16 @@ message DeleteLayoutResponse{
 }
 
 message LandingPage {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 Cause = 5;
-int64 Layout = 6;
+string Cause = 5;
+string Layout = 6;
 }
 
 message CreateLandingPage {
-    string Title = 1;int64 Cause = 2;int64 Layout = 3;
+    string Title = 1;string Cause = 2;string Layout = 3;
 }
 
 //Request and Response Message Types
@@ -1238,12 +1238,12 @@ message CreateLandingPageRequest {
 
 message CreateLandingPageResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLandingPageRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLandingPageResponse {
@@ -1283,7 +1283,7 @@ message UpdateLandingPageResponse{
 message DeleteLandingPageRequest{
     string api = 1;
     // Unique integer IDentifier of the LandingPage to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1296,15 +1296,15 @@ message DeleteLandingPageResponse{
 }
 
 message Experiment {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 LandingPage = 5;
+string LandingPage = 5;
 }
 
 message CreateExperiment {
-    string Title = 1;int64 LandingPage = 2;
+    string Title = 1;string LandingPage = 2;
 }
 
 //Request and Response Message Types
@@ -1315,12 +1315,12 @@ message CreateExperimentRequest {
 
 message CreateExperimentResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetExperimentRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetExperimentResponse {
@@ -1360,7 +1360,7 @@ message UpdateExperimentResponse{
 message DeleteExperimentRequest{
     string api = 1;
     // Unique integer IDentifier of the Experiment to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1373,15 +1373,15 @@ message DeleteExperimentResponse{
 }
 
 message Issue {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 Election = 5;
+string Election = 5;
 }
 
 message CreateIssue {
-    string Title = 1;int64 Election = 2;
+    string Title = 1;string Election = 2;
 }
 
 //Request and Response Message Types
@@ -1392,12 +1392,12 @@ message CreateIssueRequest {
 
 message CreateIssueResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetIssueRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetIssueResponse {
@@ -1437,7 +1437,7 @@ message UpdateIssueResponse{
 message DeleteIssueRequest{
     string api = 1;
     // Unique integer IDentifier of the Issue to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1450,14 +1450,14 @@ message DeleteIssueResponse{
 }
 
 message Candidate {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Election = 4;
+string Election = 4;
 }
 
 message CreateCandidate {
-    int64 Election = 1;
+    string Election = 1;
 }
 
 //Request and Response Message Types
@@ -1468,12 +1468,12 @@ message CreateCandidateRequest {
 
 message CreateCandidateResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCandidateRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCandidateResponse {
@@ -1513,7 +1513,7 @@ message UpdateCandidateResponse{
 message DeleteCandidateRequest{
     string api = 1;
     // Unique integer IDentifier of the Candidate to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1526,7 +1526,7 @@ message DeleteCandidateResponse{
 }
 
 message DistrictType {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -1544,12 +1544,12 @@ message CreateDistrictTypeRequest {
 
 message CreateDistrictTypeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDistrictTypeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDistrictTypeResponse {
@@ -1589,7 +1589,7 @@ message UpdateDistrictTypeResponse{
 message DeleteDistrictTypeRequest{
     string api = 1;
     // Unique integer IDentifier of the DistrictType to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1602,16 +1602,16 @@ message DeleteDistrictTypeResponse{
 }
 
 message District {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 int64 Geom = 4;
 string Title = 5;
-int64 DistrictType = 6;
+string DistrictType = 6;
 }
 
 message CreateDistrict {
-    int64 Geom = 1;string Title = 2;int64 DistrictType = 3;
+    int64 Geom = 1;string Title = 2;string DistrictType = 3;
 }
 
 //Request and Response Message Types
@@ -1622,12 +1622,12 @@ message CreateDistrictRequest {
 
 message CreateDistrictResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDistrictRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDistrictResponse {
@@ -1667,7 +1667,7 @@ message UpdateDistrictResponse{
 message DeleteDistrictRequest{
     string api = 1;
     // Unique integer IDentifier of the District to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1680,15 +1680,15 @@ message DeleteDistrictResponse{
 }
 
 message Office {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 Election = 5;
+string Election = 5;
 }
 
 message CreateOffice {
-    string Title = 1;int64 Election = 2;
+    string Title = 1;string Election = 2;
 }
 
 //Request and Response Message Types
@@ -1699,12 +1699,12 @@ message CreateOfficeRequest {
 
 message CreateOfficeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetOfficeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetOfficeResponse {
@@ -1744,7 +1744,7 @@ message UpdateOfficeResponse{
 message DeleteOfficeRequest{
     string api = 1;
     // Unique integer IDentifier of the Office to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1757,15 +1757,15 @@ message DeleteOfficeResponse{
 }
 
 message PollItem {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 Poll = 5;
+string Poll = 5;
 }
 
 message CreatePollItem {
-    string Title = 1;int64 Poll = 2;
+    string Title = 1;string Poll = 2;
 }
 
 //Request and Response Message Types
@@ -1776,12 +1776,12 @@ message CreatePollItemRequest {
 
 message CreatePollItemResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPollItemRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPollItemResponse {
@@ -1821,7 +1821,7 @@ message UpdatePollItemResponse{
 message DeletePollItemRequest{
     string api = 1;
     // Unique integer IDentifier of the PollItem to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1834,7 +1834,7 @@ message DeletePollItemResponse{
 }
 
 message VolunteerOpportunityType {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -1852,12 +1852,12 @@ message CreateVolunteerOpportunityTypeRequest {
 
 message CreateVolunteerOpportunityTypeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVolunteerOpportunityTypeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVolunteerOpportunityTypeResponse {
@@ -1897,7 +1897,7 @@ message UpdateVolunteerOpportunityTypeResponse{
 message DeleteVolunteerOpportunityTypeRequest{
     string api = 1;
     // Unique integer IDentifier of the VolunteerOpportunityType to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1910,7 +1910,7 @@ message DeleteVolunteerOpportunityTypeResponse{
 }
 
 message LiveEventType {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -1928,12 +1928,12 @@ message CreateLiveEventTypeRequest {
 
 message CreateLiveEventTypeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLiveEventTypeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLiveEventTypeResponse {
@@ -1973,7 +1973,7 @@ message UpdateLiveEventTypeResponse{
 message DeleteLiveEventTypeRequest{
     string api = 1;
     // Unique integer IDentifier of the LiveEventType to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -1986,7 +1986,7 @@ message DeleteLiveEventTypeResponse{
 }
 
 message Company {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -2004,12 +2004,12 @@ message CreateCompanyRequest {
 
 message CreateCompanyResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCompanyRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCompanyResponse {
@@ -2049,7 +2049,7 @@ message UpdateCompanyResponse{
 message DeleteCompanyRequest{
     string api = 1;
     // Unique integer IDentifier of the Company to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2062,7 +2062,7 @@ message DeleteCompanyResponse{
 }
 
 message ProductType {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -2080,12 +2080,12 @@ message CreateProductTypeRequest {
 
 message CreateProductTypeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetProductTypeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetProductTypeResponse {
@@ -2125,7 +2125,7 @@ message UpdateProductTypeResponse{
 message DeleteProductTypeRequest{
     string api = 1;
     // Unique integer IDentifier of the ProductType to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2138,7 +2138,7 @@ message DeleteProductTypeResponse{
 }
 
 message CustomerCart {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 }
@@ -2155,12 +2155,12 @@ message CreateCustomerCartRequest {
 
 message CreateCustomerCartResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCustomerCartRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCustomerCartResponse {
@@ -2200,7 +2200,7 @@ message UpdateCustomerCartResponse{
 message DeleteCustomerCartRequest{
     string api = 1;
     // Unique integer IDentifier of the CustomerCart to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2213,14 +2213,14 @@ message DeleteCustomerCartResponse{
 }
 
 message Payment {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 CustomerOrder = 4;
+string CustomerOrder = 4;
 }
 
 message CreatePayment {
-    int64 CustomerOrder = 1;
+    string CustomerOrder = 1;
 }
 
 //Request and Response Message Types
@@ -2231,12 +2231,12 @@ message CreatePaymentRequest {
 
 message CreatePaymentResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPaymentRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPaymentResponse {
@@ -2276,7 +2276,7 @@ message UpdatePaymentResponse{
 message DeletePaymentRequest{
     string api = 1;
     // Unique integer IDentifier of the Payment to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2289,7 +2289,7 @@ message DeletePaymentResponse{
 }
 
 message Delivery {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 }
@@ -2306,12 +2306,12 @@ message CreateDeliveryRequest {
 
 message CreateDeliveryResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDeliveryRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDeliveryResponse {
@@ -2351,7 +2351,7 @@ message UpdateDeliveryResponse{
 message DeleteDeliveryRequest{
     string api = 1;
     // Unique integer IDentifier of the Delivery to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2364,7 +2364,7 @@ message DeleteDeliveryResponse{
 }
 
 message Boycott {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -2382,12 +2382,12 @@ message CreateBoycottRequest {
 
 message CreateBoycottResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetBoycottRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetBoycottResponse {
@@ -2427,7 +2427,7 @@ message UpdateBoycottResponse{
 message DeleteBoycottRequest{
     string api = 1;
     // Unique integer IDentifier of the Boycott to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2440,15 +2440,15 @@ message DeleteBoycottResponse{
 }
 
 message BoycottMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 Boycott = 5;
+string Cause = 4;
+string Boycott = 5;
 }
 
 message CreateBoycottMembership {
-    int64 Cause = 1;int64 Boycott = 2;
+    string Cause = 1;string Boycott = 2;
 }
 
 //Request and Response Message Types
@@ -2459,12 +2459,12 @@ message CreateBoycottMembershipRequest {
 
 message CreateBoycottMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetBoycottMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetBoycottMembershipResponse {
@@ -2504,7 +2504,7 @@ message UpdateBoycottMembershipResponse{
 message DeleteBoycottMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the BoycottMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2517,7 +2517,7 @@ message DeleteBoycottMembershipResponse{
 }
 
 message Election {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -2535,12 +2535,12 @@ message CreateElectionRequest {
 
 message CreateElectionResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetElectionRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetElectionResponse {
@@ -2580,7 +2580,7 @@ message UpdateElectionResponse{
 message DeleteElectionRequest{
     string api = 1;
     // Unique integer IDentifier of the Election to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2593,15 +2593,15 @@ message DeleteElectionResponse{
 }
 
 message ElectionMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 Election = 5;
+string Cause = 4;
+string Election = 5;
 }
 
 message CreateElectionMembership {
-    int64 Cause = 1;int64 Election = 2;
+    string Cause = 1;string Election = 2;
 }
 
 //Request and Response Message Types
@@ -2612,12 +2612,12 @@ message CreateElectionMembershipRequest {
 
 message CreateElectionMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetElectionMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetElectionMembershipResponse {
@@ -2657,7 +2657,7 @@ message UpdateElectionMembershipResponse{
 message DeleteElectionMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the ElectionMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2670,15 +2670,15 @@ message DeleteElectionMembershipResponse{
 }
 
 message PetitionMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 Petition = 5;
+string Cause = 4;
+string Petition = 5;
 }
 
 message CreatePetitionMembership {
-    int64 Cause = 1;int64 Petition = 2;
+    string Cause = 1;string Petition = 2;
 }
 
 //Request and Response Message Types
@@ -2689,12 +2689,12 @@ message CreatePetitionMembershipRequest {
 
 message CreatePetitionMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPetitionMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPetitionMembershipResponse {
@@ -2734,7 +2734,7 @@ message UpdatePetitionMembershipResponse{
 message DeletePetitionMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the PetitionMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2747,15 +2747,15 @@ message DeletePetitionMembershipResponse{
 }
 
 message PollMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 Petition = 5;
+string Cause = 4;
+string Petition = 5;
 }
 
 message CreatePollMembership {
-    int64 Cause = 1;int64 Petition = 2;
+    string Cause = 1;string Petition = 2;
 }
 
 //Request and Response Message Types
@@ -2766,12 +2766,12 @@ message CreatePollMembershipRequest {
 
 message CreatePollMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPollMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPollMembershipResponse {
@@ -2811,7 +2811,7 @@ message UpdatePollMembershipResponse{
 message DeletePollMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the PollMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2824,15 +2824,15 @@ message DeletePollMembershipResponse{
 }
 
 message VolunteerOpportunityMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 VolunteerOpportunity = 5;
+string Cause = 4;
+string VolunteerOpportunity = 5;
 }
 
 message CreateVolunteerOpportunityMembership {
-    int64 Cause = 1;int64 VolunteerOpportunity = 2;
+    string Cause = 1;string VolunteerOpportunity = 2;
 }
 
 //Request and Response Message Types
@@ -2843,12 +2843,12 @@ message CreateVolunteerOpportunityMembershipRequest {
 
 message CreateVolunteerOpportunityMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVolunteerOpportunityMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVolunteerOpportunityMembershipResponse {
@@ -2888,7 +2888,7 @@ message UpdateVolunteerOpportunityMembershipResponse{
 message DeleteVolunteerOpportunityMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the VolunteerOpportunityMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2901,15 +2901,15 @@ message DeleteVolunteerOpportunityMembershipResponse{
 }
 
 message LiveEventMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 LiveEvent = 5;
+string Cause = 4;
+string LiveEvent = 5;
 }
 
 message CreateLiveEventMembership {
-    int64 Cause = 1;int64 LiveEvent = 2;
+    string Cause = 1;string LiveEvent = 2;
 }
 
 //Request and Response Message Types
@@ -2920,12 +2920,12 @@ message CreateLiveEventMembershipRequest {
 
 message CreateLiveEventMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLiveEventMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLiveEventMembershipResponse {
@@ -2965,7 +2965,7 @@ message UpdateLiveEventMembershipResponse{
 message DeleteLiveEventMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the LiveEventMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -2978,15 +2978,15 @@ message DeleteLiveEventMembershipResponse{
 }
 
 message Product {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 ProductType = 5;
+string ProductType = 5;
 }
 
 message CreateProduct {
-    string Title = 1;int64 ProductType = 2;
+    string Title = 1;string ProductType = 2;
 }
 
 //Request and Response Message Types
@@ -2997,12 +2997,12 @@ message CreateProductRequest {
 
 message CreateProductResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetProductRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetProductResponse {
@@ -3042,7 +3042,7 @@ message UpdateProductResponse{
 message DeleteProductRequest{
     string api = 1;
     // Unique integer IDentifier of the Product to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3055,15 +3055,15 @@ message DeleteProductResponse{
 }
 
 message ProductMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 Product = 5;
+string Cause = 4;
+string Product = 5;
 }
 
 message CreateProductMembership {
-    int64 Cause = 1;int64 Product = 2;
+    string Cause = 1;string Product = 2;
 }
 
 //Request and Response Message Types
@@ -3074,12 +3074,12 @@ message CreateProductMembershipRequest {
 
 message CreateProductMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetProductMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetProductMembershipResponse {
@@ -3119,7 +3119,7 @@ message UpdateProductMembershipResponse{
 message DeleteProductMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the ProductMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3132,7 +3132,7 @@ message DeleteProductMembershipResponse{
 }
 
 message DonationCampaign {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -3150,12 +3150,12 @@ message CreateDonationCampaignRequest {
 
 message CreateDonationCampaignResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDonationCampaignRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDonationCampaignResponse {
@@ -3195,7 +3195,7 @@ message UpdateDonationCampaignResponse{
 message DeleteDonationCampaignRequest{
     string api = 1;
     // Unique integer IDentifier of the DonationCampaign to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3208,15 +3208,15 @@ message DeleteDonationCampaignResponse{
 }
 
 message DonationCampaignMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 DonationCampaign = 5;
+string Cause = 4;
+string DonationCampaign = 5;
 }
 
 message CreateDonationCampaignMembership {
-    int64 Cause = 1;int64 DonationCampaign = 2;
+    string Cause = 1;string DonationCampaign = 2;
 }
 
 //Request and Response Message Types
@@ -3227,12 +3227,12 @@ message CreateDonationCampaignMembershipRequest {
 
 message CreateDonationCampaignMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDonationCampaignMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDonationCampaignMembershipResponse {
@@ -3272,7 +3272,7 @@ message UpdateDonationCampaignMembershipResponse{
 message DeleteDonationCampaignMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the DonationCampaignMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3285,7 +3285,7 @@ message DeleteDonationCampaignMembershipResponse{
 }
 
 message Petition {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -3303,12 +3303,12 @@ message CreatePetitionRequest {
 
 message CreatePetitionResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPetitionRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPetitionResponse {
@@ -3348,7 +3348,7 @@ message UpdatePetitionResponse{
 message DeletePetitionRequest{
     string api = 1;
     // Unique integer IDentifier of the Petition to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3361,16 +3361,16 @@ message DeletePetitionResponse{
 }
 
 message PetitionSigner {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Petition = 4;
-int64 Contact = 5;
-int64 Cause = 6;
+string Petition = 4;
+string Contact = 5;
+string Cause = 6;
 }
 
 message CreatePetitionSigner {
-    int64 Petition = 1;int64 Contact = 2;int64 Cause = 3;
+    string Petition = 1;string Contact = 2;string Cause = 3;
 }
 
 //Request and Response Message Types
@@ -3381,12 +3381,12 @@ message CreatePetitionSignerRequest {
 
 message CreatePetitionSignerResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPetitionSignerRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPetitionSignerResponse {
@@ -3426,7 +3426,7 @@ message UpdatePetitionSignerResponse{
 message DeletePetitionSignerRequest{
     string api = 1;
     // Unique integer IDentifier of the PetitionSigner to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3439,7 +3439,7 @@ message DeletePetitionSignerResponse{
 }
 
 message Poll {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -3457,12 +3457,12 @@ message CreatePollRequest {
 
 message CreatePollResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPollRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPollResponse {
@@ -3502,7 +3502,7 @@ message UpdatePollResponse{
 message DeletePollRequest{
     string api = 1;
     // Unique integer IDentifier of the Poll to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3515,16 +3515,16 @@ message DeletePollResponse{
 }
 
 message PollRespondant {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Poll = 4;
-int64 Contact = 5;
-int64 Cause = 6;
+string Poll = 4;
+string Contact = 5;
+string Cause = 6;
 }
 
 message CreatePollRespondant {
-    int64 Poll = 1;int64 Contact = 2;int64 Cause = 3;
+    string Poll = 1;string Contact = 2;string Cause = 3;
 }
 
 //Request and Response Message Types
@@ -3535,12 +3535,12 @@ message CreatePollRespondantRequest {
 
 message CreatePollRespondantResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPollRespondantRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPollRespondantResponse {
@@ -3580,7 +3580,7 @@ message UpdatePollRespondantResponse{
 message DeletePollRespondantRequest{
     string api = 1;
     // Unique integer IDentifier of the PollRespondant to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3593,16 +3593,16 @@ message DeletePollRespondantResponse{
 }
 
 message Purchaser {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 CustomerOrder = 4;
-int64 Contact = 5;
-int64 Cause = 6;
+string CustomerOrder = 4;
+string Contact = 5;
+string Cause = 6;
 }
 
 message CreatePurchaser {
-    int64 CustomerOrder = 1;int64 Contact = 2;int64 Cause = 3;
+    string CustomerOrder = 1;string Contact = 2;string Cause = 3;
 }
 
 //Request and Response Message Types
@@ -3613,12 +3613,12 @@ message CreatePurchaserRequest {
 
 message CreatePurchaserResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPurchaserRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetPurchaserResponse {
@@ -3658,7 +3658,7 @@ message UpdatePurchaserResponse{
 message DeletePurchaserRequest{
     string api = 1;
     // Unique integer IDentifier of the Purchaser to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3671,14 +3671,14 @@ message DeletePurchaserResponse{
 }
 
 message CustomerOrder {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 CustomerCart = 4;
+string CustomerCart = 4;
 }
 
 message CreateCustomerOrder {
-    int64 CustomerCart = 1;
+    string CustomerCart = 1;
 }
 
 //Request and Response Message Types
@@ -3689,12 +3689,12 @@ message CreateCustomerOrderRequest {
 
 message CreateCustomerOrderResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCustomerOrderRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCustomerOrderResponse {
@@ -3734,7 +3734,7 @@ message UpdateCustomerOrderResponse{
 message DeleteCustomerOrderRequest{
     string api = 1;
     // Unique integer IDentifier of the CustomerOrder to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3747,16 +3747,16 @@ message DeleteCustomerOrderResponse{
 }
 
 message Donor {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 CustomerOrder = 4;
-int64 Contact = 5;
-int64 Cause = 6;
+string CustomerOrder = 4;
+string Contact = 5;
+string Cause = 6;
 }
 
 message CreateDonor {
-    int64 CustomerOrder = 1;int64 Contact = 2;int64 Cause = 3;
+    string CustomerOrder = 1;string Contact = 2;string Cause = 3;
 }
 
 //Request and Response Message Types
@@ -3767,12 +3767,12 @@ message CreateDonorRequest {
 
 message CreateDonorResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDonorRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetDonorResponse {
@@ -3812,7 +3812,7 @@ message UpdateDonorResponse{
 message DeleteDonorRequest{
     string api = 1;
     // Unique integer IDentifier of the Donor to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3825,15 +3825,15 @@ message DeleteDonorResponse{
 }
 
 message LiveEvent {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 LiveEventType = 5;
+string LiveEventType = 5;
 }
 
 message CreateLiveEvent {
-    string Title = 1;int64 LiveEventType = 2;
+    string Title = 1;string LiveEventType = 2;
 }
 
 //Request and Response Message Types
@@ -3844,12 +3844,12 @@ message CreateLiveEventRequest {
 
 message CreateLiveEventResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLiveEventRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetLiveEventResponse {
@@ -3889,7 +3889,7 @@ message UpdateLiveEventResponse{
 message DeleteLiveEventRequest{
     string api = 1;
     // Unique integer IDentifier of the LiveEvent to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3902,16 +3902,16 @@ message DeleteLiveEventResponse{
 }
 
 message EventAttendee {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 LiveEvent = 4;
-int64 Contact = 5;
-int64 Cause = 6;
+string LiveEvent = 4;
+string Contact = 5;
+string Cause = 6;
 }
 
 message CreateEventAttendee {
-    int64 LiveEvent = 1;int64 Contact = 2;int64 Cause = 3;
+    string LiveEvent = 1;string Contact = 2;string Cause = 3;
 }
 
 //Request and Response Message Types
@@ -3922,12 +3922,12 @@ message CreateEventAttendeeRequest {
 
 message CreateEventAttendeeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetEventAttendeeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetEventAttendeeResponse {
@@ -3967,7 +3967,7 @@ message UpdateEventAttendeeResponse{
 message DeleteEventAttendeeRequest{
     string api = 1;
     // Unique integer IDentifier of the EventAttendee to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -3980,15 +3980,15 @@ message DeleteEventAttendeeResponse{
 }
 
 message Voter {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Contact = 4;
-int64 Cause = 5;
+string Contact = 4;
+string Cause = 5;
 }
 
 message CreateVoter {
-    int64 Contact = 1;int64 Cause = 2;
+    string Contact = 1;string Cause = 2;
 }
 
 //Request and Response Message Types
@@ -3999,12 +3999,12 @@ message CreateVoterRequest {
 
 message CreateVoterResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVoterRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVoterResponse {
@@ -4044,7 +4044,7 @@ message UpdateVoterResponse{
 message DeleteVoterRequest{
     string api = 1;
     // Unique integer IDentifier of the Voter to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4057,15 +4057,15 @@ message DeleteVoterResponse{
 }
 
 message VolunteerOpportunity {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 ElectionType = 5;
+string ElectionType = 5;
 }
 
 message CreateVolunteerOpportunity {
-    string Title = 1;int64 ElectionType = 2;
+    string Title = 1;string ElectionType = 2;
 }
 
 //Request and Response Message Types
@@ -4076,12 +4076,12 @@ message CreateVolunteerOpportunityRequest {
 
 message CreateVolunteerOpportunityResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVolunteerOpportunityRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVolunteerOpportunityResponse {
@@ -4121,7 +4121,7 @@ message UpdateVolunteerOpportunityResponse{
 message DeleteVolunteerOpportunityRequest{
     string api = 1;
     // Unique integer IDentifier of the VolunteerOpportunity to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4134,16 +4134,16 @@ message DeleteVolunteerOpportunityResponse{
 }
 
 message Volunteer {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 VolunteerOpportunity = 4;
-int64 Contact = 5;
-int64 Cause = 6;
+string VolunteerOpportunity = 4;
+string Contact = 5;
+string Cause = 6;
 }
 
 message CreateVolunteer {
-    int64 VolunteerOpportunity = 1;int64 Contact = 2;int64 Cause = 3;
+    string VolunteerOpportunity = 1;string Contact = 2;string Cause = 3;
 }
 
 //Request and Response Message Types
@@ -4154,12 +4154,12 @@ message CreateVolunteerRequest {
 
 message CreateVolunteerResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVolunteerRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetVolunteerResponse {
@@ -4199,7 +4199,7 @@ message UpdateVolunteerResponse{
 message DeleteVolunteerRequest{
     string api = 1;
     // Unique integer IDentifier of the Volunteer to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4212,15 +4212,15 @@ message DeleteVolunteerResponse{
 }
 
 message Follower {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Contact = 4;
-int64 Cause = 5;
+string Contact = 4;
+string Cause = 5;
 }
 
 message CreateFollower {
-    int64 Contact = 1;int64 Cause = 2;
+    string Contact = 1;string Cause = 2;
 }
 
 //Request and Response Message Types
@@ -4231,12 +4231,12 @@ message CreateFollowerRequest {
 
 message CreateFollowerResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetFollowerRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetFollowerResponse {
@@ -4276,7 +4276,7 @@ message UpdateFollowerResponse{
 message DeleteFollowerRequest{
     string api = 1;
     // Unique integer IDentifier of the Follower to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4289,7 +4289,7 @@ message DeleteFollowerResponse{
 }
 
 message Territory {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -4307,12 +4307,12 @@ message CreateTerritoryRequest {
 
 message CreateTerritoryResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetTerritoryRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetTerritoryResponse {
@@ -4352,7 +4352,7 @@ message UpdateTerritoryResponse{
 message DeleteTerritoryRequest{
     string api = 1;
     // Unique integer IDentifier of the Territory to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4365,7 +4365,7 @@ message DeleteTerritoryResponse{
 }
 
 message ActivityType {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -4383,12 +4383,12 @@ message CreateActivityTypeRequest {
 
 message CreateActivityTypeResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetActivityTypeRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetActivityTypeResponse {
@@ -4428,7 +4428,7 @@ message UpdateActivityTypeResponse{
 message DeleteActivityTypeRequest{
     string api = 1;
     // Unique integer IDentifier of the ActivityType to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4441,17 +4441,17 @@ message DeleteActivityTypeResponse{
 }
 
 message Activity {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
-int64 ActivityType = 5;
-int64 Contact = 6;
-int64 Cause = 7;
+string ActivityType = 5;
+string Contact = 6;
+string Cause = 7;
 }
 
 message CreateActivity {
-    string Title = 1;int64 ActivityType = 2;int64 Contact = 3;int64 Cause = 4;
+    string Title = 1;string ActivityType = 2;string Contact = 3;string Cause = 4;
 }
 
 //Request and Response Message Types
@@ -4462,12 +4462,12 @@ message CreateActivityRequest {
 
 message CreateActivityResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetActivityRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetActivityResponse {
@@ -4507,7 +4507,7 @@ message UpdateActivityResponse{
 message DeleteActivityRequest{
     string api = 1;
     // Unique integer IDentifier of the Activity to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4520,16 +4520,16 @@ message DeleteActivityResponse{
 }
 
 message Note {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Contact = 4;
-int64 Cause = 5;
+string Contact = 4;
+string Cause = 5;
 string Body = 6;
 }
 
 message CreateNote {
-    int64 Contact = 1;int64 Cause = 2;string Body = 3;
+    string Contact = 1;string Cause = 2;string Body = 3;
 }
 
 //Request and Response Message Types
@@ -4540,12 +4540,12 @@ message CreateNoteRequest {
 
 message CreateNoteResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetNoteRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetNoteResponse {
@@ -4585,7 +4585,7 @@ message UpdateNoteResponse{
 message DeleteNoteRequest{
     string api = 1;
     // Unique integer IDentifier of the Note to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4598,7 +4598,7 @@ message DeleteNoteResponse{
 }
 
 message Account {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Username = 4;
@@ -4616,12 +4616,12 @@ message CreateAccountRequest {
 
 message CreateAccountResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetAccountRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetAccountResponse {
@@ -4661,7 +4661,7 @@ message UpdateAccountResponse{
 message DeleteAccountRequest{
     string api = 1;
     // Unique integer IDentifier of the Account to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4674,15 +4674,15 @@ message DeleteAccountResponse{
 }
 
 message OwnerMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 Account = 5;
+string Cause = 4;
+string Account = 5;
 }
 
 message CreateOwnerMembership {
-    int64 Cause = 1;int64 Account = 2;
+    string Cause = 1;string Account = 2;
 }
 
 //Request and Response Message Types
@@ -4693,12 +4693,12 @@ message CreateOwnerMembershipRequest {
 
 message CreateOwnerMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetOwnerMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetOwnerMembershipResponse {
@@ -4738,7 +4738,7 @@ message UpdateOwnerMembershipResponse{
 message DeleteOwnerMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the OwnerMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4751,7 +4751,7 @@ message DeleteOwnerMembershipResponse{
 }
 
 message Contact {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string FirstName = 4;
@@ -4773,12 +4773,12 @@ message CreateContactRequest {
 
 message CreateContactResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetContactRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetContactResponse {
@@ -4818,7 +4818,7 @@ message UpdateContactResponse{
 message DeleteContactRequest{
     string api = 1;
     // Unique integer IDentifier of the Contact to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4831,15 +4831,15 @@ message DeleteContactResponse{
 }
 
 message ContactMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 Contact = 5;
+string Cause = 4;
+string Contact = 5;
 }
 
 message CreateContactMembership {
-    int64 Cause = 1;int64 Contact = 2;
+    string Cause = 1;string Contact = 2;
 }
 
 //Request and Response Message Types
@@ -4850,12 +4850,12 @@ message CreateContactMembershipRequest {
 
 message CreateContactMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetContactMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetContactMembershipResponse {
@@ -4895,7 +4895,7 @@ message UpdateContactMembershipResponse{
 message DeleteContactMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the ContactMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4908,7 +4908,7 @@ message DeleteContactMembershipResponse{
 }
 
 message Cause {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
 string Title = 4;
@@ -4928,12 +4928,12 @@ message CreateCauseRequest {
 
 message CreateCauseResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCauseRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetCauseResponse {
@@ -4973,7 +4973,7 @@ message UpdateCauseResponse{
 message DeleteCauseRequest{
     string api = 1;
     // Unique integer IDentifier of the Cause to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -4986,14 +4986,14 @@ message DeleteCauseResponse{
 }
 
 message Agent {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Account = 4;
+string Account = 4;
 }
 
 message CreateAgent {
-    int64 Account = 1;
+    string Account = 1;
 }
 
 //Request and Response Message Types
@@ -5004,12 +5004,12 @@ message CreateAgentRequest {
 
 message CreateAgentResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetAgentRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetAgentResponse {
@@ -5049,7 +5049,7 @@ message UpdateAgentResponse{
 message DeleteAgentRequest{
     string api = 1;
     // Unique integer IDentifier of the Agent to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation
@@ -5062,15 +5062,15 @@ message DeleteAgentResponse{
 }
 
 message AgentMembership {
-int64 ID = 1;
+string ID = 1;
 google.protobuf.Timestamp CreatedAt = 2;
 google.protobuf.Timestamp UpdatedAt = 3;
-int64 Cause = 4;
-int64 Agent = 5;
+string Cause = 4;
+string Agent = 5;
 }
 
 message CreateAgentMembership {
-    int64 Cause = 1;int64 Agent = 2;
+    string Cause = 1;string Agent = 2;
 }
 
 //Request and Response Message Types
@@ -5081,12 +5081,12 @@ message CreateAgentMembershipRequest {
 
 message CreateAgentMembershipResponse {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetAgentMembershipRequest {
 	string api = 1;
-	int64 ID = 2;
+	string ID = 2;
 }
 
 message GetAgentMembershipResponse {
@@ -5126,7 +5126,7 @@ message UpdateAgentMembershipResponse{
 message DeleteAgentMembershipRequest{
     string api = 1;
     // Unique integer IDentifier of the AgentMembership to delete
-    int64 ID = 2;
+    string ID = 2;
 }
 
 // Contains status of delete operation

@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCau
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Cause entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO cause (title, slug, summary) VALUES($1, $2, $3)  RETURNING id;",
 		req.Item.Title, req.Item.Slug, req.Item.Summary).Scan(&id)

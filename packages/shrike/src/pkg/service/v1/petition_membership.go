@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req 
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert PetitionMembership entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO petition_membership (cause, petition) VALUES($1, $2)  RETURNING id;",
 		req.Item.Cause, req.Item.Petition).Scan(&id)

@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateLayout(ctx context.Context, req *v1.CreateLa
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert Layout entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO layout (layout_type) VALUES($1)  RETURNING id;",
 		req.Item.LayoutType).Scan(&id)

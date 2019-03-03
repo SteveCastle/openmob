@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateDistrictType(ctx context.Context, req *v1.Cr
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert DistrictType entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO district_type (title) VALUES($1)  RETURNING id;",
 		req.Item.Title).Scan(&id)

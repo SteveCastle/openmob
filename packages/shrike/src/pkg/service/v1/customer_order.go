@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.C
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert CustomerOrder entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO customer_order (customer_cart) VALUES($1)  RETURNING id;",
 		req.Item.CustomerCart).Scan(&id)

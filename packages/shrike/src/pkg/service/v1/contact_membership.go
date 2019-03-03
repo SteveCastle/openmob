@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateContactMembership(ctx context.Context, req *
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert ContactMembership entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO contact_membership (cause, contact) VALUES($1, $2)  RETURNING id;",
 		req.Item.Cause, req.Item.Contact).Scan(&id)

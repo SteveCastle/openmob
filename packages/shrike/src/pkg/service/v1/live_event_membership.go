@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert LiveEventMembership entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO live_event_membership (cause, live_event) VALUES($1, $2)  RETURNING id;",
 		req.Item.Cause, req.Item.LiveEvent).Scan(&id)

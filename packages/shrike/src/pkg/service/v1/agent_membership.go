@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert AgentMembership entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership (cause, agent) VALUES($1, $2)  RETURNING id;",
 		req.Item.Cause, req.Item.Agent).Scan(&id)

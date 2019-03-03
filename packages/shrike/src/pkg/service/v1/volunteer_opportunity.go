@@ -23,7 +23,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunity(ctx context.Context, re
 		return nil, err
 	}
 	defer c.Close()
-	var id int64
+	var id string
 	// insert VolunteerOpportunity entity data
 	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity (title, election_type) VALUES($1, $2)  RETURNING id;",
 		req.Item.Title, req.Item.ElectionType).Scan(&id)
