@@ -66,7 +66,7 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from CustomerCart-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerCart with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerCart with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -90,7 +90,7 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple CustomerCart rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple CustomerCart rows with ID='%s'",
 			req.ID))
 	}
 
@@ -182,7 +182,7 @@ func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.Up
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerCart with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerCart with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -218,7 +218,7 @@ func (s *shrikeServiceServer) DeleteCustomerCart(ctx context.Context, req *v1.De
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerCart with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("CustomerCart with ID='%s' is not found",
 			req.ID))
 	}
 

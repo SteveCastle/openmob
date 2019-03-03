@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLa
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from LayoutColumn-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutColumn with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutColumn with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLa
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LayoutColumn rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LayoutColumn rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateLayoutColumn(ctx context.Context, req *v1.Up
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutColumn with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutColumn with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteLayoutColumn(ctx context.Context, req *v1.De
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutColumn with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LayoutColumn with ID='%s' is not found",
 			req.ID))
 	}
 

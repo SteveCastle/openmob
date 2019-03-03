@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.G
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from DonationCampaign-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaign with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaign with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.G
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple DonationCampaign rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple DonationCampaign rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateDonationCampaign(ctx context.Context, req *v
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaign with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaign with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteDonationCampaign(ctx context.Context, req *v
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaign with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaign with ID='%s' is not found",
 			req.ID))
 	}
 

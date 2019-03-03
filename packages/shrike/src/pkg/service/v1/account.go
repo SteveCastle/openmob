@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Account-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Account rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Account rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateAccount(ctx context.Context, req *v1.UpdateA
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteAccount(ctx context.Context, req *v1.DeleteA
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%s' is not found",
 			req.ID))
 	}
 

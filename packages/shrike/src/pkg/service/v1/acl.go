@@ -66,7 +66,7 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from ACL-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ACL with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ACL with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -90,7 +90,7 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ACL rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ACL rows with ID='%s'",
 			req.ID))
 	}
 
@@ -182,7 +182,7 @@ func (s *shrikeServiceServer) UpdateACL(ctx context.Context, req *v1.UpdateACLRe
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ACL with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ACL with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -218,7 +218,7 @@ func (s *shrikeServiceServer) DeleteACL(ctx context.Context, req *v1.DeleteACLRe
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ACL with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ACL with ID='%s' is not found",
 			req.ID))
 	}
 

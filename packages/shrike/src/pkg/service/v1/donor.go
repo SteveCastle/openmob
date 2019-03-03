@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Donor-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Donor rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Donor rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateDonor(ctx context.Context, req *v1.UpdateDon
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteDonor(ctx context.Context, req *v1.DeleteDon
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%s' is not found",
 			req.ID))
 	}
 

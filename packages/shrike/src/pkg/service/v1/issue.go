@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetIssue(ctx context.Context, req *v1.GetIssueRequ
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Issue-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetIssue(ctx context.Context, req *v1.GetIssueRequ
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Issue rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Issue rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateIssue(ctx context.Context, req *v1.UpdateIss
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteIssue(ctx context.Context, req *v1.DeleteIss
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%s' is not found",
 			req.ID))
 	}
 

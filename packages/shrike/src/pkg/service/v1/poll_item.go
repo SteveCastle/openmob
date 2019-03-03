@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetPollItem(ctx context.Context, req *v1.GetPollIt
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from PollItem-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollItem with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollItem with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetPollItem(ctx context.Context, req *v1.GetPollIt
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple PollItem rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple PollItem rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdatePollItem(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollItem with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollItem with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeletePollItem(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollItem with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollItem with ID='%s' is not found",
 			req.ID))
 	}
 

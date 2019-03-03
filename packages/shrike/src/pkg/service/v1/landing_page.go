@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from LandingPage-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LandingPage with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LandingPage with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LandingPage rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LandingPage rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.Upd
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LandingPage with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LandingPage with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteLandingPage(ctx context.Context, req *v1.Del
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LandingPage with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LandingPage with ID='%s' is not found",
 			req.ID))
 	}
 

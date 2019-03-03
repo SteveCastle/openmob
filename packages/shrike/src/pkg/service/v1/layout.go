@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetLayout(ctx context.Context, req *v1.GetLayoutRe
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Layout-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Layout with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Layout with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetLayout(ctx context.Context, req *v1.GetLayoutRe
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Layout rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Layout rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateLayout(ctx context.Context, req *v1.UpdateLa
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Layout with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Layout with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteLayout(ctx context.Context, req *v1.DeleteLa
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Layout with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Layout with ID='%s' is not found",
 			req.ID))
 	}
 

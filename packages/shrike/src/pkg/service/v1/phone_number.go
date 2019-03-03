@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from PhoneNumber-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PhoneNumber with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PhoneNumber with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple PhoneNumber rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple PhoneNumber rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdatePhoneNumber(ctx context.Context, req *v1.Upd
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PhoneNumber with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PhoneNumber with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeletePhoneNumber(ctx context.Context, req *v1.Del
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PhoneNumber with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PhoneNumber with ID='%s' is not found",
 			req.ID))
 	}
 

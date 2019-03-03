@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Office-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Office with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Office with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Office rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Office rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateOffice(ctx context.Context, req *v1.UpdateOf
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Office with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Office with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteOffice(ctx context.Context, req *v1.DeleteOf
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Office with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Office with ID='%s' is not found",
 			req.ID))
 	}
 

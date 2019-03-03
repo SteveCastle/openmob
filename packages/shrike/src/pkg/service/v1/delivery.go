@@ -66,7 +66,7 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Delivery-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -90,7 +90,7 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Delivery rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Delivery rows with ID='%s'",
 			req.ID))
 	}
 
@@ -182,7 +182,7 @@ func (s *shrikeServiceServer) UpdateDelivery(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -218,7 +218,7 @@ func (s *shrikeServiceServer) DeleteDelivery(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%s' is not found",
 			req.ID))
 	}
 

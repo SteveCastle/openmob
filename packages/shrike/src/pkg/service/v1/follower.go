@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetFollower(ctx context.Context, req *v1.GetFollow
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Follower-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Follower with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Follower with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetFollower(ctx context.Context, req *v1.GetFollow
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Follower rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Follower rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateFollower(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Follower with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Follower with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteFollower(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Follower with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Follower with ID='%s' is not found",
 			req.ID))
 	}
 

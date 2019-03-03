@@ -66,7 +66,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from ComponentImplementation-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -90,7 +90,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ComponentImplementation rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ComponentImplementation rows with ID='%s'",
 			req.ID))
 	}
 
@@ -182,7 +182,7 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -218,7 +218,7 @@ func (s *shrikeServiceServer) DeleteComponentImplementation(ctx context.Context,
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%s' is not found",
 			req.ID))
 	}
 

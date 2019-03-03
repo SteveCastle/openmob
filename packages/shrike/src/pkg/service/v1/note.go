@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Note-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Note with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Note with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Note rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Note rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateNote(ctx context.Context, req *v1.UpdateNote
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Note with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Note with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteNote(ctx context.Context, req *v1.DeleteNote
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Note with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Note with ID='%s' is not found",
 			req.ID))
 	}
 

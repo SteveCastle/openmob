@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityType(ctx context.Context, r
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from VolunteerOpportunityType-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityType(ctx context.Context, r
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple VolunteerOpportunityType rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple VolunteerOpportunityType rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityType(ctx context.Context
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunityType(ctx context.Context
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%s' is not found",
 			req.ID))
 	}
 

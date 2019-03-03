@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Contact-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Contact rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Contact rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateC
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteContact(ctx context.Context, req *v1.DeleteC
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%s' is not found",
 			req.ID))
 	}
 

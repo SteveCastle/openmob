@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from MailingAddress-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("MailingAddress with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("MailingAddress with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple MailingAddress rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple MailingAddress rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateMailingAddress(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("MailingAddress with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("MailingAddress with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteMailingAddress(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("MailingAddress with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("MailingAddress with ID='%s' is not found",
 			req.ID))
 	}
 

@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetVoter(ctx context.Context, req *v1.GetVoterRequ
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Voter-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Voter with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Voter with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetVoter(ctx context.Context, req *v1.GetVoterRequ
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Voter rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Voter rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateVoter(ctx context.Context, req *v1.UpdateVot
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Voter with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Voter with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteVoter(ctx context.Context, req *v1.DeleteVot
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Voter with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Voter with ID='%s' is not found",
 			req.ID))
 	}
 

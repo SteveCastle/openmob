@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetDistrict(ctx context.Context, req *v1.GetDistri
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from District-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetDistrict(ctx context.Context, req *v1.GetDistri
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple District rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple District rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateDistrict(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteDistrict(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%s' is not found",
 			req.ID))
 	}
 

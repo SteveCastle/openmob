@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from OwnerMembership-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("OwnerMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("OwnerMembership with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple OwnerMembership rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple OwnerMembership rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateOwnerMembership(ctx context.Context, req *v1
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("OwnerMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("OwnerMembership with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteOwnerMembership(ctx context.Context, req *v1
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("OwnerMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("OwnerMembership with ID='%s' is not found",
 			req.ID))
 	}
 

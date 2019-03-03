@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.Get
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from PollRespondant-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollRespondant with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollRespondant with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetPollRespondant(ctx context.Context, req *v1.Get
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple PollRespondant rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple PollRespondant rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdatePollRespondant(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollRespondant with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollRespondant with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeletePollRespondant(ctx context.Context, req *v1.
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollRespondant with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("PollRespondant with ID='%s' is not found",
 			req.ID))
 	}
 

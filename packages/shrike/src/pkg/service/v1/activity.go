@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetActivity(ctx context.Context, req *v1.GetActivi
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Activity-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Activity with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Activity with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetActivity(ctx context.Context, req *v1.GetActivi
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Activity rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Activity rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateActivity(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Activity with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Activity with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteActivity(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Activity with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Activity with ID='%s' is not found",
 			req.ID))
 	}
 

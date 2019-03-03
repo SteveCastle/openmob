@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from LiveEventMembership-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventMembership with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LiveEventMembership rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LiveEventMembership rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateLiveEventMembership(ctx context.Context, req
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventMembership with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteLiveEventMembership(ctx context.Context, req
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEventMembership with ID='%s' is not found",
 			req.ID))
 	}
 

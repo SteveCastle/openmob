@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetAgent(ctx context.Context, req *v1.GetAgentRequ
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Agent-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetAgent(ctx context.Context, req *v1.GetAgentRequ
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Agent rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Agent rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateAgent(ctx context.Context, req *v1.UpdateAge
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteAgent(ctx context.Context, req *v1.DeleteAge
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%s' is not found",
 			req.ID))
 	}
 

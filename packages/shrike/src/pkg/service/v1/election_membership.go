@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from ElectionMembership-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ElectionMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ElectionMembership with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ElectionMembership rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ElectionMembership rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateElectionMembership(ctx context.Context, req 
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ElectionMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ElectionMembership with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteElectionMembership(ctx context.Context, req 
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ElectionMembership with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ElectionMembership with ID='%s' is not found",
 			req.ID))
 	}
 

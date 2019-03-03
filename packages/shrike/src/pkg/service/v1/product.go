@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetProduct(ctx context.Context, req *v1.GetProduct
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Product-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Product with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Product with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetProduct(ctx context.Context, req *v1.GetProduct
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Product rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Product rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateProduct(ctx context.Context, req *v1.UpdateP
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Product with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Product with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteProduct(ctx context.Context, req *v1.DeleteP
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Product with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Product with ID='%s' is not found",
 			req.ID))
 	}
 

@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetCandidate(ctx context.Context, req *v1.GetCandi
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Candidate-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetCandidate(ctx context.Context, req *v1.GetCandi
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Candidate rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Candidate rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateCandidate(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteCandidate(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%s' is not found",
 			req.ID))
 	}
 

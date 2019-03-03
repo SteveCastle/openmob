@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetBoycott(ctx context.Context, req *v1.GetBoycott
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Boycott-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetBoycott(ctx context.Context, req *v1.GetBoycott
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Boycott rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Boycott rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateBoycott(ctx context.Context, req *v1.UpdateB
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteBoycott(ctx context.Context, req *v1.DeleteB
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%s' is not found",
 			req.ID))
 	}
 

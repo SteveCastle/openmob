@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Payment-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Payment with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Payment with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Payment rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Payment rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdatePayment(ctx context.Context, req *v1.UpdateP
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Payment with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Payment with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeletePayment(ctx context.Context, req *v1.DeleteP
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Payment with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Payment with ID='%s' is not found",
 			req.ID))
 	}
 

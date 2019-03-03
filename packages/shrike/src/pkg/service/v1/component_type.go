@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetComponentType(ctx context.Context, req *v1.GetC
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from ComponentType-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentType with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetComponentType(ctx context.Context, req *v1.GetC
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ComponentType rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ComponentType rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateComponentType(ctx context.Context, req *v1.U
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentType with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteComponentType(ctx context.Context, req *v1.D
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentType with ID='%s' is not found",
 			req.ID))
 	}
 

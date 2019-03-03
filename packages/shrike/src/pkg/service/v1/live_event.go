@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from LiveEvent-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveE
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LiveEvent rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LiveEvent rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateLiveEvent(ctx context.Context, req *v1.Updat
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteLiveEvent(ctx context.Context, req *v1.Delet
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%s' is not found",
 			req.ID))
 	}
 

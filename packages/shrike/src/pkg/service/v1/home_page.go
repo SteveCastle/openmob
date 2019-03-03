@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetHomePage(ctx context.Context, req *v1.GetHomePa
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from HomePage-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("HomePage with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("HomePage with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetHomePage(ctx context.Context, req *v1.GetHomePa
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple HomePage rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple HomePage rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateHomePage(ctx context.Context, req *v1.Update
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("HomePage with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("HomePage with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteHomePage(ctx context.Context, req *v1.Delete
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("HomePage with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("HomePage with ID='%s' is not found",
 			req.ID))
 	}
 

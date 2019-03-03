@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from Cause-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Cause rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Cause rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteCause(ctx context.Context, req *v1.DeleteCau
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%s' is not found",
 			req.ID))
 	}
 

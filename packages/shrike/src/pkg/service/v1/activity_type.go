@@ -67,7 +67,7 @@ func (s *shrikeServiceServer) GetActivityType(ctx context.Context, req *v1.GetAc
 		if err := rows.Err(); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve data from ActivityType-> "+err.Error())
 		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ActivityType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ActivityType with ID='%s' is not found",
 			req.ID))
 	}
 
@@ -91,7 +91,7 @@ func (s *shrikeServiceServer) GetActivityType(ctx context.Context, req *v1.GetAc
 	}
 
 	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ActivityType rows with ID='%d'",
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ActivityType rows with ID='%s'",
 			req.ID))
 	}
 
@@ -183,7 +183,7 @@ func (s *shrikeServiceServer) UpdateActivityType(ctx context.Context, req *v1.Up
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ActivityType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ActivityType with ID='%s' is not found",
 			req.Item.ID))
 	}
 
@@ -219,7 +219,7 @@ func (s *shrikeServiceServer) DeleteActivityType(ctx context.Context, req *v1.De
 	}
 
 	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ActivityType with ID='%d' is not found",
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("ActivityType with ID='%s' is not found",
 			req.ID))
 	}
 
