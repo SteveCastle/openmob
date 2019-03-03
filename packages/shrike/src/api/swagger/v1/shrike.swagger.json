@@ -50,6 +50,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -268,6 +275,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -494,6 +508,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -712,6 +733,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -938,6 +966,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -1156,6 +1191,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -1382,6 +1424,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -1600,6 +1649,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -1826,6 +1882,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -2044,6 +2107,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -2270,6 +2340,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -2488,6 +2565,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -2714,6 +2798,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -2932,6 +3023,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -3158,6 +3256,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -3376,6 +3481,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -3602,6 +3714,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -3820,6 +3939,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -4046,6 +4172,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -4264,6 +4397,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -4490,6 +4630,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -4708,6 +4855,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -4934,6 +5088,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -5152,6 +5313,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -5378,6 +5546,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -5596,6 +5771,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -5822,6 +6004,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -6040,6 +6229,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -6266,6 +6462,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -6484,6 +6687,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -6710,6 +6920,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -6932,6 +7149,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -7123,6 +7347,235 @@
         ]
       }
     },
+    "/v1/homepage": {
+      "get": {
+        "summary": "List HomePage, takes filters, limit, and cursor param.",
+        "operationId": "ListHomePage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListHomePageResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "post": {
+        "summary": "CreateHomePage takes a HomePage object to create.",
+        "operationId": "CreateHomePage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateHomePageResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateHomePageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/homepage/{ID}": {
+      "get": {
+        "summary": "GetHomePage takes an ID and returns a single HomePage.",
+        "operationId": "GetHomePage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetHomePageResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete HomePage",
+        "operationId": "DeleteHomePage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteHomePageResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "description": "Unique integer IDentifier of the HomePage to delete",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/homepage/{item.ID}": {
+      "put": {
+        "summary": "Update HomePage",
+        "operationId": "UpdateHomePage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateHomePageResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.ID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateHomePageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "patch": {
+        "summary": "Update HomePage",
+        "operationId": "UpdateHomePage2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateHomePageResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.ID",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateHomePageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
     "/v1/issue": {
       "get": {
         "summary": "List Issue, takes filters, limit, and cursor param.",
@@ -7150,6 +7603,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -7376,6 +7836,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -7594,6 +8061,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -7820,6 +8294,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -8038,6 +8519,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -8264,6 +8752,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -8482,6 +8977,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -8708,6 +9210,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -8926,6 +9435,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -9152,6 +9668,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -9370,6 +9893,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -9596,6 +10126,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -9814,6 +10351,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -10040,6 +10584,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -10258,6 +10809,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -10484,6 +11042,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -10702,6 +11267,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -10928,6 +11500,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -11146,6 +11725,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -11372,6 +11958,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -11590,6 +12183,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -11816,6 +12416,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -12034,6 +12641,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -12260,6 +12874,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -12478,6 +13099,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -12704,6 +13332,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -12922,6 +13557,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -13148,6 +13790,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -13366,6 +14015,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -13592,6 +14248,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -13810,6 +14473,13 @@
           },
           {
             "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "required": false,
             "type": "string",
@@ -14036,6 +14706,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -14258,6 +14935,13 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -14451,6 +15135,36 @@
     }
   },
   "definitions": {
+    "FilterRuleLogicalOperator": {
+      "type": "string",
+      "enum": [
+        "AND",
+        "OR"
+      ],
+      "default": "AND"
+    },
+    "FilterRuleRule": {
+      "type": "string",
+      "enum": [
+        "EQ",
+        "NE",
+        "GT",
+        "GTE",
+        "LT",
+        "LTE",
+        "LIKE",
+        "NOTLIKE"
+      ],
+      "default": "EQ"
+    },
+    "OrderedPairDirection": {
+      "type": "string",
+      "enum": [
+        "ASCENDING",
+        "DESCENDING"
+      ],
+      "default": "ASCENDING"
+    },
     "shrikev1Contact": {
       "type": "object",
       "properties": {
@@ -14465,6 +15179,21 @@
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "MiddleName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
         }
       }
     },
@@ -14685,6 +15414,9 @@
           "format": "date-time"
         },
         "Title": {
+          "type": "string"
+        },
+        "Slug": {
           "type": "string"
         },
         "Summary": {
@@ -15112,6 +15844,9 @@
         "Title": {
           "type": "string"
         },
+        "Slug": {
+          "type": "string"
+        },
         "Summary": {
           "type": "string"
         }
@@ -15270,7 +16005,24 @@
       }
     },
     "v1CreateContact": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "FirstName": {
+          "type": "string"
+        },
+        "MiddleName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        }
+      }
     },
     "v1CreateContactMembership": {
       "type": "object",
@@ -15875,6 +16627,46 @@
       "title": "Request and Response Message Types"
     },
     "v1CreateFollowerResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateHomePage": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Layout": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1CreateHomePageRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1CreateHomePage"
+        }
+      },
+      "title": "Request and Response Message Types"
+    },
+    "v1CreateHomePageResponse": {
       "type": "object",
       "properties": {
         "api": {
@@ -17552,6 +18344,20 @@
       },
       "title": "Contains status of delete operation"
     },
+    "v1DeleteHomePageResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "string",
+          "format": "int64",
+          "title": "Contains number of entities have beed deleted\nEquals 1 in case of succesfull delete"
+        }
+      },
+      "title": "Contains status of delete operation"
+    },
     "v1DeleteIssueResponse": {
       "type": "object",
       "properties": {
@@ -18316,6 +19122,34 @@
         }
       }
     },
+    "v1Filter": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1FilterRule"
+          }
+        }
+      }
+    },
+    "v1FilterRule": {
+      "type": "object",
+      "properties": {
+        "fieldName": {
+          "type": "string"
+        },
+        "rule": {
+          "$ref": "#/definitions/FilterRuleRule"
+        },
+        "value": {
+          "type": "string"
+        },
+        "logicalOperator": {
+          "$ref": "#/definitions/FilterRuleLogicalOperator"
+        }
+      }
+    },
     "v1Follower": {
       "type": "object",
       "properties": {
@@ -18693,6 +19527,17 @@
         }
       }
     },
+    "v1GetHomePageResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1HomePage"
+        }
+      }
+    },
     "v1GetIssueResponse": {
       "type": "object",
       "properties": {
@@ -19053,6 +19898,34 @@
         },
         "item": {
           "$ref": "#/definitions/v1Voter"
+        }
+      }
+    },
+    "v1HomePage": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Layout": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -19635,6 +20508,20 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Follower"
+          }
+        }
+      }
+    },
+    "v1ListHomePageResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1HomePage"
           }
         }
       }
@@ -20248,6 +21135,28 @@
         "Election": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "v1OrderedPair": {
+      "type": "object",
+      "properties": {
+        "fieldName": {
+          "type": "string"
+        },
+        "direction": {
+          "$ref": "#/definitions/OrderedPairDirection"
+        }
+      }
+    },
+    "v1Ordering": {
+      "type": "object",
+      "properties": {
+        "orderedPair": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1OrderedPair"
+          }
         }
       }
     },
@@ -21478,6 +22387,33 @@
       "title": "Request data to update Follower"
     },
     "v1UpdateFollowerResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string",
+          "format": "int64",
+          "title": "Contains number of entities have beed updated\nEquals 1 in case of succesfull update"
+        }
+      },
+      "title": "Contains status of update operation"
+    },
+    "v1UpdateHomePageRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1HomePage",
+          "title": "HomePage entity to update"
+        }
+      },
+      "title": "Request data to update HomePage"
+    },
+    "v1UpdateHomePageResponse": {
       "type": "object",
       "properties": {
         "api": {

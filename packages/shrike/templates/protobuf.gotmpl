@@ -33,17 +33,51 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 		}
 	}
 };
+message OrderedPair {
+  string fieldName = 1;
+  enum Direction {
+    ASCENDING = 0;
+    DESCENDING = 1;
+  }
+  Direction direction = 2;
+}
+
+message Ordering {
+  repeated OrderedPair orderedPair = 1;
+}
+message FilterRule {
+  string fieldName = 1;
+  enum Rule {
+	EQ = 0;
+	NE = 1;
+    GT = 2;
+    GTE = 3;
+	LT = 4;
+	LTE = 5;
+	LIKE = 6;
+	NOTLIKE = 7;
+  }
+  Rule rule = 2;
+  string value = 3;
+  enum LogicalOperator {
+	AND = 0;
+	OR = 1;
+  }
+  LogicalOperator logicalOperator = 4;
+}
+
+message Filter {
+  repeated FilterRule filter = 1;
+}
 
 // Generated Types and Message Schema
 {{range .Schema.Tables}}
 message {{.Name}} {
-    {{range $index, $value := .Columns}}
-	{{.Type}} {{.Name}} = {{inc $index}};{{end}}
-}
+{{range $index, $value := .Columns}}{{.Type}} {{.Name}} = {{inc $index}};
+{{end}}}
 
 message Create{{.Name}} {
-    {{range $index, $value := .Columns}}
-	{{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};{{end}}{{end}}{{end}}{{end}}
+    {{range $index, $value := .Columns}}{{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};{{end}}{{end}}{{end}}{{end}}
 }
 
 //Request and Response Message Types
@@ -56,6 +90,7 @@ message Create{{.Name}}Response {
 	string api = 1;
 	int64 ID = 2;
 }
+
 message Get{{.Name}}Request {
 	string api = 1;
 	int64 ID = 2;
@@ -69,6 +104,9 @@ message Get{{.Name}}Response {
 message List{{.Name}}Request {
 	string api = 1;
 	int64 limit = 2;
+	int64 cursor = 3;
+	Ordering ordering = 4;
+	Filter filter = 5;
 }
 
 message List{{.Name}}Response {

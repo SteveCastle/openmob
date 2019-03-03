@@ -131,6 +131,16 @@ module.exports = client => ({
         .GetField()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
+    listHomePage: (_, { Limit, Cursor, Order, Filter }) =>
+      client
+        .ListHomePage()
+        .sendMessage({ api: 'v1' })
+        .then(res => res.items),
+    getHomePage: (_, { ID }) =>
+      client
+        .GetHomePage()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
     listLayout: (_, { Limit, Cursor, Order, Filter }) =>
       client
         .ListLayout()
@@ -847,6 +857,21 @@ module.exports = client => ({
     deleteField: (_, { ID }) =>
       client
         .DeleteField()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createHomePage: (_, { homePage }) =>
+      client
+        .CreateHomePage()
+        .sendMessage({ api: 'v1', item: { ...homePage } })
+        .then(res => ({ ID: res.ID, ...homePage })),
+    updateHomePage: (_, { ID, homePage }) =>
+      client
+        .UpdateHomePage()
+        .sendMessage({ api: 'v1', item: { ID, ...homePage } })
+        .then(res => res.updated),
+    deleteHomePage: (_, { ID }) =>
+      client
+        .DeleteHomePage()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createLayout: (_, { layout }) =>

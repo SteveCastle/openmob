@@ -73,6 +73,13 @@ input FieldInput {
   Component: Int
 }
 ​
+input HomePageInput {
+  secret: Int
+  Title: String!
+  Cause: Int!
+  Layout: Int
+}
+​
 input LayoutInput {
   secret: Int
   LayoutType: Int
@@ -347,6 +354,11 @@ input OwnerMembershipInput {
 ​
 input ContactInput {
   secret: Int
+  FirstName: String
+  MiddleName: String
+  LastName: String
+  Email: String
+  PhoneNumber: String
 }
 ​
 input ContactMembershipInput {
@@ -358,6 +370,7 @@ input ContactMembershipInput {
 input CauseInput {
   secret: Int
   Title: String!
+  Slug: String!
   Summary: String
 }
 ​
@@ -466,6 +479,15 @@ type Field {
   UpdatedAt: Time!
   FieldType: Int!
   Component: Int
+}
+​
+type HomePage {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
+  Cause: Int!
+  Layout: Int
 }
 ​
 type Layout {
@@ -838,6 +860,11 @@ type Contact {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
+  FirstName: String
+  MiddleName: String
+  LastName: String
+  Email: String
+  PhoneNumber: String
 }
 ​
 type ContactMembership {
@@ -853,6 +880,7 @@ type Cause {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
+  Slug: String!
   Summary: String
 }
 ​
@@ -900,6 +928,8 @@ type AgentMembership {
     listComponent: [Component]
     getField(ID: Int): Field
     listField: [Field]
+    getHomePage(ID: Int): HomePage
+    listHomePage: [HomePage]
     getLayout(ID: Int): Layout
     listLayout: [Layout]
     getLandingPage(ID: Int): LandingPage
@@ -1047,6 +1077,9 @@ type AgentMembership {
     createField(field: FieldInput): Field
     updateField(ID: Int, field: FieldInput): Int
     deleteField(ID: Int): Int
+    createHomePage(homePage: HomePageInput): HomePage
+    updateHomePage(ID: Int, homePage: HomePageInput): Int
+    deleteHomePage(ID: Int): Int
     createLayout(layout: LayoutInput): Layout
     updateLayout(ID: Int, layout: LayoutInput): Int
     deleteLayout(ID: Int): Int

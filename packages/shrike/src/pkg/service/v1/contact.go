@@ -25,7 +25,8 @@ func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateC
 	defer c.Close()
 	var id int64
 	// insert Contact entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contact () VALUES()  RETURNING id;").Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO contact (first_name, middle_name, last_name, email, phone_number) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
+		req.Item.FirstName, req.Item.MiddleName, req.Item.LastName, req.Item.Email, req.Item.PhoneNumber).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Contact-> "+err.Error())
 	}
@@ -55,7 +56,7 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 	defer c.Close()
 
 	// query Contact by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM contact WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, first_name, middle_name, last_name, email, phone_number FROM contact WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
@@ -75,7 +76,7 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 	var createdAt time.Time
 	var updatedAt time.Time
 
-	if err := rows.Scan(&contact.ID, &createdAt, &updatedAt); err != nil {
+	if err := rows.Scan(&contact.ID, &createdAt, &updatedAt, &contact.FirstName, &contact.MiddleName, &contact.LastName, &contact.Email, &contact.PhoneNumber); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
 	}
 
@@ -116,7 +117,7 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 	defer c.Close()
 
 	// get Contact list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM contact")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, first_name, middle_name, last_name, email, phone_number FROM contact")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
 	}
@@ -129,7 +130,7 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 
 	for rows.Next() {
 		contact := new(v1.Contact)
-		if err := rows.Scan(&contact.ID, &createdAt, &updatedAt); err != nil {
+		if err := rows.Scan(&contact.ID, &createdAt, &updatedAt, &contact.FirstName, &contact.MiddleName, &contact.LastName, &contact.Email, &contact.PhoneNumber); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
 		}
 		// Convert time.Time from database into proto timestamp.
@@ -170,8 +171,8 @@ func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateC
 	defer c.Close()
 
 	// update contact
-	res, err := c.ExecContext(ctx, "UPDATE contact SET  WHERE id=$1",
-		req.Item.ID)
+	res, err := c.ExecContext(ctx, "UPDATE contact SET first_name=$2, middle_name=$3, last_name=$4, email=$5, phone_number=$6 WHERE id=$1",
+		req.Item.ID, req.Item.FirstName, req.Item.MiddleName, req.Item.LastName, req.Item.Email, req.Item.PhoneNumber)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Contact-> "+err.Error())
 	}

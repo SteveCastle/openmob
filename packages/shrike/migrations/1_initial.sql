@@ -9,6 +9,7 @@ CREATE TABLE cause
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) UNIQUE NOT NULL,
     summary TEXT
 );
 CREATE TABLE account
@@ -129,7 +130,15 @@ CREATE TABLE field
     field_type INTEGER REFERENCES field_type(id) NOT NULL,
     component INTEGER REFERENCES component(id)
 );
-
+CREATE TABLE home_page
+(
+    id serial PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL,
+    cause INTEGER REFERENCES cause(id) UNIQUE NOT NULL,
+    layout INTEGER REFERENCES layout(id)
+);
 CREATE TABLE landing_page
 (
     id serial PRIMARY KEY,
@@ -386,7 +395,12 @@ CREATE TABLE contact
 (
     id serial PRIMARY KEY,
     created_at TIMESTAMPTZ NOT NULL,
-    updated_at TIMESTAMPTZ NOT NULL
+    updated_at TIMESTAMPTZ NOT NULL,
+    first_name VARCHAR(255),
+    middle_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255),
+    phone_number VARCHAR(255)
 );
 CREATE TABLE petition_signer
 (
@@ -568,6 +582,8 @@ DROP TABLE layout_column;
 DROP TABLE layout_row;
 DROP TABLE experiment;
 DROP TABLE landing_page;
+DROP TABLE home_page;
+
 DROP TABLE layout;
 DROP TABLE layout_type;
 DROP TABLE issue;

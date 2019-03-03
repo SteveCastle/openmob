@@ -25,8 +25,8 @@ func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCau
 	defer c.Close()
 	var id int64
 	// insert Cause entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO cause (title, summary) VALUES($1, $2)  RETURNING id;",
-		req.Item.Title, req.Item.Summary).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO cause (title, slug, summary) VALUES($1, $2, $3)  RETURNING id;",
+		req.Item.Title, req.Item.Slug, req.Item.Summary).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Cause-> "+err.Error())
 	}
@@ -56,7 +56,7 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	defer c.Close()
 
 	// query Cause by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, summary FROM cause WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, slug, summary FROM cause WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Cause-> "+err.Error())
@@ -76,7 +76,7 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	var createdAt time.Time
 	var updatedAt time.Time
 
-	if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Summary); err != nil {
+	if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Slug, &cause.Summary); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Cause row-> "+err.Error())
 	}
 
@@ -117,7 +117,7 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 	defer c.Close()
 
 	// get Cause list
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, summary FROM cause")
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, slug, summary FROM cause")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Cause-> "+err.Error())
 	}
@@ -130,7 +130,7 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 
 	for rows.Next() {
 		cause := new(v1.Cause)
-		if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Summary); err != nil {
+		if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Slug, &cause.Summary); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Cause row-> "+err.Error())
 		}
 		// Convert time.Time from database into proto timestamp.
@@ -171,8 +171,8 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	defer c.Close()
 
 	// update cause
-	res, err := c.ExecContext(ctx, "UPDATE cause SET title=$2, summary=$3 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.Summary)
+	res, err := c.ExecContext(ctx, "UPDATE cause SET title=$2, slug=$3, summary=$4 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.Slug, req.Item.Summary)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Cause-> "+err.Error())
 	}
