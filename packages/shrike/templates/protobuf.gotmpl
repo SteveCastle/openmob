@@ -40,6 +40,7 @@ message OrderedPair {
     DESCENDING = 1;
   }
   Direction direction = 2;
+  string keyset = 3;
 }
 
 message Ordering {
@@ -50,8 +51,7 @@ message FilterRule {
   enum Rule {
 	EQ = 0;
 	NE = 1;
-    GT = 2;
-    GTE = 3;
+  GT = 2;
 	LT = 4;
 	LTE = 5;
 	LIKE = 6;
@@ -73,12 +73,12 @@ message Filter {
 // Generated Types and Message Schema
 {{range .Schema.Tables}}
 message {{.Name}} {
-{{range $index, $value := .Columns}}{{.Type}} {{.Name}} = {{inc $index}};
+{{range $index, $value := .Columns}}  {{.Type}} {{.Name}} = {{inc $index}};
 {{end}}}
 
 message Create{{.Name}} {
-    {{range $index, $value := .Columns}}{{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};{{end}}{{end}}{{end}}{{end}}
-}
+{{range $index, $value := .Columns}}  {{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};
+{{end}}{{end}}{{end}}{{end}}}
 
 //Request and Response Message Types
 message Create{{.Name}}Request {
@@ -104,9 +104,8 @@ message Get{{.Name}}Response {
 message List{{.Name}}Request {
 	string api = 1;
 	int64 limit = 2;
-	int64 cursor = 3;
-	Ordering ordering = 4;
-	Filter filter = 5;
+	Ordering ordering = 3;
+	Filter filter = 4;
 }
 
 message List{{.Name}}Response {
@@ -122,7 +121,7 @@ message Update{{.Name}}Request{
 }
 
 // Contains status of update operation
-message Update{{.Name}}Response{
+message Update{{.Name}}Response {
     string api = 1;
     // Contains number of entities have beed updated
     // Equals 1 in case of succesfull update
@@ -130,14 +129,14 @@ message Update{{.Name}}Response{
 }
 
 // Request data to delete {{.Name}}
-message Delete{{.Name}}Request{
+message Delete{{.Name}}Request {
     string api = 1;
     // Unique integer IDentifier of the {{.Name}} to delete
     string ID = 2;
 }
 
 // Contains status of delete operation
-message Delete{{.Name}}Response{
+message Delete{{.Name}}Response {
     string api = 1;
 
     // Contains number of entities have beed deleted
@@ -169,7 +168,7 @@ service ShrikeService {
 	};
 }
     // Update {{.Name}}
-    rpc Update{{.Name}}(Update{{.Name}}Request) returns (Update{{.Name}}Response){
+    rpc Update{{.Name}}(Update{{.Name}}Request) returns (Update{{.Name}}Response) {
         option (google.api.http) = {
             put: "/v1/{{toLower .Name}}/{item.ID}"
             body: "*"
@@ -182,7 +181,7 @@ service ShrikeService {
     }
 
     // Delete {{.Name}}
-    rpc Delete{{.Name}}(Delete{{.Name}}Request) returns (Delete{{.Name}}Response){
+    rpc Delete{{.Name}}(Delete{{.Name}}Request) returns (Delete{{.Name}}Response) {
         option (google.api.http) = {
             delete: "/v1/{{toLower .Name}}/{ID}"
         };
