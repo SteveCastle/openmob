@@ -9,29 +9,29 @@ import "protoc-gen-swagger/options/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
-	info: {
-		title: "Shrike service",
-		version: "1.0",
-		contact: {
-			name: "openmob",
-			url: "https://github.com/SteveCastle/openmob",
-			email: "stephen@openmob.us",
+  info: {
+    title: "Shrike service",
+    version: "1.0",
+    contact: {
+      name: "openmob",
+      url: "https://github.com/SteveCastle/openmob",
+      email: "stephen@openmob.us",
         },
     },
     schemes: HTTP,
     consumes: "application/json",
     produces: "application/json",
     responses: {
-		key: "404",
-		value: {
-			description: "Returned when the resource does not exist.",
-			schema: {
-				json_schema: {
-					type: STRING,
-				}
-			}
-		}
-	}
+    key: "404",
+    value: {
+      description: "Returned when the resource does not exist.",
+      schema: {
+        json_schema: {
+          type: STRING,
+        }
+      }
+    }
+  }
 };
 message OrderedPair {
   string fieldName = 1;
@@ -49,19 +49,19 @@ message Ordering {
 message FilterRule {
   string fieldName = 1;
   enum Rule {
-	EQ = 0;
-	NE = 1;
-  GT = 2;
-	LT = 4;
-	LTE = 5;
-	LIKE = 6;
-	NOTLIKE = 7;
+    EQ = 0;
+    NE = 1;
+    GT = 2;
+    LT = 4;
+    LTE = 5;
+    LIKE = 6;
+    NOTLIKE = 7;
   }
   Rule rule = 2;
   string value = 3;
   enum LogicalOperator {
-	AND = 0;
-	OR = 1;
+    AND = 0;
+    OR = 1;
   }
   LogicalOperator logicalOperator = 4;
 }
@@ -82,35 +82,35 @@ message Create{{.Name}} {
 
 //Request and Response Message Types
 message Create{{.Name}}Request {
-	string api = 1;
-	Create{{.Name}} item = 2;
+  string api = 1;
+  Create{{.Name}} item = 2;
 }
 
 message Create{{.Name}}Response {
-	string api = 1;
-	string ID = 2;
+  string api = 1;
+  string ID = 2;
 }
 
 message Get{{.Name}}Request {
-	string api = 1;
-	string ID = 2;
+  string api = 1;
+  string ID = 2;
 }
 
 message Get{{.Name}}Response {
-	string api = 1;
-	{{.Name}} item = 2;
+  string api = 1;
+  {{.Name}} item = 2;
 }
 
 message List{{.Name}}Request {
-	string api = 1;
-	int64 limit = 2;
-	Ordering ordering = 3;
-	Filter filter = 4;
+  string api = 1;
+  int64 limit = 2;
+  Ordering ordering = 3;
+  Filter filter = 4;
 }
 
 message List{{.Name}}Response {
-	string api = 1;
-	repeated {{.Name}} items = 2;
+  string api = 1;
+  repeated {{.Name}} items = 2;
 }
 
 // Request data to update {{.Name}}
@@ -147,25 +147,25 @@ message Delete{{.Name}}Response {
 
 // Generated Shrike Service Definition
 service ShrikeService {
-	{{ range .Schema.Tables }}
-	// Create{{.Name}} takes a {{.Name}} object to create.
-	rpc Create{{.Name}}(Create{{.Name}}Request) returns (Create{{.Name}}Response) {
-		option (google.api.http) ={
-			post: "/v1/{{toLower .Name}}"
-			body: "*"
-		};
-	}
-    // Get{{.Name}} takes an ID and returns a single {{.Name}}.
-	rpc Get{{.Name}}(Get{{.Name}}Request) returns (Get{{.Name}}Response) {
-		option (google.api.http) ={
-			get: "/v1/{{toLower .Name}}/{ID}"
-		};
-	}
+  {{ range .Schema.Tables }}
+  // Create{{.Name}} takes a {{.Name}} object to create.
+  rpc Create{{.Name}}(Create{{.Name}}Request) returns (Create{{.Name}}Response) {
+    option (google.api.http) ={
+      post: "/v1/{{toLower .Name}}"
+      body: "*"
+    };
+  }
+  // Get{{.Name}} takes an ID and returns a single {{.Name}}.
+  rpc Get{{.Name}}(Get{{.Name}}Request) returns (Get{{.Name}}Response) {
+    option (google.api.http) ={
+      get: "/v1/{{toLower .Name}}/{ID}"
+    };
+  }
     // List {{.Name}}, takes filters, limit, and cursor param.
-	rpc List{{.Name}}(List{{.Name}}Request) returns (List{{.Name}}Response) {
-	option (google.api.http) ={
-		get: "/v1/{{toLower .Name}}"
-	};
+  rpc List{{.Name}}(List{{.Name}}Request) returns (List{{.Name}}Response) {
+  option (google.api.http) ={
+    get: "/v1/{{toLower .Name}}"
+  };
 }
     // Update {{.Name}}
     rpc Update{{.Name}}(Update{{.Name}}Request) returns (Update{{.Name}}Response) {
@@ -186,5 +186,5 @@ service ShrikeService {
             delete: "/v1/{{toLower .Name}}/{ID}"
         };
     }
-	{{end}}
+  {{end}}
 }

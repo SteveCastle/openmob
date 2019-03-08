@@ -28,180 +28,6 @@ var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
 
-func request_ShrikeService_CreateComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateComponentImplementationRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.CreateComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-var (
-	filter_ShrikeService_GetComponentImplementation_0 = &utilities.DoubleArray{Encoding: map[string]int{"ID": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-)
-
-func request_ShrikeService_GetComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetComponentImplementationRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["ID"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
-	}
-
-	protoReq.ID, err = runtime.String(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
-	}
-
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_ShrikeService_GetComponentImplementation_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.GetComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-var (
-	filter_ShrikeService_ListComponentImplementation_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
-func request_ShrikeService_ListComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListComponentImplementationRequest
-	var metadata runtime.ServerMetadata
-
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_ShrikeService_ListComponentImplementation_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.ListComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func request_ShrikeService_UpdateComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateComponentImplementationRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["item.ID"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "item.ID")
-	}
-
-	err = runtime.PopulateFieldFromPath(&protoReq, "item.ID", val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "item.ID", err)
-	}
-
-	msg, err := client.UpdateComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func request_ShrikeService_UpdateComponentImplementation_1(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateComponentImplementationRequest
-	var metadata runtime.ServerMetadata
-
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["item.ID"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "item.ID")
-	}
-
-	err = runtime.PopulateFieldFromPath(&protoReq, "item.ID", val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "item.ID", err)
-	}
-
-	msg, err := client.UpdateComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-var (
-	filter_ShrikeService_DeleteComponentImplementation_0 = &utilities.DoubleArray{Encoding: map[string]int{"ID": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-)
-
-func request_ShrikeService_DeleteComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteComponentImplementationRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["ID"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
-	}
-
-	protoReq.ID, err = runtime.String(val)
-
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
-	}
-
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_ShrikeService_DeleteComponentImplementation_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-
-	msg, err := client.DeleteComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
 func request_ShrikeService_CreateACL_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateACLRequest
 	var metadata runtime.ServerMetadata
@@ -1416,6 +1242,180 @@ func request_ShrikeService_DeleteLayoutRow_0(ctx context.Context, marshaler runt
 	}
 
 	msg, err := client.DeleteLayoutRow(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func request_ShrikeService_CreateComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateComponentImplementationRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.CreateComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+var (
+	filter_ShrikeService_GetComponentImplementation_0 = &utilities.DoubleArray{Encoding: map[string]int{"ID": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+)
+
+func request_ShrikeService_GetComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetComponentImplementationRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["ID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
+	}
+
+	protoReq.ID, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
+	}
+
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_ShrikeService_GetComponentImplementation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+var (
+	filter_ShrikeService_ListComponentImplementation_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_ShrikeService_ListComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListComponentImplementationRequest
+	var metadata runtime.ServerMetadata
+
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_ShrikeService_ListComponentImplementation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.ListComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func request_ShrikeService_UpdateComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateComponentImplementationRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["item.ID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "item.ID")
+	}
+
+	err = runtime.PopulateFieldFromPath(&protoReq, "item.ID", val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "item.ID", err)
+	}
+
+	msg, err := client.UpdateComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func request_ShrikeService_UpdateComponentImplementation_1(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateComponentImplementationRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["item.ID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "item.ID")
+	}
+
+	err = runtime.PopulateFieldFromPath(&protoReq, "item.ID", val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "item.ID", err)
+	}
+
+	msg, err := client.UpdateComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+var (
+	filter_ShrikeService_DeleteComponentImplementation_0 = &utilities.DoubleArray{Encoding: map[string]int{"ID": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+)
+
+func request_ShrikeService_DeleteComponentImplementation_0(ctx context.Context, marshaler runtime.Marshaler, client ShrikeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteComponentImplementationRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["ID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ID")
+	}
+
+	protoReq.ID, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ID", err)
+	}
+
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_ShrikeService_DeleteComponentImplementation_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.DeleteComponentImplementation(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
@@ -11550,126 +11550,6 @@ func RegisterShrikeServiceHandler(ctx context.Context, mux *runtime.ServeMux, co
 // "ShrikeServiceClient" to call the correct interceptors.
 func RegisterShrikeServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ShrikeServiceClient) error {
 
-	mux.Handle("POST", pattern_ShrikeService_CreateComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ShrikeService_CreateComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ShrikeService_CreateComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ShrikeService_GetComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ShrikeService_GetComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ShrikeService_GetComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("GET", pattern_ShrikeService_ListComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ShrikeService_ListComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ShrikeService_ListComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("PUT", pattern_ShrikeService_UpdateComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ShrikeService_UpdateComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ShrikeService_UpdateComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("PATCH", pattern_ShrikeService_UpdateComponentImplementation_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ShrikeService_UpdateComponentImplementation_1(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ShrikeService_UpdateComponentImplementation_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
-	mux.Handle("DELETE", pattern_ShrikeService_DeleteComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_ShrikeService_DeleteComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_ShrikeService_DeleteComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("POST", pattern_ShrikeService_CreateACL_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -12507,6 +12387,126 @@ func RegisterShrikeServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		}
 
 		forward_ShrikeService_DeleteLayoutRow_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_ShrikeService_CreateComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ShrikeService_CreateComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ShrikeService_CreateComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_ShrikeService_GetComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ShrikeService_GetComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ShrikeService_GetComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_ShrikeService_ListComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ShrikeService_ListComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ShrikeService_ListComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PUT", pattern_ShrikeService_UpdateComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ShrikeService_UpdateComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ShrikeService_UpdateComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_ShrikeService_UpdateComponentImplementation_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ShrikeService_UpdateComponentImplementation_1(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ShrikeService_UpdateComponentImplementation_1(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("DELETE", pattern_ShrikeService_DeleteComponentImplementation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ShrikeService_DeleteComponentImplementation_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ShrikeService_DeleteComponentImplementation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -19474,18 +19474,6 @@ func RegisterShrikeServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 }
 
 var (
-	pattern_ShrikeService_CreateComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "componentimplementation"}, ""))
-
-	pattern_ShrikeService_GetComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "componentimplementation", "ID"}, ""))
-
-	pattern_ShrikeService_ListComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "componentimplementation"}, ""))
-
-	pattern_ShrikeService_UpdateComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "componentimplementation", "item.ID"}, ""))
-
-	pattern_ShrikeService_UpdateComponentImplementation_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "componentimplementation", "item.ID"}, ""))
-
-	pattern_ShrikeService_DeleteComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "componentimplementation", "ID"}, ""))
-
 	pattern_ShrikeService_CreateACL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "acl"}, ""))
 
 	pattern_ShrikeService_GetACL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "acl", "ID"}, ""))
@@ -19569,6 +19557,18 @@ var (
 	pattern_ShrikeService_UpdateLayoutRow_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "layoutrow", "item.ID"}, ""))
 
 	pattern_ShrikeService_DeleteLayoutRow_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "layoutrow", "ID"}, ""))
+
+	pattern_ShrikeService_CreateComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "componentimplementation"}, ""))
+
+	pattern_ShrikeService_GetComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "componentimplementation", "ID"}, ""))
+
+	pattern_ShrikeService_ListComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "componentimplementation"}, ""))
+
+	pattern_ShrikeService_UpdateComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "componentimplementation", "item.ID"}, ""))
+
+	pattern_ShrikeService_UpdateComponentImplementation_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "componentimplementation", "item.ID"}, ""))
+
+	pattern_ShrikeService_DeleteComponentImplementation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "componentimplementation", "ID"}, ""))
 
 	pattern_ShrikeService_CreateComponentType_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "componenttype"}, ""))
 
@@ -20268,18 +20268,6 @@ var (
 )
 
 var (
-	forward_ShrikeService_CreateComponentImplementation_0 = runtime.ForwardResponseMessage
-
-	forward_ShrikeService_GetComponentImplementation_0 = runtime.ForwardResponseMessage
-
-	forward_ShrikeService_ListComponentImplementation_0 = runtime.ForwardResponseMessage
-
-	forward_ShrikeService_UpdateComponentImplementation_0 = runtime.ForwardResponseMessage
-
-	forward_ShrikeService_UpdateComponentImplementation_1 = runtime.ForwardResponseMessage
-
-	forward_ShrikeService_DeleteComponentImplementation_0 = runtime.ForwardResponseMessage
-
 	forward_ShrikeService_CreateACL_0 = runtime.ForwardResponseMessage
 
 	forward_ShrikeService_GetACL_0 = runtime.ForwardResponseMessage
@@ -20363,6 +20351,18 @@ var (
 	forward_ShrikeService_UpdateLayoutRow_1 = runtime.ForwardResponseMessage
 
 	forward_ShrikeService_DeleteLayoutRow_0 = runtime.ForwardResponseMessage
+
+	forward_ShrikeService_CreateComponentImplementation_0 = runtime.ForwardResponseMessage
+
+	forward_ShrikeService_GetComponentImplementation_0 = runtime.ForwardResponseMessage
+
+	forward_ShrikeService_ListComponentImplementation_0 = runtime.ForwardResponseMessage
+
+	forward_ShrikeService_UpdateComponentImplementation_0 = runtime.ForwardResponseMessage
+
+	forward_ShrikeService_UpdateComponentImplementation_1 = runtime.ForwardResponseMessage
+
+	forward_ShrikeService_DeleteComponentImplementation_0 = runtime.ForwardResponseMessage
 
 	forward_ShrikeService_CreateComponentType_0 = runtime.ForwardResponseMessage
 

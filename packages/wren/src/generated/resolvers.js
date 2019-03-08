@@ -1,16 +1,6 @@
 module.exports = client => ({
   Query: {
     
-    listComponentImplementation: (_, { Limit, Cursor, Order, Filter }) =>
-      client
-        .ListComponentImplementation()
-        .sendMessage({ api: 'v1' })
-        .then(res => res.items),
-    getComponentImplementation: (_, { ID }) =>
-      client
-        .GetComponentImplementation()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
     listACL: (_, { Limit, Cursor, Order, Filter }) =>
       client
         .ListACL()
@@ -79,6 +69,16 @@ module.exports = client => ({
     getLayoutRow: (_, { ID }) =>
       client
         .GetLayoutRow()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
+    listComponentImplementation: (_, { Limit, Cursor, Order, Filter }) =>
+      client
+        .ListComponentImplementation()
+        .sendMessage({ api: 'v1' })
+        .then(res => res.items),
+    getComponentImplementation: (_, { ID }) =>
+      client
+        .GetComponentImplementation()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
     listComponentType: (_, { Limit, Cursor, Order, Filter }) =>
@@ -664,21 +664,6 @@ module.exports = client => ({
   },
   Mutation: {
     
-    createComponentImplementation: (_, { componentImplementation }) =>
-      client
-        .CreateComponentImplementation()
-        .sendMessage({ api: 'v1', item: { ...componentImplementation } })
-        .then(res => ({ ID: res.ID, ...componentImplementation })),
-    updateComponentImplementation: (_, { ID, componentImplementation }) =>
-      client
-        .UpdateComponentImplementation()
-        .sendMessage({ api: 'v1', item: { ID, ...componentImplementation } })
-        .then(res => res.updated),
-    deleteComponentImplementation: (_, { ID }) =>
-      client
-        .DeleteComponentImplementation()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted),
     createACL: (_, { acl }) =>
       client
         .CreateACL()
@@ -782,6 +767,21 @@ module.exports = client => ({
     deleteLayoutRow: (_, { ID }) =>
       client
         .DeleteLayoutRow()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createComponentImplementation: (_, { componentImplementation }) =>
+      client
+        .CreateComponentImplementation()
+        .sendMessage({ api: 'v1', item: { ...componentImplementation } })
+        .then(res => ({ ID: res.ID, ...componentImplementation })),
+    updateComponentImplementation: (_, { ID, componentImplementation }) =>
+      client
+        .UpdateComponentImplementation()
+        .sendMessage({ api: 'v1', item: { ID, ...componentImplementation } })
+        .then(res => res.updated),
+    deleteComponentImplementation: (_, { ID }) =>
+      client
+        .DeleteComponentImplementation()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createComponentType: (_, { componentType }) =>

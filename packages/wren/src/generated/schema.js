@@ -5,10 +5,6 @@ module.exports = `type Time {
   }
 
 
-input ComponentImplementationInput {
-  secret: Int
-}
-​
 input ACLInput {
   secret: Int
 }
@@ -44,6 +40,10 @@ input LayoutTypeInput {
 input LayoutRowInput {
   secret: Int
   Layout: ID!
+}
+​
+input ComponentImplementationInput {
+  secret: Int
 }
 ​
 input ComponentTypeInput {
@@ -387,12 +387,6 @@ input AgentMembershipInput {
 ​
 
 
-type ComponentImplementation {
-  ID: ID!
-  CreatedAt: Time!
-  UpdatedAt: Time!
-}
-​
 type ACL {
   ID: ID!
   CreatedAt: Time!
@@ -442,6 +436,12 @@ type LayoutRow {
   CreatedAt: Time!
   UpdatedAt: Time!
   Layout: ID!
+}
+​
+type ComponentImplementation {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
 }
 ​
 type ComponentType {
@@ -902,8 +902,6 @@ type AgentMembership {
 
   type Query {
     
-    getComponentImplementation(ID: ID!): ComponentImplementation
-    listComponentImplementation: [ComponentImplementation]
     getACL(ID: ID!): ACL
     listACL: [ACL]
     getMailingAddress(ID: ID!): MailingAddress
@@ -918,6 +916,8 @@ type AgentMembership {
     listLayoutType: [LayoutType]
     getLayoutRow(ID: ID!): LayoutRow
     listLayoutRow: [LayoutRow]
+    getComponentImplementation(ID: ID!): ComponentImplementation
+    listComponentImplementation: [ComponentImplementation]
     getComponentType(ID: ID!): ComponentType
     listComponentType: [ComponentType]
     getLayoutColumn(ID: ID!): LayoutColumn
@@ -1038,9 +1038,6 @@ type AgentMembership {
 
   type Mutation {
     
-    createComponentImplementation(componentImplementation: ComponentImplementationInput): ComponentImplementation
-    updateComponentImplementation(ID: ID!, componentImplementation: ComponentImplementationInput): Int
-    deleteComponentImplementation(ID: ID!): Int
     createACL(acl: ACLInput): ACL
     updateACL(ID: ID!, acl: ACLInput): Int
     deleteACL(ID: ID!): Int
@@ -1062,6 +1059,9 @@ type AgentMembership {
     createLayoutRow(layoutRow: LayoutRowInput): LayoutRow
     updateLayoutRow(ID: ID!, layoutRow: LayoutRowInput): Int
     deleteLayoutRow(ID: ID!): Int
+    createComponentImplementation(componentImplementation: ComponentImplementationInput): ComponentImplementation
+    updateComponentImplementation(ID: ID!, componentImplementation: ComponentImplementationInput): Int
+    deleteComponentImplementation(ID: ID!): Int
     createComponentType(componentType: ComponentTypeInput): ComponentType
     updateComponentType(ID: ID!, componentType: ComponentTypeInput): Int
     deleteComponentType(ID: ID!): Int
