@@ -33,21 +33,13 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     }
   }
 };
-message OrderedPair {
-  string fieldName = 1;
+
+// Sort and Filter Types
   enum Direction {
     ASCENDING = 0;
     DESCENDING = 1;
   }
-  Direction direction = 2;
-  string keyset = 3;
-}
 
-message Ordering {
-  repeated OrderedPair orderedPair = 1;
-}
-message FilterRule {
-  string fieldName = 1;
   enum Rule {
     EQ = 0;
     NE = 1;
@@ -57,18 +49,38 @@ message FilterRule {
     LIKE = 6;
     NOTLIKE = 7;
   }
-  Rule rule = 2;
-  string value = 3;
+
   enum LogicalOperator {
     AND = 0;
     OR = 1;
   }
-  LogicalOperator logicalOperator = 4;
+
+{{ range .Schema.Tables }}
+
+{{range $index, $value := .Columns}}
+message {{ .Table.Name}}{{.Name}}Field {
+  {{.Type}} {{ .Name}} = {{inc $index}};
+}
+{{end}}
+
+message {{.Name}}OrderedPair {
+  Direction direction = 1;
+  oneof field {
+{{range $index, $value := .Columns}}  {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};
+{{end}}  }
 }
 
-message Filter {
-  repeated FilterRule filter = 1;
+message {{.Name}}Ordering {
+  repeated {{.Name}}OrderedPair orderedPair = 1;
 }
+message {{.Name}}FilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+{{range $index, $value := .Columns}}  {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};
+{{end}}  }
+}
+{{end}}
 
 // Generated Types and Message Schema
 {{range .Schema.Tables}}
@@ -80,7 +92,6 @@ message Create{{.Name}} {
 {{range $index, $value := .Columns}}  {{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};
 {{end}}{{end}}{{end}}{{end}}}
 
-//Request and Response Message Types
 message Create{{.Name}}Request {
   string api = 1;
   Create{{.Name}} item = 2;
@@ -104,8 +115,8 @@ message Get{{.Name}}Response {
 message List{{.Name}}Request {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  {{.Name}}Ordering ordering = 3;
+  repeated {{.Name}}FilterRule filters = 4;
 }
 
 message List{{.Name}}Response {
@@ -113,34 +124,23 @@ message List{{.Name}}Response {
   repeated {{.Name}} items = 2;
 }
 
-// Request data to update {{.Name}}
 message Update{{.Name}}Request{
     string api = 1;
-    // {{.Name}} entity to update
     {{.Name}} item = 2;
 }
 
-// Contains status of update operation
 message Update{{.Name}}Response {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete {{.Name}}
 message Delete{{.Name}}Request {
     string api = 1;
-    // Unique integer IDentifier of the {{.Name}} to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message Delete{{.Name}}Response {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 {{end}}

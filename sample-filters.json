@@ -1,0 +1,21 @@
+{
+  "api": "v1",
+  "limit": 20,
+  "ordering": {
+    "orderedPair": [
+      {
+        "fieldName": "ID",
+        "direction": 0,
+        "keyset": "Hello"
+      }
+    ]
+  },
+  "filters": [
+    {
+      "fieldName": "Name",
+      "rule": 0,
+      "value": "Hello",
+      "logicalOperator": 0
+    }
+  ]
+}

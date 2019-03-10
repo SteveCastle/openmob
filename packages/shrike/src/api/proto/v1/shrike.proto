@@ -33,21 +33,13 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     }
   }
 };
-message OrderedPair {
-  string fieldName = 1;
+
+// Sort and Filter Types
   enum Direction {
     ASCENDING = 0;
     DESCENDING = 1;
   }
-  Direction direction = 2;
-  string keyset = 3;
-}
 
-message Ordering {
-  repeated OrderedPair orderedPair = 1;
-}
-message FilterRule {
-  string fieldName = 1;
   enum Rule {
     EQ = 0;
     NE = 1;
@@ -57,18 +49,3151 @@ message FilterRule {
     LIKE = 6;
     NOTLIKE = 7;
   }
-  Rule rule = 2;
-  string value = 3;
+
   enum LogicalOperator {
     AND = 0;
     OR = 1;
   }
-  LogicalOperator logicalOperator = 4;
+
+
+
+
+message ACLIDField {
+  string ID = 1;
 }
 
-message Filter {
-  repeated FilterRule filter = 1;
+message ACLCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
 }
+
+message ACLUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+
+message ACLOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ACLIDField ID = 3;
+  ACLCreatedAtField CreatedAt = 4;
+  ACLUpdatedAtField UpdatedAt = 5;
+  }
+}
+
+message ACLOrdering {
+  repeated ACLOrderedPair orderedPair = 1;
+}
+message ACLFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ACLIDField ID = 3;
+  ACLCreatedAtField CreatedAt = 4;
+  ACLUpdatedAtField UpdatedAt = 5;
+  }
+}
+
+
+
+message MailingAddressIDField {
+  string ID = 1;
+}
+
+message MailingAddressCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message MailingAddressUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message MailingAddressStreetAddressField {
+  string StreetAddress = 4;
+}
+
+message MailingAddressCityField {
+  string City = 5;
+}
+
+message MailingAddressStateField {
+  string State = 6;
+}
+
+message MailingAddressZipCodeField {
+  string ZipCode = 7;
+}
+
+
+message MailingAddressOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  MailingAddressIDField ID = 3;
+  MailingAddressCreatedAtField CreatedAt = 4;
+  MailingAddressUpdatedAtField UpdatedAt = 5;
+  MailingAddressStreetAddressField StreetAddress = 6;
+  MailingAddressCityField City = 7;
+  MailingAddressStateField State = 8;
+  MailingAddressZipCodeField ZipCode = 9;
+  }
+}
+
+message MailingAddressOrdering {
+  repeated MailingAddressOrderedPair orderedPair = 1;
+}
+message MailingAddressFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  MailingAddressIDField ID = 3;
+  MailingAddressCreatedAtField CreatedAt = 4;
+  MailingAddressUpdatedAtField UpdatedAt = 5;
+  MailingAddressStreetAddressField StreetAddress = 6;
+  MailingAddressCityField City = 7;
+  MailingAddressStateField State = 8;
+  MailingAddressZipCodeField ZipCode = 9;
+  }
+}
+
+
+
+message PhoneNumberIDField {
+  string ID = 1;
+}
+
+message PhoneNumberCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PhoneNumberUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PhoneNumberPhoneNumberField {
+  string PhoneNumber = 4;
+}
+
+
+message PhoneNumberOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PhoneNumberIDField ID = 3;
+  PhoneNumberCreatedAtField CreatedAt = 4;
+  PhoneNumberUpdatedAtField UpdatedAt = 5;
+  PhoneNumberPhoneNumberField PhoneNumber = 6;
+  }
+}
+
+message PhoneNumberOrdering {
+  repeated PhoneNumberOrderedPair orderedPair = 1;
+}
+message PhoneNumberFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PhoneNumberIDField ID = 3;
+  PhoneNumberCreatedAtField CreatedAt = 4;
+  PhoneNumberUpdatedAtField UpdatedAt = 5;
+  PhoneNumberPhoneNumberField PhoneNumber = 6;
+  }
+}
+
+
+
+message EmailAddressIDField {
+  string ID = 1;
+}
+
+message EmailAddressCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message EmailAddressUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message EmailAddressAddressField {
+  string Address = 4;
+}
+
+
+message EmailAddressOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  EmailAddressIDField ID = 3;
+  EmailAddressCreatedAtField CreatedAt = 4;
+  EmailAddressUpdatedAtField UpdatedAt = 5;
+  EmailAddressAddressField Address = 6;
+  }
+}
+
+message EmailAddressOrdering {
+  repeated EmailAddressOrderedPair orderedPair = 1;
+}
+message EmailAddressFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  EmailAddressIDField ID = 3;
+  EmailAddressCreatedAtField CreatedAt = 4;
+  EmailAddressUpdatedAtField UpdatedAt = 5;
+  EmailAddressAddressField Address = 6;
+  }
+}
+
+
+
+message PhotoIDField {
+  string ID = 1;
+}
+
+message PhotoCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PhotoUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PhotoImgURLField {
+  string ImgURL = 4;
+}
+
+
+message PhotoOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PhotoIDField ID = 3;
+  PhotoCreatedAtField CreatedAt = 4;
+  PhotoUpdatedAtField UpdatedAt = 5;
+  PhotoImgURLField ImgURL = 6;
+  }
+}
+
+message PhotoOrdering {
+  repeated PhotoOrderedPair orderedPair = 1;
+}
+message PhotoFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PhotoIDField ID = 3;
+  PhotoCreatedAtField CreatedAt = 4;
+  PhotoUpdatedAtField UpdatedAt = 5;
+  PhotoImgURLField ImgURL = 6;
+  }
+}
+
+
+
+message LayoutTypeIDField {
+  string ID = 1;
+}
+
+message LayoutTypeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message LayoutTypeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message LayoutTypeTitleField {
+  string Title = 4;
+}
+
+
+message LayoutTypeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  LayoutTypeIDField ID = 3;
+  LayoutTypeCreatedAtField CreatedAt = 4;
+  LayoutTypeUpdatedAtField UpdatedAt = 5;
+  LayoutTypeTitleField Title = 6;
+  }
+}
+
+message LayoutTypeOrdering {
+  repeated LayoutTypeOrderedPair orderedPair = 1;
+}
+message LayoutTypeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  LayoutTypeIDField ID = 3;
+  LayoutTypeCreatedAtField CreatedAt = 4;
+  LayoutTypeUpdatedAtField UpdatedAt = 5;
+  LayoutTypeTitleField Title = 6;
+  }
+}
+
+
+
+message LayoutRowIDField {
+  string ID = 1;
+}
+
+message LayoutRowCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message LayoutRowUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message LayoutRowLayoutField {
+  string Layout = 4;
+}
+
+
+message LayoutRowOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  LayoutRowIDField ID = 3;
+  LayoutRowCreatedAtField CreatedAt = 4;
+  LayoutRowUpdatedAtField UpdatedAt = 5;
+  LayoutRowLayoutField Layout = 6;
+  }
+}
+
+message LayoutRowOrdering {
+  repeated LayoutRowOrderedPair orderedPair = 1;
+}
+message LayoutRowFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  LayoutRowIDField ID = 3;
+  LayoutRowCreatedAtField CreatedAt = 4;
+  LayoutRowUpdatedAtField UpdatedAt = 5;
+  LayoutRowLayoutField Layout = 6;
+  }
+}
+
+
+
+message ComponentImplementationIDField {
+  string ID = 1;
+}
+
+message ComponentImplementationCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ComponentImplementationUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+
+message ComponentImplementationOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ComponentImplementationIDField ID = 3;
+  ComponentImplementationCreatedAtField CreatedAt = 4;
+  ComponentImplementationUpdatedAtField UpdatedAt = 5;
+  }
+}
+
+message ComponentImplementationOrdering {
+  repeated ComponentImplementationOrderedPair orderedPair = 1;
+}
+message ComponentImplementationFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ComponentImplementationIDField ID = 3;
+  ComponentImplementationCreatedAtField CreatedAt = 4;
+  ComponentImplementationUpdatedAtField UpdatedAt = 5;
+  }
+}
+
+
+
+message ComponentTypeIDField {
+  string ID = 1;
+}
+
+message ComponentTypeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ComponentTypeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ComponentTypeTitleField {
+  string Title = 4;
+}
+
+
+message ComponentTypeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ComponentTypeIDField ID = 3;
+  ComponentTypeCreatedAtField CreatedAt = 4;
+  ComponentTypeUpdatedAtField UpdatedAt = 5;
+  ComponentTypeTitleField Title = 6;
+  }
+}
+
+message ComponentTypeOrdering {
+  repeated ComponentTypeOrderedPair orderedPair = 1;
+}
+message ComponentTypeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ComponentTypeIDField ID = 3;
+  ComponentTypeCreatedAtField CreatedAt = 4;
+  ComponentTypeUpdatedAtField UpdatedAt = 5;
+  ComponentTypeTitleField Title = 6;
+  }
+}
+
+
+
+message LayoutColumnIDField {
+  string ID = 1;
+}
+
+message LayoutColumnCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message LayoutColumnUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message LayoutColumnLayoutRowField {
+  string LayoutRow = 4;
+}
+
+
+message LayoutColumnOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  LayoutColumnIDField ID = 3;
+  LayoutColumnCreatedAtField CreatedAt = 4;
+  LayoutColumnUpdatedAtField UpdatedAt = 5;
+  LayoutColumnLayoutRowField LayoutRow = 6;
+  }
+}
+
+message LayoutColumnOrdering {
+  repeated LayoutColumnOrderedPair orderedPair = 1;
+}
+message LayoutColumnFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  LayoutColumnIDField ID = 3;
+  LayoutColumnCreatedAtField CreatedAt = 4;
+  LayoutColumnUpdatedAtField UpdatedAt = 5;
+  LayoutColumnLayoutRowField LayoutRow = 6;
+  }
+}
+
+
+
+message FieldTypeIDField {
+  string ID = 1;
+}
+
+message FieldTypeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message FieldTypeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message FieldTypeTitleField {
+  string Title = 4;
+}
+
+
+message FieldTypeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  FieldTypeIDField ID = 3;
+  FieldTypeCreatedAtField CreatedAt = 4;
+  FieldTypeUpdatedAtField UpdatedAt = 5;
+  FieldTypeTitleField Title = 6;
+  }
+}
+
+message FieldTypeOrdering {
+  repeated FieldTypeOrderedPair orderedPair = 1;
+}
+message FieldTypeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  FieldTypeIDField ID = 3;
+  FieldTypeCreatedAtField CreatedAt = 4;
+  FieldTypeUpdatedAtField UpdatedAt = 5;
+  FieldTypeTitleField Title = 6;
+  }
+}
+
+
+
+message ComponentIDField {
+  string ID = 1;
+}
+
+message ComponentCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ComponentUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ComponentComponentTypeField {
+  string ComponentType = 4;
+}
+
+message ComponentLayoutColumnField {
+  string LayoutColumn = 5;
+}
+
+
+message ComponentOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ComponentIDField ID = 3;
+  ComponentCreatedAtField CreatedAt = 4;
+  ComponentUpdatedAtField UpdatedAt = 5;
+  ComponentComponentTypeField ComponentType = 6;
+  ComponentLayoutColumnField LayoutColumn = 7;
+  }
+}
+
+message ComponentOrdering {
+  repeated ComponentOrderedPair orderedPair = 1;
+}
+message ComponentFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ComponentIDField ID = 3;
+  ComponentCreatedAtField CreatedAt = 4;
+  ComponentUpdatedAtField UpdatedAt = 5;
+  ComponentComponentTypeField ComponentType = 6;
+  ComponentLayoutColumnField LayoutColumn = 7;
+  }
+}
+
+
+
+message FieldIDField {
+  string ID = 1;
+}
+
+message FieldCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message FieldUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message FieldFieldTypeField {
+  string FieldType = 4;
+}
+
+message FieldComponentField {
+  string Component = 5;
+}
+
+
+message FieldOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  FieldIDField ID = 3;
+  FieldCreatedAtField CreatedAt = 4;
+  FieldUpdatedAtField UpdatedAt = 5;
+  FieldFieldTypeField FieldType = 6;
+  FieldComponentField Component = 7;
+  }
+}
+
+message FieldOrdering {
+  repeated FieldOrderedPair orderedPair = 1;
+}
+message FieldFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  FieldIDField ID = 3;
+  FieldCreatedAtField CreatedAt = 4;
+  FieldUpdatedAtField UpdatedAt = 5;
+  FieldFieldTypeField FieldType = 6;
+  FieldComponentField Component = 7;
+  }
+}
+
+
+
+message HomePageIDField {
+  string ID = 1;
+}
+
+message HomePageCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message HomePageUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message HomePageTitleField {
+  string Title = 4;
+}
+
+message HomePageCauseField {
+  string Cause = 5;
+}
+
+message HomePageLayoutField {
+  string Layout = 6;
+}
+
+
+message HomePageOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  HomePageIDField ID = 3;
+  HomePageCreatedAtField CreatedAt = 4;
+  HomePageUpdatedAtField UpdatedAt = 5;
+  HomePageTitleField Title = 6;
+  HomePageCauseField Cause = 7;
+  HomePageLayoutField Layout = 8;
+  }
+}
+
+message HomePageOrdering {
+  repeated HomePageOrderedPair orderedPair = 1;
+}
+message HomePageFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  HomePageIDField ID = 3;
+  HomePageCreatedAtField CreatedAt = 4;
+  HomePageUpdatedAtField UpdatedAt = 5;
+  HomePageTitleField Title = 6;
+  HomePageCauseField Cause = 7;
+  HomePageLayoutField Layout = 8;
+  }
+}
+
+
+
+message LayoutIDField {
+  string ID = 1;
+}
+
+message LayoutCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message LayoutUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message LayoutLayoutTypeField {
+  string LayoutType = 4;
+}
+
+
+message LayoutOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  LayoutIDField ID = 3;
+  LayoutCreatedAtField CreatedAt = 4;
+  LayoutUpdatedAtField UpdatedAt = 5;
+  LayoutLayoutTypeField LayoutType = 6;
+  }
+}
+
+message LayoutOrdering {
+  repeated LayoutOrderedPair orderedPair = 1;
+}
+message LayoutFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  LayoutIDField ID = 3;
+  LayoutCreatedAtField CreatedAt = 4;
+  LayoutUpdatedAtField UpdatedAt = 5;
+  LayoutLayoutTypeField LayoutType = 6;
+  }
+}
+
+
+
+message LandingPageIDField {
+  string ID = 1;
+}
+
+message LandingPageCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message LandingPageUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message LandingPageTitleField {
+  string Title = 4;
+}
+
+message LandingPageCauseField {
+  string Cause = 5;
+}
+
+message LandingPageLayoutField {
+  string Layout = 6;
+}
+
+
+message LandingPageOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  LandingPageIDField ID = 3;
+  LandingPageCreatedAtField CreatedAt = 4;
+  LandingPageUpdatedAtField UpdatedAt = 5;
+  LandingPageTitleField Title = 6;
+  LandingPageCauseField Cause = 7;
+  LandingPageLayoutField Layout = 8;
+  }
+}
+
+message LandingPageOrdering {
+  repeated LandingPageOrderedPair orderedPair = 1;
+}
+message LandingPageFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  LandingPageIDField ID = 3;
+  LandingPageCreatedAtField CreatedAt = 4;
+  LandingPageUpdatedAtField UpdatedAt = 5;
+  LandingPageTitleField Title = 6;
+  LandingPageCauseField Cause = 7;
+  LandingPageLayoutField Layout = 8;
+  }
+}
+
+
+
+message ExperimentIDField {
+  string ID = 1;
+}
+
+message ExperimentCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ExperimentUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ExperimentTitleField {
+  string Title = 4;
+}
+
+message ExperimentLandingPageField {
+  string LandingPage = 5;
+}
+
+
+message ExperimentOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ExperimentIDField ID = 3;
+  ExperimentCreatedAtField CreatedAt = 4;
+  ExperimentUpdatedAtField UpdatedAt = 5;
+  ExperimentTitleField Title = 6;
+  ExperimentLandingPageField LandingPage = 7;
+  }
+}
+
+message ExperimentOrdering {
+  repeated ExperimentOrderedPair orderedPair = 1;
+}
+message ExperimentFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ExperimentIDField ID = 3;
+  ExperimentCreatedAtField CreatedAt = 4;
+  ExperimentUpdatedAtField UpdatedAt = 5;
+  ExperimentTitleField Title = 6;
+  ExperimentLandingPageField LandingPage = 7;
+  }
+}
+
+
+
+message IssueIDField {
+  string ID = 1;
+}
+
+message IssueCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message IssueUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message IssueTitleField {
+  string Title = 4;
+}
+
+message IssueElectionField {
+  string Election = 5;
+}
+
+
+message IssueOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  IssueIDField ID = 3;
+  IssueCreatedAtField CreatedAt = 4;
+  IssueUpdatedAtField UpdatedAt = 5;
+  IssueTitleField Title = 6;
+  IssueElectionField Election = 7;
+  }
+}
+
+message IssueOrdering {
+  repeated IssueOrderedPair orderedPair = 1;
+}
+message IssueFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  IssueIDField ID = 3;
+  IssueCreatedAtField CreatedAt = 4;
+  IssueUpdatedAtField UpdatedAt = 5;
+  IssueTitleField Title = 6;
+  IssueElectionField Election = 7;
+  }
+}
+
+
+
+message CandidateIDField {
+  string ID = 1;
+}
+
+message CandidateCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message CandidateUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message CandidateElectionField {
+  string Election = 4;
+}
+
+
+message CandidateOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  CandidateIDField ID = 3;
+  CandidateCreatedAtField CreatedAt = 4;
+  CandidateUpdatedAtField UpdatedAt = 5;
+  CandidateElectionField Election = 6;
+  }
+}
+
+message CandidateOrdering {
+  repeated CandidateOrderedPair orderedPair = 1;
+}
+message CandidateFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  CandidateIDField ID = 3;
+  CandidateCreatedAtField CreatedAt = 4;
+  CandidateUpdatedAtField UpdatedAt = 5;
+  CandidateElectionField Election = 6;
+  }
+}
+
+
+
+message DistrictTypeIDField {
+  string ID = 1;
+}
+
+message DistrictTypeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message DistrictTypeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message DistrictTypeTitleField {
+  string Title = 4;
+}
+
+
+message DistrictTypeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  DistrictTypeIDField ID = 3;
+  DistrictTypeCreatedAtField CreatedAt = 4;
+  DistrictTypeUpdatedAtField UpdatedAt = 5;
+  DistrictTypeTitleField Title = 6;
+  }
+}
+
+message DistrictTypeOrdering {
+  repeated DistrictTypeOrderedPair orderedPair = 1;
+}
+message DistrictTypeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  DistrictTypeIDField ID = 3;
+  DistrictTypeCreatedAtField CreatedAt = 4;
+  DistrictTypeUpdatedAtField UpdatedAt = 5;
+  DistrictTypeTitleField Title = 6;
+  }
+}
+
+
+
+message DistrictIDField {
+  string ID = 1;
+}
+
+message DistrictCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message DistrictUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message DistrictGeomField {
+  int64 Geom = 4;
+}
+
+message DistrictTitleField {
+  string Title = 5;
+}
+
+message DistrictDistrictTypeField {
+  string DistrictType = 6;
+}
+
+
+message DistrictOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  DistrictIDField ID = 3;
+  DistrictCreatedAtField CreatedAt = 4;
+  DistrictUpdatedAtField UpdatedAt = 5;
+  DistrictGeomField Geom = 6;
+  DistrictTitleField Title = 7;
+  DistrictDistrictTypeField DistrictType = 8;
+  }
+}
+
+message DistrictOrdering {
+  repeated DistrictOrderedPair orderedPair = 1;
+}
+message DistrictFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  DistrictIDField ID = 3;
+  DistrictCreatedAtField CreatedAt = 4;
+  DistrictUpdatedAtField UpdatedAt = 5;
+  DistrictGeomField Geom = 6;
+  DistrictTitleField Title = 7;
+  DistrictDistrictTypeField DistrictType = 8;
+  }
+}
+
+
+
+message OfficeIDField {
+  string ID = 1;
+}
+
+message OfficeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message OfficeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message OfficeTitleField {
+  string Title = 4;
+}
+
+message OfficeElectionField {
+  string Election = 5;
+}
+
+
+message OfficeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  OfficeIDField ID = 3;
+  OfficeCreatedAtField CreatedAt = 4;
+  OfficeUpdatedAtField UpdatedAt = 5;
+  OfficeTitleField Title = 6;
+  OfficeElectionField Election = 7;
+  }
+}
+
+message OfficeOrdering {
+  repeated OfficeOrderedPair orderedPair = 1;
+}
+message OfficeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  OfficeIDField ID = 3;
+  OfficeCreatedAtField CreatedAt = 4;
+  OfficeUpdatedAtField UpdatedAt = 5;
+  OfficeTitleField Title = 6;
+  OfficeElectionField Election = 7;
+  }
+}
+
+
+
+message PollItemIDField {
+  string ID = 1;
+}
+
+message PollItemCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PollItemUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PollItemTitleField {
+  string Title = 4;
+}
+
+message PollItemPollField {
+  string Poll = 5;
+}
+
+
+message PollItemOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PollItemIDField ID = 3;
+  PollItemCreatedAtField CreatedAt = 4;
+  PollItemUpdatedAtField UpdatedAt = 5;
+  PollItemTitleField Title = 6;
+  PollItemPollField Poll = 7;
+  }
+}
+
+message PollItemOrdering {
+  repeated PollItemOrderedPair orderedPair = 1;
+}
+message PollItemFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PollItemIDField ID = 3;
+  PollItemCreatedAtField CreatedAt = 4;
+  PollItemUpdatedAtField UpdatedAt = 5;
+  PollItemTitleField Title = 6;
+  PollItemPollField Poll = 7;
+  }
+}
+
+
+
+message VolunteerOpportunityTypeIDField {
+  string ID = 1;
+}
+
+message VolunteerOpportunityTypeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message VolunteerOpportunityTypeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message VolunteerOpportunityTypeTitleField {
+  string Title = 4;
+}
+
+
+message VolunteerOpportunityTypeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  VolunteerOpportunityTypeIDField ID = 3;
+  VolunteerOpportunityTypeCreatedAtField CreatedAt = 4;
+  VolunteerOpportunityTypeUpdatedAtField UpdatedAt = 5;
+  VolunteerOpportunityTypeTitleField Title = 6;
+  }
+}
+
+message VolunteerOpportunityTypeOrdering {
+  repeated VolunteerOpportunityTypeOrderedPair orderedPair = 1;
+}
+message VolunteerOpportunityTypeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  VolunteerOpportunityTypeIDField ID = 3;
+  VolunteerOpportunityTypeCreatedAtField CreatedAt = 4;
+  VolunteerOpportunityTypeUpdatedAtField UpdatedAt = 5;
+  VolunteerOpportunityTypeTitleField Title = 6;
+  }
+}
+
+
+
+message LiveEventTypeIDField {
+  string ID = 1;
+}
+
+message LiveEventTypeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message LiveEventTypeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message LiveEventTypeTitleField {
+  string Title = 4;
+}
+
+
+message LiveEventTypeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  LiveEventTypeIDField ID = 3;
+  LiveEventTypeCreatedAtField CreatedAt = 4;
+  LiveEventTypeUpdatedAtField UpdatedAt = 5;
+  LiveEventTypeTitleField Title = 6;
+  }
+}
+
+message LiveEventTypeOrdering {
+  repeated LiveEventTypeOrderedPair orderedPair = 1;
+}
+message LiveEventTypeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  LiveEventTypeIDField ID = 3;
+  LiveEventTypeCreatedAtField CreatedAt = 4;
+  LiveEventTypeUpdatedAtField UpdatedAt = 5;
+  LiveEventTypeTitleField Title = 6;
+  }
+}
+
+
+
+message CompanyIDField {
+  string ID = 1;
+}
+
+message CompanyCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message CompanyUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message CompanyTitleField {
+  string Title = 4;
+}
+
+
+message CompanyOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  CompanyIDField ID = 3;
+  CompanyCreatedAtField CreatedAt = 4;
+  CompanyUpdatedAtField UpdatedAt = 5;
+  CompanyTitleField Title = 6;
+  }
+}
+
+message CompanyOrdering {
+  repeated CompanyOrderedPair orderedPair = 1;
+}
+message CompanyFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  CompanyIDField ID = 3;
+  CompanyCreatedAtField CreatedAt = 4;
+  CompanyUpdatedAtField UpdatedAt = 5;
+  CompanyTitleField Title = 6;
+  }
+}
+
+
+
+message ProductTypeIDField {
+  string ID = 1;
+}
+
+message ProductTypeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ProductTypeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ProductTypeTitleField {
+  string Title = 4;
+}
+
+
+message ProductTypeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ProductTypeIDField ID = 3;
+  ProductTypeCreatedAtField CreatedAt = 4;
+  ProductTypeUpdatedAtField UpdatedAt = 5;
+  ProductTypeTitleField Title = 6;
+  }
+}
+
+message ProductTypeOrdering {
+  repeated ProductTypeOrderedPair orderedPair = 1;
+}
+message ProductTypeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ProductTypeIDField ID = 3;
+  ProductTypeCreatedAtField CreatedAt = 4;
+  ProductTypeUpdatedAtField UpdatedAt = 5;
+  ProductTypeTitleField Title = 6;
+  }
+}
+
+
+
+message CustomerCartIDField {
+  string ID = 1;
+}
+
+message CustomerCartCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message CustomerCartUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+
+message CustomerCartOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  CustomerCartIDField ID = 3;
+  CustomerCartCreatedAtField CreatedAt = 4;
+  CustomerCartUpdatedAtField UpdatedAt = 5;
+  }
+}
+
+message CustomerCartOrdering {
+  repeated CustomerCartOrderedPair orderedPair = 1;
+}
+message CustomerCartFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  CustomerCartIDField ID = 3;
+  CustomerCartCreatedAtField CreatedAt = 4;
+  CustomerCartUpdatedAtField UpdatedAt = 5;
+  }
+}
+
+
+
+message PaymentIDField {
+  string ID = 1;
+}
+
+message PaymentCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PaymentUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PaymentCustomerOrderField {
+  string CustomerOrder = 4;
+}
+
+
+message PaymentOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PaymentIDField ID = 3;
+  PaymentCreatedAtField CreatedAt = 4;
+  PaymentUpdatedAtField UpdatedAt = 5;
+  PaymentCustomerOrderField CustomerOrder = 6;
+  }
+}
+
+message PaymentOrdering {
+  repeated PaymentOrderedPair orderedPair = 1;
+}
+message PaymentFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PaymentIDField ID = 3;
+  PaymentCreatedAtField CreatedAt = 4;
+  PaymentUpdatedAtField UpdatedAt = 5;
+  PaymentCustomerOrderField CustomerOrder = 6;
+  }
+}
+
+
+
+message DeliveryIDField {
+  string ID = 1;
+}
+
+message DeliveryCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message DeliveryUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+
+message DeliveryOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  DeliveryIDField ID = 3;
+  DeliveryCreatedAtField CreatedAt = 4;
+  DeliveryUpdatedAtField UpdatedAt = 5;
+  }
+}
+
+message DeliveryOrdering {
+  repeated DeliveryOrderedPair orderedPair = 1;
+}
+message DeliveryFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  DeliveryIDField ID = 3;
+  DeliveryCreatedAtField CreatedAt = 4;
+  DeliveryUpdatedAtField UpdatedAt = 5;
+  }
+}
+
+
+
+message BoycottIDField {
+  string ID = 1;
+}
+
+message BoycottCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message BoycottUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message BoycottTitleField {
+  string Title = 4;
+}
+
+
+message BoycottOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  BoycottIDField ID = 3;
+  BoycottCreatedAtField CreatedAt = 4;
+  BoycottUpdatedAtField UpdatedAt = 5;
+  BoycottTitleField Title = 6;
+  }
+}
+
+message BoycottOrdering {
+  repeated BoycottOrderedPair orderedPair = 1;
+}
+message BoycottFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  BoycottIDField ID = 3;
+  BoycottCreatedAtField CreatedAt = 4;
+  BoycottUpdatedAtField UpdatedAt = 5;
+  BoycottTitleField Title = 6;
+  }
+}
+
+
+
+message BoycottMembershipIDField {
+  string ID = 1;
+}
+
+message BoycottMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message BoycottMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message BoycottMembershipCauseField {
+  string Cause = 4;
+}
+
+message BoycottMembershipBoycottField {
+  string Boycott = 5;
+}
+
+
+message BoycottMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  BoycottMembershipIDField ID = 3;
+  BoycottMembershipCreatedAtField CreatedAt = 4;
+  BoycottMembershipUpdatedAtField UpdatedAt = 5;
+  BoycottMembershipCauseField Cause = 6;
+  BoycottMembershipBoycottField Boycott = 7;
+  }
+}
+
+message BoycottMembershipOrdering {
+  repeated BoycottMembershipOrderedPair orderedPair = 1;
+}
+message BoycottMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  BoycottMembershipIDField ID = 3;
+  BoycottMembershipCreatedAtField CreatedAt = 4;
+  BoycottMembershipUpdatedAtField UpdatedAt = 5;
+  BoycottMembershipCauseField Cause = 6;
+  BoycottMembershipBoycottField Boycott = 7;
+  }
+}
+
+
+
+message ElectionIDField {
+  string ID = 1;
+}
+
+message ElectionCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ElectionUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ElectionTitleField {
+  string Title = 4;
+}
+
+
+message ElectionOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ElectionIDField ID = 3;
+  ElectionCreatedAtField CreatedAt = 4;
+  ElectionUpdatedAtField UpdatedAt = 5;
+  ElectionTitleField Title = 6;
+  }
+}
+
+message ElectionOrdering {
+  repeated ElectionOrderedPair orderedPair = 1;
+}
+message ElectionFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ElectionIDField ID = 3;
+  ElectionCreatedAtField CreatedAt = 4;
+  ElectionUpdatedAtField UpdatedAt = 5;
+  ElectionTitleField Title = 6;
+  }
+}
+
+
+
+message ElectionMembershipIDField {
+  string ID = 1;
+}
+
+message ElectionMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ElectionMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ElectionMembershipCauseField {
+  string Cause = 4;
+}
+
+message ElectionMembershipElectionField {
+  string Election = 5;
+}
+
+
+message ElectionMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ElectionMembershipIDField ID = 3;
+  ElectionMembershipCreatedAtField CreatedAt = 4;
+  ElectionMembershipUpdatedAtField UpdatedAt = 5;
+  ElectionMembershipCauseField Cause = 6;
+  ElectionMembershipElectionField Election = 7;
+  }
+}
+
+message ElectionMembershipOrdering {
+  repeated ElectionMembershipOrderedPair orderedPair = 1;
+}
+message ElectionMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ElectionMembershipIDField ID = 3;
+  ElectionMembershipCreatedAtField CreatedAt = 4;
+  ElectionMembershipUpdatedAtField UpdatedAt = 5;
+  ElectionMembershipCauseField Cause = 6;
+  ElectionMembershipElectionField Election = 7;
+  }
+}
+
+
+
+message PetitionMembershipIDField {
+  string ID = 1;
+}
+
+message PetitionMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PetitionMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PetitionMembershipCauseField {
+  string Cause = 4;
+}
+
+message PetitionMembershipPetitionField {
+  string Petition = 5;
+}
+
+
+message PetitionMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PetitionMembershipIDField ID = 3;
+  PetitionMembershipCreatedAtField CreatedAt = 4;
+  PetitionMembershipUpdatedAtField UpdatedAt = 5;
+  PetitionMembershipCauseField Cause = 6;
+  PetitionMembershipPetitionField Petition = 7;
+  }
+}
+
+message PetitionMembershipOrdering {
+  repeated PetitionMembershipOrderedPair orderedPair = 1;
+}
+message PetitionMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PetitionMembershipIDField ID = 3;
+  PetitionMembershipCreatedAtField CreatedAt = 4;
+  PetitionMembershipUpdatedAtField UpdatedAt = 5;
+  PetitionMembershipCauseField Cause = 6;
+  PetitionMembershipPetitionField Petition = 7;
+  }
+}
+
+
+
+message PollMembershipIDField {
+  string ID = 1;
+}
+
+message PollMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PollMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PollMembershipCauseField {
+  string Cause = 4;
+}
+
+message PollMembershipPetitionField {
+  string Petition = 5;
+}
+
+
+message PollMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PollMembershipIDField ID = 3;
+  PollMembershipCreatedAtField CreatedAt = 4;
+  PollMembershipUpdatedAtField UpdatedAt = 5;
+  PollMembershipCauseField Cause = 6;
+  PollMembershipPetitionField Petition = 7;
+  }
+}
+
+message PollMembershipOrdering {
+  repeated PollMembershipOrderedPair orderedPair = 1;
+}
+message PollMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PollMembershipIDField ID = 3;
+  PollMembershipCreatedAtField CreatedAt = 4;
+  PollMembershipUpdatedAtField UpdatedAt = 5;
+  PollMembershipCauseField Cause = 6;
+  PollMembershipPetitionField Petition = 7;
+  }
+}
+
+
+
+message VolunteerOpportunityMembershipIDField {
+  string ID = 1;
+}
+
+message VolunteerOpportunityMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message VolunteerOpportunityMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message VolunteerOpportunityMembershipCauseField {
+  string Cause = 4;
+}
+
+message VolunteerOpportunityMembershipVolunteerOpportunityField {
+  string VolunteerOpportunity = 5;
+}
+
+
+message VolunteerOpportunityMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  VolunteerOpportunityMembershipIDField ID = 3;
+  VolunteerOpportunityMembershipCreatedAtField CreatedAt = 4;
+  VolunteerOpportunityMembershipUpdatedAtField UpdatedAt = 5;
+  VolunteerOpportunityMembershipCauseField Cause = 6;
+  VolunteerOpportunityMembershipVolunteerOpportunityField VolunteerOpportunity = 7;
+  }
+}
+
+message VolunteerOpportunityMembershipOrdering {
+  repeated VolunteerOpportunityMembershipOrderedPair orderedPair = 1;
+}
+message VolunteerOpportunityMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  VolunteerOpportunityMembershipIDField ID = 3;
+  VolunteerOpportunityMembershipCreatedAtField CreatedAt = 4;
+  VolunteerOpportunityMembershipUpdatedAtField UpdatedAt = 5;
+  VolunteerOpportunityMembershipCauseField Cause = 6;
+  VolunteerOpportunityMembershipVolunteerOpportunityField VolunteerOpportunity = 7;
+  }
+}
+
+
+
+message LiveEventMembershipIDField {
+  string ID = 1;
+}
+
+message LiveEventMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message LiveEventMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message LiveEventMembershipCauseField {
+  string Cause = 4;
+}
+
+message LiveEventMembershipLiveEventField {
+  string LiveEvent = 5;
+}
+
+
+message LiveEventMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  LiveEventMembershipIDField ID = 3;
+  LiveEventMembershipCreatedAtField CreatedAt = 4;
+  LiveEventMembershipUpdatedAtField UpdatedAt = 5;
+  LiveEventMembershipCauseField Cause = 6;
+  LiveEventMembershipLiveEventField LiveEvent = 7;
+  }
+}
+
+message LiveEventMembershipOrdering {
+  repeated LiveEventMembershipOrderedPair orderedPair = 1;
+}
+message LiveEventMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  LiveEventMembershipIDField ID = 3;
+  LiveEventMembershipCreatedAtField CreatedAt = 4;
+  LiveEventMembershipUpdatedAtField UpdatedAt = 5;
+  LiveEventMembershipCauseField Cause = 6;
+  LiveEventMembershipLiveEventField LiveEvent = 7;
+  }
+}
+
+
+
+message ProductIDField {
+  string ID = 1;
+}
+
+message ProductCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ProductUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ProductTitleField {
+  string Title = 4;
+}
+
+message ProductProductTypeField {
+  string ProductType = 5;
+}
+
+
+message ProductOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ProductIDField ID = 3;
+  ProductCreatedAtField CreatedAt = 4;
+  ProductUpdatedAtField UpdatedAt = 5;
+  ProductTitleField Title = 6;
+  ProductProductTypeField ProductType = 7;
+  }
+}
+
+message ProductOrdering {
+  repeated ProductOrderedPair orderedPair = 1;
+}
+message ProductFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ProductIDField ID = 3;
+  ProductCreatedAtField CreatedAt = 4;
+  ProductUpdatedAtField UpdatedAt = 5;
+  ProductTitleField Title = 6;
+  ProductProductTypeField ProductType = 7;
+  }
+}
+
+
+
+message ProductMembershipIDField {
+  string ID = 1;
+}
+
+message ProductMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ProductMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ProductMembershipCauseField {
+  string Cause = 4;
+}
+
+message ProductMembershipProductField {
+  string Product = 5;
+}
+
+
+message ProductMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ProductMembershipIDField ID = 3;
+  ProductMembershipCreatedAtField CreatedAt = 4;
+  ProductMembershipUpdatedAtField UpdatedAt = 5;
+  ProductMembershipCauseField Cause = 6;
+  ProductMembershipProductField Product = 7;
+  }
+}
+
+message ProductMembershipOrdering {
+  repeated ProductMembershipOrderedPair orderedPair = 1;
+}
+message ProductMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ProductMembershipIDField ID = 3;
+  ProductMembershipCreatedAtField CreatedAt = 4;
+  ProductMembershipUpdatedAtField UpdatedAt = 5;
+  ProductMembershipCauseField Cause = 6;
+  ProductMembershipProductField Product = 7;
+  }
+}
+
+
+
+message DonationCampaignIDField {
+  string ID = 1;
+}
+
+message DonationCampaignCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message DonationCampaignUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message DonationCampaignTitleField {
+  string Title = 4;
+}
+
+
+message DonationCampaignOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  DonationCampaignIDField ID = 3;
+  DonationCampaignCreatedAtField CreatedAt = 4;
+  DonationCampaignUpdatedAtField UpdatedAt = 5;
+  DonationCampaignTitleField Title = 6;
+  }
+}
+
+message DonationCampaignOrdering {
+  repeated DonationCampaignOrderedPair orderedPair = 1;
+}
+message DonationCampaignFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  DonationCampaignIDField ID = 3;
+  DonationCampaignCreatedAtField CreatedAt = 4;
+  DonationCampaignUpdatedAtField UpdatedAt = 5;
+  DonationCampaignTitleField Title = 6;
+  }
+}
+
+
+
+message DonationCampaignMembershipIDField {
+  string ID = 1;
+}
+
+message DonationCampaignMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message DonationCampaignMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message DonationCampaignMembershipCauseField {
+  string Cause = 4;
+}
+
+message DonationCampaignMembershipDonationCampaignField {
+  string DonationCampaign = 5;
+}
+
+
+message DonationCampaignMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  DonationCampaignMembershipIDField ID = 3;
+  DonationCampaignMembershipCreatedAtField CreatedAt = 4;
+  DonationCampaignMembershipUpdatedAtField UpdatedAt = 5;
+  DonationCampaignMembershipCauseField Cause = 6;
+  DonationCampaignMembershipDonationCampaignField DonationCampaign = 7;
+  }
+}
+
+message DonationCampaignMembershipOrdering {
+  repeated DonationCampaignMembershipOrderedPair orderedPair = 1;
+}
+message DonationCampaignMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  DonationCampaignMembershipIDField ID = 3;
+  DonationCampaignMembershipCreatedAtField CreatedAt = 4;
+  DonationCampaignMembershipUpdatedAtField UpdatedAt = 5;
+  DonationCampaignMembershipCauseField Cause = 6;
+  DonationCampaignMembershipDonationCampaignField DonationCampaign = 7;
+  }
+}
+
+
+
+message PetitionIDField {
+  string ID = 1;
+}
+
+message PetitionCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PetitionUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PetitionTitleField {
+  string Title = 4;
+}
+
+
+message PetitionOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PetitionIDField ID = 3;
+  PetitionCreatedAtField CreatedAt = 4;
+  PetitionUpdatedAtField UpdatedAt = 5;
+  PetitionTitleField Title = 6;
+  }
+}
+
+message PetitionOrdering {
+  repeated PetitionOrderedPair orderedPair = 1;
+}
+message PetitionFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PetitionIDField ID = 3;
+  PetitionCreatedAtField CreatedAt = 4;
+  PetitionUpdatedAtField UpdatedAt = 5;
+  PetitionTitleField Title = 6;
+  }
+}
+
+
+
+message PetitionSignerIDField {
+  string ID = 1;
+}
+
+message PetitionSignerCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PetitionSignerUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PetitionSignerPetitionField {
+  string Petition = 4;
+}
+
+message PetitionSignerContactField {
+  string Contact = 5;
+}
+
+message PetitionSignerCauseField {
+  string Cause = 6;
+}
+
+
+message PetitionSignerOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PetitionSignerIDField ID = 3;
+  PetitionSignerCreatedAtField CreatedAt = 4;
+  PetitionSignerUpdatedAtField UpdatedAt = 5;
+  PetitionSignerPetitionField Petition = 6;
+  PetitionSignerContactField Contact = 7;
+  PetitionSignerCauseField Cause = 8;
+  }
+}
+
+message PetitionSignerOrdering {
+  repeated PetitionSignerOrderedPair orderedPair = 1;
+}
+message PetitionSignerFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PetitionSignerIDField ID = 3;
+  PetitionSignerCreatedAtField CreatedAt = 4;
+  PetitionSignerUpdatedAtField UpdatedAt = 5;
+  PetitionSignerPetitionField Petition = 6;
+  PetitionSignerContactField Contact = 7;
+  PetitionSignerCauseField Cause = 8;
+  }
+}
+
+
+
+message PollIDField {
+  string ID = 1;
+}
+
+message PollCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PollUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PollTitleField {
+  string Title = 4;
+}
+
+
+message PollOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PollIDField ID = 3;
+  PollCreatedAtField CreatedAt = 4;
+  PollUpdatedAtField UpdatedAt = 5;
+  PollTitleField Title = 6;
+  }
+}
+
+message PollOrdering {
+  repeated PollOrderedPair orderedPair = 1;
+}
+message PollFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PollIDField ID = 3;
+  PollCreatedAtField CreatedAt = 4;
+  PollUpdatedAtField UpdatedAt = 5;
+  PollTitleField Title = 6;
+  }
+}
+
+
+
+message PollRespondantIDField {
+  string ID = 1;
+}
+
+message PollRespondantCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PollRespondantUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PollRespondantPollField {
+  string Poll = 4;
+}
+
+message PollRespondantContactField {
+  string Contact = 5;
+}
+
+message PollRespondantCauseField {
+  string Cause = 6;
+}
+
+
+message PollRespondantOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PollRespondantIDField ID = 3;
+  PollRespondantCreatedAtField CreatedAt = 4;
+  PollRespondantUpdatedAtField UpdatedAt = 5;
+  PollRespondantPollField Poll = 6;
+  PollRespondantContactField Contact = 7;
+  PollRespondantCauseField Cause = 8;
+  }
+}
+
+message PollRespondantOrdering {
+  repeated PollRespondantOrderedPair orderedPair = 1;
+}
+message PollRespondantFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PollRespondantIDField ID = 3;
+  PollRespondantCreatedAtField CreatedAt = 4;
+  PollRespondantUpdatedAtField UpdatedAt = 5;
+  PollRespondantPollField Poll = 6;
+  PollRespondantContactField Contact = 7;
+  PollRespondantCauseField Cause = 8;
+  }
+}
+
+
+
+message PurchaserIDField {
+  string ID = 1;
+}
+
+message PurchaserCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message PurchaserUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message PurchaserCustomerOrderField {
+  string CustomerOrder = 4;
+}
+
+message PurchaserContactField {
+  string Contact = 5;
+}
+
+message PurchaserCauseField {
+  string Cause = 6;
+}
+
+
+message PurchaserOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  PurchaserIDField ID = 3;
+  PurchaserCreatedAtField CreatedAt = 4;
+  PurchaserUpdatedAtField UpdatedAt = 5;
+  PurchaserCustomerOrderField CustomerOrder = 6;
+  PurchaserContactField Contact = 7;
+  PurchaserCauseField Cause = 8;
+  }
+}
+
+message PurchaserOrdering {
+  repeated PurchaserOrderedPair orderedPair = 1;
+}
+message PurchaserFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  PurchaserIDField ID = 3;
+  PurchaserCreatedAtField CreatedAt = 4;
+  PurchaserUpdatedAtField UpdatedAt = 5;
+  PurchaserCustomerOrderField CustomerOrder = 6;
+  PurchaserContactField Contact = 7;
+  PurchaserCauseField Cause = 8;
+  }
+}
+
+
+
+message CustomerOrderIDField {
+  string ID = 1;
+}
+
+message CustomerOrderCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message CustomerOrderUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message CustomerOrderCustomerCartField {
+  string CustomerCart = 4;
+}
+
+
+message CustomerOrderOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  CustomerOrderIDField ID = 3;
+  CustomerOrderCreatedAtField CreatedAt = 4;
+  CustomerOrderUpdatedAtField UpdatedAt = 5;
+  CustomerOrderCustomerCartField CustomerCart = 6;
+  }
+}
+
+message CustomerOrderOrdering {
+  repeated CustomerOrderOrderedPair orderedPair = 1;
+}
+message CustomerOrderFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  CustomerOrderIDField ID = 3;
+  CustomerOrderCreatedAtField CreatedAt = 4;
+  CustomerOrderUpdatedAtField UpdatedAt = 5;
+  CustomerOrderCustomerCartField CustomerCart = 6;
+  }
+}
+
+
+
+message DonorIDField {
+  string ID = 1;
+}
+
+message DonorCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message DonorUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message DonorCustomerOrderField {
+  string CustomerOrder = 4;
+}
+
+message DonorContactField {
+  string Contact = 5;
+}
+
+message DonorCauseField {
+  string Cause = 6;
+}
+
+
+message DonorOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  DonorIDField ID = 3;
+  DonorCreatedAtField CreatedAt = 4;
+  DonorUpdatedAtField UpdatedAt = 5;
+  DonorCustomerOrderField CustomerOrder = 6;
+  DonorContactField Contact = 7;
+  DonorCauseField Cause = 8;
+  }
+}
+
+message DonorOrdering {
+  repeated DonorOrderedPair orderedPair = 1;
+}
+message DonorFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  DonorIDField ID = 3;
+  DonorCreatedAtField CreatedAt = 4;
+  DonorUpdatedAtField UpdatedAt = 5;
+  DonorCustomerOrderField CustomerOrder = 6;
+  DonorContactField Contact = 7;
+  DonorCauseField Cause = 8;
+  }
+}
+
+
+
+message LiveEventIDField {
+  string ID = 1;
+}
+
+message LiveEventCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message LiveEventUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message LiveEventTitleField {
+  string Title = 4;
+}
+
+message LiveEventLiveEventTypeField {
+  string LiveEventType = 5;
+}
+
+
+message LiveEventOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  LiveEventIDField ID = 3;
+  LiveEventCreatedAtField CreatedAt = 4;
+  LiveEventUpdatedAtField UpdatedAt = 5;
+  LiveEventTitleField Title = 6;
+  LiveEventLiveEventTypeField LiveEventType = 7;
+  }
+}
+
+message LiveEventOrdering {
+  repeated LiveEventOrderedPair orderedPair = 1;
+}
+message LiveEventFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  LiveEventIDField ID = 3;
+  LiveEventCreatedAtField CreatedAt = 4;
+  LiveEventUpdatedAtField UpdatedAt = 5;
+  LiveEventTitleField Title = 6;
+  LiveEventLiveEventTypeField LiveEventType = 7;
+  }
+}
+
+
+
+message EventAttendeeIDField {
+  string ID = 1;
+}
+
+message EventAttendeeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message EventAttendeeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message EventAttendeeLiveEventField {
+  string LiveEvent = 4;
+}
+
+message EventAttendeeContactField {
+  string Contact = 5;
+}
+
+message EventAttendeeCauseField {
+  string Cause = 6;
+}
+
+
+message EventAttendeeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  EventAttendeeIDField ID = 3;
+  EventAttendeeCreatedAtField CreatedAt = 4;
+  EventAttendeeUpdatedAtField UpdatedAt = 5;
+  EventAttendeeLiveEventField LiveEvent = 6;
+  EventAttendeeContactField Contact = 7;
+  EventAttendeeCauseField Cause = 8;
+  }
+}
+
+message EventAttendeeOrdering {
+  repeated EventAttendeeOrderedPair orderedPair = 1;
+}
+message EventAttendeeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  EventAttendeeIDField ID = 3;
+  EventAttendeeCreatedAtField CreatedAt = 4;
+  EventAttendeeUpdatedAtField UpdatedAt = 5;
+  EventAttendeeLiveEventField LiveEvent = 6;
+  EventAttendeeContactField Contact = 7;
+  EventAttendeeCauseField Cause = 8;
+  }
+}
+
+
+
+message VoterIDField {
+  string ID = 1;
+}
+
+message VoterCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message VoterUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message VoterContactField {
+  string Contact = 4;
+}
+
+message VoterCauseField {
+  string Cause = 5;
+}
+
+
+message VoterOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  VoterIDField ID = 3;
+  VoterCreatedAtField CreatedAt = 4;
+  VoterUpdatedAtField UpdatedAt = 5;
+  VoterContactField Contact = 6;
+  VoterCauseField Cause = 7;
+  }
+}
+
+message VoterOrdering {
+  repeated VoterOrderedPair orderedPair = 1;
+}
+message VoterFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  VoterIDField ID = 3;
+  VoterCreatedAtField CreatedAt = 4;
+  VoterUpdatedAtField UpdatedAt = 5;
+  VoterContactField Contact = 6;
+  VoterCauseField Cause = 7;
+  }
+}
+
+
+
+message VolunteerOpportunityIDField {
+  string ID = 1;
+}
+
+message VolunteerOpportunityCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message VolunteerOpportunityUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message VolunteerOpportunityTitleField {
+  string Title = 4;
+}
+
+message VolunteerOpportunityElectionTypeField {
+  string ElectionType = 5;
+}
+
+
+message VolunteerOpportunityOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  VolunteerOpportunityIDField ID = 3;
+  VolunteerOpportunityCreatedAtField CreatedAt = 4;
+  VolunteerOpportunityUpdatedAtField UpdatedAt = 5;
+  VolunteerOpportunityTitleField Title = 6;
+  VolunteerOpportunityElectionTypeField ElectionType = 7;
+  }
+}
+
+message VolunteerOpportunityOrdering {
+  repeated VolunteerOpportunityOrderedPair orderedPair = 1;
+}
+message VolunteerOpportunityFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  VolunteerOpportunityIDField ID = 3;
+  VolunteerOpportunityCreatedAtField CreatedAt = 4;
+  VolunteerOpportunityUpdatedAtField UpdatedAt = 5;
+  VolunteerOpportunityTitleField Title = 6;
+  VolunteerOpportunityElectionTypeField ElectionType = 7;
+  }
+}
+
+
+
+message VolunteerIDField {
+  string ID = 1;
+}
+
+message VolunteerCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message VolunteerUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message VolunteerVolunteerOpportunityField {
+  string VolunteerOpportunity = 4;
+}
+
+message VolunteerContactField {
+  string Contact = 5;
+}
+
+message VolunteerCauseField {
+  string Cause = 6;
+}
+
+
+message VolunteerOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  VolunteerIDField ID = 3;
+  VolunteerCreatedAtField CreatedAt = 4;
+  VolunteerUpdatedAtField UpdatedAt = 5;
+  VolunteerVolunteerOpportunityField VolunteerOpportunity = 6;
+  VolunteerContactField Contact = 7;
+  VolunteerCauseField Cause = 8;
+  }
+}
+
+message VolunteerOrdering {
+  repeated VolunteerOrderedPair orderedPair = 1;
+}
+message VolunteerFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  VolunteerIDField ID = 3;
+  VolunteerCreatedAtField CreatedAt = 4;
+  VolunteerUpdatedAtField UpdatedAt = 5;
+  VolunteerVolunteerOpportunityField VolunteerOpportunity = 6;
+  VolunteerContactField Contact = 7;
+  VolunteerCauseField Cause = 8;
+  }
+}
+
+
+
+message FollowerIDField {
+  string ID = 1;
+}
+
+message FollowerCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message FollowerUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message FollowerContactField {
+  string Contact = 4;
+}
+
+message FollowerCauseField {
+  string Cause = 5;
+}
+
+
+message FollowerOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  FollowerIDField ID = 3;
+  FollowerCreatedAtField CreatedAt = 4;
+  FollowerUpdatedAtField UpdatedAt = 5;
+  FollowerContactField Contact = 6;
+  FollowerCauseField Cause = 7;
+  }
+}
+
+message FollowerOrdering {
+  repeated FollowerOrderedPair orderedPair = 1;
+}
+message FollowerFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  FollowerIDField ID = 3;
+  FollowerCreatedAtField CreatedAt = 4;
+  FollowerUpdatedAtField UpdatedAt = 5;
+  FollowerContactField Contact = 6;
+  FollowerCauseField Cause = 7;
+  }
+}
+
+
+
+message TerritoryIDField {
+  string ID = 1;
+}
+
+message TerritoryCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message TerritoryUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message TerritoryTitleField {
+  string Title = 4;
+}
+
+
+message TerritoryOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  TerritoryIDField ID = 3;
+  TerritoryCreatedAtField CreatedAt = 4;
+  TerritoryUpdatedAtField UpdatedAt = 5;
+  TerritoryTitleField Title = 6;
+  }
+}
+
+message TerritoryOrdering {
+  repeated TerritoryOrderedPair orderedPair = 1;
+}
+message TerritoryFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  TerritoryIDField ID = 3;
+  TerritoryCreatedAtField CreatedAt = 4;
+  TerritoryUpdatedAtField UpdatedAt = 5;
+  TerritoryTitleField Title = 6;
+  }
+}
+
+
+
+message ActivityTypeIDField {
+  string ID = 1;
+}
+
+message ActivityTypeCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ActivityTypeUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ActivityTypeTitleField {
+  string Title = 4;
+}
+
+
+message ActivityTypeOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ActivityTypeIDField ID = 3;
+  ActivityTypeCreatedAtField CreatedAt = 4;
+  ActivityTypeUpdatedAtField UpdatedAt = 5;
+  ActivityTypeTitleField Title = 6;
+  }
+}
+
+message ActivityTypeOrdering {
+  repeated ActivityTypeOrderedPair orderedPair = 1;
+}
+message ActivityTypeFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ActivityTypeIDField ID = 3;
+  ActivityTypeCreatedAtField CreatedAt = 4;
+  ActivityTypeUpdatedAtField UpdatedAt = 5;
+  ActivityTypeTitleField Title = 6;
+  }
+}
+
+
+
+message ActivityIDField {
+  string ID = 1;
+}
+
+message ActivityCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ActivityUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ActivityTitleField {
+  string Title = 4;
+}
+
+message ActivityActivityTypeField {
+  string ActivityType = 5;
+}
+
+message ActivityContactField {
+  string Contact = 6;
+}
+
+message ActivityCauseField {
+  string Cause = 7;
+}
+
+
+message ActivityOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ActivityIDField ID = 3;
+  ActivityCreatedAtField CreatedAt = 4;
+  ActivityUpdatedAtField UpdatedAt = 5;
+  ActivityTitleField Title = 6;
+  ActivityActivityTypeField ActivityType = 7;
+  ActivityContactField Contact = 8;
+  ActivityCauseField Cause = 9;
+  }
+}
+
+message ActivityOrdering {
+  repeated ActivityOrderedPair orderedPair = 1;
+}
+message ActivityFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ActivityIDField ID = 3;
+  ActivityCreatedAtField CreatedAt = 4;
+  ActivityUpdatedAtField UpdatedAt = 5;
+  ActivityTitleField Title = 6;
+  ActivityActivityTypeField ActivityType = 7;
+  ActivityContactField Contact = 8;
+  ActivityCauseField Cause = 9;
+  }
+}
+
+
+
+message NoteIDField {
+  string ID = 1;
+}
+
+message NoteCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message NoteUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message NoteContactField {
+  string Contact = 4;
+}
+
+message NoteCauseField {
+  string Cause = 5;
+}
+
+message NoteBodyField {
+  string Body = 6;
+}
+
+
+message NoteOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  NoteIDField ID = 3;
+  NoteCreatedAtField CreatedAt = 4;
+  NoteUpdatedAtField UpdatedAt = 5;
+  NoteContactField Contact = 6;
+  NoteCauseField Cause = 7;
+  NoteBodyField Body = 8;
+  }
+}
+
+message NoteOrdering {
+  repeated NoteOrderedPair orderedPair = 1;
+}
+message NoteFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  NoteIDField ID = 3;
+  NoteCreatedAtField CreatedAt = 4;
+  NoteUpdatedAtField UpdatedAt = 5;
+  NoteContactField Contact = 6;
+  NoteCauseField Cause = 7;
+  NoteBodyField Body = 8;
+  }
+}
+
+
+
+message AccountIDField {
+  string ID = 1;
+}
+
+message AccountCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message AccountUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message AccountUsernameField {
+  string Username = 4;
+}
+
+
+message AccountOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  AccountIDField ID = 3;
+  AccountCreatedAtField CreatedAt = 4;
+  AccountUpdatedAtField UpdatedAt = 5;
+  AccountUsernameField Username = 6;
+  }
+}
+
+message AccountOrdering {
+  repeated AccountOrderedPair orderedPair = 1;
+}
+message AccountFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  AccountIDField ID = 3;
+  AccountCreatedAtField CreatedAt = 4;
+  AccountUpdatedAtField UpdatedAt = 5;
+  AccountUsernameField Username = 6;
+  }
+}
+
+
+
+message OwnerMembershipIDField {
+  string ID = 1;
+}
+
+message OwnerMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message OwnerMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message OwnerMembershipCauseField {
+  string Cause = 4;
+}
+
+message OwnerMembershipAccountField {
+  string Account = 5;
+}
+
+
+message OwnerMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  OwnerMembershipIDField ID = 3;
+  OwnerMembershipCreatedAtField CreatedAt = 4;
+  OwnerMembershipUpdatedAtField UpdatedAt = 5;
+  OwnerMembershipCauseField Cause = 6;
+  OwnerMembershipAccountField Account = 7;
+  }
+}
+
+message OwnerMembershipOrdering {
+  repeated OwnerMembershipOrderedPair orderedPair = 1;
+}
+message OwnerMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  OwnerMembershipIDField ID = 3;
+  OwnerMembershipCreatedAtField CreatedAt = 4;
+  OwnerMembershipUpdatedAtField UpdatedAt = 5;
+  OwnerMembershipCauseField Cause = 6;
+  OwnerMembershipAccountField Account = 7;
+  }
+}
+
+
+
+message ContactIDField {
+  string ID = 1;
+}
+
+message ContactCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ContactUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ContactFirstNameField {
+  string FirstName = 4;
+}
+
+message ContactMiddleNameField {
+  string MiddleName = 5;
+}
+
+message ContactLastNameField {
+  string LastName = 6;
+}
+
+message ContactEmailField {
+  string Email = 7;
+}
+
+message ContactPhoneNumberField {
+  string PhoneNumber = 8;
+}
+
+
+message ContactOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ContactIDField ID = 3;
+  ContactCreatedAtField CreatedAt = 4;
+  ContactUpdatedAtField UpdatedAt = 5;
+  ContactFirstNameField FirstName = 6;
+  ContactMiddleNameField MiddleName = 7;
+  ContactLastNameField LastName = 8;
+  ContactEmailField Email = 9;
+  ContactPhoneNumberField PhoneNumber = 10;
+  }
+}
+
+message ContactOrdering {
+  repeated ContactOrderedPair orderedPair = 1;
+}
+message ContactFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ContactIDField ID = 3;
+  ContactCreatedAtField CreatedAt = 4;
+  ContactUpdatedAtField UpdatedAt = 5;
+  ContactFirstNameField FirstName = 6;
+  ContactMiddleNameField MiddleName = 7;
+  ContactLastNameField LastName = 8;
+  ContactEmailField Email = 9;
+  ContactPhoneNumberField PhoneNumber = 10;
+  }
+}
+
+
+
+message ContactMembershipIDField {
+  string ID = 1;
+}
+
+message ContactMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message ContactMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message ContactMembershipCauseField {
+  string Cause = 4;
+}
+
+message ContactMembershipContactField {
+  string Contact = 5;
+}
+
+
+message ContactMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  ContactMembershipIDField ID = 3;
+  ContactMembershipCreatedAtField CreatedAt = 4;
+  ContactMembershipUpdatedAtField UpdatedAt = 5;
+  ContactMembershipCauseField Cause = 6;
+  ContactMembershipContactField Contact = 7;
+  }
+}
+
+message ContactMembershipOrdering {
+  repeated ContactMembershipOrderedPair orderedPair = 1;
+}
+message ContactMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  ContactMembershipIDField ID = 3;
+  ContactMembershipCreatedAtField CreatedAt = 4;
+  ContactMembershipUpdatedAtField UpdatedAt = 5;
+  ContactMembershipCauseField Cause = 6;
+  ContactMembershipContactField Contact = 7;
+  }
+}
+
+
+
+message CauseIDField {
+  string ID = 1;
+}
+
+message CauseCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message CauseUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message CauseTitleField {
+  string Title = 4;
+}
+
+message CauseSlugField {
+  string Slug = 5;
+}
+
+message CauseSummaryField {
+  string Summary = 6;
+}
+
+
+message CauseOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  CauseIDField ID = 3;
+  CauseCreatedAtField CreatedAt = 4;
+  CauseUpdatedAtField UpdatedAt = 5;
+  CauseTitleField Title = 6;
+  CauseSlugField Slug = 7;
+  CauseSummaryField Summary = 8;
+  }
+}
+
+message CauseOrdering {
+  repeated CauseOrderedPair orderedPair = 1;
+}
+message CauseFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  CauseIDField ID = 3;
+  CauseCreatedAtField CreatedAt = 4;
+  CauseUpdatedAtField UpdatedAt = 5;
+  CauseTitleField Title = 6;
+  CauseSlugField Slug = 7;
+  CauseSummaryField Summary = 8;
+  }
+}
+
+
+
+message AgentIDField {
+  string ID = 1;
+}
+
+message AgentCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message AgentUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message AgentAccountField {
+  string Account = 4;
+}
+
+
+message AgentOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  AgentIDField ID = 3;
+  AgentCreatedAtField CreatedAt = 4;
+  AgentUpdatedAtField UpdatedAt = 5;
+  AgentAccountField Account = 6;
+  }
+}
+
+message AgentOrdering {
+  repeated AgentOrderedPair orderedPair = 1;
+}
+message AgentFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  AgentIDField ID = 3;
+  AgentCreatedAtField CreatedAt = 4;
+  AgentUpdatedAtField UpdatedAt = 5;
+  AgentAccountField Account = 6;
+  }
+}
+
+
+
+message AgentMembershipIDField {
+  string ID = 1;
+}
+
+message AgentMembershipCreatedAtField {
+  google.protobuf.Timestamp CreatedAt = 2;
+}
+
+message AgentMembershipUpdatedAtField {
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message AgentMembershipCauseField {
+  string Cause = 4;
+}
+
+message AgentMembershipAgentField {
+  string Agent = 5;
+}
+
+
+message AgentMembershipOrderedPair {
+  Direction direction = 1;
+  oneof field {
+  AgentMembershipIDField ID = 3;
+  AgentMembershipCreatedAtField CreatedAt = 4;
+  AgentMembershipUpdatedAtField UpdatedAt = 5;
+  AgentMembershipCauseField Cause = 6;
+  AgentMembershipAgentField Agent = 7;
+  }
+}
+
+message AgentMembershipOrdering {
+  repeated AgentMembershipOrderedPair orderedPair = 1;
+}
+message AgentMembershipFilterRule {
+  Rule rule = 1;
+  LogicalOperator logicalOperator = 2;
+  oneof field {
+  AgentMembershipIDField ID = 3;
+  AgentMembershipCreatedAtField CreatedAt = 4;
+  AgentMembershipUpdatedAtField UpdatedAt = 5;
+  AgentMembershipCauseField Cause = 6;
+  AgentMembershipAgentField Agent = 7;
+  }
+}
+
 
 // Generated Types and Message Schema
 
@@ -81,7 +3206,6 @@ message ACL {
 message CreateACL {
       }
 
-//Request and Response Message Types
 message CreateACLRequest {
   string api = 1;
   CreateACL item = 2;
@@ -105,8 +3229,8 @@ message GetACLResponse {
 message ListACLRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ACLOrdering ordering = 3;
+  repeated ACLFilterRule filters = 4;
 }
 
 message ListACLResponse {
@@ -114,34 +3238,23 @@ message ListACLResponse {
   repeated ACL items = 2;
 }
 
-// Request data to update ACL
 message UpdateACLRequest{
     string api = 1;
-    // ACL entity to update
     ACL item = 2;
 }
 
-// Contains status of update operation
 message UpdateACLResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete ACL
 message DeleteACLRequest {
     string api = 1;
-    // Unique integer IDentifier of the ACL to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteACLResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -162,7 +3275,6 @@ message CreateMailingAddress {
   string ZipCode = 4;
 }
 
-//Request and Response Message Types
 message CreateMailingAddressRequest {
   string api = 1;
   CreateMailingAddress item = 2;
@@ -186,8 +3298,8 @@ message GetMailingAddressResponse {
 message ListMailingAddressRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  MailingAddressOrdering ordering = 3;
+  repeated MailingAddressFilterRule filters = 4;
 }
 
 message ListMailingAddressResponse {
@@ -195,34 +3307,23 @@ message ListMailingAddressResponse {
   repeated MailingAddress items = 2;
 }
 
-// Request data to update MailingAddress
 message UpdateMailingAddressRequest{
     string api = 1;
-    // MailingAddress entity to update
     MailingAddress item = 2;
 }
 
-// Contains status of update operation
 message UpdateMailingAddressResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete MailingAddress
 message DeleteMailingAddressRequest {
     string api = 1;
-    // Unique integer IDentifier of the MailingAddress to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteMailingAddressResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -237,7 +3338,6 @@ message CreatePhoneNumber {
         string PhoneNumber = 1;
 }
 
-//Request and Response Message Types
 message CreatePhoneNumberRequest {
   string api = 1;
   CreatePhoneNumber item = 2;
@@ -261,8 +3361,8 @@ message GetPhoneNumberResponse {
 message ListPhoneNumberRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PhoneNumberOrdering ordering = 3;
+  repeated PhoneNumberFilterRule filters = 4;
 }
 
 message ListPhoneNumberResponse {
@@ -270,34 +3370,23 @@ message ListPhoneNumberResponse {
   repeated PhoneNumber items = 2;
 }
 
-// Request data to update PhoneNumber
 message UpdatePhoneNumberRequest{
     string api = 1;
-    // PhoneNumber entity to update
     PhoneNumber item = 2;
 }
 
-// Contains status of update operation
 message UpdatePhoneNumberResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete PhoneNumber
 message DeletePhoneNumberRequest {
     string api = 1;
-    // Unique integer IDentifier of the PhoneNumber to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePhoneNumberResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -312,7 +3401,6 @@ message CreateEmailAddress {
         string Address = 1;
 }
 
-//Request and Response Message Types
 message CreateEmailAddressRequest {
   string api = 1;
   CreateEmailAddress item = 2;
@@ -336,8 +3424,8 @@ message GetEmailAddressResponse {
 message ListEmailAddressRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  EmailAddressOrdering ordering = 3;
+  repeated EmailAddressFilterRule filters = 4;
 }
 
 message ListEmailAddressResponse {
@@ -345,34 +3433,23 @@ message ListEmailAddressResponse {
   repeated EmailAddress items = 2;
 }
 
-// Request data to update EmailAddress
 message UpdateEmailAddressRequest{
     string api = 1;
-    // EmailAddress entity to update
     EmailAddress item = 2;
 }
 
-// Contains status of update operation
 message UpdateEmailAddressResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete EmailAddress
 message DeleteEmailAddressRequest {
     string api = 1;
-    // Unique integer IDentifier of the EmailAddress to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteEmailAddressResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -387,7 +3464,6 @@ message CreatePhoto {
         string ImgURL = 1;
 }
 
-//Request and Response Message Types
 message CreatePhotoRequest {
   string api = 1;
   CreatePhoto item = 2;
@@ -411,8 +3487,8 @@ message GetPhotoResponse {
 message ListPhotoRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PhotoOrdering ordering = 3;
+  repeated PhotoFilterRule filters = 4;
 }
 
 message ListPhotoResponse {
@@ -420,34 +3496,23 @@ message ListPhotoResponse {
   repeated Photo items = 2;
 }
 
-// Request data to update Photo
 message UpdatePhotoRequest{
     string api = 1;
-    // Photo entity to update
     Photo item = 2;
 }
 
-// Contains status of update operation
 message UpdatePhotoResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Photo
 message DeletePhotoRequest {
     string api = 1;
-    // Unique integer IDentifier of the Photo to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePhotoResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -462,7 +3527,6 @@ message CreateLayoutType {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateLayoutTypeRequest {
   string api = 1;
   CreateLayoutType item = 2;
@@ -486,8 +3550,8 @@ message GetLayoutTypeResponse {
 message ListLayoutTypeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  LayoutTypeOrdering ordering = 3;
+  repeated LayoutTypeFilterRule filters = 4;
 }
 
 message ListLayoutTypeResponse {
@@ -495,34 +3559,23 @@ message ListLayoutTypeResponse {
   repeated LayoutType items = 2;
 }
 
-// Request data to update LayoutType
 message UpdateLayoutTypeRequest{
     string api = 1;
-    // LayoutType entity to update
     LayoutType item = 2;
 }
 
-// Contains status of update operation
 message UpdateLayoutTypeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete LayoutType
 message DeleteLayoutTypeRequest {
     string api = 1;
-    // Unique integer IDentifier of the LayoutType to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteLayoutTypeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -537,7 +3590,6 @@ message CreateLayoutRow {
         string Layout = 1;
 }
 
-//Request and Response Message Types
 message CreateLayoutRowRequest {
   string api = 1;
   CreateLayoutRow item = 2;
@@ -561,8 +3613,8 @@ message GetLayoutRowResponse {
 message ListLayoutRowRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  LayoutRowOrdering ordering = 3;
+  repeated LayoutRowFilterRule filters = 4;
 }
 
 message ListLayoutRowResponse {
@@ -570,34 +3622,23 @@ message ListLayoutRowResponse {
   repeated LayoutRow items = 2;
 }
 
-// Request data to update LayoutRow
 message UpdateLayoutRowRequest{
     string api = 1;
-    // LayoutRow entity to update
     LayoutRow item = 2;
 }
 
-// Contains status of update operation
 message UpdateLayoutRowResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete LayoutRow
 message DeleteLayoutRowRequest {
     string api = 1;
-    // Unique integer IDentifier of the LayoutRow to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteLayoutRowResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -610,7 +3651,6 @@ message ComponentImplementation {
 message CreateComponentImplementation {
       }
 
-//Request and Response Message Types
 message CreateComponentImplementationRequest {
   string api = 1;
   CreateComponentImplementation item = 2;
@@ -634,8 +3674,8 @@ message GetComponentImplementationResponse {
 message ListComponentImplementationRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ComponentImplementationOrdering ordering = 3;
+  repeated ComponentImplementationFilterRule filters = 4;
 }
 
 message ListComponentImplementationResponse {
@@ -643,34 +3683,23 @@ message ListComponentImplementationResponse {
   repeated ComponentImplementation items = 2;
 }
 
-// Request data to update ComponentImplementation
 message UpdateComponentImplementationRequest{
     string api = 1;
-    // ComponentImplementation entity to update
     ComponentImplementation item = 2;
 }
 
-// Contains status of update operation
 message UpdateComponentImplementationResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete ComponentImplementation
 message DeleteComponentImplementationRequest {
     string api = 1;
-    // Unique integer IDentifier of the ComponentImplementation to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteComponentImplementationResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -685,7 +3714,6 @@ message CreateComponentType {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateComponentTypeRequest {
   string api = 1;
   CreateComponentType item = 2;
@@ -709,8 +3737,8 @@ message GetComponentTypeResponse {
 message ListComponentTypeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ComponentTypeOrdering ordering = 3;
+  repeated ComponentTypeFilterRule filters = 4;
 }
 
 message ListComponentTypeResponse {
@@ -718,34 +3746,23 @@ message ListComponentTypeResponse {
   repeated ComponentType items = 2;
 }
 
-// Request data to update ComponentType
 message UpdateComponentTypeRequest{
     string api = 1;
-    // ComponentType entity to update
     ComponentType item = 2;
 }
 
-// Contains status of update operation
 message UpdateComponentTypeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete ComponentType
 message DeleteComponentTypeRequest {
     string api = 1;
-    // Unique integer IDentifier of the ComponentType to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteComponentTypeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -760,7 +3777,6 @@ message CreateLayoutColumn {
         string LayoutRow = 1;
 }
 
-//Request and Response Message Types
 message CreateLayoutColumnRequest {
   string api = 1;
   CreateLayoutColumn item = 2;
@@ -784,8 +3800,8 @@ message GetLayoutColumnResponse {
 message ListLayoutColumnRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  LayoutColumnOrdering ordering = 3;
+  repeated LayoutColumnFilterRule filters = 4;
 }
 
 message ListLayoutColumnResponse {
@@ -793,34 +3809,23 @@ message ListLayoutColumnResponse {
   repeated LayoutColumn items = 2;
 }
 
-// Request data to update LayoutColumn
 message UpdateLayoutColumnRequest{
     string api = 1;
-    // LayoutColumn entity to update
     LayoutColumn item = 2;
 }
 
-// Contains status of update operation
 message UpdateLayoutColumnResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete LayoutColumn
 message DeleteLayoutColumnRequest {
     string api = 1;
-    // Unique integer IDentifier of the LayoutColumn to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteLayoutColumnResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -835,7 +3840,6 @@ message CreateFieldType {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateFieldTypeRequest {
   string api = 1;
   CreateFieldType item = 2;
@@ -859,8 +3863,8 @@ message GetFieldTypeResponse {
 message ListFieldTypeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  FieldTypeOrdering ordering = 3;
+  repeated FieldTypeFilterRule filters = 4;
 }
 
 message ListFieldTypeResponse {
@@ -868,34 +3872,23 @@ message ListFieldTypeResponse {
   repeated FieldType items = 2;
 }
 
-// Request data to update FieldType
 message UpdateFieldTypeRequest{
     string api = 1;
-    // FieldType entity to update
     FieldType item = 2;
 }
 
-// Contains status of update operation
 message UpdateFieldTypeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete FieldType
 message DeleteFieldTypeRequest {
     string api = 1;
-    // Unique integer IDentifier of the FieldType to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteFieldTypeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -912,7 +3905,6 @@ message CreateComponent {
   string LayoutColumn = 2;
 }
 
-//Request and Response Message Types
 message CreateComponentRequest {
   string api = 1;
   CreateComponent item = 2;
@@ -936,8 +3928,8 @@ message GetComponentResponse {
 message ListComponentRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ComponentOrdering ordering = 3;
+  repeated ComponentFilterRule filters = 4;
 }
 
 message ListComponentResponse {
@@ -945,34 +3937,23 @@ message ListComponentResponse {
   repeated Component items = 2;
 }
 
-// Request data to update Component
 message UpdateComponentRequest{
     string api = 1;
-    // Component entity to update
     Component item = 2;
 }
 
-// Contains status of update operation
 message UpdateComponentResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Component
 message DeleteComponentRequest {
     string api = 1;
-    // Unique integer IDentifier of the Component to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteComponentResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -989,7 +3970,6 @@ message CreateField {
   string Component = 2;
 }
 
-//Request and Response Message Types
 message CreateFieldRequest {
   string api = 1;
   CreateField item = 2;
@@ -1013,8 +3993,8 @@ message GetFieldResponse {
 message ListFieldRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  FieldOrdering ordering = 3;
+  repeated FieldFilterRule filters = 4;
 }
 
 message ListFieldResponse {
@@ -1022,34 +4002,23 @@ message ListFieldResponse {
   repeated Field items = 2;
 }
 
-// Request data to update Field
 message UpdateFieldRequest{
     string api = 1;
-    // Field entity to update
     Field item = 2;
 }
 
-// Contains status of update operation
 message UpdateFieldResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Field
 message DeleteFieldRequest {
     string api = 1;
-    // Unique integer IDentifier of the Field to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteFieldResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1068,7 +4037,6 @@ message CreateHomePage {
   string Layout = 3;
 }
 
-//Request and Response Message Types
 message CreateHomePageRequest {
   string api = 1;
   CreateHomePage item = 2;
@@ -1092,8 +4060,8 @@ message GetHomePageResponse {
 message ListHomePageRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  HomePageOrdering ordering = 3;
+  repeated HomePageFilterRule filters = 4;
 }
 
 message ListHomePageResponse {
@@ -1101,34 +4069,23 @@ message ListHomePageResponse {
   repeated HomePage items = 2;
 }
 
-// Request data to update HomePage
 message UpdateHomePageRequest{
     string api = 1;
-    // HomePage entity to update
     HomePage item = 2;
 }
 
-// Contains status of update operation
 message UpdateHomePageResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete HomePage
 message DeleteHomePageRequest {
     string api = 1;
-    // Unique integer IDentifier of the HomePage to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteHomePageResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1143,7 +4100,6 @@ message CreateLayout {
         string LayoutType = 1;
 }
 
-//Request and Response Message Types
 message CreateLayoutRequest {
   string api = 1;
   CreateLayout item = 2;
@@ -1167,8 +4123,8 @@ message GetLayoutResponse {
 message ListLayoutRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  LayoutOrdering ordering = 3;
+  repeated LayoutFilterRule filters = 4;
 }
 
 message ListLayoutResponse {
@@ -1176,34 +4132,23 @@ message ListLayoutResponse {
   repeated Layout items = 2;
 }
 
-// Request data to update Layout
 message UpdateLayoutRequest{
     string api = 1;
-    // Layout entity to update
     Layout item = 2;
 }
 
-// Contains status of update operation
 message UpdateLayoutResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Layout
 message DeleteLayoutRequest {
     string api = 1;
-    // Unique integer IDentifier of the Layout to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteLayoutResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1222,7 +4167,6 @@ message CreateLandingPage {
   string Layout = 3;
 }
 
-//Request and Response Message Types
 message CreateLandingPageRequest {
   string api = 1;
   CreateLandingPage item = 2;
@@ -1246,8 +4190,8 @@ message GetLandingPageResponse {
 message ListLandingPageRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  LandingPageOrdering ordering = 3;
+  repeated LandingPageFilterRule filters = 4;
 }
 
 message ListLandingPageResponse {
@@ -1255,34 +4199,23 @@ message ListLandingPageResponse {
   repeated LandingPage items = 2;
 }
 
-// Request data to update LandingPage
 message UpdateLandingPageRequest{
     string api = 1;
-    // LandingPage entity to update
     LandingPage item = 2;
 }
 
-// Contains status of update operation
 message UpdateLandingPageResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete LandingPage
 message DeleteLandingPageRequest {
     string api = 1;
-    // Unique integer IDentifier of the LandingPage to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteLandingPageResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1299,7 +4232,6 @@ message CreateExperiment {
   string LandingPage = 2;
 }
 
-//Request and Response Message Types
 message CreateExperimentRequest {
   string api = 1;
   CreateExperiment item = 2;
@@ -1323,8 +4255,8 @@ message GetExperimentResponse {
 message ListExperimentRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ExperimentOrdering ordering = 3;
+  repeated ExperimentFilterRule filters = 4;
 }
 
 message ListExperimentResponse {
@@ -1332,34 +4264,23 @@ message ListExperimentResponse {
   repeated Experiment items = 2;
 }
 
-// Request data to update Experiment
 message UpdateExperimentRequest{
     string api = 1;
-    // Experiment entity to update
     Experiment item = 2;
 }
 
-// Contains status of update operation
 message UpdateExperimentResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Experiment
 message DeleteExperimentRequest {
     string api = 1;
-    // Unique integer IDentifier of the Experiment to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteExperimentResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1376,7 +4297,6 @@ message CreateIssue {
   string Election = 2;
 }
 
-//Request and Response Message Types
 message CreateIssueRequest {
   string api = 1;
   CreateIssue item = 2;
@@ -1400,8 +4320,8 @@ message GetIssueResponse {
 message ListIssueRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  IssueOrdering ordering = 3;
+  repeated IssueFilterRule filters = 4;
 }
 
 message ListIssueResponse {
@@ -1409,34 +4329,23 @@ message ListIssueResponse {
   repeated Issue items = 2;
 }
 
-// Request data to update Issue
 message UpdateIssueRequest{
     string api = 1;
-    // Issue entity to update
     Issue item = 2;
 }
 
-// Contains status of update operation
 message UpdateIssueResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Issue
 message DeleteIssueRequest {
     string api = 1;
-    // Unique integer IDentifier of the Issue to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteIssueResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1451,7 +4360,6 @@ message CreateCandidate {
         string Election = 1;
 }
 
-//Request and Response Message Types
 message CreateCandidateRequest {
   string api = 1;
   CreateCandidate item = 2;
@@ -1475,8 +4383,8 @@ message GetCandidateResponse {
 message ListCandidateRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  CandidateOrdering ordering = 3;
+  repeated CandidateFilterRule filters = 4;
 }
 
 message ListCandidateResponse {
@@ -1484,34 +4392,23 @@ message ListCandidateResponse {
   repeated Candidate items = 2;
 }
 
-// Request data to update Candidate
 message UpdateCandidateRequest{
     string api = 1;
-    // Candidate entity to update
     Candidate item = 2;
 }
 
-// Contains status of update operation
 message UpdateCandidateResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Candidate
 message DeleteCandidateRequest {
     string api = 1;
-    // Unique integer IDentifier of the Candidate to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteCandidateResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1526,7 +4423,6 @@ message CreateDistrictType {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateDistrictTypeRequest {
   string api = 1;
   CreateDistrictType item = 2;
@@ -1550,8 +4446,8 @@ message GetDistrictTypeResponse {
 message ListDistrictTypeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  DistrictTypeOrdering ordering = 3;
+  repeated DistrictTypeFilterRule filters = 4;
 }
 
 message ListDistrictTypeResponse {
@@ -1559,34 +4455,23 @@ message ListDistrictTypeResponse {
   repeated DistrictType items = 2;
 }
 
-// Request data to update DistrictType
 message UpdateDistrictTypeRequest{
     string api = 1;
-    // DistrictType entity to update
     DistrictType item = 2;
 }
 
-// Contains status of update operation
 message UpdateDistrictTypeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete DistrictType
 message DeleteDistrictTypeRequest {
     string api = 1;
-    // Unique integer IDentifier of the DistrictType to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteDistrictTypeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1605,7 +4490,6 @@ message CreateDistrict {
   string DistrictType = 3;
 }
 
-//Request and Response Message Types
 message CreateDistrictRequest {
   string api = 1;
   CreateDistrict item = 2;
@@ -1629,8 +4513,8 @@ message GetDistrictResponse {
 message ListDistrictRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  DistrictOrdering ordering = 3;
+  repeated DistrictFilterRule filters = 4;
 }
 
 message ListDistrictResponse {
@@ -1638,34 +4522,23 @@ message ListDistrictResponse {
   repeated District items = 2;
 }
 
-// Request data to update District
 message UpdateDistrictRequest{
     string api = 1;
-    // District entity to update
     District item = 2;
 }
 
-// Contains status of update operation
 message UpdateDistrictResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete District
 message DeleteDistrictRequest {
     string api = 1;
-    // Unique integer IDentifier of the District to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteDistrictResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1682,7 +4555,6 @@ message CreateOffice {
   string Election = 2;
 }
 
-//Request and Response Message Types
 message CreateOfficeRequest {
   string api = 1;
   CreateOffice item = 2;
@@ -1706,8 +4578,8 @@ message GetOfficeResponse {
 message ListOfficeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  OfficeOrdering ordering = 3;
+  repeated OfficeFilterRule filters = 4;
 }
 
 message ListOfficeResponse {
@@ -1715,34 +4587,23 @@ message ListOfficeResponse {
   repeated Office items = 2;
 }
 
-// Request data to update Office
 message UpdateOfficeRequest{
     string api = 1;
-    // Office entity to update
     Office item = 2;
 }
 
-// Contains status of update operation
 message UpdateOfficeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Office
 message DeleteOfficeRequest {
     string api = 1;
-    // Unique integer IDentifier of the Office to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteOfficeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1759,7 +4620,6 @@ message CreatePollItem {
   string Poll = 2;
 }
 
-//Request and Response Message Types
 message CreatePollItemRequest {
   string api = 1;
   CreatePollItem item = 2;
@@ -1783,8 +4643,8 @@ message GetPollItemResponse {
 message ListPollItemRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PollItemOrdering ordering = 3;
+  repeated PollItemFilterRule filters = 4;
 }
 
 message ListPollItemResponse {
@@ -1792,34 +4652,23 @@ message ListPollItemResponse {
   repeated PollItem items = 2;
 }
 
-// Request data to update PollItem
 message UpdatePollItemRequest{
     string api = 1;
-    // PollItem entity to update
     PollItem item = 2;
 }
 
-// Contains status of update operation
 message UpdatePollItemResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete PollItem
 message DeletePollItemRequest {
     string api = 1;
-    // Unique integer IDentifier of the PollItem to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePollItemResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1834,7 +4683,6 @@ message CreateVolunteerOpportunityType {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateVolunteerOpportunityTypeRequest {
   string api = 1;
   CreateVolunteerOpportunityType item = 2;
@@ -1858,8 +4706,8 @@ message GetVolunteerOpportunityTypeResponse {
 message ListVolunteerOpportunityTypeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  VolunteerOpportunityTypeOrdering ordering = 3;
+  repeated VolunteerOpportunityTypeFilterRule filters = 4;
 }
 
 message ListVolunteerOpportunityTypeResponse {
@@ -1867,34 +4715,23 @@ message ListVolunteerOpportunityTypeResponse {
   repeated VolunteerOpportunityType items = 2;
 }
 
-// Request data to update VolunteerOpportunityType
 message UpdateVolunteerOpportunityTypeRequest{
     string api = 1;
-    // VolunteerOpportunityType entity to update
     VolunteerOpportunityType item = 2;
 }
 
-// Contains status of update operation
 message UpdateVolunteerOpportunityTypeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete VolunteerOpportunityType
 message DeleteVolunteerOpportunityTypeRequest {
     string api = 1;
-    // Unique integer IDentifier of the VolunteerOpportunityType to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteVolunteerOpportunityTypeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1909,7 +4746,6 @@ message CreateLiveEventType {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateLiveEventTypeRequest {
   string api = 1;
   CreateLiveEventType item = 2;
@@ -1933,8 +4769,8 @@ message GetLiveEventTypeResponse {
 message ListLiveEventTypeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  LiveEventTypeOrdering ordering = 3;
+  repeated LiveEventTypeFilterRule filters = 4;
 }
 
 message ListLiveEventTypeResponse {
@@ -1942,34 +4778,23 @@ message ListLiveEventTypeResponse {
   repeated LiveEventType items = 2;
 }
 
-// Request data to update LiveEventType
 message UpdateLiveEventTypeRequest{
     string api = 1;
-    // LiveEventType entity to update
     LiveEventType item = 2;
 }
 
-// Contains status of update operation
 message UpdateLiveEventTypeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete LiveEventType
 message DeleteLiveEventTypeRequest {
     string api = 1;
-    // Unique integer IDentifier of the LiveEventType to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteLiveEventTypeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -1984,7 +4809,6 @@ message CreateCompany {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateCompanyRequest {
   string api = 1;
   CreateCompany item = 2;
@@ -2008,8 +4832,8 @@ message GetCompanyResponse {
 message ListCompanyRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  CompanyOrdering ordering = 3;
+  repeated CompanyFilterRule filters = 4;
 }
 
 message ListCompanyResponse {
@@ -2017,34 +4841,23 @@ message ListCompanyResponse {
   repeated Company items = 2;
 }
 
-// Request data to update Company
 message UpdateCompanyRequest{
     string api = 1;
-    // Company entity to update
     Company item = 2;
 }
 
-// Contains status of update operation
 message UpdateCompanyResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Company
 message DeleteCompanyRequest {
     string api = 1;
-    // Unique integer IDentifier of the Company to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteCompanyResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2059,7 +4872,6 @@ message CreateProductType {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateProductTypeRequest {
   string api = 1;
   CreateProductType item = 2;
@@ -2083,8 +4895,8 @@ message GetProductTypeResponse {
 message ListProductTypeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ProductTypeOrdering ordering = 3;
+  repeated ProductTypeFilterRule filters = 4;
 }
 
 message ListProductTypeResponse {
@@ -2092,34 +4904,23 @@ message ListProductTypeResponse {
   repeated ProductType items = 2;
 }
 
-// Request data to update ProductType
 message UpdateProductTypeRequest{
     string api = 1;
-    // ProductType entity to update
     ProductType item = 2;
 }
 
-// Contains status of update operation
 message UpdateProductTypeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete ProductType
 message DeleteProductTypeRequest {
     string api = 1;
-    // Unique integer IDentifier of the ProductType to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteProductTypeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2132,7 +4933,6 @@ message CustomerCart {
 message CreateCustomerCart {
       }
 
-//Request and Response Message Types
 message CreateCustomerCartRequest {
   string api = 1;
   CreateCustomerCart item = 2;
@@ -2156,8 +4956,8 @@ message GetCustomerCartResponse {
 message ListCustomerCartRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  CustomerCartOrdering ordering = 3;
+  repeated CustomerCartFilterRule filters = 4;
 }
 
 message ListCustomerCartResponse {
@@ -2165,34 +4965,23 @@ message ListCustomerCartResponse {
   repeated CustomerCart items = 2;
 }
 
-// Request data to update CustomerCart
 message UpdateCustomerCartRequest{
     string api = 1;
-    // CustomerCart entity to update
     CustomerCart item = 2;
 }
 
-// Contains status of update operation
 message UpdateCustomerCartResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete CustomerCart
 message DeleteCustomerCartRequest {
     string api = 1;
-    // Unique integer IDentifier of the CustomerCart to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteCustomerCartResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2207,7 +4996,6 @@ message CreatePayment {
         string CustomerOrder = 1;
 }
 
-//Request and Response Message Types
 message CreatePaymentRequest {
   string api = 1;
   CreatePayment item = 2;
@@ -2231,8 +5019,8 @@ message GetPaymentResponse {
 message ListPaymentRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PaymentOrdering ordering = 3;
+  repeated PaymentFilterRule filters = 4;
 }
 
 message ListPaymentResponse {
@@ -2240,34 +5028,23 @@ message ListPaymentResponse {
   repeated Payment items = 2;
 }
 
-// Request data to update Payment
 message UpdatePaymentRequest{
     string api = 1;
-    // Payment entity to update
     Payment item = 2;
 }
 
-// Contains status of update operation
 message UpdatePaymentResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Payment
 message DeletePaymentRequest {
     string api = 1;
-    // Unique integer IDentifier of the Payment to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePaymentResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2280,7 +5057,6 @@ message Delivery {
 message CreateDelivery {
       }
 
-//Request and Response Message Types
 message CreateDeliveryRequest {
   string api = 1;
   CreateDelivery item = 2;
@@ -2304,8 +5080,8 @@ message GetDeliveryResponse {
 message ListDeliveryRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  DeliveryOrdering ordering = 3;
+  repeated DeliveryFilterRule filters = 4;
 }
 
 message ListDeliveryResponse {
@@ -2313,34 +5089,23 @@ message ListDeliveryResponse {
   repeated Delivery items = 2;
 }
 
-// Request data to update Delivery
 message UpdateDeliveryRequest{
     string api = 1;
-    // Delivery entity to update
     Delivery item = 2;
 }
 
-// Contains status of update operation
 message UpdateDeliveryResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Delivery
 message DeleteDeliveryRequest {
     string api = 1;
-    // Unique integer IDentifier of the Delivery to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteDeliveryResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2355,7 +5120,6 @@ message CreateBoycott {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateBoycottRequest {
   string api = 1;
   CreateBoycott item = 2;
@@ -2379,8 +5143,8 @@ message GetBoycottResponse {
 message ListBoycottRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  BoycottOrdering ordering = 3;
+  repeated BoycottFilterRule filters = 4;
 }
 
 message ListBoycottResponse {
@@ -2388,34 +5152,23 @@ message ListBoycottResponse {
   repeated Boycott items = 2;
 }
 
-// Request data to update Boycott
 message UpdateBoycottRequest{
     string api = 1;
-    // Boycott entity to update
     Boycott item = 2;
 }
 
-// Contains status of update operation
 message UpdateBoycottResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Boycott
 message DeleteBoycottRequest {
     string api = 1;
-    // Unique integer IDentifier of the Boycott to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteBoycottResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2432,7 +5185,6 @@ message CreateBoycottMembership {
   string Boycott = 2;
 }
 
-//Request and Response Message Types
 message CreateBoycottMembershipRequest {
   string api = 1;
   CreateBoycottMembership item = 2;
@@ -2456,8 +5208,8 @@ message GetBoycottMembershipResponse {
 message ListBoycottMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  BoycottMembershipOrdering ordering = 3;
+  repeated BoycottMembershipFilterRule filters = 4;
 }
 
 message ListBoycottMembershipResponse {
@@ -2465,34 +5217,23 @@ message ListBoycottMembershipResponse {
   repeated BoycottMembership items = 2;
 }
 
-// Request data to update BoycottMembership
 message UpdateBoycottMembershipRequest{
     string api = 1;
-    // BoycottMembership entity to update
     BoycottMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateBoycottMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete BoycottMembership
 message DeleteBoycottMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the BoycottMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteBoycottMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2507,7 +5248,6 @@ message CreateElection {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateElectionRequest {
   string api = 1;
   CreateElection item = 2;
@@ -2531,8 +5271,8 @@ message GetElectionResponse {
 message ListElectionRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ElectionOrdering ordering = 3;
+  repeated ElectionFilterRule filters = 4;
 }
 
 message ListElectionResponse {
@@ -2540,34 +5280,23 @@ message ListElectionResponse {
   repeated Election items = 2;
 }
 
-// Request data to update Election
 message UpdateElectionRequest{
     string api = 1;
-    // Election entity to update
     Election item = 2;
 }
 
-// Contains status of update operation
 message UpdateElectionResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Election
 message DeleteElectionRequest {
     string api = 1;
-    // Unique integer IDentifier of the Election to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteElectionResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2584,7 +5313,6 @@ message CreateElectionMembership {
   string Election = 2;
 }
 
-//Request and Response Message Types
 message CreateElectionMembershipRequest {
   string api = 1;
   CreateElectionMembership item = 2;
@@ -2608,8 +5336,8 @@ message GetElectionMembershipResponse {
 message ListElectionMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ElectionMembershipOrdering ordering = 3;
+  repeated ElectionMembershipFilterRule filters = 4;
 }
 
 message ListElectionMembershipResponse {
@@ -2617,34 +5345,23 @@ message ListElectionMembershipResponse {
   repeated ElectionMembership items = 2;
 }
 
-// Request data to update ElectionMembership
 message UpdateElectionMembershipRequest{
     string api = 1;
-    // ElectionMembership entity to update
     ElectionMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateElectionMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete ElectionMembership
 message DeleteElectionMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the ElectionMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteElectionMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2661,7 +5378,6 @@ message CreatePetitionMembership {
   string Petition = 2;
 }
 
-//Request and Response Message Types
 message CreatePetitionMembershipRequest {
   string api = 1;
   CreatePetitionMembership item = 2;
@@ -2685,8 +5401,8 @@ message GetPetitionMembershipResponse {
 message ListPetitionMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PetitionMembershipOrdering ordering = 3;
+  repeated PetitionMembershipFilterRule filters = 4;
 }
 
 message ListPetitionMembershipResponse {
@@ -2694,34 +5410,23 @@ message ListPetitionMembershipResponse {
   repeated PetitionMembership items = 2;
 }
 
-// Request data to update PetitionMembership
 message UpdatePetitionMembershipRequest{
     string api = 1;
-    // PetitionMembership entity to update
     PetitionMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdatePetitionMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete PetitionMembership
 message DeletePetitionMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the PetitionMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePetitionMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2738,7 +5443,6 @@ message CreatePollMembership {
   string Petition = 2;
 }
 
-//Request and Response Message Types
 message CreatePollMembershipRequest {
   string api = 1;
   CreatePollMembership item = 2;
@@ -2762,8 +5466,8 @@ message GetPollMembershipResponse {
 message ListPollMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PollMembershipOrdering ordering = 3;
+  repeated PollMembershipFilterRule filters = 4;
 }
 
 message ListPollMembershipResponse {
@@ -2771,34 +5475,23 @@ message ListPollMembershipResponse {
   repeated PollMembership items = 2;
 }
 
-// Request data to update PollMembership
 message UpdatePollMembershipRequest{
     string api = 1;
-    // PollMembership entity to update
     PollMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdatePollMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete PollMembership
 message DeletePollMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the PollMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePollMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2815,7 +5508,6 @@ message CreateVolunteerOpportunityMembership {
   string VolunteerOpportunity = 2;
 }
 
-//Request and Response Message Types
 message CreateVolunteerOpportunityMembershipRequest {
   string api = 1;
   CreateVolunteerOpportunityMembership item = 2;
@@ -2839,8 +5531,8 @@ message GetVolunteerOpportunityMembershipResponse {
 message ListVolunteerOpportunityMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  VolunteerOpportunityMembershipOrdering ordering = 3;
+  repeated VolunteerOpportunityMembershipFilterRule filters = 4;
 }
 
 message ListVolunteerOpportunityMembershipResponse {
@@ -2848,34 +5540,23 @@ message ListVolunteerOpportunityMembershipResponse {
   repeated VolunteerOpportunityMembership items = 2;
 }
 
-// Request data to update VolunteerOpportunityMembership
 message UpdateVolunteerOpportunityMembershipRequest{
     string api = 1;
-    // VolunteerOpportunityMembership entity to update
     VolunteerOpportunityMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateVolunteerOpportunityMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete VolunteerOpportunityMembership
 message DeleteVolunteerOpportunityMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the VolunteerOpportunityMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteVolunteerOpportunityMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2892,7 +5573,6 @@ message CreateLiveEventMembership {
   string LiveEvent = 2;
 }
 
-//Request and Response Message Types
 message CreateLiveEventMembershipRequest {
   string api = 1;
   CreateLiveEventMembership item = 2;
@@ -2916,8 +5596,8 @@ message GetLiveEventMembershipResponse {
 message ListLiveEventMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  LiveEventMembershipOrdering ordering = 3;
+  repeated LiveEventMembershipFilterRule filters = 4;
 }
 
 message ListLiveEventMembershipResponse {
@@ -2925,34 +5605,23 @@ message ListLiveEventMembershipResponse {
   repeated LiveEventMembership items = 2;
 }
 
-// Request data to update LiveEventMembership
 message UpdateLiveEventMembershipRequest{
     string api = 1;
-    // LiveEventMembership entity to update
     LiveEventMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateLiveEventMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete LiveEventMembership
 message DeleteLiveEventMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the LiveEventMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteLiveEventMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -2969,7 +5638,6 @@ message CreateProduct {
   string ProductType = 2;
 }
 
-//Request and Response Message Types
 message CreateProductRequest {
   string api = 1;
   CreateProduct item = 2;
@@ -2993,8 +5661,8 @@ message GetProductResponse {
 message ListProductRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ProductOrdering ordering = 3;
+  repeated ProductFilterRule filters = 4;
 }
 
 message ListProductResponse {
@@ -3002,34 +5670,23 @@ message ListProductResponse {
   repeated Product items = 2;
 }
 
-// Request data to update Product
 message UpdateProductRequest{
     string api = 1;
-    // Product entity to update
     Product item = 2;
 }
 
-// Contains status of update operation
 message UpdateProductResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Product
 message DeleteProductRequest {
     string api = 1;
-    // Unique integer IDentifier of the Product to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteProductResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3046,7 +5703,6 @@ message CreateProductMembership {
   string Product = 2;
 }
 
-//Request and Response Message Types
 message CreateProductMembershipRequest {
   string api = 1;
   CreateProductMembership item = 2;
@@ -3070,8 +5726,8 @@ message GetProductMembershipResponse {
 message ListProductMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ProductMembershipOrdering ordering = 3;
+  repeated ProductMembershipFilterRule filters = 4;
 }
 
 message ListProductMembershipResponse {
@@ -3079,34 +5735,23 @@ message ListProductMembershipResponse {
   repeated ProductMembership items = 2;
 }
 
-// Request data to update ProductMembership
 message UpdateProductMembershipRequest{
     string api = 1;
-    // ProductMembership entity to update
     ProductMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateProductMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete ProductMembership
 message DeleteProductMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the ProductMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteProductMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3121,7 +5766,6 @@ message CreateDonationCampaign {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateDonationCampaignRequest {
   string api = 1;
   CreateDonationCampaign item = 2;
@@ -3145,8 +5789,8 @@ message GetDonationCampaignResponse {
 message ListDonationCampaignRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  DonationCampaignOrdering ordering = 3;
+  repeated DonationCampaignFilterRule filters = 4;
 }
 
 message ListDonationCampaignResponse {
@@ -3154,34 +5798,23 @@ message ListDonationCampaignResponse {
   repeated DonationCampaign items = 2;
 }
 
-// Request data to update DonationCampaign
 message UpdateDonationCampaignRequest{
     string api = 1;
-    // DonationCampaign entity to update
     DonationCampaign item = 2;
 }
 
-// Contains status of update operation
 message UpdateDonationCampaignResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete DonationCampaign
 message DeleteDonationCampaignRequest {
     string api = 1;
-    // Unique integer IDentifier of the DonationCampaign to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteDonationCampaignResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3198,7 +5831,6 @@ message CreateDonationCampaignMembership {
   string DonationCampaign = 2;
 }
 
-//Request and Response Message Types
 message CreateDonationCampaignMembershipRequest {
   string api = 1;
   CreateDonationCampaignMembership item = 2;
@@ -3222,8 +5854,8 @@ message GetDonationCampaignMembershipResponse {
 message ListDonationCampaignMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  DonationCampaignMembershipOrdering ordering = 3;
+  repeated DonationCampaignMembershipFilterRule filters = 4;
 }
 
 message ListDonationCampaignMembershipResponse {
@@ -3231,34 +5863,23 @@ message ListDonationCampaignMembershipResponse {
   repeated DonationCampaignMembership items = 2;
 }
 
-// Request data to update DonationCampaignMembership
 message UpdateDonationCampaignMembershipRequest{
     string api = 1;
-    // DonationCampaignMembership entity to update
     DonationCampaignMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateDonationCampaignMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete DonationCampaignMembership
 message DeleteDonationCampaignMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the DonationCampaignMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteDonationCampaignMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3273,7 +5894,6 @@ message CreatePetition {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreatePetitionRequest {
   string api = 1;
   CreatePetition item = 2;
@@ -3297,8 +5917,8 @@ message GetPetitionResponse {
 message ListPetitionRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PetitionOrdering ordering = 3;
+  repeated PetitionFilterRule filters = 4;
 }
 
 message ListPetitionResponse {
@@ -3306,34 +5926,23 @@ message ListPetitionResponse {
   repeated Petition items = 2;
 }
 
-// Request data to update Petition
 message UpdatePetitionRequest{
     string api = 1;
-    // Petition entity to update
     Petition item = 2;
 }
 
-// Contains status of update operation
 message UpdatePetitionResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Petition
 message DeletePetitionRequest {
     string api = 1;
-    // Unique integer IDentifier of the Petition to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePetitionResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3352,7 +5961,6 @@ message CreatePetitionSigner {
   string Cause = 3;
 }
 
-//Request and Response Message Types
 message CreatePetitionSignerRequest {
   string api = 1;
   CreatePetitionSigner item = 2;
@@ -3376,8 +5984,8 @@ message GetPetitionSignerResponse {
 message ListPetitionSignerRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PetitionSignerOrdering ordering = 3;
+  repeated PetitionSignerFilterRule filters = 4;
 }
 
 message ListPetitionSignerResponse {
@@ -3385,34 +5993,23 @@ message ListPetitionSignerResponse {
   repeated PetitionSigner items = 2;
 }
 
-// Request data to update PetitionSigner
 message UpdatePetitionSignerRequest{
     string api = 1;
-    // PetitionSigner entity to update
     PetitionSigner item = 2;
 }
 
-// Contains status of update operation
 message UpdatePetitionSignerResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete PetitionSigner
 message DeletePetitionSignerRequest {
     string api = 1;
-    // Unique integer IDentifier of the PetitionSigner to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePetitionSignerResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3427,7 +6024,6 @@ message CreatePoll {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreatePollRequest {
   string api = 1;
   CreatePoll item = 2;
@@ -3451,8 +6047,8 @@ message GetPollResponse {
 message ListPollRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PollOrdering ordering = 3;
+  repeated PollFilterRule filters = 4;
 }
 
 message ListPollResponse {
@@ -3460,34 +6056,23 @@ message ListPollResponse {
   repeated Poll items = 2;
 }
 
-// Request data to update Poll
 message UpdatePollRequest{
     string api = 1;
-    // Poll entity to update
     Poll item = 2;
 }
 
-// Contains status of update operation
 message UpdatePollResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Poll
 message DeletePollRequest {
     string api = 1;
-    // Unique integer IDentifier of the Poll to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePollResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3506,7 +6091,6 @@ message CreatePollRespondant {
   string Cause = 3;
 }
 
-//Request and Response Message Types
 message CreatePollRespondantRequest {
   string api = 1;
   CreatePollRespondant item = 2;
@@ -3530,8 +6114,8 @@ message GetPollRespondantResponse {
 message ListPollRespondantRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PollRespondantOrdering ordering = 3;
+  repeated PollRespondantFilterRule filters = 4;
 }
 
 message ListPollRespondantResponse {
@@ -3539,34 +6123,23 @@ message ListPollRespondantResponse {
   repeated PollRespondant items = 2;
 }
 
-// Request data to update PollRespondant
 message UpdatePollRespondantRequest{
     string api = 1;
-    // PollRespondant entity to update
     PollRespondant item = 2;
 }
 
-// Contains status of update operation
 message UpdatePollRespondantResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete PollRespondant
 message DeletePollRespondantRequest {
     string api = 1;
-    // Unique integer IDentifier of the PollRespondant to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePollRespondantResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3585,7 +6158,6 @@ message CreatePurchaser {
   string Cause = 3;
 }
 
-//Request and Response Message Types
 message CreatePurchaserRequest {
   string api = 1;
   CreatePurchaser item = 2;
@@ -3609,8 +6181,8 @@ message GetPurchaserResponse {
 message ListPurchaserRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  PurchaserOrdering ordering = 3;
+  repeated PurchaserFilterRule filters = 4;
 }
 
 message ListPurchaserResponse {
@@ -3618,34 +6190,23 @@ message ListPurchaserResponse {
   repeated Purchaser items = 2;
 }
 
-// Request data to update Purchaser
 message UpdatePurchaserRequest{
     string api = 1;
-    // Purchaser entity to update
     Purchaser item = 2;
 }
 
-// Contains status of update operation
 message UpdatePurchaserResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Purchaser
 message DeletePurchaserRequest {
     string api = 1;
-    // Unique integer IDentifier of the Purchaser to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeletePurchaserResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3660,7 +6221,6 @@ message CreateCustomerOrder {
         string CustomerCart = 1;
 }
 
-//Request and Response Message Types
 message CreateCustomerOrderRequest {
   string api = 1;
   CreateCustomerOrder item = 2;
@@ -3684,8 +6244,8 @@ message GetCustomerOrderResponse {
 message ListCustomerOrderRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  CustomerOrderOrdering ordering = 3;
+  repeated CustomerOrderFilterRule filters = 4;
 }
 
 message ListCustomerOrderResponse {
@@ -3693,34 +6253,23 @@ message ListCustomerOrderResponse {
   repeated CustomerOrder items = 2;
 }
 
-// Request data to update CustomerOrder
 message UpdateCustomerOrderRequest{
     string api = 1;
-    // CustomerOrder entity to update
     CustomerOrder item = 2;
 }
 
-// Contains status of update operation
 message UpdateCustomerOrderResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete CustomerOrder
 message DeleteCustomerOrderRequest {
     string api = 1;
-    // Unique integer IDentifier of the CustomerOrder to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteCustomerOrderResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3739,7 +6288,6 @@ message CreateDonor {
   string Cause = 3;
 }
 
-//Request and Response Message Types
 message CreateDonorRequest {
   string api = 1;
   CreateDonor item = 2;
@@ -3763,8 +6311,8 @@ message GetDonorResponse {
 message ListDonorRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  DonorOrdering ordering = 3;
+  repeated DonorFilterRule filters = 4;
 }
 
 message ListDonorResponse {
@@ -3772,34 +6320,23 @@ message ListDonorResponse {
   repeated Donor items = 2;
 }
 
-// Request data to update Donor
 message UpdateDonorRequest{
     string api = 1;
-    // Donor entity to update
     Donor item = 2;
 }
 
-// Contains status of update operation
 message UpdateDonorResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Donor
 message DeleteDonorRequest {
     string api = 1;
-    // Unique integer IDentifier of the Donor to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteDonorResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3816,7 +6353,6 @@ message CreateLiveEvent {
   string LiveEventType = 2;
 }
 
-//Request and Response Message Types
 message CreateLiveEventRequest {
   string api = 1;
   CreateLiveEvent item = 2;
@@ -3840,8 +6376,8 @@ message GetLiveEventResponse {
 message ListLiveEventRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  LiveEventOrdering ordering = 3;
+  repeated LiveEventFilterRule filters = 4;
 }
 
 message ListLiveEventResponse {
@@ -3849,34 +6385,23 @@ message ListLiveEventResponse {
   repeated LiveEvent items = 2;
 }
 
-// Request data to update LiveEvent
 message UpdateLiveEventRequest{
     string api = 1;
-    // LiveEvent entity to update
     LiveEvent item = 2;
 }
 
-// Contains status of update operation
 message UpdateLiveEventResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete LiveEvent
 message DeleteLiveEventRequest {
     string api = 1;
-    // Unique integer IDentifier of the LiveEvent to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteLiveEventResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3895,7 +6420,6 @@ message CreateEventAttendee {
   string Cause = 3;
 }
 
-//Request and Response Message Types
 message CreateEventAttendeeRequest {
   string api = 1;
   CreateEventAttendee item = 2;
@@ -3919,8 +6443,8 @@ message GetEventAttendeeResponse {
 message ListEventAttendeeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  EventAttendeeOrdering ordering = 3;
+  repeated EventAttendeeFilterRule filters = 4;
 }
 
 message ListEventAttendeeResponse {
@@ -3928,34 +6452,23 @@ message ListEventAttendeeResponse {
   repeated EventAttendee items = 2;
 }
 
-// Request data to update EventAttendee
 message UpdateEventAttendeeRequest{
     string api = 1;
-    // EventAttendee entity to update
     EventAttendee item = 2;
 }
 
-// Contains status of update operation
 message UpdateEventAttendeeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete EventAttendee
 message DeleteEventAttendeeRequest {
     string api = 1;
-    // Unique integer IDentifier of the EventAttendee to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteEventAttendeeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -3972,7 +6485,6 @@ message CreateVoter {
   string Cause = 2;
 }
 
-//Request and Response Message Types
 message CreateVoterRequest {
   string api = 1;
   CreateVoter item = 2;
@@ -3996,8 +6508,8 @@ message GetVoterResponse {
 message ListVoterRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  VoterOrdering ordering = 3;
+  repeated VoterFilterRule filters = 4;
 }
 
 message ListVoterResponse {
@@ -4005,34 +6517,23 @@ message ListVoterResponse {
   repeated Voter items = 2;
 }
 
-// Request data to update Voter
 message UpdateVoterRequest{
     string api = 1;
-    // Voter entity to update
     Voter item = 2;
 }
 
-// Contains status of update operation
 message UpdateVoterResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Voter
 message DeleteVoterRequest {
     string api = 1;
-    // Unique integer IDentifier of the Voter to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteVoterResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4049,7 +6550,6 @@ message CreateVolunteerOpportunity {
   string ElectionType = 2;
 }
 
-//Request and Response Message Types
 message CreateVolunteerOpportunityRequest {
   string api = 1;
   CreateVolunteerOpportunity item = 2;
@@ -4073,8 +6573,8 @@ message GetVolunteerOpportunityResponse {
 message ListVolunteerOpportunityRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  VolunteerOpportunityOrdering ordering = 3;
+  repeated VolunteerOpportunityFilterRule filters = 4;
 }
 
 message ListVolunteerOpportunityResponse {
@@ -4082,34 +6582,23 @@ message ListVolunteerOpportunityResponse {
   repeated VolunteerOpportunity items = 2;
 }
 
-// Request data to update VolunteerOpportunity
 message UpdateVolunteerOpportunityRequest{
     string api = 1;
-    // VolunteerOpportunity entity to update
     VolunteerOpportunity item = 2;
 }
 
-// Contains status of update operation
 message UpdateVolunteerOpportunityResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete VolunteerOpportunity
 message DeleteVolunteerOpportunityRequest {
     string api = 1;
-    // Unique integer IDentifier of the VolunteerOpportunity to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteVolunteerOpportunityResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4128,7 +6617,6 @@ message CreateVolunteer {
   string Cause = 3;
 }
 
-//Request and Response Message Types
 message CreateVolunteerRequest {
   string api = 1;
   CreateVolunteer item = 2;
@@ -4152,8 +6640,8 @@ message GetVolunteerResponse {
 message ListVolunteerRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  VolunteerOrdering ordering = 3;
+  repeated VolunteerFilterRule filters = 4;
 }
 
 message ListVolunteerResponse {
@@ -4161,34 +6649,23 @@ message ListVolunteerResponse {
   repeated Volunteer items = 2;
 }
 
-// Request data to update Volunteer
 message UpdateVolunteerRequest{
     string api = 1;
-    // Volunteer entity to update
     Volunteer item = 2;
 }
 
-// Contains status of update operation
 message UpdateVolunteerResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Volunteer
 message DeleteVolunteerRequest {
     string api = 1;
-    // Unique integer IDentifier of the Volunteer to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteVolunteerResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4205,7 +6682,6 @@ message CreateFollower {
   string Cause = 2;
 }
 
-//Request and Response Message Types
 message CreateFollowerRequest {
   string api = 1;
   CreateFollower item = 2;
@@ -4229,8 +6705,8 @@ message GetFollowerResponse {
 message ListFollowerRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  FollowerOrdering ordering = 3;
+  repeated FollowerFilterRule filters = 4;
 }
 
 message ListFollowerResponse {
@@ -4238,34 +6714,23 @@ message ListFollowerResponse {
   repeated Follower items = 2;
 }
 
-// Request data to update Follower
 message UpdateFollowerRequest{
     string api = 1;
-    // Follower entity to update
     Follower item = 2;
 }
 
-// Contains status of update operation
 message UpdateFollowerResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Follower
 message DeleteFollowerRequest {
     string api = 1;
-    // Unique integer IDentifier of the Follower to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteFollowerResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4280,7 +6745,6 @@ message CreateTerritory {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateTerritoryRequest {
   string api = 1;
   CreateTerritory item = 2;
@@ -4304,8 +6768,8 @@ message GetTerritoryResponse {
 message ListTerritoryRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  TerritoryOrdering ordering = 3;
+  repeated TerritoryFilterRule filters = 4;
 }
 
 message ListTerritoryResponse {
@@ -4313,34 +6777,23 @@ message ListTerritoryResponse {
   repeated Territory items = 2;
 }
 
-// Request data to update Territory
 message UpdateTerritoryRequest{
     string api = 1;
-    // Territory entity to update
     Territory item = 2;
 }
 
-// Contains status of update operation
 message UpdateTerritoryResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Territory
 message DeleteTerritoryRequest {
     string api = 1;
-    // Unique integer IDentifier of the Territory to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteTerritoryResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4355,7 +6808,6 @@ message CreateActivityType {
         string Title = 1;
 }
 
-//Request and Response Message Types
 message CreateActivityTypeRequest {
   string api = 1;
   CreateActivityType item = 2;
@@ -4379,8 +6831,8 @@ message GetActivityTypeResponse {
 message ListActivityTypeRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ActivityTypeOrdering ordering = 3;
+  repeated ActivityTypeFilterRule filters = 4;
 }
 
 message ListActivityTypeResponse {
@@ -4388,34 +6840,23 @@ message ListActivityTypeResponse {
   repeated ActivityType items = 2;
 }
 
-// Request data to update ActivityType
 message UpdateActivityTypeRequest{
     string api = 1;
-    // ActivityType entity to update
     ActivityType item = 2;
 }
 
-// Contains status of update operation
 message UpdateActivityTypeResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete ActivityType
 message DeleteActivityTypeRequest {
     string api = 1;
-    // Unique integer IDentifier of the ActivityType to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteActivityTypeResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4436,7 +6877,6 @@ message CreateActivity {
   string Cause = 4;
 }
 
-//Request and Response Message Types
 message CreateActivityRequest {
   string api = 1;
   CreateActivity item = 2;
@@ -4460,8 +6900,8 @@ message GetActivityResponse {
 message ListActivityRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ActivityOrdering ordering = 3;
+  repeated ActivityFilterRule filters = 4;
 }
 
 message ListActivityResponse {
@@ -4469,34 +6909,23 @@ message ListActivityResponse {
   repeated Activity items = 2;
 }
 
-// Request data to update Activity
 message UpdateActivityRequest{
     string api = 1;
-    // Activity entity to update
     Activity item = 2;
 }
 
-// Contains status of update operation
 message UpdateActivityResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Activity
 message DeleteActivityRequest {
     string api = 1;
-    // Unique integer IDentifier of the Activity to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteActivityResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4515,7 +6944,6 @@ message CreateNote {
   string Body = 3;
 }
 
-//Request and Response Message Types
 message CreateNoteRequest {
   string api = 1;
   CreateNote item = 2;
@@ -4539,8 +6967,8 @@ message GetNoteResponse {
 message ListNoteRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  NoteOrdering ordering = 3;
+  repeated NoteFilterRule filters = 4;
 }
 
 message ListNoteResponse {
@@ -4548,34 +6976,23 @@ message ListNoteResponse {
   repeated Note items = 2;
 }
 
-// Request data to update Note
 message UpdateNoteRequest{
     string api = 1;
-    // Note entity to update
     Note item = 2;
 }
 
-// Contains status of update operation
 message UpdateNoteResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Note
 message DeleteNoteRequest {
     string api = 1;
-    // Unique integer IDentifier of the Note to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteNoteResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4590,7 +7007,6 @@ message CreateAccount {
         string Username = 1;
 }
 
-//Request and Response Message Types
 message CreateAccountRequest {
   string api = 1;
   CreateAccount item = 2;
@@ -4614,8 +7030,8 @@ message GetAccountResponse {
 message ListAccountRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  AccountOrdering ordering = 3;
+  repeated AccountFilterRule filters = 4;
 }
 
 message ListAccountResponse {
@@ -4623,34 +7039,23 @@ message ListAccountResponse {
   repeated Account items = 2;
 }
 
-// Request data to update Account
 message UpdateAccountRequest{
     string api = 1;
-    // Account entity to update
     Account item = 2;
 }
 
-// Contains status of update operation
 message UpdateAccountResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Account
 message DeleteAccountRequest {
     string api = 1;
-    // Unique integer IDentifier of the Account to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteAccountResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4667,7 +7072,6 @@ message CreateOwnerMembership {
   string Account = 2;
 }
 
-//Request and Response Message Types
 message CreateOwnerMembershipRequest {
   string api = 1;
   CreateOwnerMembership item = 2;
@@ -4691,8 +7095,8 @@ message GetOwnerMembershipResponse {
 message ListOwnerMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  OwnerMembershipOrdering ordering = 3;
+  repeated OwnerMembershipFilterRule filters = 4;
 }
 
 message ListOwnerMembershipResponse {
@@ -4700,34 +7104,23 @@ message ListOwnerMembershipResponse {
   repeated OwnerMembership items = 2;
 }
 
-// Request data to update OwnerMembership
 message UpdateOwnerMembershipRequest{
     string api = 1;
-    // OwnerMembership entity to update
     OwnerMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateOwnerMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete OwnerMembership
 message DeleteOwnerMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the OwnerMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteOwnerMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4750,7 +7143,6 @@ message CreateContact {
   string PhoneNumber = 5;
 }
 
-//Request and Response Message Types
 message CreateContactRequest {
   string api = 1;
   CreateContact item = 2;
@@ -4774,8 +7166,8 @@ message GetContactResponse {
 message ListContactRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ContactOrdering ordering = 3;
+  repeated ContactFilterRule filters = 4;
 }
 
 message ListContactResponse {
@@ -4783,34 +7175,23 @@ message ListContactResponse {
   repeated Contact items = 2;
 }
 
-// Request data to update Contact
 message UpdateContactRequest{
     string api = 1;
-    // Contact entity to update
     Contact item = 2;
 }
 
-// Contains status of update operation
 message UpdateContactResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Contact
 message DeleteContactRequest {
     string api = 1;
-    // Unique integer IDentifier of the Contact to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteContactResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4827,7 +7208,6 @@ message CreateContactMembership {
   string Contact = 2;
 }
 
-//Request and Response Message Types
 message CreateContactMembershipRequest {
   string api = 1;
   CreateContactMembership item = 2;
@@ -4851,8 +7231,8 @@ message GetContactMembershipResponse {
 message ListContactMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  ContactMembershipOrdering ordering = 3;
+  repeated ContactMembershipFilterRule filters = 4;
 }
 
 message ListContactMembershipResponse {
@@ -4860,34 +7240,23 @@ message ListContactMembershipResponse {
   repeated ContactMembership items = 2;
 }
 
-// Request data to update ContactMembership
 message UpdateContactMembershipRequest{
     string api = 1;
-    // ContactMembership entity to update
     ContactMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateContactMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete ContactMembership
 message DeleteContactMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the ContactMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteContactMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4906,7 +7275,6 @@ message CreateCause {
   string Summary = 3;
 }
 
-//Request and Response Message Types
 message CreateCauseRequest {
   string api = 1;
   CreateCause item = 2;
@@ -4930,8 +7298,8 @@ message GetCauseResponse {
 message ListCauseRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  CauseOrdering ordering = 3;
+  repeated CauseFilterRule filters = 4;
 }
 
 message ListCauseResponse {
@@ -4939,34 +7307,23 @@ message ListCauseResponse {
   repeated Cause items = 2;
 }
 
-// Request data to update Cause
 message UpdateCauseRequest{
     string api = 1;
-    // Cause entity to update
     Cause item = 2;
 }
 
-// Contains status of update operation
 message UpdateCauseResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Cause
 message DeleteCauseRequest {
     string api = 1;
-    // Unique integer IDentifier of the Cause to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteCauseResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -4981,7 +7338,6 @@ message CreateAgent {
         string Account = 1;
 }
 
-//Request and Response Message Types
 message CreateAgentRequest {
   string api = 1;
   CreateAgent item = 2;
@@ -5005,8 +7361,8 @@ message GetAgentResponse {
 message ListAgentRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  AgentOrdering ordering = 3;
+  repeated AgentFilterRule filters = 4;
 }
 
 message ListAgentResponse {
@@ -5014,34 +7370,23 @@ message ListAgentResponse {
   repeated Agent items = 2;
 }
 
-// Request data to update Agent
 message UpdateAgentRequest{
     string api = 1;
-    // Agent entity to update
     Agent item = 2;
 }
 
-// Contains status of update operation
 message UpdateAgentResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete Agent
 message DeleteAgentRequest {
     string api = 1;
-    // Unique integer IDentifier of the Agent to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteAgentResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
@@ -5058,7 +7403,6 @@ message CreateAgentMembership {
   string Agent = 2;
 }
 
-//Request and Response Message Types
 message CreateAgentMembershipRequest {
   string api = 1;
   CreateAgentMembership item = 2;
@@ -5082,8 +7426,8 @@ message GetAgentMembershipResponse {
 message ListAgentMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  Ordering ordering = 3;
-  Filter filter = 4;
+  AgentMembershipOrdering ordering = 3;
+  repeated AgentMembershipFilterRule filters = 4;
 }
 
 message ListAgentMembershipResponse {
@@ -5091,34 +7435,23 @@ message ListAgentMembershipResponse {
   repeated AgentMembership items = 2;
 }
 
-// Request data to update AgentMembership
 message UpdateAgentMembershipRequest{
     string api = 1;
-    // AgentMembership entity to update
     AgentMembership item = 2;
 }
 
-// Contains status of update operation
 message UpdateAgentMembershipResponse {
     string api = 1;
-    // Contains number of entities have beed updated
-    // Equals 1 in case of succesfull update
     int64 updated = 2;
 }
 
-// Request data to delete AgentMembership
 message DeleteAgentMembershipRequest {
     string api = 1;
-    // Unique integer IDentifier of the AgentMembership to delete
     string ID = 2;
 }
 
-// Contains status of delete operation
 message DeleteAgentMembershipResponse {
     string api = 1;
-
-    // Contains number of entities have beed deleted
-    // Equals 1 in case of succesfull delete
     int64 deleted = 2;
 }
 
