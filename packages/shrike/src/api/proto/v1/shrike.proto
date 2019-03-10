@@ -71,28 +71,24 @@ message ACLUpdatedAtField {
 }
 
 
-message ACLOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ACLIDField ID = 3;
-  ACLCreatedAtField CreatedAt = 4;
-  ACLUpdatedAtField UpdatedAt = 5;
-  }
-}
-
 message ACLOrdering {
-  repeated ACLOrderedPair orderedPair = 1;
-}
-message ACLFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ACLIDField ID = 3;
-  ACLCreatedAtField CreatedAt = 4;
-  ACLUpdatedAtField UpdatedAt = 5;
+    ACLIDField ID = 3;
+    ACLCreatedAtField CreatedAt = 4;
+    ACLUpdatedAtField UpdatedAt = 5;
   }
 }
 
+message ACLFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ACLIDField ID = 3;
+    ACLCreatedAtField CreatedAt = 4;
+    ACLUpdatedAtField UpdatedAt = 5;
+  }
+}
 
 
 message MailingAddressIDField {
@@ -124,36 +120,32 @@ message MailingAddressZipCodeField {
 }
 
 
-message MailingAddressOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  MailingAddressIDField ID = 3;
-  MailingAddressCreatedAtField CreatedAt = 4;
-  MailingAddressUpdatedAtField UpdatedAt = 5;
-  MailingAddressStreetAddressField StreetAddress = 6;
-  MailingAddressCityField City = 7;
-  MailingAddressStateField State = 8;
-  MailingAddressZipCodeField ZipCode = 9;
-  }
-}
-
 message MailingAddressOrdering {
-  repeated MailingAddressOrderedPair orderedPair = 1;
-}
-message MailingAddressFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  MailingAddressIDField ID = 3;
-  MailingAddressCreatedAtField CreatedAt = 4;
-  MailingAddressUpdatedAtField UpdatedAt = 5;
-  MailingAddressStreetAddressField StreetAddress = 6;
-  MailingAddressCityField City = 7;
-  MailingAddressStateField State = 8;
-  MailingAddressZipCodeField ZipCode = 9;
+    MailingAddressIDField ID = 3;
+    MailingAddressCreatedAtField CreatedAt = 4;
+    MailingAddressUpdatedAtField UpdatedAt = 5;
+    MailingAddressStreetAddressField StreetAddress = 6;
+    MailingAddressCityField City = 7;
+    MailingAddressStateField State = 8;
+    MailingAddressZipCodeField ZipCode = 9;
   }
 }
 
+message MailingAddressFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    MailingAddressIDField ID = 3;
+    MailingAddressCreatedAtField CreatedAt = 4;
+    MailingAddressUpdatedAtField UpdatedAt = 5;
+    MailingAddressStreetAddressField StreetAddress = 6;
+    MailingAddressCityField City = 7;
+    MailingAddressStateField State = 8;
+    MailingAddressZipCodeField ZipCode = 9;
+  }
+}
 
 
 message PhoneNumberIDField {
@@ -173,30 +165,26 @@ message PhoneNumberPhoneNumberField {
 }
 
 
-message PhoneNumberOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PhoneNumberIDField ID = 3;
-  PhoneNumberCreatedAtField CreatedAt = 4;
-  PhoneNumberUpdatedAtField UpdatedAt = 5;
-  PhoneNumberPhoneNumberField PhoneNumber = 6;
-  }
-}
-
 message PhoneNumberOrdering {
-  repeated PhoneNumberOrderedPair orderedPair = 1;
-}
-message PhoneNumberFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PhoneNumberIDField ID = 3;
-  PhoneNumberCreatedAtField CreatedAt = 4;
-  PhoneNumberUpdatedAtField UpdatedAt = 5;
-  PhoneNumberPhoneNumberField PhoneNumber = 6;
+    PhoneNumberIDField ID = 3;
+    PhoneNumberCreatedAtField CreatedAt = 4;
+    PhoneNumberUpdatedAtField UpdatedAt = 5;
+    PhoneNumberPhoneNumberField PhoneNumber = 6;
   }
 }
 
+message PhoneNumberFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PhoneNumberIDField ID = 3;
+    PhoneNumberCreatedAtField CreatedAt = 4;
+    PhoneNumberUpdatedAtField UpdatedAt = 5;
+    PhoneNumberPhoneNumberField PhoneNumber = 6;
+  }
+}
 
 
 message EmailAddressIDField {
@@ -216,30 +204,26 @@ message EmailAddressAddressField {
 }
 
 
-message EmailAddressOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  EmailAddressIDField ID = 3;
-  EmailAddressCreatedAtField CreatedAt = 4;
-  EmailAddressUpdatedAtField UpdatedAt = 5;
-  EmailAddressAddressField Address = 6;
-  }
-}
-
 message EmailAddressOrdering {
-  repeated EmailAddressOrderedPair orderedPair = 1;
-}
-message EmailAddressFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  EmailAddressIDField ID = 3;
-  EmailAddressCreatedAtField CreatedAt = 4;
-  EmailAddressUpdatedAtField UpdatedAt = 5;
-  EmailAddressAddressField Address = 6;
+    EmailAddressIDField ID = 3;
+    EmailAddressCreatedAtField CreatedAt = 4;
+    EmailAddressUpdatedAtField UpdatedAt = 5;
+    EmailAddressAddressField Address = 6;
   }
 }
 
+message EmailAddressFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    EmailAddressIDField ID = 3;
+    EmailAddressCreatedAtField CreatedAt = 4;
+    EmailAddressUpdatedAtField UpdatedAt = 5;
+    EmailAddressAddressField Address = 6;
+  }
+}
 
 
 message PhotoIDField {
@@ -259,30 +243,26 @@ message PhotoImgURLField {
 }
 
 
-message PhotoOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PhotoIDField ID = 3;
-  PhotoCreatedAtField CreatedAt = 4;
-  PhotoUpdatedAtField UpdatedAt = 5;
-  PhotoImgURLField ImgURL = 6;
-  }
-}
-
 message PhotoOrdering {
-  repeated PhotoOrderedPair orderedPair = 1;
-}
-message PhotoFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PhotoIDField ID = 3;
-  PhotoCreatedAtField CreatedAt = 4;
-  PhotoUpdatedAtField UpdatedAt = 5;
-  PhotoImgURLField ImgURL = 6;
+    PhotoIDField ID = 3;
+    PhotoCreatedAtField CreatedAt = 4;
+    PhotoUpdatedAtField UpdatedAt = 5;
+    PhotoImgURLField ImgURL = 6;
   }
 }
 
+message PhotoFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PhotoIDField ID = 3;
+    PhotoCreatedAtField CreatedAt = 4;
+    PhotoUpdatedAtField UpdatedAt = 5;
+    PhotoImgURLField ImgURL = 6;
+  }
+}
 
 
 message LayoutTypeIDField {
@@ -302,30 +282,26 @@ message LayoutTypeTitleField {
 }
 
 
-message LayoutTypeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  LayoutTypeIDField ID = 3;
-  LayoutTypeCreatedAtField CreatedAt = 4;
-  LayoutTypeUpdatedAtField UpdatedAt = 5;
-  LayoutTypeTitleField Title = 6;
-  }
-}
-
 message LayoutTypeOrdering {
-  repeated LayoutTypeOrderedPair orderedPair = 1;
-}
-message LayoutTypeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  LayoutTypeIDField ID = 3;
-  LayoutTypeCreatedAtField CreatedAt = 4;
-  LayoutTypeUpdatedAtField UpdatedAt = 5;
-  LayoutTypeTitleField Title = 6;
+    LayoutTypeIDField ID = 3;
+    LayoutTypeCreatedAtField CreatedAt = 4;
+    LayoutTypeUpdatedAtField UpdatedAt = 5;
+    LayoutTypeTitleField Title = 6;
   }
 }
 
+message LayoutTypeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    LayoutTypeIDField ID = 3;
+    LayoutTypeCreatedAtField CreatedAt = 4;
+    LayoutTypeUpdatedAtField UpdatedAt = 5;
+    LayoutTypeTitleField Title = 6;
+  }
+}
 
 
 message LayoutRowIDField {
@@ -345,30 +321,26 @@ message LayoutRowLayoutField {
 }
 
 
-message LayoutRowOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  LayoutRowIDField ID = 3;
-  LayoutRowCreatedAtField CreatedAt = 4;
-  LayoutRowUpdatedAtField UpdatedAt = 5;
-  LayoutRowLayoutField Layout = 6;
-  }
-}
-
 message LayoutRowOrdering {
-  repeated LayoutRowOrderedPair orderedPair = 1;
-}
-message LayoutRowFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  LayoutRowIDField ID = 3;
-  LayoutRowCreatedAtField CreatedAt = 4;
-  LayoutRowUpdatedAtField UpdatedAt = 5;
-  LayoutRowLayoutField Layout = 6;
+    LayoutRowIDField ID = 3;
+    LayoutRowCreatedAtField CreatedAt = 4;
+    LayoutRowUpdatedAtField UpdatedAt = 5;
+    LayoutRowLayoutField Layout = 6;
   }
 }
 
+message LayoutRowFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    LayoutRowIDField ID = 3;
+    LayoutRowCreatedAtField CreatedAt = 4;
+    LayoutRowUpdatedAtField UpdatedAt = 5;
+    LayoutRowLayoutField Layout = 6;
+  }
+}
 
 
 message ComponentImplementationIDField {
@@ -384,28 +356,24 @@ message ComponentImplementationUpdatedAtField {
 }
 
 
-message ComponentImplementationOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ComponentImplementationIDField ID = 3;
-  ComponentImplementationCreatedAtField CreatedAt = 4;
-  ComponentImplementationUpdatedAtField UpdatedAt = 5;
-  }
-}
-
 message ComponentImplementationOrdering {
-  repeated ComponentImplementationOrderedPair orderedPair = 1;
-}
-message ComponentImplementationFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ComponentImplementationIDField ID = 3;
-  ComponentImplementationCreatedAtField CreatedAt = 4;
-  ComponentImplementationUpdatedAtField UpdatedAt = 5;
+    ComponentImplementationIDField ID = 3;
+    ComponentImplementationCreatedAtField CreatedAt = 4;
+    ComponentImplementationUpdatedAtField UpdatedAt = 5;
   }
 }
 
+message ComponentImplementationFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ComponentImplementationIDField ID = 3;
+    ComponentImplementationCreatedAtField CreatedAt = 4;
+    ComponentImplementationUpdatedAtField UpdatedAt = 5;
+  }
+}
 
 
 message ComponentTypeIDField {
@@ -425,30 +393,26 @@ message ComponentTypeTitleField {
 }
 
 
-message ComponentTypeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ComponentTypeIDField ID = 3;
-  ComponentTypeCreatedAtField CreatedAt = 4;
-  ComponentTypeUpdatedAtField UpdatedAt = 5;
-  ComponentTypeTitleField Title = 6;
-  }
-}
-
 message ComponentTypeOrdering {
-  repeated ComponentTypeOrderedPair orderedPair = 1;
-}
-message ComponentTypeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ComponentTypeIDField ID = 3;
-  ComponentTypeCreatedAtField CreatedAt = 4;
-  ComponentTypeUpdatedAtField UpdatedAt = 5;
-  ComponentTypeTitleField Title = 6;
+    ComponentTypeIDField ID = 3;
+    ComponentTypeCreatedAtField CreatedAt = 4;
+    ComponentTypeUpdatedAtField UpdatedAt = 5;
+    ComponentTypeTitleField Title = 6;
   }
 }
 
+message ComponentTypeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ComponentTypeIDField ID = 3;
+    ComponentTypeCreatedAtField CreatedAt = 4;
+    ComponentTypeUpdatedAtField UpdatedAt = 5;
+    ComponentTypeTitleField Title = 6;
+  }
+}
 
 
 message LayoutColumnIDField {
@@ -468,30 +432,26 @@ message LayoutColumnLayoutRowField {
 }
 
 
-message LayoutColumnOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  LayoutColumnIDField ID = 3;
-  LayoutColumnCreatedAtField CreatedAt = 4;
-  LayoutColumnUpdatedAtField UpdatedAt = 5;
-  LayoutColumnLayoutRowField LayoutRow = 6;
-  }
-}
-
 message LayoutColumnOrdering {
-  repeated LayoutColumnOrderedPair orderedPair = 1;
-}
-message LayoutColumnFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  LayoutColumnIDField ID = 3;
-  LayoutColumnCreatedAtField CreatedAt = 4;
-  LayoutColumnUpdatedAtField UpdatedAt = 5;
-  LayoutColumnLayoutRowField LayoutRow = 6;
+    LayoutColumnIDField ID = 3;
+    LayoutColumnCreatedAtField CreatedAt = 4;
+    LayoutColumnUpdatedAtField UpdatedAt = 5;
+    LayoutColumnLayoutRowField LayoutRow = 6;
   }
 }
 
+message LayoutColumnFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    LayoutColumnIDField ID = 3;
+    LayoutColumnCreatedAtField CreatedAt = 4;
+    LayoutColumnUpdatedAtField UpdatedAt = 5;
+    LayoutColumnLayoutRowField LayoutRow = 6;
+  }
+}
 
 
 message FieldTypeIDField {
@@ -511,30 +471,26 @@ message FieldTypeTitleField {
 }
 
 
-message FieldTypeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  FieldTypeIDField ID = 3;
-  FieldTypeCreatedAtField CreatedAt = 4;
-  FieldTypeUpdatedAtField UpdatedAt = 5;
-  FieldTypeTitleField Title = 6;
-  }
-}
-
 message FieldTypeOrdering {
-  repeated FieldTypeOrderedPair orderedPair = 1;
-}
-message FieldTypeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  FieldTypeIDField ID = 3;
-  FieldTypeCreatedAtField CreatedAt = 4;
-  FieldTypeUpdatedAtField UpdatedAt = 5;
-  FieldTypeTitleField Title = 6;
+    FieldTypeIDField ID = 3;
+    FieldTypeCreatedAtField CreatedAt = 4;
+    FieldTypeUpdatedAtField UpdatedAt = 5;
+    FieldTypeTitleField Title = 6;
   }
 }
 
+message FieldTypeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    FieldTypeIDField ID = 3;
+    FieldTypeCreatedAtField CreatedAt = 4;
+    FieldTypeUpdatedAtField UpdatedAt = 5;
+    FieldTypeTitleField Title = 6;
+  }
+}
 
 
 message ComponentIDField {
@@ -558,32 +514,28 @@ message ComponentLayoutColumnField {
 }
 
 
-message ComponentOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ComponentIDField ID = 3;
-  ComponentCreatedAtField CreatedAt = 4;
-  ComponentUpdatedAtField UpdatedAt = 5;
-  ComponentComponentTypeField ComponentType = 6;
-  ComponentLayoutColumnField LayoutColumn = 7;
-  }
-}
-
 message ComponentOrdering {
-  repeated ComponentOrderedPair orderedPair = 1;
-}
-message ComponentFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ComponentIDField ID = 3;
-  ComponentCreatedAtField CreatedAt = 4;
-  ComponentUpdatedAtField UpdatedAt = 5;
-  ComponentComponentTypeField ComponentType = 6;
-  ComponentLayoutColumnField LayoutColumn = 7;
+    ComponentIDField ID = 3;
+    ComponentCreatedAtField CreatedAt = 4;
+    ComponentUpdatedAtField UpdatedAt = 5;
+    ComponentComponentTypeField ComponentType = 6;
+    ComponentLayoutColumnField LayoutColumn = 7;
   }
 }
 
+message ComponentFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ComponentIDField ID = 3;
+    ComponentCreatedAtField CreatedAt = 4;
+    ComponentUpdatedAtField UpdatedAt = 5;
+    ComponentComponentTypeField ComponentType = 6;
+    ComponentLayoutColumnField LayoutColumn = 7;
+  }
+}
 
 
 message FieldIDField {
@@ -607,32 +559,28 @@ message FieldComponentField {
 }
 
 
-message FieldOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  FieldIDField ID = 3;
-  FieldCreatedAtField CreatedAt = 4;
-  FieldUpdatedAtField UpdatedAt = 5;
-  FieldFieldTypeField FieldType = 6;
-  FieldComponentField Component = 7;
-  }
-}
-
 message FieldOrdering {
-  repeated FieldOrderedPair orderedPair = 1;
-}
-message FieldFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  FieldIDField ID = 3;
-  FieldCreatedAtField CreatedAt = 4;
-  FieldUpdatedAtField UpdatedAt = 5;
-  FieldFieldTypeField FieldType = 6;
-  FieldComponentField Component = 7;
+    FieldIDField ID = 3;
+    FieldCreatedAtField CreatedAt = 4;
+    FieldUpdatedAtField UpdatedAt = 5;
+    FieldFieldTypeField FieldType = 6;
+    FieldComponentField Component = 7;
   }
 }
 
+message FieldFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    FieldIDField ID = 3;
+    FieldCreatedAtField CreatedAt = 4;
+    FieldUpdatedAtField UpdatedAt = 5;
+    FieldFieldTypeField FieldType = 6;
+    FieldComponentField Component = 7;
+  }
+}
 
 
 message HomePageIDField {
@@ -660,34 +608,30 @@ message HomePageLayoutField {
 }
 
 
-message HomePageOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  HomePageIDField ID = 3;
-  HomePageCreatedAtField CreatedAt = 4;
-  HomePageUpdatedAtField UpdatedAt = 5;
-  HomePageTitleField Title = 6;
-  HomePageCauseField Cause = 7;
-  HomePageLayoutField Layout = 8;
-  }
-}
-
 message HomePageOrdering {
-  repeated HomePageOrderedPair orderedPair = 1;
-}
-message HomePageFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  HomePageIDField ID = 3;
-  HomePageCreatedAtField CreatedAt = 4;
-  HomePageUpdatedAtField UpdatedAt = 5;
-  HomePageTitleField Title = 6;
-  HomePageCauseField Cause = 7;
-  HomePageLayoutField Layout = 8;
+    HomePageIDField ID = 3;
+    HomePageCreatedAtField CreatedAt = 4;
+    HomePageUpdatedAtField UpdatedAt = 5;
+    HomePageTitleField Title = 6;
+    HomePageCauseField Cause = 7;
+    HomePageLayoutField Layout = 8;
   }
 }
 
+message HomePageFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    HomePageIDField ID = 3;
+    HomePageCreatedAtField CreatedAt = 4;
+    HomePageUpdatedAtField UpdatedAt = 5;
+    HomePageTitleField Title = 6;
+    HomePageCauseField Cause = 7;
+    HomePageLayoutField Layout = 8;
+  }
+}
 
 
 message LayoutIDField {
@@ -707,30 +651,26 @@ message LayoutLayoutTypeField {
 }
 
 
-message LayoutOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  LayoutIDField ID = 3;
-  LayoutCreatedAtField CreatedAt = 4;
-  LayoutUpdatedAtField UpdatedAt = 5;
-  LayoutLayoutTypeField LayoutType = 6;
-  }
-}
-
 message LayoutOrdering {
-  repeated LayoutOrderedPair orderedPair = 1;
-}
-message LayoutFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  LayoutIDField ID = 3;
-  LayoutCreatedAtField CreatedAt = 4;
-  LayoutUpdatedAtField UpdatedAt = 5;
-  LayoutLayoutTypeField LayoutType = 6;
+    LayoutIDField ID = 3;
+    LayoutCreatedAtField CreatedAt = 4;
+    LayoutUpdatedAtField UpdatedAt = 5;
+    LayoutLayoutTypeField LayoutType = 6;
   }
 }
 
+message LayoutFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    LayoutIDField ID = 3;
+    LayoutCreatedAtField CreatedAt = 4;
+    LayoutUpdatedAtField UpdatedAt = 5;
+    LayoutLayoutTypeField LayoutType = 6;
+  }
+}
 
 
 message LandingPageIDField {
@@ -758,34 +698,30 @@ message LandingPageLayoutField {
 }
 
 
-message LandingPageOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  LandingPageIDField ID = 3;
-  LandingPageCreatedAtField CreatedAt = 4;
-  LandingPageUpdatedAtField UpdatedAt = 5;
-  LandingPageTitleField Title = 6;
-  LandingPageCauseField Cause = 7;
-  LandingPageLayoutField Layout = 8;
-  }
-}
-
 message LandingPageOrdering {
-  repeated LandingPageOrderedPair orderedPair = 1;
-}
-message LandingPageFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  LandingPageIDField ID = 3;
-  LandingPageCreatedAtField CreatedAt = 4;
-  LandingPageUpdatedAtField UpdatedAt = 5;
-  LandingPageTitleField Title = 6;
-  LandingPageCauseField Cause = 7;
-  LandingPageLayoutField Layout = 8;
+    LandingPageIDField ID = 3;
+    LandingPageCreatedAtField CreatedAt = 4;
+    LandingPageUpdatedAtField UpdatedAt = 5;
+    LandingPageTitleField Title = 6;
+    LandingPageCauseField Cause = 7;
+    LandingPageLayoutField Layout = 8;
   }
 }
 
+message LandingPageFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    LandingPageIDField ID = 3;
+    LandingPageCreatedAtField CreatedAt = 4;
+    LandingPageUpdatedAtField UpdatedAt = 5;
+    LandingPageTitleField Title = 6;
+    LandingPageCauseField Cause = 7;
+    LandingPageLayoutField Layout = 8;
+  }
+}
 
 
 message ExperimentIDField {
@@ -809,32 +745,28 @@ message ExperimentLandingPageField {
 }
 
 
-message ExperimentOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ExperimentIDField ID = 3;
-  ExperimentCreatedAtField CreatedAt = 4;
-  ExperimentUpdatedAtField UpdatedAt = 5;
-  ExperimentTitleField Title = 6;
-  ExperimentLandingPageField LandingPage = 7;
-  }
-}
-
 message ExperimentOrdering {
-  repeated ExperimentOrderedPair orderedPair = 1;
-}
-message ExperimentFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ExperimentIDField ID = 3;
-  ExperimentCreatedAtField CreatedAt = 4;
-  ExperimentUpdatedAtField UpdatedAt = 5;
-  ExperimentTitleField Title = 6;
-  ExperimentLandingPageField LandingPage = 7;
+    ExperimentIDField ID = 3;
+    ExperimentCreatedAtField CreatedAt = 4;
+    ExperimentUpdatedAtField UpdatedAt = 5;
+    ExperimentTitleField Title = 6;
+    ExperimentLandingPageField LandingPage = 7;
   }
 }
 
+message ExperimentFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ExperimentIDField ID = 3;
+    ExperimentCreatedAtField CreatedAt = 4;
+    ExperimentUpdatedAtField UpdatedAt = 5;
+    ExperimentTitleField Title = 6;
+    ExperimentLandingPageField LandingPage = 7;
+  }
+}
 
 
 message IssueIDField {
@@ -858,32 +790,28 @@ message IssueElectionField {
 }
 
 
-message IssueOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  IssueIDField ID = 3;
-  IssueCreatedAtField CreatedAt = 4;
-  IssueUpdatedAtField UpdatedAt = 5;
-  IssueTitleField Title = 6;
-  IssueElectionField Election = 7;
-  }
-}
-
 message IssueOrdering {
-  repeated IssueOrderedPair orderedPair = 1;
-}
-message IssueFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  IssueIDField ID = 3;
-  IssueCreatedAtField CreatedAt = 4;
-  IssueUpdatedAtField UpdatedAt = 5;
-  IssueTitleField Title = 6;
-  IssueElectionField Election = 7;
+    IssueIDField ID = 3;
+    IssueCreatedAtField CreatedAt = 4;
+    IssueUpdatedAtField UpdatedAt = 5;
+    IssueTitleField Title = 6;
+    IssueElectionField Election = 7;
   }
 }
 
+message IssueFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    IssueIDField ID = 3;
+    IssueCreatedAtField CreatedAt = 4;
+    IssueUpdatedAtField UpdatedAt = 5;
+    IssueTitleField Title = 6;
+    IssueElectionField Election = 7;
+  }
+}
 
 
 message CandidateIDField {
@@ -903,30 +831,26 @@ message CandidateElectionField {
 }
 
 
-message CandidateOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  CandidateIDField ID = 3;
-  CandidateCreatedAtField CreatedAt = 4;
-  CandidateUpdatedAtField UpdatedAt = 5;
-  CandidateElectionField Election = 6;
-  }
-}
-
 message CandidateOrdering {
-  repeated CandidateOrderedPair orderedPair = 1;
-}
-message CandidateFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  CandidateIDField ID = 3;
-  CandidateCreatedAtField CreatedAt = 4;
-  CandidateUpdatedAtField UpdatedAt = 5;
-  CandidateElectionField Election = 6;
+    CandidateIDField ID = 3;
+    CandidateCreatedAtField CreatedAt = 4;
+    CandidateUpdatedAtField UpdatedAt = 5;
+    CandidateElectionField Election = 6;
   }
 }
 
+message CandidateFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    CandidateIDField ID = 3;
+    CandidateCreatedAtField CreatedAt = 4;
+    CandidateUpdatedAtField UpdatedAt = 5;
+    CandidateElectionField Election = 6;
+  }
+}
 
 
 message DistrictTypeIDField {
@@ -946,30 +870,26 @@ message DistrictTypeTitleField {
 }
 
 
-message DistrictTypeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  DistrictTypeIDField ID = 3;
-  DistrictTypeCreatedAtField CreatedAt = 4;
-  DistrictTypeUpdatedAtField UpdatedAt = 5;
-  DistrictTypeTitleField Title = 6;
-  }
-}
-
 message DistrictTypeOrdering {
-  repeated DistrictTypeOrderedPair orderedPair = 1;
-}
-message DistrictTypeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  DistrictTypeIDField ID = 3;
-  DistrictTypeCreatedAtField CreatedAt = 4;
-  DistrictTypeUpdatedAtField UpdatedAt = 5;
-  DistrictTypeTitleField Title = 6;
+    DistrictTypeIDField ID = 3;
+    DistrictTypeCreatedAtField CreatedAt = 4;
+    DistrictTypeUpdatedAtField UpdatedAt = 5;
+    DistrictTypeTitleField Title = 6;
   }
 }
 
+message DistrictTypeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    DistrictTypeIDField ID = 3;
+    DistrictTypeCreatedAtField CreatedAt = 4;
+    DistrictTypeUpdatedAtField UpdatedAt = 5;
+    DistrictTypeTitleField Title = 6;
+  }
+}
 
 
 message DistrictIDField {
@@ -997,34 +917,30 @@ message DistrictDistrictTypeField {
 }
 
 
-message DistrictOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  DistrictIDField ID = 3;
-  DistrictCreatedAtField CreatedAt = 4;
-  DistrictUpdatedAtField UpdatedAt = 5;
-  DistrictGeomField Geom = 6;
-  DistrictTitleField Title = 7;
-  DistrictDistrictTypeField DistrictType = 8;
-  }
-}
-
 message DistrictOrdering {
-  repeated DistrictOrderedPair orderedPair = 1;
-}
-message DistrictFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  DistrictIDField ID = 3;
-  DistrictCreatedAtField CreatedAt = 4;
-  DistrictUpdatedAtField UpdatedAt = 5;
-  DistrictGeomField Geom = 6;
-  DistrictTitleField Title = 7;
-  DistrictDistrictTypeField DistrictType = 8;
+    DistrictIDField ID = 3;
+    DistrictCreatedAtField CreatedAt = 4;
+    DistrictUpdatedAtField UpdatedAt = 5;
+    DistrictGeomField Geom = 6;
+    DistrictTitleField Title = 7;
+    DistrictDistrictTypeField DistrictType = 8;
   }
 }
 
+message DistrictFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    DistrictIDField ID = 3;
+    DistrictCreatedAtField CreatedAt = 4;
+    DistrictUpdatedAtField UpdatedAt = 5;
+    DistrictGeomField Geom = 6;
+    DistrictTitleField Title = 7;
+    DistrictDistrictTypeField DistrictType = 8;
+  }
+}
 
 
 message OfficeIDField {
@@ -1048,32 +964,28 @@ message OfficeElectionField {
 }
 
 
-message OfficeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  OfficeIDField ID = 3;
-  OfficeCreatedAtField CreatedAt = 4;
-  OfficeUpdatedAtField UpdatedAt = 5;
-  OfficeTitleField Title = 6;
-  OfficeElectionField Election = 7;
-  }
-}
-
 message OfficeOrdering {
-  repeated OfficeOrderedPair orderedPair = 1;
-}
-message OfficeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  OfficeIDField ID = 3;
-  OfficeCreatedAtField CreatedAt = 4;
-  OfficeUpdatedAtField UpdatedAt = 5;
-  OfficeTitleField Title = 6;
-  OfficeElectionField Election = 7;
+    OfficeIDField ID = 3;
+    OfficeCreatedAtField CreatedAt = 4;
+    OfficeUpdatedAtField UpdatedAt = 5;
+    OfficeTitleField Title = 6;
+    OfficeElectionField Election = 7;
   }
 }
 
+message OfficeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    OfficeIDField ID = 3;
+    OfficeCreatedAtField CreatedAt = 4;
+    OfficeUpdatedAtField UpdatedAt = 5;
+    OfficeTitleField Title = 6;
+    OfficeElectionField Election = 7;
+  }
+}
 
 
 message PollItemIDField {
@@ -1097,32 +1009,28 @@ message PollItemPollField {
 }
 
 
-message PollItemOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PollItemIDField ID = 3;
-  PollItemCreatedAtField CreatedAt = 4;
-  PollItemUpdatedAtField UpdatedAt = 5;
-  PollItemTitleField Title = 6;
-  PollItemPollField Poll = 7;
-  }
-}
-
 message PollItemOrdering {
-  repeated PollItemOrderedPair orderedPair = 1;
-}
-message PollItemFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PollItemIDField ID = 3;
-  PollItemCreatedAtField CreatedAt = 4;
-  PollItemUpdatedAtField UpdatedAt = 5;
-  PollItemTitleField Title = 6;
-  PollItemPollField Poll = 7;
+    PollItemIDField ID = 3;
+    PollItemCreatedAtField CreatedAt = 4;
+    PollItemUpdatedAtField UpdatedAt = 5;
+    PollItemTitleField Title = 6;
+    PollItemPollField Poll = 7;
   }
 }
 
+message PollItemFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PollItemIDField ID = 3;
+    PollItemCreatedAtField CreatedAt = 4;
+    PollItemUpdatedAtField UpdatedAt = 5;
+    PollItemTitleField Title = 6;
+    PollItemPollField Poll = 7;
+  }
+}
 
 
 message VolunteerOpportunityTypeIDField {
@@ -1142,30 +1050,26 @@ message VolunteerOpportunityTypeTitleField {
 }
 
 
-message VolunteerOpportunityTypeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  VolunteerOpportunityTypeIDField ID = 3;
-  VolunteerOpportunityTypeCreatedAtField CreatedAt = 4;
-  VolunteerOpportunityTypeUpdatedAtField UpdatedAt = 5;
-  VolunteerOpportunityTypeTitleField Title = 6;
-  }
-}
-
 message VolunteerOpportunityTypeOrdering {
-  repeated VolunteerOpportunityTypeOrderedPair orderedPair = 1;
-}
-message VolunteerOpportunityTypeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  VolunteerOpportunityTypeIDField ID = 3;
-  VolunteerOpportunityTypeCreatedAtField CreatedAt = 4;
-  VolunteerOpportunityTypeUpdatedAtField UpdatedAt = 5;
-  VolunteerOpportunityTypeTitleField Title = 6;
+    VolunteerOpportunityTypeIDField ID = 3;
+    VolunteerOpportunityTypeCreatedAtField CreatedAt = 4;
+    VolunteerOpportunityTypeUpdatedAtField UpdatedAt = 5;
+    VolunteerOpportunityTypeTitleField Title = 6;
   }
 }
 
+message VolunteerOpportunityTypeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    VolunteerOpportunityTypeIDField ID = 3;
+    VolunteerOpportunityTypeCreatedAtField CreatedAt = 4;
+    VolunteerOpportunityTypeUpdatedAtField UpdatedAt = 5;
+    VolunteerOpportunityTypeTitleField Title = 6;
+  }
+}
 
 
 message LiveEventTypeIDField {
@@ -1185,30 +1089,26 @@ message LiveEventTypeTitleField {
 }
 
 
-message LiveEventTypeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  LiveEventTypeIDField ID = 3;
-  LiveEventTypeCreatedAtField CreatedAt = 4;
-  LiveEventTypeUpdatedAtField UpdatedAt = 5;
-  LiveEventTypeTitleField Title = 6;
-  }
-}
-
 message LiveEventTypeOrdering {
-  repeated LiveEventTypeOrderedPair orderedPair = 1;
-}
-message LiveEventTypeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  LiveEventTypeIDField ID = 3;
-  LiveEventTypeCreatedAtField CreatedAt = 4;
-  LiveEventTypeUpdatedAtField UpdatedAt = 5;
-  LiveEventTypeTitleField Title = 6;
+    LiveEventTypeIDField ID = 3;
+    LiveEventTypeCreatedAtField CreatedAt = 4;
+    LiveEventTypeUpdatedAtField UpdatedAt = 5;
+    LiveEventTypeTitleField Title = 6;
   }
 }
 
+message LiveEventTypeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    LiveEventTypeIDField ID = 3;
+    LiveEventTypeCreatedAtField CreatedAt = 4;
+    LiveEventTypeUpdatedAtField UpdatedAt = 5;
+    LiveEventTypeTitleField Title = 6;
+  }
+}
 
 
 message CompanyIDField {
@@ -1228,30 +1128,26 @@ message CompanyTitleField {
 }
 
 
-message CompanyOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  CompanyIDField ID = 3;
-  CompanyCreatedAtField CreatedAt = 4;
-  CompanyUpdatedAtField UpdatedAt = 5;
-  CompanyTitleField Title = 6;
-  }
-}
-
 message CompanyOrdering {
-  repeated CompanyOrderedPair orderedPair = 1;
-}
-message CompanyFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  CompanyIDField ID = 3;
-  CompanyCreatedAtField CreatedAt = 4;
-  CompanyUpdatedAtField UpdatedAt = 5;
-  CompanyTitleField Title = 6;
+    CompanyIDField ID = 3;
+    CompanyCreatedAtField CreatedAt = 4;
+    CompanyUpdatedAtField UpdatedAt = 5;
+    CompanyTitleField Title = 6;
   }
 }
 
+message CompanyFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    CompanyIDField ID = 3;
+    CompanyCreatedAtField CreatedAt = 4;
+    CompanyUpdatedAtField UpdatedAt = 5;
+    CompanyTitleField Title = 6;
+  }
+}
 
 
 message ProductTypeIDField {
@@ -1271,30 +1167,26 @@ message ProductTypeTitleField {
 }
 
 
-message ProductTypeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ProductTypeIDField ID = 3;
-  ProductTypeCreatedAtField CreatedAt = 4;
-  ProductTypeUpdatedAtField UpdatedAt = 5;
-  ProductTypeTitleField Title = 6;
-  }
-}
-
 message ProductTypeOrdering {
-  repeated ProductTypeOrderedPair orderedPair = 1;
-}
-message ProductTypeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ProductTypeIDField ID = 3;
-  ProductTypeCreatedAtField CreatedAt = 4;
-  ProductTypeUpdatedAtField UpdatedAt = 5;
-  ProductTypeTitleField Title = 6;
+    ProductTypeIDField ID = 3;
+    ProductTypeCreatedAtField CreatedAt = 4;
+    ProductTypeUpdatedAtField UpdatedAt = 5;
+    ProductTypeTitleField Title = 6;
   }
 }
 
+message ProductTypeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ProductTypeIDField ID = 3;
+    ProductTypeCreatedAtField CreatedAt = 4;
+    ProductTypeUpdatedAtField UpdatedAt = 5;
+    ProductTypeTitleField Title = 6;
+  }
+}
 
 
 message CustomerCartIDField {
@@ -1310,28 +1202,24 @@ message CustomerCartUpdatedAtField {
 }
 
 
-message CustomerCartOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  CustomerCartIDField ID = 3;
-  CustomerCartCreatedAtField CreatedAt = 4;
-  CustomerCartUpdatedAtField UpdatedAt = 5;
-  }
-}
-
 message CustomerCartOrdering {
-  repeated CustomerCartOrderedPair orderedPair = 1;
-}
-message CustomerCartFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  CustomerCartIDField ID = 3;
-  CustomerCartCreatedAtField CreatedAt = 4;
-  CustomerCartUpdatedAtField UpdatedAt = 5;
+    CustomerCartIDField ID = 3;
+    CustomerCartCreatedAtField CreatedAt = 4;
+    CustomerCartUpdatedAtField UpdatedAt = 5;
   }
 }
 
+message CustomerCartFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    CustomerCartIDField ID = 3;
+    CustomerCartCreatedAtField CreatedAt = 4;
+    CustomerCartUpdatedAtField UpdatedAt = 5;
+  }
+}
 
 
 message PaymentIDField {
@@ -1351,30 +1239,26 @@ message PaymentCustomerOrderField {
 }
 
 
-message PaymentOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PaymentIDField ID = 3;
-  PaymentCreatedAtField CreatedAt = 4;
-  PaymentUpdatedAtField UpdatedAt = 5;
-  PaymentCustomerOrderField CustomerOrder = 6;
-  }
-}
-
 message PaymentOrdering {
-  repeated PaymentOrderedPair orderedPair = 1;
-}
-message PaymentFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PaymentIDField ID = 3;
-  PaymentCreatedAtField CreatedAt = 4;
-  PaymentUpdatedAtField UpdatedAt = 5;
-  PaymentCustomerOrderField CustomerOrder = 6;
+    PaymentIDField ID = 3;
+    PaymentCreatedAtField CreatedAt = 4;
+    PaymentUpdatedAtField UpdatedAt = 5;
+    PaymentCustomerOrderField CustomerOrder = 6;
   }
 }
 
+message PaymentFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PaymentIDField ID = 3;
+    PaymentCreatedAtField CreatedAt = 4;
+    PaymentUpdatedAtField UpdatedAt = 5;
+    PaymentCustomerOrderField CustomerOrder = 6;
+  }
+}
 
 
 message DeliveryIDField {
@@ -1390,28 +1274,24 @@ message DeliveryUpdatedAtField {
 }
 
 
-message DeliveryOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  DeliveryIDField ID = 3;
-  DeliveryCreatedAtField CreatedAt = 4;
-  DeliveryUpdatedAtField UpdatedAt = 5;
-  }
-}
-
 message DeliveryOrdering {
-  repeated DeliveryOrderedPair orderedPair = 1;
-}
-message DeliveryFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  DeliveryIDField ID = 3;
-  DeliveryCreatedAtField CreatedAt = 4;
-  DeliveryUpdatedAtField UpdatedAt = 5;
+    DeliveryIDField ID = 3;
+    DeliveryCreatedAtField CreatedAt = 4;
+    DeliveryUpdatedAtField UpdatedAt = 5;
   }
 }
 
+message DeliveryFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    DeliveryIDField ID = 3;
+    DeliveryCreatedAtField CreatedAt = 4;
+    DeliveryUpdatedAtField UpdatedAt = 5;
+  }
+}
 
 
 message BoycottIDField {
@@ -1431,30 +1311,26 @@ message BoycottTitleField {
 }
 
 
-message BoycottOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  BoycottIDField ID = 3;
-  BoycottCreatedAtField CreatedAt = 4;
-  BoycottUpdatedAtField UpdatedAt = 5;
-  BoycottTitleField Title = 6;
-  }
-}
-
 message BoycottOrdering {
-  repeated BoycottOrderedPair orderedPair = 1;
-}
-message BoycottFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  BoycottIDField ID = 3;
-  BoycottCreatedAtField CreatedAt = 4;
-  BoycottUpdatedAtField UpdatedAt = 5;
-  BoycottTitleField Title = 6;
+    BoycottIDField ID = 3;
+    BoycottCreatedAtField CreatedAt = 4;
+    BoycottUpdatedAtField UpdatedAt = 5;
+    BoycottTitleField Title = 6;
   }
 }
 
+message BoycottFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    BoycottIDField ID = 3;
+    BoycottCreatedAtField CreatedAt = 4;
+    BoycottUpdatedAtField UpdatedAt = 5;
+    BoycottTitleField Title = 6;
+  }
+}
 
 
 message BoycottMembershipIDField {
@@ -1478,32 +1354,28 @@ message BoycottMembershipBoycottField {
 }
 
 
-message BoycottMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  BoycottMembershipIDField ID = 3;
-  BoycottMembershipCreatedAtField CreatedAt = 4;
-  BoycottMembershipUpdatedAtField UpdatedAt = 5;
-  BoycottMembershipCauseField Cause = 6;
-  BoycottMembershipBoycottField Boycott = 7;
-  }
-}
-
 message BoycottMembershipOrdering {
-  repeated BoycottMembershipOrderedPair orderedPair = 1;
-}
-message BoycottMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  BoycottMembershipIDField ID = 3;
-  BoycottMembershipCreatedAtField CreatedAt = 4;
-  BoycottMembershipUpdatedAtField UpdatedAt = 5;
-  BoycottMembershipCauseField Cause = 6;
-  BoycottMembershipBoycottField Boycott = 7;
+    BoycottMembershipIDField ID = 3;
+    BoycottMembershipCreatedAtField CreatedAt = 4;
+    BoycottMembershipUpdatedAtField UpdatedAt = 5;
+    BoycottMembershipCauseField Cause = 6;
+    BoycottMembershipBoycottField Boycott = 7;
   }
 }
 
+message BoycottMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    BoycottMembershipIDField ID = 3;
+    BoycottMembershipCreatedAtField CreatedAt = 4;
+    BoycottMembershipUpdatedAtField UpdatedAt = 5;
+    BoycottMembershipCauseField Cause = 6;
+    BoycottMembershipBoycottField Boycott = 7;
+  }
+}
 
 
 message ElectionIDField {
@@ -1523,30 +1395,26 @@ message ElectionTitleField {
 }
 
 
-message ElectionOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ElectionIDField ID = 3;
-  ElectionCreatedAtField CreatedAt = 4;
-  ElectionUpdatedAtField UpdatedAt = 5;
-  ElectionTitleField Title = 6;
-  }
-}
-
 message ElectionOrdering {
-  repeated ElectionOrderedPair orderedPair = 1;
-}
-message ElectionFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ElectionIDField ID = 3;
-  ElectionCreatedAtField CreatedAt = 4;
-  ElectionUpdatedAtField UpdatedAt = 5;
-  ElectionTitleField Title = 6;
+    ElectionIDField ID = 3;
+    ElectionCreatedAtField CreatedAt = 4;
+    ElectionUpdatedAtField UpdatedAt = 5;
+    ElectionTitleField Title = 6;
   }
 }
 
+message ElectionFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ElectionIDField ID = 3;
+    ElectionCreatedAtField CreatedAt = 4;
+    ElectionUpdatedAtField UpdatedAt = 5;
+    ElectionTitleField Title = 6;
+  }
+}
 
 
 message ElectionMembershipIDField {
@@ -1570,32 +1438,28 @@ message ElectionMembershipElectionField {
 }
 
 
-message ElectionMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ElectionMembershipIDField ID = 3;
-  ElectionMembershipCreatedAtField CreatedAt = 4;
-  ElectionMembershipUpdatedAtField UpdatedAt = 5;
-  ElectionMembershipCauseField Cause = 6;
-  ElectionMembershipElectionField Election = 7;
-  }
-}
-
 message ElectionMembershipOrdering {
-  repeated ElectionMembershipOrderedPair orderedPair = 1;
-}
-message ElectionMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ElectionMembershipIDField ID = 3;
-  ElectionMembershipCreatedAtField CreatedAt = 4;
-  ElectionMembershipUpdatedAtField UpdatedAt = 5;
-  ElectionMembershipCauseField Cause = 6;
-  ElectionMembershipElectionField Election = 7;
+    ElectionMembershipIDField ID = 3;
+    ElectionMembershipCreatedAtField CreatedAt = 4;
+    ElectionMembershipUpdatedAtField UpdatedAt = 5;
+    ElectionMembershipCauseField Cause = 6;
+    ElectionMembershipElectionField Election = 7;
   }
 }
 
+message ElectionMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ElectionMembershipIDField ID = 3;
+    ElectionMembershipCreatedAtField CreatedAt = 4;
+    ElectionMembershipUpdatedAtField UpdatedAt = 5;
+    ElectionMembershipCauseField Cause = 6;
+    ElectionMembershipElectionField Election = 7;
+  }
+}
 
 
 message PetitionMembershipIDField {
@@ -1619,32 +1483,28 @@ message PetitionMembershipPetitionField {
 }
 
 
-message PetitionMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PetitionMembershipIDField ID = 3;
-  PetitionMembershipCreatedAtField CreatedAt = 4;
-  PetitionMembershipUpdatedAtField UpdatedAt = 5;
-  PetitionMembershipCauseField Cause = 6;
-  PetitionMembershipPetitionField Petition = 7;
-  }
-}
-
 message PetitionMembershipOrdering {
-  repeated PetitionMembershipOrderedPair orderedPair = 1;
-}
-message PetitionMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PetitionMembershipIDField ID = 3;
-  PetitionMembershipCreatedAtField CreatedAt = 4;
-  PetitionMembershipUpdatedAtField UpdatedAt = 5;
-  PetitionMembershipCauseField Cause = 6;
-  PetitionMembershipPetitionField Petition = 7;
+    PetitionMembershipIDField ID = 3;
+    PetitionMembershipCreatedAtField CreatedAt = 4;
+    PetitionMembershipUpdatedAtField UpdatedAt = 5;
+    PetitionMembershipCauseField Cause = 6;
+    PetitionMembershipPetitionField Petition = 7;
   }
 }
 
+message PetitionMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PetitionMembershipIDField ID = 3;
+    PetitionMembershipCreatedAtField CreatedAt = 4;
+    PetitionMembershipUpdatedAtField UpdatedAt = 5;
+    PetitionMembershipCauseField Cause = 6;
+    PetitionMembershipPetitionField Petition = 7;
+  }
+}
 
 
 message PollMembershipIDField {
@@ -1668,32 +1528,28 @@ message PollMembershipPetitionField {
 }
 
 
-message PollMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PollMembershipIDField ID = 3;
-  PollMembershipCreatedAtField CreatedAt = 4;
-  PollMembershipUpdatedAtField UpdatedAt = 5;
-  PollMembershipCauseField Cause = 6;
-  PollMembershipPetitionField Petition = 7;
-  }
-}
-
 message PollMembershipOrdering {
-  repeated PollMembershipOrderedPair orderedPair = 1;
-}
-message PollMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PollMembershipIDField ID = 3;
-  PollMembershipCreatedAtField CreatedAt = 4;
-  PollMembershipUpdatedAtField UpdatedAt = 5;
-  PollMembershipCauseField Cause = 6;
-  PollMembershipPetitionField Petition = 7;
+    PollMembershipIDField ID = 3;
+    PollMembershipCreatedAtField CreatedAt = 4;
+    PollMembershipUpdatedAtField UpdatedAt = 5;
+    PollMembershipCauseField Cause = 6;
+    PollMembershipPetitionField Petition = 7;
   }
 }
 
+message PollMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PollMembershipIDField ID = 3;
+    PollMembershipCreatedAtField CreatedAt = 4;
+    PollMembershipUpdatedAtField UpdatedAt = 5;
+    PollMembershipCauseField Cause = 6;
+    PollMembershipPetitionField Petition = 7;
+  }
+}
 
 
 message VolunteerOpportunityMembershipIDField {
@@ -1717,32 +1573,28 @@ message VolunteerOpportunityMembershipVolunteerOpportunityField {
 }
 
 
-message VolunteerOpportunityMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  VolunteerOpportunityMembershipIDField ID = 3;
-  VolunteerOpportunityMembershipCreatedAtField CreatedAt = 4;
-  VolunteerOpportunityMembershipUpdatedAtField UpdatedAt = 5;
-  VolunteerOpportunityMembershipCauseField Cause = 6;
-  VolunteerOpportunityMembershipVolunteerOpportunityField VolunteerOpportunity = 7;
-  }
-}
-
 message VolunteerOpportunityMembershipOrdering {
-  repeated VolunteerOpportunityMembershipOrderedPair orderedPair = 1;
-}
-message VolunteerOpportunityMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  VolunteerOpportunityMembershipIDField ID = 3;
-  VolunteerOpportunityMembershipCreatedAtField CreatedAt = 4;
-  VolunteerOpportunityMembershipUpdatedAtField UpdatedAt = 5;
-  VolunteerOpportunityMembershipCauseField Cause = 6;
-  VolunteerOpportunityMembershipVolunteerOpportunityField VolunteerOpportunity = 7;
+    VolunteerOpportunityMembershipIDField ID = 3;
+    VolunteerOpportunityMembershipCreatedAtField CreatedAt = 4;
+    VolunteerOpportunityMembershipUpdatedAtField UpdatedAt = 5;
+    VolunteerOpportunityMembershipCauseField Cause = 6;
+    VolunteerOpportunityMembershipVolunteerOpportunityField VolunteerOpportunity = 7;
   }
 }
 
+message VolunteerOpportunityMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    VolunteerOpportunityMembershipIDField ID = 3;
+    VolunteerOpportunityMembershipCreatedAtField CreatedAt = 4;
+    VolunteerOpportunityMembershipUpdatedAtField UpdatedAt = 5;
+    VolunteerOpportunityMembershipCauseField Cause = 6;
+    VolunteerOpportunityMembershipVolunteerOpportunityField VolunteerOpportunity = 7;
+  }
+}
 
 
 message LiveEventMembershipIDField {
@@ -1766,32 +1618,28 @@ message LiveEventMembershipLiveEventField {
 }
 
 
-message LiveEventMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  LiveEventMembershipIDField ID = 3;
-  LiveEventMembershipCreatedAtField CreatedAt = 4;
-  LiveEventMembershipUpdatedAtField UpdatedAt = 5;
-  LiveEventMembershipCauseField Cause = 6;
-  LiveEventMembershipLiveEventField LiveEvent = 7;
-  }
-}
-
 message LiveEventMembershipOrdering {
-  repeated LiveEventMembershipOrderedPair orderedPair = 1;
-}
-message LiveEventMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  LiveEventMembershipIDField ID = 3;
-  LiveEventMembershipCreatedAtField CreatedAt = 4;
-  LiveEventMembershipUpdatedAtField UpdatedAt = 5;
-  LiveEventMembershipCauseField Cause = 6;
-  LiveEventMembershipLiveEventField LiveEvent = 7;
+    LiveEventMembershipIDField ID = 3;
+    LiveEventMembershipCreatedAtField CreatedAt = 4;
+    LiveEventMembershipUpdatedAtField UpdatedAt = 5;
+    LiveEventMembershipCauseField Cause = 6;
+    LiveEventMembershipLiveEventField LiveEvent = 7;
   }
 }
 
+message LiveEventMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    LiveEventMembershipIDField ID = 3;
+    LiveEventMembershipCreatedAtField CreatedAt = 4;
+    LiveEventMembershipUpdatedAtField UpdatedAt = 5;
+    LiveEventMembershipCauseField Cause = 6;
+    LiveEventMembershipLiveEventField LiveEvent = 7;
+  }
+}
 
 
 message ProductIDField {
@@ -1815,32 +1663,28 @@ message ProductProductTypeField {
 }
 
 
-message ProductOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ProductIDField ID = 3;
-  ProductCreatedAtField CreatedAt = 4;
-  ProductUpdatedAtField UpdatedAt = 5;
-  ProductTitleField Title = 6;
-  ProductProductTypeField ProductType = 7;
-  }
-}
-
 message ProductOrdering {
-  repeated ProductOrderedPair orderedPair = 1;
-}
-message ProductFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ProductIDField ID = 3;
-  ProductCreatedAtField CreatedAt = 4;
-  ProductUpdatedAtField UpdatedAt = 5;
-  ProductTitleField Title = 6;
-  ProductProductTypeField ProductType = 7;
+    ProductIDField ID = 3;
+    ProductCreatedAtField CreatedAt = 4;
+    ProductUpdatedAtField UpdatedAt = 5;
+    ProductTitleField Title = 6;
+    ProductProductTypeField ProductType = 7;
   }
 }
 
+message ProductFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ProductIDField ID = 3;
+    ProductCreatedAtField CreatedAt = 4;
+    ProductUpdatedAtField UpdatedAt = 5;
+    ProductTitleField Title = 6;
+    ProductProductTypeField ProductType = 7;
+  }
+}
 
 
 message ProductMembershipIDField {
@@ -1864,32 +1708,28 @@ message ProductMembershipProductField {
 }
 
 
-message ProductMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ProductMembershipIDField ID = 3;
-  ProductMembershipCreatedAtField CreatedAt = 4;
-  ProductMembershipUpdatedAtField UpdatedAt = 5;
-  ProductMembershipCauseField Cause = 6;
-  ProductMembershipProductField Product = 7;
-  }
-}
-
 message ProductMembershipOrdering {
-  repeated ProductMembershipOrderedPair orderedPair = 1;
-}
-message ProductMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ProductMembershipIDField ID = 3;
-  ProductMembershipCreatedAtField CreatedAt = 4;
-  ProductMembershipUpdatedAtField UpdatedAt = 5;
-  ProductMembershipCauseField Cause = 6;
-  ProductMembershipProductField Product = 7;
+    ProductMembershipIDField ID = 3;
+    ProductMembershipCreatedAtField CreatedAt = 4;
+    ProductMembershipUpdatedAtField UpdatedAt = 5;
+    ProductMembershipCauseField Cause = 6;
+    ProductMembershipProductField Product = 7;
   }
 }
 
+message ProductMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ProductMembershipIDField ID = 3;
+    ProductMembershipCreatedAtField CreatedAt = 4;
+    ProductMembershipUpdatedAtField UpdatedAt = 5;
+    ProductMembershipCauseField Cause = 6;
+    ProductMembershipProductField Product = 7;
+  }
+}
 
 
 message DonationCampaignIDField {
@@ -1909,30 +1749,26 @@ message DonationCampaignTitleField {
 }
 
 
-message DonationCampaignOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  DonationCampaignIDField ID = 3;
-  DonationCampaignCreatedAtField CreatedAt = 4;
-  DonationCampaignUpdatedAtField UpdatedAt = 5;
-  DonationCampaignTitleField Title = 6;
-  }
-}
-
 message DonationCampaignOrdering {
-  repeated DonationCampaignOrderedPair orderedPair = 1;
-}
-message DonationCampaignFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  DonationCampaignIDField ID = 3;
-  DonationCampaignCreatedAtField CreatedAt = 4;
-  DonationCampaignUpdatedAtField UpdatedAt = 5;
-  DonationCampaignTitleField Title = 6;
+    DonationCampaignIDField ID = 3;
+    DonationCampaignCreatedAtField CreatedAt = 4;
+    DonationCampaignUpdatedAtField UpdatedAt = 5;
+    DonationCampaignTitleField Title = 6;
   }
 }
 
+message DonationCampaignFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    DonationCampaignIDField ID = 3;
+    DonationCampaignCreatedAtField CreatedAt = 4;
+    DonationCampaignUpdatedAtField UpdatedAt = 5;
+    DonationCampaignTitleField Title = 6;
+  }
+}
 
 
 message DonationCampaignMembershipIDField {
@@ -1956,32 +1792,28 @@ message DonationCampaignMembershipDonationCampaignField {
 }
 
 
-message DonationCampaignMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  DonationCampaignMembershipIDField ID = 3;
-  DonationCampaignMembershipCreatedAtField CreatedAt = 4;
-  DonationCampaignMembershipUpdatedAtField UpdatedAt = 5;
-  DonationCampaignMembershipCauseField Cause = 6;
-  DonationCampaignMembershipDonationCampaignField DonationCampaign = 7;
-  }
-}
-
 message DonationCampaignMembershipOrdering {
-  repeated DonationCampaignMembershipOrderedPair orderedPair = 1;
-}
-message DonationCampaignMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  DonationCampaignMembershipIDField ID = 3;
-  DonationCampaignMembershipCreatedAtField CreatedAt = 4;
-  DonationCampaignMembershipUpdatedAtField UpdatedAt = 5;
-  DonationCampaignMembershipCauseField Cause = 6;
-  DonationCampaignMembershipDonationCampaignField DonationCampaign = 7;
+    DonationCampaignMembershipIDField ID = 3;
+    DonationCampaignMembershipCreatedAtField CreatedAt = 4;
+    DonationCampaignMembershipUpdatedAtField UpdatedAt = 5;
+    DonationCampaignMembershipCauseField Cause = 6;
+    DonationCampaignMembershipDonationCampaignField DonationCampaign = 7;
   }
 }
 
+message DonationCampaignMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    DonationCampaignMembershipIDField ID = 3;
+    DonationCampaignMembershipCreatedAtField CreatedAt = 4;
+    DonationCampaignMembershipUpdatedAtField UpdatedAt = 5;
+    DonationCampaignMembershipCauseField Cause = 6;
+    DonationCampaignMembershipDonationCampaignField DonationCampaign = 7;
+  }
+}
 
 
 message PetitionIDField {
@@ -2001,30 +1833,26 @@ message PetitionTitleField {
 }
 
 
-message PetitionOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PetitionIDField ID = 3;
-  PetitionCreatedAtField CreatedAt = 4;
-  PetitionUpdatedAtField UpdatedAt = 5;
-  PetitionTitleField Title = 6;
-  }
-}
-
 message PetitionOrdering {
-  repeated PetitionOrderedPair orderedPair = 1;
-}
-message PetitionFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PetitionIDField ID = 3;
-  PetitionCreatedAtField CreatedAt = 4;
-  PetitionUpdatedAtField UpdatedAt = 5;
-  PetitionTitleField Title = 6;
+    PetitionIDField ID = 3;
+    PetitionCreatedAtField CreatedAt = 4;
+    PetitionUpdatedAtField UpdatedAt = 5;
+    PetitionTitleField Title = 6;
   }
 }
 
+message PetitionFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PetitionIDField ID = 3;
+    PetitionCreatedAtField CreatedAt = 4;
+    PetitionUpdatedAtField UpdatedAt = 5;
+    PetitionTitleField Title = 6;
+  }
+}
 
 
 message PetitionSignerIDField {
@@ -2052,34 +1880,30 @@ message PetitionSignerCauseField {
 }
 
 
-message PetitionSignerOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PetitionSignerIDField ID = 3;
-  PetitionSignerCreatedAtField CreatedAt = 4;
-  PetitionSignerUpdatedAtField UpdatedAt = 5;
-  PetitionSignerPetitionField Petition = 6;
-  PetitionSignerContactField Contact = 7;
-  PetitionSignerCauseField Cause = 8;
-  }
-}
-
 message PetitionSignerOrdering {
-  repeated PetitionSignerOrderedPair orderedPair = 1;
-}
-message PetitionSignerFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PetitionSignerIDField ID = 3;
-  PetitionSignerCreatedAtField CreatedAt = 4;
-  PetitionSignerUpdatedAtField UpdatedAt = 5;
-  PetitionSignerPetitionField Petition = 6;
-  PetitionSignerContactField Contact = 7;
-  PetitionSignerCauseField Cause = 8;
+    PetitionSignerIDField ID = 3;
+    PetitionSignerCreatedAtField CreatedAt = 4;
+    PetitionSignerUpdatedAtField UpdatedAt = 5;
+    PetitionSignerPetitionField Petition = 6;
+    PetitionSignerContactField Contact = 7;
+    PetitionSignerCauseField Cause = 8;
   }
 }
 
+message PetitionSignerFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PetitionSignerIDField ID = 3;
+    PetitionSignerCreatedAtField CreatedAt = 4;
+    PetitionSignerUpdatedAtField UpdatedAt = 5;
+    PetitionSignerPetitionField Petition = 6;
+    PetitionSignerContactField Contact = 7;
+    PetitionSignerCauseField Cause = 8;
+  }
+}
 
 
 message PollIDField {
@@ -2099,30 +1923,26 @@ message PollTitleField {
 }
 
 
-message PollOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PollIDField ID = 3;
-  PollCreatedAtField CreatedAt = 4;
-  PollUpdatedAtField UpdatedAt = 5;
-  PollTitleField Title = 6;
-  }
-}
-
 message PollOrdering {
-  repeated PollOrderedPair orderedPair = 1;
-}
-message PollFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PollIDField ID = 3;
-  PollCreatedAtField CreatedAt = 4;
-  PollUpdatedAtField UpdatedAt = 5;
-  PollTitleField Title = 6;
+    PollIDField ID = 3;
+    PollCreatedAtField CreatedAt = 4;
+    PollUpdatedAtField UpdatedAt = 5;
+    PollTitleField Title = 6;
   }
 }
 
+message PollFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PollIDField ID = 3;
+    PollCreatedAtField CreatedAt = 4;
+    PollUpdatedAtField UpdatedAt = 5;
+    PollTitleField Title = 6;
+  }
+}
 
 
 message PollRespondantIDField {
@@ -2150,34 +1970,30 @@ message PollRespondantCauseField {
 }
 
 
-message PollRespondantOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PollRespondantIDField ID = 3;
-  PollRespondantCreatedAtField CreatedAt = 4;
-  PollRespondantUpdatedAtField UpdatedAt = 5;
-  PollRespondantPollField Poll = 6;
-  PollRespondantContactField Contact = 7;
-  PollRespondantCauseField Cause = 8;
-  }
-}
-
 message PollRespondantOrdering {
-  repeated PollRespondantOrderedPair orderedPair = 1;
-}
-message PollRespondantFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PollRespondantIDField ID = 3;
-  PollRespondantCreatedAtField CreatedAt = 4;
-  PollRespondantUpdatedAtField UpdatedAt = 5;
-  PollRespondantPollField Poll = 6;
-  PollRespondantContactField Contact = 7;
-  PollRespondantCauseField Cause = 8;
+    PollRespondantIDField ID = 3;
+    PollRespondantCreatedAtField CreatedAt = 4;
+    PollRespondantUpdatedAtField UpdatedAt = 5;
+    PollRespondantPollField Poll = 6;
+    PollRespondantContactField Contact = 7;
+    PollRespondantCauseField Cause = 8;
   }
 }
 
+message PollRespondantFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PollRespondantIDField ID = 3;
+    PollRespondantCreatedAtField CreatedAt = 4;
+    PollRespondantUpdatedAtField UpdatedAt = 5;
+    PollRespondantPollField Poll = 6;
+    PollRespondantContactField Contact = 7;
+    PollRespondantCauseField Cause = 8;
+  }
+}
 
 
 message PurchaserIDField {
@@ -2205,34 +2021,30 @@ message PurchaserCauseField {
 }
 
 
-message PurchaserOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  PurchaserIDField ID = 3;
-  PurchaserCreatedAtField CreatedAt = 4;
-  PurchaserUpdatedAtField UpdatedAt = 5;
-  PurchaserCustomerOrderField CustomerOrder = 6;
-  PurchaserContactField Contact = 7;
-  PurchaserCauseField Cause = 8;
-  }
-}
-
 message PurchaserOrdering {
-  repeated PurchaserOrderedPair orderedPair = 1;
-}
-message PurchaserFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  PurchaserIDField ID = 3;
-  PurchaserCreatedAtField CreatedAt = 4;
-  PurchaserUpdatedAtField UpdatedAt = 5;
-  PurchaserCustomerOrderField CustomerOrder = 6;
-  PurchaserContactField Contact = 7;
-  PurchaserCauseField Cause = 8;
+    PurchaserIDField ID = 3;
+    PurchaserCreatedAtField CreatedAt = 4;
+    PurchaserUpdatedAtField UpdatedAt = 5;
+    PurchaserCustomerOrderField CustomerOrder = 6;
+    PurchaserContactField Contact = 7;
+    PurchaserCauseField Cause = 8;
   }
 }
 
+message PurchaserFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    PurchaserIDField ID = 3;
+    PurchaserCreatedAtField CreatedAt = 4;
+    PurchaserUpdatedAtField UpdatedAt = 5;
+    PurchaserCustomerOrderField CustomerOrder = 6;
+    PurchaserContactField Contact = 7;
+    PurchaserCauseField Cause = 8;
+  }
+}
 
 
 message CustomerOrderIDField {
@@ -2252,30 +2064,26 @@ message CustomerOrderCustomerCartField {
 }
 
 
-message CustomerOrderOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  CustomerOrderIDField ID = 3;
-  CustomerOrderCreatedAtField CreatedAt = 4;
-  CustomerOrderUpdatedAtField UpdatedAt = 5;
-  CustomerOrderCustomerCartField CustomerCart = 6;
-  }
-}
-
 message CustomerOrderOrdering {
-  repeated CustomerOrderOrderedPair orderedPair = 1;
-}
-message CustomerOrderFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  CustomerOrderIDField ID = 3;
-  CustomerOrderCreatedAtField CreatedAt = 4;
-  CustomerOrderUpdatedAtField UpdatedAt = 5;
-  CustomerOrderCustomerCartField CustomerCart = 6;
+    CustomerOrderIDField ID = 3;
+    CustomerOrderCreatedAtField CreatedAt = 4;
+    CustomerOrderUpdatedAtField UpdatedAt = 5;
+    CustomerOrderCustomerCartField CustomerCart = 6;
   }
 }
 
+message CustomerOrderFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    CustomerOrderIDField ID = 3;
+    CustomerOrderCreatedAtField CreatedAt = 4;
+    CustomerOrderUpdatedAtField UpdatedAt = 5;
+    CustomerOrderCustomerCartField CustomerCart = 6;
+  }
+}
 
 
 message DonorIDField {
@@ -2303,34 +2111,30 @@ message DonorCauseField {
 }
 
 
-message DonorOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  DonorIDField ID = 3;
-  DonorCreatedAtField CreatedAt = 4;
-  DonorUpdatedAtField UpdatedAt = 5;
-  DonorCustomerOrderField CustomerOrder = 6;
-  DonorContactField Contact = 7;
-  DonorCauseField Cause = 8;
-  }
-}
-
 message DonorOrdering {
-  repeated DonorOrderedPair orderedPair = 1;
-}
-message DonorFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  DonorIDField ID = 3;
-  DonorCreatedAtField CreatedAt = 4;
-  DonorUpdatedAtField UpdatedAt = 5;
-  DonorCustomerOrderField CustomerOrder = 6;
-  DonorContactField Contact = 7;
-  DonorCauseField Cause = 8;
+    DonorIDField ID = 3;
+    DonorCreatedAtField CreatedAt = 4;
+    DonorUpdatedAtField UpdatedAt = 5;
+    DonorCustomerOrderField CustomerOrder = 6;
+    DonorContactField Contact = 7;
+    DonorCauseField Cause = 8;
   }
 }
 
+message DonorFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    DonorIDField ID = 3;
+    DonorCreatedAtField CreatedAt = 4;
+    DonorUpdatedAtField UpdatedAt = 5;
+    DonorCustomerOrderField CustomerOrder = 6;
+    DonorContactField Contact = 7;
+    DonorCauseField Cause = 8;
+  }
+}
 
 
 message LiveEventIDField {
@@ -2354,32 +2158,28 @@ message LiveEventLiveEventTypeField {
 }
 
 
-message LiveEventOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  LiveEventIDField ID = 3;
-  LiveEventCreatedAtField CreatedAt = 4;
-  LiveEventUpdatedAtField UpdatedAt = 5;
-  LiveEventTitleField Title = 6;
-  LiveEventLiveEventTypeField LiveEventType = 7;
-  }
-}
-
 message LiveEventOrdering {
-  repeated LiveEventOrderedPair orderedPair = 1;
-}
-message LiveEventFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  LiveEventIDField ID = 3;
-  LiveEventCreatedAtField CreatedAt = 4;
-  LiveEventUpdatedAtField UpdatedAt = 5;
-  LiveEventTitleField Title = 6;
-  LiveEventLiveEventTypeField LiveEventType = 7;
+    LiveEventIDField ID = 3;
+    LiveEventCreatedAtField CreatedAt = 4;
+    LiveEventUpdatedAtField UpdatedAt = 5;
+    LiveEventTitleField Title = 6;
+    LiveEventLiveEventTypeField LiveEventType = 7;
   }
 }
 
+message LiveEventFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    LiveEventIDField ID = 3;
+    LiveEventCreatedAtField CreatedAt = 4;
+    LiveEventUpdatedAtField UpdatedAt = 5;
+    LiveEventTitleField Title = 6;
+    LiveEventLiveEventTypeField LiveEventType = 7;
+  }
+}
 
 
 message EventAttendeeIDField {
@@ -2407,34 +2207,30 @@ message EventAttendeeCauseField {
 }
 
 
-message EventAttendeeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  EventAttendeeIDField ID = 3;
-  EventAttendeeCreatedAtField CreatedAt = 4;
-  EventAttendeeUpdatedAtField UpdatedAt = 5;
-  EventAttendeeLiveEventField LiveEvent = 6;
-  EventAttendeeContactField Contact = 7;
-  EventAttendeeCauseField Cause = 8;
-  }
-}
-
 message EventAttendeeOrdering {
-  repeated EventAttendeeOrderedPair orderedPair = 1;
-}
-message EventAttendeeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  EventAttendeeIDField ID = 3;
-  EventAttendeeCreatedAtField CreatedAt = 4;
-  EventAttendeeUpdatedAtField UpdatedAt = 5;
-  EventAttendeeLiveEventField LiveEvent = 6;
-  EventAttendeeContactField Contact = 7;
-  EventAttendeeCauseField Cause = 8;
+    EventAttendeeIDField ID = 3;
+    EventAttendeeCreatedAtField CreatedAt = 4;
+    EventAttendeeUpdatedAtField UpdatedAt = 5;
+    EventAttendeeLiveEventField LiveEvent = 6;
+    EventAttendeeContactField Contact = 7;
+    EventAttendeeCauseField Cause = 8;
   }
 }
 
+message EventAttendeeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    EventAttendeeIDField ID = 3;
+    EventAttendeeCreatedAtField CreatedAt = 4;
+    EventAttendeeUpdatedAtField UpdatedAt = 5;
+    EventAttendeeLiveEventField LiveEvent = 6;
+    EventAttendeeContactField Contact = 7;
+    EventAttendeeCauseField Cause = 8;
+  }
+}
 
 
 message VoterIDField {
@@ -2458,32 +2254,28 @@ message VoterCauseField {
 }
 
 
-message VoterOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  VoterIDField ID = 3;
-  VoterCreatedAtField CreatedAt = 4;
-  VoterUpdatedAtField UpdatedAt = 5;
-  VoterContactField Contact = 6;
-  VoterCauseField Cause = 7;
-  }
-}
-
 message VoterOrdering {
-  repeated VoterOrderedPair orderedPair = 1;
-}
-message VoterFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  VoterIDField ID = 3;
-  VoterCreatedAtField CreatedAt = 4;
-  VoterUpdatedAtField UpdatedAt = 5;
-  VoterContactField Contact = 6;
-  VoterCauseField Cause = 7;
+    VoterIDField ID = 3;
+    VoterCreatedAtField CreatedAt = 4;
+    VoterUpdatedAtField UpdatedAt = 5;
+    VoterContactField Contact = 6;
+    VoterCauseField Cause = 7;
   }
 }
 
+message VoterFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    VoterIDField ID = 3;
+    VoterCreatedAtField CreatedAt = 4;
+    VoterUpdatedAtField UpdatedAt = 5;
+    VoterContactField Contact = 6;
+    VoterCauseField Cause = 7;
+  }
+}
 
 
 message VolunteerOpportunityIDField {
@@ -2507,32 +2299,28 @@ message VolunteerOpportunityElectionTypeField {
 }
 
 
-message VolunteerOpportunityOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  VolunteerOpportunityIDField ID = 3;
-  VolunteerOpportunityCreatedAtField CreatedAt = 4;
-  VolunteerOpportunityUpdatedAtField UpdatedAt = 5;
-  VolunteerOpportunityTitleField Title = 6;
-  VolunteerOpportunityElectionTypeField ElectionType = 7;
-  }
-}
-
 message VolunteerOpportunityOrdering {
-  repeated VolunteerOpportunityOrderedPair orderedPair = 1;
-}
-message VolunteerOpportunityFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  VolunteerOpportunityIDField ID = 3;
-  VolunteerOpportunityCreatedAtField CreatedAt = 4;
-  VolunteerOpportunityUpdatedAtField UpdatedAt = 5;
-  VolunteerOpportunityTitleField Title = 6;
-  VolunteerOpportunityElectionTypeField ElectionType = 7;
+    VolunteerOpportunityIDField ID = 3;
+    VolunteerOpportunityCreatedAtField CreatedAt = 4;
+    VolunteerOpportunityUpdatedAtField UpdatedAt = 5;
+    VolunteerOpportunityTitleField Title = 6;
+    VolunteerOpportunityElectionTypeField ElectionType = 7;
   }
 }
 
+message VolunteerOpportunityFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    VolunteerOpportunityIDField ID = 3;
+    VolunteerOpportunityCreatedAtField CreatedAt = 4;
+    VolunteerOpportunityUpdatedAtField UpdatedAt = 5;
+    VolunteerOpportunityTitleField Title = 6;
+    VolunteerOpportunityElectionTypeField ElectionType = 7;
+  }
+}
 
 
 message VolunteerIDField {
@@ -2560,34 +2348,30 @@ message VolunteerCauseField {
 }
 
 
-message VolunteerOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  VolunteerIDField ID = 3;
-  VolunteerCreatedAtField CreatedAt = 4;
-  VolunteerUpdatedAtField UpdatedAt = 5;
-  VolunteerVolunteerOpportunityField VolunteerOpportunity = 6;
-  VolunteerContactField Contact = 7;
-  VolunteerCauseField Cause = 8;
-  }
-}
-
 message VolunteerOrdering {
-  repeated VolunteerOrderedPair orderedPair = 1;
-}
-message VolunteerFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  VolunteerIDField ID = 3;
-  VolunteerCreatedAtField CreatedAt = 4;
-  VolunteerUpdatedAtField UpdatedAt = 5;
-  VolunteerVolunteerOpportunityField VolunteerOpportunity = 6;
-  VolunteerContactField Contact = 7;
-  VolunteerCauseField Cause = 8;
+    VolunteerIDField ID = 3;
+    VolunteerCreatedAtField CreatedAt = 4;
+    VolunteerUpdatedAtField UpdatedAt = 5;
+    VolunteerVolunteerOpportunityField VolunteerOpportunity = 6;
+    VolunteerContactField Contact = 7;
+    VolunteerCauseField Cause = 8;
   }
 }
 
+message VolunteerFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    VolunteerIDField ID = 3;
+    VolunteerCreatedAtField CreatedAt = 4;
+    VolunteerUpdatedAtField UpdatedAt = 5;
+    VolunteerVolunteerOpportunityField VolunteerOpportunity = 6;
+    VolunteerContactField Contact = 7;
+    VolunteerCauseField Cause = 8;
+  }
+}
 
 
 message FollowerIDField {
@@ -2611,32 +2395,28 @@ message FollowerCauseField {
 }
 
 
-message FollowerOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  FollowerIDField ID = 3;
-  FollowerCreatedAtField CreatedAt = 4;
-  FollowerUpdatedAtField UpdatedAt = 5;
-  FollowerContactField Contact = 6;
-  FollowerCauseField Cause = 7;
-  }
-}
-
 message FollowerOrdering {
-  repeated FollowerOrderedPair orderedPair = 1;
-}
-message FollowerFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  FollowerIDField ID = 3;
-  FollowerCreatedAtField CreatedAt = 4;
-  FollowerUpdatedAtField UpdatedAt = 5;
-  FollowerContactField Contact = 6;
-  FollowerCauseField Cause = 7;
+    FollowerIDField ID = 3;
+    FollowerCreatedAtField CreatedAt = 4;
+    FollowerUpdatedAtField UpdatedAt = 5;
+    FollowerContactField Contact = 6;
+    FollowerCauseField Cause = 7;
   }
 }
 
+message FollowerFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    FollowerIDField ID = 3;
+    FollowerCreatedAtField CreatedAt = 4;
+    FollowerUpdatedAtField UpdatedAt = 5;
+    FollowerContactField Contact = 6;
+    FollowerCauseField Cause = 7;
+  }
+}
 
 
 message TerritoryIDField {
@@ -2656,30 +2436,26 @@ message TerritoryTitleField {
 }
 
 
-message TerritoryOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  TerritoryIDField ID = 3;
-  TerritoryCreatedAtField CreatedAt = 4;
-  TerritoryUpdatedAtField UpdatedAt = 5;
-  TerritoryTitleField Title = 6;
-  }
-}
-
 message TerritoryOrdering {
-  repeated TerritoryOrderedPair orderedPair = 1;
-}
-message TerritoryFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  TerritoryIDField ID = 3;
-  TerritoryCreatedAtField CreatedAt = 4;
-  TerritoryUpdatedAtField UpdatedAt = 5;
-  TerritoryTitleField Title = 6;
+    TerritoryIDField ID = 3;
+    TerritoryCreatedAtField CreatedAt = 4;
+    TerritoryUpdatedAtField UpdatedAt = 5;
+    TerritoryTitleField Title = 6;
   }
 }
 
+message TerritoryFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    TerritoryIDField ID = 3;
+    TerritoryCreatedAtField CreatedAt = 4;
+    TerritoryUpdatedAtField UpdatedAt = 5;
+    TerritoryTitleField Title = 6;
+  }
+}
 
 
 message ActivityTypeIDField {
@@ -2699,30 +2475,26 @@ message ActivityTypeTitleField {
 }
 
 
-message ActivityTypeOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ActivityTypeIDField ID = 3;
-  ActivityTypeCreatedAtField CreatedAt = 4;
-  ActivityTypeUpdatedAtField UpdatedAt = 5;
-  ActivityTypeTitleField Title = 6;
-  }
-}
-
 message ActivityTypeOrdering {
-  repeated ActivityTypeOrderedPair orderedPair = 1;
-}
-message ActivityTypeFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ActivityTypeIDField ID = 3;
-  ActivityTypeCreatedAtField CreatedAt = 4;
-  ActivityTypeUpdatedAtField UpdatedAt = 5;
-  ActivityTypeTitleField Title = 6;
+    ActivityTypeIDField ID = 3;
+    ActivityTypeCreatedAtField CreatedAt = 4;
+    ActivityTypeUpdatedAtField UpdatedAt = 5;
+    ActivityTypeTitleField Title = 6;
   }
 }
 
+message ActivityTypeFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ActivityTypeIDField ID = 3;
+    ActivityTypeCreatedAtField CreatedAt = 4;
+    ActivityTypeUpdatedAtField UpdatedAt = 5;
+    ActivityTypeTitleField Title = 6;
+  }
+}
 
 
 message ActivityIDField {
@@ -2754,36 +2526,32 @@ message ActivityCauseField {
 }
 
 
-message ActivityOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ActivityIDField ID = 3;
-  ActivityCreatedAtField CreatedAt = 4;
-  ActivityUpdatedAtField UpdatedAt = 5;
-  ActivityTitleField Title = 6;
-  ActivityActivityTypeField ActivityType = 7;
-  ActivityContactField Contact = 8;
-  ActivityCauseField Cause = 9;
-  }
-}
-
 message ActivityOrdering {
-  repeated ActivityOrderedPair orderedPair = 1;
-}
-message ActivityFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ActivityIDField ID = 3;
-  ActivityCreatedAtField CreatedAt = 4;
-  ActivityUpdatedAtField UpdatedAt = 5;
-  ActivityTitleField Title = 6;
-  ActivityActivityTypeField ActivityType = 7;
-  ActivityContactField Contact = 8;
-  ActivityCauseField Cause = 9;
+    ActivityIDField ID = 3;
+    ActivityCreatedAtField CreatedAt = 4;
+    ActivityUpdatedAtField UpdatedAt = 5;
+    ActivityTitleField Title = 6;
+    ActivityActivityTypeField ActivityType = 7;
+    ActivityContactField Contact = 8;
+    ActivityCauseField Cause = 9;
   }
 }
 
+message ActivityFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ActivityIDField ID = 3;
+    ActivityCreatedAtField CreatedAt = 4;
+    ActivityUpdatedAtField UpdatedAt = 5;
+    ActivityTitleField Title = 6;
+    ActivityActivityTypeField ActivityType = 7;
+    ActivityContactField Contact = 8;
+    ActivityCauseField Cause = 9;
+  }
+}
 
 
 message NoteIDField {
@@ -2811,34 +2579,30 @@ message NoteBodyField {
 }
 
 
-message NoteOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  NoteIDField ID = 3;
-  NoteCreatedAtField CreatedAt = 4;
-  NoteUpdatedAtField UpdatedAt = 5;
-  NoteContactField Contact = 6;
-  NoteCauseField Cause = 7;
-  NoteBodyField Body = 8;
-  }
-}
-
 message NoteOrdering {
-  repeated NoteOrderedPair orderedPair = 1;
-}
-message NoteFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  NoteIDField ID = 3;
-  NoteCreatedAtField CreatedAt = 4;
-  NoteUpdatedAtField UpdatedAt = 5;
-  NoteContactField Contact = 6;
-  NoteCauseField Cause = 7;
-  NoteBodyField Body = 8;
+    NoteIDField ID = 3;
+    NoteCreatedAtField CreatedAt = 4;
+    NoteUpdatedAtField UpdatedAt = 5;
+    NoteContactField Contact = 6;
+    NoteCauseField Cause = 7;
+    NoteBodyField Body = 8;
   }
 }
 
+message NoteFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    NoteIDField ID = 3;
+    NoteCreatedAtField CreatedAt = 4;
+    NoteUpdatedAtField UpdatedAt = 5;
+    NoteContactField Contact = 6;
+    NoteCauseField Cause = 7;
+    NoteBodyField Body = 8;
+  }
+}
 
 
 message AccountIDField {
@@ -2858,30 +2622,26 @@ message AccountUsernameField {
 }
 
 
-message AccountOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  AccountIDField ID = 3;
-  AccountCreatedAtField CreatedAt = 4;
-  AccountUpdatedAtField UpdatedAt = 5;
-  AccountUsernameField Username = 6;
-  }
-}
-
 message AccountOrdering {
-  repeated AccountOrderedPair orderedPair = 1;
-}
-message AccountFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  AccountIDField ID = 3;
-  AccountCreatedAtField CreatedAt = 4;
-  AccountUpdatedAtField UpdatedAt = 5;
-  AccountUsernameField Username = 6;
+    AccountIDField ID = 3;
+    AccountCreatedAtField CreatedAt = 4;
+    AccountUpdatedAtField UpdatedAt = 5;
+    AccountUsernameField Username = 6;
   }
 }
 
+message AccountFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    AccountIDField ID = 3;
+    AccountCreatedAtField CreatedAt = 4;
+    AccountUpdatedAtField UpdatedAt = 5;
+    AccountUsernameField Username = 6;
+  }
+}
 
 
 message OwnerMembershipIDField {
@@ -2905,32 +2665,28 @@ message OwnerMembershipAccountField {
 }
 
 
-message OwnerMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  OwnerMembershipIDField ID = 3;
-  OwnerMembershipCreatedAtField CreatedAt = 4;
-  OwnerMembershipUpdatedAtField UpdatedAt = 5;
-  OwnerMembershipCauseField Cause = 6;
-  OwnerMembershipAccountField Account = 7;
-  }
-}
-
 message OwnerMembershipOrdering {
-  repeated OwnerMembershipOrderedPair orderedPair = 1;
-}
-message OwnerMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  OwnerMembershipIDField ID = 3;
-  OwnerMembershipCreatedAtField CreatedAt = 4;
-  OwnerMembershipUpdatedAtField UpdatedAt = 5;
-  OwnerMembershipCauseField Cause = 6;
-  OwnerMembershipAccountField Account = 7;
+    OwnerMembershipIDField ID = 3;
+    OwnerMembershipCreatedAtField CreatedAt = 4;
+    OwnerMembershipUpdatedAtField UpdatedAt = 5;
+    OwnerMembershipCauseField Cause = 6;
+    OwnerMembershipAccountField Account = 7;
   }
 }
 
+message OwnerMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    OwnerMembershipIDField ID = 3;
+    OwnerMembershipCreatedAtField CreatedAt = 4;
+    OwnerMembershipUpdatedAtField UpdatedAt = 5;
+    OwnerMembershipCauseField Cause = 6;
+    OwnerMembershipAccountField Account = 7;
+  }
+}
 
 
 message ContactIDField {
@@ -2966,38 +2722,34 @@ message ContactPhoneNumberField {
 }
 
 
-message ContactOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ContactIDField ID = 3;
-  ContactCreatedAtField CreatedAt = 4;
-  ContactUpdatedAtField UpdatedAt = 5;
-  ContactFirstNameField FirstName = 6;
-  ContactMiddleNameField MiddleName = 7;
-  ContactLastNameField LastName = 8;
-  ContactEmailField Email = 9;
-  ContactPhoneNumberField PhoneNumber = 10;
-  }
-}
-
 message ContactOrdering {
-  repeated ContactOrderedPair orderedPair = 1;
-}
-message ContactFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ContactIDField ID = 3;
-  ContactCreatedAtField CreatedAt = 4;
-  ContactUpdatedAtField UpdatedAt = 5;
-  ContactFirstNameField FirstName = 6;
-  ContactMiddleNameField MiddleName = 7;
-  ContactLastNameField LastName = 8;
-  ContactEmailField Email = 9;
-  ContactPhoneNumberField PhoneNumber = 10;
+    ContactIDField ID = 3;
+    ContactCreatedAtField CreatedAt = 4;
+    ContactUpdatedAtField UpdatedAt = 5;
+    ContactFirstNameField FirstName = 6;
+    ContactMiddleNameField MiddleName = 7;
+    ContactLastNameField LastName = 8;
+    ContactEmailField Email = 9;
+    ContactPhoneNumberField PhoneNumber = 10;
   }
 }
 
+message ContactFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ContactIDField ID = 3;
+    ContactCreatedAtField CreatedAt = 4;
+    ContactUpdatedAtField UpdatedAt = 5;
+    ContactFirstNameField FirstName = 6;
+    ContactMiddleNameField MiddleName = 7;
+    ContactLastNameField LastName = 8;
+    ContactEmailField Email = 9;
+    ContactPhoneNumberField PhoneNumber = 10;
+  }
+}
 
 
 message ContactMembershipIDField {
@@ -3021,32 +2773,28 @@ message ContactMembershipContactField {
 }
 
 
-message ContactMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  ContactMembershipIDField ID = 3;
-  ContactMembershipCreatedAtField CreatedAt = 4;
-  ContactMembershipUpdatedAtField UpdatedAt = 5;
-  ContactMembershipCauseField Cause = 6;
-  ContactMembershipContactField Contact = 7;
-  }
-}
-
 message ContactMembershipOrdering {
-  repeated ContactMembershipOrderedPair orderedPair = 1;
-}
-message ContactMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  ContactMembershipIDField ID = 3;
-  ContactMembershipCreatedAtField CreatedAt = 4;
-  ContactMembershipUpdatedAtField UpdatedAt = 5;
-  ContactMembershipCauseField Cause = 6;
-  ContactMembershipContactField Contact = 7;
+    ContactMembershipIDField ID = 3;
+    ContactMembershipCreatedAtField CreatedAt = 4;
+    ContactMembershipUpdatedAtField UpdatedAt = 5;
+    ContactMembershipCauseField Cause = 6;
+    ContactMembershipContactField Contact = 7;
   }
 }
 
+message ContactMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    ContactMembershipIDField ID = 3;
+    ContactMembershipCreatedAtField CreatedAt = 4;
+    ContactMembershipUpdatedAtField UpdatedAt = 5;
+    ContactMembershipCauseField Cause = 6;
+    ContactMembershipContactField Contact = 7;
+  }
+}
 
 
 message CauseIDField {
@@ -3074,34 +2822,30 @@ message CauseSummaryField {
 }
 
 
-message CauseOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  CauseIDField ID = 3;
-  CauseCreatedAtField CreatedAt = 4;
-  CauseUpdatedAtField UpdatedAt = 5;
-  CauseTitleField Title = 6;
-  CauseSlugField Slug = 7;
-  CauseSummaryField Summary = 8;
-  }
-}
-
 message CauseOrdering {
-  repeated CauseOrderedPair orderedPair = 1;
-}
-message CauseFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  CauseIDField ID = 3;
-  CauseCreatedAtField CreatedAt = 4;
-  CauseUpdatedAtField UpdatedAt = 5;
-  CauseTitleField Title = 6;
-  CauseSlugField Slug = 7;
-  CauseSummaryField Summary = 8;
+    CauseIDField ID = 3;
+    CauseCreatedAtField CreatedAt = 4;
+    CauseUpdatedAtField UpdatedAt = 5;
+    CauseTitleField Title = 6;
+    CauseSlugField Slug = 7;
+    CauseSummaryField Summary = 8;
   }
 }
 
+message CauseFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    CauseIDField ID = 3;
+    CauseCreatedAtField CreatedAt = 4;
+    CauseUpdatedAtField UpdatedAt = 5;
+    CauseTitleField Title = 6;
+    CauseSlugField Slug = 7;
+    CauseSummaryField Summary = 8;
+  }
+}
 
 
 message AgentIDField {
@@ -3121,30 +2865,26 @@ message AgentAccountField {
 }
 
 
-message AgentOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  AgentIDField ID = 3;
-  AgentCreatedAtField CreatedAt = 4;
-  AgentUpdatedAtField UpdatedAt = 5;
-  AgentAccountField Account = 6;
-  }
-}
-
 message AgentOrdering {
-  repeated AgentOrderedPair orderedPair = 1;
-}
-message AgentFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  AgentIDField ID = 3;
-  AgentCreatedAtField CreatedAt = 4;
-  AgentUpdatedAtField UpdatedAt = 5;
-  AgentAccountField Account = 6;
+    AgentIDField ID = 3;
+    AgentCreatedAtField CreatedAt = 4;
+    AgentUpdatedAtField UpdatedAt = 5;
+    AgentAccountField Account = 6;
   }
 }
 
+message AgentFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    AgentIDField ID = 3;
+    AgentCreatedAtField CreatedAt = 4;
+    AgentUpdatedAtField UpdatedAt = 5;
+    AgentAccountField Account = 6;
+  }
+}
 
 
 message AgentMembershipIDField {
@@ -3168,32 +2908,28 @@ message AgentMembershipAgentField {
 }
 
 
-message AgentMembershipOrderedPair {
-  Direction direction = 1;
-  oneof field {
-  AgentMembershipIDField ID = 3;
-  AgentMembershipCreatedAtField CreatedAt = 4;
-  AgentMembershipUpdatedAtField UpdatedAt = 5;
-  AgentMembershipCauseField Cause = 6;
-  AgentMembershipAgentField Agent = 7;
-  }
-}
-
 message AgentMembershipOrdering {
-  repeated AgentMembershipOrderedPair orderedPair = 1;
-}
-message AgentMembershipFilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Direction Direction = 1;
   oneof field {
-  AgentMembershipIDField ID = 3;
-  AgentMembershipCreatedAtField CreatedAt = 4;
-  AgentMembershipUpdatedAtField UpdatedAt = 5;
-  AgentMembershipCauseField Cause = 6;
-  AgentMembershipAgentField Agent = 7;
+    AgentMembershipIDField ID = 3;
+    AgentMembershipCreatedAtField CreatedAt = 4;
+    AgentMembershipUpdatedAtField UpdatedAt = 5;
+    AgentMembershipCauseField Cause = 6;
+    AgentMembershipAgentField Agent = 7;
   }
 }
 
+message AgentMembershipFilterRule {
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    AgentMembershipIDField ID = 3;
+    AgentMembershipCreatedAtField CreatedAt = 4;
+    AgentMembershipUpdatedAtField UpdatedAt = 5;
+    AgentMembershipCauseField Cause = 6;
+    AgentMembershipAgentField Agent = 7;
+  }
+}
 
 // Generated Types and Message Schema
 
@@ -3229,7 +2965,7 @@ message GetACLResponse {
 message ListACLRequest {
   string api = 1;
   int64 limit = 2;
-  ACLOrdering ordering = 3;
+  repeated ACLOrdering ordering = 3;
   repeated ACLFilterRule filters = 4;
 }
 
@@ -3298,7 +3034,7 @@ message GetMailingAddressResponse {
 message ListMailingAddressRequest {
   string api = 1;
   int64 limit = 2;
-  MailingAddressOrdering ordering = 3;
+  repeated MailingAddressOrdering ordering = 3;
   repeated MailingAddressFilterRule filters = 4;
 }
 
@@ -3361,7 +3097,7 @@ message GetPhoneNumberResponse {
 message ListPhoneNumberRequest {
   string api = 1;
   int64 limit = 2;
-  PhoneNumberOrdering ordering = 3;
+  repeated PhoneNumberOrdering ordering = 3;
   repeated PhoneNumberFilterRule filters = 4;
 }
 
@@ -3424,7 +3160,7 @@ message GetEmailAddressResponse {
 message ListEmailAddressRequest {
   string api = 1;
   int64 limit = 2;
-  EmailAddressOrdering ordering = 3;
+  repeated EmailAddressOrdering ordering = 3;
   repeated EmailAddressFilterRule filters = 4;
 }
 
@@ -3487,7 +3223,7 @@ message GetPhotoResponse {
 message ListPhotoRequest {
   string api = 1;
   int64 limit = 2;
-  PhotoOrdering ordering = 3;
+  repeated PhotoOrdering ordering = 3;
   repeated PhotoFilterRule filters = 4;
 }
 
@@ -3550,7 +3286,7 @@ message GetLayoutTypeResponse {
 message ListLayoutTypeRequest {
   string api = 1;
   int64 limit = 2;
-  LayoutTypeOrdering ordering = 3;
+  repeated LayoutTypeOrdering ordering = 3;
   repeated LayoutTypeFilterRule filters = 4;
 }
 
@@ -3613,7 +3349,7 @@ message GetLayoutRowResponse {
 message ListLayoutRowRequest {
   string api = 1;
   int64 limit = 2;
-  LayoutRowOrdering ordering = 3;
+  repeated LayoutRowOrdering ordering = 3;
   repeated LayoutRowFilterRule filters = 4;
 }
 
@@ -3674,7 +3410,7 @@ message GetComponentImplementationResponse {
 message ListComponentImplementationRequest {
   string api = 1;
   int64 limit = 2;
-  ComponentImplementationOrdering ordering = 3;
+  repeated ComponentImplementationOrdering ordering = 3;
   repeated ComponentImplementationFilterRule filters = 4;
 }
 
@@ -3737,7 +3473,7 @@ message GetComponentTypeResponse {
 message ListComponentTypeRequest {
   string api = 1;
   int64 limit = 2;
-  ComponentTypeOrdering ordering = 3;
+  repeated ComponentTypeOrdering ordering = 3;
   repeated ComponentTypeFilterRule filters = 4;
 }
 
@@ -3800,7 +3536,7 @@ message GetLayoutColumnResponse {
 message ListLayoutColumnRequest {
   string api = 1;
   int64 limit = 2;
-  LayoutColumnOrdering ordering = 3;
+  repeated LayoutColumnOrdering ordering = 3;
   repeated LayoutColumnFilterRule filters = 4;
 }
 
@@ -3863,7 +3599,7 @@ message GetFieldTypeResponse {
 message ListFieldTypeRequest {
   string api = 1;
   int64 limit = 2;
-  FieldTypeOrdering ordering = 3;
+  repeated FieldTypeOrdering ordering = 3;
   repeated FieldTypeFilterRule filters = 4;
 }
 
@@ -3928,7 +3664,7 @@ message GetComponentResponse {
 message ListComponentRequest {
   string api = 1;
   int64 limit = 2;
-  ComponentOrdering ordering = 3;
+  repeated ComponentOrdering ordering = 3;
   repeated ComponentFilterRule filters = 4;
 }
 
@@ -3993,7 +3729,7 @@ message GetFieldResponse {
 message ListFieldRequest {
   string api = 1;
   int64 limit = 2;
-  FieldOrdering ordering = 3;
+  repeated FieldOrdering ordering = 3;
   repeated FieldFilterRule filters = 4;
 }
 
@@ -4060,7 +3796,7 @@ message GetHomePageResponse {
 message ListHomePageRequest {
   string api = 1;
   int64 limit = 2;
-  HomePageOrdering ordering = 3;
+  repeated HomePageOrdering ordering = 3;
   repeated HomePageFilterRule filters = 4;
 }
 
@@ -4123,7 +3859,7 @@ message GetLayoutResponse {
 message ListLayoutRequest {
   string api = 1;
   int64 limit = 2;
-  LayoutOrdering ordering = 3;
+  repeated LayoutOrdering ordering = 3;
   repeated LayoutFilterRule filters = 4;
 }
 
@@ -4190,7 +3926,7 @@ message GetLandingPageResponse {
 message ListLandingPageRequest {
   string api = 1;
   int64 limit = 2;
-  LandingPageOrdering ordering = 3;
+  repeated LandingPageOrdering ordering = 3;
   repeated LandingPageFilterRule filters = 4;
 }
 
@@ -4255,7 +3991,7 @@ message GetExperimentResponse {
 message ListExperimentRequest {
   string api = 1;
   int64 limit = 2;
-  ExperimentOrdering ordering = 3;
+  repeated ExperimentOrdering ordering = 3;
   repeated ExperimentFilterRule filters = 4;
 }
 
@@ -4320,7 +4056,7 @@ message GetIssueResponse {
 message ListIssueRequest {
   string api = 1;
   int64 limit = 2;
-  IssueOrdering ordering = 3;
+  repeated IssueOrdering ordering = 3;
   repeated IssueFilterRule filters = 4;
 }
 
@@ -4383,7 +4119,7 @@ message GetCandidateResponse {
 message ListCandidateRequest {
   string api = 1;
   int64 limit = 2;
-  CandidateOrdering ordering = 3;
+  repeated CandidateOrdering ordering = 3;
   repeated CandidateFilterRule filters = 4;
 }
 
@@ -4446,7 +4182,7 @@ message GetDistrictTypeResponse {
 message ListDistrictTypeRequest {
   string api = 1;
   int64 limit = 2;
-  DistrictTypeOrdering ordering = 3;
+  repeated DistrictTypeOrdering ordering = 3;
   repeated DistrictTypeFilterRule filters = 4;
 }
 
@@ -4513,7 +4249,7 @@ message GetDistrictResponse {
 message ListDistrictRequest {
   string api = 1;
   int64 limit = 2;
-  DistrictOrdering ordering = 3;
+  repeated DistrictOrdering ordering = 3;
   repeated DistrictFilterRule filters = 4;
 }
 
@@ -4578,7 +4314,7 @@ message GetOfficeResponse {
 message ListOfficeRequest {
   string api = 1;
   int64 limit = 2;
-  OfficeOrdering ordering = 3;
+  repeated OfficeOrdering ordering = 3;
   repeated OfficeFilterRule filters = 4;
 }
 
@@ -4643,7 +4379,7 @@ message GetPollItemResponse {
 message ListPollItemRequest {
   string api = 1;
   int64 limit = 2;
-  PollItemOrdering ordering = 3;
+  repeated PollItemOrdering ordering = 3;
   repeated PollItemFilterRule filters = 4;
 }
 
@@ -4706,7 +4442,7 @@ message GetVolunteerOpportunityTypeResponse {
 message ListVolunteerOpportunityTypeRequest {
   string api = 1;
   int64 limit = 2;
-  VolunteerOpportunityTypeOrdering ordering = 3;
+  repeated VolunteerOpportunityTypeOrdering ordering = 3;
   repeated VolunteerOpportunityTypeFilterRule filters = 4;
 }
 
@@ -4769,7 +4505,7 @@ message GetLiveEventTypeResponse {
 message ListLiveEventTypeRequest {
   string api = 1;
   int64 limit = 2;
-  LiveEventTypeOrdering ordering = 3;
+  repeated LiveEventTypeOrdering ordering = 3;
   repeated LiveEventTypeFilterRule filters = 4;
 }
 
@@ -4832,7 +4568,7 @@ message GetCompanyResponse {
 message ListCompanyRequest {
   string api = 1;
   int64 limit = 2;
-  CompanyOrdering ordering = 3;
+  repeated CompanyOrdering ordering = 3;
   repeated CompanyFilterRule filters = 4;
 }
 
@@ -4895,7 +4631,7 @@ message GetProductTypeResponse {
 message ListProductTypeRequest {
   string api = 1;
   int64 limit = 2;
-  ProductTypeOrdering ordering = 3;
+  repeated ProductTypeOrdering ordering = 3;
   repeated ProductTypeFilterRule filters = 4;
 }
 
@@ -4956,7 +4692,7 @@ message GetCustomerCartResponse {
 message ListCustomerCartRequest {
   string api = 1;
   int64 limit = 2;
-  CustomerCartOrdering ordering = 3;
+  repeated CustomerCartOrdering ordering = 3;
   repeated CustomerCartFilterRule filters = 4;
 }
 
@@ -5019,7 +4755,7 @@ message GetPaymentResponse {
 message ListPaymentRequest {
   string api = 1;
   int64 limit = 2;
-  PaymentOrdering ordering = 3;
+  repeated PaymentOrdering ordering = 3;
   repeated PaymentFilterRule filters = 4;
 }
 
@@ -5080,7 +4816,7 @@ message GetDeliveryResponse {
 message ListDeliveryRequest {
   string api = 1;
   int64 limit = 2;
-  DeliveryOrdering ordering = 3;
+  repeated DeliveryOrdering ordering = 3;
   repeated DeliveryFilterRule filters = 4;
 }
 
@@ -5143,7 +4879,7 @@ message GetBoycottResponse {
 message ListBoycottRequest {
   string api = 1;
   int64 limit = 2;
-  BoycottOrdering ordering = 3;
+  repeated BoycottOrdering ordering = 3;
   repeated BoycottFilterRule filters = 4;
 }
 
@@ -5208,7 +4944,7 @@ message GetBoycottMembershipResponse {
 message ListBoycottMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  BoycottMembershipOrdering ordering = 3;
+  repeated BoycottMembershipOrdering ordering = 3;
   repeated BoycottMembershipFilterRule filters = 4;
 }
 
@@ -5271,7 +5007,7 @@ message GetElectionResponse {
 message ListElectionRequest {
   string api = 1;
   int64 limit = 2;
-  ElectionOrdering ordering = 3;
+  repeated ElectionOrdering ordering = 3;
   repeated ElectionFilterRule filters = 4;
 }
 
@@ -5336,7 +5072,7 @@ message GetElectionMembershipResponse {
 message ListElectionMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  ElectionMembershipOrdering ordering = 3;
+  repeated ElectionMembershipOrdering ordering = 3;
   repeated ElectionMembershipFilterRule filters = 4;
 }
 
@@ -5401,7 +5137,7 @@ message GetPetitionMembershipResponse {
 message ListPetitionMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  PetitionMembershipOrdering ordering = 3;
+  repeated PetitionMembershipOrdering ordering = 3;
   repeated PetitionMembershipFilterRule filters = 4;
 }
 
@@ -5466,7 +5202,7 @@ message GetPollMembershipResponse {
 message ListPollMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  PollMembershipOrdering ordering = 3;
+  repeated PollMembershipOrdering ordering = 3;
   repeated PollMembershipFilterRule filters = 4;
 }
 
@@ -5531,7 +5267,7 @@ message GetVolunteerOpportunityMembershipResponse {
 message ListVolunteerOpportunityMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  VolunteerOpportunityMembershipOrdering ordering = 3;
+  repeated VolunteerOpportunityMembershipOrdering ordering = 3;
   repeated VolunteerOpportunityMembershipFilterRule filters = 4;
 }
 
@@ -5596,7 +5332,7 @@ message GetLiveEventMembershipResponse {
 message ListLiveEventMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  LiveEventMembershipOrdering ordering = 3;
+  repeated LiveEventMembershipOrdering ordering = 3;
   repeated LiveEventMembershipFilterRule filters = 4;
 }
 
@@ -5661,7 +5397,7 @@ message GetProductResponse {
 message ListProductRequest {
   string api = 1;
   int64 limit = 2;
-  ProductOrdering ordering = 3;
+  repeated ProductOrdering ordering = 3;
   repeated ProductFilterRule filters = 4;
 }
 
@@ -5726,7 +5462,7 @@ message GetProductMembershipResponse {
 message ListProductMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  ProductMembershipOrdering ordering = 3;
+  repeated ProductMembershipOrdering ordering = 3;
   repeated ProductMembershipFilterRule filters = 4;
 }
 
@@ -5789,7 +5525,7 @@ message GetDonationCampaignResponse {
 message ListDonationCampaignRequest {
   string api = 1;
   int64 limit = 2;
-  DonationCampaignOrdering ordering = 3;
+  repeated DonationCampaignOrdering ordering = 3;
   repeated DonationCampaignFilterRule filters = 4;
 }
 
@@ -5854,7 +5590,7 @@ message GetDonationCampaignMembershipResponse {
 message ListDonationCampaignMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  DonationCampaignMembershipOrdering ordering = 3;
+  repeated DonationCampaignMembershipOrdering ordering = 3;
   repeated DonationCampaignMembershipFilterRule filters = 4;
 }
 
@@ -5917,7 +5653,7 @@ message GetPetitionResponse {
 message ListPetitionRequest {
   string api = 1;
   int64 limit = 2;
-  PetitionOrdering ordering = 3;
+  repeated PetitionOrdering ordering = 3;
   repeated PetitionFilterRule filters = 4;
 }
 
@@ -5984,7 +5720,7 @@ message GetPetitionSignerResponse {
 message ListPetitionSignerRequest {
   string api = 1;
   int64 limit = 2;
-  PetitionSignerOrdering ordering = 3;
+  repeated PetitionSignerOrdering ordering = 3;
   repeated PetitionSignerFilterRule filters = 4;
 }
 
@@ -6047,7 +5783,7 @@ message GetPollResponse {
 message ListPollRequest {
   string api = 1;
   int64 limit = 2;
-  PollOrdering ordering = 3;
+  repeated PollOrdering ordering = 3;
   repeated PollFilterRule filters = 4;
 }
 
@@ -6114,7 +5850,7 @@ message GetPollRespondantResponse {
 message ListPollRespondantRequest {
   string api = 1;
   int64 limit = 2;
-  PollRespondantOrdering ordering = 3;
+  repeated PollRespondantOrdering ordering = 3;
   repeated PollRespondantFilterRule filters = 4;
 }
 
@@ -6181,7 +5917,7 @@ message GetPurchaserResponse {
 message ListPurchaserRequest {
   string api = 1;
   int64 limit = 2;
-  PurchaserOrdering ordering = 3;
+  repeated PurchaserOrdering ordering = 3;
   repeated PurchaserFilterRule filters = 4;
 }
 
@@ -6244,7 +5980,7 @@ message GetCustomerOrderResponse {
 message ListCustomerOrderRequest {
   string api = 1;
   int64 limit = 2;
-  CustomerOrderOrdering ordering = 3;
+  repeated CustomerOrderOrdering ordering = 3;
   repeated CustomerOrderFilterRule filters = 4;
 }
 
@@ -6311,7 +6047,7 @@ message GetDonorResponse {
 message ListDonorRequest {
   string api = 1;
   int64 limit = 2;
-  DonorOrdering ordering = 3;
+  repeated DonorOrdering ordering = 3;
   repeated DonorFilterRule filters = 4;
 }
 
@@ -6376,7 +6112,7 @@ message GetLiveEventResponse {
 message ListLiveEventRequest {
   string api = 1;
   int64 limit = 2;
-  LiveEventOrdering ordering = 3;
+  repeated LiveEventOrdering ordering = 3;
   repeated LiveEventFilterRule filters = 4;
 }
 
@@ -6443,7 +6179,7 @@ message GetEventAttendeeResponse {
 message ListEventAttendeeRequest {
   string api = 1;
   int64 limit = 2;
-  EventAttendeeOrdering ordering = 3;
+  repeated EventAttendeeOrdering ordering = 3;
   repeated EventAttendeeFilterRule filters = 4;
 }
 
@@ -6508,7 +6244,7 @@ message GetVoterResponse {
 message ListVoterRequest {
   string api = 1;
   int64 limit = 2;
-  VoterOrdering ordering = 3;
+  repeated VoterOrdering ordering = 3;
   repeated VoterFilterRule filters = 4;
 }
 
@@ -6573,7 +6309,7 @@ message GetVolunteerOpportunityResponse {
 message ListVolunteerOpportunityRequest {
   string api = 1;
   int64 limit = 2;
-  VolunteerOpportunityOrdering ordering = 3;
+  repeated VolunteerOpportunityOrdering ordering = 3;
   repeated VolunteerOpportunityFilterRule filters = 4;
 }
 
@@ -6640,7 +6376,7 @@ message GetVolunteerResponse {
 message ListVolunteerRequest {
   string api = 1;
   int64 limit = 2;
-  VolunteerOrdering ordering = 3;
+  repeated VolunteerOrdering ordering = 3;
   repeated VolunteerFilterRule filters = 4;
 }
 
@@ -6705,7 +6441,7 @@ message GetFollowerResponse {
 message ListFollowerRequest {
   string api = 1;
   int64 limit = 2;
-  FollowerOrdering ordering = 3;
+  repeated FollowerOrdering ordering = 3;
   repeated FollowerFilterRule filters = 4;
 }
 
@@ -6768,7 +6504,7 @@ message GetTerritoryResponse {
 message ListTerritoryRequest {
   string api = 1;
   int64 limit = 2;
-  TerritoryOrdering ordering = 3;
+  repeated TerritoryOrdering ordering = 3;
   repeated TerritoryFilterRule filters = 4;
 }
 
@@ -6831,7 +6567,7 @@ message GetActivityTypeResponse {
 message ListActivityTypeRequest {
   string api = 1;
   int64 limit = 2;
-  ActivityTypeOrdering ordering = 3;
+  repeated ActivityTypeOrdering ordering = 3;
   repeated ActivityTypeFilterRule filters = 4;
 }
 
@@ -6900,7 +6636,7 @@ message GetActivityResponse {
 message ListActivityRequest {
   string api = 1;
   int64 limit = 2;
-  ActivityOrdering ordering = 3;
+  repeated ActivityOrdering ordering = 3;
   repeated ActivityFilterRule filters = 4;
 }
 
@@ -6967,7 +6703,7 @@ message GetNoteResponse {
 message ListNoteRequest {
   string api = 1;
   int64 limit = 2;
-  NoteOrdering ordering = 3;
+  repeated NoteOrdering ordering = 3;
   repeated NoteFilterRule filters = 4;
 }
 
@@ -7030,7 +6766,7 @@ message GetAccountResponse {
 message ListAccountRequest {
   string api = 1;
   int64 limit = 2;
-  AccountOrdering ordering = 3;
+  repeated AccountOrdering ordering = 3;
   repeated AccountFilterRule filters = 4;
 }
 
@@ -7095,7 +6831,7 @@ message GetOwnerMembershipResponse {
 message ListOwnerMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  OwnerMembershipOrdering ordering = 3;
+  repeated OwnerMembershipOrdering ordering = 3;
   repeated OwnerMembershipFilterRule filters = 4;
 }
 
@@ -7166,7 +6902,7 @@ message GetContactResponse {
 message ListContactRequest {
   string api = 1;
   int64 limit = 2;
-  ContactOrdering ordering = 3;
+  repeated ContactOrdering ordering = 3;
   repeated ContactFilterRule filters = 4;
 }
 
@@ -7231,7 +6967,7 @@ message GetContactMembershipResponse {
 message ListContactMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  ContactMembershipOrdering ordering = 3;
+  repeated ContactMembershipOrdering ordering = 3;
   repeated ContactMembershipFilterRule filters = 4;
 }
 
@@ -7298,7 +7034,7 @@ message GetCauseResponse {
 message ListCauseRequest {
   string api = 1;
   int64 limit = 2;
-  CauseOrdering ordering = 3;
+  repeated CauseOrdering ordering = 3;
   repeated CauseFilterRule filters = 4;
 }
 
@@ -7361,7 +7097,7 @@ message GetAgentResponse {
 message ListAgentRequest {
   string api = 1;
   int64 limit = 2;
-  AgentOrdering ordering = 3;
+  repeated AgentOrdering ordering = 3;
   repeated AgentFilterRule filters = 4;
 }
 
@@ -7426,7 +7162,7 @@ message GetAgentMembershipResponse {
 message ListAgentMembershipRequest {
   string api = 1;
   int64 limit = 2;
-  AgentMembershipOrdering ordering = 3;
+  repeated AgentMembershipOrdering ordering = 3;
   repeated AgentMembershipFilterRule filters = 4;
 }
 

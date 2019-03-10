@@ -14402,10 +14402,10 @@
     "v1ACLFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -14427,10 +14427,10 @@
         }
       }
     },
-    "v1ACLOrderedPair": {
+    "v1ACLOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -14441,17 +14441,6 @@
         },
         "UpdatedAt": {
           "$ref": "#/definitions/v1ACLUpdatedAtField"
-        }
-      }
-    },
-    "v1ACLOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ACLOrderedPair"
-          }
         }
       }
     },
@@ -14495,10 +14484,10 @@
     "v1AccountFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -14523,10 +14512,10 @@
         }
       }
     },
-    "v1AccountOrderedPair": {
+    "v1AccountOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -14540,17 +14529,6 @@
         },
         "Username": {
           "$ref": "#/definitions/v1AccountUsernameField"
-        }
-      }
-    },
-    "v1AccountOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1AccountOrderedPair"
-          }
         }
       }
     },
@@ -14635,10 +14613,10 @@
     "v1ActivityFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -14672,10 +14650,10 @@
         }
       }
     },
-    "v1ActivityOrderedPair": {
+    "v1ActivityOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -14698,17 +14676,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1ActivityCauseField"
-        }
-      }
-    },
-    "v1ActivityOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ActivityOrderedPair"
-          }
         }
       }
     },
@@ -14751,10 +14718,10 @@
     "v1ActivityTypeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -14779,10 +14746,10 @@
         }
       }
     },
-    "v1ActivityTypeOrderedPair": {
+    "v1ActivityTypeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -14796,17 +14763,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1ActivityTypeTitleField"
-        }
-      }
-    },
-    "v1ActivityTypeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ActivityTypeOrderedPair"
-          }
         }
       }
     },
@@ -14875,10 +14831,10 @@
     "v1AgentFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -14953,10 +14909,10 @@
     "v1AgentMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -14984,10 +14940,10 @@
         }
       }
     },
-    "v1AgentMembershipOrderedPair": {
+    "v1AgentMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15007,17 +14963,6 @@
         }
       }
     },
-    "v1AgentMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1AgentMembershipOrderedPair"
-          }
-        }
-      }
-    },
     "v1AgentMembershipUpdatedAtField": {
       "type": "object",
       "properties": {
@@ -15027,10 +14972,10 @@
         }
       }
     },
-    "v1AgentOrderedPair": {
+    "v1AgentOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15044,17 +14989,6 @@
         },
         "Account": {
           "$ref": "#/definitions/v1AgentAccountField"
-        }
-      }
-    },
-    "v1AgentOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1AgentOrderedPair"
-          }
         }
       }
     },
@@ -15098,10 +15032,10 @@
     "v1BoycottFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -15176,10 +15110,10 @@
     "v1BoycottMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -15207,10 +15141,10 @@
         }
       }
     },
-    "v1BoycottMembershipOrderedPair": {
+    "v1BoycottMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15230,17 +15164,6 @@
         }
       }
     },
-    "v1BoycottMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1BoycottMembershipOrderedPair"
-          }
-        }
-      }
-    },
     "v1BoycottMembershipUpdatedAtField": {
       "type": "object",
       "properties": {
@@ -15250,10 +15173,10 @@
         }
       }
     },
-    "v1BoycottOrderedPair": {
+    "v1BoycottOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15267,17 +15190,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1BoycottTitleField"
-        }
-      }
-    },
-    "v1BoycottOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1BoycottOrderedPair"
-          }
         }
       }
     },
@@ -15337,10 +15249,10 @@
     "v1CandidateFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -15365,10 +15277,10 @@
         }
       }
     },
-    "v1CandidateOrderedPair": {
+    "v1CandidateOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15382,17 +15294,6 @@
         },
         "Election": {
           "$ref": "#/definitions/v1CandidateElectionField"
-        }
-      }
-    },
-    "v1CandidateOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1CandidateOrderedPair"
-          }
         }
       }
     },
@@ -15442,10 +15343,10 @@
     "v1CauseFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -15476,10 +15377,10 @@
         }
       }
     },
-    "v1CauseOrderedPair": {
+    "v1CauseOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15499,17 +15400,6 @@
         },
         "Summary": {
           "$ref": "#/definitions/v1CauseSummaryField"
-        }
-      }
-    },
-    "v1CauseOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1CauseOrderedPair"
-          }
         }
       }
     },
@@ -15577,10 +15467,10 @@
     "v1CompanyFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -15605,10 +15495,10 @@
         }
       }
     },
-    "v1CompanyOrderedPair": {
+    "v1CompanyOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15622,17 +15512,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1CompanyTitleField"
-        }
-      }
-    },
-    "v1CompanyOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1CompanyOrderedPair"
-          }
         }
       }
     },
@@ -15695,10 +15574,10 @@
     "v1ComponentFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -15754,10 +15633,10 @@
     "v1ComponentImplementationFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -15779,10 +15658,10 @@
         }
       }
     },
-    "v1ComponentImplementationOrderedPair": {
+    "v1ComponentImplementationOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15793,17 +15672,6 @@
         },
         "UpdatedAt": {
           "$ref": "#/definitions/v1ComponentImplementationUpdatedAtField"
-        }
-      }
-    },
-    "v1ComponentImplementationOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ComponentImplementationOrderedPair"
-          }
         }
       }
     },
@@ -15824,10 +15692,10 @@
         }
       }
     },
-    "v1ComponentOrderedPair": {
+    "v1ComponentOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15844,17 +15712,6 @@
         },
         "LayoutColumn": {
           "$ref": "#/definitions/v1ComponentLayoutColumnField"
-        }
-      }
-    },
-    "v1ComponentOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ComponentOrderedPair"
-          }
         }
       }
     },
@@ -15889,10 +15746,10 @@
     "v1ComponentTypeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -15917,10 +15774,10 @@
         }
       }
     },
-    "v1ComponentTypeOrderedPair": {
+    "v1ComponentTypeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -15934,17 +15791,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1ComponentTypeTitleField"
-        }
-      }
-    },
-    "v1ComponentTypeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ComponentTypeOrderedPair"
-          }
         }
       }
     },
@@ -15994,10 +15840,10 @@
     "v1ContactFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -16100,10 +15946,10 @@
     "v1ContactMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -16131,10 +15977,10 @@
         }
       }
     },
-    "v1ContactMembershipOrderedPair": {
+    "v1ContactMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -16151,17 +15997,6 @@
         },
         "Contact": {
           "$ref": "#/definitions/v1ContactMembershipContactField"
-        }
-      }
-    },
-    "v1ContactMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ContactMembershipOrderedPair"
-          }
         }
       }
     },
@@ -16182,10 +16017,10 @@
         }
       }
     },
-    "v1ContactOrderedPair": {
+    "v1ContactOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -16211,17 +16046,6 @@
         },
         "PhoneNumber": {
           "$ref": "#/definitions/v1ContactPhoneNumberField"
-        }
-      }
-    },
-    "v1ContactOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ContactOrderedPair"
-          }
         }
       }
     },
@@ -18393,10 +18217,10 @@
     "v1CustomerCartFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -18418,10 +18242,10 @@
         }
       }
     },
-    "v1CustomerCartOrderedPair": {
+    "v1CustomerCartOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -18432,17 +18256,6 @@
         },
         "UpdatedAt": {
           "$ref": "#/definitions/v1CustomerCartUpdatedAtField"
-        }
-      }
-    },
-    "v1CustomerCartOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1CustomerCartOrderedPair"
-          }
         }
       }
     },
@@ -18494,10 +18307,10 @@
     "v1CustomerOrderFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -18522,10 +18335,10 @@
         }
       }
     },
-    "v1CustomerOrderOrderedPair": {
+    "v1CustomerOrderOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -18539,17 +18352,6 @@
         },
         "CustomerCart": {
           "$ref": "#/definitions/v1CustomerOrderCustomerCartField"
-        }
-      }
-    },
-    "v1CustomerOrderOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1CustomerOrderOrderedPair"
-          }
         }
       }
     },
@@ -19382,10 +19184,10 @@
     "v1DeliveryFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -19407,10 +19209,10 @@
         }
       }
     },
-    "v1DeliveryOrderedPair": {
+    "v1DeliveryOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -19421,17 +19223,6 @@
         },
         "UpdatedAt": {
           "$ref": "#/definitions/v1DeliveryUpdatedAtField"
-        }
-      }
-    },
-    "v1DeliveryOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1DeliveryOrderedPair"
-          }
         }
       }
     },
@@ -19499,10 +19290,10 @@
     "v1DistrictFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -19542,10 +19333,10 @@
         }
       }
     },
-    "v1DistrictOrderedPair": {
+    "v1DistrictOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -19565,17 +19356,6 @@
         },
         "DistrictType": {
           "$ref": "#/definitions/v1DistrictDistrictTypeField"
-        }
-      }
-    },
-    "v1DistrictOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1DistrictOrderedPair"
-          }
         }
       }
     },
@@ -19618,10 +19398,10 @@
     "v1DistrictTypeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -19646,10 +19426,10 @@
         }
       }
     },
-    "v1DistrictTypeOrderedPair": {
+    "v1DistrictTypeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -19663,17 +19443,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1DistrictTypeTitleField"
-        }
-      }
-    },
-    "v1DistrictTypeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1DistrictTypeOrderedPair"
-          }
         }
       }
     },
@@ -19734,10 +19503,10 @@
     "v1DonationCampaignFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -19812,10 +19581,10 @@
     "v1DonationCampaignMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -19843,10 +19612,10 @@
         }
       }
     },
-    "v1DonationCampaignMembershipOrderedPair": {
+    "v1DonationCampaignMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -19866,17 +19635,6 @@
         }
       }
     },
-    "v1DonationCampaignMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1DonationCampaignMembershipOrderedPair"
-          }
-        }
-      }
-    },
     "v1DonationCampaignMembershipUpdatedAtField": {
       "type": "object",
       "properties": {
@@ -19886,10 +19644,10 @@
         }
       }
     },
-    "v1DonationCampaignOrderedPair": {
+    "v1DonationCampaignOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -19903,17 +19661,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1DonationCampaignTitleField"
-        }
-      }
-    },
-    "v1DonationCampaignOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1DonationCampaignOrderedPair"
-          }
         }
       }
     },
@@ -19995,10 +19742,10 @@
     "v1DonorFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20029,10 +19776,10 @@
         }
       }
     },
-    "v1DonorOrderedPair": {
+    "v1DonorOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -20052,17 +19799,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1DonorCauseField"
-        }
-      }
-    },
-    "v1DonorOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1DonorOrderedPair"
-          }
         }
       }
     },
@@ -20106,10 +19842,10 @@
     "v1ElectionFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20184,10 +19920,10 @@
     "v1ElectionMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20215,10 +19951,10 @@
         }
       }
     },
-    "v1ElectionMembershipOrderedPair": {
+    "v1ElectionMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -20238,17 +19974,6 @@
         }
       }
     },
-    "v1ElectionMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ElectionMembershipOrderedPair"
-          }
-        }
-      }
-    },
     "v1ElectionMembershipUpdatedAtField": {
       "type": "object",
       "properties": {
@@ -20258,10 +19983,10 @@
         }
       }
     },
-    "v1ElectionOrderedPair": {
+    "v1ElectionOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -20275,17 +20000,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1ElectionTitleField"
-        }
-      }
-    },
-    "v1ElectionOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ElectionOrderedPair"
-          }
         }
       }
     },
@@ -20345,10 +20059,10 @@
     "v1EmailAddressFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20373,10 +20087,10 @@
         }
       }
     },
-    "v1EmailAddressOrderedPair": {
+    "v1EmailAddressOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -20390,17 +20104,6 @@
         },
         "Address": {
           "$ref": "#/definitions/v1EmailAddressAddressField"
-        }
-      }
-    },
-    "v1EmailAddressOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1EmailAddressOrderedPair"
-          }
         }
       }
     },
@@ -20466,10 +20169,10 @@
     "v1EventAttendeeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20508,10 +20211,10 @@
         }
       }
     },
-    "v1EventAttendeeOrderedPair": {
+    "v1EventAttendeeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -20531,17 +20234,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1EventAttendeeCauseField"
-        }
-      }
-    },
-    "v1EventAttendeeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1EventAttendeeOrderedPair"
-          }
         }
       }
     },
@@ -20588,10 +20280,10 @@
     "v1ExperimentFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20627,10 +20319,10 @@
         }
       }
     },
-    "v1ExperimentOrderedPair": {
+    "v1ExperimentOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -20647,17 +20339,6 @@
         },
         "LandingPage": {
           "$ref": "#/definitions/v1ExperimentLandingPageField"
-        }
-      }
-    },
-    "v1ExperimentOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ExperimentOrderedPair"
-          }
         }
       }
     },
@@ -20728,10 +20409,10 @@
     "v1FieldFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20759,10 +20440,10 @@
         }
       }
     },
-    "v1FieldOrderedPair": {
+    "v1FieldOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -20779,17 +20460,6 @@
         },
         "Component": {
           "$ref": "#/definitions/v1FieldComponentField"
-        }
-      }
-    },
-    "v1FieldOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1FieldOrderedPair"
-          }
         }
       }
     },
@@ -20824,10 +20494,10 @@
     "v1FieldTypeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20852,10 +20522,10 @@
         }
       }
     },
-    "v1FieldTypeOrderedPair": {
+    "v1FieldTypeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -20869,17 +20539,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1FieldTypeTitleField"
-        }
-      }
-    },
-    "v1FieldTypeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1FieldTypeOrderedPair"
-          }
         }
       }
     },
@@ -20959,10 +20618,10 @@
     "v1FollowerFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -20990,10 +20649,10 @@
         }
       }
     },
-    "v1FollowerOrderedPair": {
+    "v1FollowerOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -21010,17 +20669,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1FollowerCauseField"
-        }
-      }
-    },
-    "v1FollowerOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1FollowerOrderedPair"
-          }
         }
       }
     },
@@ -21804,10 +21452,10 @@
     "v1HomePageFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -21846,10 +21494,10 @@
         }
       }
     },
-    "v1HomePageOrderedPair": {
+    "v1HomePageOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -21869,17 +21517,6 @@
         },
         "Layout": {
           "$ref": "#/definitions/v1HomePageLayoutField"
-        }
-      }
-    },
-    "v1HomePageOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1HomePageOrderedPair"
-          }
         }
       }
     },
@@ -21942,10 +21579,10 @@
     "v1IssueFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -21973,10 +21610,10 @@
         }
       }
     },
-    "v1IssueOrderedPair": {
+    "v1IssueOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -21993,17 +21630,6 @@
         },
         "Election": {
           "$ref": "#/definitions/v1IssueElectionField"
-        }
-      }
-    },
-    "v1IssueOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1IssueOrderedPair"
-          }
         }
       }
     },
@@ -22069,10 +21695,10 @@
     "v1LandingPageFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -22111,10 +21737,10 @@
         }
       }
     },
-    "v1LandingPageOrderedPair": {
+    "v1LandingPageOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -22134,17 +21760,6 @@
         },
         "Layout": {
           "$ref": "#/definitions/v1LandingPageLayoutField"
-        }
-      }
-    },
-    "v1LandingPageOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LandingPageOrderedPair"
-          }
         }
       }
     },
@@ -22215,10 +21830,10 @@
     "v1LayoutColumnFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -22251,10 +21866,10 @@
         }
       }
     },
-    "v1LayoutColumnOrderedPair": {
+    "v1LayoutColumnOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -22268,17 +21883,6 @@
         },
         "LayoutRow": {
           "$ref": "#/definitions/v1LayoutColumnLayoutRowField"
-        }
-      }
-    },
-    "v1LayoutColumnOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LayoutColumnOrderedPair"
-          }
         }
       }
     },
@@ -22303,10 +21907,10 @@
     "v1LayoutFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -22339,10 +21943,10 @@
         }
       }
     },
-    "v1LayoutOrderedPair": {
+    "v1LayoutOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -22356,17 +21960,6 @@
         },
         "LayoutType": {
           "$ref": "#/definitions/v1LayoutLayoutTypeField"
-        }
-      }
-    },
-    "v1LayoutOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LayoutOrderedPair"
-          }
         }
       }
     },
@@ -22401,10 +21994,10 @@
     "v1LayoutRowFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -22437,10 +22030,10 @@
         }
       }
     },
-    "v1LayoutRowOrderedPair": {
+    "v1LayoutRowOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -22454,17 +22047,6 @@
         },
         "Layout": {
           "$ref": "#/definitions/v1LayoutRowLayoutField"
-        }
-      }
-    },
-    "v1LayoutRowOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LayoutRowOrderedPair"
-          }
         }
       }
     },
@@ -22508,10 +22090,10 @@
     "v1LayoutTypeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -22536,10 +22118,10 @@
         }
       }
     },
-    "v1LayoutTypeOrderedPair": {
+    "v1LayoutTypeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -22553,17 +22135,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1LayoutTypeTitleField"
-        }
-      }
-    },
-    "v1LayoutTypeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LayoutTypeOrderedPair"
-          }
         }
       }
     },
@@ -23551,10 +23122,10 @@
     "v1LiveEventFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -23632,10 +23203,10 @@
     "v1LiveEventMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -23671,10 +23242,10 @@
         }
       }
     },
-    "v1LiveEventMembershipOrderedPair": {
+    "v1LiveEventMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -23694,17 +23265,6 @@
         }
       }
     },
-    "v1LiveEventMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LiveEventMembershipOrderedPair"
-          }
-        }
-      }
-    },
     "v1LiveEventMembershipUpdatedAtField": {
       "type": "object",
       "properties": {
@@ -23714,10 +23274,10 @@
         }
       }
     },
-    "v1LiveEventOrderedPair": {
+    "v1LiveEventOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -23734,17 +23294,6 @@
         },
         "LiveEventType": {
           "$ref": "#/definitions/v1LiveEventLiveEventTypeField"
-        }
-      }
-    },
-    "v1LiveEventOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LiveEventOrderedPair"
-          }
         }
       }
     },
@@ -23787,10 +23336,10 @@
     "v1LiveEventTypeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -23815,10 +23364,10 @@
         }
       }
     },
-    "v1LiveEventTypeOrderedPair": {
+    "v1LiveEventTypeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -23832,17 +23381,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1LiveEventTypeTitleField"
-        }
-      }
-    },
-    "v1LiveEventTypeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LiveEventTypeOrderedPair"
-          }
         }
       }
     },
@@ -23928,10 +23466,10 @@
     "v1MailingAddressFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -23965,10 +23503,10 @@
         }
       }
     },
-    "v1MailingAddressOrderedPair": {
+    "v1MailingAddressOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -23991,17 +23529,6 @@
         },
         "ZipCode": {
           "$ref": "#/definitions/v1MailingAddressZipCodeField"
-        }
-      }
-    },
-    "v1MailingAddressOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1MailingAddressOrderedPair"
-          }
         }
       }
     },
@@ -24099,10 +23626,10 @@
     "v1NoteFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -24133,10 +23660,10 @@
         }
       }
     },
-    "v1NoteOrderedPair": {
+    "v1NoteOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -24156,17 +23683,6 @@
         },
         "Body": {
           "$ref": "#/definitions/v1NoteBodyField"
-        }
-      }
-    },
-    "v1NoteOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1NoteOrderedPair"
-          }
         }
       }
     },
@@ -24221,10 +23737,10 @@
     "v1OfficeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -24252,10 +23768,10 @@
         }
       }
     },
-    "v1OfficeOrderedPair": {
+    "v1OfficeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -24272,17 +23788,6 @@
         },
         "Election": {
           "$ref": "#/definitions/v1OfficeElectionField"
-        }
-      }
-    },
-    "v1OfficeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1OfficeOrderedPair"
-          }
         }
       }
     },
@@ -24353,10 +23858,10 @@
     "v1OwnerMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -24384,10 +23889,10 @@
         }
       }
     },
-    "v1OwnerMembershipOrderedPair": {
+    "v1OwnerMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -24404,17 +23909,6 @@
         },
         "Account": {
           "$ref": "#/definitions/v1OwnerMembershipAccountField"
-        }
-      }
-    },
-    "v1OwnerMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1OwnerMembershipOrderedPair"
-          }
         }
       }
     },
@@ -24466,10 +23960,10 @@
     "v1PaymentFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -24494,10 +23988,10 @@
         }
       }
     },
-    "v1PaymentOrderedPair": {
+    "v1PaymentOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -24511,17 +24005,6 @@
         },
         "CustomerOrder": {
           "$ref": "#/definitions/v1PaymentCustomerOrderField"
-        }
-      }
-    },
-    "v1PaymentOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PaymentOrderedPair"
-          }
         }
       }
     },
@@ -24565,10 +24048,10 @@
     "v1PetitionFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -24635,10 +24118,10 @@
     "v1PetitionMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -24666,10 +24149,10 @@
         }
       }
     },
-    "v1PetitionMembershipOrderedPair": {
+    "v1PetitionMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -24686,17 +24169,6 @@
         },
         "Petition": {
           "$ref": "#/definitions/v1PetitionMembershipPetitionField"
-        }
-      }
-    },
-    "v1PetitionMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PetitionMembershipOrderedPair"
-          }
         }
       }
     },
@@ -24717,10 +24189,10 @@
         }
       }
     },
-    "v1PetitionOrderedPair": {
+    "v1PetitionOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -24734,17 +24206,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1PetitionTitleField"
-        }
-      }
-    },
-    "v1PetitionOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PetitionOrderedPair"
-          }
         }
       }
     },
@@ -24801,10 +24262,10 @@
     "v1PetitionSignerFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -24835,10 +24296,10 @@
         }
       }
     },
-    "v1PetitionSignerOrderedPair": {
+    "v1PetitionSignerOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -24858,17 +24319,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1PetitionSignerCauseField"
-        }
-      }
-    },
-    "v1PetitionSignerOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PetitionSignerOrderedPair"
-          }
         }
       }
     },
@@ -24937,10 +24387,10 @@
     "v1PhoneNumberFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -24965,10 +24415,10 @@
         }
       }
     },
-    "v1PhoneNumberOrderedPair": {
+    "v1PhoneNumberOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -24982,17 +24432,6 @@
         },
         "PhoneNumber": {
           "$ref": "#/definitions/v1PhoneNumberPhoneNumberField"
-        }
-      }
-    },
-    "v1PhoneNumberOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PhoneNumberOrderedPair"
-          }
         }
       }
     },
@@ -25044,10 +24483,10 @@
     "v1PhotoFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -25080,10 +24519,10 @@
         }
       }
     },
-    "v1PhotoOrderedPair": {
+    "v1PhotoOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -25097,17 +24536,6 @@
         },
         "ImgURL": {
           "$ref": "#/definitions/v1PhotoImgURLField"
-        }
-      }
-    },
-    "v1PhotoOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PhotoOrderedPair"
-          }
         }
       }
     },
@@ -25151,10 +24579,10 @@
     "v1PollFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -25213,10 +24641,10 @@
     "v1PollItemFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -25244,10 +24672,10 @@
         }
       }
     },
-    "v1PollItemOrderedPair": {
+    "v1PollItemOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -25264,17 +24692,6 @@
         },
         "Poll": {
           "$ref": "#/definitions/v1PollItemPollField"
-        }
-      }
-    },
-    "v1PollItemOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PollItemOrderedPair"
-          }
         }
       }
     },
@@ -25345,10 +24762,10 @@
     "v1PollMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -25376,10 +24793,10 @@
         }
       }
     },
-    "v1PollMembershipOrderedPair": {
+    "v1PollMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -25396,17 +24813,6 @@
         },
         "Petition": {
           "$ref": "#/definitions/v1PollMembershipPetitionField"
-        }
-      }
-    },
-    "v1PollMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PollMembershipOrderedPair"
-          }
         }
       }
     },
@@ -25427,10 +24833,10 @@
         }
       }
     },
-    "v1PollOrderedPair": {
+    "v1PollOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -25444,17 +24850,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1PollTitleField"
-        }
-      }
-    },
-    "v1PollOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PollOrderedPair"
-          }
         }
       }
     },
@@ -25511,10 +24906,10 @@
     "v1PollRespondantFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -25545,10 +24940,10 @@
         }
       }
     },
-    "v1PollRespondantOrderedPair": {
+    "v1PollRespondantOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -25568,17 +24963,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1PollRespondantCauseField"
-        }
-      }
-    },
-    "v1PollRespondantOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PollRespondantOrderedPair"
-          }
         }
       }
     },
@@ -25650,10 +25034,10 @@
     "v1ProductFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -25723,10 +25107,10 @@
     "v1ProductMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -25754,10 +25138,10 @@
         }
       }
     },
-    "v1ProductMembershipOrderedPair": {
+    "v1ProductMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -25774,17 +25158,6 @@
         },
         "Product": {
           "$ref": "#/definitions/v1ProductMembershipProductField"
-        }
-      }
-    },
-    "v1ProductMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ProductMembershipOrderedPair"
-          }
         }
       }
     },
@@ -25805,10 +25178,10 @@
         }
       }
     },
-    "v1ProductOrderedPair": {
+    "v1ProductOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -25825,17 +25198,6 @@
         },
         "ProductType": {
           "$ref": "#/definitions/v1ProductProductTypeField"
-        }
-      }
-    },
-    "v1ProductOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ProductOrderedPair"
-          }
         }
       }
     },
@@ -25886,10 +25248,10 @@
     "v1ProductTypeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -25914,10 +25276,10 @@
         }
       }
     },
-    "v1ProductTypeOrderedPair": {
+    "v1ProductTypeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -25931,17 +25293,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1ProductTypeTitleField"
-        }
-      }
-    },
-    "v1ProductTypeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1ProductTypeOrderedPair"
-          }
         }
       }
     },
@@ -26032,10 +25383,10 @@
     "v1PurchaserFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -26066,10 +25417,10 @@
         }
       }
     },
-    "v1PurchaserOrderedPair": {
+    "v1PurchaserOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -26089,17 +25440,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1PurchaserCauseField"
-        }
-      }
-    },
-    "v1PurchaserOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1PurchaserOrderedPair"
-          }
         }
       }
     },
@@ -26156,10 +25496,10 @@
     "v1TerritoryFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -26184,10 +25524,10 @@
         }
       }
     },
-    "v1TerritoryOrderedPair": {
+    "v1TerritoryOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -26201,17 +25541,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1TerritoryTitleField"
-        }
-      }
-    },
-    "v1TerritoryOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1TerritoryOrderedPair"
-          }
         }
       }
     },
@@ -27803,10 +27132,10 @@
     "v1VolunteerFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -27879,10 +27208,10 @@
     "v1VolunteerOpportunityFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -27952,10 +27281,10 @@
     "v1VolunteerOpportunityMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -27983,10 +27312,10 @@
         }
       }
     },
-    "v1VolunteerOpportunityMembershipOrderedPair": {
+    "v1VolunteerOpportunityMembershipOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -28003,17 +27332,6 @@
         },
         "VolunteerOpportunity": {
           "$ref": "#/definitions/v1VolunteerOpportunityMembershipVolunteerOpportunityField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityMembershipOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1VolunteerOpportunityMembershipOrderedPair"
-          }
         }
       }
     },
@@ -28034,10 +27352,10 @@
         }
       }
     },
-    "v1VolunteerOpportunityOrderedPair": {
+    "v1VolunteerOpportunityOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -28054,17 +27372,6 @@
         },
         "ElectionType": {
           "$ref": "#/definitions/v1VolunteerOpportunityElectionTypeField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1VolunteerOpportunityOrderedPair"
-          }
         }
       }
     },
@@ -28107,10 +27414,10 @@
     "v1VolunteerOpportunityTypeFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -28135,10 +27442,10 @@
         }
       }
     },
-    "v1VolunteerOpportunityTypeOrderedPair": {
+    "v1VolunteerOpportunityTypeOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -28152,17 +27459,6 @@
         },
         "Title": {
           "$ref": "#/definitions/v1VolunteerOpportunityTypeTitleField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityTypeOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1VolunteerOpportunityTypeOrderedPair"
-          }
         }
       }
     },
@@ -28192,10 +27488,10 @@
         }
       }
     },
-    "v1VolunteerOrderedPair": {
+    "v1VolunteerOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -28215,17 +27511,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1VolunteerCauseField"
-        }
-      }
-    },
-    "v1VolunteerOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1VolunteerOrderedPair"
-          }
         }
       }
     },
@@ -28296,10 +27581,10 @@
     "v1VoterFilterRule": {
       "type": "object",
       "properties": {
-        "rule": {
+        "Operation": {
           "$ref": "#/definitions/v1Rule"
         },
-        "logicalOperator": {
+        "LogicalOperator": {
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
@@ -28327,10 +27612,10 @@
         }
       }
     },
-    "v1VoterOrderedPair": {
+    "v1VoterOrdering": {
       "type": "object",
       "properties": {
-        "direction": {
+        "Direction": {
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
@@ -28347,17 +27632,6 @@
         },
         "Cause": {
           "$ref": "#/definitions/v1VoterCauseField"
-        }
-      }
-    },
-    "v1VoterOrdering": {
-      "type": "object",
-      "properties": {
-        "orderedPair": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1VoterOrderedPair"
-          }
         }
       }
     },

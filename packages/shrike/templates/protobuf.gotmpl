@@ -63,24 +63,20 @@ message {{ .Table.Name}}{{.Name}}Field {
 }
 {{end}}
 
-message {{.Name}}OrderedPair {
-  Direction direction = 1;
+message {{.Name}}Ordering {
+  Direction Direction = 1;
   oneof field {
-{{range $index, $value := .Columns}}  {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};
+{{range $index, $value := .Columns}}    {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};
 {{end}}  }
 }
 
-message {{.Name}}Ordering {
-  repeated {{.Name}}OrderedPair orderedPair = 1;
-}
 message {{.Name}}FilterRule {
-  Rule rule = 1;
-  LogicalOperator logicalOperator = 2;
+  Rule Operation = 1;
+  LogicalOperator LogicalOperator = 2;
   oneof field {
-{{range $index, $value := .Columns}}  {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};
+{{range $index, $value := .Columns}}    {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};
 {{end}}  }
-}
-{{end}}
+}{{end}}
 
 // Generated Types and Message Schema
 {{range .Schema.Tables}}
@@ -115,7 +111,7 @@ message Get{{.Name}}Response {
 message List{{.Name}}Request {
   string api = 1;
   int64 limit = 2;
-  {{.Name}}Ordering ordering = 3;
+  repeated {{.Name}}Ordering ordering = 3;
   repeated {{.Name}}FilterRule filters = 4;
 }
 
