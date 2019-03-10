@@ -85,7 +85,7 @@ message {{.Name}} {
 {{end}}}
 
 message Create{{.Name}} {
-{{range $index, $value := .Columns}}  {{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}{{.Type}} {{.Name}} = {{dec (dec $index)}};
+{{range $index, $value := .Columns}}{{if ne .Name "ID"}}{{if ne .Name "CreatedAt"}}{{if ne .Name "UpdatedAt"}}  {{.Type}} {{.Name}} = {{dec (dec $index)}};
 {{end}}{{end}}{{end}}{{end}}}
 
 message Create{{.Name}}Request {
@@ -121,23 +121,23 @@ message List{{.Name}}Response {
 }
 
 message Update{{.Name}}Request{
-    string api = 1;
-    {{.Name}} item = 2;
+  string api = 1;
+  {{.Name}} item = 2;
 }
 
 message Update{{.Name}}Response {
-    string api = 1;
-    int64 updated = 2;
+  string api = 1;
+  int64 updated = 2;
 }
 
 message Delete{{.Name}}Request {
-    string api = 1;
-    string ID = 2;
+  string api = 1;
+  string ID = 2;
 }
 
 message Delete{{.Name}}Response {
-    string api = 1;
-    int64 deleted = 2;
+  string api = 1;
+  int64 deleted = 2;
 }
 {{end}}
 
