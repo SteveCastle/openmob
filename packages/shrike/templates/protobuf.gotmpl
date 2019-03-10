@@ -59,7 +59,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 
 {{range $index, $value := .Columns}}
 message {{ .Table.Name}}{{.Name}}Field {
-  {{.Type}} {{ .Name}} = {{inc $index}};
+  {{.Type}} {{.Name}} = 1;
 }
 {{end}}
 
@@ -71,7 +71,7 @@ message {{.Name}}Ordering {
 }
 
 message {{.Name}}FilterRule {
-  Rule Operation = 1;
+  Rule Rule = 1;
   LogicalOperator LogicalOperator = 2;
   oneof field {
 {{range $index, $value := .Columns}}    {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};

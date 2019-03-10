@@ -14402,7 +14402,7 @@
     "v1ACLFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -14484,7 +14484,7 @@
     "v1AccountFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -14613,7 +14613,7 @@
     "v1ActivityFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -14718,7 +14718,7 @@
     "v1ActivityTypeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -14831,7 +14831,7 @@
     "v1AgentFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -14909,7 +14909,7 @@
     "v1AgentMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15032,7 +15032,7 @@
     "v1BoycottFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15110,7 +15110,7 @@
     "v1BoycottMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15249,7 +15249,7 @@
     "v1CandidateFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15343,7 +15343,7 @@
     "v1CauseFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15467,7 +15467,7 @@
     "v1CompanyFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15574,7 +15574,7 @@
     "v1ComponentFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15633,7 +15633,7 @@
     "v1ComponentImplementationFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15746,7 +15746,7 @@
     "v1ComponentTypeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15840,7 +15840,7 @@
     "v1ContactFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -15946,7 +15946,7 @@
     "v1ContactMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -18217,7 +18217,7 @@
     "v1CustomerCartFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -18307,7 +18307,7 @@
     "v1CustomerOrderFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -19184,7 +19184,7 @@
     "v1DeliveryFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -19290,7 +19290,7 @@
     "v1DistrictFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -19398,7 +19398,7 @@
     "v1DistrictTypeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -19503,7 +19503,7 @@
     "v1DonationCampaignFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -19581,7 +19581,7 @@
     "v1DonationCampaignMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -19742,7 +19742,7 @@
     "v1DonorFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -19842,7 +19842,7 @@
     "v1ElectionFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -19920,7 +19920,7 @@
     "v1ElectionMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -20059,7 +20059,7 @@
     "v1EmailAddressFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -20169,7 +20169,7 @@
     "v1EventAttendeeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -20280,7 +20280,7 @@
     "v1ExperimentFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -20409,7 +20409,7 @@
     "v1FieldFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -20494,7 +20494,7 @@
     "v1FieldTypeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -20618,7 +20618,7 @@
     "v1FollowerFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -21452,7 +21452,7 @@
     "v1HomePageFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -21579,7 +21579,7 @@
     "v1IssueFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -21695,7 +21695,7 @@
     "v1LandingPageFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -21830,7 +21830,7 @@
     "v1LayoutColumnFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -21907,7 +21907,7 @@
     "v1LayoutFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -21994,7 +21994,7 @@
     "v1LayoutRowFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -22090,7 +22090,7 @@
     "v1LayoutTypeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -23122,7 +23122,7 @@
     "v1LiveEventFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -23203,7 +23203,7 @@
     "v1LiveEventMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -23336,7 +23336,7 @@
     "v1LiveEventTypeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -23466,7 +23466,7 @@
     "v1MailingAddressFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -23626,7 +23626,7 @@
     "v1NoteFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -23737,7 +23737,7 @@
     "v1OfficeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -23858,7 +23858,7 @@
     "v1OwnerMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -23960,7 +23960,7 @@
     "v1PaymentFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24048,7 +24048,7 @@
     "v1PetitionFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24118,7 +24118,7 @@
     "v1PetitionMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24262,7 +24262,7 @@
     "v1PetitionSignerFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24387,7 +24387,7 @@
     "v1PhoneNumberFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24483,7 +24483,7 @@
     "v1PhotoFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24579,7 +24579,7 @@
     "v1PollFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24641,7 +24641,7 @@
     "v1PollItemFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24762,7 +24762,7 @@
     "v1PollMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -24906,7 +24906,7 @@
     "v1PollRespondantFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -25034,7 +25034,7 @@
     "v1ProductFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -25107,7 +25107,7 @@
     "v1ProductMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -25248,7 +25248,7 @@
     "v1ProductTypeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -25383,7 +25383,7 @@
     "v1PurchaserFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -25496,7 +25496,7 @@
     "v1TerritoryFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -27132,7 +27132,7 @@
     "v1VolunteerFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -27208,7 +27208,7 @@
     "v1VolunteerOpportunityFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -27281,7 +27281,7 @@
     "v1VolunteerOpportunityMembershipFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -27414,7 +27414,7 @@
     "v1VolunteerOpportunityTypeFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
@@ -27581,7 +27581,7 @@
     "v1VoterFilterRule": {
       "type": "object",
       "properties": {
-        "Operation": {
+        "Rule": {
           "$ref": "#/definitions/v1Rule"
         },
         "LogicalOperator": {
