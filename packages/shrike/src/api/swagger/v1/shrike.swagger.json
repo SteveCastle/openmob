@@ -14390,15 +14390,6 @@
         }
       }
     },
-    "v1ACLCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ACLFilterRule": {
       "type": "object",
       "properties": {
@@ -14409,21 +14400,15 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ACLIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ACLCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ACLUpdatedAtField"
-        }
-      }
-    },
-    "v1ACLIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -14434,19 +14419,12 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ACLIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ACLCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ACLUpdatedAtField"
-        }
-      }
-    },
-    "v1ACLUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
@@ -14472,15 +14450,6 @@
         }
       }
     },
-    "v1AccountCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1AccountFilterRule": {
       "type": "object",
       "properties": {
@@ -14491,23 +14460,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1AccountIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1AccountCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1AccountUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Username": {
-          "$ref": "#/definitions/v1AccountUsernameField"
-        }
-      }
-    },
-    "v1AccountIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -14519,31 +14482,16 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1AccountIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1AccountCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1AccountUpdatedAtField"
-        },
-        "Username": {
-          "$ref": "#/definitions/v1AccountUsernameField"
-        }
-      }
-    },
-    "v1AccountUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "v1AccountUsernameField": {
-      "type": "object",
-      "properties": {
+        },
         "Username": {
           "type": "string"
         }
@@ -14577,39 +14525,6 @@
         }
       }
     },
-    "v1ActivityActivityTypeField": {
-      "type": "object",
-      "properties": {
-        "ActivityType": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ActivityCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ActivityContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ActivityCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ActivityFilterRule": {
       "type": "object",
       "properties": {
@@ -14620,32 +14535,26 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ActivityIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ActivityCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ActivityUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ActivityTitleField"
+          "type": "string"
         },
         "ActivityType": {
-          "$ref": "#/definitions/v1ActivityActivityTypeField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1ActivityContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1ActivityCauseField"
-        }
-      }
-    },
-    "v1ActivityIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -14657,32 +14566,26 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ActivityIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ActivityCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ActivityUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ActivityTitleField"
+          "type": "string"
         },
         "ActivityType": {
-          "$ref": "#/definitions/v1ActivityActivityTypeField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1ActivityContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1ActivityCauseField"
-        }
-      }
-    },
-    "v1ActivityTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
           "type": "string"
         }
       }
@@ -14706,15 +14609,6 @@
         }
       }
     },
-    "v1ActivityTypeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ActivityTypeFilterRule": {
       "type": "object",
       "properties": {
@@ -14725,23 +14619,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ActivityTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ActivityTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ActivityTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ActivityTypeTitleField"
-        }
-      }
-    },
-    "v1ActivityTypeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -14753,42 +14641,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ActivityTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ActivityTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ActivityTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Title": {
-          "$ref": "#/definitions/v1ActivityTypeTitleField"
-        }
-      }
-    },
-    "v1ActivityTypeTitleField": {
-      "type": "object",
-      "properties": {
         "Title": {
           "type": "string"
-        }
-      }
-    },
-    "v1ActivityTypeUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1ActivityUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -14811,23 +14675,6 @@
         }
       }
     },
-    "v1AgentAccountField": {
-      "type": "object",
-      "properties": {
-        "Account": {
-          "type": "string"
-        }
-      }
-    },
-    "v1AgentCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1AgentFilterRule": {
       "type": "object",
       "properties": {
@@ -14838,23 +14685,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1AgentIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1AgentCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1AgentUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Account": {
-          "$ref": "#/definitions/v1AgentAccountField"
-        }
-      }
-    },
-    "v1AgentIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -14881,31 +14722,6 @@
         }
       }
     },
-    "v1AgentMembershipAgentField": {
-      "type": "object",
-      "properties": {
-        "Agent": {
-          "type": "string"
-        }
-      }
-    },
-    "v1AgentMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1AgentMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1AgentMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -14916,26 +14732,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1AgentMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1AgentMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1AgentMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1AgentMembershipCauseField"
+          "type": "string"
         },
         "Agent": {
-          "$ref": "#/definitions/v1AgentMembershipAgentField"
-        }
-      }
-    },
-    "v1AgentMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -14947,28 +14757,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1AgentMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1AgentMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1AgentMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1AgentMembershipCauseField"
-        },
-        "Agent": {
-          "$ref": "#/definitions/v1AgentMembershipAgentField"
-        }
-      }
-    },
-    "v1AgentMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Agent": {
+          "type": "string"
         }
       }
     },
@@ -14979,25 +14782,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1AgentIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1AgentCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1AgentUpdatedAtField"
-        },
-        "Account": {
-          "$ref": "#/definitions/v1AgentAccountField"
-        }
-      }
-    },
-    "v1AgentUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Account": {
+          "type": "string"
         }
       }
     },
@@ -15020,15 +14816,6 @@
         }
       }
     },
-    "v1BoycottCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1BoycottFilterRule": {
       "type": "object",
       "properties": {
@@ -15039,23 +14826,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1BoycottIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1BoycottCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1BoycottUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1BoycottTitleField"
-        }
-      }
-    },
-    "v1BoycottIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -15082,31 +14863,6 @@
         }
       }
     },
-    "v1BoycottMembershipBoycottField": {
-      "type": "object",
-      "properties": {
-        "Boycott": {
-          "type": "string"
-        }
-      }
-    },
-    "v1BoycottMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1BoycottMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1BoycottMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -15117,26 +14873,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1BoycottMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1BoycottMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1BoycottMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1BoycottMembershipCauseField"
+          "type": "string"
         },
         "Boycott": {
-          "$ref": "#/definitions/v1BoycottMembershipBoycottField"
-        }
-      }
-    },
-    "v1BoycottMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -15148,28 +14898,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1BoycottMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1BoycottMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1BoycottMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1BoycottMembershipCauseField"
-        },
-        "Boycott": {
-          "$ref": "#/definitions/v1BoycottMembershipBoycottField"
-        }
-      }
-    },
-    "v1BoycottMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Boycott": {
+          "type": "string"
         }
       }
     },
@@ -15180,33 +14923,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1BoycottIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1BoycottCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1BoycottUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1BoycottTitleField"
-        }
-      }
-    },
-    "v1BoycottTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1BoycottUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
         }
       }
     },
@@ -15229,23 +14957,6 @@
         }
       }
     },
-    "v1CandidateCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1CandidateElectionField": {
-      "type": "object",
-      "properties": {
-        "Election": {
-          "type": "string"
-        }
-      }
-    },
     "v1CandidateFilterRule": {
       "type": "object",
       "properties": {
@@ -15256,23 +14967,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1CandidateIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CandidateCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1CandidateUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Election": {
-          "$ref": "#/definitions/v1CandidateElectionField"
-        }
-      }
-    },
-    "v1CandidateIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -15284,25 +14989,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1CandidateIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CandidateCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1CandidateUpdatedAtField"
-        },
-        "Election": {
-          "$ref": "#/definitions/v1CandidateElectionField"
-        }
-      }
-    },
-    "v1CandidateUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Election": {
+          "type": "string"
         }
       }
     },
@@ -15331,15 +15029,6 @@
         }
       }
     },
-    "v1CauseCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1CauseFilterRule": {
       "type": "object",
       "properties": {
@@ -15350,29 +15039,23 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1CauseIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CauseCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1CauseUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1CauseTitleField"
+          "type": "string"
         },
         "Slug": {
-          "$ref": "#/definitions/v1CauseSlugField"
+          "type": "string"
         },
         "Summary": {
-          "$ref": "#/definitions/v1CauseSummaryField"
-        }
-      }
-    },
-    "v1CauseIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -15384,55 +15067,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1CauseIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CauseCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1CauseUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1CauseTitleField"
-        },
-        "Slug": {
-          "$ref": "#/definitions/v1CauseSlugField"
-        },
-        "Summary": {
-          "$ref": "#/definitions/v1CauseSummaryField"
-        }
-      }
-    },
-    "v1CauseSlugField": {
-      "type": "object",
-      "properties": {
-        "Slug": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CauseSummaryField": {
-      "type": "object",
-      "properties": {
-        "Summary": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CauseTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CauseUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Slug": {
+          "type": "string"
+        },
+        "Summary": {
+          "type": "string"
         }
       }
     },
@@ -15455,15 +15107,6 @@
         }
       }
     },
-    "v1CompanyCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1CompanyFilterRule": {
       "type": "object",
       "properties": {
@@ -15474,23 +15117,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1CompanyIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CompanyCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1CompanyUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1CompanyTitleField"
-        }
-      }
-    },
-    "v1CompanyIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -15502,33 +15139,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1CompanyIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CompanyCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1CompanyUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1CompanyTitleField"
-        }
-      }
-    },
-    "v1CompanyTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CompanyUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
         }
       }
     },
@@ -15554,23 +15176,6 @@
         }
       }
     },
-    "v1ComponentComponentTypeField": {
-      "type": "object",
-      "properties": {
-        "ComponentType": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ComponentCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ComponentFilterRule": {
       "type": "object",
       "properties": {
@@ -15581,26 +15186,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ComponentIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ComponentCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ComponentUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "ComponentType": {
-          "$ref": "#/definitions/v1ComponentComponentTypeField"
+          "type": "string"
         },
         "LayoutColumn": {
-          "$ref": "#/definitions/v1ComponentLayoutColumnField"
-        }
-      }
-    },
-    "v1ComponentIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -15621,15 +15220,6 @@
         }
       }
     },
-    "v1ComponentImplementationCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ComponentImplementationFilterRule": {
       "type": "object",
       "properties": {
@@ -15640,21 +15230,15 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ComponentImplementationIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ComponentImplementationCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ComponentImplementationUpdatedAtField"
-        }
-      }
-    },
-    "v1ComponentImplementationIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -15665,30 +15249,15 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ComponentImplementationIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ComponentImplementationCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ComponentImplementationUpdatedAtField"
-        }
-      }
-    },
-    "v1ComponentImplementationUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "v1ComponentLayoutColumnField": {
-      "type": "object",
-      "properties": {
-        "LayoutColumn": {
-          "type": "string"
         }
       }
     },
@@ -15699,19 +15268,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ComponentIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ComponentCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ComponentUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "ComponentType": {
-          "$ref": "#/definitions/v1ComponentComponentTypeField"
+          "type": "string"
         },
         "LayoutColumn": {
-          "$ref": "#/definitions/v1ComponentLayoutColumnField"
+          "type": "string"
         }
       }
     },
@@ -15734,15 +15305,6 @@
         }
       }
     },
-    "v1ComponentTypeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ComponentTypeFilterRule": {
       "type": "object",
       "properties": {
@@ -15753,23 +15315,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ComponentTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ComponentTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ComponentTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ComponentTypeTitleField"
-        }
-      }
-    },
-    "v1ComponentTypeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -15781,58 +15337,17 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ComponentTypeIDField"
-        },
-        "CreatedAt": {
-          "$ref": "#/definitions/v1ComponentTypeCreatedAtField"
-        },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ComponentTypeUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1ComponentTypeTitleField"
-        }
-      }
-    },
-    "v1ComponentTypeTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
           "type": "string"
-        }
-      }
-    },
-    "v1ComponentTypeUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1ComponentUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1ContactCreatedAtField": {
-      "type": "object",
-      "properties": {
+        },
         "CreatedAt": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "v1ContactEmailField": {
-      "type": "object",
-      "properties": {
-        "Email": {
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Title": {
           "type": "string"
         }
       }
@@ -15847,51 +15362,29 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ContactIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ContactCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ContactUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "FirstName": {
-          "$ref": "#/definitions/v1ContactFirstNameField"
+          "type": "string"
         },
         "MiddleName": {
-          "$ref": "#/definitions/v1ContactMiddleNameField"
+          "type": "string"
         },
         "LastName": {
-          "$ref": "#/definitions/v1ContactLastNameField"
+          "type": "string"
         },
         "Email": {
-          "$ref": "#/definitions/v1ContactEmailField"
+          "type": "string"
         },
         "PhoneNumber": {
-          "$ref": "#/definitions/v1ContactPhoneNumberField"
-        }
-      }
-    },
-    "v1ContactFirstNameField": {
-      "type": "object",
-      "properties": {
-        "FirstName": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ContactIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ContactLastNameField": {
-      "type": "object",
-      "properties": {
-        "LastName": {
           "type": "string"
         }
       }
@@ -15918,31 +15411,6 @@
         }
       }
     },
-    "v1ContactMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ContactMembershipContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ContactMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ContactMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -15953,26 +15421,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ContactMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ContactMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ContactMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1ContactMembershipCauseField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1ContactMembershipContactField"
-        }
-      }
-    },
-    "v1ContactMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -15984,35 +15446,20 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ContactMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ContactMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ContactMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1ContactMembershipCauseField"
-        },
-        "Contact": {
-          "$ref": "#/definitions/v1ContactMembershipContactField"
-        }
-      }
-    },
-    "v1ContactMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "v1ContactMiddleNameField": {
-      "type": "object",
-      "properties": {
-        "MiddleName": {
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Contact": {
           "type": "string"
         }
       }
@@ -16024,45 +15471,30 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ContactIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ContactCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ContactUpdatedAtField"
-        },
-        "FirstName": {
-          "$ref": "#/definitions/v1ContactFirstNameField"
-        },
-        "MiddleName": {
-          "$ref": "#/definitions/v1ContactMiddleNameField"
-        },
-        "LastName": {
-          "$ref": "#/definitions/v1ContactLastNameField"
-        },
-        "Email": {
-          "$ref": "#/definitions/v1ContactEmailField"
-        },
-        "PhoneNumber": {
-          "$ref": "#/definitions/v1ContactPhoneNumberField"
-        }
-      }
-    },
-    "v1ContactPhoneNumberField": {
-      "type": "object",
-      "properties": {
-        "PhoneNumber": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ContactUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "MiddleName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
         }
       }
     },
@@ -18205,15 +17637,6 @@
         }
       }
     },
-    "v1CustomerCartCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1CustomerCartFilterRule": {
       "type": "object",
       "properties": {
@@ -18224,21 +17647,15 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1CustomerCartIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CustomerCartCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1CustomerCartUpdatedAtField"
-        }
-      }
-    },
-    "v1CustomerCartIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -18249,19 +17666,12 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1CustomerCartIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CustomerCartCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1CustomerCartUpdatedAtField"
-        }
-      }
-    },
-    "v1CustomerCartUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
@@ -18287,23 +17697,6 @@
         }
       }
     },
-    "v1CustomerOrderCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1CustomerOrderCustomerCartField": {
-      "type": "object",
-      "properties": {
-        "CustomerCart": {
-          "type": "string"
-        }
-      }
-    },
     "v1CustomerOrderFilterRule": {
       "type": "object",
       "properties": {
@@ -18314,23 +17707,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1CustomerOrderIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CustomerOrderCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1CustomerOrderUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "CustomerCart": {
-          "$ref": "#/definitions/v1CustomerOrderCustomerCartField"
-        }
-      }
-    },
-    "v1CustomerOrderIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -18342,25 +17729,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1CustomerOrderIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1CustomerOrderCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1CustomerOrderUpdatedAtField"
-        },
-        "CustomerCart": {
-          "$ref": "#/definitions/v1CustomerOrderCustomerCartField"
-        }
-      }
-    },
-    "v1CustomerOrderUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "CustomerCart": {
+          "type": "string"
         }
       }
     },
@@ -19172,15 +18552,6 @@
         }
       }
     },
-    "v1DeliveryCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1DeliveryFilterRule": {
       "type": "object",
       "properties": {
@@ -19191,21 +18562,15 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1DeliveryIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DeliveryCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1DeliveryUpdatedAtField"
-        }
-      }
-    },
-    "v1DeliveryIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -19216,19 +18581,12 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1DeliveryIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DeliveryCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1DeliveryUpdatedAtField"
-        }
-      }
-    },
-    "v1DeliveryUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
@@ -19270,23 +18628,6 @@
         }
       }
     },
-    "v1DistrictCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1DistrictDistrictTypeField": {
-      "type": "object",
-      "properties": {
-        "DistrictType": {
-          "type": "string"
-        }
-      }
-    },
     "v1DistrictFilterRule": {
       "type": "object",
       "properties": {
@@ -19297,38 +18638,24 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1DistrictIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DistrictCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1DistrictUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Geom": {
-          "$ref": "#/definitions/v1DistrictGeomField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1DistrictTitleField"
-        },
-        "DistrictType": {
-          "$ref": "#/definitions/v1DistrictDistrictTypeField"
-        }
-      }
-    },
-    "v1DistrictGeomField": {
-      "type": "object",
-      "properties": {
         "Geom": {
           "type": "string",
           "format": "int64"
-        }
-      }
-    },
-    "v1DistrictIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
+        },
+        "Title": {
+          "type": "string"
+        },
+        "DistrictType": {
           "type": "string"
         }
       }
@@ -19340,29 +18667,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1DistrictIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DistrictCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1DistrictUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Geom": {
-          "$ref": "#/definitions/v1DistrictGeomField"
+          "type": "string",
+          "format": "int64"
         },
         "Title": {
-          "$ref": "#/definitions/v1DistrictTitleField"
+          "type": "string"
         },
         "DistrictType": {
-          "$ref": "#/definitions/v1DistrictDistrictTypeField"
-        }
-      }
-    },
-    "v1DistrictTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
           "type": "string"
         }
       }
@@ -19386,15 +18708,6 @@
         }
       }
     },
-    "v1DistrictTypeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1DistrictTypeFilterRule": {
       "type": "object",
       "properties": {
@@ -19405,23 +18718,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1DistrictTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DistrictTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1DistrictTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1DistrictTypeTitleField"
-        }
-      }
-    },
-    "v1DistrictTypeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -19433,42 +18740,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1DistrictTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DistrictTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1DistrictTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Title": {
-          "$ref": "#/definitions/v1DistrictTypeTitleField"
-        }
-      }
-    },
-    "v1DistrictTypeTitleField": {
-      "type": "object",
-      "properties": {
         "Title": {
           "type": "string"
-        }
-      }
-    },
-    "v1DistrictTypeUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1DistrictUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -19491,15 +18774,6 @@
         }
       }
     },
-    "v1DonationCampaignCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1DonationCampaignFilterRule": {
       "type": "object",
       "properties": {
@@ -19510,23 +18784,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1DonationCampaignIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DonationCampaignCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1DonationCampaignUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1DonationCampaignTitleField"
-        }
-      }
-    },
-    "v1DonationCampaignIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -19553,31 +18821,6 @@
         }
       }
     },
-    "v1DonationCampaignMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1DonationCampaignMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1DonationCampaignMembershipDonationCampaignField": {
-      "type": "object",
-      "properties": {
-        "DonationCampaign": {
-          "type": "string"
-        }
-      }
-    },
     "v1DonationCampaignMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -19588,26 +18831,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipCauseField"
+          "type": "string"
         },
         "DonationCampaign": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipDonationCampaignField"
-        }
-      }
-    },
-    "v1DonationCampaignMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -19619,28 +18856,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipCauseField"
-        },
-        "DonationCampaign": {
-          "$ref": "#/definitions/v1DonationCampaignMembershipDonationCampaignField"
-        }
-      }
-    },
-    "v1DonationCampaignMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "DonationCampaign": {
+          "type": "string"
         }
       }
     },
@@ -19651,33 +18881,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1DonationCampaignIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DonationCampaignCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1DonationCampaignUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1DonationCampaignTitleField"
-        }
-      }
-    },
-    "v1DonationCampaignTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1DonationCampaignUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
         }
       }
     },
@@ -19706,39 +18921,6 @@
         }
       }
     },
-    "v1DonorCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1DonorContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1DonorCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1DonorCustomerOrderField": {
-      "type": "object",
-      "properties": {
-        "CustomerOrder": {
-          "type": "string"
-        }
-      }
-    },
     "v1DonorFilterRule": {
       "type": "object",
       "properties": {
@@ -19749,29 +18931,23 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1DonorIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DonorCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1DonorUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "CustomerOrder": {
-          "$ref": "#/definitions/v1DonorCustomerOrderField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1DonorContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1DonorCauseField"
-        }
-      }
-    },
-    "v1DonorIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -19783,31 +18959,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1DonorIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1DonorCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1DonorUpdatedAtField"
-        },
-        "CustomerOrder": {
-          "$ref": "#/definitions/v1DonorCustomerOrderField"
-        },
-        "Contact": {
-          "$ref": "#/definitions/v1DonorContactField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1DonorCauseField"
-        }
-      }
-    },
-    "v1DonorUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "CustomerOrder": {
+          "type": "string"
+        },
+        "Contact": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string"
         }
       }
     },
@@ -19830,15 +18999,6 @@
         }
       }
     },
-    "v1ElectionCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ElectionFilterRule": {
       "type": "object",
       "properties": {
@@ -19849,23 +19009,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ElectionIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ElectionCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ElectionUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ElectionTitleField"
-        }
-      }
-    },
-    "v1ElectionIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -19892,31 +19046,6 @@
         }
       }
     },
-    "v1ElectionMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ElectionMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1ElectionMembershipElectionField": {
-      "type": "object",
-      "properties": {
-        "Election": {
-          "type": "string"
-        }
-      }
-    },
     "v1ElectionMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -19927,26 +19056,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ElectionMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ElectionMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ElectionMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1ElectionMembershipCauseField"
+          "type": "string"
         },
         "Election": {
-          "$ref": "#/definitions/v1ElectionMembershipElectionField"
-        }
-      }
-    },
-    "v1ElectionMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -19958,28 +19081,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ElectionMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ElectionMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ElectionMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1ElectionMembershipCauseField"
-        },
-        "Election": {
-          "$ref": "#/definitions/v1ElectionMembershipElectionField"
-        }
-      }
-    },
-    "v1ElectionMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Election": {
+          "type": "string"
         }
       }
     },
@@ -19990,33 +19106,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ElectionIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ElectionCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ElectionUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1ElectionTitleField"
-        }
-      }
-    },
-    "v1ElectionTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ElectionUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
         }
       }
     },
@@ -20039,23 +19140,6 @@
         }
       }
     },
-    "v1EmailAddressAddressField": {
-      "type": "object",
-      "properties": {
-        "Address": {
-          "type": "string"
-        }
-      }
-    },
-    "v1EmailAddressCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1EmailAddressFilterRule": {
       "type": "object",
       "properties": {
@@ -20066,23 +19150,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1EmailAddressIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1EmailAddressCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1EmailAddressUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Address": {
-          "$ref": "#/definitions/v1EmailAddressAddressField"
-        }
-      }
-    },
-    "v1EmailAddressIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -20094,25 +19172,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1EmailAddressIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1EmailAddressCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1EmailAddressUpdatedAtField"
-        },
-        "Address": {
-          "$ref": "#/definitions/v1EmailAddressAddressField"
-        }
-      }
-    },
-    "v1EmailAddressUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Address": {
+          "type": "string"
         }
       }
     },
@@ -20141,31 +19212,6 @@
         }
       }
     },
-    "v1EventAttendeeCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1EventAttendeeContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1EventAttendeeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1EventAttendeeFilterRule": {
       "type": "object",
       "properties": {
@@ -20176,37 +19222,23 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1EventAttendeeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1EventAttendeeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1EventAttendeeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "LiveEvent": {
-          "$ref": "#/definitions/v1EventAttendeeLiveEventField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1EventAttendeeContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1EventAttendeeCauseField"
-        }
-      }
-    },
-    "v1EventAttendeeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1EventAttendeeLiveEventField": {
-      "type": "object",
-      "properties": {
-        "LiveEvent": {
           "type": "string"
         }
       }
@@ -20218,31 +19250,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1EventAttendeeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1EventAttendeeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1EventAttendeeUpdatedAtField"
-        },
-        "LiveEvent": {
-          "$ref": "#/definitions/v1EventAttendeeLiveEventField"
-        },
-        "Contact": {
-          "$ref": "#/definitions/v1EventAttendeeContactField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1EventAttendeeCauseField"
-        }
-      }
-    },
-    "v1EventAttendeeUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "LiveEvent": {
+          "type": "string"
+        },
+        "Contact": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string"
         }
       }
     },
@@ -20268,15 +19293,6 @@
         }
       }
     },
-    "v1ExperimentCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ExperimentFilterRule": {
       "type": "object",
       "properties": {
@@ -20287,33 +19303,19 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ExperimentIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ExperimentCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ExperimentUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ExperimentTitleField"
-        },
-        "LandingPage": {
-          "$ref": "#/definitions/v1ExperimentLandingPageField"
-        }
-      }
-    },
-    "v1ExperimentIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
-        }
-      }
-    },
-    "v1ExperimentLandingPageField": {
-      "type": "object",
-      "properties": {
+        },
         "LandingPage": {
           "type": "string"
         }
@@ -20326,36 +19328,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ExperimentIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ExperimentCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ExperimentUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1ExperimentTitleField"
-        },
-        "LandingPage": {
-          "$ref": "#/definitions/v1ExperimentLandingPageField"
-        }
-      }
-    },
-    "v1ExperimentTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ExperimentUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "LandingPage": {
+          "type": "string"
         }
       }
     },
@@ -20381,31 +19368,6 @@
         }
       }
     },
-    "v1FieldComponentField": {
-      "type": "object",
-      "properties": {
-        "Component": {
-          "type": "string"
-        }
-      }
-    },
-    "v1FieldCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1FieldFieldTypeField": {
-      "type": "object",
-      "properties": {
-        "FieldType": {
-          "type": "string"
-        }
-      }
-    },
     "v1FieldFilterRule": {
       "type": "object",
       "properties": {
@@ -20416,26 +19378,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1FieldIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1FieldCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1FieldUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "FieldType": {
-          "$ref": "#/definitions/v1FieldFieldTypeField"
+          "type": "string"
         },
         "Component": {
-          "$ref": "#/definitions/v1FieldComponentField"
-        }
-      }
-    },
-    "v1FieldIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -20447,19 +19403,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1FieldIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1FieldCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1FieldUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "FieldType": {
-          "$ref": "#/definitions/v1FieldFieldTypeField"
+          "type": "string"
         },
         "Component": {
-          "$ref": "#/definitions/v1FieldComponentField"
+          "type": "string"
         }
       }
     },
@@ -20482,15 +19440,6 @@
         }
       }
     },
-    "v1FieldTypeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1FieldTypeFilterRule": {
       "type": "object",
       "properties": {
@@ -20501,23 +19450,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1FieldTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1FieldTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1FieldTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1FieldTypeTitleField"
-        }
-      }
-    },
-    "v1FieldTypeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -20529,42 +19472,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1FieldTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1FieldTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1FieldTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Title": {
-          "$ref": "#/definitions/v1FieldTypeTitleField"
-        }
-      }
-    },
-    "v1FieldTypeTitleField": {
-      "type": "object",
-      "properties": {
         "Title": {
           "type": "string"
-        }
-      }
-    },
-    "v1FieldTypeUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1FieldUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -20590,31 +19509,6 @@
         }
       }
     },
-    "v1FollowerCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1FollowerContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1FollowerCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1FollowerFilterRule": {
       "type": "object",
       "properties": {
@@ -20625,26 +19519,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1FollowerIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1FollowerCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1FollowerUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Contact": {
-          "$ref": "#/definitions/v1FollowerContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1FollowerCauseField"
-        }
-      }
-    },
-    "v1FollowerIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -20656,28 +19544,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1FollowerIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1FollowerCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1FollowerUpdatedAtField"
-        },
-        "Contact": {
-          "$ref": "#/definitions/v1FollowerContactField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1FollowerCauseField"
-        }
-      }
-    },
-    "v1FollowerUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Contact": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string"
         }
       }
     },
@@ -21432,23 +20313,6 @@
         }
       }
     },
-    "v1HomePageCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1HomePageCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1HomePageFilterRule": {
       "type": "object",
       "properties": {
@@ -21459,36 +20323,22 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1HomePageIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1HomePageCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1HomePageUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1HomePageTitleField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1HomePageCauseField"
-        },
-        "Layout": {
-          "$ref": "#/definitions/v1HomePageLayoutField"
-        }
-      }
-    },
-    "v1HomePageIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
-        }
-      }
-    },
-    "v1HomePageLayoutField": {
-      "type": "object",
-      "properties": {
+        },
         "Layout": {
           "type": "string"
         }
@@ -21501,39 +20351,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1HomePageIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1HomePageCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1HomePageUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1HomePageTitleField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1HomePageCauseField"
-        },
-        "Layout": {
-          "$ref": "#/definitions/v1HomePageLayoutField"
-        }
-      }
-    },
-    "v1HomePageTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1HomePageUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Layout": {
+          "type": "string"
         }
       }
     },
@@ -21559,23 +20394,6 @@
         }
       }
     },
-    "v1IssueCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1IssueElectionField": {
-      "type": "object",
-      "properties": {
-        "Election": {
-          "type": "string"
-        }
-      }
-    },
     "v1IssueFilterRule": {
       "type": "object",
       "properties": {
@@ -21586,26 +20404,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1IssueIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1IssueCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1IssueUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1IssueTitleField"
+          "type": "string"
         },
         "Election": {
-          "$ref": "#/definitions/v1IssueElectionField"
-        }
-      }
-    },
-    "v1IssueIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -21617,36 +20429,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1IssueIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1IssueCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1IssueUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1IssueTitleField"
-        },
-        "Election": {
-          "$ref": "#/definitions/v1IssueElectionField"
-        }
-      }
-    },
-    "v1IssueTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1IssueUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Election": {
+          "type": "string"
         }
       }
     },
@@ -21675,23 +20472,6 @@
         }
       }
     },
-    "v1LandingPageCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1LandingPageCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1LandingPageFilterRule": {
       "type": "object",
       "properties": {
@@ -21702,36 +20482,22 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1LandingPageIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LandingPageCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LandingPageUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1LandingPageTitleField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1LandingPageCauseField"
-        },
-        "Layout": {
-          "$ref": "#/definitions/v1LandingPageLayoutField"
-        }
-      }
-    },
-    "v1LandingPageIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
-        }
-      }
-    },
-    "v1LandingPageLayoutField": {
-      "type": "object",
-      "properties": {
+        },
         "Layout": {
           "type": "string"
         }
@@ -21744,39 +20510,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1LandingPageIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LandingPageCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1LandingPageUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1LandingPageTitleField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1LandingPageCauseField"
-        },
-        "Layout": {
-          "$ref": "#/definitions/v1LandingPageLayoutField"
-        }
-      }
-    },
-    "v1LandingPageTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1LandingPageUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Layout": {
+          "type": "string"
         }
       }
     },
@@ -21818,15 +20569,6 @@
         }
       }
     },
-    "v1LayoutColumnCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1LayoutColumnFilterRule": {
       "type": "object",
       "properties": {
@@ -21837,30 +20579,16 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1LayoutColumnIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LayoutColumnCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LayoutColumnUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "LayoutRow": {
-          "$ref": "#/definitions/v1LayoutColumnLayoutRowField"
-        }
-      }
-    },
-    "v1LayoutColumnIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1LayoutColumnLayoutRowField": {
-      "type": "object",
-      "properties": {
         "LayoutRow": {
           "type": "string"
         }
@@ -21873,34 +20601,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1LayoutColumnIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LayoutColumnCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LayoutColumnUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "LayoutRow": {
-          "$ref": "#/definitions/v1LayoutColumnLayoutRowField"
-        }
-      }
-    },
-    "v1LayoutColumnUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1LayoutCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         }
       }
     },
@@ -21914,30 +20626,16 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1LayoutIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LayoutCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LayoutUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "LayoutType": {
-          "$ref": "#/definitions/v1LayoutLayoutTypeField"
-        }
-      }
-    },
-    "v1LayoutIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1LayoutLayoutTypeField": {
-      "type": "object",
-      "properties": {
         "LayoutType": {
           "type": "string"
         }
@@ -21950,16 +20648,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1LayoutIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LayoutCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LayoutUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "LayoutType": {
-          "$ref": "#/definitions/v1LayoutLayoutTypeField"
+          "type": "string"
         }
       }
     },
@@ -21982,15 +20682,6 @@
         }
       }
     },
-    "v1LayoutRowCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1LayoutRowFilterRule": {
       "type": "object",
       "properties": {
@@ -22001,30 +20692,16 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1LayoutRowIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LayoutRowCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LayoutRowUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Layout": {
-          "$ref": "#/definitions/v1LayoutRowLayoutField"
-        }
-      }
-    },
-    "v1LayoutRowIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1LayoutRowLayoutField": {
-      "type": "object",
-      "properties": {
         "Layout": {
           "type": "string"
         }
@@ -22037,25 +20714,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1LayoutRowIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LayoutRowCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1LayoutRowUpdatedAtField"
-        },
-        "Layout": {
-          "$ref": "#/definitions/v1LayoutRowLayoutField"
-        }
-      }
-    },
-    "v1LayoutRowUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Layout": {
+          "type": "string"
         }
       }
     },
@@ -22078,15 +20748,6 @@
         }
       }
     },
-    "v1LayoutTypeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1LayoutTypeFilterRule": {
       "type": "object",
       "properties": {
@@ -22097,23 +20758,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1LayoutTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LayoutTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LayoutTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1LayoutTypeTitleField"
-        }
-      }
-    },
-    "v1LayoutTypeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -22125,42 +20780,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1LayoutTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LayoutTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LayoutTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Title": {
-          "$ref": "#/definitions/v1LayoutTypeTitleField"
-        }
-      }
-    },
-    "v1LayoutTypeTitleField": {
-      "type": "object",
-      "properties": {
         "Title": {
           "type": "string"
-        }
-      }
-    },
-    "v1LayoutTypeUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1LayoutUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -23110,15 +21741,6 @@
         }
       }
     },
-    "v1LiveEventCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1LiveEventFilterRule": {
       "type": "object",
       "properties": {
@@ -23129,33 +21751,19 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1LiveEventIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LiveEventCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LiveEventUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1LiveEventTitleField"
-        },
-        "LiveEventType": {
-          "$ref": "#/definitions/v1LiveEventLiveEventTypeField"
-        }
-      }
-    },
-    "v1LiveEventIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
-        }
-      }
-    },
-    "v1LiveEventLiveEventTypeField": {
-      "type": "object",
-      "properties": {
+        },
         "LiveEventType": {
           "type": "string"
         }
@@ -23183,23 +21791,6 @@
         }
       }
     },
-    "v1LiveEventMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1LiveEventMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1LiveEventMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -23210,33 +21801,19 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1LiveEventMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LiveEventMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LiveEventMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1LiveEventMembershipCauseField"
-        },
-        "LiveEvent": {
-          "$ref": "#/definitions/v1LiveEventMembershipLiveEventField"
-        }
-      }
-    },
-    "v1LiveEventMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
-        }
-      }
-    },
-    "v1LiveEventMembershipLiveEventField": {
-      "type": "object",
-      "properties": {
+        },
         "LiveEvent": {
           "type": "string"
         }
@@ -23249,28 +21826,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1LiveEventMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LiveEventMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1LiveEventMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1LiveEventMembershipCauseField"
-        },
-        "LiveEvent": {
-          "$ref": "#/definitions/v1LiveEventMembershipLiveEventField"
-        }
-      }
-    },
-    "v1LiveEventMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "LiveEvent": {
+          "type": "string"
         }
       }
     },
@@ -23281,26 +21851,20 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1LiveEventIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LiveEventCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LiveEventUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1LiveEventTitleField"
+          "type": "string"
         },
         "LiveEventType": {
-          "$ref": "#/definitions/v1LiveEventLiveEventTypeField"
-        }
-      }
-    },
-    "v1LiveEventTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
           "type": "string"
         }
       }
@@ -23324,15 +21888,6 @@
         }
       }
     },
-    "v1LiveEventTypeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1LiveEventTypeFilterRule": {
       "type": "object",
       "properties": {
@@ -23343,23 +21898,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1LiveEventTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LiveEventTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LiveEventTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1LiveEventTypeTitleField"
-        }
-      }
-    },
-    "v1LiveEventTypeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -23371,42 +21920,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1LiveEventTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1LiveEventTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1LiveEventTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Title": {
-          "$ref": "#/definitions/v1LiveEventTypeTitleField"
-        }
-      }
-    },
-    "v1LiveEventTypeTitleField": {
-      "type": "object",
-      "properties": {
         "Title": {
           "type": "string"
-        }
-      }
-    },
-    "v1LiveEventTypeUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1LiveEventUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -23446,23 +21971,6 @@
         }
       }
     },
-    "v1MailingAddressCityField": {
-      "type": "object",
-      "properties": {
-        "City": {
-          "type": "string"
-        }
-      }
-    },
-    "v1MailingAddressCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1MailingAddressFilterRule": {
       "type": "object",
       "properties": {
@@ -23473,32 +21981,26 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1MailingAddressIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1MailingAddressCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1MailingAddressUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "StreetAddress": {
-          "$ref": "#/definitions/v1MailingAddressStreetAddressField"
+          "type": "string"
         },
         "City": {
-          "$ref": "#/definitions/v1MailingAddressCityField"
+          "type": "string"
         },
         "State": {
-          "$ref": "#/definitions/v1MailingAddressStateField"
+          "type": "string"
         },
         "ZipCode": {
-          "$ref": "#/definitions/v1MailingAddressZipCodeField"
-        }
-      }
-    },
-    "v1MailingAddressIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -23510,56 +22012,25 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1MailingAddressIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1MailingAddressCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1MailingAddressUpdatedAtField"
-        },
-        "StreetAddress": {
-          "$ref": "#/definitions/v1MailingAddressStreetAddressField"
-        },
-        "City": {
-          "$ref": "#/definitions/v1MailingAddressCityField"
-        },
-        "State": {
-          "$ref": "#/definitions/v1MailingAddressStateField"
-        },
-        "ZipCode": {
-          "$ref": "#/definitions/v1MailingAddressZipCodeField"
-        }
-      }
-    },
-    "v1MailingAddressStateField": {
-      "type": "object",
-      "properties": {
-        "State": {
-          "type": "string"
-        }
-      }
-    },
-    "v1MailingAddressStreetAddressField": {
-      "type": "object",
-      "properties": {
-        "StreetAddress": {
-          "type": "string"
-        }
-      }
-    },
-    "v1MailingAddressUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "v1MailingAddressZipCodeField": {
-      "type": "object",
-      "properties": {
+        },
+        "StreetAddress": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
         "ZipCode": {
           "type": "string"
         }
@@ -23590,39 +22061,6 @@
         }
       }
     },
-    "v1NoteBodyField": {
-      "type": "object",
-      "properties": {
-        "Body": {
-          "type": "string"
-        }
-      }
-    },
-    "v1NoteCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1NoteContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1NoteCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1NoteFilterRule": {
       "type": "object",
       "properties": {
@@ -23633,29 +22071,23 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1NoteIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1NoteCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1NoteUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Contact": {
-          "$ref": "#/definitions/v1NoteContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1NoteCauseField"
+          "type": "string"
         },
         "Body": {
-          "$ref": "#/definitions/v1NoteBodyField"
-        }
-      }
-    },
-    "v1NoteIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -23667,31 +22099,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1NoteIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1NoteCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1NoteUpdatedAtField"
-        },
-        "Contact": {
-          "$ref": "#/definitions/v1NoteContactField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1NoteCauseField"
-        },
-        "Body": {
-          "$ref": "#/definitions/v1NoteBodyField"
-        }
-      }
-    },
-    "v1NoteUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Contact": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Body": {
+          "type": "string"
         }
       }
     },
@@ -23717,23 +22142,6 @@
         }
       }
     },
-    "v1OfficeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1OfficeElectionField": {
-      "type": "object",
-      "properties": {
-        "Election": {
-          "type": "string"
-        }
-      }
-    },
     "v1OfficeFilterRule": {
       "type": "object",
       "properties": {
@@ -23744,26 +22152,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1OfficeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1OfficeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1OfficeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1OfficeTitleField"
+          "type": "string"
         },
         "Election": {
-          "$ref": "#/definitions/v1OfficeElectionField"
-        }
-      }
-    },
-    "v1OfficeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -23775,36 +22177,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1OfficeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1OfficeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1OfficeUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1OfficeTitleField"
-        },
-        "Election": {
-          "$ref": "#/definitions/v1OfficeElectionField"
-        }
-      }
-    },
-    "v1OfficeTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1OfficeUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Election": {
+          "type": "string"
         }
       }
     },
@@ -23830,31 +22217,6 @@
         }
       }
     },
-    "v1OwnerMembershipAccountField": {
-      "type": "object",
-      "properties": {
-        "Account": {
-          "type": "string"
-        }
-      }
-    },
-    "v1OwnerMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1OwnerMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1OwnerMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -23865,26 +22227,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1OwnerMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1OwnerMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1OwnerMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1OwnerMembershipCauseField"
+          "type": "string"
         },
         "Account": {
-          "$ref": "#/definitions/v1OwnerMembershipAccountField"
-        }
-      }
-    },
-    "v1OwnerMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -23896,28 +22252,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1OwnerMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1OwnerMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1OwnerMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1OwnerMembershipCauseField"
-        },
-        "Account": {
-          "$ref": "#/definitions/v1OwnerMembershipAccountField"
-        }
-      }
-    },
-    "v1OwnerMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Account": {
+          "type": "string"
         }
       }
     },
@@ -23940,23 +22289,6 @@
         }
       }
     },
-    "v1PaymentCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1PaymentCustomerOrderField": {
-      "type": "object",
-      "properties": {
-        "CustomerOrder": {
-          "type": "string"
-        }
-      }
-    },
     "v1PaymentFilterRule": {
       "type": "object",
       "properties": {
@@ -23967,23 +22299,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PaymentIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PaymentCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PaymentUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "CustomerOrder": {
-          "$ref": "#/definitions/v1PaymentCustomerOrderField"
-        }
-      }
-    },
-    "v1PaymentIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -23995,25 +22321,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PaymentIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PaymentCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1PaymentUpdatedAtField"
-        },
-        "CustomerOrder": {
-          "$ref": "#/definitions/v1PaymentCustomerOrderField"
-        }
-      }
-    },
-    "v1PaymentUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "CustomerOrder": {
+          "type": "string"
         }
       }
     },
@@ -24036,15 +22355,6 @@
         }
       }
     },
-    "v1PetitionCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PetitionFilterRule": {
       "type": "object",
       "properties": {
@@ -24055,23 +22365,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PetitionIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PetitionCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PetitionUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1PetitionTitleField"
-        }
-      }
-    },
-    "v1PetitionIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -24098,23 +22402,6 @@
         }
       }
     },
-    "v1PetitionMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PetitionMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PetitionMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -24125,26 +22412,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PetitionMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PetitionMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PetitionMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1PetitionMembershipCauseField"
+          "type": "string"
         },
         "Petition": {
-          "$ref": "#/definitions/v1PetitionMembershipPetitionField"
-        }
-      }
-    },
-    "v1PetitionMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -24156,36 +22437,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PetitionMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PetitionMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1PetitionMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1PetitionMembershipCauseField"
-        },
-        "Petition": {
-          "$ref": "#/definitions/v1PetitionMembershipPetitionField"
-        }
-      }
-    },
-    "v1PetitionMembershipPetitionField": {
-      "type": "object",
-      "properties": {
-        "Petition": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PetitionMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Petition": {
+          "type": "string"
         }
       }
     },
@@ -24196,16 +22462,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PetitionIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PetitionCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PetitionUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1PetitionTitleField"
+          "type": "string"
         }
       }
     },
@@ -24234,31 +22502,6 @@
         }
       }
     },
-    "v1PetitionSignerCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PetitionSignerContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PetitionSignerCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PetitionSignerFilterRule": {
       "type": "object",
       "properties": {
@@ -24269,29 +22512,23 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PetitionSignerIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PetitionSignerCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PetitionSignerUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Petition": {
-          "$ref": "#/definitions/v1PetitionSignerPetitionField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1PetitionSignerContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1PetitionSignerCauseField"
-        }
-      }
-    },
-    "v1PetitionSignerIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -24303,56 +22540,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PetitionSignerIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PetitionSignerCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PetitionSignerUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Petition": {
-          "$ref": "#/definitions/v1PetitionSignerPetitionField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1PetitionSignerContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1PetitionSignerCauseField"
-        }
-      }
-    },
-    "v1PetitionSignerPetitionField": {
-      "type": "object",
-      "properties": {
-        "Petition": {
           "type": "string"
-        }
-      }
-    },
-    "v1PetitionSignerUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1PetitionTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PetitionUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -24375,15 +22580,6 @@
         }
       }
     },
-    "v1PhoneNumberCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PhoneNumberFilterRule": {
       "type": "object",
       "properties": {
@@ -24394,23 +22590,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PhoneNumberIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PhoneNumberCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PhoneNumberUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "PhoneNumber": {
-          "$ref": "#/definitions/v1PhoneNumberPhoneNumberField"
-        }
-      }
-    },
-    "v1PhoneNumberIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -24422,33 +22612,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PhoneNumberIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PhoneNumberCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1PhoneNumberUpdatedAtField"
-        },
-        "PhoneNumber": {
-          "$ref": "#/definitions/v1PhoneNumberPhoneNumberField"
-        }
-      }
-    },
-    "v1PhoneNumberPhoneNumberField": {
-      "type": "object",
-      "properties": {
-        "PhoneNumber": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PhoneNumberUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "PhoneNumber": {
+          "type": "string"
         }
       }
     },
@@ -24471,15 +22646,6 @@
         }
       }
     },
-    "v1PhotoCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PhotoFilterRule": {
       "type": "object",
       "properties": {
@@ -24490,30 +22656,16 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PhotoIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PhotoCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PhotoUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "ImgURL": {
-          "$ref": "#/definitions/v1PhotoImgURLField"
-        }
-      }
-    },
-    "v1PhotoIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PhotoImgURLField": {
-      "type": "object",
-      "properties": {
         "ImgURL": {
           "type": "string"
         }
@@ -24526,25 +22678,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PhotoIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PhotoCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1PhotoUpdatedAtField"
-        },
-        "ImgURL": {
-          "$ref": "#/definitions/v1PhotoImgURLField"
-        }
-      }
-    },
-    "v1PhotoUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "ImgURL": {
+          "type": "string"
         }
       }
     },
@@ -24567,15 +22712,6 @@
         }
       }
     },
-    "v1PollCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PollFilterRule": {
       "type": "object",
       "properties": {
@@ -24586,23 +22722,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PollIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PollCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PollUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1PollTitleField"
-        }
-      }
-    },
-    "v1PollIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -24629,15 +22759,6 @@
         }
       }
     },
-    "v1PollItemCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PollItemFilterRule": {
       "type": "object",
       "properties": {
@@ -24648,26 +22769,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PollItemIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PollItemCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PollItemUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1PollItemTitleField"
+          "type": "string"
         },
         "Poll": {
-          "$ref": "#/definitions/v1PollItemPollField"
-        }
-      }
-    },
-    "v1PollItemIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -24679,44 +22794,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PollItemIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PollItemCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1PollItemUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1PollItemTitleField"
-        },
-        "Poll": {
-          "$ref": "#/definitions/v1PollItemPollField"
-        }
-      }
-    },
-    "v1PollItemPollField": {
-      "type": "object",
-      "properties": {
-        "Poll": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PollItemTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PollItemUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Poll": {
+          "type": "string"
         }
       }
     },
@@ -24742,23 +22834,6 @@
         }
       }
     },
-    "v1PollMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PollMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PollMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -24769,26 +22844,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PollMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PollMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PollMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1PollMembershipCauseField"
+          "type": "string"
         },
         "Petition": {
-          "$ref": "#/definitions/v1PollMembershipPetitionField"
-        }
-      }
-    },
-    "v1PollMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -24800,36 +22869,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PollMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PollMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1PollMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1PollMembershipCauseField"
-        },
-        "Petition": {
-          "$ref": "#/definitions/v1PollMembershipPetitionField"
-        }
-      }
-    },
-    "v1PollMembershipPetitionField": {
-      "type": "object",
-      "properties": {
-        "Petition": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PollMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Petition": {
+          "type": "string"
         }
       }
     },
@@ -24840,16 +22894,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PollIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PollCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PollUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1PollTitleField"
+          "type": "string"
         }
       }
     },
@@ -24878,31 +22934,6 @@
         }
       }
     },
-    "v1PollRespondantCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PollRespondantContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PollRespondantCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1PollRespondantFilterRule": {
       "type": "object",
       "properties": {
@@ -24913,29 +22944,23 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PollRespondantIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PollRespondantCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PollRespondantUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Poll": {
-          "$ref": "#/definitions/v1PollRespondantPollField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1PollRespondantContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1PollRespondantCauseField"
-        }
-      }
-    },
-    "v1PollRespondantIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -24947,56 +22972,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PollRespondantIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PollRespondantCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PollRespondantUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Poll": {
-          "$ref": "#/definitions/v1PollRespondantPollField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1PollRespondantContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1PollRespondantCauseField"
-        }
-      }
-    },
-    "v1PollRespondantPollField": {
-      "type": "object",
-      "properties": {
-        "Poll": {
           "type": "string"
-        }
-      }
-    },
-    "v1PollRespondantUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1PollTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PollUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -25022,15 +23015,6 @@
         }
       }
     },
-    "v1ProductCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ProductFilterRule": {
       "type": "object",
       "properties": {
@@ -25041,26 +23025,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ProductIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ProductCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ProductUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ProductTitleField"
+          "type": "string"
         },
         "ProductType": {
-          "$ref": "#/definitions/v1ProductProductTypeField"
-        }
-      }
-    },
-    "v1ProductIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -25087,23 +23065,6 @@
         }
       }
     },
-    "v1ProductMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ProductMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ProductMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -25114,26 +23075,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ProductMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ProductMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ProductMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1ProductMembershipCauseField"
+          "type": "string"
         },
         "Product": {
-          "$ref": "#/definitions/v1ProductMembershipProductField"
-        }
-      }
-    },
-    "v1ProductMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -25145,36 +23100,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ProductMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ProductMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1ProductMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1ProductMembershipCauseField"
-        },
-        "Product": {
-          "$ref": "#/definitions/v1ProductMembershipProductField"
-        }
-      }
-    },
-    "v1ProductMembershipProductField": {
-      "type": "object",
-      "properties": {
-        "Product": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ProductMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Cause": {
+          "type": "string"
+        },
+        "Product": {
+          "type": "string"
         }
       }
     },
@@ -25185,34 +23125,20 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ProductIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ProductCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ProductUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ProductTitleField"
-        },
-        "ProductType": {
-          "$ref": "#/definitions/v1ProductProductTypeField"
-        }
-      }
-    },
-    "v1ProductProductTypeField": {
-      "type": "object",
-      "properties": {
-        "ProductType": {
           "type": "string"
-        }
-      }
-    },
-    "v1ProductTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
+        },
+        "ProductType": {
           "type": "string"
         }
       }
@@ -25236,15 +23162,6 @@
         }
       }
     },
-    "v1ProductTypeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1ProductTypeFilterRule": {
       "type": "object",
       "properties": {
@@ -25255,23 +23172,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1ProductTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ProductTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ProductTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1ProductTypeTitleField"
-        }
-      }
-    },
-    "v1ProductTypeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -25283,42 +23194,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1ProductTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1ProductTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1ProductTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Title": {
-          "$ref": "#/definitions/v1ProductTypeTitleField"
-        }
-      }
-    },
-    "v1ProductTypeTitleField": {
-      "type": "object",
-      "properties": {
         "Title": {
           "type": "string"
-        }
-      }
-    },
-    "v1ProductTypeUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1ProductUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -25347,39 +23234,6 @@
         }
       }
     },
-    "v1PurchaserCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PurchaserContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1PurchaserCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1PurchaserCustomerOrderField": {
-      "type": "object",
-      "properties": {
-        "CustomerOrder": {
-          "type": "string"
-        }
-      }
-    },
     "v1PurchaserFilterRule": {
       "type": "object",
       "properties": {
@@ -25390,29 +23244,23 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1PurchaserIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PurchaserCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1PurchaserUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "CustomerOrder": {
-          "$ref": "#/definitions/v1PurchaserCustomerOrderField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1PurchaserContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1PurchaserCauseField"
-        }
-      }
-    },
-    "v1PurchaserIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -25424,31 +23272,24 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1PurchaserIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1PurchaserCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1PurchaserUpdatedAtField"
-        },
-        "CustomerOrder": {
-          "$ref": "#/definitions/v1PurchaserCustomerOrderField"
-        },
-        "Contact": {
-          "$ref": "#/definitions/v1PurchaserContactField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1PurchaserCauseField"
-        }
-      }
-    },
-    "v1PurchaserUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "CustomerOrder": {
+          "type": "string"
+        },
+        "Contact": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string"
         }
       }
     },
@@ -25484,15 +23325,6 @@
         }
       }
     },
-    "v1TerritoryCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1TerritoryFilterRule": {
       "type": "object",
       "properties": {
@@ -25503,23 +23335,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1TerritoryIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1TerritoryCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1TerritoryUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1TerritoryTitleField"
-        }
-      }
-    },
-    "v1TerritoryIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -25531,33 +23357,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1TerritoryIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1TerritoryCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1TerritoryUpdatedAtField"
-        },
-        "Title": {
-          "$ref": "#/definitions/v1TerritoryTitleField"
-        }
-      }
-    },
-    "v1TerritoryTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string"
-        }
-      }
-    },
-    "v1TerritoryUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
         }
       }
     },
@@ -27104,31 +24915,6 @@
         }
       }
     },
-    "v1VolunteerCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1VolunteerContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1VolunteerCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1VolunteerFilterRule": {
       "type": "object",
       "properties": {
@@ -27139,29 +24925,23 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1VolunteerIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VolunteerCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1VolunteerUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "VolunteerOpportunity": {
-          "$ref": "#/definitions/v1VolunteerVolunteerOpportunityField"
+          "type": "string"
         },
         "Contact": {
-          "$ref": "#/definitions/v1VolunteerContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1VolunteerCauseField"
-        }
-      }
-    },
-    "v1VolunteerIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -27188,23 +24968,6 @@
         }
       }
     },
-    "v1VolunteerOpportunityCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1VolunteerOpportunityElectionTypeField": {
-      "type": "object",
-      "properties": {
-        "ElectionType": {
-          "type": "string"
-        }
-      }
-    },
     "v1VolunteerOpportunityFilterRule": {
       "type": "object",
       "properties": {
@@ -27215,26 +24978,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1VolunteerOpportunityIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTitleField"
+          "type": "string"
         },
         "ElectionType": {
-          "$ref": "#/definitions/v1VolunteerOpportunityElectionTypeField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -27261,23 +25018,6 @@
         }
       }
     },
-    "v1VolunteerOpportunityMembershipCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1VolunteerOpportunityMembershipCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1VolunteerOpportunityMembershipFilterRule": {
       "type": "object",
       "properties": {
@@ -27288,26 +25028,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Cause": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipCauseField"
+          "type": "string"
         },
         "VolunteerOpportunity": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipVolunteerOpportunityField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityMembershipIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -27319,34 +25053,19 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipUpdatedAtField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipCauseField"
-        },
-        "VolunteerOpportunity": {
-          "$ref": "#/definitions/v1VolunteerOpportunityMembershipVolunteerOpportunityField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityMembershipUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "v1VolunteerOpportunityMembershipVolunteerOpportunityField": {
-      "type": "object",
-      "properties": {
+        },
+        "Cause": {
+          "type": "string"
+        },
         "VolunteerOpportunity": {
           "type": "string"
         }
@@ -27359,26 +25078,20 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1VolunteerOpportunityIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTitleField"
+          "type": "string"
         },
         "ElectionType": {
-          "$ref": "#/definitions/v1VolunteerOpportunityElectionTypeField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityTitleField": {
-      "type": "object",
-      "properties": {
-        "Title": {
           "type": "string"
         }
       }
@@ -27402,15 +25115,6 @@
         }
       }
     },
-    "v1VolunteerOpportunityTypeCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1VolunteerOpportunityTypeFilterRule": {
       "type": "object",
       "properties": {
@@ -27421,23 +25125,17 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Title": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTypeTitleField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityTypeIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -27449,42 +25147,18 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTypeIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTypeCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTypeUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "Title": {
-          "$ref": "#/definitions/v1VolunteerOpportunityTypeTitleField"
-        }
-      }
-    },
-    "v1VolunteerOpportunityTypeTitleField": {
-      "type": "object",
-      "properties": {
         "Title": {
           "type": "string"
-        }
-      }
-    },
-    "v1VolunteerOpportunityTypeUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1VolunteerOpportunityUpdatedAtField": {
-      "type": "object",
-      "properties": {
-        "UpdatedAt": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -27495,38 +25169,23 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1VolunteerIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VolunteerCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1VolunteerUpdatedAtField"
-        },
-        "VolunteerOpportunity": {
-          "$ref": "#/definitions/v1VolunteerVolunteerOpportunityField"
-        },
-        "Contact": {
-          "$ref": "#/definitions/v1VolunteerContactField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1VolunteerCauseField"
-        }
-      }
-    },
-    "v1VolunteerUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "v1VolunteerVolunteerOpportunityField": {
-      "type": "object",
-      "properties": {
+        },
         "VolunteerOpportunity": {
+          "type": "string"
+        },
+        "Contact": {
+          "type": "string"
+        },
+        "Cause": {
           "type": "string"
         }
       }
@@ -27553,31 +25212,6 @@
         }
       }
     },
-    "v1VoterCauseField": {
-      "type": "object",
-      "properties": {
-        "Cause": {
-          "type": "string"
-        }
-      }
-    },
-    "v1VoterContactField": {
-      "type": "object",
-      "properties": {
-        "Contact": {
-          "type": "string"
-        }
-      }
-    },
-    "v1VoterCreatedAtField": {
-      "type": "object",
-      "properties": {
-        "CreatedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
     "v1VoterFilterRule": {
       "type": "object",
       "properties": {
@@ -27588,26 +25222,20 @@
           "$ref": "#/definitions/v1LogicalOperator"
         },
         "ID": {
-          "$ref": "#/definitions/v1VoterIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VoterCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "UpdatedAt": {
-          "$ref": "#/definitions/v1VoterUpdatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
         "Contact": {
-          "$ref": "#/definitions/v1VoterContactField"
+          "type": "string"
         },
         "Cause": {
-          "$ref": "#/definitions/v1VoterCauseField"
-        }
-      }
-    },
-    "v1VoterIDField": {
-      "type": "object",
-      "properties": {
-        "ID": {
           "type": "string"
         }
       }
@@ -27619,28 +25247,21 @@
           "$ref": "#/definitions/v1Direction"
         },
         "ID": {
-          "$ref": "#/definitions/v1VoterIDField"
+          "type": "string"
         },
         "CreatedAt": {
-          "$ref": "#/definitions/v1VoterCreatedAtField"
+          "type": "string",
+          "format": "date-time"
         },
-        "UpdatedAt": {
-          "$ref": "#/definitions/v1VoterUpdatedAtField"
-        },
-        "Contact": {
-          "$ref": "#/definitions/v1VoterContactField"
-        },
-        "Cause": {
-          "$ref": "#/definitions/v1VoterCauseField"
-        }
-      }
-    },
-    "v1VoterUpdatedAtField": {
-      "type": "object",
-      "properties": {
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Contact": {
+          "type": "string"
+        },
+        "Cause": {
+          "type": "string"
         }
       }
     }

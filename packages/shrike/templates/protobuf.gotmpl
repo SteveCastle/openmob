@@ -57,16 +57,10 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 
 {{ range .Schema.Tables }}
 
-{{range $index, $value := .Columns}}
-message {{ .Table.Name}}{{.Name}}Field {
-  {{.Type}} {{.Name}} = 1;
-}
-{{end}}
-
 message {{.Name}}Ordering {
   Direction Direction = 1;
   oneof field {
-{{range $index, $value := .Columns}}    {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};
+{{range $index, $value := .Columns}}    {{ .Type}} {{ .Name}} = {{inc (inc (inc $index))}};
 {{end}}  }
 }
 
@@ -74,7 +68,7 @@ message {{.Name}}FilterRule {
   Rule Rule = 1;
   LogicalOperator LogicalOperator = 2;
   oneof field {
-{{range $index, $value := .Columns}}    {{ .Table.Name}}{{.Name}}Field {{ .Name}} = {{inc (inc (inc $index))}};
+{{range $index, $value := .Columns}}    {{ .Type}} {{ .Name}} = {{inc (inc (inc $index))}};
 {{end}}  }
 }{{end}}
 

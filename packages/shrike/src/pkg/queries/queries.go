@@ -7,14 +7,6 @@ import (
 	"github.com/SteveCastle/structs"
 )
 
-// Filter defines a single filter struct.
-type Filter struct {
-}
-
-// Order defines a single order struct.
-type Order struct {
-}
-
 // BuildCauseFilters takes a filter and ordering object for a cause.
 // and returns an SQL string
 func BuildCauseFilters(f []*v1.CauseFilterRule, o []*v1.CauseOrdering, limit int64) string {
@@ -23,10 +15,10 @@ func BuildCauseFilters(f []*v1.CauseFilterRule, o []*v1.CauseOrdering, limit int
 	for _, r := range f {
 		s := structs.New(r.GetField())
 		for _, f := range s.Fields() {
-			fmt.Printf("field name: %+v\n", f.Name())
+			fmt.Printf("Filter by field name: %+v\n", f.Name())
 
 			if f.IsExported() {
-				fmt.Printf("value   : %+v\n", f.Value())
+				fmt.Printf("Filter by value   : %v\n", f.Value())
 				fmt.Printf("is zero : %+v\n", f.IsZero())
 			}
 		}
@@ -34,10 +26,9 @@ func BuildCauseFilters(f []*v1.CauseFilterRule, o []*v1.CauseOrdering, limit int
 	for _, r := range o {
 		s := structs.New(r.GetField())
 		for _, f := range s.Fields() {
-			fmt.Printf("field name: %+v\n", f.Name())
-
+			fmt.Printf("Order by field name: %+v\n", f.Name())
 			if f.IsExported() {
-				fmt.Printf("value   : %+v\n", f.Value())
+				fmt.Printf("Order by value   : %v\n", f.Value())
 				fmt.Printf("is zero : %+v\n", f.IsZero())
 			}
 		}
