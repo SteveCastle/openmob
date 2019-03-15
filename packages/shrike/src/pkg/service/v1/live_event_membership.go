@@ -6,6 +6,7 @@ import (
 	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -117,6 +118,7 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 	defer c.Close()
 
 	// get LiveEventMembership list
+	queries.BuildLiveEventMembershipFilters(req.Filters, req.Ordering, req.Limit)
 	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, live_event FROM live_event_membership")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventMembership-> "+err.Error())

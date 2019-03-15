@@ -6,6 +6,7 @@ import (
 	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -117,6 +118,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityType(ctx context.Context, 
 	defer c.Close()
 
 	// get VolunteerOpportunityType list
+	queries.BuildVolunteerOpportunityTypeFilters(req.Filters, req.Ordering, req.Limit)
 	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM volunteer_opportunity_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityType-> "+err.Error())

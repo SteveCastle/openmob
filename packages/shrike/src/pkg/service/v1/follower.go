@@ -6,6 +6,7 @@ import (
 	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -117,6 +118,7 @@ func (s *shrikeServiceServer) ListFollower(ctx context.Context, req *v1.ListFoll
 	defer c.Close()
 
 	// get Follower list
+	queries.BuildFollowerFilters(req.Filters, req.Ordering, req.Limit)
 	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause FROM follower")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Follower-> "+err.Error())

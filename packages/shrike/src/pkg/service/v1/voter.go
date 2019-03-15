@@ -6,6 +6,7 @@ import (
 	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -117,6 +118,7 @@ func (s *shrikeServiceServer) ListVoter(ctx context.Context, req *v1.ListVoterRe
 	defer c.Close()
 
 	// get Voter list
+	queries.BuildVoterFilters(req.Filters, req.Ordering, req.Limit)
 	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause FROM voter")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Voter-> "+err.Error())

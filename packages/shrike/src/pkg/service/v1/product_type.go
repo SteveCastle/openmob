@@ -6,6 +6,7 @@ import (
 	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -117,6 +118,7 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 	defer c.Close()
 
 	// get ProductType list
+	queries.BuildProductTypeFilters(req.Filters, req.Ordering, req.Limit)
 	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM product_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductType-> "+err.Error())

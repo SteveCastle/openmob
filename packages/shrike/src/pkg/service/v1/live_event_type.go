@@ -6,6 +6,7 @@ import (
 	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -117,6 +118,7 @@ func (s *shrikeServiceServer) ListLiveEventType(ctx context.Context, req *v1.Lis
 	defer c.Close()
 
 	// get LiveEventType list
+	queries.BuildLiveEventTypeFilters(req.Filters, req.Ordering, req.Limit)
 	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM live_event_type")
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventType-> "+err.Error())
