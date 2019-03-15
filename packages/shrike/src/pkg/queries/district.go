@@ -12,10 +12,16 @@ import (
 func BuildDistrictFilters(filters []*v1.DistrictFilterRule, orderings []*v1.DistrictOrdering, limit int64) string {
 	var sql string
 	fmt.Println("Limit: ", limit)
-	for _, r := range filters {
+	for i, r := range filters {
+		// Insert where clause before the first filter.
+		// And the Logical operator of each successive filter.
+		if i == 0 {
+			sql = fmt.Sprintf("%s %s", sql, "WHERE")
+		} else {
+			sql = fmt.Sprintf("%s %s", sql, "AND")
+		}
 		s := structs.New(r.GetField())
 		for _, f := range s.Fields() {
-			sql = fmt.Sprintf("%s %s", sql, "WHERE")
 			if f.IsExported() {
 				sql = fmt.Sprintf("%s %s %s '%s'", sql, ToSnakeCase(f.Name()), Comparison["EQ"], f.Value())
 				fmt.Printf("Filter generated: %v\n", sql)
