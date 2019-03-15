@@ -116,9 +116,13 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	}
 	defer c.Close()
 
-	// get ComponentImplementation list
-	queries.BuildComponentImplementationFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM component_implementation")
+	// Generate SQL to select all columns in ComponentImplementation Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at FROM component_implementation"
+	querySQL := queries.BuildComponentImplementationFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
 	}

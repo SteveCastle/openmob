@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListContactMembership(ctx context.Context, req *v1
 	}
 	defer c.Close()
 
-	// get ContactMembership list
-	queries.BuildContactMembershipFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, contact FROM contact_membership")
+	// Generate SQL to select all columns in ContactMembership Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, cause, contact FROM contact_membership"
+	querySQL := queries.BuildContactMembershipFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ContactMembership-> "+err.Error())
 	}

@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListLayoutColumn(ctx context.Context, req *v1.List
 	}
 	defer c.Close()
 
-	// get LayoutColumn list
-	queries.BuildLayoutColumnFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_row FROM layout_column")
+	// Generate SQL to select all columns in LayoutColumn Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, layout_row FROM layout_column"
+	querySQL := queries.BuildLayoutColumnFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutColumn-> "+err.Error())
 	}

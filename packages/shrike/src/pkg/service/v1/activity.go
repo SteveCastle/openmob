@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListActivity(ctx context.Context, req *v1.ListActi
 	}
 	defer c.Close()
 
-	// get Activity list
-	queries.BuildActivityFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, activity_type, contact, cause FROM activity")
+	// Generate SQL to select all columns in Activity Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, title, activity_type, contact, cause FROM activity"
+	querySQL := queries.BuildActivityFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Activity-> "+err.Error())
 	}

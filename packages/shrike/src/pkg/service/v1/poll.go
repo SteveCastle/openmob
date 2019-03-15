@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListPoll(ctx context.Context, req *v1.ListPollRequ
 	}
 	defer c.Close()
 
-	// get Poll list
-	queries.BuildPollFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM poll")
+	// Generate SQL to select all columns in Poll Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, title FROM poll"
+	querySQL := queries.BuildPollFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Poll-> "+err.Error())
 	}

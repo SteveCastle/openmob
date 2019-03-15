@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListVolunteerOpportunity(ctx context.Context, req 
 	}
 	defer c.Close()
 
-	// get VolunteerOpportunity list
-	queries.BuildVolunteerOpportunityFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election_type FROM volunteer_opportunity")
+	// Generate SQL to select all columns in VolunteerOpportunity Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, title, election_type FROM volunteer_opportunity"
+	querySQL := queries.BuildVolunteerOpportunityFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunity-> "+err.Error())
 	}

@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTer
 	}
 	defer c.Close()
 
-	// get Territory list
-	queries.BuildTerritoryFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM territory")
+	// Generate SQL to select all columns in Territory Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, title FROM territory"
+	querySQL := queries.BuildTerritoryFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Territory-> "+err.Error())
 	}

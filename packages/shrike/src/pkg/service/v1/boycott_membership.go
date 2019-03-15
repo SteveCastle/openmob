@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListBoycottMembership(ctx context.Context, req *v1
 	}
 	defer c.Close()
 
-	// get BoycottMembership list
-	queries.BuildBoycottMembershipFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, boycott FROM boycott_membership")
+	// Generate SQL to select all columns in BoycottMembership Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, cause, boycott FROM boycott_membership"
+	querySQL := queries.BuildBoycottMembershipFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from BoycottMembership-> "+err.Error())
 	}

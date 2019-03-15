@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 	}
 	defer c.Close()
 
-	// get LiveEventMembership list
-	queries.BuildLiveEventMembershipFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, live_event FROM live_event_membership")
+	// Generate SQL to select all columns in LiveEventMembership Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, cause, live_event FROM live_event_membership"
+	querySQL := queries.BuildLiveEventMembershipFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEventMembership-> "+err.Error())
 	}

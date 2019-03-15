@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListFollower(ctx context.Context, req *v1.ListFoll
 	}
 	defer c.Close()
 
-	// get Follower list
-	queries.BuildFollowerFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, contact, cause FROM follower")
+	// Generate SQL to select all columns in Follower Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, contact, cause FROM follower"
+	querySQL := queries.BuildFollowerFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Follower-> "+err.Error())
 	}

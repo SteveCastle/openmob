@@ -9,30 +9,32 @@ import (
 
 // BuildDonorFilters takes a filter and ordering object for a cause.
 // and returns an SQL string
-func BuildDonorFilters(f []*v1.DonorFilterRule, o []*v1.DonorOrdering, limit int64) string {
+func BuildDonorFilters(filters []*v1.DonorFilterRule, orderings []*v1.DonorOrdering, limit int64) string {
 	var sql string
 	fmt.Println("Limit: ", limit)
-	for _, r := range f {
+	for _, r := range filters {
 		s := structs.New(r.GetField())
 		for _, f := range s.Fields() {
-			fmt.Printf("Filter by field name: %+v\n", f.Name())
-
+			sql = fmt.Sprintf("%s %s", sql, "WHERE")
 			if f.IsExported() {
-				fmt.Printf("Filter by value   : %v\n", f.Value())
-				fmt.Printf("is zero : %+v\n", f.IsZero())
+				sql = fmt.Sprintf("%s %s %s '%s'", sql, ToSnakeCase(f.Name()), Comparison["EQ"], f.Value())
+				fmt.Printf("Filter generated: %v\n", sql)
 			}
 		}
 	}
-	for _, r := range o {
+	for _, r := range orderings {
 		s := structs.New(r.GetField())
 		for _, f := range s.Fields() {
-			fmt.Printf("Order by field name: %+v\n", f.Name())
+			fmt.Printf("Order by field name: %+v\n", ToSnakeCase(f.Name()))
+			sql = fmt.Sprintf("%s %s", sql, "ORDER BY")
 			if f.IsExported() {
-				fmt.Printf("Order by value   : %v\n", f.Value())
-				fmt.Printf("is zero : %+v\n", f.IsZero())
+				sql = fmt.Sprintf("%s %s ASC", sql, ToSnakeCase(f.Name()))
+				fmt.Printf("Ordering generated: %v\n", sql)
 			}
 		}
 
 	}
+	sql = fmt.Sprintf("%s LIMIT %d;", sql, limit)
+	fmt.Printf("Final SQL: %v\n", sql)
 	return sql
 }

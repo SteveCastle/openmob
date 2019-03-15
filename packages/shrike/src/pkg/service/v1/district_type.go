@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListDistrictType(ctx context.Context, req *v1.List
 	}
 	defer c.Close()
 
-	// get DistrictType list
-	queries.BuildDistrictTypeFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM district_type")
+	// Generate SQL to select all columns in DistrictType Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, title FROM district_type"
+	querySQL := queries.BuildDistrictTypeFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DistrictType-> "+err.Error())
 	}

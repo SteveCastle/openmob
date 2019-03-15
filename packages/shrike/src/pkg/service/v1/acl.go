@@ -116,9 +116,13 @@ func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLReques
 	}
 	defer c.Close()
 
-	// get ACL list
-	queries.BuildACLFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM acl")
+	// Generate SQL to select all columns in ACL Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at FROM acl"
+	querySQL := queries.BuildACLFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ACL-> "+err.Error())
 	}

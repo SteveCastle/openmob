@@ -117,9 +117,13 @@ func (s *shrikeServiceServer) ListField(ctx context.Context, req *v1.ListFieldRe
 	}
 	defer c.Close()
 
-	// get Field list
-	queries.BuildFieldFilters(req.Filters, req.Ordering, req.Limit)
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, component FROM field")
+	// Generate SQL to select all columns in Field Table
+	// Then generate filtering and ordering sql and finally run query.
+
+	baseSQL := "SELECT id, created_at, updated_at, field_type, component FROM field"
+	querySQL := queries.BuildFieldFilters(req.Filters, req.Ordering, req.Limit)
+	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
+	rows, err := c.QueryContext(ctx, SQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Field-> "+err.Error())
 	}
