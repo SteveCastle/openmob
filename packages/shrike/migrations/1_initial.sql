@@ -150,7 +150,6 @@ CREATE TABLE home_page
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
-    cause UUID REFERENCES cause(id) UNIQUE NOT NULL,
     layout UUID REFERENCES layout(id),
     PRIMARY KEY (id)
 );
@@ -602,6 +601,10 @@ CREATE TABLE agent_membership
     agent UUID REFERENCES agent(id) NOT NULL,
     PRIMARY KEY (id)
 );
+
+--ADD CAUSE RELATIONS
+ALTER TABLE cause ADD COLUMN home_page UUID REFERENCES home_page(id);
+
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
 

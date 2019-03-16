@@ -15026,6 +15026,9 @@
         },
         "Summary": {
           "type": "string"
+        },
+        "HomePage": {
+          "type": "string"
         }
       }
     },
@@ -15057,6 +15060,9 @@
         },
         "Summary": {
           "type": "string"
+        },
+        "HomePage": {
+          "type": "string"
         }
       }
     },
@@ -15084,6 +15090,9 @@
           "type": "string"
         },
         "Summary": {
+          "type": "string"
+        },
+        "HomePage": {
           "type": "string"
         }
       }
@@ -15824,6 +15833,9 @@
           "type": "string"
         },
         "Summary": {
+          "type": "string"
+        },
+        "HomePage": {
           "type": "string"
         }
       }
@@ -16643,9 +16655,6 @@
       "type": "object",
       "properties": {
         "Title": {
-          "type": "string"
-        },
-        "Cause": {
           "type": "string"
         },
         "Layout": {
@@ -20569,9 +20578,6 @@
         "Title": {
           "type": "string"
         },
-        "Cause": {
-          "type": "string"
-        },
         "Layout": {
           "type": "string"
         }
@@ -20600,9 +20606,6 @@
         "Title": {
           "type": "string"
         },
-        "Cause": {
-          "type": "string"
-        },
         "Layout": {
           "type": "string"
         }
@@ -20626,9 +20629,6 @@
           "format": "date-time"
         },
         "Title": {
-          "type": "string"
-        },
-        "Cause": {
           "type": "string"
         },
         "Layout": {

@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateHomePage(ctx context.Context, req *v1.Create
 	defer c.Close()
 	var id string
 	// insert HomePage entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO home_page (title, cause, layout) VALUES($1, $2, $3)  RETURNING id;",
-		req.Item.Title, req.Item.Cause, req.Item.Layout).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO home_page (title, layout) VALUES($1, $2)  RETURNING id;",
+		req.Item.Title, req.Item.Layout).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into HomePage-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetHomePage(ctx context.Context, req *v1.GetHomePa
 	defer c.Close()
 
 	// query HomePage by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, cause, layout FROM home_page WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, layout FROM home_page WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from HomePage-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetHomePage(ctx context.Context, req *v1.GetHomePa
 	var createdAt time.Time
 	var updatedAt time.Time
 
-	if err := rows.Scan(&homepage.ID, &createdAt, &updatedAt, &homepage.Title, &homepage.Cause, &homepage.Layout); err != nil {
+	if err := rows.Scan(&homepage.ID, &createdAt, &updatedAt, &homepage.Title, &homepage.Layout); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from HomePage row-> "+err.Error())
 	}
 
@@ -120,7 +120,7 @@ func (s *shrikeServiceServer) ListHomePage(ctx context.Context, req *v1.ListHome
 	// Generate SQL to select all columns in HomePage Table
 	// Then generate filtering and ordering sql and finally run query.
 
-	baseSQL := "SELECT id, created_at, updated_at, title, cause, layout FROM home_page"
+	baseSQL := "SELECT id, created_at, updated_at, title, layout FROM home_page"
 	querySQL := queries.BuildHomePageFilters(req.Filters, req.Ordering, req.Limit)
 	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
 	rows, err := c.QueryContext(ctx, SQL)
@@ -136,7 +136,7 @@ func (s *shrikeServiceServer) ListHomePage(ctx context.Context, req *v1.ListHome
 
 	for rows.Next() {
 		homepage := new(v1.HomePage)
-		if err := rows.Scan(&homepage.ID, &createdAt, &updatedAt, &homepage.Title, &homepage.Cause, &homepage.Layout); err != nil {
+		if err := rows.Scan(&homepage.ID, &createdAt, &updatedAt, &homepage.Title, &homepage.Layout); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from HomePage row-> "+err.Error())
 		}
 		// Convert time.Time from database into proto timestamp.
@@ -177,8 +177,8 @@ func (s *shrikeServiceServer) UpdateHomePage(ctx context.Context, req *v1.Update
 	defer c.Close()
 
 	// update home_page
-	res, err := c.ExecContext(ctx, "UPDATE home_page SET title=$2, cause=$3, layout=$4 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.Cause, req.Item.Layout)
+	res, err := c.ExecContext(ctx, "UPDATE home_page SET title=$2, layout=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.Layout)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update HomePage-> "+err.Error())
 	}

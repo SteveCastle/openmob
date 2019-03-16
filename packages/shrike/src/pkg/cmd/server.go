@@ -6,11 +6,10 @@ import (
 	"flag"
 	"fmt"
 
-	// postgres driver
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/protocol/grpc"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/protocol/rest"
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/service/v1"
-	_ "github.com/lib/pq"
+	_ "github.com/lib/pq" // postgres driver
 )
 
 // Config is configuration for Server

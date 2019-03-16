@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCau
 	defer c.Close()
 	var id string
 	// insert Cause entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO cause (title, slug, summary) VALUES($1, $2, $3)  RETURNING id;",
-		req.Item.Title, req.Item.Slug, req.Item.Summary).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO cause (title, slug, summary, home_page) VALUES($1, $2, $3, $4)  RETURNING id;",
+		req.Item.Title, req.Item.Slug, req.Item.Summary, req.Item.HomePage).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Cause-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	defer c.Close()
 
 	// query Cause by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, slug, summary FROM cause WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, slug, summary, home_page FROM cause WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Cause-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	var createdAt time.Time
 	var updatedAt time.Time
 
-	if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Slug, &cause.Summary); err != nil {
+	if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Slug, &cause.Summary, &cause.HomePage); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Cause row-> "+err.Error())
 	}
 
@@ -120,7 +120,7 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 	// Generate SQL to select all columns in Cause Table
 	// Then generate filtering and ordering sql and finally run query.
 
-	baseSQL := "SELECT id, created_at, updated_at, title, slug, summary FROM cause"
+	baseSQL := "SELECT id, created_at, updated_at, title, slug, summary, home_page FROM cause"
 	querySQL := queries.BuildCauseFilters(req.Filters, req.Ordering, req.Limit)
 	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
 	rows, err := c.QueryContext(ctx, SQL)
@@ -136,7 +136,7 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 
 	for rows.Next() {
 		cause := new(v1.Cause)
-		if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Slug, &cause.Summary); err != nil {
+		if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Slug, &cause.Summary, &cause.HomePage); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Cause row-> "+err.Error())
 		}
 		// Convert time.Time from database into proto timestamp.
@@ -177,8 +177,8 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	defer c.Close()
 
 	// update cause
-	res, err := c.ExecContext(ctx, "UPDATE cause SET title=$2, slug=$3, summary=$4 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.Slug, req.Item.Summary)
+	res, err := c.ExecContext(ctx, "UPDATE cause SET title=$2, slug=$3, summary=$4, home_page=$5 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.Slug, req.Item.Summary, req.Item.HomePage)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Cause-> "+err.Error())
 	}
