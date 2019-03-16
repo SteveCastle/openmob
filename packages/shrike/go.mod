@@ -4,6 +4,7 @@ require (
 	github.com/SteveCastle/structs v1.1.0
 	github.com/cridenour/go-postgis v1.0.0
 	github.com/ghodss/yaml v1.0.0 // indirect
+	github.com/gofrs/uuid v3.2.0+incompatible
 	github.com/golang/protobuf v1.2.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.0.0
 	github.com/grpc-ecosystem/grpc-gateway v1.6.4
