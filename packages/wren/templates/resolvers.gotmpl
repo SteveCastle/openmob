@@ -1,16 +1,16 @@
 module.exports = client => ({
 {{range .Schema.Tables}}
   {{.Name}} : {
-{{range .Columns}}{{if eq .Name "ID"}}{{range .FKColumnRefs}}  {{.Column.Table.Name}}s: ({ ID }) =>
+{{range .Columns}}{{if eq .Name "ID"}}{{range .FKColumnRefs}}    {{.Column.Table.Name}}s: ({ ID }) =>
     client
       .List{{.Column.Table.Name}}()
       .sendMessage({ api: 'v1', filters: [{ {{.RefColumn.Table.Name}}: ID }], limit: 10 })
-      .then(res => res.items),{{end}}{{end}}{{if .IsFK}}  {{.Name}}: ({ {{.Name}} }) =>
+      .then(res => res.items),
+{{end}}{{end}}{{if .IsFK}}    {{.Name}}: ({ {{.Name}} }) =>
     client
       .Get{{.Name}}()
       .sendMessage({ api: 'v1',  ID: {{.Name}} })
-      .then(res => res.item),{{end}}{{end}}
-  },{{end}}
+      .then(res => res.item),{{end}}{{end}}},{{end}}
   Query: {
     {{range .Schema.Tables}}
     list{{.Name}}: (_, { limit, ordering, filters }) =>
