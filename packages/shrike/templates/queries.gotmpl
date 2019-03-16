@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"google.golang.org/grpc/grpclog"
 	"github.com/SteveCastle/structs"
 )
 
@@ -38,6 +37,6 @@ func Build{{.Table.Name}}Filters(filters []*v1.{{.Table.Name}}FilterRule, orderi
 
 	}
 	sql = fmt.Sprintf("%s LIMIT %d;", sql, limit)
-	grpclog.Infof("List SQL Executed: %v\n", sql)
+	fmt.Printf("List SQL Executed: %v\n", sql)
 	return sql
 }

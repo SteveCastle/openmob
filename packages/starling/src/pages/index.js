@@ -8,7 +8,7 @@ import SEO from "../components/seo"
 
 const IndexPage = ({
   data: {
-    wren: { listCause },
+    wren: { listCause = [] },
   },
 }) => (
   <Layout>
@@ -31,7 +31,7 @@ const IndexPage = ({
 export const pageQuery = graphql`
   query IndexQuery {
     wren {
-      listCause {
+      listCause(limit: 5) {
         Title
       }
     }

@@ -26,15 +26,15 @@ module.exports = client => ({
   },
   Mutation: {
     {{range .Schema.Tables}}
-    create{{.Name}}: (_, { {{camel .Name}} }) =>
+    create{{.Name}}: (_, { {{camel .Name}}, buildStatic = false }) =>
       client
         .Create{{.Name}}()
         .sendMessage({ api: 'v1', item: { ...{{camel .Name}} } })
-        .then(res => ({ ID: res.ID, ...{{camel .Name}} })),
-    update{{.Name}}: (_, { ID, {{camel .Name}} }) =>
+        .then(res => ({ ID: res.ID, ...{{camel .Name}}, buildStatic })),
+    update{{.Name}}: (_, { ID, {{camel .Name}}, buildStatic = false }) =>
       client
         .Update{{.Name}}()
-        .sendMessage({ api: 'v1', item: { ID, ...{{camel .Name}} } })
+        .sendMessage({ api: 'v1', item: { ID, ...{{camel .Name}}, buildStatic } })
         .then(res => res.updated),
     delete{{.Name}}: (_, { ID }) =>
       client

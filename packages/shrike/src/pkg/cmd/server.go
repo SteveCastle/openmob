@@ -7,11 +7,10 @@ import (
 	"fmt"
 
 	// postgres driver
-	_ "github.com/lib/pq"
-	"google.golang.org/grpc/grpclog"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/protocol/grpc"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/protocol/rest"
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/service/v1"
+	_ "github.com/lib/pq"
 )
 
 // Config is configuration for Server

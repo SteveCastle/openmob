@@ -26,8 +26,8 @@ type {{.Name}} {
 
   type Mutation {
     {{range .Schema.Tables}}
-    create{{.Name}}({{camel .Name}}: {{.Name}}Input): {{.Name}}
-    update{{.Name}}(ID: ID!, {{camel .Name}}: {{.Name}}Input): Int
-    delete{{.Name}}(ID: ID!): Int{{end}}
+    create{{.Name}}({{camel .Name}}: {{.Name}}Input, buildStatic: Boolean): {{.Name}}
+    update{{.Name}}(ID: ID!, {{camel .Name}}: {{.Name}}Input, buildStatic: Boolean): Int
+    delete{{.Name}}(ID: ID!, buildStatic: Boolean): Int{{end}}
   }
   `.replace(/[\u200B-\u200D\uFEFF]/g, '');

@@ -5,7 +5,6 @@ import (
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/structs"
-	"google.golang.org/grpc/grpclog"
 )
 
 // BuildACLFilters takes a filter and ordering object for a cause.
@@ -38,6 +37,6 @@ func BuildACLFilters(filters []*v1.ACLFilterRule, orderings []*v1.ACLOrdering, l
 
 	}
 	sql = fmt.Sprintf("%s LIMIT %d;", sql, limit)
-	grpclog.Infof("List SQL Executed: %v\n", sql)
+	fmt.Printf("List SQL Executed: %v\n", sql)
 	return sql
 }

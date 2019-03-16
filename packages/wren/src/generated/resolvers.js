@@ -1521,540 +1521,592 @@ module.exports = client => ({
         .then(res => res.item)
   },
   Mutation: {
-    createACL: (_, { acl }) =>
+    createACL: (_, { acl, buildStatic = false }) =>
       client
         .CreateACL()
         .sendMessage({ api: 'v1', item: { ...acl } })
-        .then(res => ({ ID: res.ID, ...acl })),
-    updateACL: (_, { ID, acl }) =>
+        .then(res => ({ ID: res.ID, ...acl, buildStatic })),
+    updateACL: (_, { ID, acl, buildStatic = false }) =>
       client
         .UpdateACL()
-        .sendMessage({ api: 'v1', item: { ID, ...acl } })
+        .sendMessage({ api: 'v1', item: { ID, ...acl, buildStatic } })
         .then(res => res.updated),
     deleteACL: (_, { ID }) =>
       client
         .DeleteACL()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createMailingAddress: (_, { mailingAddress }) =>
+    createMailingAddress: (_, { mailingAddress, buildStatic = false }) =>
       client
         .CreateMailingAddress()
         .sendMessage({ api: 'v1', item: { ...mailingAddress } })
-        .then(res => ({ ID: res.ID, ...mailingAddress })),
-    updateMailingAddress: (_, { ID, mailingAddress }) =>
+        .then(res => ({ ID: res.ID, ...mailingAddress, buildStatic })),
+    updateMailingAddress: (_, { ID, mailingAddress, buildStatic = false }) =>
       client
         .UpdateMailingAddress()
-        .sendMessage({ api: 'v1', item: { ID, ...mailingAddress } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...mailingAddress, buildStatic }
+        })
         .then(res => res.updated),
     deleteMailingAddress: (_, { ID }) =>
       client
         .DeleteMailingAddress()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPhoneNumber: (_, { phoneNumber }) =>
+    createPhoneNumber: (_, { phoneNumber, buildStatic = false }) =>
       client
         .CreatePhoneNumber()
         .sendMessage({ api: 'v1', item: { ...phoneNumber } })
-        .then(res => ({ ID: res.ID, ...phoneNumber })),
-    updatePhoneNumber: (_, { ID, phoneNumber }) =>
+        .then(res => ({ ID: res.ID, ...phoneNumber, buildStatic })),
+    updatePhoneNumber: (_, { ID, phoneNumber, buildStatic = false }) =>
       client
         .UpdatePhoneNumber()
-        .sendMessage({ api: 'v1', item: { ID, ...phoneNumber } })
+        .sendMessage({ api: 'v1', item: { ID, ...phoneNumber, buildStatic } })
         .then(res => res.updated),
     deletePhoneNumber: (_, { ID }) =>
       client
         .DeletePhoneNumber()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createEmailAddress: (_, { emailAddress }) =>
+    createEmailAddress: (_, { emailAddress, buildStatic = false }) =>
       client
         .CreateEmailAddress()
         .sendMessage({ api: 'v1', item: { ...emailAddress } })
-        .then(res => ({ ID: res.ID, ...emailAddress })),
-    updateEmailAddress: (_, { ID, emailAddress }) =>
+        .then(res => ({ ID: res.ID, ...emailAddress, buildStatic })),
+    updateEmailAddress: (_, { ID, emailAddress, buildStatic = false }) =>
       client
         .UpdateEmailAddress()
-        .sendMessage({ api: 'v1', item: { ID, ...emailAddress } })
+        .sendMessage({ api: 'v1', item: { ID, ...emailAddress, buildStatic } })
         .then(res => res.updated),
     deleteEmailAddress: (_, { ID }) =>
       client
         .DeleteEmailAddress()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPhoto: (_, { photo }) =>
+    createPhoto: (_, { photo, buildStatic = false }) =>
       client
         .CreatePhoto()
         .sendMessage({ api: 'v1', item: { ...photo } })
-        .then(res => ({ ID: res.ID, ...photo })),
-    updatePhoto: (_, { ID, photo }) =>
+        .then(res => ({ ID: res.ID, ...photo, buildStatic })),
+    updatePhoto: (_, { ID, photo, buildStatic = false }) =>
       client
         .UpdatePhoto()
-        .sendMessage({ api: 'v1', item: { ID, ...photo } })
+        .sendMessage({ api: 'v1', item: { ID, ...photo, buildStatic } })
         .then(res => res.updated),
     deletePhoto: (_, { ID }) =>
       client
         .DeletePhoto()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createLayoutType: (_, { layoutType }) =>
+    createLayoutType: (_, { layoutType, buildStatic = false }) =>
       client
         .CreateLayoutType()
         .sendMessage({ api: 'v1', item: { ...layoutType } })
-        .then(res => ({ ID: res.ID, ...layoutType })),
-    updateLayoutType: (_, { ID, layoutType }) =>
+        .then(res => ({ ID: res.ID, ...layoutType, buildStatic })),
+    updateLayoutType: (_, { ID, layoutType, buildStatic = false }) =>
       client
         .UpdateLayoutType()
-        .sendMessage({ api: 'v1', item: { ID, ...layoutType } })
+        .sendMessage({ api: 'v1', item: { ID, ...layoutType, buildStatic } })
         .then(res => res.updated),
     deleteLayoutType: (_, { ID }) =>
       client
         .DeleteLayoutType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createLayoutRow: (_, { layoutRow }) =>
+    createLayoutRow: (_, { layoutRow, buildStatic = false }) =>
       client
         .CreateLayoutRow()
         .sendMessage({ api: 'v1', item: { ...layoutRow } })
-        .then(res => ({ ID: res.ID, ...layoutRow })),
-    updateLayoutRow: (_, { ID, layoutRow }) =>
+        .then(res => ({ ID: res.ID, ...layoutRow, buildStatic })),
+    updateLayoutRow: (_, { ID, layoutRow, buildStatic = false }) =>
       client
         .UpdateLayoutRow()
-        .sendMessage({ api: 'v1', item: { ID, ...layoutRow } })
+        .sendMessage({ api: 'v1', item: { ID, ...layoutRow, buildStatic } })
         .then(res => res.updated),
     deleteLayoutRow: (_, { ID }) =>
       client
         .DeleteLayoutRow()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createComponentImplementation: (_, { componentImplementation }) =>
+    createComponentImplementation: (
+      _,
+      { componentImplementation, buildStatic = false }
+    ) =>
       client
         .CreateComponentImplementation()
         .sendMessage({ api: 'v1', item: { ...componentImplementation } })
-        .then(res => ({ ID: res.ID, ...componentImplementation })),
-    updateComponentImplementation: (_, { ID, componentImplementation }) =>
+        .then(res => ({ ID: res.ID, ...componentImplementation, buildStatic })),
+    updateComponentImplementation: (
+      _,
+      { ID, componentImplementation, buildStatic = false }
+    ) =>
       client
         .UpdateComponentImplementation()
-        .sendMessage({ api: 'v1', item: { ID, ...componentImplementation } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...componentImplementation, buildStatic }
+        })
         .then(res => res.updated),
     deleteComponentImplementation: (_, { ID }) =>
       client
         .DeleteComponentImplementation()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createComponentType: (_, { componentType }) =>
+    createComponentType: (_, { componentType, buildStatic = false }) =>
       client
         .CreateComponentType()
         .sendMessage({ api: 'v1', item: { ...componentType } })
-        .then(res => ({ ID: res.ID, ...componentType })),
-    updateComponentType: (_, { ID, componentType }) =>
+        .then(res => ({ ID: res.ID, ...componentType, buildStatic })),
+    updateComponentType: (_, { ID, componentType, buildStatic = false }) =>
       client
         .UpdateComponentType()
-        .sendMessage({ api: 'v1', item: { ID, ...componentType } })
+        .sendMessage({ api: 'v1', item: { ID, ...componentType, buildStatic } })
         .then(res => res.updated),
     deleteComponentType: (_, { ID }) =>
       client
         .DeleteComponentType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createLayoutColumn: (_, { layoutColumn }) =>
+    createLayoutColumn: (_, { layoutColumn, buildStatic = false }) =>
       client
         .CreateLayoutColumn()
         .sendMessage({ api: 'v1', item: { ...layoutColumn } })
-        .then(res => ({ ID: res.ID, ...layoutColumn })),
-    updateLayoutColumn: (_, { ID, layoutColumn }) =>
+        .then(res => ({ ID: res.ID, ...layoutColumn, buildStatic })),
+    updateLayoutColumn: (_, { ID, layoutColumn, buildStatic = false }) =>
       client
         .UpdateLayoutColumn()
-        .sendMessage({ api: 'v1', item: { ID, ...layoutColumn } })
+        .sendMessage({ api: 'v1', item: { ID, ...layoutColumn, buildStatic } })
         .then(res => res.updated),
     deleteLayoutColumn: (_, { ID }) =>
       client
         .DeleteLayoutColumn()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createFieldType: (_, { fieldType }) =>
+    createFieldType: (_, { fieldType, buildStatic = false }) =>
       client
         .CreateFieldType()
         .sendMessage({ api: 'v1', item: { ...fieldType } })
-        .then(res => ({ ID: res.ID, ...fieldType })),
-    updateFieldType: (_, { ID, fieldType }) =>
+        .then(res => ({ ID: res.ID, ...fieldType, buildStatic })),
+    updateFieldType: (_, { ID, fieldType, buildStatic = false }) =>
       client
         .UpdateFieldType()
-        .sendMessage({ api: 'v1', item: { ID, ...fieldType } })
+        .sendMessage({ api: 'v1', item: { ID, ...fieldType, buildStatic } })
         .then(res => res.updated),
     deleteFieldType: (_, { ID }) =>
       client
         .DeleteFieldType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createComponent: (_, { component }) =>
+    createComponent: (_, { component, buildStatic = false }) =>
       client
         .CreateComponent()
         .sendMessage({ api: 'v1', item: { ...component } })
-        .then(res => ({ ID: res.ID, ...component })),
-    updateComponent: (_, { ID, component }) =>
+        .then(res => ({ ID: res.ID, ...component, buildStatic })),
+    updateComponent: (_, { ID, component, buildStatic = false }) =>
       client
         .UpdateComponent()
-        .sendMessage({ api: 'v1', item: { ID, ...component } })
+        .sendMessage({ api: 'v1', item: { ID, ...component, buildStatic } })
         .then(res => res.updated),
     deleteComponent: (_, { ID }) =>
       client
         .DeleteComponent()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createField: (_, { field }) =>
+    createField: (_, { field, buildStatic = false }) =>
       client
         .CreateField()
         .sendMessage({ api: 'v1', item: { ...field } })
-        .then(res => ({ ID: res.ID, ...field })),
-    updateField: (_, { ID, field }) =>
+        .then(res => ({ ID: res.ID, ...field, buildStatic })),
+    updateField: (_, { ID, field, buildStatic = false }) =>
       client
         .UpdateField()
-        .sendMessage({ api: 'v1', item: { ID, ...field } })
+        .sendMessage({ api: 'v1', item: { ID, ...field, buildStatic } })
         .then(res => res.updated),
     deleteField: (_, { ID }) =>
       client
         .DeleteField()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createHomePage: (_, { homePage }) =>
+    createHomePage: (_, { homePage, buildStatic = false }) =>
       client
         .CreateHomePage()
         .sendMessage({ api: 'v1', item: { ...homePage } })
-        .then(res => ({ ID: res.ID, ...homePage })),
-    updateHomePage: (_, { ID, homePage }) =>
+        .then(res => ({ ID: res.ID, ...homePage, buildStatic })),
+    updateHomePage: (_, { ID, homePage, buildStatic = false }) =>
       client
         .UpdateHomePage()
-        .sendMessage({ api: 'v1', item: { ID, ...homePage } })
+        .sendMessage({ api: 'v1', item: { ID, ...homePage, buildStatic } })
         .then(res => res.updated),
     deleteHomePage: (_, { ID }) =>
       client
         .DeleteHomePage()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createLayout: (_, { layout }) =>
+    createLayout: (_, { layout, buildStatic = false }) =>
       client
         .CreateLayout()
         .sendMessage({ api: 'v1', item: { ...layout } })
-        .then(res => ({ ID: res.ID, ...layout })),
-    updateLayout: (_, { ID, layout }) =>
+        .then(res => ({ ID: res.ID, ...layout, buildStatic })),
+    updateLayout: (_, { ID, layout, buildStatic = false }) =>
       client
         .UpdateLayout()
-        .sendMessage({ api: 'v1', item: { ID, ...layout } })
+        .sendMessage({ api: 'v1', item: { ID, ...layout, buildStatic } })
         .then(res => res.updated),
     deleteLayout: (_, { ID }) =>
       client
         .DeleteLayout()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createLandingPage: (_, { landingPage }) =>
+    createLandingPage: (_, { landingPage, buildStatic = false }) =>
       client
         .CreateLandingPage()
         .sendMessage({ api: 'v1', item: { ...landingPage } })
-        .then(res => ({ ID: res.ID, ...landingPage })),
-    updateLandingPage: (_, { ID, landingPage }) =>
+        .then(res => ({ ID: res.ID, ...landingPage, buildStatic })),
+    updateLandingPage: (_, { ID, landingPage, buildStatic = false }) =>
       client
         .UpdateLandingPage()
-        .sendMessage({ api: 'v1', item: { ID, ...landingPage } })
+        .sendMessage({ api: 'v1', item: { ID, ...landingPage, buildStatic } })
         .then(res => res.updated),
     deleteLandingPage: (_, { ID }) =>
       client
         .DeleteLandingPage()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createExperiment: (_, { experiment }) =>
+    createExperiment: (_, { experiment, buildStatic = false }) =>
       client
         .CreateExperiment()
         .sendMessage({ api: 'v1', item: { ...experiment } })
-        .then(res => ({ ID: res.ID, ...experiment })),
-    updateExperiment: (_, { ID, experiment }) =>
+        .then(res => ({ ID: res.ID, ...experiment, buildStatic })),
+    updateExperiment: (_, { ID, experiment, buildStatic = false }) =>
       client
         .UpdateExperiment()
-        .sendMessage({ api: 'v1', item: { ID, ...experiment } })
+        .sendMessage({ api: 'v1', item: { ID, ...experiment, buildStatic } })
         .then(res => res.updated),
     deleteExperiment: (_, { ID }) =>
       client
         .DeleteExperiment()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createIssue: (_, { issue }) =>
+    createIssue: (_, { issue, buildStatic = false }) =>
       client
         .CreateIssue()
         .sendMessage({ api: 'v1', item: { ...issue } })
-        .then(res => ({ ID: res.ID, ...issue })),
-    updateIssue: (_, { ID, issue }) =>
+        .then(res => ({ ID: res.ID, ...issue, buildStatic })),
+    updateIssue: (_, { ID, issue, buildStatic = false }) =>
       client
         .UpdateIssue()
-        .sendMessage({ api: 'v1', item: { ID, ...issue } })
+        .sendMessage({ api: 'v1', item: { ID, ...issue, buildStatic } })
         .then(res => res.updated),
     deleteIssue: (_, { ID }) =>
       client
         .DeleteIssue()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createCandidate: (_, { candidate }) =>
+    createCandidate: (_, { candidate, buildStatic = false }) =>
       client
         .CreateCandidate()
         .sendMessage({ api: 'v1', item: { ...candidate } })
-        .then(res => ({ ID: res.ID, ...candidate })),
-    updateCandidate: (_, { ID, candidate }) =>
+        .then(res => ({ ID: res.ID, ...candidate, buildStatic })),
+    updateCandidate: (_, { ID, candidate, buildStatic = false }) =>
       client
         .UpdateCandidate()
-        .sendMessage({ api: 'v1', item: { ID, ...candidate } })
+        .sendMessage({ api: 'v1', item: { ID, ...candidate, buildStatic } })
         .then(res => res.updated),
     deleteCandidate: (_, { ID }) =>
       client
         .DeleteCandidate()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createDistrictType: (_, { districtType }) =>
+    createDistrictType: (_, { districtType, buildStatic = false }) =>
       client
         .CreateDistrictType()
         .sendMessage({ api: 'v1', item: { ...districtType } })
-        .then(res => ({ ID: res.ID, ...districtType })),
-    updateDistrictType: (_, { ID, districtType }) =>
+        .then(res => ({ ID: res.ID, ...districtType, buildStatic })),
+    updateDistrictType: (_, { ID, districtType, buildStatic = false }) =>
       client
         .UpdateDistrictType()
-        .sendMessage({ api: 'v1', item: { ID, ...districtType } })
+        .sendMessage({ api: 'v1', item: { ID, ...districtType, buildStatic } })
         .then(res => res.updated),
     deleteDistrictType: (_, { ID }) =>
       client
         .DeleteDistrictType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createDistrict: (_, { district }) =>
+    createDistrict: (_, { district, buildStatic = false }) =>
       client
         .CreateDistrict()
         .sendMessage({ api: 'v1', item: { ...district } })
-        .then(res => ({ ID: res.ID, ...district })),
-    updateDistrict: (_, { ID, district }) =>
+        .then(res => ({ ID: res.ID, ...district, buildStatic })),
+    updateDistrict: (_, { ID, district, buildStatic = false }) =>
       client
         .UpdateDistrict()
-        .sendMessage({ api: 'v1', item: { ID, ...district } })
+        .sendMessage({ api: 'v1', item: { ID, ...district, buildStatic } })
         .then(res => res.updated),
     deleteDistrict: (_, { ID }) =>
       client
         .DeleteDistrict()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createOffice: (_, { office }) =>
+    createOffice: (_, { office, buildStatic = false }) =>
       client
         .CreateOffice()
         .sendMessage({ api: 'v1', item: { ...office } })
-        .then(res => ({ ID: res.ID, ...office })),
-    updateOffice: (_, { ID, office }) =>
+        .then(res => ({ ID: res.ID, ...office, buildStatic })),
+    updateOffice: (_, { ID, office, buildStatic = false }) =>
       client
         .UpdateOffice()
-        .sendMessage({ api: 'v1', item: { ID, ...office } })
+        .sendMessage({ api: 'v1', item: { ID, ...office, buildStatic } })
         .then(res => res.updated),
     deleteOffice: (_, { ID }) =>
       client
         .DeleteOffice()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPollItem: (_, { pollItem }) =>
+    createPollItem: (_, { pollItem, buildStatic = false }) =>
       client
         .CreatePollItem()
         .sendMessage({ api: 'v1', item: { ...pollItem } })
-        .then(res => ({ ID: res.ID, ...pollItem })),
-    updatePollItem: (_, { ID, pollItem }) =>
+        .then(res => ({ ID: res.ID, ...pollItem, buildStatic })),
+    updatePollItem: (_, { ID, pollItem, buildStatic = false }) =>
       client
         .UpdatePollItem()
-        .sendMessage({ api: 'v1', item: { ID, ...pollItem } })
+        .sendMessage({ api: 'v1', item: { ID, ...pollItem, buildStatic } })
         .then(res => res.updated),
     deletePollItem: (_, { ID }) =>
       client
         .DeletePollItem()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createVolunteerOpportunityType: (_, { volunteerOpportunityType }) =>
+    createVolunteerOpportunityType: (
+      _,
+      { volunteerOpportunityType, buildStatic = false }
+    ) =>
       client
         .CreateVolunteerOpportunityType()
         .sendMessage({ api: 'v1', item: { ...volunteerOpportunityType } })
-        .then(res => ({ ID: res.ID, ...volunteerOpportunityType })),
-    updateVolunteerOpportunityType: (_, { ID, volunteerOpportunityType }) =>
+        .then(res => ({
+          ID: res.ID,
+          ...volunteerOpportunityType,
+          buildStatic
+        })),
+    updateVolunteerOpportunityType: (
+      _,
+      { ID, volunteerOpportunityType, buildStatic = false }
+    ) =>
       client
         .UpdateVolunteerOpportunityType()
-        .sendMessage({ api: 'v1', item: { ID, ...volunteerOpportunityType } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...volunteerOpportunityType, buildStatic }
+        })
         .then(res => res.updated),
     deleteVolunteerOpportunityType: (_, { ID }) =>
       client
         .DeleteVolunteerOpportunityType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createLiveEventType: (_, { liveEventType }) =>
+    createLiveEventType: (_, { liveEventType, buildStatic = false }) =>
       client
         .CreateLiveEventType()
         .sendMessage({ api: 'v1', item: { ...liveEventType } })
-        .then(res => ({ ID: res.ID, ...liveEventType })),
-    updateLiveEventType: (_, { ID, liveEventType }) =>
+        .then(res => ({ ID: res.ID, ...liveEventType, buildStatic })),
+    updateLiveEventType: (_, { ID, liveEventType, buildStatic = false }) =>
       client
         .UpdateLiveEventType()
-        .sendMessage({ api: 'v1', item: { ID, ...liveEventType } })
+        .sendMessage({ api: 'v1', item: { ID, ...liveEventType, buildStatic } })
         .then(res => res.updated),
     deleteLiveEventType: (_, { ID }) =>
       client
         .DeleteLiveEventType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createCompany: (_, { company }) =>
+    createCompany: (_, { company, buildStatic = false }) =>
       client
         .CreateCompany()
         .sendMessage({ api: 'v1', item: { ...company } })
-        .then(res => ({ ID: res.ID, ...company })),
-    updateCompany: (_, { ID, company }) =>
+        .then(res => ({ ID: res.ID, ...company, buildStatic })),
+    updateCompany: (_, { ID, company, buildStatic = false }) =>
       client
         .UpdateCompany()
-        .sendMessage({ api: 'v1', item: { ID, ...company } })
+        .sendMessage({ api: 'v1', item: { ID, ...company, buildStatic } })
         .then(res => res.updated),
     deleteCompany: (_, { ID }) =>
       client
         .DeleteCompany()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createProductType: (_, { productType }) =>
+    createProductType: (_, { productType, buildStatic = false }) =>
       client
         .CreateProductType()
         .sendMessage({ api: 'v1', item: { ...productType } })
-        .then(res => ({ ID: res.ID, ...productType })),
-    updateProductType: (_, { ID, productType }) =>
+        .then(res => ({ ID: res.ID, ...productType, buildStatic })),
+    updateProductType: (_, { ID, productType, buildStatic = false }) =>
       client
         .UpdateProductType()
-        .sendMessage({ api: 'v1', item: { ID, ...productType } })
+        .sendMessage({ api: 'v1', item: { ID, ...productType, buildStatic } })
         .then(res => res.updated),
     deleteProductType: (_, { ID }) =>
       client
         .DeleteProductType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createCustomerCart: (_, { customerCart }) =>
+    createCustomerCart: (_, { customerCart, buildStatic = false }) =>
       client
         .CreateCustomerCart()
         .sendMessage({ api: 'v1', item: { ...customerCart } })
-        .then(res => ({ ID: res.ID, ...customerCart })),
-    updateCustomerCart: (_, { ID, customerCart }) =>
+        .then(res => ({ ID: res.ID, ...customerCart, buildStatic })),
+    updateCustomerCart: (_, { ID, customerCart, buildStatic = false }) =>
       client
         .UpdateCustomerCart()
-        .sendMessage({ api: 'v1', item: { ID, ...customerCart } })
+        .sendMessage({ api: 'v1', item: { ID, ...customerCart, buildStatic } })
         .then(res => res.updated),
     deleteCustomerCart: (_, { ID }) =>
       client
         .DeleteCustomerCart()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPayment: (_, { payment }) =>
+    createPayment: (_, { payment, buildStatic = false }) =>
       client
         .CreatePayment()
         .sendMessage({ api: 'v1', item: { ...payment } })
-        .then(res => ({ ID: res.ID, ...payment })),
-    updatePayment: (_, { ID, payment }) =>
+        .then(res => ({ ID: res.ID, ...payment, buildStatic })),
+    updatePayment: (_, { ID, payment, buildStatic = false }) =>
       client
         .UpdatePayment()
-        .sendMessage({ api: 'v1', item: { ID, ...payment } })
+        .sendMessage({ api: 'v1', item: { ID, ...payment, buildStatic } })
         .then(res => res.updated),
     deletePayment: (_, { ID }) =>
       client
         .DeletePayment()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createDelivery: (_, { delivery }) =>
+    createDelivery: (_, { delivery, buildStatic = false }) =>
       client
         .CreateDelivery()
         .sendMessage({ api: 'v1', item: { ...delivery } })
-        .then(res => ({ ID: res.ID, ...delivery })),
-    updateDelivery: (_, { ID, delivery }) =>
+        .then(res => ({ ID: res.ID, ...delivery, buildStatic })),
+    updateDelivery: (_, { ID, delivery, buildStatic = false }) =>
       client
         .UpdateDelivery()
-        .sendMessage({ api: 'v1', item: { ID, ...delivery } })
+        .sendMessage({ api: 'v1', item: { ID, ...delivery, buildStatic } })
         .then(res => res.updated),
     deleteDelivery: (_, { ID }) =>
       client
         .DeleteDelivery()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createBoycott: (_, { boycott }) =>
+    createBoycott: (_, { boycott, buildStatic = false }) =>
       client
         .CreateBoycott()
         .sendMessage({ api: 'v1', item: { ...boycott } })
-        .then(res => ({ ID: res.ID, ...boycott })),
-    updateBoycott: (_, { ID, boycott }) =>
+        .then(res => ({ ID: res.ID, ...boycott, buildStatic })),
+    updateBoycott: (_, { ID, boycott, buildStatic = false }) =>
       client
         .UpdateBoycott()
-        .sendMessage({ api: 'v1', item: { ID, ...boycott } })
+        .sendMessage({ api: 'v1', item: { ID, ...boycott, buildStatic } })
         .then(res => res.updated),
     deleteBoycott: (_, { ID }) =>
       client
         .DeleteBoycott()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createBoycottMembership: (_, { boycottMembership }) =>
+    createBoycottMembership: (_, { boycottMembership, buildStatic = false }) =>
       client
         .CreateBoycottMembership()
         .sendMessage({ api: 'v1', item: { ...boycottMembership } })
-        .then(res => ({ ID: res.ID, ...boycottMembership })),
-    updateBoycottMembership: (_, { ID, boycottMembership }) =>
+        .then(res => ({ ID: res.ID, ...boycottMembership, buildStatic })),
+    updateBoycottMembership: (
+      _,
+      { ID, boycottMembership, buildStatic = false }
+    ) =>
       client
         .UpdateBoycottMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...boycottMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...boycottMembership, buildStatic }
+        })
         .then(res => res.updated),
     deleteBoycottMembership: (_, { ID }) =>
       client
         .DeleteBoycottMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createElection: (_, { election }) =>
+    createElection: (_, { election, buildStatic = false }) =>
       client
         .CreateElection()
         .sendMessage({ api: 'v1', item: { ...election } })
-        .then(res => ({ ID: res.ID, ...election })),
-    updateElection: (_, { ID, election }) =>
+        .then(res => ({ ID: res.ID, ...election, buildStatic })),
+    updateElection: (_, { ID, election, buildStatic = false }) =>
       client
         .UpdateElection()
-        .sendMessage({ api: 'v1', item: { ID, ...election } })
+        .sendMessage({ api: 'v1', item: { ID, ...election, buildStatic } })
         .then(res => res.updated),
     deleteElection: (_, { ID }) =>
       client
         .DeleteElection()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createElectionMembership: (_, { electionMembership }) =>
+    createElectionMembership: (
+      _,
+      { electionMembership, buildStatic = false }
+    ) =>
       client
         .CreateElectionMembership()
         .sendMessage({ api: 'v1', item: { ...electionMembership } })
-        .then(res => ({ ID: res.ID, ...electionMembership })),
-    updateElectionMembership: (_, { ID, electionMembership }) =>
+        .then(res => ({ ID: res.ID, ...electionMembership, buildStatic })),
+    updateElectionMembership: (
+      _,
+      { ID, electionMembership, buildStatic = false }
+    ) =>
       client
         .UpdateElectionMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...electionMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...electionMembership, buildStatic }
+        })
         .then(res => res.updated),
     deleteElectionMembership: (_, { ID }) =>
       client
         .DeleteElectionMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPetitionMembership: (_, { petitionMembership }) =>
+    createPetitionMembership: (
+      _,
+      { petitionMembership, buildStatic = false }
+    ) =>
       client
         .CreatePetitionMembership()
         .sendMessage({ api: 'v1', item: { ...petitionMembership } })
-        .then(res => ({ ID: res.ID, ...petitionMembership })),
-    updatePetitionMembership: (_, { ID, petitionMembership }) =>
+        .then(res => ({ ID: res.ID, ...petitionMembership, buildStatic })),
+    updatePetitionMembership: (
+      _,
+      { ID, petitionMembership, buildStatic = false }
+    ) =>
       client
         .UpdatePetitionMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...petitionMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...petitionMembership, buildStatic }
+        })
         .then(res => res.updated),
     deletePetitionMembership: (_, { ID }) =>
       client
         .DeletePetitionMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPollMembership: (_, { pollMembership }) =>
+    createPollMembership: (_, { pollMembership, buildStatic = false }) =>
       client
         .CreatePollMembership()
         .sendMessage({ api: 'v1', item: { ...pollMembership } })
-        .then(res => ({ ID: res.ID, ...pollMembership })),
-    updatePollMembership: (_, { ID, pollMembership }) =>
+        .then(res => ({ ID: res.ID, ...pollMembership, buildStatic })),
+    updatePollMembership: (_, { ID, pollMembership, buildStatic = false }) =>
       client
         .UpdatePollMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...pollMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...pollMembership, buildStatic }
+        })
         .then(res => res.updated),
     deletePollMembership: (_, { ID }) =>
       client
@@ -2063,21 +2115,25 @@ module.exports = client => ({
         .then(res => res.deleted),
     createVolunteerOpportunityMembership: (
       _,
-      { volunteerOpportunityMembership }
+      { volunteerOpportunityMembership, buildStatic = false }
     ) =>
       client
         .CreateVolunteerOpportunityMembership()
         .sendMessage({ api: 'v1', item: { ...volunteerOpportunityMembership } })
-        .then(res => ({ ID: res.ID, ...volunteerOpportunityMembership })),
+        .then(res => ({
+          ID: res.ID,
+          ...volunteerOpportunityMembership,
+          buildStatic
+        })),
     updateVolunteerOpportunityMembership: (
       _,
-      { ID, volunteerOpportunityMembership }
+      { ID, volunteerOpportunityMembership, buildStatic = false }
     ) =>
       client
         .UpdateVolunteerOpportunityMembership()
         .sendMessage({
           api: 'v1',
-          item: { ID, ...volunteerOpportunityMembership }
+          item: { ID, ...volunteerOpportunityMembership, buildStatic }
         })
         .then(res => res.updated),
     deleteVolunteerOpportunityMembership: (_, { ID }) =>
@@ -2085,435 +2141,496 @@ module.exports = client => ({
         .DeleteVolunteerOpportunityMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createLiveEventMembership: (_, { liveEventMembership }) =>
+    createLiveEventMembership: (
+      _,
+      { liveEventMembership, buildStatic = false }
+    ) =>
       client
         .CreateLiveEventMembership()
         .sendMessage({ api: 'v1', item: { ...liveEventMembership } })
-        .then(res => ({ ID: res.ID, ...liveEventMembership })),
-    updateLiveEventMembership: (_, { ID, liveEventMembership }) =>
+        .then(res => ({ ID: res.ID, ...liveEventMembership, buildStatic })),
+    updateLiveEventMembership: (
+      _,
+      { ID, liveEventMembership, buildStatic = false }
+    ) =>
       client
         .UpdateLiveEventMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...liveEventMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...liveEventMembership, buildStatic }
+        })
         .then(res => res.updated),
     deleteLiveEventMembership: (_, { ID }) =>
       client
         .DeleteLiveEventMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createProduct: (_, { product }) =>
+    createProduct: (_, { product, buildStatic = false }) =>
       client
         .CreateProduct()
         .sendMessage({ api: 'v1', item: { ...product } })
-        .then(res => ({ ID: res.ID, ...product })),
-    updateProduct: (_, { ID, product }) =>
+        .then(res => ({ ID: res.ID, ...product, buildStatic })),
+    updateProduct: (_, { ID, product, buildStatic = false }) =>
       client
         .UpdateProduct()
-        .sendMessage({ api: 'v1', item: { ID, ...product } })
+        .sendMessage({ api: 'v1', item: { ID, ...product, buildStatic } })
         .then(res => res.updated),
     deleteProduct: (_, { ID }) =>
       client
         .DeleteProduct()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createProductMembership: (_, { productMembership }) =>
+    createProductMembership: (_, { productMembership, buildStatic = false }) =>
       client
         .CreateProductMembership()
         .sendMessage({ api: 'v1', item: { ...productMembership } })
-        .then(res => ({ ID: res.ID, ...productMembership })),
-    updateProductMembership: (_, { ID, productMembership }) =>
+        .then(res => ({ ID: res.ID, ...productMembership, buildStatic })),
+    updateProductMembership: (
+      _,
+      { ID, productMembership, buildStatic = false }
+    ) =>
       client
         .UpdateProductMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...productMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...productMembership, buildStatic }
+        })
         .then(res => res.updated),
     deleteProductMembership: (_, { ID }) =>
       client
         .DeleteProductMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createDonationCampaign: (_, { donationCampaign }) =>
+    createDonationCampaign: (_, { donationCampaign, buildStatic = false }) =>
       client
         .CreateDonationCampaign()
         .sendMessage({ api: 'v1', item: { ...donationCampaign } })
-        .then(res => ({ ID: res.ID, ...donationCampaign })),
-    updateDonationCampaign: (_, { ID, donationCampaign }) =>
+        .then(res => ({ ID: res.ID, ...donationCampaign, buildStatic })),
+    updateDonationCampaign: (
+      _,
+      { ID, donationCampaign, buildStatic = false }
+    ) =>
       client
         .UpdateDonationCampaign()
-        .sendMessage({ api: 'v1', item: { ID, ...donationCampaign } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...donationCampaign, buildStatic }
+        })
         .then(res => res.updated),
     deleteDonationCampaign: (_, { ID }) =>
       client
         .DeleteDonationCampaign()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createDonationCampaignMembership: (_, { donationCampaignMembership }) =>
+    createDonationCampaignMembership: (
+      _,
+      { donationCampaignMembership, buildStatic = false }
+    ) =>
       client
         .CreateDonationCampaignMembership()
         .sendMessage({ api: 'v1', item: { ...donationCampaignMembership } })
-        .then(res => ({ ID: res.ID, ...donationCampaignMembership })),
-    updateDonationCampaignMembership: (_, { ID, donationCampaignMembership }) =>
+        .then(res => ({
+          ID: res.ID,
+          ...donationCampaignMembership,
+          buildStatic
+        })),
+    updateDonationCampaignMembership: (
+      _,
+      { ID, donationCampaignMembership, buildStatic = false }
+    ) =>
       client
         .UpdateDonationCampaignMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...donationCampaignMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...donationCampaignMembership, buildStatic }
+        })
         .then(res => res.updated),
     deleteDonationCampaignMembership: (_, { ID }) =>
       client
         .DeleteDonationCampaignMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPetition: (_, { petition }) =>
+    createPetition: (_, { petition, buildStatic = false }) =>
       client
         .CreatePetition()
         .sendMessage({ api: 'v1', item: { ...petition } })
-        .then(res => ({ ID: res.ID, ...petition })),
-    updatePetition: (_, { ID, petition }) =>
+        .then(res => ({ ID: res.ID, ...petition, buildStatic })),
+    updatePetition: (_, { ID, petition, buildStatic = false }) =>
       client
         .UpdatePetition()
-        .sendMessage({ api: 'v1', item: { ID, ...petition } })
+        .sendMessage({ api: 'v1', item: { ID, ...petition, buildStatic } })
         .then(res => res.updated),
     deletePetition: (_, { ID }) =>
       client
         .DeletePetition()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPetitionSigner: (_, { petitionSigner }) =>
+    createPetitionSigner: (_, { petitionSigner, buildStatic = false }) =>
       client
         .CreatePetitionSigner()
         .sendMessage({ api: 'v1', item: { ...petitionSigner } })
-        .then(res => ({ ID: res.ID, ...petitionSigner })),
-    updatePetitionSigner: (_, { ID, petitionSigner }) =>
+        .then(res => ({ ID: res.ID, ...petitionSigner, buildStatic })),
+    updatePetitionSigner: (_, { ID, petitionSigner, buildStatic = false }) =>
       client
         .UpdatePetitionSigner()
-        .sendMessage({ api: 'v1', item: { ID, ...petitionSigner } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...petitionSigner, buildStatic }
+        })
         .then(res => res.updated),
     deletePetitionSigner: (_, { ID }) =>
       client
         .DeletePetitionSigner()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPoll: (_, { poll }) =>
+    createPoll: (_, { poll, buildStatic = false }) =>
       client
         .CreatePoll()
         .sendMessage({ api: 'v1', item: { ...poll } })
-        .then(res => ({ ID: res.ID, ...poll })),
-    updatePoll: (_, { ID, poll }) =>
+        .then(res => ({ ID: res.ID, ...poll, buildStatic })),
+    updatePoll: (_, { ID, poll, buildStatic = false }) =>
       client
         .UpdatePoll()
-        .sendMessage({ api: 'v1', item: { ID, ...poll } })
+        .sendMessage({ api: 'v1', item: { ID, ...poll, buildStatic } })
         .then(res => res.updated),
     deletePoll: (_, { ID }) =>
       client
         .DeletePoll()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPollRespondant: (_, { pollRespondant }) =>
+    createPollRespondant: (_, { pollRespondant, buildStatic = false }) =>
       client
         .CreatePollRespondant()
         .sendMessage({ api: 'v1', item: { ...pollRespondant } })
-        .then(res => ({ ID: res.ID, ...pollRespondant })),
-    updatePollRespondant: (_, { ID, pollRespondant }) =>
+        .then(res => ({ ID: res.ID, ...pollRespondant, buildStatic })),
+    updatePollRespondant: (_, { ID, pollRespondant, buildStatic = false }) =>
       client
         .UpdatePollRespondant()
-        .sendMessage({ api: 'v1', item: { ID, ...pollRespondant } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...pollRespondant, buildStatic }
+        })
         .then(res => res.updated),
     deletePollRespondant: (_, { ID }) =>
       client
         .DeletePollRespondant()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPurchaser: (_, { purchaser }) =>
+    createPurchaser: (_, { purchaser, buildStatic = false }) =>
       client
         .CreatePurchaser()
         .sendMessage({ api: 'v1', item: { ...purchaser } })
-        .then(res => ({ ID: res.ID, ...purchaser })),
-    updatePurchaser: (_, { ID, purchaser }) =>
+        .then(res => ({ ID: res.ID, ...purchaser, buildStatic })),
+    updatePurchaser: (_, { ID, purchaser, buildStatic = false }) =>
       client
         .UpdatePurchaser()
-        .sendMessage({ api: 'v1', item: { ID, ...purchaser } })
+        .sendMessage({ api: 'v1', item: { ID, ...purchaser, buildStatic } })
         .then(res => res.updated),
     deletePurchaser: (_, { ID }) =>
       client
         .DeletePurchaser()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createCustomerOrder: (_, { customerOrder }) =>
+    createCustomerOrder: (_, { customerOrder, buildStatic = false }) =>
       client
         .CreateCustomerOrder()
         .sendMessage({ api: 'v1', item: { ...customerOrder } })
-        .then(res => ({ ID: res.ID, ...customerOrder })),
-    updateCustomerOrder: (_, { ID, customerOrder }) =>
+        .then(res => ({ ID: res.ID, ...customerOrder, buildStatic })),
+    updateCustomerOrder: (_, { ID, customerOrder, buildStatic = false }) =>
       client
         .UpdateCustomerOrder()
-        .sendMessage({ api: 'v1', item: { ID, ...customerOrder } })
+        .sendMessage({ api: 'v1', item: { ID, ...customerOrder, buildStatic } })
         .then(res => res.updated),
     deleteCustomerOrder: (_, { ID }) =>
       client
         .DeleteCustomerOrder()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createDonor: (_, { donor }) =>
+    createDonor: (_, { donor, buildStatic = false }) =>
       client
         .CreateDonor()
         .sendMessage({ api: 'v1', item: { ...donor } })
-        .then(res => ({ ID: res.ID, ...donor })),
-    updateDonor: (_, { ID, donor }) =>
+        .then(res => ({ ID: res.ID, ...donor, buildStatic })),
+    updateDonor: (_, { ID, donor, buildStatic = false }) =>
       client
         .UpdateDonor()
-        .sendMessage({ api: 'v1', item: { ID, ...donor } })
+        .sendMessage({ api: 'v1', item: { ID, ...donor, buildStatic } })
         .then(res => res.updated),
     deleteDonor: (_, { ID }) =>
       client
         .DeleteDonor()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createLiveEvent: (_, { liveEvent }) =>
+    createLiveEvent: (_, { liveEvent, buildStatic = false }) =>
       client
         .CreateLiveEvent()
         .sendMessage({ api: 'v1', item: { ...liveEvent } })
-        .then(res => ({ ID: res.ID, ...liveEvent })),
-    updateLiveEvent: (_, { ID, liveEvent }) =>
+        .then(res => ({ ID: res.ID, ...liveEvent, buildStatic })),
+    updateLiveEvent: (_, { ID, liveEvent, buildStatic = false }) =>
       client
         .UpdateLiveEvent()
-        .sendMessage({ api: 'v1', item: { ID, ...liveEvent } })
+        .sendMessage({ api: 'v1', item: { ID, ...liveEvent, buildStatic } })
         .then(res => res.updated),
     deleteLiveEvent: (_, { ID }) =>
       client
         .DeleteLiveEvent()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createEventAttendee: (_, { eventAttendee }) =>
+    createEventAttendee: (_, { eventAttendee, buildStatic = false }) =>
       client
         .CreateEventAttendee()
         .sendMessage({ api: 'v1', item: { ...eventAttendee } })
-        .then(res => ({ ID: res.ID, ...eventAttendee })),
-    updateEventAttendee: (_, { ID, eventAttendee }) =>
+        .then(res => ({ ID: res.ID, ...eventAttendee, buildStatic })),
+    updateEventAttendee: (_, { ID, eventAttendee, buildStatic = false }) =>
       client
         .UpdateEventAttendee()
-        .sendMessage({ api: 'v1', item: { ID, ...eventAttendee } })
+        .sendMessage({ api: 'v1', item: { ID, ...eventAttendee, buildStatic } })
         .then(res => res.updated),
     deleteEventAttendee: (_, { ID }) =>
       client
         .DeleteEventAttendee()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createVoter: (_, { voter }) =>
+    createVoter: (_, { voter, buildStatic = false }) =>
       client
         .CreateVoter()
         .sendMessage({ api: 'v1', item: { ...voter } })
-        .then(res => ({ ID: res.ID, ...voter })),
-    updateVoter: (_, { ID, voter }) =>
+        .then(res => ({ ID: res.ID, ...voter, buildStatic })),
+    updateVoter: (_, { ID, voter, buildStatic = false }) =>
       client
         .UpdateVoter()
-        .sendMessage({ api: 'v1', item: { ID, ...voter } })
+        .sendMessage({ api: 'v1', item: { ID, ...voter, buildStatic } })
         .then(res => res.updated),
     deleteVoter: (_, { ID }) =>
       client
         .DeleteVoter()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createVolunteerOpportunity: (_, { volunteerOpportunity }) =>
+    createVolunteerOpportunity: (
+      _,
+      { volunteerOpportunity, buildStatic = false }
+    ) =>
       client
         .CreateVolunteerOpportunity()
         .sendMessage({ api: 'v1', item: { ...volunteerOpportunity } })
-        .then(res => ({ ID: res.ID, ...volunteerOpportunity })),
-    updateVolunteerOpportunity: (_, { ID, volunteerOpportunity }) =>
+        .then(res => ({ ID: res.ID, ...volunteerOpportunity, buildStatic })),
+    updateVolunteerOpportunity: (
+      _,
+      { ID, volunteerOpportunity, buildStatic = false }
+    ) =>
       client
         .UpdateVolunteerOpportunity()
-        .sendMessage({ api: 'v1', item: { ID, ...volunteerOpportunity } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...volunteerOpportunity, buildStatic }
+        })
         .then(res => res.updated),
     deleteVolunteerOpportunity: (_, { ID }) =>
       client
         .DeleteVolunteerOpportunity()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createVolunteer: (_, { volunteer }) =>
+    createVolunteer: (_, { volunteer, buildStatic = false }) =>
       client
         .CreateVolunteer()
         .sendMessage({ api: 'v1', item: { ...volunteer } })
-        .then(res => ({ ID: res.ID, ...volunteer })),
-    updateVolunteer: (_, { ID, volunteer }) =>
+        .then(res => ({ ID: res.ID, ...volunteer, buildStatic })),
+    updateVolunteer: (_, { ID, volunteer, buildStatic = false }) =>
       client
         .UpdateVolunteer()
-        .sendMessage({ api: 'v1', item: { ID, ...volunteer } })
+        .sendMessage({ api: 'v1', item: { ID, ...volunteer, buildStatic } })
         .then(res => res.updated),
     deleteVolunteer: (_, { ID }) =>
       client
         .DeleteVolunteer()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createFollower: (_, { follower }) =>
+    createFollower: (_, { follower, buildStatic = false }) =>
       client
         .CreateFollower()
         .sendMessage({ api: 'v1', item: { ...follower } })
-        .then(res => ({ ID: res.ID, ...follower })),
-    updateFollower: (_, { ID, follower }) =>
+        .then(res => ({ ID: res.ID, ...follower, buildStatic })),
+    updateFollower: (_, { ID, follower, buildStatic = false }) =>
       client
         .UpdateFollower()
-        .sendMessage({ api: 'v1', item: { ID, ...follower } })
+        .sendMessage({ api: 'v1', item: { ID, ...follower, buildStatic } })
         .then(res => res.updated),
     deleteFollower: (_, { ID }) =>
       client
         .DeleteFollower()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createTerritory: (_, { territory }) =>
+    createTerritory: (_, { territory, buildStatic = false }) =>
       client
         .CreateTerritory()
         .sendMessage({ api: 'v1', item: { ...territory } })
-        .then(res => ({ ID: res.ID, ...territory })),
-    updateTerritory: (_, { ID, territory }) =>
+        .then(res => ({ ID: res.ID, ...territory, buildStatic })),
+    updateTerritory: (_, { ID, territory, buildStatic = false }) =>
       client
         .UpdateTerritory()
-        .sendMessage({ api: 'v1', item: { ID, ...territory } })
+        .sendMessage({ api: 'v1', item: { ID, ...territory, buildStatic } })
         .then(res => res.updated),
     deleteTerritory: (_, { ID }) =>
       client
         .DeleteTerritory()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createActivityType: (_, { activityType }) =>
+    createActivityType: (_, { activityType, buildStatic = false }) =>
       client
         .CreateActivityType()
         .sendMessage({ api: 'v1', item: { ...activityType } })
-        .then(res => ({ ID: res.ID, ...activityType })),
-    updateActivityType: (_, { ID, activityType }) =>
+        .then(res => ({ ID: res.ID, ...activityType, buildStatic })),
+    updateActivityType: (_, { ID, activityType, buildStatic = false }) =>
       client
         .UpdateActivityType()
-        .sendMessage({ api: 'v1', item: { ID, ...activityType } })
+        .sendMessage({ api: 'v1', item: { ID, ...activityType, buildStatic } })
         .then(res => res.updated),
     deleteActivityType: (_, { ID }) =>
       client
         .DeleteActivityType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createActivity: (_, { activity }) =>
+    createActivity: (_, { activity, buildStatic = false }) =>
       client
         .CreateActivity()
         .sendMessage({ api: 'v1', item: { ...activity } })
-        .then(res => ({ ID: res.ID, ...activity })),
-    updateActivity: (_, { ID, activity }) =>
+        .then(res => ({ ID: res.ID, ...activity, buildStatic })),
+    updateActivity: (_, { ID, activity, buildStatic = false }) =>
       client
         .UpdateActivity()
-        .sendMessage({ api: 'v1', item: { ID, ...activity } })
+        .sendMessage({ api: 'v1', item: { ID, ...activity, buildStatic } })
         .then(res => res.updated),
     deleteActivity: (_, { ID }) =>
       client
         .DeleteActivity()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createNote: (_, { note }) =>
+    createNote: (_, { note, buildStatic = false }) =>
       client
         .CreateNote()
         .sendMessage({ api: 'v1', item: { ...note } })
-        .then(res => ({ ID: res.ID, ...note })),
-    updateNote: (_, { ID, note }) =>
+        .then(res => ({ ID: res.ID, ...note, buildStatic })),
+    updateNote: (_, { ID, note, buildStatic = false }) =>
       client
         .UpdateNote()
-        .sendMessage({ api: 'v1', item: { ID, ...note } })
+        .sendMessage({ api: 'v1', item: { ID, ...note, buildStatic } })
         .then(res => res.updated),
     deleteNote: (_, { ID }) =>
       client
         .DeleteNote()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createAccount: (_, { account }) =>
+    createAccount: (_, { account, buildStatic = false }) =>
       client
         .CreateAccount()
         .sendMessage({ api: 'v1', item: { ...account } })
-        .then(res => ({ ID: res.ID, ...account })),
-    updateAccount: (_, { ID, account }) =>
+        .then(res => ({ ID: res.ID, ...account, buildStatic })),
+    updateAccount: (_, { ID, account, buildStatic = false }) =>
       client
         .UpdateAccount()
-        .sendMessage({ api: 'v1', item: { ID, ...account } })
+        .sendMessage({ api: 'v1', item: { ID, ...account, buildStatic } })
         .then(res => res.updated),
     deleteAccount: (_, { ID }) =>
       client
         .DeleteAccount()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createOwnerMembership: (_, { ownerMembership }) =>
+    createOwnerMembership: (_, { ownerMembership, buildStatic = false }) =>
       client
         .CreateOwnerMembership()
         .sendMessage({ api: 'v1', item: { ...ownerMembership } })
-        .then(res => ({ ID: res.ID, ...ownerMembership })),
-    updateOwnerMembership: (_, { ID, ownerMembership }) =>
+        .then(res => ({ ID: res.ID, ...ownerMembership, buildStatic })),
+    updateOwnerMembership: (_, { ID, ownerMembership, buildStatic = false }) =>
       client
         .UpdateOwnerMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...ownerMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...ownerMembership, buildStatic }
+        })
         .then(res => res.updated),
     deleteOwnerMembership: (_, { ID }) =>
       client
         .DeleteOwnerMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createContact: (_, { contact }) =>
+    createContact: (_, { contact, buildStatic = false }) =>
       client
         .CreateContact()
         .sendMessage({ api: 'v1', item: { ...contact } })
-        .then(res => ({ ID: res.ID, ...contact })),
-    updateContact: (_, { ID, contact }) =>
+        .then(res => ({ ID: res.ID, ...contact, buildStatic })),
+    updateContact: (_, { ID, contact, buildStatic = false }) =>
       client
         .UpdateContact()
-        .sendMessage({ api: 'v1', item: { ID, ...contact } })
+        .sendMessage({ api: 'v1', item: { ID, ...contact, buildStatic } })
         .then(res => res.updated),
     deleteContact: (_, { ID }) =>
       client
         .DeleteContact()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createContactMembership: (_, { contactMembership }) =>
+    createContactMembership: (_, { contactMembership, buildStatic = false }) =>
       client
         .CreateContactMembership()
         .sendMessage({ api: 'v1', item: { ...contactMembership } })
-        .then(res => ({ ID: res.ID, ...contactMembership })),
-    updateContactMembership: (_, { ID, contactMembership }) =>
+        .then(res => ({ ID: res.ID, ...contactMembership, buildStatic })),
+    updateContactMembership: (
+      _,
+      { ID, contactMembership, buildStatic = false }
+    ) =>
       client
         .UpdateContactMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...contactMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...contactMembership, buildStatic }
+        })
         .then(res => res.updated),
     deleteContactMembership: (_, { ID }) =>
       client
         .DeleteContactMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createCause: (_, { cause }) =>
+    createCause: (_, { cause, buildStatic = false }) =>
       client
         .CreateCause()
         .sendMessage({ api: 'v1', item: { ...cause } })
-        .then(res => ({ ID: res.ID, ...cause })),
-    updateCause: (_, { ID, cause }) =>
+        .then(res => ({ ID: res.ID, ...cause, buildStatic })),
+    updateCause: (_, { ID, cause, buildStatic = false }) =>
       client
         .UpdateCause()
-        .sendMessage({ api: 'v1', item: { ID, ...cause } })
+        .sendMessage({ api: 'v1', item: { ID, ...cause, buildStatic } })
         .then(res => res.updated),
     deleteCause: (_, { ID }) =>
       client
         .DeleteCause()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createAgent: (_, { agent }) =>
+    createAgent: (_, { agent, buildStatic = false }) =>
       client
         .CreateAgent()
         .sendMessage({ api: 'v1', item: { ...agent } })
-        .then(res => ({ ID: res.ID, ...agent })),
-    updateAgent: (_, { ID, agent }) =>
+        .then(res => ({ ID: res.ID, ...agent, buildStatic })),
+    updateAgent: (_, { ID, agent, buildStatic = false }) =>
       client
         .UpdateAgent()
-        .sendMessage({ api: 'v1', item: { ID, ...agent } })
+        .sendMessage({ api: 'v1', item: { ID, ...agent, buildStatic } })
         .then(res => res.updated),
     deleteAgent: (_, { ID }) =>
       client
         .DeleteAgent()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createAgentMembership: (_, { agentMembership }) =>
+    createAgentMembership: (_, { agentMembership, buildStatic = false }) =>
       client
         .CreateAgentMembership()
         .sendMessage({ api: 'v1', item: { ...agentMembership } })
-        .then(res => ({ ID: res.ID, ...agentMembership })),
-    updateAgentMembership: (_, { ID, agentMembership }) =>
+        .then(res => ({ ID: res.ID, ...agentMembership, buildStatic })),
+    updateAgentMembership: (_, { ID, agentMembership, buildStatic = false }) =>
       client
         .UpdateAgentMembership()
-        .sendMessage({ api: 'v1', item: { ID, ...agentMembership } })
+        .sendMessage({
+          api: 'v1',
+          item: { ID, ...agentMembership, buildStatic }
+        })
         .then(res => res.updated),
     deleteAgentMembership: (_, { ID }) =>
       client

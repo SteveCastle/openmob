@@ -15509,6 +15509,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateACL"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15539,6 +15543,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateAccount"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15578,6 +15586,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateActivity"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15608,6 +15620,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateActivityType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15649,6 +15665,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateAgentMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15671,6 +15691,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateAgent"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15712,6 +15736,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateBoycottMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15734,6 +15762,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateBoycott"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15764,6 +15796,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateCandidate"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15800,6 +15836,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateCause"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15830,6 +15870,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateCompany"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15866,6 +15910,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateComponentImplementation"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15888,6 +15936,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateComponent"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15918,6 +15970,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateComponentType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15971,6 +16027,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateContactMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -15993,6 +16053,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateContact"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16018,6 +16082,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateCustomerCart"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16048,6 +16116,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateCustomerOrder"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16073,6 +16145,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateDelivery"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16110,6 +16186,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateDistrict"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16140,6 +16220,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateDistrictType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16181,6 +16265,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateDonationCampaignMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16203,6 +16291,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateDonationCampaign"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16239,6 +16331,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateDonor"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16280,6 +16376,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateElectionMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16302,6 +16402,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateElection"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16332,6 +16436,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateEmailAddress"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16368,6 +16476,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateEventAttendee"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16401,6 +16513,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateExperiment"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16434,6 +16550,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateField"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16464,6 +16584,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateFieldType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16497,6 +16621,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateFollower"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16533,6 +16661,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateHomePage"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16566,6 +16698,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateIssue"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16602,6 +16738,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateLandingPage"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16640,6 +16780,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateLayoutColumn"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16662,6 +16806,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateLayout"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16692,6 +16840,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateLayoutRow"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16722,6 +16874,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateLayoutType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16766,6 +16922,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateLiveEventMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16788,6 +16948,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateLiveEvent"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16818,6 +16982,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateLiveEventType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16857,6 +17025,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateMailingAddress"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16893,6 +17065,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateNote"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16926,6 +17102,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateOffice"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16959,6 +17139,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateOwnerMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16989,6 +17173,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePayment"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17030,6 +17218,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePetitionMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17052,6 +17244,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePetition"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17088,6 +17284,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePetitionSigner"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17118,6 +17318,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePhoneNumber"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17148,6 +17352,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePhoto"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17189,6 +17397,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePollItem"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17222,6 +17434,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePollMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17244,6 +17460,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePoll"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17269,6 +17489,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePollRespondant"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17324,6 +17548,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateProductMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17346,6 +17574,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateProduct"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17376,6 +17608,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateProductType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17412,6 +17648,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreatePurchaser"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17442,6 +17682,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateTerritory"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17500,6 +17744,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateVolunteerOpportunityMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17522,6 +17770,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateVolunteerOpportunity"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17552,6 +17804,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateVolunteerOpportunityType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17574,6 +17830,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateVolunteer"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -17607,6 +17867,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CreateVoter"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23380,6 +23644,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1ACL"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23403,6 +23671,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Account"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23426,6 +23698,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Activity"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23449,6 +23725,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1ActivityType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23472,6 +23752,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1AgentMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23495,6 +23779,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Agent"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23518,6 +23806,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1BoycottMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23541,6 +23833,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Boycott"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23564,6 +23860,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Candidate"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23587,6 +23887,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Cause"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23610,6 +23914,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Company"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23633,6 +23941,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1ComponentImplementation"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23656,6 +23968,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Component"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23679,6 +23995,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1ComponentType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23702,6 +24022,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1ContactMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23725,6 +24049,10 @@
         },
         "item": {
           "$ref": "#/definitions/shrikev1Contact"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23748,6 +24076,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CustomerCart"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23771,6 +24103,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1CustomerOrder"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23794,6 +24130,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Delivery"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23817,6 +24157,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1District"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23840,6 +24184,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1DistrictType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23863,6 +24211,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1DonationCampaignMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23886,6 +24238,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1DonationCampaign"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23909,6 +24265,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Donor"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23932,6 +24292,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1ElectionMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23955,6 +24319,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Election"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -23978,6 +24346,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1EmailAddress"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24001,6 +24373,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1EventAttendee"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24024,6 +24400,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Experiment"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24047,6 +24427,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Field"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24070,6 +24454,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1FieldType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24093,6 +24481,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Follower"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24116,6 +24508,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1HomePage"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24139,6 +24535,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Issue"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24162,6 +24562,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1LandingPage"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24185,6 +24589,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1LayoutColumn"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24208,6 +24616,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Layout"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24231,6 +24643,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1LayoutRow"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24254,6 +24670,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1LayoutType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24277,6 +24697,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1LiveEventMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24300,6 +24724,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1LiveEvent"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24323,6 +24751,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1LiveEventType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24346,6 +24778,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1MailingAddress"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24369,6 +24805,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Note"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24392,6 +24832,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Office"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24415,6 +24859,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1OwnerMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24438,6 +24886,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Payment"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24461,6 +24913,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1PetitionMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24484,6 +24940,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Petition"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24507,6 +24967,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1PetitionSigner"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24530,6 +24994,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1PhoneNumber"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24553,6 +25021,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Photo"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24576,6 +25048,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1PollItem"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24599,6 +25075,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1PollMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24622,6 +25102,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Poll"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24633,6 +25117,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1PollRespondant"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24668,6 +25156,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1ProductMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24691,6 +25183,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Product"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24714,6 +25210,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1ProductType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24737,6 +25237,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Purchaser"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24760,6 +25264,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Territory"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24783,6 +25291,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunityMembership"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24806,6 +25318,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunity"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24829,6 +25345,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunityType"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24852,6 +25372,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Volunteer"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -24875,6 +25399,10 @@
         },
         "item": {
           "$ref": "#/definitions/v1Voter"
+        },
+        "updateStatic": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },

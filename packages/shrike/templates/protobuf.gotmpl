@@ -85,6 +85,7 @@ message Create{{.Name}} {
 message Create{{.Name}}Request {
   string api = 1;
   Create{{.Name}} item = 2;
+  bool updateStatic = 3;
 }
 
 message Create{{.Name}}Response {
@@ -117,6 +118,7 @@ message List{{.Name}}Response {
 message Update{{.Name}}Request{
   string api = 1;
   {{.Name}} item = 2;
+  bool updateStatic = 3;
 }
 
 message Update{{.Name}}Response {

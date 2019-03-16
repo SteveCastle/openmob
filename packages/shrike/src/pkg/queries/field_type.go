@@ -5,7 +5,6 @@ import (
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/structs"
-	"google.golang.org/grpc/grpclog"
 )
 
 // BuildFieldTypeFilters takes a filter and ordering object for a cause.
@@ -38,6 +37,6 @@ func BuildFieldTypeFilters(filters []*v1.FieldTypeFilterRule, orderings []*v1.Fi
 
 	}
 	sql = fmt.Sprintf("%s LIMIT %d;", sql, limit)
-	grpclog.Infof("List SQL Executed: %v\n", sql)
+	fmt.Printf("List SQL Executed: %v\n", sql)
 	return sql
 }

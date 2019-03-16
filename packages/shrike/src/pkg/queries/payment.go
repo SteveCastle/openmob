@@ -5,7 +5,6 @@ import (
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/structs"
-	"google.golang.org/grpc/grpclog"
 )
 
 // BuildPaymentFilters takes a filter and ordering object for a cause.
@@ -38,6 +37,6 @@ func BuildPaymentFilters(filters []*v1.PaymentFilterRule, orderings []*v1.Paymen
 
 	}
 	sql = fmt.Sprintf("%s LIMIT %d;", sql, limit)
-	grpclog.Infof("List SQL Executed: %v\n", sql)
+	fmt.Printf("List SQL Executed: %v\n", sql)
 	return sql
 }
