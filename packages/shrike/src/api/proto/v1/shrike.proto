@@ -1220,7 +1220,7 @@ message VolunteerOpportunityOrdering {
     google.protobuf.Timestamp CreatedAt = 4;
     google.protobuf.Timestamp UpdatedAt = 5;
     string Title = 6;
-    string ElectionType = 7;
+    string VolunteerOpportunityType = 7;
   }
 }
 
@@ -1232,7 +1232,7 @@ message VolunteerOpportunityFilterRule {
     google.protobuf.Timestamp CreatedAt = 4;
     google.protobuf.Timestamp UpdatedAt = 5;
     string Title = 6;
-    string ElectionType = 7;
+    string VolunteerOpportunityType = 7;
   }
 }
 
@@ -4890,12 +4890,12 @@ message VolunteerOpportunity {
   google.protobuf.Timestamp CreatedAt = 2;
   google.protobuf.Timestamp UpdatedAt = 3;
   string Title = 4;
-  string ElectionType = 5;
+  string VolunteerOpportunityType = 5;
 }
 
 message CreateVolunteerOpportunity {
   string Title = 1;
-  string ElectionType = 2;
+  string VolunteerOpportunityType = 2;
 }
 
 message CreateVolunteerOpportunityRequest {

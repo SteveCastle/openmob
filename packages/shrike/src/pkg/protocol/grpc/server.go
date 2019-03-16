@@ -6,9 +6,12 @@ import (
 	"net"
 	"os"
 	"os/signal"
+	"github.com/grpc-ecosystem/go-grpc-middleware"
+	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
+	"github.com/grpc-ecosystem/go-grpc-middleware/validator"
 
 	"google.golang.org/grpc"
-
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/interceptors"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 )
 
@@ -19,8 +22,17 @@ func RunServer(ctx context.Context, v1API v1.ShrikeServiceServer, port string) e
 		return err
 	}
 
-	// register service
-	server := grpc.NewServer()
+	// register service with Interceptors
+	server := grpc.NewServer(
+		grpc.StreamInterceptor(
+			grpc_middleware.ChainStreamServer()),
+    	grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+			grpc_recovery.UnaryServerInterceptor(),
+			grpc_validator.UnaryServerInterceptor(),
+			interceptors.LoggingInterceptor,
+			),
+		),
+	)
 	v1.RegisterShrikeServiceServer(server, v1API)
 
 	// graceful shutdown
@@ -30,9 +42,7 @@ func RunServer(ctx context.Context, v1API v1.ShrikeServiceServer, port string) e
 		for range c {
 			// sig is a ^C, handle it
 			log.Println("shutting down gRPC server...")
-
 			server.GracefulStop()
-
 			<-ctx.Done()
 		}
 	}()

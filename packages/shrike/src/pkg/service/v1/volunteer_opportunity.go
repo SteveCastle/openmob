@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunity(ctx context.Context, re
 	defer c.Close()
 	var id string
 	// insert VolunteerOpportunity entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity (title, election_type) VALUES($1, $2)  RETURNING id;",
-		req.Item.Title, req.Item.ElectionType).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity (title, volunteer_opportunity_type) VALUES($1, $2)  RETURNING id;",
+		req.Item.Title, req.Item.VolunteerOpportunityType).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunity-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunity(ctx context.Context, req *
 	defer c.Close()
 
 	// query VolunteerOpportunity by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election_type FROM volunteer_opportunity WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, volunteer_opportunity_type FROM volunteer_opportunity WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunity-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunity(ctx context.Context, req *
 	var createdAt time.Time
 	var updatedAt time.Time
 
-	if err := rows.Scan(&volunteeropportunity.ID, &createdAt, &updatedAt, &volunteeropportunity.Title, &volunteeropportunity.ElectionType); err != nil {
+	if err := rows.Scan(&volunteeropportunity.ID, &createdAt, &updatedAt, &volunteeropportunity.Title, &volunteeropportunity.VolunteerOpportunityType); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunity row-> "+err.Error())
 	}
 
@@ -120,7 +120,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunity(ctx context.Context, req 
 	// Generate SQL to select all columns in VolunteerOpportunity Table
 	// Then generate filtering and ordering sql and finally run query.
 
-	baseSQL := "SELECT id, created_at, updated_at, title, election_type FROM volunteer_opportunity"
+	baseSQL := "SELECT id, created_at, updated_at, title, volunteer_opportunity_type FROM volunteer_opportunity"
 	querySQL := queries.BuildVolunteerOpportunityFilters(req.Filters, req.Ordering, req.Limit)
 	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
 	rows, err := c.QueryContext(ctx, SQL)
@@ -136,7 +136,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunity(ctx context.Context, req 
 
 	for rows.Next() {
 		volunteeropportunity := new(v1.VolunteerOpportunity)
-		if err := rows.Scan(&volunteeropportunity.ID, &createdAt, &updatedAt, &volunteeropportunity.Title, &volunteeropportunity.ElectionType); err != nil {
+		if err := rows.Scan(&volunteeropportunity.ID, &createdAt, &updatedAt, &volunteeropportunity.Title, &volunteeropportunity.VolunteerOpportunityType); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunity row-> "+err.Error())
 		}
 		// Convert time.Time from database into proto timestamp.
@@ -177,8 +177,8 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunity(ctx context.Context, re
 	defer c.Close()
 
 	// update volunteer_opportunity
-	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity SET title=$2, election_type=$3 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.ElectionType)
+	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity SET title=$2, volunteer_opportunity_type=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.VolunteerOpportunityType)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunity-> "+err.Error())
 	}

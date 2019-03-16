@@ -17476,7 +17476,7 @@
         "Title": {
           "type": "string"
         },
-        "ElectionType": {
+        "VolunteerOpportunityType": {
           "type": "string"
         }
       }
@@ -24963,7 +24963,7 @@
         "Title": {
           "type": "string"
         },
-        "ElectionType": {
+        "VolunteerOpportunityType": {
           "type": "string"
         }
       }
@@ -24991,7 +24991,7 @@
         "Title": {
           "type": "string"
         },
-        "ElectionType": {
+        "VolunteerOpportunityType": {
           "type": "string"
         }
       }
@@ -25091,7 +25091,7 @@
         "Title": {
           "type": "string"
         },
-        "ElectionType": {
+        "VolunteerOpportunityType": {
           "type": "string"
         }
       }
