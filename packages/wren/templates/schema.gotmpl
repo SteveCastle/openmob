@@ -13,7 +13,8 @@ input {{.Name}}Input {
 
 {{range .Schema.Tables}}
 type {{.Name}} {
-{{range .Columns}}  {{.Name}}: {{if eq .Name "ID"}}ID!{{end}}{{if ne .Name "ID"}}{{.Type}}{{end}}
+{{range .Columns}}  {{.Name}}: {{if .IsFK}}{{.Name}}{{end}}{{if not .IsFK}}{{if eq .Name "ID"}}ID!{{range .FKColumnRefs}}
+  {{.Column.Table.Name}}s: [{{.Column.Table.Name}}]{{end}}{{end}}{{if ne .Name "ID"}}{{.Type}}{{end}}{{end}}
 {{end}}}
 ​{{end}}
 

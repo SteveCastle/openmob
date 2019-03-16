@@ -426,6 +426,7 @@ type Photo {
 ​
 type LayoutType {
   ID: ID!
+  Layouts: [Layout]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -433,9 +434,10 @@ type LayoutType {
 ​
 type LayoutRow {
   ID: ID!
+  LayoutColumns: [LayoutColumn]
   CreatedAt: Time!
   UpdatedAt: Time!
-  Layout: ID!
+  Layout: Layout
 }
 ​
 type ComponentImplementation {
@@ -446,6 +448,7 @@ type ComponentImplementation {
 ​
 type ComponentType {
   ID: ID!
+  Components: [Component]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -453,13 +456,15 @@ type ComponentType {
 ​
 type LayoutColumn {
   ID: ID!
+  Components: [Component]
   CreatedAt: Time!
   UpdatedAt: Time!
-  LayoutRow: ID!
+  LayoutRow: LayoutRow
 }
 ​
 type FieldType {
   ID: ID!
+  Fields: [Field]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -467,18 +472,19 @@ type FieldType {
 ​
 type Component {
   ID: ID!
+  Fields: [Field]
   CreatedAt: Time!
   UpdatedAt: Time!
-  ComponentType: ID!
-  LayoutColumn: ID
+  ComponentType: ComponentType
+  LayoutColumn: LayoutColumn
 }
 ​
 type Field {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  FieldType: ID!
-  Component: ID
+  FieldType: FieldType
+  Component: Component
 }
 ​
 type HomePage {
@@ -486,24 +492,28 @@ type HomePage {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Cause: ID!
-  Layout: ID
+  Cause: Cause
+  Layout: Layout
 }
 ​
 type Layout {
   ID: ID!
+  LayoutRows: [LayoutRow]
+  HomePages: [HomePage]
+  LandingPages: [LandingPage]
   CreatedAt: Time!
   UpdatedAt: Time!
-  LayoutType: ID
+  LayoutType: LayoutType
 }
 ​
 type LandingPage {
   ID: ID!
+  Experiments: [Experiment]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Cause: ID!
-  Layout: ID
+  Cause: Cause
+  Layout: Layout
 }
 ​
 type Experiment {
@@ -511,7 +521,7 @@ type Experiment {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  LandingPage: ID
+  LandingPage: LandingPage
 }
 ​
 type Issue {
@@ -519,18 +529,19 @@ type Issue {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Election: ID!
+  Election: Election
 }
 ​
 type Candidate {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Election: ID!
+  Election: Election
 }
 ​
 type DistrictType {
   ID: ID!
+  Districts: [District]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -542,7 +553,7 @@ type District {
   UpdatedAt: Time!
   Geom: Float
   Title: String!
-  DistrictType: ID!
+  DistrictType: DistrictType
 }
 ​
 type Office {
@@ -550,7 +561,7 @@ type Office {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Election: ID
+  Election: Election
 }
 ​
 type PollItem {
@@ -558,11 +569,12 @@ type PollItem {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  Poll: ID!
+  Poll: Poll
 }
 ​
 type VolunteerOpportunityType {
   ID: ID!
+  VolunteerOpportunitys: [VolunteerOpportunity]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -570,6 +582,7 @@ type VolunteerOpportunityType {
 ​
 type LiveEventType {
   ID: ID!
+  LiveEvents: [LiveEvent]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -584,6 +597,7 @@ type Company {
 ​
 type ProductType {
   ID: ID!
+  Products: [Product]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -591,6 +605,7 @@ type ProductType {
 ​
 type CustomerCart {
   ID: ID!
+  CustomerOrders: [CustomerOrder]
   CreatedAt: Time!
   UpdatedAt: Time!
 }
@@ -599,7 +614,7 @@ type Payment {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  CustomerOrder: ID!
+  CustomerOrder: CustomerOrder
 }
 ​
 type Delivery {
@@ -610,6 +625,7 @@ type Delivery {
 ​
 type Boycott {
   ID: ID!
+  BoycottMemberships: [BoycottMembership]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -619,12 +635,16 @@ type BoycottMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  Boycott: ID!
+  Cause: Cause
+  Boycott: Boycott
 }
 ​
 type Election {
   ID: ID!
+  Issues: [Issue]
+  Candidates: [Candidate]
+  Offices: [Office]
+  ElectionMemberships: [ElectionMembership]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -634,60 +654,62 @@ type ElectionMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  Election: ID!
+  Cause: Cause
+  Election: Election
 }
 ​
 type PetitionMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  Petition: ID!
+  Cause: Cause
+  Petition: Petition
 }
 ​
 type PollMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  Petition: ID!
+  Cause: Cause
+  Petition: Petition
 }
 ​
 type VolunteerOpportunityMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  VolunteerOpportunity: ID!
+  Cause: Cause
+  VolunteerOpportunity: VolunteerOpportunity
 }
 ​
 type LiveEventMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  LiveEvent: ID!
+  Cause: Cause
+  LiveEvent: LiveEvent
 }
 ​
 type Product {
   ID: ID!
+  ProductMemberships: [ProductMembership]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  ProductType: ID!
+  ProductType: ProductType
 }
 ​
 type ProductMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  Product: ID!
+  Cause: Cause
+  Product: Product
 }
 ​
 type DonationCampaign {
   ID: ID!
+  DonationCampaignMemberships: [DonationCampaignMembership]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -697,12 +719,15 @@ type DonationCampaignMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  DonationCampaign: ID!
+  Cause: Cause
+  DonationCampaign: DonationCampaign
 }
 ​
 type Petition {
   ID: ID!
+  PetitionMemberships: [PetitionMembership]
+  PollMemberships: [PollMembership]
+  PetitionSigners: [PetitionSigner]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -712,13 +737,15 @@ type PetitionSigner {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Petition: ID!
-  Contact: ID!
-  Cause: ID!
+  Petition: Petition
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type Poll {
   ID: ID!
+  PollItems: [PollItem]
+  PollRespondants: [PollRespondant]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -728,84 +755,91 @@ type PollRespondant {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Poll: ID!
-  Contact: ID!
-  Cause: ID!
+  Poll: Poll
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type Purchaser {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  CustomerOrder: ID!
-  Contact: ID!
-  Cause: ID!
+  CustomerOrder: CustomerOrder
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type CustomerOrder {
   ID: ID!
+  Payments: [Payment]
+  Purchasers: [Purchaser]
+  Donors: [Donor]
   CreatedAt: Time!
   UpdatedAt: Time!
-  CustomerCart: ID!
+  CustomerCart: CustomerCart
 }
 ​
 type Donor {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  CustomerOrder: ID!
-  Contact: ID!
-  Cause: ID!
+  CustomerOrder: CustomerOrder
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type LiveEvent {
   ID: ID!
+  LiveEventMemberships: [LiveEventMembership]
+  EventAttendees: [EventAttendee]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  LiveEventType: ID!
+  LiveEventType: LiveEventType
 }
 ​
 type EventAttendee {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  LiveEvent: ID!
-  Contact: ID!
-  Cause: ID!
+  LiveEvent: LiveEvent
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type Voter {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Contact: ID!
-  Cause: ID!
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type VolunteerOpportunity {
   ID: ID!
+  VolunteerOpportunityMemberships: [VolunteerOpportunityMembership]
+  Volunteers: [Volunteer]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  ElectionType: ID
+  ElectionType: ElectionType
 }
 ​
 type Volunteer {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  VolunteerOpportunity: ID!
-  Contact: ID!
-  Cause: ID!
+  VolunteerOpportunity: VolunteerOpportunity
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type Follower {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Contact: ID!
-  Cause: ID!
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type Territory {
@@ -817,6 +851,7 @@ type Territory {
 ​
 type ActivityType {
   ID: ID!
+  Activitys: [Activity]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -827,22 +862,24 @@ type Activity {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  ActivityType: ID!
-  Contact: ID!
-  Cause: ID!
+  ActivityType: ActivityType
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type Note {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Contact: ID!
-  Cause: ID!
+  Contact: Contact
+  Cause: Cause
   Body: String
 }
 ​
 type Account {
   ID: ID!
+  OwnerMemberships: [OwnerMembership]
+  Agents: [Agent]
   CreatedAt: Time!
   UpdatedAt: Time!
   Username: String!
@@ -852,12 +889,23 @@ type OwnerMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  Account: ID!
+  Cause: Cause
+  Account: Account
 }
 ​
 type Contact {
   ID: ID!
+  PetitionSigners: [PetitionSigner]
+  PollRespondants: [PollRespondant]
+  Purchasers: [Purchaser]
+  Donors: [Donor]
+  EventAttendees: [EventAttendee]
+  Voters: [Voter]
+  Volunteers: [Volunteer]
+  Followers: [Follower]
+  Activitys: [Activity]
+  Notes: [Note]
+  ContactMemberships: [ContactMembership]
   CreatedAt: Time!
   UpdatedAt: Time!
   FirstName: String
@@ -871,12 +919,35 @@ type ContactMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  Contact: ID!
+  Cause: Cause
+  Contact: Contact
 }
 ​
 type Cause {
   ID: ID!
+  HomePages: [HomePage]
+  LandingPages: [LandingPage]
+  BoycottMemberships: [BoycottMembership]
+  ElectionMemberships: [ElectionMembership]
+  PetitionMemberships: [PetitionMembership]
+  PollMemberships: [PollMembership]
+  VolunteerOpportunityMemberships: [VolunteerOpportunityMembership]
+  LiveEventMemberships: [LiveEventMembership]
+  ProductMemberships: [ProductMembership]
+  DonationCampaignMemberships: [DonationCampaignMembership]
+  PetitionSigners: [PetitionSigner]
+  PollRespondants: [PollRespondant]
+  Purchasers: [Purchaser]
+  Donors: [Donor]
+  EventAttendees: [EventAttendee]
+  Voters: [Voter]
+  Volunteers: [Volunteer]
+  Followers: [Follower]
+  Activitys: [Activity]
+  Notes: [Note]
+  OwnerMemberships: [OwnerMembership]
+  ContactMemberships: [ContactMembership]
+  AgentMemberships: [AgentMembership]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
@@ -886,17 +957,18 @@ type Cause {
 ​
 type Agent {
   ID: ID!
+  AgentMemberships: [AgentMembership]
   CreatedAt: Time!
   UpdatedAt: Time!
-  Account: ID!
+  Account: Account
 }
 ​
 type AgentMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
-  Cause: ID!
-  Agent: ID!
+  Cause: Cause
+  Agent: Agent
 }
 ​
 
