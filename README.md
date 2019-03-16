@@ -27,29 +27,34 @@ coordination.
 
 ## Project Structure
 
-```
-                                                               +----------------+
-                    +--------------------------------+         |                |
-                    |Shrike gRPC Server              |         |                |
-                    |                                +--------->Mobile          |
-                    +---------------+----------------+         |and Third Party |
-                                    |                          |Platform Access |
-                                    |                          +-------^--------+
-                                    v                                  |
-                    +---------------+-----------------+                |
-                    |Wren GraphQL API Server          +----------------+
-                    |                                 |
-                    +---------------+-----------------+
-                                    |
-+--------------+                    |
-|Bluebird | +---------------+-----------------+
-|Component | |Starling Renderer: GatsbyJS |
-| |
-| | +---------------------------------+
-|Library +----> |
-+--------------+
-
-```
+                        ┌────────────────────┐
+                        │                    │
+                        │                    │        ┌────────────────────┐
+                        │ Shrike gRPC Server │ ◀──┐   │                    │
+                        │                    │    │   │  Mobile and Third  │
+                        │                    │    └───│   Party Platform   │
+                        └────────────────────┘        │       Access       │
+                                   │                  │                    │
+                                   ▼                  └────────────────────┘
+                        ┌────────────────────┐
+                        │                    │
+                        │  Wren GraphQL API  │
+                        │       Server       │
+                        │                    │
+                        │                    │
+                        └────────────────────┘
+                                   │
+                                   │
+    ┌────────────────────┐         └─────┐
+    │                    │               │
+    │   Bluebird React   │               ▼
+    │ Component Library  │─┐  ┌────────────────────┐
+    │ and Design System  │ │  │                    │
+    │                    │ │  │ Starling Renderer  │
+    └────────────────────┘ └─▶│     (GatsbyJS)     │
+                              │                    │
+                              │                    │
+                              └────────────────────┘
 
 Open Mob is a mono-repo comprised of three core packages. A gRPC API service
 called
@@ -74,27 +79,24 @@ react component library and design system are also found in this repo.
 Openmob makes heavy use of codegen to generate consistent typing from the database, through the server, all the
 way through to the javascript client.
 
-                                                                                                                                                       
-                                                                                                                                                       
-                                                                                                                                                       
-                                                                      ┌────────────────────────┐                                                       
-                                                                      │                        │                                                       
-                                                                      │                        │                                                       
-                                                                      │                        │                                                       
-                                                             ┌────────│  PostgreSQL DB Schema  │────────┐                                              
-                                                             │        │                        │        │                                              
-                                                             │        │                        │        │                                              
-                                                             │        │                        │        │                                              
-                                                             │        └────────────────────────┘        │                                              
-                                                             │                                          │                                              
-                                                             ▼                                          ▼                                              
-                                                ┌────────────────────────┐                 ┌────────────────────────┐                                  
-                                                │                        │                 │                        │                                  
-                                                │                        │                 │  GNORM - Go template   │                                  
-                                                │  GNORM - Go template   │                 │   based templater. A   │                                  
-                                                │    based templater.    │                 │ second GNORM pass with │─────────────────────┐            
-                                                │                        │                 │settings for Javascript │                     │            
-                                                │                        │                 │     type mappings.     │                     ▼            
+                                                                      ┌────────────────────────┐
+                                                                      │                        │
+                                                                      │                        │
+                                                                      │                        │
+                                                             ┌────────│  PostgreSQL DB Schema  │────────┐
+                                                             │        │                        │        │
+                                                             │        │                        │        │
+                                                             │        │                        │        │
+                                                             │        └────────────────────────┘        │
+                                                             │                                          │
+                                                             ▼                                          ▼
+                                                ┌────────────────────────┐                 ┌────────────────────────┐
+                                                │                        │                 │                        │
+                                                │                        │                 │  GNORM - Go template   │
+                                                │  GNORM - Go template   │                 │   based templater. A   │
+                                                │    based templater.    │                 │ second GNORM pass with │─────────────────────┐
+                                                │                        │                 │settings for Javascript │                     │
+                                                │                        │                 │     type mappings.     │                     ▼
                                                 │                        │                 │                        │         ┌───────────────────────┐
                                                 └────────────────────────┘                 └────────────────────────┘         │                       │
                                                              │                                          │                     │                       │
@@ -106,15 +108,15 @@ way through to the javascript client.
                             │                          │                          │               │                       │   │                       │
                             │                          │                          │               │                       │   │                       │
                             │                          │                          │               │                       │   └───────────────────────┘
-                            ▼                          ▼                          ▼               │                       │                            
-                ┌───────────────────────┐  ┌───────────────────────┐  ┌───────────────────────┐   │    GraphQL Schema     │                            
-                │                       │  │                       │  │                       │   │                       │                            
-                │                       │  │                       │  │                       │   │                       │                            
-                │                       │  │api/proto/shrike.proto │  │                       │   │                       │                            
-                │  /pkg/service - CRUD  │  │   - A Protobuf3 API   │  │   /pkg/query - SQL    │   │                       │                            
-                │ Handlers for the gRPC │  │specification and CRUD │  │   Builders for CRUD   │   └───────────────────────┘                            
-                │       Service.        │  │     gRPC service.     │  │       Handlers.       │                                                        
-                │                       │  │                       │  │                       │                                                        
-                │                       │  │                       │  │                       │                                                        
-                │                       │  │                       │  │                       │                                                        
-                └───────────────────────┘  └───────────────────────┘  └───────────────────────┘                                                        
+                            ▼                          ▼                          ▼               │                       │
+                ┌───────────────────────┐  ┌───────────────────────┐  ┌───────────────────────┐   │    GraphQL Schema     │
+                │                       │  │                       │  │                       │   │                       │
+                │                       │  │                       │  │                       │   │                       │
+                │                       │  │api/proto/shrike.proto │  │                       │   │                       │
+                │  /pkg/service - CRUD  │  │   - A Protobuf3 API   │  │   /pkg/query - SQL    │   │                       │
+                │ Handlers for the gRPC │  │specification and CRUD │  │   Builders for CRUD   │   └───────────────────────┘
+                │       Service.        │  │     gRPC service.     │  │       Handlers.       │
+                │                       │  │                       │  │                       │
+                │                       │  │                       │  │                       │
+                │                       │  │                       │  │                       │
+                └───────────────────────┘  └───────────────────────┘  └───────────────────────┘
