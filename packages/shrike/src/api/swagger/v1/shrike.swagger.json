@@ -15180,6 +15180,9 @@
         "ComponentType": {
           "type": "string"
         },
+        "ComponentImplementation": {
+          "type": "string"
+        },
         "LayoutColumn": {
           "type": "string"
         }
@@ -15208,6 +15211,9 @@
         "ComponentType": {
           "type": "string"
         },
+        "ComponentImplementation": {
+          "type": "string"
+        },
         "LayoutColumn": {
           "type": "string"
         }
@@ -15226,6 +15232,9 @@
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
         }
       }
     },
@@ -15248,6 +15257,9 @@
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
         }
       }
     },
@@ -15267,6 +15279,9 @@
         "UpdatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
         }
       }
     },
@@ -15288,6 +15303,9 @@
           "format": "date-time"
         },
         "ComponentType": {
+          "type": "string"
+        },
+        "ComponentImplementation": {
           "type": "string"
         },
         "LayoutColumn": {
@@ -15906,13 +15924,21 @@
         "ComponentType": {
           "type": "string"
         },
+        "ComponentImplementation": {
+          "type": "string"
+        },
         "LayoutColumn": {
           "type": "string"
         }
       }
     },
     "v1CreateComponentImplementation": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        }
+      }
     },
     "v1CreateComponentImplementationRequest": {
       "type": "object",
@@ -16778,6 +16804,10 @@
       "properties": {
         "LayoutRow": {
           "type": "string"
+        },
+        "Width": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -16838,6 +16868,10 @@
       "properties": {
         "Layout": {
           "type": "string"
+        },
+        "Container": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -20830,6 +20864,10 @@
         },
         "LayoutRow": {
           "type": "string"
+        },
+        "Width": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -20855,6 +20893,10 @@
         },
         "LayoutRow": {
           "type": "string"
+        },
+        "Width": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -20877,6 +20919,10 @@
         },
         "LayoutRow": {
           "type": "string"
+        },
+        "Width": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -20943,6 +20989,10 @@
         },
         "Layout": {
           "type": "string"
+        },
+        "Container": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -20968,6 +21018,10 @@
         },
         "Layout": {
           "type": "string"
+        },
+        "Container": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -20990,6 +21044,10 @@
         },
         "Layout": {
           "type": "string"
+        },
+        "Container": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },

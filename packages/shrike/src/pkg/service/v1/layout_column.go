@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateLayoutColumn(ctx context.Context, req *v1.Cr
 	defer c.Close()
 	var id string
 	// insert LayoutColumn entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layout_column (layout_row) VALUES($1)  RETURNING id;",
-		req.Item.LayoutRow).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO layout_column (layout_row, width) VALUES($1, $2)  RETURNING id;",
+		req.Item.LayoutRow, req.Item.Width).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LayoutColumn-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLa
 	defer c.Close()
 
 	// query LayoutColumn by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_row FROM layout_column WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout_row, width FROM layout_column WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutColumn-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLa
 	var createdAt time.Time
 	var updatedAt time.Time
 
-	if err := rows.Scan(&layoutcolumn.ID, &createdAt, &updatedAt, &layoutcolumn.LayoutRow); err != nil {
+	if err := rows.Scan(&layoutcolumn.ID, &createdAt, &updatedAt, &layoutcolumn.LayoutRow, &layoutcolumn.Width); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutColumn row-> "+err.Error())
 	}
 
@@ -120,7 +120,7 @@ func (s *shrikeServiceServer) ListLayoutColumn(ctx context.Context, req *v1.List
 	// Generate SQL to select all columns in LayoutColumn Table
 	// Then generate filtering and ordering sql and finally run query.
 
-	baseSQL := "SELECT id, created_at, updated_at, layout_row FROM layout_column"
+	baseSQL := "SELECT id, created_at, updated_at, layout_row, width FROM layout_column"
 	querySQL := queries.BuildLayoutColumnFilters(req.Filters, req.Ordering, req.Limit)
 	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
 	rows, err := c.QueryContext(ctx, SQL)
@@ -136,7 +136,7 @@ func (s *shrikeServiceServer) ListLayoutColumn(ctx context.Context, req *v1.List
 
 	for rows.Next() {
 		layoutcolumn := new(v1.LayoutColumn)
-		if err := rows.Scan(&layoutcolumn.ID, &createdAt, &updatedAt, &layoutcolumn.LayoutRow); err != nil {
+		if err := rows.Scan(&layoutcolumn.ID, &createdAt, &updatedAt, &layoutcolumn.LayoutRow, &layoutcolumn.Width); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutColumn row-> "+err.Error())
 		}
 		// Convert time.Time from database into proto timestamp.
@@ -177,8 +177,8 @@ func (s *shrikeServiceServer) UpdateLayoutColumn(ctx context.Context, req *v1.Up
 	defer c.Close()
 
 	// update layout_column
-	res, err := c.ExecContext(ctx, "UPDATE layout_column SET layout_row=$2 WHERE id=$1",
-		req.Item.ID, req.Item.LayoutRow)
+	res, err := c.ExecContext(ctx, "UPDATE layout_column SET layout_row=$2, width=$3 WHERE id=$1",
+		req.Item.ID, req.Item.LayoutRow, req.Item.Width)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LayoutColumn-> "+err.Error())
 	}

@@ -90,6 +90,7 @@ CREATE TABLE layout_row
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     layout UUID REFERENCES layout(id) NOT NULL,
+    container BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id)
 );
 
@@ -99,13 +100,25 @@ CREATE TABLE layout_column
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     layout_row UUID REFERENCES layout_row(id) NOT NULL,
+    width INTEGER NOT NULL DEFAULT 12 CHECK(width BETWEEN 1 AND 12),
     PRIMARY KEY (id)
 );
+
+CREATE TABLE field_type
+(
+    id UUID NOT NULL DEFAULT gen_random_uuid(),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE component_implementation
 (
     id UUID NOT NULL DEFAULT gen_random_uuid(),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -123,18 +136,11 @@ CREATE TABLE component
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     component_type UUID REFERENCES component_type(id) NOT NULL,
+    component_implementation UUID REFERENCES component_implementation(id) NOT NULL,
     layout_column UUID REFERENCES layout_column(id),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE field_type
-(
-    id UUID NOT NULL DEFAULT gen_random_uuid(),
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    title VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
-);
 CREATE TABLE field
 (
     id UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -608,6 +614,9 @@ ALTER TABLE cause ADD COLUMN home_page UUID REFERENCES home_page(id);
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
 
+--REMOVE CAUSE RELATIONS
+ALTER TABLE cause DROP COLUMN home_page;
+
 -- CMS MEMBERSHIPS
 DROP TABLE contact_membership;
 DROP TABLE agent_membership;
@@ -641,16 +650,15 @@ DROP TABLE donation_campaign_membership;
 
 --CMS TABLES
 DROP TABLE field;
-DROP TABLE field_type;
 DROP TABLE component;
 DROP TABLE component_type;
 DROP TABLE component_implementation;
+DROP TABLE field_type;
 DROP TABLE layout_column;
 DROP TABLE layout_row;
 DROP TABLE experiment;
 DROP TABLE landing_page;
 DROP TABLE home_page;
-
 DROP TABLE layout;
 DROP TABLE layout_type;
 DROP TABLE issue;
