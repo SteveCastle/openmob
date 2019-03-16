@@ -21,7 +21,7 @@ type {{.Name}} {
   type Query {
     {{range .Schema.Tables}}
     get{{.Name}}(ID: ID!): {{.Name}}
-    list{{.Name}}: [{{.Name}}]{{end}}
+    list{{.Name}}(limit: Int): [{{.Name}}]{{end}}
   }
 
   type Mutation {

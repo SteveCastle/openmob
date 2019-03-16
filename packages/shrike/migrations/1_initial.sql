@@ -269,7 +269,7 @@ CREATE TABLE volunteer_opportunity
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
-    election_type UUID REFERENCES volunteer_opportunity_type(id),
+    volunteer_opportunity_type UUID REFERENCES volunteer_opportunity_type(id),
     PRIMARY KEY (id)
 );
 CREATE TABLE live_event_type

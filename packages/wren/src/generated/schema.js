@@ -300,7 +300,7 @@ input VoterInput {
 input VolunteerOpportunityInput {
   secret: Int
   Title: String!
-  ElectionType: ID
+  VolunteerOpportunityType: ID
 }
 ​
 input VolunteerInput {
@@ -822,7 +822,7 @@ type VolunteerOpportunity {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-  ElectionType: ElectionType
+  VolunteerOpportunityType: VolunteerOpportunityType
 }
 ​
 type Volunteer {
@@ -975,137 +975,137 @@ type AgentMembership {
   type Query {
     
     getACL(ID: ID!): ACL
-    listACL: [ACL]
+    listACL(limit: Int): [ACL]
     getMailingAddress(ID: ID!): MailingAddress
-    listMailingAddress: [MailingAddress]
+    listMailingAddress(limit: Int): [MailingAddress]
     getPhoneNumber(ID: ID!): PhoneNumber
-    listPhoneNumber: [PhoneNumber]
+    listPhoneNumber(limit: Int): [PhoneNumber]
     getEmailAddress(ID: ID!): EmailAddress
-    listEmailAddress: [EmailAddress]
+    listEmailAddress(limit: Int): [EmailAddress]
     getPhoto(ID: ID!): Photo
-    listPhoto: [Photo]
+    listPhoto(limit: Int): [Photo]
     getLayoutType(ID: ID!): LayoutType
-    listLayoutType: [LayoutType]
+    listLayoutType(limit: Int): [LayoutType]
     getLayoutRow(ID: ID!): LayoutRow
-    listLayoutRow: [LayoutRow]
+    listLayoutRow(limit: Int): [LayoutRow]
     getComponentImplementation(ID: ID!): ComponentImplementation
-    listComponentImplementation: [ComponentImplementation]
+    listComponentImplementation(limit: Int): [ComponentImplementation]
     getComponentType(ID: ID!): ComponentType
-    listComponentType: [ComponentType]
+    listComponentType(limit: Int): [ComponentType]
     getLayoutColumn(ID: ID!): LayoutColumn
-    listLayoutColumn: [LayoutColumn]
+    listLayoutColumn(limit: Int): [LayoutColumn]
     getFieldType(ID: ID!): FieldType
-    listFieldType: [FieldType]
+    listFieldType(limit: Int): [FieldType]
     getComponent(ID: ID!): Component
-    listComponent: [Component]
+    listComponent(limit: Int): [Component]
     getField(ID: ID!): Field
-    listField: [Field]
+    listField(limit: Int): [Field]
     getHomePage(ID: ID!): HomePage
-    listHomePage: [HomePage]
+    listHomePage(limit: Int): [HomePage]
     getLayout(ID: ID!): Layout
-    listLayout: [Layout]
+    listLayout(limit: Int): [Layout]
     getLandingPage(ID: ID!): LandingPage
-    listLandingPage: [LandingPage]
+    listLandingPage(limit: Int): [LandingPage]
     getExperiment(ID: ID!): Experiment
-    listExperiment: [Experiment]
+    listExperiment(limit: Int): [Experiment]
     getIssue(ID: ID!): Issue
-    listIssue: [Issue]
+    listIssue(limit: Int): [Issue]
     getCandidate(ID: ID!): Candidate
-    listCandidate: [Candidate]
+    listCandidate(limit: Int): [Candidate]
     getDistrictType(ID: ID!): DistrictType
-    listDistrictType: [DistrictType]
+    listDistrictType(limit: Int): [DistrictType]
     getDistrict(ID: ID!): District
-    listDistrict: [District]
+    listDistrict(limit: Int): [District]
     getOffice(ID: ID!): Office
-    listOffice: [Office]
+    listOffice(limit: Int): [Office]
     getPollItem(ID: ID!): PollItem
-    listPollItem: [PollItem]
+    listPollItem(limit: Int): [PollItem]
     getVolunteerOpportunityType(ID: ID!): VolunteerOpportunityType
-    listVolunteerOpportunityType: [VolunteerOpportunityType]
+    listVolunteerOpportunityType(limit: Int): [VolunteerOpportunityType]
     getLiveEventType(ID: ID!): LiveEventType
-    listLiveEventType: [LiveEventType]
+    listLiveEventType(limit: Int): [LiveEventType]
     getCompany(ID: ID!): Company
-    listCompany: [Company]
+    listCompany(limit: Int): [Company]
     getProductType(ID: ID!): ProductType
-    listProductType: [ProductType]
+    listProductType(limit: Int): [ProductType]
     getCustomerCart(ID: ID!): CustomerCart
-    listCustomerCart: [CustomerCart]
+    listCustomerCart(limit: Int): [CustomerCart]
     getPayment(ID: ID!): Payment
-    listPayment: [Payment]
+    listPayment(limit: Int): [Payment]
     getDelivery(ID: ID!): Delivery
-    listDelivery: [Delivery]
+    listDelivery(limit: Int): [Delivery]
     getBoycott(ID: ID!): Boycott
-    listBoycott: [Boycott]
+    listBoycott(limit: Int): [Boycott]
     getBoycottMembership(ID: ID!): BoycottMembership
-    listBoycottMembership: [BoycottMembership]
+    listBoycottMembership(limit: Int): [BoycottMembership]
     getElection(ID: ID!): Election
-    listElection: [Election]
+    listElection(limit: Int): [Election]
     getElectionMembership(ID: ID!): ElectionMembership
-    listElectionMembership: [ElectionMembership]
+    listElectionMembership(limit: Int): [ElectionMembership]
     getPetitionMembership(ID: ID!): PetitionMembership
-    listPetitionMembership: [PetitionMembership]
+    listPetitionMembership(limit: Int): [PetitionMembership]
     getPollMembership(ID: ID!): PollMembership
-    listPollMembership: [PollMembership]
+    listPollMembership(limit: Int): [PollMembership]
     getVolunteerOpportunityMembership(ID: ID!): VolunteerOpportunityMembership
-    listVolunteerOpportunityMembership: [VolunteerOpportunityMembership]
+    listVolunteerOpportunityMembership(limit: Int): [VolunteerOpportunityMembership]
     getLiveEventMembership(ID: ID!): LiveEventMembership
-    listLiveEventMembership: [LiveEventMembership]
+    listLiveEventMembership(limit: Int): [LiveEventMembership]
     getProduct(ID: ID!): Product
-    listProduct: [Product]
+    listProduct(limit: Int): [Product]
     getProductMembership(ID: ID!): ProductMembership
-    listProductMembership: [ProductMembership]
+    listProductMembership(limit: Int): [ProductMembership]
     getDonationCampaign(ID: ID!): DonationCampaign
-    listDonationCampaign: [DonationCampaign]
+    listDonationCampaign(limit: Int): [DonationCampaign]
     getDonationCampaignMembership(ID: ID!): DonationCampaignMembership
-    listDonationCampaignMembership: [DonationCampaignMembership]
+    listDonationCampaignMembership(limit: Int): [DonationCampaignMembership]
     getPetition(ID: ID!): Petition
-    listPetition: [Petition]
+    listPetition(limit: Int): [Petition]
     getPetitionSigner(ID: ID!): PetitionSigner
-    listPetitionSigner: [PetitionSigner]
+    listPetitionSigner(limit: Int): [PetitionSigner]
     getPoll(ID: ID!): Poll
-    listPoll: [Poll]
+    listPoll(limit: Int): [Poll]
     getPollRespondant(ID: ID!): PollRespondant
-    listPollRespondant: [PollRespondant]
+    listPollRespondant(limit: Int): [PollRespondant]
     getPurchaser(ID: ID!): Purchaser
-    listPurchaser: [Purchaser]
+    listPurchaser(limit: Int): [Purchaser]
     getCustomerOrder(ID: ID!): CustomerOrder
-    listCustomerOrder: [CustomerOrder]
+    listCustomerOrder(limit: Int): [CustomerOrder]
     getDonor(ID: ID!): Donor
-    listDonor: [Donor]
+    listDonor(limit: Int): [Donor]
     getLiveEvent(ID: ID!): LiveEvent
-    listLiveEvent: [LiveEvent]
+    listLiveEvent(limit: Int): [LiveEvent]
     getEventAttendee(ID: ID!): EventAttendee
-    listEventAttendee: [EventAttendee]
+    listEventAttendee(limit: Int): [EventAttendee]
     getVoter(ID: ID!): Voter
-    listVoter: [Voter]
+    listVoter(limit: Int): [Voter]
     getVolunteerOpportunity(ID: ID!): VolunteerOpportunity
-    listVolunteerOpportunity: [VolunteerOpportunity]
+    listVolunteerOpportunity(limit: Int): [VolunteerOpportunity]
     getVolunteer(ID: ID!): Volunteer
-    listVolunteer: [Volunteer]
+    listVolunteer(limit: Int): [Volunteer]
     getFollower(ID: ID!): Follower
-    listFollower: [Follower]
+    listFollower(limit: Int): [Follower]
     getTerritory(ID: ID!): Territory
-    listTerritory: [Territory]
+    listTerritory(limit: Int): [Territory]
     getActivityType(ID: ID!): ActivityType
-    listActivityType: [ActivityType]
+    listActivityType(limit: Int): [ActivityType]
     getActivity(ID: ID!): Activity
-    listActivity: [Activity]
+    listActivity(limit: Int): [Activity]
     getNote(ID: ID!): Note
-    listNote: [Note]
+    listNote(limit: Int): [Note]
     getAccount(ID: ID!): Account
-    listAccount: [Account]
+    listAccount(limit: Int): [Account]
     getOwnerMembership(ID: ID!): OwnerMembership
-    listOwnerMembership: [OwnerMembership]
+    listOwnerMembership(limit: Int): [OwnerMembership]
     getContact(ID: ID!): Contact
-    listContact: [Contact]
+    listContact(limit: Int): [Contact]
     getContactMembership(ID: ID!): ContactMembership
-    listContactMembership: [ContactMembership]
+    listContactMembership(limit: Int): [ContactMembership]
     getCause(ID: ID!): Cause
-    listCause: [Cause]
+    listCause(limit: Int): [Cause]
     getAgent(ID: ID!): Agent
-    listAgent: [Agent]
+    listAgent(limit: Int): [Agent]
     getAgentMembership(ID: ID!): AgentMembership
-    listAgentMembership: [AgentMembership]
+    listAgentMembership(limit: Int): [AgentMembership]
   }
 
   type Mutation {

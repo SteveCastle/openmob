@@ -30,14 +30,6 @@ var client = new shrike.ShrikeService(
 
 grpc_promise.promisifyAll(client);
 
-client
-  .CreateCause()
-  .sendMessage({
-    api: 'v1',
-    item: { Title: 'Cool Cause', Summary: 'Cool Summary' }
-  })
-  .then(resp => console.log(resp));
-
 const typeDefs = generatedSchema;
 
 const resolvers = generatedResolvers(client);
