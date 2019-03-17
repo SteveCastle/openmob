@@ -2,5 +2,5 @@ start:
 	yarn develop
 
 hard-start:
-	rm -R ./.cache
+	rm -Rf ./.cache
 	yarn develop

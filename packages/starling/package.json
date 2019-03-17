@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "starling",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A Gatsby Rendering engine for the OpenMob Platform",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Stephen Castle <stephen@callsignmedia.com>",
   "dependencies": {
     "gatsby": "^2.1.17",
     "gatsby-image": "^2.0.29",
@@ -17,13 +17,15 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "@openmob/bluebird": "0.1.0"
   },
   "devDependencies": {
     "prettier": "^1.16.4"
   },
   "keywords": [
-    "gatsby"
+    "CRM",
+    "CMS"
   ],
   "license": "MIT",
   "scripts": {
