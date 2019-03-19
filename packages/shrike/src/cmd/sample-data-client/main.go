@@ -9,6 +9,8 @@ import (
 	"google.golang.org/grpc"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"github.com/jaswdr/faker"
+	slugify "github.com/mozillazg/go-slugify"
 )
 
 const (
@@ -17,6 +19,7 @@ const (
 )
 
 func main() {
+	faker := faker.New()
 	// get configuration
 	address := flag.String("server", "localhost:9090", "gRPC server in format host:port")
 	flag.Parse()
@@ -155,12 +158,13 @@ func main() {
 	homepageID := homepageRes.ID
 
 	// Create a Cause
+	causeTitle := faker.Company().Name()
 	causeRequest := v1.CreateCauseRequest{
 		Api: apiVersion,
 		Item: &v1.CreateCause{
-			Title:    "Mrs. Frisby's Class",
-			Slug:     "mrs-frisbys-class",
-			Summary:  "NIMH go home.",
+			Title:    causeTitle,
+			Slug:     slugify.Slugify(causeTitle),
+			Summary:  faker.Company().CatchPhrase(),
 			HomePage: homepageID,
 		},
 	}
