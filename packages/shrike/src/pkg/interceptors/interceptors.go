@@ -1,10 +1,15 @@
 package interceptors
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
 	"time"
 
+	"github.com/SteveCastle/structs"
 	"google.golang.org/grpc"
 )
 
@@ -24,6 +29,41 @@ func LoggingInterceptor(
 		info.FullMethod,
 		time.Since(start),
 		err)
+
+	return h, err
+}
+
+// BuildInterceptor triggers gatsby builds if required
+// by hitting a webhook for the build pipeline defined in config.
+func BuildInterceptor(
+	ctx context.Context,
+	req interface{},
+	info *grpc.UnaryServerInfo,
+	handler grpc.UnaryHandler) (interface{}, error) {
+	// Calls the handler
+	h, err := handler(ctx, req)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	// Translate the request in to a map so we can safely check for BuildStatic key.
+	s := structs.Map(req)
+	// If build static is set and equals true, call the build webhook from config.
+	if s["BuildStatic"] == true {
+		fmt.Printf("Build requested: %v\n", s["BuildStatic"])
+		message := map[string]interface{}{}
+
+		webhookMessage, err := json.Marshal(message)
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		resp, err := http.Post("http://localhost:8000/__refresh", "application/json", bytes.NewBuffer(webhookMessage))
+		if err != nil {
+			log.Fatalln(err)
+		}
+		fmt.Printf("Build finished with response: %v\n", resp)
+	}
 
 	return h, err
 }

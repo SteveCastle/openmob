@@ -446,8 +446,8 @@ CREATE TABLE donation_campaign_membership
 CREATE TABLE contact
 (
     id UUID NOT NULL DEFAULT gen_random_uuid(),
-    created_at TIMESTAMPTZ NOT NULL,
-    updated_at TIMESTAMPTZ NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     first_name VARCHAR(255),
     middle_name VARCHAR(255),
     last_name VARCHAR(255),

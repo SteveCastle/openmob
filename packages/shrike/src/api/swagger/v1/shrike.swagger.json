@@ -153,6 +153,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -370,6 +377,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -587,6 +601,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -804,6 +825,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -1021,6 +1049,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -1238,6 +1273,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -1455,6 +1497,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -1672,6 +1721,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -1889,6 +1945,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -2106,6 +2169,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -2323,6 +2393,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -2540,6 +2617,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -2757,6 +2841,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -2974,6 +3065,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -3191,6 +3289,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -3408,6 +3513,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -3625,6 +3737,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -3842,6 +3961,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -4059,6 +4185,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -4276,6 +4409,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -4493,6 +4633,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -4710,6 +4857,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -4927,6 +5081,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -5144,6 +5305,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -5361,6 +5529,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -5578,6 +5753,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -5795,6 +5977,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -6012,6 +6201,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -6229,6 +6425,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -6446,6 +6649,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -6663,6 +6873,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -6880,6 +7097,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -7097,6 +7321,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -7314,6 +7545,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -7531,6 +7769,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -7748,6 +7993,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -7965,6 +8217,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -8182,6 +8441,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -8399,6 +8665,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -8616,6 +8889,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -8833,6 +9113,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -9050,6 +9337,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -9267,6 +9561,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -9484,6 +9785,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -9701,6 +10009,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -9918,6 +10233,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -10135,6 +10457,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -10352,6 +10681,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -10569,6 +10905,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -10786,6 +11129,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -11003,6 +11353,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -11220,6 +11577,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -11437,6 +11801,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -11654,6 +12025,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -11871,6 +12249,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -12088,6 +12473,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -12305,6 +12697,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -12522,6 +12921,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -12739,6 +13145,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -12956,6 +13369,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -13173,6 +13593,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -13390,6 +13817,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -13607,6 +14041,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -13824,6 +14265,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -14041,6 +14489,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -14258,6 +14713,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
           }
         ],
         "tags": [
@@ -15537,7 +15999,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateACL"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15571,7 +16033,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateAccount"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15614,7 +16076,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateActivity"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15648,7 +16110,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateActivityType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15693,7 +16155,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateAgentMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15719,7 +16181,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateAgent"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15764,7 +16226,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateBoycottMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15790,7 +16252,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateBoycott"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15824,7 +16286,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateCandidate"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15867,7 +16329,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateCause"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15901,7 +16363,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateCompany"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15949,7 +16411,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateComponentImplementation"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -15975,7 +16437,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateComponent"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16009,7 +16471,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateComponentType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16066,7 +16528,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateContactMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16092,7 +16554,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateContact"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16121,7 +16583,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateCustomerCart"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16155,7 +16617,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateCustomerOrder"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16184,7 +16646,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateDelivery"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16225,7 +16687,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateDistrict"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16259,7 +16721,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateDistrictType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16304,7 +16766,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateDonationCampaignMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16330,7 +16792,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateDonationCampaign"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16370,7 +16832,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateDonor"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16415,7 +16877,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateElectionMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16441,7 +16903,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateElection"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16475,7 +16937,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateEmailAddress"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16515,7 +16977,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateEventAttendee"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16552,7 +17014,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateExperiment"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16589,7 +17051,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateField"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16623,7 +17085,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateFieldType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16660,7 +17122,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateFollower"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16697,7 +17159,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateHomePage"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16734,7 +17196,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateIssue"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16774,7 +17236,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateLandingPage"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16820,7 +17282,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateLayoutColumn"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16846,7 +17308,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateLayout"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16884,7 +17346,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateLayoutRow"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16918,7 +17380,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateLayoutType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16966,7 +17428,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateLiveEventMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -16992,7 +17454,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateLiveEvent"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17026,7 +17488,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateLiveEventType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17069,7 +17531,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateMailingAddress"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17109,7 +17571,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateNote"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17146,7 +17608,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateOffice"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17183,7 +17645,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateOwnerMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17217,7 +17679,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePayment"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17262,7 +17724,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePetitionMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17288,7 +17750,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePetition"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17328,7 +17790,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePetitionSigner"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17362,7 +17824,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePhoneNumber"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17396,7 +17858,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePhoto"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17441,7 +17903,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePollItem"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17478,7 +17940,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePollMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17504,7 +17966,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePoll"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17533,7 +17995,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePollRespondant"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17592,7 +18054,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateProductMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17618,7 +18080,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateProduct"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17652,7 +18114,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateProductType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17692,7 +18154,7 @@
         "item": {
           "$ref": "#/definitions/v1CreatePurchaser"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17726,7 +18188,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateTerritory"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17788,7 +18250,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateVolunteerOpportunityMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17814,7 +18276,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateVolunteerOpportunity"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17848,7 +18310,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateVolunteerOpportunityType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17874,7 +18336,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateVolunteer"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -17911,7 +18373,7 @@
         "item": {
           "$ref": "#/definitions/v1CreateVoter"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23703,7 +24165,7 @@
         "item": {
           "$ref": "#/definitions/v1ACL"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23730,7 +24192,7 @@
         "item": {
           "$ref": "#/definitions/v1Account"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23757,7 +24219,7 @@
         "item": {
           "$ref": "#/definitions/v1Activity"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23784,7 +24246,7 @@
         "item": {
           "$ref": "#/definitions/v1ActivityType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23811,7 +24273,7 @@
         "item": {
           "$ref": "#/definitions/v1AgentMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23838,7 +24300,7 @@
         "item": {
           "$ref": "#/definitions/v1Agent"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23865,7 +24327,7 @@
         "item": {
           "$ref": "#/definitions/v1BoycottMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23892,7 +24354,7 @@
         "item": {
           "$ref": "#/definitions/v1Boycott"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23919,7 +24381,7 @@
         "item": {
           "$ref": "#/definitions/v1Candidate"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23946,7 +24408,7 @@
         "item": {
           "$ref": "#/definitions/v1Cause"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -23973,7 +24435,7 @@
         "item": {
           "$ref": "#/definitions/v1Company"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24000,7 +24462,7 @@
         "item": {
           "$ref": "#/definitions/v1ComponentImplementation"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24027,7 +24489,7 @@
         "item": {
           "$ref": "#/definitions/v1Component"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24054,7 +24516,7 @@
         "item": {
           "$ref": "#/definitions/v1ComponentType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24081,7 +24543,7 @@
         "item": {
           "$ref": "#/definitions/v1ContactMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24108,7 +24570,7 @@
         "item": {
           "$ref": "#/definitions/shrikev1Contact"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24135,7 +24597,7 @@
         "item": {
           "$ref": "#/definitions/v1CustomerCart"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24162,7 +24624,7 @@
         "item": {
           "$ref": "#/definitions/v1CustomerOrder"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24189,7 +24651,7 @@
         "item": {
           "$ref": "#/definitions/v1Delivery"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24216,7 +24678,7 @@
         "item": {
           "$ref": "#/definitions/v1District"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24243,7 +24705,7 @@
         "item": {
           "$ref": "#/definitions/v1DistrictType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24270,7 +24732,7 @@
         "item": {
           "$ref": "#/definitions/v1DonationCampaignMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24297,7 +24759,7 @@
         "item": {
           "$ref": "#/definitions/v1DonationCampaign"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24324,7 +24786,7 @@
         "item": {
           "$ref": "#/definitions/v1Donor"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24351,7 +24813,7 @@
         "item": {
           "$ref": "#/definitions/v1ElectionMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24378,7 +24840,7 @@
         "item": {
           "$ref": "#/definitions/v1Election"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24405,7 +24867,7 @@
         "item": {
           "$ref": "#/definitions/v1EmailAddress"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24432,7 +24894,7 @@
         "item": {
           "$ref": "#/definitions/v1EventAttendee"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24459,7 +24921,7 @@
         "item": {
           "$ref": "#/definitions/v1Experiment"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24486,7 +24948,7 @@
         "item": {
           "$ref": "#/definitions/v1Field"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24513,7 +24975,7 @@
         "item": {
           "$ref": "#/definitions/v1FieldType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24540,7 +25002,7 @@
         "item": {
           "$ref": "#/definitions/v1Follower"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24567,7 +25029,7 @@
         "item": {
           "$ref": "#/definitions/v1HomePage"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24594,7 +25056,7 @@
         "item": {
           "$ref": "#/definitions/v1Issue"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24621,7 +25083,7 @@
         "item": {
           "$ref": "#/definitions/v1LandingPage"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24648,7 +25110,7 @@
         "item": {
           "$ref": "#/definitions/v1LayoutColumn"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24675,7 +25137,7 @@
         "item": {
           "$ref": "#/definitions/v1Layout"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24702,7 +25164,7 @@
         "item": {
           "$ref": "#/definitions/v1LayoutRow"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24729,7 +25191,7 @@
         "item": {
           "$ref": "#/definitions/v1LayoutType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24756,7 +25218,7 @@
         "item": {
           "$ref": "#/definitions/v1LiveEventMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24783,7 +25245,7 @@
         "item": {
           "$ref": "#/definitions/v1LiveEvent"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24810,7 +25272,7 @@
         "item": {
           "$ref": "#/definitions/v1LiveEventType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24837,7 +25299,7 @@
         "item": {
           "$ref": "#/definitions/v1MailingAddress"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24864,7 +25326,7 @@
         "item": {
           "$ref": "#/definitions/v1Note"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24891,7 +25353,7 @@
         "item": {
           "$ref": "#/definitions/v1Office"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24918,7 +25380,7 @@
         "item": {
           "$ref": "#/definitions/v1OwnerMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24945,7 +25407,7 @@
         "item": {
           "$ref": "#/definitions/v1Payment"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24972,7 +25434,7 @@
         "item": {
           "$ref": "#/definitions/v1PetitionMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -24999,7 +25461,7 @@
         "item": {
           "$ref": "#/definitions/v1Petition"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25026,7 +25488,7 @@
         "item": {
           "$ref": "#/definitions/v1PetitionSigner"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25053,7 +25515,7 @@
         "item": {
           "$ref": "#/definitions/v1PhoneNumber"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25080,7 +25542,7 @@
         "item": {
           "$ref": "#/definitions/v1Photo"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25107,7 +25569,7 @@
         "item": {
           "$ref": "#/definitions/v1PollItem"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25134,7 +25596,7 @@
         "item": {
           "$ref": "#/definitions/v1PollMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25161,7 +25623,7 @@
         "item": {
           "$ref": "#/definitions/v1Poll"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25176,7 +25638,7 @@
         "item": {
           "$ref": "#/definitions/v1PollRespondant"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25215,7 +25677,7 @@
         "item": {
           "$ref": "#/definitions/v1ProductMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25242,7 +25704,7 @@
         "item": {
           "$ref": "#/definitions/v1Product"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25269,7 +25731,7 @@
         "item": {
           "$ref": "#/definitions/v1ProductType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25296,7 +25758,7 @@
         "item": {
           "$ref": "#/definitions/v1Purchaser"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25323,7 +25785,7 @@
         "item": {
           "$ref": "#/definitions/v1Territory"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25350,7 +25812,7 @@
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunityMembership"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25377,7 +25839,7 @@
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunity"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25404,7 +25866,7 @@
         "item": {
           "$ref": "#/definitions/v1VolunteerOpportunityType"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25431,7 +25893,7 @@
         "item": {
           "$ref": "#/definitions/v1Volunteer"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }
@@ -25458,7 +25920,7 @@
         "item": {
           "$ref": "#/definitions/v1Voter"
         },
-        "updateStatic": {
+        "buildStatic": {
           "type": "boolean",
           "format": "boolean"
         }

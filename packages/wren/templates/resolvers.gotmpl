@@ -29,12 +29,12 @@ module.exports = client => ({
     create{{.Name}}: (_, { {{camel .Name}}, buildStatic = false }) =>
       client
         .Create{{.Name}}()
-        .sendMessage({ api: 'v1', item: { ...{{camel .Name}} } })
-        .then(res => ({ ID: res.ID, ...{{camel .Name}}, buildStatic })),
+        .sendMessage({ api: 'v1', item: { ...{{camel .Name}} }, buildStatic })
+        .then(res => ({ ID: res.ID, ...{{camel .Name}}})),
     update{{.Name}}: (_, { ID, {{camel .Name}}, buildStatic = false }) =>
       client
         .Update{{.Name}}()
-        .sendMessage({ api: 'v1', item: { ID, ...{{camel .Name}}, buildStatic } })
+        .sendMessage({ api: 'v1', item: { ID, ...{{camel .Name}} }, buildStatic  })
         .then(res => res.updated),
     delete{{.Name}}: (_, { ID }) =>
       client

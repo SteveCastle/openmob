@@ -1565,7 +1565,7 @@ message CreateACL {
 message CreateACLRequest {
   string api = 1;
   CreateACL item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateACLResponse {
@@ -1598,7 +1598,7 @@ message ListACLResponse {
 message UpdateACLRequest{
   string api = 1;
   ACL item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateACLResponse {
@@ -1609,6 +1609,7 @@ message UpdateACLResponse {
 message DeleteACLRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteACLResponse {
@@ -1636,7 +1637,7 @@ message CreateMailingAddress {
 message CreateMailingAddressRequest {
   string api = 1;
   CreateMailingAddress item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateMailingAddressResponse {
@@ -1669,7 +1670,7 @@ message ListMailingAddressResponse {
 message UpdateMailingAddressRequest{
   string api = 1;
   MailingAddress item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateMailingAddressResponse {
@@ -1680,6 +1681,7 @@ message UpdateMailingAddressResponse {
 message DeleteMailingAddressRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteMailingAddressResponse {
@@ -1701,7 +1703,7 @@ message CreatePhoneNumber {
 message CreatePhoneNumberRequest {
   string api = 1;
   CreatePhoneNumber item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePhoneNumberResponse {
@@ -1734,7 +1736,7 @@ message ListPhoneNumberResponse {
 message UpdatePhoneNumberRequest{
   string api = 1;
   PhoneNumber item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePhoneNumberResponse {
@@ -1745,6 +1747,7 @@ message UpdatePhoneNumberResponse {
 message DeletePhoneNumberRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePhoneNumberResponse {
@@ -1766,7 +1769,7 @@ message CreateEmailAddress {
 message CreateEmailAddressRequest {
   string api = 1;
   CreateEmailAddress item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateEmailAddressResponse {
@@ -1799,7 +1802,7 @@ message ListEmailAddressResponse {
 message UpdateEmailAddressRequest{
   string api = 1;
   EmailAddress item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateEmailAddressResponse {
@@ -1810,6 +1813,7 @@ message UpdateEmailAddressResponse {
 message DeleteEmailAddressRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteEmailAddressResponse {
@@ -1831,7 +1835,7 @@ message CreatePhoto {
 message CreatePhotoRequest {
   string api = 1;
   CreatePhoto item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePhotoResponse {
@@ -1864,7 +1868,7 @@ message ListPhotoResponse {
 message UpdatePhotoRequest{
   string api = 1;
   Photo item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePhotoResponse {
@@ -1875,6 +1879,7 @@ message UpdatePhotoResponse {
 message DeletePhotoRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePhotoResponse {
@@ -1896,7 +1901,7 @@ message CreateLayoutType {
 message CreateLayoutTypeRequest {
   string api = 1;
   CreateLayoutType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateLayoutTypeResponse {
@@ -1929,7 +1934,7 @@ message ListLayoutTypeResponse {
 message UpdateLayoutTypeRequest{
   string api = 1;
   LayoutType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateLayoutTypeResponse {
@@ -1940,6 +1945,7 @@ message UpdateLayoutTypeResponse {
 message DeleteLayoutTypeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteLayoutTypeResponse {
@@ -1963,7 +1969,7 @@ message CreateLayoutColumn {
 message CreateLayoutColumnRequest {
   string api = 1;
   CreateLayoutColumn item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateLayoutColumnResponse {
@@ -1996,7 +2002,7 @@ message ListLayoutColumnResponse {
 message UpdateLayoutColumnRequest{
   string api = 1;
   LayoutColumn item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateLayoutColumnResponse {
@@ -2007,6 +2013,7 @@ message UpdateLayoutColumnResponse {
 message DeleteLayoutColumnRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteLayoutColumnResponse {
@@ -2030,7 +2037,7 @@ message CreateLayoutRow {
 message CreateLayoutRowRequest {
   string api = 1;
   CreateLayoutRow item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateLayoutRowResponse {
@@ -2063,7 +2070,7 @@ message ListLayoutRowResponse {
 message UpdateLayoutRowRequest{
   string api = 1;
   LayoutRow item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateLayoutRowResponse {
@@ -2074,6 +2081,7 @@ message UpdateLayoutRowResponse {
 message DeleteLayoutRowRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteLayoutRowResponse {
@@ -2095,7 +2103,7 @@ message CreateComponentType {
 message CreateComponentTypeRequest {
   string api = 1;
   CreateComponentType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateComponentTypeResponse {
@@ -2128,7 +2136,7 @@ message ListComponentTypeResponse {
 message UpdateComponentTypeRequest{
   string api = 1;
   ComponentType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateComponentTypeResponse {
@@ -2139,6 +2147,7 @@ message UpdateComponentTypeResponse {
 message DeleteComponentTypeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteComponentTypeResponse {
@@ -2160,7 +2169,7 @@ message CreateComponentImplementation {
 message CreateComponentImplementationRequest {
   string api = 1;
   CreateComponentImplementation item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateComponentImplementationResponse {
@@ -2193,7 +2202,7 @@ message ListComponentImplementationResponse {
 message UpdateComponentImplementationRequest{
   string api = 1;
   ComponentImplementation item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateComponentImplementationResponse {
@@ -2204,6 +2213,7 @@ message UpdateComponentImplementationResponse {
 message DeleteComponentImplementationRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteComponentImplementationResponse {
@@ -2225,7 +2235,7 @@ message CreateFieldType {
 message CreateFieldTypeRequest {
   string api = 1;
   CreateFieldType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateFieldTypeResponse {
@@ -2258,7 +2268,7 @@ message ListFieldTypeResponse {
 message UpdateFieldTypeRequest{
   string api = 1;
   FieldType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateFieldTypeResponse {
@@ -2269,6 +2279,7 @@ message UpdateFieldTypeResponse {
 message DeleteFieldTypeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteFieldTypeResponse {
@@ -2294,7 +2305,7 @@ message CreateComponent {
 message CreateComponentRequest {
   string api = 1;
   CreateComponent item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateComponentResponse {
@@ -2327,7 +2338,7 @@ message ListComponentResponse {
 message UpdateComponentRequest{
   string api = 1;
   Component item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateComponentResponse {
@@ -2338,6 +2349,7 @@ message UpdateComponentResponse {
 message DeleteComponentRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteComponentResponse {
@@ -2361,7 +2373,7 @@ message CreateField {
 message CreateFieldRequest {
   string api = 1;
   CreateField item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateFieldResponse {
@@ -2394,7 +2406,7 @@ message ListFieldResponse {
 message UpdateFieldRequest{
   string api = 1;
   Field item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateFieldResponse {
@@ -2405,6 +2417,7 @@ message UpdateFieldResponse {
 message DeleteFieldRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteFieldResponse {
@@ -2426,7 +2439,7 @@ message CreateLayout {
 message CreateLayoutRequest {
   string api = 1;
   CreateLayout item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateLayoutResponse {
@@ -2459,7 +2472,7 @@ message ListLayoutResponse {
 message UpdateLayoutRequest{
   string api = 1;
   Layout item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateLayoutResponse {
@@ -2470,6 +2483,7 @@ message UpdateLayoutResponse {
 message DeleteLayoutRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteLayoutResponse {
@@ -2495,7 +2509,7 @@ message CreateLandingPage {
 message CreateLandingPageRequest {
   string api = 1;
   CreateLandingPage item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateLandingPageResponse {
@@ -2528,7 +2542,7 @@ message ListLandingPageResponse {
 message UpdateLandingPageRequest{
   string api = 1;
   LandingPage item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateLandingPageResponse {
@@ -2539,6 +2553,7 @@ message UpdateLandingPageResponse {
 message DeleteLandingPageRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteLandingPageResponse {
@@ -2562,7 +2577,7 @@ message CreateExperiment {
 message CreateExperimentRequest {
   string api = 1;
   CreateExperiment item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateExperimentResponse {
@@ -2595,7 +2610,7 @@ message ListExperimentResponse {
 message UpdateExperimentRequest{
   string api = 1;
   Experiment item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateExperimentResponse {
@@ -2606,6 +2621,7 @@ message UpdateExperimentResponse {
 message DeleteExperimentRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteExperimentResponse {
@@ -2629,7 +2645,7 @@ message CreateIssue {
 message CreateIssueRequest {
   string api = 1;
   CreateIssue item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateIssueResponse {
@@ -2662,7 +2678,7 @@ message ListIssueResponse {
 message UpdateIssueRequest{
   string api = 1;
   Issue item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateIssueResponse {
@@ -2673,6 +2689,7 @@ message UpdateIssueResponse {
 message DeleteIssueRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteIssueResponse {
@@ -2694,7 +2711,7 @@ message CreateCandidate {
 message CreateCandidateRequest {
   string api = 1;
   CreateCandidate item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateCandidateResponse {
@@ -2727,7 +2744,7 @@ message ListCandidateResponse {
 message UpdateCandidateRequest{
   string api = 1;
   Candidate item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateCandidateResponse {
@@ -2738,6 +2755,7 @@ message UpdateCandidateResponse {
 message DeleteCandidateRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteCandidateResponse {
@@ -2759,7 +2777,7 @@ message CreateDistrictType {
 message CreateDistrictTypeRequest {
   string api = 1;
   CreateDistrictType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateDistrictTypeResponse {
@@ -2792,7 +2810,7 @@ message ListDistrictTypeResponse {
 message UpdateDistrictTypeRequest{
   string api = 1;
   DistrictType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateDistrictTypeResponse {
@@ -2803,6 +2821,7 @@ message UpdateDistrictTypeResponse {
 message DeleteDistrictTypeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteDistrictTypeResponse {
@@ -2828,7 +2847,7 @@ message CreateDistrict {
 message CreateDistrictRequest {
   string api = 1;
   CreateDistrict item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateDistrictResponse {
@@ -2861,7 +2880,7 @@ message ListDistrictResponse {
 message UpdateDistrictRequest{
   string api = 1;
   District item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateDistrictResponse {
@@ -2872,6 +2891,7 @@ message UpdateDistrictResponse {
 message DeleteDistrictRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteDistrictResponse {
@@ -2895,7 +2915,7 @@ message CreateOffice {
 message CreateOfficeRequest {
   string api = 1;
   CreateOffice item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateOfficeResponse {
@@ -2928,7 +2948,7 @@ message ListOfficeResponse {
 message UpdateOfficeRequest{
   string api = 1;
   Office item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateOfficeResponse {
@@ -2939,6 +2959,7 @@ message UpdateOfficeResponse {
 message DeleteOfficeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteOfficeResponse {
@@ -2962,7 +2983,7 @@ message CreatePollItem {
 message CreatePollItemRequest {
   string api = 1;
   CreatePollItem item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePollItemResponse {
@@ -2995,7 +3016,7 @@ message ListPollItemResponse {
 message UpdatePollItemRequest{
   string api = 1;
   PollItem item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePollItemResponse {
@@ -3006,6 +3027,7 @@ message UpdatePollItemResponse {
 message DeletePollItemRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePollItemResponse {
@@ -3027,7 +3049,7 @@ message CreateVolunteerOpportunityType {
 message CreateVolunteerOpportunityTypeRequest {
   string api = 1;
   CreateVolunteerOpportunityType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateVolunteerOpportunityTypeResponse {
@@ -3060,7 +3082,7 @@ message ListVolunteerOpportunityTypeResponse {
 message UpdateVolunteerOpportunityTypeRequest{
   string api = 1;
   VolunteerOpportunityType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateVolunteerOpportunityTypeResponse {
@@ -3071,6 +3093,7 @@ message UpdateVolunteerOpportunityTypeResponse {
 message DeleteVolunteerOpportunityTypeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteVolunteerOpportunityTypeResponse {
@@ -3092,7 +3115,7 @@ message CreateCompany {
 message CreateCompanyRequest {
   string api = 1;
   CreateCompany item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateCompanyResponse {
@@ -3125,7 +3148,7 @@ message ListCompanyResponse {
 message UpdateCompanyRequest{
   string api = 1;
   Company item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateCompanyResponse {
@@ -3136,6 +3159,7 @@ message UpdateCompanyResponse {
 message DeleteCompanyRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteCompanyResponse {
@@ -3157,7 +3181,7 @@ message CreateLiveEventType {
 message CreateLiveEventTypeRequest {
   string api = 1;
   CreateLiveEventType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateLiveEventTypeResponse {
@@ -3190,7 +3214,7 @@ message ListLiveEventTypeResponse {
 message UpdateLiveEventTypeRequest{
   string api = 1;
   LiveEventType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateLiveEventTypeResponse {
@@ -3201,6 +3225,7 @@ message UpdateLiveEventTypeResponse {
 message DeleteLiveEventTypeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteLiveEventTypeResponse {
@@ -3222,7 +3247,7 @@ message CreateProductType {
 message CreateProductTypeRequest {
   string api = 1;
   CreateProductType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateProductTypeResponse {
@@ -3255,7 +3280,7 @@ message ListProductTypeResponse {
 message UpdateProductTypeRequest{
   string api = 1;
   ProductType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateProductTypeResponse {
@@ -3266,6 +3291,7 @@ message UpdateProductTypeResponse {
 message DeleteProductTypeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteProductTypeResponse {
@@ -3285,7 +3311,7 @@ message CreateCustomerCart {
 message CreateCustomerCartRequest {
   string api = 1;
   CreateCustomerCart item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateCustomerCartResponse {
@@ -3318,7 +3344,7 @@ message ListCustomerCartResponse {
 message UpdateCustomerCartRequest{
   string api = 1;
   CustomerCart item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateCustomerCartResponse {
@@ -3329,6 +3355,7 @@ message UpdateCustomerCartResponse {
 message DeleteCustomerCartRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteCustomerCartResponse {
@@ -3350,7 +3377,7 @@ message CreatePayment {
 message CreatePaymentRequest {
   string api = 1;
   CreatePayment item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePaymentResponse {
@@ -3383,7 +3410,7 @@ message ListPaymentResponse {
 message UpdatePaymentRequest{
   string api = 1;
   Payment item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePaymentResponse {
@@ -3394,6 +3421,7 @@ message UpdatePaymentResponse {
 message DeletePaymentRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePaymentResponse {
@@ -3413,7 +3441,7 @@ message CreateDelivery {
 message CreateDeliveryRequest {
   string api = 1;
   CreateDelivery item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateDeliveryResponse {
@@ -3446,7 +3474,7 @@ message ListDeliveryResponse {
 message UpdateDeliveryRequest{
   string api = 1;
   Delivery item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateDeliveryResponse {
@@ -3457,6 +3485,7 @@ message UpdateDeliveryResponse {
 message DeleteDeliveryRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteDeliveryResponse {
@@ -3478,7 +3507,7 @@ message CreateBoycott {
 message CreateBoycottRequest {
   string api = 1;
   CreateBoycott item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateBoycottResponse {
@@ -3511,7 +3540,7 @@ message ListBoycottResponse {
 message UpdateBoycottRequest{
   string api = 1;
   Boycott item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateBoycottResponse {
@@ -3522,6 +3551,7 @@ message UpdateBoycottResponse {
 message DeleteBoycottRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteBoycottResponse {
@@ -3545,7 +3575,7 @@ message CreateBoycottMembership {
 message CreateBoycottMembershipRequest {
   string api = 1;
   CreateBoycottMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateBoycottMembershipResponse {
@@ -3578,7 +3608,7 @@ message ListBoycottMembershipResponse {
 message UpdateBoycottMembershipRequest{
   string api = 1;
   BoycottMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateBoycottMembershipResponse {
@@ -3589,6 +3619,7 @@ message UpdateBoycottMembershipResponse {
 message DeleteBoycottMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteBoycottMembershipResponse {
@@ -3610,7 +3641,7 @@ message CreateElection {
 message CreateElectionRequest {
   string api = 1;
   CreateElection item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateElectionResponse {
@@ -3643,7 +3674,7 @@ message ListElectionResponse {
 message UpdateElectionRequest{
   string api = 1;
   Election item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateElectionResponse {
@@ -3654,6 +3685,7 @@ message UpdateElectionResponse {
 message DeleteElectionRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteElectionResponse {
@@ -3677,7 +3709,7 @@ message CreateElectionMembership {
 message CreateElectionMembershipRequest {
   string api = 1;
   CreateElectionMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateElectionMembershipResponse {
@@ -3710,7 +3742,7 @@ message ListElectionMembershipResponse {
 message UpdateElectionMembershipRequest{
   string api = 1;
   ElectionMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateElectionMembershipResponse {
@@ -3721,6 +3753,7 @@ message UpdateElectionMembershipResponse {
 message DeleteElectionMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteElectionMembershipResponse {
@@ -3744,7 +3777,7 @@ message CreatePetitionMembership {
 message CreatePetitionMembershipRequest {
   string api = 1;
   CreatePetitionMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePetitionMembershipResponse {
@@ -3777,7 +3810,7 @@ message ListPetitionMembershipResponse {
 message UpdatePetitionMembershipRequest{
   string api = 1;
   PetitionMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePetitionMembershipResponse {
@@ -3788,6 +3821,7 @@ message UpdatePetitionMembershipResponse {
 message DeletePetitionMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePetitionMembershipResponse {
@@ -3811,7 +3845,7 @@ message CreatePollMembership {
 message CreatePollMembershipRequest {
   string api = 1;
   CreatePollMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePollMembershipResponse {
@@ -3844,7 +3878,7 @@ message ListPollMembershipResponse {
 message UpdatePollMembershipRequest{
   string api = 1;
   PollMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePollMembershipResponse {
@@ -3855,6 +3889,7 @@ message UpdatePollMembershipResponse {
 message DeletePollMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePollMembershipResponse {
@@ -3878,7 +3913,7 @@ message CreateVolunteerOpportunityMembership {
 message CreateVolunteerOpportunityMembershipRequest {
   string api = 1;
   CreateVolunteerOpportunityMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateVolunteerOpportunityMembershipResponse {
@@ -3911,7 +3946,7 @@ message ListVolunteerOpportunityMembershipResponse {
 message UpdateVolunteerOpportunityMembershipRequest{
   string api = 1;
   VolunteerOpportunityMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateVolunteerOpportunityMembershipResponse {
@@ -3922,6 +3957,7 @@ message UpdateVolunteerOpportunityMembershipResponse {
 message DeleteVolunteerOpportunityMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteVolunteerOpportunityMembershipResponse {
@@ -3945,7 +3981,7 @@ message CreateProductMembership {
 message CreateProductMembershipRequest {
   string api = 1;
   CreateProductMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateProductMembershipResponse {
@@ -3978,7 +4014,7 @@ message ListProductMembershipResponse {
 message UpdateProductMembershipRequest{
   string api = 1;
   ProductMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateProductMembershipResponse {
@@ -3989,6 +4025,7 @@ message UpdateProductMembershipResponse {
 message DeleteProductMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteProductMembershipResponse {
@@ -4012,7 +4049,7 @@ message CreateLiveEventMembership {
 message CreateLiveEventMembershipRequest {
   string api = 1;
   CreateLiveEventMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateLiveEventMembershipResponse {
@@ -4045,7 +4082,7 @@ message ListLiveEventMembershipResponse {
 message UpdateLiveEventMembershipRequest{
   string api = 1;
   LiveEventMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateLiveEventMembershipResponse {
@@ -4056,6 +4093,7 @@ message UpdateLiveEventMembershipResponse {
 message DeleteLiveEventMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteLiveEventMembershipResponse {
@@ -4079,7 +4117,7 @@ message CreateProduct {
 message CreateProductRequest {
   string api = 1;
   CreateProduct item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateProductResponse {
@@ -4112,7 +4150,7 @@ message ListProductResponse {
 message UpdateProductRequest{
   string api = 1;
   Product item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateProductResponse {
@@ -4123,6 +4161,7 @@ message UpdateProductResponse {
 message DeleteProductRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteProductResponse {
@@ -4144,7 +4183,7 @@ message CreateDonationCampaign {
 message CreateDonationCampaignRequest {
   string api = 1;
   CreateDonationCampaign item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateDonationCampaignResponse {
@@ -4177,7 +4216,7 @@ message ListDonationCampaignResponse {
 message UpdateDonationCampaignRequest{
   string api = 1;
   DonationCampaign item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateDonationCampaignResponse {
@@ -4188,6 +4227,7 @@ message UpdateDonationCampaignResponse {
 message DeleteDonationCampaignRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteDonationCampaignResponse {
@@ -4211,7 +4251,7 @@ message CreateDonationCampaignMembership {
 message CreateDonationCampaignMembershipRequest {
   string api = 1;
   CreateDonationCampaignMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateDonationCampaignMembershipResponse {
@@ -4244,7 +4284,7 @@ message ListDonationCampaignMembershipResponse {
 message UpdateDonationCampaignMembershipRequest{
   string api = 1;
   DonationCampaignMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateDonationCampaignMembershipResponse {
@@ -4255,6 +4295,7 @@ message UpdateDonationCampaignMembershipResponse {
 message DeleteDonationCampaignMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteDonationCampaignMembershipResponse {
@@ -4276,7 +4317,7 @@ message CreatePetition {
 message CreatePetitionRequest {
   string api = 1;
   CreatePetition item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePetitionResponse {
@@ -4309,7 +4350,7 @@ message ListPetitionResponse {
 message UpdatePetitionRequest{
   string api = 1;
   Petition item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePetitionResponse {
@@ -4320,6 +4361,7 @@ message UpdatePetitionResponse {
 message DeletePetitionRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePetitionResponse {
@@ -4345,7 +4387,7 @@ message CreatePetitionSigner {
 message CreatePetitionSignerRequest {
   string api = 1;
   CreatePetitionSigner item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePetitionSignerResponse {
@@ -4378,7 +4420,7 @@ message ListPetitionSignerResponse {
 message UpdatePetitionSignerRequest{
   string api = 1;
   PetitionSigner item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePetitionSignerResponse {
@@ -4389,6 +4431,7 @@ message UpdatePetitionSignerResponse {
 message DeletePetitionSignerRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePetitionSignerResponse {
@@ -4410,7 +4453,7 @@ message CreatePoll {
 message CreatePollRequest {
   string api = 1;
   CreatePoll item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePollResponse {
@@ -4443,7 +4486,7 @@ message ListPollResponse {
 message UpdatePollRequest{
   string api = 1;
   Poll item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePollResponse {
@@ -4454,6 +4497,7 @@ message UpdatePollResponse {
 message DeletePollRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePollResponse {
@@ -4479,7 +4523,7 @@ message CreatePollRespondant {
 message CreatePollRespondantRequest {
   string api = 1;
   CreatePollRespondant item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePollRespondantResponse {
@@ -4512,7 +4556,7 @@ message ListPollRespondantResponse {
 message UpdatePollRespondantRequest{
   string api = 1;
   PollRespondant item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePollRespondantResponse {
@@ -4523,6 +4567,7 @@ message UpdatePollRespondantResponse {
 message DeletePollRespondantRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePollRespondantResponse {
@@ -4548,7 +4593,7 @@ message CreatePurchaser {
 message CreatePurchaserRequest {
   string api = 1;
   CreatePurchaser item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreatePurchaserResponse {
@@ -4581,7 +4626,7 @@ message ListPurchaserResponse {
 message UpdatePurchaserRequest{
   string api = 1;
   Purchaser item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdatePurchaserResponse {
@@ -4592,6 +4637,7 @@ message UpdatePurchaserResponse {
 message DeletePurchaserRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeletePurchaserResponse {
@@ -4613,7 +4659,7 @@ message CreateCustomerOrder {
 message CreateCustomerOrderRequest {
   string api = 1;
   CreateCustomerOrder item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateCustomerOrderResponse {
@@ -4646,7 +4692,7 @@ message ListCustomerOrderResponse {
 message UpdateCustomerOrderRequest{
   string api = 1;
   CustomerOrder item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateCustomerOrderResponse {
@@ -4657,6 +4703,7 @@ message UpdateCustomerOrderResponse {
 message DeleteCustomerOrderRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteCustomerOrderResponse {
@@ -4682,7 +4729,7 @@ message CreateDonor {
 message CreateDonorRequest {
   string api = 1;
   CreateDonor item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateDonorResponse {
@@ -4715,7 +4762,7 @@ message ListDonorResponse {
 message UpdateDonorRequest{
   string api = 1;
   Donor item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateDonorResponse {
@@ -4726,6 +4773,7 @@ message UpdateDonorResponse {
 message DeleteDonorRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteDonorResponse {
@@ -4749,7 +4797,7 @@ message CreateVoter {
 message CreateVoterRequest {
   string api = 1;
   CreateVoter item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateVoterResponse {
@@ -4782,7 +4830,7 @@ message ListVoterResponse {
 message UpdateVoterRequest{
   string api = 1;
   Voter item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateVoterResponse {
@@ -4793,6 +4841,7 @@ message UpdateVoterResponse {
 message DeleteVoterRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteVoterResponse {
@@ -4816,7 +4865,7 @@ message CreateLiveEvent {
 message CreateLiveEventRequest {
   string api = 1;
   CreateLiveEvent item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateLiveEventResponse {
@@ -4849,7 +4898,7 @@ message ListLiveEventResponse {
 message UpdateLiveEventRequest{
   string api = 1;
   LiveEvent item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateLiveEventResponse {
@@ -4860,6 +4909,7 @@ message UpdateLiveEventResponse {
 message DeleteLiveEventRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteLiveEventResponse {
@@ -4885,7 +4935,7 @@ message CreateEventAttendee {
 message CreateEventAttendeeRequest {
   string api = 1;
   CreateEventAttendee item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateEventAttendeeResponse {
@@ -4918,7 +4968,7 @@ message ListEventAttendeeResponse {
 message UpdateEventAttendeeRequest{
   string api = 1;
   EventAttendee item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateEventAttendeeResponse {
@@ -4929,6 +4979,7 @@ message UpdateEventAttendeeResponse {
 message DeleteEventAttendeeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteEventAttendeeResponse {
@@ -4952,7 +5003,7 @@ message CreateVolunteerOpportunity {
 message CreateVolunteerOpportunityRequest {
   string api = 1;
   CreateVolunteerOpportunity item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateVolunteerOpportunityResponse {
@@ -4985,7 +5036,7 @@ message ListVolunteerOpportunityResponse {
 message UpdateVolunteerOpportunityRequest{
   string api = 1;
   VolunteerOpportunity item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateVolunteerOpportunityResponse {
@@ -4996,6 +5047,7 @@ message UpdateVolunteerOpportunityResponse {
 message DeleteVolunteerOpportunityRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteVolunteerOpportunityResponse {
@@ -5021,7 +5073,7 @@ message CreateVolunteer {
 message CreateVolunteerRequest {
   string api = 1;
   CreateVolunteer item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateVolunteerResponse {
@@ -5054,7 +5106,7 @@ message ListVolunteerResponse {
 message UpdateVolunteerRequest{
   string api = 1;
   Volunteer item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateVolunteerResponse {
@@ -5065,6 +5117,7 @@ message UpdateVolunteerResponse {
 message DeleteVolunteerRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteVolunteerResponse {
@@ -5088,7 +5141,7 @@ message CreateFollower {
 message CreateFollowerRequest {
   string api = 1;
   CreateFollower item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateFollowerResponse {
@@ -5121,7 +5174,7 @@ message ListFollowerResponse {
 message UpdateFollowerRequest{
   string api = 1;
   Follower item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateFollowerResponse {
@@ -5132,6 +5185,7 @@ message UpdateFollowerResponse {
 message DeleteFollowerRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteFollowerResponse {
@@ -5153,7 +5207,7 @@ message CreateTerritory {
 message CreateTerritoryRequest {
   string api = 1;
   CreateTerritory item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateTerritoryResponse {
@@ -5186,7 +5240,7 @@ message ListTerritoryResponse {
 message UpdateTerritoryRequest{
   string api = 1;
   Territory item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateTerritoryResponse {
@@ -5197,6 +5251,7 @@ message UpdateTerritoryResponse {
 message DeleteTerritoryRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteTerritoryResponse {
@@ -5218,7 +5273,7 @@ message CreateActivityType {
 message CreateActivityTypeRequest {
   string api = 1;
   CreateActivityType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateActivityTypeResponse {
@@ -5251,7 +5306,7 @@ message ListActivityTypeResponse {
 message UpdateActivityTypeRequest{
   string api = 1;
   ActivityType item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateActivityTypeResponse {
@@ -5262,6 +5317,7 @@ message UpdateActivityTypeResponse {
 message DeleteActivityTypeRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteActivityTypeResponse {
@@ -5289,7 +5345,7 @@ message CreateActivity {
 message CreateActivityRequest {
   string api = 1;
   CreateActivity item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateActivityResponse {
@@ -5322,7 +5378,7 @@ message ListActivityResponse {
 message UpdateActivityRequest{
   string api = 1;
   Activity item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateActivityResponse {
@@ -5333,6 +5389,7 @@ message UpdateActivityResponse {
 message DeleteActivityRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteActivityResponse {
@@ -5358,7 +5415,7 @@ message CreateNote {
 message CreateNoteRequest {
   string api = 1;
   CreateNote item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateNoteResponse {
@@ -5391,7 +5448,7 @@ message ListNoteResponse {
 message UpdateNoteRequest{
   string api = 1;
   Note item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateNoteResponse {
@@ -5402,6 +5459,7 @@ message UpdateNoteResponse {
 message DeleteNoteRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteNoteResponse {
@@ -5423,7 +5481,7 @@ message CreateAccount {
 message CreateAccountRequest {
   string api = 1;
   CreateAccount item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateAccountResponse {
@@ -5456,7 +5514,7 @@ message ListAccountResponse {
 message UpdateAccountRequest{
   string api = 1;
   Account item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateAccountResponse {
@@ -5467,6 +5525,7 @@ message UpdateAccountResponse {
 message DeleteAccountRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteAccountResponse {
@@ -5490,7 +5549,7 @@ message CreateOwnerMembership {
 message CreateOwnerMembershipRequest {
   string api = 1;
   CreateOwnerMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateOwnerMembershipResponse {
@@ -5523,7 +5582,7 @@ message ListOwnerMembershipResponse {
 message UpdateOwnerMembershipRequest{
   string api = 1;
   OwnerMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateOwnerMembershipResponse {
@@ -5534,6 +5593,7 @@ message UpdateOwnerMembershipResponse {
 message DeleteOwnerMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteOwnerMembershipResponse {
@@ -5563,7 +5623,7 @@ message CreateContact {
 message CreateContactRequest {
   string api = 1;
   CreateContact item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateContactResponse {
@@ -5596,7 +5656,7 @@ message ListContactResponse {
 message UpdateContactRequest{
   string api = 1;
   Contact item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateContactResponse {
@@ -5607,6 +5667,7 @@ message UpdateContactResponse {
 message DeleteContactRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteContactResponse {
@@ -5630,7 +5691,7 @@ message CreateContactMembership {
 message CreateContactMembershipRequest {
   string api = 1;
   CreateContactMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateContactMembershipResponse {
@@ -5663,7 +5724,7 @@ message ListContactMembershipResponse {
 message UpdateContactMembershipRequest{
   string api = 1;
   ContactMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateContactMembershipResponse {
@@ -5674,6 +5735,7 @@ message UpdateContactMembershipResponse {
 message DeleteContactMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteContactMembershipResponse {
@@ -5695,7 +5757,7 @@ message CreateAgent {
 message CreateAgentRequest {
   string api = 1;
   CreateAgent item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateAgentResponse {
@@ -5728,7 +5790,7 @@ message ListAgentResponse {
 message UpdateAgentRequest{
   string api = 1;
   Agent item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateAgentResponse {
@@ -5739,6 +5801,7 @@ message UpdateAgentResponse {
 message DeleteAgentRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteAgentResponse {
@@ -5762,7 +5825,7 @@ message CreateAgentMembership {
 message CreateAgentMembershipRequest {
   string api = 1;
   CreateAgentMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateAgentMembershipResponse {
@@ -5795,7 +5858,7 @@ message ListAgentMembershipResponse {
 message UpdateAgentMembershipRequest{
   string api = 1;
   AgentMembership item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateAgentMembershipResponse {
@@ -5806,6 +5869,7 @@ message UpdateAgentMembershipResponse {
 message DeleteAgentMembershipRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteAgentMembershipResponse {
@@ -5829,7 +5893,7 @@ message CreateHomePage {
 message CreateHomePageRequest {
   string api = 1;
   CreateHomePage item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateHomePageResponse {
@@ -5862,7 +5926,7 @@ message ListHomePageResponse {
 message UpdateHomePageRequest{
   string api = 1;
   HomePage item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateHomePageResponse {
@@ -5873,6 +5937,7 @@ message UpdateHomePageResponse {
 message DeleteHomePageRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteHomePageResponse {
@@ -5900,7 +5965,7 @@ message CreateCause {
 message CreateCauseRequest {
   string api = 1;
   CreateCause item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message CreateCauseResponse {
@@ -5933,7 +5998,7 @@ message ListCauseResponse {
 message UpdateCauseRequest{
   string api = 1;
   Cause item = 2;
-  bool updateStatic = 3;
+  bool buildStatic = 3;
 }
 
 message UpdateCauseResponse {
@@ -5944,6 +6009,7 @@ message UpdateCauseResponse {
 message DeleteCauseRequest {
   string api = 1;
   string ID = 2;
+  bool buildStatic = 3;
 }
 
 message DeleteCauseResponse {

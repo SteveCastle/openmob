@@ -29,6 +29,7 @@ func RunServer(ctx context.Context, v1API v1.ShrikeServiceServer, port string) e
     	grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
 			grpc_recovery.UnaryServerInterceptor(),
 			grpc_validator.UnaryServerInterceptor(),
+			interceptors.BuildInterceptor,
 			interceptors.LoggingInterceptor,
 			),
 		),
