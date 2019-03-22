@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
   // products, portfolio items, landing pages, etc.
   return graphql(`
   {wren{
-    listCause(limit: 10){
+    listCause(limit: 50){
       ID
       Title
       Slug

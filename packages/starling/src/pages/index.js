@@ -25,7 +25,7 @@ const IndexPage = ({
 export const pageQuery = graphql`
   query IndexQuery {
     wren {
-      listCause(limit: 10) {
+      listCause(limit: 50) {
         ID
         Title
         Slug

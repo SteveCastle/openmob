@@ -56,7 +56,7 @@ build-client:
 build: build-server build-client
 start: build-server
 	cd src/cmd/grpc-server; ./grpc-server
-load-data: build-client
+load-data:
 	cd src/cmd/sample-data-client; ./sample-data-client -server=localhost:9090
 bootstrap: startdb install initial-migration generate build
 schema-update: destroy initial-migration generate build
