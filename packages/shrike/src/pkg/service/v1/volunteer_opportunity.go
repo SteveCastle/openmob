@@ -3,11 +3,11 @@ package v1
 import (
 	"context"
 	"fmt"
-	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
+	"github.com/lib/pq"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -74,21 +74,25 @@ func (s *shrikeServiceServer) GetVolunteerOpportunity(ctx context.Context, req *
 
 	// scan VolunteerOpportunity data into protobuf model
 	var volunteeropportunity v1.VolunteerOpportunity
-	var createdAt time.Time
-	var updatedAt time.Time
+	var createdAt pq.NullTime
+	var updatedAt pq.NullTime
 
 	if err := rows.Scan(&volunteeropportunity.ID, &createdAt, &updatedAt, &volunteeropportunity.Title, &volunteeropportunity.VolunteerOpportunityType); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunity row-> "+err.Error())
 	}
 
-	// Convert time.Time from database into proto timestamp.
-	volunteeropportunity.CreatedAt, err = ptypes.TimestampProto(createdAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	// Convert pq.NullTime from database into proto timestamp.
+	if createdAt.Valid {
+		volunteeropportunity.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
 	}
-	volunteeropportunity.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	if updatedAt.Valid {
+		volunteeropportunity.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
 	}
 
 	if rows.Next() {
@@ -131,22 +135,26 @@ func (s *shrikeServiceServer) ListVolunteerOpportunity(ctx context.Context, req 
 
 	// Variables to store results returned by database.
 	list := []*v1.VolunteerOpportunity{}
-	var createdAt time.Time
-	var updatedAt time.Time
+	var createdAt pq.NullTime
+	var updatedAt pq.NullTime
 
 	for rows.Next() {
 		volunteeropportunity := new(v1.VolunteerOpportunity)
 		if err := rows.Scan(&volunteeropportunity.ID, &createdAt, &updatedAt, &volunteeropportunity.Title, &volunteeropportunity.VolunteerOpportunityType); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunity row-> "+err.Error())
 		}
-		// Convert time.Time from database into proto timestamp.
-		volunteeropportunity.CreatedAt, err = ptypes.TimestampProto(createdAt)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		// Convert pq.NullTime from database into proto timestamp.
+		if createdAt.Valid {
+			volunteeropportunity.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
+			if err != nil {
+				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+			}
 		}
-		volunteeropportunity.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		if updatedAt.Valid {
+			volunteeropportunity.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
+			if err != nil {
+				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+			}
 		}
 
 		list = append(list, volunteeropportunity)

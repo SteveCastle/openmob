@@ -3,11 +3,11 @@ package v1
 import (
 	"context"
 	"fmt"
-	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
+	"github.com/lib/pq"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -74,21 +74,25 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 
 	// scan LiveEventMembership data into protobuf model
 	var liveeventmembership v1.LiveEventMembership
-	var createdAt time.Time
-	var updatedAt time.Time
+	var createdAt pq.NullTime
+	var updatedAt pq.NullTime
 
 	if err := rows.Scan(&liveeventmembership.ID, &createdAt, &updatedAt, &liveeventmembership.Cause, &liveeventmembership.LiveEvent); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEventMembership row-> "+err.Error())
 	}
 
-	// Convert time.Time from database into proto timestamp.
-	liveeventmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	// Convert pq.NullTime from database into proto timestamp.
+	if createdAt.Valid {
+		liveeventmembership.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
 	}
-	liveeventmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	if updatedAt.Valid {
+		liveeventmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
 	}
 
 	if rows.Next() {
@@ -131,22 +135,26 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 
 	// Variables to store results returned by database.
 	list := []*v1.LiveEventMembership{}
-	var createdAt time.Time
-	var updatedAt time.Time
+	var createdAt pq.NullTime
+	var updatedAt pq.NullTime
 
 	for rows.Next() {
 		liveeventmembership := new(v1.LiveEventMembership)
 		if err := rows.Scan(&liveeventmembership.ID, &createdAt, &updatedAt, &liveeventmembership.Cause, &liveeventmembership.LiveEvent); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEventMembership row-> "+err.Error())
 		}
-		// Convert time.Time from database into proto timestamp.
-		liveeventmembership.CreatedAt, err = ptypes.TimestampProto(createdAt)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		// Convert pq.NullTime from database into proto timestamp.
+		if createdAt.Valid {
+			liveeventmembership.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
+			if err != nil {
+				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+			}
 		}
-		liveeventmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		if updatedAt.Valid {
+			liveeventmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
+			if err != nil {
+				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+			}
 		}
 
 		list = append(list, liveeventmembership)

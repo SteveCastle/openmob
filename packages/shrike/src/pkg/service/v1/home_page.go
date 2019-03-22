@@ -3,11 +3,11 @@ package v1
 import (
 	"context"
 	"fmt"
-	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
+	"github.com/lib/pq"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -74,21 +74,25 @@ func (s *shrikeServiceServer) GetHomePage(ctx context.Context, req *v1.GetHomePa
 
 	// scan HomePage data into protobuf model
 	var homepage v1.HomePage
-	var createdAt time.Time
-	var updatedAt time.Time
+	var createdAt pq.NullTime
+	var updatedAt pq.NullTime
 
 	if err := rows.Scan(&homepage.ID, &createdAt, &updatedAt, &homepage.Title, &homepage.Layout); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from HomePage row-> "+err.Error())
 	}
 
-	// Convert time.Time from database into proto timestamp.
-	homepage.CreatedAt, err = ptypes.TimestampProto(createdAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	// Convert pq.NullTime from database into proto timestamp.
+	if createdAt.Valid {
+		homepage.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
 	}
-	homepage.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	if updatedAt.Valid {
+		homepage.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
 	}
 
 	if rows.Next() {
@@ -131,22 +135,26 @@ func (s *shrikeServiceServer) ListHomePage(ctx context.Context, req *v1.ListHome
 
 	// Variables to store results returned by database.
 	list := []*v1.HomePage{}
-	var createdAt time.Time
-	var updatedAt time.Time
+	var createdAt pq.NullTime
+	var updatedAt pq.NullTime
 
 	for rows.Next() {
 		homepage := new(v1.HomePage)
 		if err := rows.Scan(&homepage.ID, &createdAt, &updatedAt, &homepage.Title, &homepage.Layout); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from HomePage row-> "+err.Error())
 		}
-		// Convert time.Time from database into proto timestamp.
-		homepage.CreatedAt, err = ptypes.TimestampProto(createdAt)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		// Convert pq.NullTime from database into proto timestamp.
+		if createdAt.Valid {
+			homepage.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
+			if err != nil {
+				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+			}
 		}
-		homepage.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		if updatedAt.Valid {
+			homepage.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
+			if err != nil {
+				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+			}
 		}
 
 		list = append(list, homepage)

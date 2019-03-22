@@ -3,11 +3,11 @@ package v1
 import (
 	"context"
 	"fmt"
-	"time"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
 	"github.com/golang/protobuf/ptypes"
+	"github.com/lib/pq"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -74,21 +74,25 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 
 	// scan Office data into protobuf model
 	var office v1.Office
-	var createdAt time.Time
-	var updatedAt time.Time
+	var createdAt pq.NullTime
+	var updatedAt pq.NullTime
 
 	if err := rows.Scan(&office.ID, &createdAt, &updatedAt, &office.Title, &office.Election); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Office row-> "+err.Error())
 	}
 
-	// Convert time.Time from database into proto timestamp.
-	office.CreatedAt, err = ptypes.TimestampProto(createdAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	// Convert pq.NullTime from database into proto timestamp.
+	if createdAt.Valid {
+		office.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
 	}
-	office.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+	if updatedAt.Valid {
+		office.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
+		if err != nil {
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		}
 	}
 
 	if rows.Next() {
@@ -131,22 +135,26 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 
 	// Variables to store results returned by database.
 	list := []*v1.Office{}
-	var createdAt time.Time
-	var updatedAt time.Time
+	var createdAt pq.NullTime
+	var updatedAt pq.NullTime
 
 	for rows.Next() {
 		office := new(v1.Office)
 		if err := rows.Scan(&office.ID, &createdAt, &updatedAt, &office.Title, &office.Election); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Office row-> "+err.Error())
 		}
-		// Convert time.Time from database into proto timestamp.
-		office.CreatedAt, err = ptypes.TimestampProto(createdAt)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		// Convert pq.NullTime from database into proto timestamp.
+		if createdAt.Valid {
+			office.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
+			if err != nil {
+				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+			}
 		}
-		office.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+		if updatedAt.Valid {
+			office.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
+			if err != nil {
+				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
+			}
 		}
 
 		list = append(list, office)

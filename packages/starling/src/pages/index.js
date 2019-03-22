@@ -34,7 +34,7 @@ const IndexPage = ({
 export const pageQuery = graphql`
   query IndexQuery {
     wren {
-      getCause(ID: "503c9ea5-6fc7-4954-b0ed-9aea35877c44") {
+      getCause(ID: "6d48aea0-6c8e-44ce-bd2d-01db5cc444e2") {
         ID
         Title
         Slug
@@ -50,6 +50,13 @@ export const pageQuery = graphql`
                 ID
                 Components {
                   ID
+                  Fields{
+                    ID
+                    FieldType{
+                      DataType
+                    }
+                    StringValue
+                  }
                   ComponentType {
                     Title
                   }

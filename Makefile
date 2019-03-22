@@ -7,6 +7,8 @@ start-server:
 	(cd packages/shrike; make startdb) &
 	(cd packages/shrike; make start) &
 	(cd packages/wren; make start)
+load-data:
+	(cd packages/shrike; make load-data)
 start-client:
 	(cd packages/starling; make hard-start)
 

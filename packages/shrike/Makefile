@@ -52,12 +52,12 @@ generate: codegen protogen
 build-server:
 	cd src/cmd/grpc-server; go build .
 build-client:
-	cd src/cmd/grpc-client; go build .
+	cd src/cmd/sample-data-client; go build .
 build: build-server build-client
 start: build-server
 	cd src/cmd/grpc-server; ./grpc-server
-testClient: build-client
-	cd src/cmd/grpc-client; ./grpc-client -server=localhost:9090
+load-data: build-client
+	cd src/cmd/sample-data-client; ./sample-data-client -server=localhost:9090
 bootstrap: startdb install initial-migration generate build
 schema-update: destroy initial-migration generate build
 

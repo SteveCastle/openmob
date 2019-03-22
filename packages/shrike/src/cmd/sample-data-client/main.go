@@ -141,12 +141,43 @@ func main() {
 		log.Fatalf("Create failed: %v", err)
 	}
 	log.Printf("Create component Result: <%+v>\n\n", componentRes)
+	componentID := componentRes.ID
+
+	// Create a FieldType
+	fieldTypeReq := v1.CreateFieldTypeRequest{
+		Api: apiVersion,
+		Item: &v1.CreateFieldType{
+			Title:         "Title",
+			DataType:      "string",
+			ComponentType: componentTypeID,
+		},
+	}
+	fieldTypeRes, err := c.CreateFieldType(ctx, &fieldTypeReq)
+	if err != nil {
+		log.Fatalf("Create failed: %v", err)
+	}
+	log.Printf("Create fieldType Result: <%+v>\n\n", fieldTypeRes)
+	fieldTypeID := fieldTypeRes.ID
+	// Create a Field
+	fieldReq := v1.CreateFieldRequest{
+		Api: apiVersion,
+		Item: &v1.CreateField{
+			FieldType: fieldTypeID,
+			Component: componentID,
+		},
+	}
+	fieldRes, err := c.CreateField(ctx, &fieldReq)
+	if err != nil {
+		log.Fatalf("Create failed: %v", err)
+	}
+	log.Printf("Create field Result: <%+v>\n\n", fieldRes)
 
 	// Create a HomePage
 	homepageReq := v1.CreateHomePageRequest{
 		Api: apiVersion,
 		Item: &v1.CreateHomePage{
 			Layout: layoutID,
+			Title:  "My Homepage",
 		},
 	}
 	homepageRes, err := c.CreateHomePage(ctx, &homepageReq)
