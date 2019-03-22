@@ -162,8 +162,9 @@ func main() {
 	fieldReq := v1.CreateFieldRequest{
 		Api: apiVersion,
 		Item: &v1.CreateField{
-			FieldType: fieldTypeID,
-			Component: componentID,
+			FieldType:   fieldTypeID,
+			Component:   componentID,
+			StringValue: "My HomePage",
 		},
 	}
 	fieldRes, err := c.CreateField(ctx, &fieldReq)
