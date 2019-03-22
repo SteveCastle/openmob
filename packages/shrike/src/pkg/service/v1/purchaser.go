@@ -88,7 +88,7 @@ func (s *shrikeServiceServer) GetPurchaser(ctx context.Context, req *v1.GetPurch
 	}
 	purchaser.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -146,7 +146,7 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 		}
 		purchaser.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
 		if err != nil {
-			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
 		}
 
 		list = append(list, purchaser)

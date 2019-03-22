@@ -88,7 +88,7 @@ func (s *shrikeServiceServer) GetPetition(ctx context.Context, req *v1.GetPetiti
 	}
 	petition.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -146,7 +146,7 @@ func (s *shrikeServiceServer) ListPetition(ctx context.Context, req *v1.ListPeti
 		}
 		petition.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
 		if err != nil {
-			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
 		}
 
 		list = append(list, petition)

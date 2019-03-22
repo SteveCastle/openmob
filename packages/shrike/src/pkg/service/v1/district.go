@@ -88,7 +88,7 @@ func (s *shrikeServiceServer) GetDistrict(ctx context.Context, req *v1.GetDistri
 	}
 	district.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
 	if err != nil {
-		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
 	}
 
 	if rows.Next() {
@@ -146,7 +146,7 @@ func (s *shrikeServiceServer) ListDistrict(ctx context.Context, req *v1.ListDist
 		}
 		district.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
 		if err != nil {
-			return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
+			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
 		}
 
 		list = append(list, district)

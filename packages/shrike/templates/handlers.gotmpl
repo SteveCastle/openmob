@@ -74,22 +74,19 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 
 	// scan {{.Table.Name}} data into protobuf model
 	var {{toLower .Table.Name}} v1.{{.Table.Name}}
-	var createdAt time.Time
-	var updatedAt time.Time
+	{{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}var {{camel .Name}} time.Time
+{{end}}{{end}}
 
 	if err := rows.Scan({{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}&{{camel .Name}}{{end}}{{if ne .Type "google.protobuf.Timestamp"}}&{{toLower .Table.Name}}.{{.Name}}{{end}}, {{end}}); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
 	}
 
 	// Convert time.Time from database into proto timestamp.
-	{{toLower .Table.Name}}.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	{{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}{{toLower .Table.Name}}.{{.Name}}, err = ptypes.TimestampProto({{camel .Name}})
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
 	}
-	{{toLower .Table.Name}}.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
-	}
+{{end}}{{end}}
 
 	if rows.Next() {
 		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple {{.Table.Name}} rows with ID='%s'",
@@ -131,8 +128,8 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 
     // Variables to store results returned by database.
 	list := []*v1.{{.Table.Name}}{}
-	var createdAt time.Time
-	var updatedAt time.Time
+	{{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}var {{camel .Name}} time.Time
+{{end}}{{end}}
 
 	for rows.Next() {
 		{{toLower .Table.Name}} := new(v1.{{.Table.Name}})
@@ -140,14 +137,11 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
 		}
 	// Convert time.Time from database into proto timestamp.
-	{{toLower .Table.Name}}.CreatedAt, err = ptypes.TimestampProto(createdAt)
+	{{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}{{toLower .Table.Name}}.{{.Name}}, err = ptypes.TimestampProto({{camel .Name}})
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
 	}
-	{{toLower .Table.Name}}.UpdatedAt, err = ptypes.TimestampProto(updatedAt)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "updatedAt field has invalid format-> "+err.Error())
-	}
+{{end}}{{end}}
 
 		list = append(list, {{toLower .Table.Name}})
 	}

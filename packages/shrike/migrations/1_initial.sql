@@ -110,6 +110,12 @@ CREATE TABLE field_type
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
+    data_Type VARCHAR(255) NOT NULL,
+    string_value_default TEXT,
+    int_value_default INTEGER,
+    float_value_default NUMERIC,
+    boolean_value_default BOOLEAN,
+    date_time_value_default TIMESTAMPTZ,
     PRIMARY KEY (id)
 );
 
@@ -147,6 +153,11 @@ CREATE TABLE field
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     field_type UUID REFERENCES field_type(id) NOT NULL,
+    string_value TEXT,
+    int_value INTEGER,
+    float_value NUMERIC,
+    boolean_value BOOLEAN,
+    date_time_value TIMESTAMPTZ,
     component UUID REFERENCES component(id),
     PRIMARY KEY (id)
 );
@@ -610,11 +621,13 @@ CREATE TABLE agent_membership
 
 --ADD CAUSE RELATIONS
 ALTER TABLE cause ADD COLUMN home_page UUID REFERENCES home_page(id);
+ALTER TABLE field_type ADD COLUMN component_type UUID REFERENCES component_type(id);
 
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
 
 --REMOVE CAUSE RELATIONS
+ALTER TABLE field_type DROP COLUMN component_type;
 ALTER TABLE cause DROP COLUMN home_page;
 
 -- CMS MEMBERSHIPS

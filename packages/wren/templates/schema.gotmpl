@@ -1,13 +1,17 @@
 const { gql } = require('apollo-server');
-module.exports = `type Time {
+module.exports = `
+type Time {
     seconds: Int!
     nanos: Int!
   }
-
+input TimeInput {
+    seconds: Int!
+    nanos: Int!
+  }
 {{range .Schema.Tables}}
 input {{.Name}}Input {
   secret: Int
-{{range $i, $v := .Columns}}{{if gt $i 2}}  {{.Name}}: {{.Type}}
+{{range $i, $v := .Columns}}{{if gt $i 2}}  {{.Name}}: {{.Type}}{{if eq .Type "Time"}}Input{{end}}
 {{end}}{{end}}}
 ​{{end}}
 

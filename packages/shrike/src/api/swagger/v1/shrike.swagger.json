@@ -17037,6 +17037,25 @@
         "FieldType": {
           "type": "string"
         },
+        "StringValue": {
+          "type": "string"
+        },
+        "IntValue": {
+          "type": "string",
+          "format": "int64"
+        },
+        "FloatValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "BooleanValue": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "DateTimeValue": {
+          "type": "string",
+          "format": "date-time"
+        },
         "Component": {
           "type": "string"
         }
@@ -17072,6 +17091,31 @@
       "type": "object",
       "properties": {
         "Title": {
+          "type": "string"
+        },
+        "DataType": {
+          "type": "string"
+        },
+        "StringValueDefault": {
+          "type": "string"
+        },
+        "IntValueDefault": {
+          "type": "string",
+          "format": "int64"
+        },
+        "FloatValueDefault": {
+          "type": "number",
+          "format": "float"
+        },
+        "BooleanValueDefault": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "DateTimeValueDefault": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ComponentType": {
           "type": "string"
         }
       }
@@ -20132,6 +20176,25 @@
         "FieldType": {
           "type": "string"
         },
+        "StringValue": {
+          "type": "string"
+        },
+        "IntValue": {
+          "type": "string",
+          "format": "int64"
+        },
+        "FloatValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "BooleanValue": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "DateTimeValue": {
+          "type": "string",
+          "format": "date-time"
+        },
         "Component": {
           "type": "string"
         }
@@ -20160,6 +20223,25 @@
         "FieldType": {
           "type": "string"
         },
+        "StringValue": {
+          "type": "string"
+        },
+        "IntValue": {
+          "type": "string",
+          "format": "int64"
+        },
+        "FloatValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "BooleanValue": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "DateTimeValue": {
+          "type": "string",
+          "format": "date-time"
+        },
         "Component": {
           "type": "string"
         }
@@ -20185,6 +20267,25 @@
         "FieldType": {
           "type": "string"
         },
+        "StringValue": {
+          "type": "string"
+        },
+        "IntValue": {
+          "type": "string",
+          "format": "int64"
+        },
+        "FloatValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "BooleanValue": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "DateTimeValue": {
+          "type": "string",
+          "format": "date-time"
+        },
         "Component": {
           "type": "string"
         }
@@ -20205,6 +20306,31 @@
           "format": "date-time"
         },
         "Title": {
+          "type": "string"
+        },
+        "DataType": {
+          "type": "string"
+        },
+        "StringValueDefault": {
+          "type": "string"
+        },
+        "IntValueDefault": {
+          "type": "string",
+          "format": "int64"
+        },
+        "FloatValueDefault": {
+          "type": "number",
+          "format": "float"
+        },
+        "BooleanValueDefault": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "DateTimeValueDefault": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ComponentType": {
           "type": "string"
         }
       }
@@ -20231,6 +20357,31 @@
         },
         "Title": {
           "type": "string"
+        },
+        "DataType": {
+          "type": "string"
+        },
+        "StringValueDefault": {
+          "type": "string"
+        },
+        "IntValueDefault": {
+          "type": "string",
+          "format": "int64"
+        },
+        "FloatValueDefault": {
+          "type": "number",
+          "format": "float"
+        },
+        "BooleanValueDefault": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "DateTimeValueDefault": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ComponentType": {
+          "type": "string"
         }
       }
     },
@@ -20252,6 +20403,31 @@
           "format": "date-time"
         },
         "Title": {
+          "type": "string"
+        },
+        "DataType": {
+          "type": "string"
+        },
+        "StringValueDefault": {
+          "type": "string"
+        },
+        "IntValueDefault": {
+          "type": "string",
+          "format": "int64"
+        },
+        "FloatValueDefault": {
+          "type": "number",
+          "format": "float"
+        },
+        "BooleanValueDefault": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "DateTimeValueDefault": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ComponentType": {
           "type": "string"
         }
       }

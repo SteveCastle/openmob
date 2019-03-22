@@ -129,7 +129,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 "uuid" = "string"
 "character varying" = "string"
 "integer" = "int64"
-"numeric" = "float64"
+"numeric" = "float"
 "geometry" = "int64"
 
 # NullableTypeMap is a mapping of database type names to replacement type names
@@ -147,7 +147,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 "uuid" = "string"
 "character varying" = "string"
 "integer" = "int64"
-"numeric" = "float64"
+"numeric" = "float"
 "geometry" = "int64"
 
 # Params contains any data you may want to pass to your templates.  This is a

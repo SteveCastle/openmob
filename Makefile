@@ -1,7 +1,8 @@
 rebuild:
 	(cd packages/shrike; make schema-update)
 	(cd packages/wren; make codegen)
-
+start-db:
+	(cd packages/shrike; make startdb)
 start-server:
 	(cd packages/shrike; make startdb) &
 	(cd packages/shrike; make start) &
