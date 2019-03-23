@@ -41,7 +41,6 @@ function Container({ dark, children, tracing }) {
           : null
       }
       fontSize={1}
-      color={dark ? 'lightText' : 'darkText'}
     >
       {children}
     </StyledContainer>

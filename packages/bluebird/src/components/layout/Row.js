@@ -40,7 +40,6 @@ function Row({ dark, children, tracing }) {
           : null
       }
       fontSize={1}
-      color={dark ? 'lightText' : 'darkText'}
     >
       {children}
     </StyledRow>

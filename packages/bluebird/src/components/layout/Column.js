@@ -34,7 +34,6 @@ function Column({ dark, children, tracing, size }) {
           : null
       }
       fontSize={1}
-      color={dark ? 'lightText' : 'darkText'}
     >
       {children}
     </StyledColumn>
