@@ -13,6 +13,7 @@ import Row from '../components/layout/Row';
 import Column from '../components/layout/Column';
 import Container from '../components/layout/Container';
 import Form from '../components/forms/Form';
+import SimpleHero from '../components/heroes/SimpleHero';
 import Masonry from '../components/photos/Masonry';
 import SubHeader from '../components/type/SubHeader';
 
@@ -145,6 +146,14 @@ storiesOf('Forms', module)
   .add('Form', () => <Form onChange={action('change')} />)
   .add('Input', () => <Input onChange={action('change')} block />)
   .add('DropDown', () => <Input onChange={action('change')} dark />);
+
+  storiesOf('Heroes', module)
+  .addParameters({
+    info: {
+      inline: true
+    }
+  })
+  .add('Simple Hero', () => <SimpleHero onChange={action('change')} title={{StringValue: "Welcome"}}/>)
 
 storiesOf('Photo Galleries', module)
   .addParameters({

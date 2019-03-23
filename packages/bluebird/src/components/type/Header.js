@@ -5,6 +5,7 @@ import {
   space,
   width,
   fontSize,
+  fontFamily,
   color,
   borders,
   borderRadius
@@ -16,6 +17,7 @@ const StyledHeader = styled.h1`
   ${space}
   ${width}
   ${fontSize}
+  ${fontFamily}
   ${color}
 `;
 
@@ -23,9 +25,12 @@ function Header({ children, dark }) {
   return (
     <StyledHeader
       p={3}
+      pb={0}
+      mb={0}
       fontSize={6}
+      fontFamily='sansSerif'
       width={1}
-      color={dark ? 'forms.lightText' : 'forms.darkText'}
+      color={dark ? 'violet.0' : 'gray.9'}
     >
       {children}
     </StyledHeader>

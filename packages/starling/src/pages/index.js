@@ -1,7 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql, Link } from "gatsby"
-
+import ThemeProvider from "@openmob/bluebird/src/ThemeProvider"
+import skyward from "@openmob/bluebird/src/themes/skyward"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -10,7 +11,8 @@ const IndexPage = ({
     wren: { listCause: causes = [] },
   },
 }) => (
-  <Layout title={"grassroots.dev"}>
+  <ThemeProvider theme={skyward}>
+  <Layout title="grassroots.dev" id="List view" summary="Debug Mode">
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <h1>List of Causes</h1><ul>
     {causes.map(cause => (
@@ -20,6 +22,7 @@ const IndexPage = ({
     ))}</ul>
     <Link to="/admin">Go to the admin page</Link>
   </Layout>
+  </ThemeProvider>
 )
 
 export const pageQuery = graphql`

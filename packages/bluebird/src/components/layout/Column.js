@@ -31,9 +31,7 @@ function Column({ dark, children, tracing, size }) {
       bg={
         tracing
           ? `blue.${tracing}`
-          : dark
-          ? 'darkBackground'
-          : 'lightBackground'
+          : null
       }
       fontSize={1}
       color={dark ? 'lightText' : 'darkText'}

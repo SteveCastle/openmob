@@ -38,9 +38,7 @@ function Container({ dark, children, tracing }) {
       bg={
         tracing
           ? `violet.${tracing}`
-          : dark
-          ? 'darkBackground'
-          : 'lightBackground'
+          : null
       }
       fontSize={1}
       color={dark ? 'lightText' : 'darkText'}

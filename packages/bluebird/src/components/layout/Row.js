@@ -37,9 +37,7 @@ function Row({ dark, children, tracing }) {
       bg={
         tracing
           ? `fuschia.${tracing}`
-          : dark
-          ? 'darkBackground'
-          : 'lightBackground'
+          : null
       }
       fontSize={1}
       color={dark ? 'lightText' : 'darkText'}

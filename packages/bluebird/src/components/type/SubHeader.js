@@ -5,17 +5,19 @@ import {
   space,
   width,
   fontSize,
+  fontFamily,
   color,
   borders,
   borderRadius
 } from 'styled-system';
 
-const StyledSubHeader = styled.h2`
+const StyledSubHeader = styled.h4`
   ${borders}
   ${borderRadius}
   ${space}
   ${width}
   ${fontSize}
+  ${fontFamily}
   ${color}
 `;
 
@@ -23,9 +25,14 @@ function SubHeader({ children, dark }) {
   return (
     <StyledSubHeader
       p={3}
+      pt={0}
+      mt={0}
+      pb={0}
+      mb={0}
       fontSize={4}
+      fontFamily='sansSerif'
       width={1}
-      color={dark ? 'forms.lightText' : 'forms.darkText'}
+      color={dark ? 'violet.3' : 'gray.9'}
     >
       {children}
     </StyledSubHeader>

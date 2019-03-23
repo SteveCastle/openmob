@@ -210,6 +210,12 @@ const theme = {
       lightText: colors.lime[0],
       lightBackground: colors.gray[1],
       darkText: colors.gray[9]
+    },
+    type: {
+      darkBackground: colors.blue[9],
+      lightText: colors.lime[0],
+      lightBackground: colors.gray[1],
+      darkText: colors.gray[9]
     }
   }
 };

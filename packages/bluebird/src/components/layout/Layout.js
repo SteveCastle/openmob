@@ -23,22 +23,14 @@ const StyledLayout = styled.div`
   ${display}
 `;
 
-function Layout({ dark, children, tracing }) {
+function Layout({ children }) {
   return (
     <StyledLayout
       display={'flex'}
       border={0}
       flexWrap="wrap"
       width={1}
-      bg={
-        tracing
-          ? `green.${tracing}`
-          : dark
-          ? 'darkBackground'
-          : 'lightBackground'
-      }
       fontSize={1}
-      color={dark ? 'lightText' : 'darkText'}
     >
       {children}
     </StyledLayout>
@@ -47,8 +39,6 @@ function Layout({ dark, children, tracing }) {
 
 Layout.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
-  dark: PropTypes.bool,
-  tracing: PropTypes.number
 };
 Layout.defaultProps = {};
 

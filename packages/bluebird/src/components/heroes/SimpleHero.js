@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import {
   space,
   width,
@@ -31,5 +33,10 @@ function SimpleHero({ title }) {
     </StyledHero>
   );
 }
+
+SimpleHero.propTypes = {
+    title: PropTypes.string
+  };
+  SimpleHero.defaultProps = {};
 
 export default SimpleHero;

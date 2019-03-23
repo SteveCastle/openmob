@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {
   space,
   width,
+  maxWidth,
   fontSize,
   color,
   borders,
@@ -15,6 +16,7 @@ const StyledParagraph = styled.p`
   ${borderRadius}
   ${space}
   ${width}
+  ${maxWidth}
   ${fontSize}
   ${color}
 `;
@@ -25,7 +27,8 @@ function Paragraph({ children, dark }) {
       p={3}
       fontSize={3}
       width={1}
-      color={dark ? 'forms.lightText' : 'forms.darkText'}
+      maxWidth={6}
+      color={dark ? 'type.lightText' : 'type.darkText'}
     >
       {children}
     </StyledParagraph>

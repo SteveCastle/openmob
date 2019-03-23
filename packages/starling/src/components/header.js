@@ -1,6 +1,8 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import PageHeader from "@openmob/bluebird/src/components/type/Header"
+import SubHeader from "@openmob/bluebird/src/components/type/SubHeader"
 
 const Header = ({ siteTitle, id, summary }) => (
   <header
@@ -16,7 +18,7 @@ const Header = ({ siteTitle, id, summary }) => (
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
+      <PageHeader dark>
         <Link
           to="/"
           style={{
@@ -26,9 +28,9 @@ const Header = ({ siteTitle, id, summary }) => (
         >
           {siteTitle}
         </Link>
-      </h1>
-      <h4>{id}</h4>
-      <h4>{summary}</h4>
+      </PageHeader>
+      <SubHeader dark>{id}</SubHeader>
+      <SubHeader dark>{summary}</SubHeader>
     </div>
   </header>
 )
