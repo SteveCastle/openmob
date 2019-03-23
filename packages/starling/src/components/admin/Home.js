@@ -12,7 +12,7 @@ const Layout = ({ children, title, id, summary }) => (
   <App>
     <SideBar>
       <SideBarHeader>
-        <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+        <Link to="/">
           Open Mob
         </Link>
       </SideBarHeader>

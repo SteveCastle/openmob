@@ -7,10 +7,10 @@ import skyward from "@openmob/bluebird/src/themes/skyward"
 import Row from "@openmob/bluebird/src/components/layout/Row"
 import Column from "@openmob/bluebird/src/components/layout/Column"
 
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import Node from "../components/Node"
 
-import SEO from "../components/seo"
+import SEO from "../components/SEO"
 
 const IndexPage = ({
   data: {

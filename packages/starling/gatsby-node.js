@@ -2,7 +2,7 @@ const path = require(`path`)
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  const pageTemplate = path.resolve(`src/templates/page.js`)
+  const pageTemplate = path.resolve(`src/templates/Page.js`)
   // Query for markdown nodes to use in creating pages.
   // You can query for whatever data you want to create pages for e.g.
   // products, portfolio items, landing pages, etc.

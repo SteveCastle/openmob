@@ -20,6 +20,10 @@ const StyledItem = styled.div`
   ${position}
   ${fontSize}
   ${color}
+  transition: 2s;
+  :hover {
+    opacity: .7
+  }
 `;
 
 const StyledImage = styled.img`

@@ -6,8 +6,8 @@ import skyward from "@openmob/bluebird/src/themes/skyward"
 import ImageGrid from "@openmob/bluebird/src/components/lists/ImageGrid"
 import GridItem from "@openmob/bluebird/src/components/lists/GridItem"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/Layout"
+import SEO from "../components/SEO"
 
 const IndexPage = ({
   data: {
@@ -24,7 +24,6 @@ const IndexPage = ({
           </Link>
         ))}
       </ImageGrid>
-      <Link to="/app">Go to the admin page</Link>
     </Layout>
   </ThemeProvider>
 )

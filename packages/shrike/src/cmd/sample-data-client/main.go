@@ -195,7 +195,7 @@ func main() {
 	photoRequest := v1.CreatePhotoRequest{
 		Api: apiVersion,
 		Item: &v1.CreatePhoto{
-			URI:    "https://picsum.photos/400/400",
+			URI:    "http://placeimg.com/400/400/nature",
 			Width:  400,
 			Height: 400,
 		},

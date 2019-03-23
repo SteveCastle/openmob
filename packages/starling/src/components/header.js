@@ -29,6 +29,20 @@ const Header = ({ siteTitle, id, summary }) => (
           {siteTitle}
         </Link>
       </PageHeader>
+      <Link
+        to="/app"
+        style={{
+          position: "absolute",
+          top: "0",
+          right: "0",
+          backgroundColor: "white",
+          padding: "4px",
+          margin: "4px",
+          borderRadius: "4px"
+        }}
+      >
+        Admin
+      </Link>
       <SubHeader dark>{id}</SubHeader>
       <SubHeader dark>{summary}</SubHeader>
     </div>
