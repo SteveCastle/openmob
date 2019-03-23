@@ -110,7 +110,8 @@ CREATE TABLE field_type
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
-    data_Type VARCHAR(255) NOT NULL,
+    data_type VARCHAR(255) NOT NULL,
+    prop_name VARCHAR(255) NOT NULL,
     string_value_default TEXT,
     int_value_default INTEGER,
     float_value_default NUMERIC,
@@ -125,6 +126,7 @@ CREATE TABLE component_implementation
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
+    path VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
 

@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	defer c.Close()
 	var id string
 	// insert ComponentImplementation entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (title, path) VALUES($1, $2)  RETURNING id;",
+		req.Item.Title, req.Item.Path).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentImplementation-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 	defer c.Close()
 
 	// query ComponentImplementation by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM component_implementation WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, path FROM component_implementation WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 	var createdAt pq.NullTime
 	var updatedAt pq.NullTime
 
-	if err := rows.Scan(&componentimplementation.ID, &createdAt, &updatedAt, &componentimplementation.Title); err != nil {
+	if err := rows.Scan(&componentimplementation.ID, &createdAt, &updatedAt, &componentimplementation.Title, &componentimplementation.Path); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
 	}
 
@@ -124,7 +124,7 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	// Generate SQL to select all columns in ComponentImplementation Table
 	// Then generate filtering and ordering sql and finally run query.
 
-	baseSQL := "SELECT id, created_at, updated_at, title FROM component_implementation"
+	baseSQL := "SELECT id, created_at, updated_at, title, path FROM component_implementation"
 	querySQL := queries.BuildComponentImplementationFilters(req.Filters, req.Ordering, req.Limit)
 	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
 	rows, err := c.QueryContext(ctx, SQL)
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 
 	for rows.Next() {
 		componentimplementation := new(v1.ComponentImplementation)
-		if err := rows.Scan(&componentimplementation.ID, &createdAt, &updatedAt, &componentimplementation.Title); err != nil {
+		if err := rows.Scan(&componentimplementation.ID, &createdAt, &updatedAt, &componentimplementation.Title, &componentimplementation.Path); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
 		}
 		// Convert pq.NullTime from database into proto timestamp.
@@ -185,8 +185,8 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	defer c.Close()
 
 	// update component_implementation
-	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET title=$2 WHERE id=$1",
-		req.Item.ID, req.Item.Title)
+	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET title=$2, path=$3 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.Path)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ComponentImplementation-> "+err.Error())
 	}

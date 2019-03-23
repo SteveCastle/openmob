@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id string
 	// insert FieldType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO field_type (title, data_type, string_value_default, int_value_default, float_value_default, boolean_value_default, date_time_value_default, component_type) VALUES($1, $2, $3, $4, $5, $6, $7, $8)  RETURNING id;",
-		req.Item.Title, req.Item.DataType, req.Item.StringValueDefault, req.Item.IntValueDefault, req.Item.FloatValueDefault, req.Item.BooleanValueDefault, req.Item.DateTimeValueDefault, req.Item.ComponentType).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO field_type (title, data_type, prop_name, string_value_default, int_value_default, float_value_default, boolean_value_default, date_time_value_default, component_type) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)  RETURNING id;",
+		req.Item.Title, req.Item.DataType, req.Item.PropName, req.Item.StringValueDefault, req.Item.IntValueDefault, req.Item.FloatValueDefault, req.Item.BooleanValueDefault, req.Item.DateTimeValueDefault, req.Item.ComponentType).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into FieldType-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 	defer c.Close()
 
 	// query FieldType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, data_type, string_value_default, int_value_default, float_value_default, boolean_value_default, date_time_value_default, component_type FROM field_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, data_type, prop_name, string_value_default, int_value_default, float_value_default, boolean_value_default, date_time_value_default, component_type FROM field_type WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from FieldType-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 	var updatedAt pq.NullTime
 	var dateTimeValueDefault pq.NullTime
 
-	if err := rows.Scan(&fieldtype.ID, &createdAt, &updatedAt, &fieldtype.Title, &fieldtype.DataType, &fieldtype.StringValueDefault, &fieldtype.IntValueDefault, &fieldtype.FloatValueDefault, &fieldtype.BooleanValueDefault, &dateTimeValueDefault, &fieldtype.ComponentType); err != nil {
+	if err := rows.Scan(&fieldtype.ID, &createdAt, &updatedAt, &fieldtype.Title, &fieldtype.DataType, &fieldtype.PropName, &fieldtype.StringValueDefault, &fieldtype.IntValueDefault, &fieldtype.FloatValueDefault, &fieldtype.BooleanValueDefault, &dateTimeValueDefault, &fieldtype.ComponentType); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from FieldType row-> "+err.Error())
 	}
 
@@ -131,7 +131,7 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 	// Generate SQL to select all columns in FieldType Table
 	// Then generate filtering and ordering sql and finally run query.
 
-	baseSQL := "SELECT id, created_at, updated_at, title, data_type, string_value_default, int_value_default, float_value_default, boolean_value_default, date_time_value_default, component_type FROM field_type"
+	baseSQL := "SELECT id, created_at, updated_at, title, data_type, prop_name, string_value_default, int_value_default, float_value_default, boolean_value_default, date_time_value_default, component_type FROM field_type"
 	querySQL := queries.BuildFieldTypeFilters(req.Filters, req.Ordering, req.Limit)
 	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
 	rows, err := c.QueryContext(ctx, SQL)
@@ -148,7 +148,7 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 
 	for rows.Next() {
 		fieldtype := new(v1.FieldType)
-		if err := rows.Scan(&fieldtype.ID, &createdAt, &updatedAt, &fieldtype.Title, &fieldtype.DataType, &fieldtype.StringValueDefault, &fieldtype.IntValueDefault, &fieldtype.FloatValueDefault, &fieldtype.BooleanValueDefault, &dateTimeValueDefault, &fieldtype.ComponentType); err != nil {
+		if err := rows.Scan(&fieldtype.ID, &createdAt, &updatedAt, &fieldtype.Title, &fieldtype.DataType, &fieldtype.PropName, &fieldtype.StringValueDefault, &fieldtype.IntValueDefault, &fieldtype.FloatValueDefault, &fieldtype.BooleanValueDefault, &dateTimeValueDefault, &fieldtype.ComponentType); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from FieldType row-> "+err.Error())
 		}
 		// Convert pq.NullTime from database into proto timestamp.
@@ -199,8 +199,8 @@ func (s *shrikeServiceServer) UpdateFieldType(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update field_type
-	res, err := c.ExecContext(ctx, "UPDATE field_type SET title=$2, data_type=$3, string_value_default=$4, int_value_default=$5, float_value_default=$6, boolean_value_default=$7, date_time_value_default=$8, component_type=$9 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.DataType, req.Item.StringValueDefault, req.Item.IntValueDefault, req.Item.FloatValueDefault, req.Item.BooleanValueDefault, req.Item.DateTimeValueDefault, req.Item.ComponentType)
+	res, err := c.ExecContext(ctx, "UPDATE field_type SET title=$2, data_type=$3, prop_name=$4, string_value_default=$5, int_value_default=$6, float_value_default=$7, boolean_value_default=$8, date_time_value_default=$9, component_type=$10 WHERE id=$1",
+		req.Item.ID, req.Item.Title, req.Item.DataType, req.Item.PropName, req.Item.StringValueDefault, req.Item.IntValueDefault, req.Item.FloatValueDefault, req.Item.BooleanValueDefault, req.Item.DateTimeValueDefault, req.Item.ComponentType)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update FieldType-> "+err.Error())
 	}

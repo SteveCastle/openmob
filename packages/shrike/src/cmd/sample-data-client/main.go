@@ -101,7 +101,8 @@ func main() {
 	componentImplementationReq := v1.CreateComponentImplementationRequest{
 		Api: apiVersion,
 		Item: &v1.CreateComponentImplementation{
-			Title: "Component",
+			Title: "Simple Hero",
+			Path:  "/heroes/SimpleHero",
 		},
 	}
 	componentImplementationRes, err := c.CreateComponentImplementation(ctx, &componentImplementationReq)
@@ -149,6 +150,7 @@ func main() {
 		Item: &v1.CreateFieldType{
 			Title:         "Title",
 			DataType:      "string",
+			PropName:      "title",
 			ComponentType: componentTypeID,
 		},
 	}
@@ -199,6 +201,7 @@ func main() {
 			Summary:  faker.Company().CatchPhrase(),
 			HomePage: homepageID,
 		},
+		BuildStatic: true,
 	}
 	res, err := c.CreateCause(ctx, &causeRequest)
 	if err != nil {

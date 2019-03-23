@@ -1,10 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql, Link } from "gatsby"
+import ThemeProvider from "@openmob/bluebird/src/ThemeProvider"
+import skyward from "@openmob/bluebird/src/themes/skyward"
+
 import Row from "@openmob/bluebird/src/components/layout/Row"
 import Column from "@openmob/bluebird/src/components/layout/Column"
 
 import Layout from "../components/layout"
+import Node from "../components/Node"
+
 import SEO from "../components/seo"
 
 const IndexPage = ({
@@ -12,23 +17,27 @@ const IndexPage = ({
     wren: { getCause: cause = {} },
   },
 }) => (
-  <Layout title={cause.Title}>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>{cause.ID}</h1>
-    <p>{cause.Summary}</p>
-    {cause.HomePage.Layout.LayoutRows.map(row => (
-      <Row tracing={5} key={row.ID}>
-        {row.LayoutColumns.map(column => (
-          <Column tracing={5} key={column.ID} width={column.Width}>
-            {column.Components.map(component => (
-              <div>{component.ID}</div>
-            ))}
-          </Column>
-        ))}
-      </Row>
-    ))}
-    <Link to="/admin">Go to the admin page</Link>
-  </Layout>
+  <ThemeProvider theme={skyward}>
+    <Layout title={cause.Title} id={cause.ID} summary={cause.Summary}>
+      <SEO title={cause.Title} keywords={[`gatsby`, `application`, `react`]} />
+      {cause.HomePage.Layout.LayoutRows.map(row => (
+        <Row key={row.ID}>
+          {row.LayoutColumns.map(column => (
+            <Column key={column.ID} width={column.Width}>
+              {column.Components.map(component => (
+                <Node
+                  fields={component.Fields}
+                  path={component.ComponentImplementation.Path}
+                  id={component.ID}
+                />
+              ))}
+            </Column>
+          ))}
+        </Row>
+      ))}
+      <Link to="/admin">Go to the admin page</Link>
+    </Layout>
+  </ThemeProvider>
 )
 
 export const pageQuery = graphql`
@@ -53,15 +62,14 @@ export const pageQuery = graphql`
                   Fields {
                     ID
                     FieldType {
+                      Title
                       DataType
+                      PropName
                     }
                     StringValue
                   }
-                  ComponentType {
-                    Title
-                  }
                   ComponentImplementation {
-                    Title
+                    Path
                   }
                 }
               }

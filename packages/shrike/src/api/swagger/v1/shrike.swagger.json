@@ -15697,6 +15697,9 @@
         },
         "Title": {
           "type": "string"
+        },
+        "Path": {
+          "type": "string"
         }
       }
     },
@@ -15722,6 +15725,9 @@
         },
         "Title": {
           "type": "string"
+        },
+        "Path": {
+          "type": "string"
         }
       }
     },
@@ -15743,6 +15749,9 @@
           "format": "date-time"
         },
         "Title": {
+          "type": "string"
+        },
+        "Path": {
           "type": "string"
         }
       }
@@ -16398,6 +16407,9 @@
       "type": "object",
       "properties": {
         "Title": {
+          "type": "string"
+        },
+        "Path": {
           "type": "string"
         }
       }
@@ -17094,6 +17106,9 @@
           "type": "string"
         },
         "DataType": {
+          "type": "string"
+        },
+        "PropName": {
           "type": "string"
         },
         "StringValueDefault": {
@@ -20311,6 +20326,9 @@
         "DataType": {
           "type": "string"
         },
+        "PropName": {
+          "type": "string"
+        },
         "StringValueDefault": {
           "type": "string"
         },
@@ -20361,6 +20379,9 @@
         "DataType": {
           "type": "string"
         },
+        "PropName": {
+          "type": "string"
+        },
         "StringValueDefault": {
           "type": "string"
         },
@@ -20406,6 +20427,9 @@
           "type": "string"
         },
         "DataType": {
+          "type": "string"
+        },
+        "PropName": {
           "type": "string"
         },
         "StringValueDefault": {
