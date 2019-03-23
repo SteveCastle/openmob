@@ -23,6 +23,7 @@ const StyledSideBar = styled.div`
   ${color}
   ${display}
   ${flexWrap}
+  overflow: hidden;
 `;
 function SideBar({ children }) {
   return (

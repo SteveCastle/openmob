@@ -1,14 +1,20 @@
 import React from "react"
 import { Router } from "@reach/router"
 import Admin from '../../components/admin/Admin'
-let Home = () => <div>Dynamic App for cause owners goes here</div>
+import Home from '../../components/admin/Home'
+
+import ThemeProvider from "@openmob/bluebird/src/ThemeProvider"
+import skyward from "@openmob/bluebird/src/themes/skyward"
+import './reset.css';
 
 function App() {
   return (
+    <ThemeProvider theme={skyward}>
     <Router>
       <Home path="app" />
-      <Admin path="app/admin" />
+      <Admin path="app/admin/*" />
     </Router>
+    </ThemeProvider>
   )
 }
 

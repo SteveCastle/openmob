@@ -9,42 +9,46 @@ import {
   borders,
   borderRadius,
   display,
+  height,
   alignItems,
   justifyContent,
-  flexWrap
+  flexWrap,
+  flexDirection
 } from 'styled-system';
 
-const StyledSideBarHeader = styled.div`
+const StyledMenuBody = styled.div`
   ${borders}
   ${borderRadius}
   ${space}
   ${width}
+  ${height}
   ${alignItems}
   ${justifyContent}
   ${fontSize}
   ${color}
   ${display}
   ${flexWrap}
+  ${flexDirection}
+  overflow: scroll;
+  position: fixed;
+  top: 12%;
+  left: 0;
 `;
 
-function SideBarHeader({ children }) {
+function MenuBody({ children }) {
   return (
-    <StyledSideBarHeader
-      color="gray.0"
-      display="flex"
-      p={2}
-      m={2}
+    <StyledMenuBody
+      flexDirection="column"
       fontSize={4}
-      justifyContent="center"
-      alignItems="center"
+      height={'88%'}
     >
       {children}
-    </StyledSideBarHeader>
+    </StyledMenuBody>
   );
 }
 
-StyledSideBarHeader.propTypes = {
+MenuBody.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
 };
 
-export default SideBarHeader;
+export default MenuBody;

@@ -14,7 +14,7 @@ import {
   flexWrap
 } from 'styled-system';
 
-const StyledItem = styled.div`
+const StyledSideBarHeader = styled.div`
   ${borders}
   ${borderRadius}
   ${space}
@@ -31,23 +31,24 @@ const StyledItem = styled.div`
   }
 `;
 
-function MenuItem({ children }) {
+function SideBarHeader({ children }) {
   return (
-    <StyledItem
+    <StyledSideBarHeader
       color="gray.0"
       display="flex"
       p={2}
-      fontSize={2}
+      m={2}
+      fontSize={4}
       justifyContent="center"
       alignItems="center"
     >
       {children}
-    </StyledItem>
+    </StyledSideBarHeader>
   );
 }
 
-MenuItem.propTypes = {
+StyledSideBarHeader.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
 };
 
-export default MenuItem;
+export default SideBarHeader;

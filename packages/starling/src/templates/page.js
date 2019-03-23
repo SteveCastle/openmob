@@ -35,7 +35,7 @@ const IndexPage = ({
           ))}
         </Row>
       ))}
-      <Link to="/admin">Go to the admin page</Link>
+      <Link to="/app">Go to the admin page</Link>
     </Layout>
   </ThemeProvider>
 )

@@ -21,6 +21,7 @@ const StyledMenu = styled.div`
   ${color}
   ${display}
   ${flexWrap}
+  overflow: hidden;
 `;
 
 function Menu({ children, vertical }) {
