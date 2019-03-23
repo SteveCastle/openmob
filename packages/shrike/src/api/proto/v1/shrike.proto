@@ -57,6 +57,27 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 
 
 
+message LayoutTypeOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
+message LayoutTypeFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
 message ACLOrdering {
   Direction Direction = 1;
   oneof field {
@@ -142,48 +163,6 @@ message EmailAddressFilterRule {
     google.protobuf.Timestamp CreatedAt = 4;
     google.protobuf.Timestamp UpdatedAt = 5;
     string Address = 6;
-  }
-}
-
-message PhotoOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string ImgURL = 6;
-  }
-}
-
-message PhotoFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string ImgURL = 6;
-  }
-}
-
-message LayoutTypeOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
-message LayoutTypeFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
   }
 }
 
@@ -427,29 +406,6 @@ message CandidateFilterRule {
   }
 }
 
-message OfficeOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-    string Election = 7;
-  }
-}
-
-message OfficeFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-    string Election = 7;
-  }
-}
-
 message DistrictTypeOrdering {
   Direction Direction = 1;
   oneof field {
@@ -493,6 +449,29 @@ message DistrictFilterRule {
     int64 Geom = 6;
     string Title = 7;
     string DistrictType = 8;
+  }
+}
+
+message OfficeOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+    string Election = 7;
+  }
+}
+
+message OfficeFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+    string Election = 7;
   }
 }
 
@@ -582,25 +561,6 @@ message CompanyFilterRule {
   }
 }
 
-message CustomerCartOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-  }
-}
-
-message CustomerCartFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-  }
-}
-
 message ProductTypeOrdering {
   Direction Direction = 1;
   oneof field {
@@ -619,6 +579,25 @@ message ProductTypeFilterRule {
     google.protobuf.Timestamp CreatedAt = 4;
     google.protobuf.Timestamp UpdatedAt = 5;
     string Title = 6;
+  }
+}
+
+message CustomerCartOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+  }
+}
+
+message CustomerCartFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
   }
 }
 
@@ -842,27 +821,6 @@ message LiveEventMembershipFilterRule {
   }
 }
 
-message PetitionOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
-message PetitionFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
 message ProductOrdering {
   Direction Direction = 1;
   oneof field {
@@ -950,6 +908,27 @@ message DonationCampaignMembershipFilterRule {
     google.protobuf.Timestamp UpdatedAt = 5;
     string Cause = 6;
     string DonationCampaign = 7;
+  }
+}
+
+message PetitionOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
+message PetitionFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
   }
 }
 
@@ -1049,6 +1028,27 @@ message PurchaserFilterRule {
   }
 }
 
+message CustomerOrderOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string CustomerCart = 6;
+  }
+}
+
+message CustomerOrderFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string CustomerCart = 6;
+  }
+}
+
 message DonorOrdering {
   Direction Direction = 1;
   oneof field {
@@ -1071,27 +1071,6 @@ message DonorFilterRule {
     string CustomerOrder = 6;
     string Contact = 7;
     string Cause = 8;
-  }
-}
-
-message CustomerOrderOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string CustomerCart = 6;
-  }
-}
-
-message CustomerOrderFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string CustomerCart = 6;
   }
 }
 
@@ -1494,6 +1473,31 @@ message HomePageFilterRule {
   }
 }
 
+message PhotoOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string URI = 6;
+    int64 Width = 7;
+    int64 Height = 8;
+  }
+}
+
+message PhotoFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string URI = 6;
+    int64 Width = 7;
+    int64 Height = 8;
+  }
+}
+
 message CauseOrdering {
   Direction Direction = 1;
   oneof field {
@@ -1504,6 +1508,7 @@ message CauseOrdering {
     string Slug = 7;
     string Summary = 8;
     string HomePage = 9;
+    string Photo = 10;
   }
 }
 
@@ -1518,6 +1523,7 @@ message CauseFilterRule {
     string Slug = 7;
     string Summary = 8;
     string HomePage = 9;
+    string Photo = 10;
   }
 }
 
@@ -1580,6 +1586,72 @@ message FieldTypeFilterRule {
 }
 
 // Generated Types and Message Schema
+
+message LayoutType {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+}
+
+message CreateLayoutType {
+  string Title = 1;
+}
+
+message CreateLayoutTypeRequest {
+  string api = 1;
+  CreateLayoutType item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateLayoutTypeResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetLayoutTypeRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetLayoutTypeResponse {
+  string api = 1;
+  LayoutType item = 2;
+}
+
+message ListLayoutTypeRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated LayoutTypeOrdering ordering = 3;
+  repeated LayoutTypeFilterRule filters = 4;
+}
+
+message ListLayoutTypeResponse {
+  string api = 1;
+  repeated LayoutType items = 2;
+}
+
+message UpdateLayoutTypeRequest{
+  string api = 1;
+  LayoutType item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateLayoutTypeResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteLayoutTypeRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteLayoutTypeResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
 
 message ACL {
   string ID = 1;
@@ -1845,138 +1917,6 @@ message DeleteEmailAddressRequest {
 }
 
 message DeleteEmailAddressResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message Photo {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string ImgURL = 4;
-}
-
-message CreatePhoto {
-  string ImgURL = 1;
-}
-
-message CreatePhotoRequest {
-  string api = 1;
-  CreatePhoto item = 2;
-  bool buildStatic = 3;
-}
-
-message CreatePhotoResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetPhotoRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetPhotoResponse {
-  string api = 1;
-  Photo item = 2;
-}
-
-message ListPhotoRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated PhotoOrdering ordering = 3;
-  repeated PhotoFilterRule filters = 4;
-}
-
-message ListPhotoResponse {
-  string api = 1;
-  repeated Photo items = 2;
-}
-
-message UpdatePhotoRequest{
-  string api = 1;
-  Photo item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdatePhotoResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeletePhotoRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeletePhotoResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message LayoutType {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-}
-
-message CreateLayoutType {
-  string Title = 1;
-}
-
-message CreateLayoutTypeRequest {
-  string api = 1;
-  CreateLayoutType item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateLayoutTypeResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetLayoutTypeRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetLayoutTypeResponse {
-  string api = 1;
-  LayoutType item = 2;
-}
-
-message ListLayoutTypeRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated LayoutTypeOrdering ordering = 3;
-  repeated LayoutTypeFilterRule filters = 4;
-}
-
-message ListLayoutTypeResponse {
-  string api = 1;
-  repeated LayoutType items = 2;
-}
-
-message UpdateLayoutTypeRequest{
-  string api = 1;
-  LayoutType item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateLayoutTypeResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteLayoutTypeRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteLayoutTypeResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -2671,74 +2611,6 @@ message DeleteCandidateResponse {
   int64 deleted = 2;
 }
 
-message Office {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-  string Election = 5;
-}
-
-message CreateOffice {
-  string Title = 1;
-  string Election = 2;
-}
-
-message CreateOfficeRequest {
-  string api = 1;
-  CreateOffice item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateOfficeResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetOfficeRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetOfficeResponse {
-  string api = 1;
-  Office item = 2;
-}
-
-message ListOfficeRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated OfficeOrdering ordering = 3;
-  repeated OfficeFilterRule filters = 4;
-}
-
-message ListOfficeResponse {
-  string api = 1;
-  repeated Office items = 2;
-}
-
-message UpdateOfficeRequest{
-  string api = 1;
-  Office item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateOfficeResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteOfficeRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteOfficeResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
 message DistrictType {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -2871,6 +2743,74 @@ message DeleteDistrictRequest {
 }
 
 message DeleteDistrictResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
+message Office {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+  string Election = 5;
+}
+
+message CreateOffice {
+  string Title = 1;
+  string Election = 2;
+}
+
+message CreateOfficeRequest {
+  string api = 1;
+  CreateOffice item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateOfficeResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetOfficeRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetOfficeResponse {
+  string api = 1;
+  Office item = 2;
+}
+
+message ListOfficeRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated OfficeOrdering ordering = 3;
+  repeated OfficeFilterRule filters = 4;
+}
+
+message ListOfficeResponse {
+  string api = 1;
+  repeated Office items = 2;
+}
+
+message UpdateOfficeRequest{
+  string api = 1;
+  Office item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateOfficeResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteOfficeRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteOfficeResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -3141,70 +3081,6 @@ message DeleteCompanyResponse {
   int64 deleted = 2;
 }
 
-message CustomerCart {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-}
-
-message CreateCustomerCart {
-}
-
-message CreateCustomerCartRequest {
-  string api = 1;
-  CreateCustomerCart item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateCustomerCartResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetCustomerCartRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetCustomerCartResponse {
-  string api = 1;
-  CustomerCart item = 2;
-}
-
-message ListCustomerCartRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated CustomerCartOrdering ordering = 3;
-  repeated CustomerCartFilterRule filters = 4;
-}
-
-message ListCustomerCartResponse {
-  string api = 1;
-  repeated CustomerCart items = 2;
-}
-
-message UpdateCustomerCartRequest{
-  string api = 1;
-  CustomerCart item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateCustomerCartResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteCustomerCartRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteCustomerCartResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
 message ProductType {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -3267,6 +3143,70 @@ message DeleteProductTypeRequest {
 }
 
 message DeleteProductTypeResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
+message CustomerCart {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+}
+
+message CreateCustomerCart {
+}
+
+message CreateCustomerCartRequest {
+  string api = 1;
+  CreateCustomerCart item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateCustomerCartResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetCustomerCartRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetCustomerCartResponse {
+  string api = 1;
+  CustomerCart item = 2;
+}
+
+message ListCustomerCartRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated CustomerCartOrdering ordering = 3;
+  repeated CustomerCartFilterRule filters = 4;
+}
+
+message ListCustomerCartResponse {
+  string api = 1;
+  repeated CustomerCart items = 2;
+}
+
+message UpdateCustomerCartRequest{
+  string api = 1;
+  CustomerCart item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateCustomerCartResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteCustomerCartRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteCustomerCartResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -3941,72 +3881,6 @@ message DeleteLiveEventMembershipResponse {
   int64 deleted = 2;
 }
 
-message Petition {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-}
-
-message CreatePetition {
-  string Title = 1;
-}
-
-message CreatePetitionRequest {
-  string api = 1;
-  CreatePetition item = 2;
-  bool buildStatic = 3;
-}
-
-message CreatePetitionResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetPetitionRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetPetitionResponse {
-  string api = 1;
-  Petition item = 2;
-}
-
-message ListPetitionRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated PetitionOrdering ordering = 3;
-  repeated PetitionFilterRule filters = 4;
-}
-
-message ListPetitionResponse {
-  string api = 1;
-  repeated Petition items = 2;
-}
-
-message UpdatePetitionRequest{
-  string api = 1;
-  Petition item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdatePetitionResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeletePetitionRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeletePetitionResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
 message Product {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -4273,6 +4147,72 @@ message DeleteDonationCampaignMembershipRequest {
 }
 
 message DeleteDonationCampaignMembershipResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
+message Petition {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+}
+
+message CreatePetition {
+  string Title = 1;
+}
+
+message CreatePetitionRequest {
+  string api = 1;
+  CreatePetition item = 2;
+  bool buildStatic = 3;
+}
+
+message CreatePetitionResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetPetitionRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetPetitionResponse {
+  string api = 1;
+  Petition item = 2;
+}
+
+message ListPetitionRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated PetitionOrdering ordering = 3;
+  repeated PetitionFilterRule filters = 4;
+}
+
+message ListPetitionResponse {
+  string api = 1;
+  repeated Petition items = 2;
+}
+
+message UpdatePetitionRequest{
+  string api = 1;
+  Petition item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdatePetitionResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeletePetitionRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeletePetitionResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -4553,6 +4493,72 @@ message DeletePurchaserResponse {
   int64 deleted = 2;
 }
 
+message CustomerOrder {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string CustomerCart = 4;
+}
+
+message CreateCustomerOrder {
+  string CustomerCart = 1;
+}
+
+message CreateCustomerOrderRequest {
+  string api = 1;
+  CreateCustomerOrder item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateCustomerOrderResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetCustomerOrderRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetCustomerOrderResponse {
+  string api = 1;
+  CustomerOrder item = 2;
+}
+
+message ListCustomerOrderRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated CustomerOrderOrdering ordering = 3;
+  repeated CustomerOrderFilterRule filters = 4;
+}
+
+message ListCustomerOrderResponse {
+  string api = 1;
+  repeated CustomerOrder items = 2;
+}
+
+message UpdateCustomerOrderRequest{
+  string api = 1;
+  CustomerOrder item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateCustomerOrderResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteCustomerOrderRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteCustomerOrderResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
 message Donor {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -4619,72 +4625,6 @@ message DeleteDonorRequest {
 }
 
 message DeleteDonorResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message CustomerOrder {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string CustomerCart = 4;
-}
-
-message CreateCustomerOrder {
-  string CustomerCart = 1;
-}
-
-message CreateCustomerOrderRequest {
-  string api = 1;
-  CreateCustomerOrder item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateCustomerOrderResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetCustomerOrderRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetCustomerOrderResponse {
-  string api = 1;
-  CustomerOrder item = 2;
-}
-
-message ListCustomerOrderRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated CustomerOrderOrdering ordering = 3;
-  repeated CustomerOrderFilterRule filters = 4;
-}
-
-message ListCustomerOrderResponse {
-  string api = 1;
-  repeated CustomerOrder items = 2;
-}
-
-message UpdateCustomerOrderRequest{
-  string api = 1;
-  CustomerOrder item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateCustomerOrderResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteCustomerOrderRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteCustomerOrderResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -5853,6 +5793,76 @@ message DeleteHomePageResponse {
   int64 deleted = 2;
 }
 
+message Photo {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string URI = 4;
+  int64 Width = 5;
+  int64 Height = 6;
+}
+
+message CreatePhoto {
+  string URI = 1;
+  int64 Width = 2;
+  int64 Height = 3;
+}
+
+message CreatePhotoRequest {
+  string api = 1;
+  CreatePhoto item = 2;
+  bool buildStatic = 3;
+}
+
+message CreatePhotoResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetPhotoRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetPhotoResponse {
+  string api = 1;
+  Photo item = 2;
+}
+
+message ListPhotoRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated PhotoOrdering ordering = 3;
+  repeated PhotoFilterRule filters = 4;
+}
+
+message ListPhotoResponse {
+  string api = 1;
+  repeated Photo items = 2;
+}
+
+message UpdatePhotoRequest{
+  string api = 1;
+  Photo item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdatePhotoResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeletePhotoRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeletePhotoResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
 message Cause {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -5861,6 +5871,7 @@ message Cause {
   string Slug = 5;
   string Summary = 6;
   string HomePage = 7;
+  string Photo = 8;
 }
 
 message CreateCause {
@@ -5868,6 +5879,7 @@ message CreateCause {
   string Slug = 2;
   string Summary = 3;
   string HomePage = 4;
+  string Photo = 5;
 }
 
 message CreateCauseRequest {
@@ -6077,6 +6089,45 @@ message DeleteFieldTypeResponse {
 // Generated Shrike Service Definition
 service ShrikeService {
   
+  // CreateLayoutType takes a LayoutType object to create.
+  rpc CreateLayoutType(CreateLayoutTypeRequest) returns (CreateLayoutTypeResponse) {
+    option (google.api.http) ={
+      post: "/v1/layouttype"
+      body: "*"
+    };
+  }
+  // GetLayoutType takes an ID and returns a single LayoutType.
+  rpc GetLayoutType(GetLayoutTypeRequest) returns (GetLayoutTypeResponse) {
+    option (google.api.http) ={
+      get: "/v1/layouttype/{ID}"
+    };
+  }
+    // List LayoutType, takes filters, limit, and cursor param.
+  rpc ListLayoutType(ListLayoutTypeRequest) returns (ListLayoutTypeResponse) {
+  option (google.api.http) ={
+    get: "/v1/layouttype"
+  };
+}
+    // Update LayoutType
+    rpc UpdateLayoutType(UpdateLayoutTypeRequest) returns (UpdateLayoutTypeResponse) {
+        option (google.api.http) = {
+            put: "/v1/layouttype/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/layouttype/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete LayoutType
+    rpc DeleteLayoutType(DeleteLayoutTypeRequest) returns (DeleteLayoutTypeResponse) {
+        option (google.api.http) = {
+            delete: "/v1/layouttype/{ID}"
+        };
+    }
+  
   // CreateACL takes a ACL object to create.
   rpc CreateACL(CreateACLRequest) returns (CreateACLResponse) {
     option (google.api.http) ={
@@ -6230,84 +6281,6 @@ service ShrikeService {
     rpc DeleteEmailAddress(DeleteEmailAddressRequest) returns (DeleteEmailAddressResponse) {
         option (google.api.http) = {
             delete: "/v1/emailaddress/{ID}"
-        };
-    }
-  
-  // CreatePhoto takes a Photo object to create.
-  rpc CreatePhoto(CreatePhotoRequest) returns (CreatePhotoResponse) {
-    option (google.api.http) ={
-      post: "/v1/photo"
-      body: "*"
-    };
-  }
-  // GetPhoto takes an ID and returns a single Photo.
-  rpc GetPhoto(GetPhotoRequest) returns (GetPhotoResponse) {
-    option (google.api.http) ={
-      get: "/v1/photo/{ID}"
-    };
-  }
-    // List Photo, takes filters, limit, and cursor param.
-  rpc ListPhoto(ListPhotoRequest) returns (ListPhotoResponse) {
-  option (google.api.http) ={
-    get: "/v1/photo"
-  };
-}
-    // Update Photo
-    rpc UpdatePhoto(UpdatePhotoRequest) returns (UpdatePhotoResponse) {
-        option (google.api.http) = {
-            put: "/v1/photo/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/photo/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Photo
-    rpc DeletePhoto(DeletePhotoRequest) returns (DeletePhotoResponse) {
-        option (google.api.http) = {
-            delete: "/v1/photo/{ID}"
-        };
-    }
-  
-  // CreateLayoutType takes a LayoutType object to create.
-  rpc CreateLayoutType(CreateLayoutTypeRequest) returns (CreateLayoutTypeResponse) {
-    option (google.api.http) ={
-      post: "/v1/layouttype"
-      body: "*"
-    };
-  }
-  // GetLayoutType takes an ID and returns a single LayoutType.
-  rpc GetLayoutType(GetLayoutTypeRequest) returns (GetLayoutTypeResponse) {
-    option (google.api.http) ={
-      get: "/v1/layouttype/{ID}"
-    };
-  }
-    // List LayoutType, takes filters, limit, and cursor param.
-  rpc ListLayoutType(ListLayoutTypeRequest) returns (ListLayoutTypeResponse) {
-  option (google.api.http) ={
-    get: "/v1/layouttype"
-  };
-}
-    // Update LayoutType
-    rpc UpdateLayoutType(UpdateLayoutTypeRequest) returns (UpdateLayoutTypeResponse) {
-        option (google.api.http) = {
-            put: "/v1/layouttype/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/layouttype/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete LayoutType
-    rpc DeleteLayoutType(DeleteLayoutTypeRequest) returns (DeleteLayoutTypeResponse) {
-        option (google.api.http) = {
-            delete: "/v1/layouttype/{ID}"
         };
     }
   
@@ -6701,45 +6674,6 @@ service ShrikeService {
         };
     }
   
-  // CreateOffice takes a Office object to create.
-  rpc CreateOffice(CreateOfficeRequest) returns (CreateOfficeResponse) {
-    option (google.api.http) ={
-      post: "/v1/office"
-      body: "*"
-    };
-  }
-  // GetOffice takes an ID and returns a single Office.
-  rpc GetOffice(GetOfficeRequest) returns (GetOfficeResponse) {
-    option (google.api.http) ={
-      get: "/v1/office/{ID}"
-    };
-  }
-    // List Office, takes filters, limit, and cursor param.
-  rpc ListOffice(ListOfficeRequest) returns (ListOfficeResponse) {
-  option (google.api.http) ={
-    get: "/v1/office"
-  };
-}
-    // Update Office
-    rpc UpdateOffice(UpdateOfficeRequest) returns (UpdateOfficeResponse) {
-        option (google.api.http) = {
-            put: "/v1/office/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/office/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Office
-    rpc DeleteOffice(DeleteOfficeRequest) returns (DeleteOfficeResponse) {
-        option (google.api.http) = {
-            delete: "/v1/office/{ID}"
-        };
-    }
-  
   // CreateDistrictType takes a DistrictType object to create.
   rpc CreateDistrictType(CreateDistrictTypeRequest) returns (CreateDistrictTypeResponse) {
     option (google.api.http) ={
@@ -6815,6 +6749,45 @@ service ShrikeService {
     rpc DeleteDistrict(DeleteDistrictRequest) returns (DeleteDistrictResponse) {
         option (google.api.http) = {
             delete: "/v1/district/{ID}"
+        };
+    }
+  
+  // CreateOffice takes a Office object to create.
+  rpc CreateOffice(CreateOfficeRequest) returns (CreateOfficeResponse) {
+    option (google.api.http) ={
+      post: "/v1/office"
+      body: "*"
+    };
+  }
+  // GetOffice takes an ID and returns a single Office.
+  rpc GetOffice(GetOfficeRequest) returns (GetOfficeResponse) {
+    option (google.api.http) ={
+      get: "/v1/office/{ID}"
+    };
+  }
+    // List Office, takes filters, limit, and cursor param.
+  rpc ListOffice(ListOfficeRequest) returns (ListOfficeResponse) {
+  option (google.api.http) ={
+    get: "/v1/office"
+  };
+}
+    // Update Office
+    rpc UpdateOffice(UpdateOfficeRequest) returns (UpdateOfficeResponse) {
+        option (google.api.http) = {
+            put: "/v1/office/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/office/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Office
+    rpc DeleteOffice(DeleteOfficeRequest) returns (DeleteOfficeResponse) {
+        option (google.api.http) = {
+            delete: "/v1/office/{ID}"
         };
     }
   
@@ -6974,45 +6947,6 @@ service ShrikeService {
         };
     }
   
-  // CreateCustomerCart takes a CustomerCart object to create.
-  rpc CreateCustomerCart(CreateCustomerCartRequest) returns (CreateCustomerCartResponse) {
-    option (google.api.http) ={
-      post: "/v1/customercart"
-      body: "*"
-    };
-  }
-  // GetCustomerCart takes an ID and returns a single CustomerCart.
-  rpc GetCustomerCart(GetCustomerCartRequest) returns (GetCustomerCartResponse) {
-    option (google.api.http) ={
-      get: "/v1/customercart/{ID}"
-    };
-  }
-    // List CustomerCart, takes filters, limit, and cursor param.
-  rpc ListCustomerCart(ListCustomerCartRequest) returns (ListCustomerCartResponse) {
-  option (google.api.http) ={
-    get: "/v1/customercart"
-  };
-}
-    // Update CustomerCart
-    rpc UpdateCustomerCart(UpdateCustomerCartRequest) returns (UpdateCustomerCartResponse) {
-        option (google.api.http) = {
-            put: "/v1/customercart/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/customercart/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete CustomerCart
-    rpc DeleteCustomerCart(DeleteCustomerCartRequest) returns (DeleteCustomerCartResponse) {
-        option (google.api.http) = {
-            delete: "/v1/customercart/{ID}"
-        };
-    }
-  
   // CreateProductType takes a ProductType object to create.
   rpc CreateProductType(CreateProductTypeRequest) returns (CreateProductTypeResponse) {
     option (google.api.http) ={
@@ -7049,6 +6983,45 @@ service ShrikeService {
     rpc DeleteProductType(DeleteProductTypeRequest) returns (DeleteProductTypeResponse) {
         option (google.api.http) = {
             delete: "/v1/producttype/{ID}"
+        };
+    }
+  
+  // CreateCustomerCart takes a CustomerCart object to create.
+  rpc CreateCustomerCart(CreateCustomerCartRequest) returns (CreateCustomerCartResponse) {
+    option (google.api.http) ={
+      post: "/v1/customercart"
+      body: "*"
+    };
+  }
+  // GetCustomerCart takes an ID and returns a single CustomerCart.
+  rpc GetCustomerCart(GetCustomerCartRequest) returns (GetCustomerCartResponse) {
+    option (google.api.http) ={
+      get: "/v1/customercart/{ID}"
+    };
+  }
+    // List CustomerCart, takes filters, limit, and cursor param.
+  rpc ListCustomerCart(ListCustomerCartRequest) returns (ListCustomerCartResponse) {
+  option (google.api.http) ={
+    get: "/v1/customercart"
+  };
+}
+    // Update CustomerCart
+    rpc UpdateCustomerCart(UpdateCustomerCartRequest) returns (UpdateCustomerCartResponse) {
+        option (google.api.http) = {
+            put: "/v1/customercart/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/customercart/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete CustomerCart
+    rpc DeleteCustomerCart(DeleteCustomerCartRequest) returns (DeleteCustomerCartResponse) {
+        option (google.api.http) = {
+            delete: "/v1/customercart/{ID}"
         };
     }
   
@@ -7442,45 +7415,6 @@ service ShrikeService {
         };
     }
   
-  // CreatePetition takes a Petition object to create.
-  rpc CreatePetition(CreatePetitionRequest) returns (CreatePetitionResponse) {
-    option (google.api.http) ={
-      post: "/v1/petition"
-      body: "*"
-    };
-  }
-  // GetPetition takes an ID and returns a single Petition.
-  rpc GetPetition(GetPetitionRequest) returns (GetPetitionResponse) {
-    option (google.api.http) ={
-      get: "/v1/petition/{ID}"
-    };
-  }
-    // List Petition, takes filters, limit, and cursor param.
-  rpc ListPetition(ListPetitionRequest) returns (ListPetitionResponse) {
-  option (google.api.http) ={
-    get: "/v1/petition"
-  };
-}
-    // Update Petition
-    rpc UpdatePetition(UpdatePetitionRequest) returns (UpdatePetitionResponse) {
-        option (google.api.http) = {
-            put: "/v1/petition/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/petition/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Petition
-    rpc DeletePetition(DeletePetitionRequest) returns (DeletePetitionResponse) {
-        option (google.api.http) = {
-            delete: "/v1/petition/{ID}"
-        };
-    }
-  
   // CreateProduct takes a Product object to create.
   rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
     option (google.api.http) ={
@@ -7634,6 +7568,45 @@ service ShrikeService {
     rpc DeleteDonationCampaignMembership(DeleteDonationCampaignMembershipRequest) returns (DeleteDonationCampaignMembershipResponse) {
         option (google.api.http) = {
             delete: "/v1/donationcampaignmembership/{ID}"
+        };
+    }
+  
+  // CreatePetition takes a Petition object to create.
+  rpc CreatePetition(CreatePetitionRequest) returns (CreatePetitionResponse) {
+    option (google.api.http) ={
+      post: "/v1/petition"
+      body: "*"
+    };
+  }
+  // GetPetition takes an ID and returns a single Petition.
+  rpc GetPetition(GetPetitionRequest) returns (GetPetitionResponse) {
+    option (google.api.http) ={
+      get: "/v1/petition/{ID}"
+    };
+  }
+    // List Petition, takes filters, limit, and cursor param.
+  rpc ListPetition(ListPetitionRequest) returns (ListPetitionResponse) {
+  option (google.api.http) ={
+    get: "/v1/petition"
+  };
+}
+    // Update Petition
+    rpc UpdatePetition(UpdatePetitionRequest) returns (UpdatePetitionResponse) {
+        option (google.api.http) = {
+            put: "/v1/petition/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/petition/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Petition
+    rpc DeletePetition(DeletePetitionRequest) returns (DeletePetitionResponse) {
+        option (google.api.http) = {
+            delete: "/v1/petition/{ID}"
         };
     }
   
@@ -7793,45 +7766,6 @@ service ShrikeService {
         };
     }
   
-  // CreateDonor takes a Donor object to create.
-  rpc CreateDonor(CreateDonorRequest) returns (CreateDonorResponse) {
-    option (google.api.http) ={
-      post: "/v1/donor"
-      body: "*"
-    };
-  }
-  // GetDonor takes an ID and returns a single Donor.
-  rpc GetDonor(GetDonorRequest) returns (GetDonorResponse) {
-    option (google.api.http) ={
-      get: "/v1/donor/{ID}"
-    };
-  }
-    // List Donor, takes filters, limit, and cursor param.
-  rpc ListDonor(ListDonorRequest) returns (ListDonorResponse) {
-  option (google.api.http) ={
-    get: "/v1/donor"
-  };
-}
-    // Update Donor
-    rpc UpdateDonor(UpdateDonorRequest) returns (UpdateDonorResponse) {
-        option (google.api.http) = {
-            put: "/v1/donor/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/donor/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Donor
-    rpc DeleteDonor(DeleteDonorRequest) returns (DeleteDonorResponse) {
-        option (google.api.http) = {
-            delete: "/v1/donor/{ID}"
-        };
-    }
-  
   // CreateCustomerOrder takes a CustomerOrder object to create.
   rpc CreateCustomerOrder(CreateCustomerOrderRequest) returns (CreateCustomerOrderResponse) {
     option (google.api.http) ={
@@ -7868,6 +7802,45 @@ service ShrikeService {
     rpc DeleteCustomerOrder(DeleteCustomerOrderRequest) returns (DeleteCustomerOrderResponse) {
         option (google.api.http) = {
             delete: "/v1/customerorder/{ID}"
+        };
+    }
+  
+  // CreateDonor takes a Donor object to create.
+  rpc CreateDonor(CreateDonorRequest) returns (CreateDonorResponse) {
+    option (google.api.http) ={
+      post: "/v1/donor"
+      body: "*"
+    };
+  }
+  // GetDonor takes an ID and returns a single Donor.
+  rpc GetDonor(GetDonorRequest) returns (GetDonorResponse) {
+    option (google.api.http) ={
+      get: "/v1/donor/{ID}"
+    };
+  }
+    // List Donor, takes filters, limit, and cursor param.
+  rpc ListDonor(ListDonorRequest) returns (ListDonorResponse) {
+  option (google.api.http) ={
+    get: "/v1/donor"
+  };
+}
+    // Update Donor
+    rpc UpdateDonor(UpdateDonorRequest) returns (UpdateDonorResponse) {
+        option (google.api.http) = {
+            put: "/v1/donor/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/donor/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Donor
+    rpc DeleteDonor(DeleteDonorRequest) returns (DeleteDonorResponse) {
+        option (google.api.http) = {
+            delete: "/v1/donor/{ID}"
         };
     }
   
@@ -8531,6 +8504,45 @@ service ShrikeService {
     rpc DeleteHomePage(DeleteHomePageRequest) returns (DeleteHomePageResponse) {
         option (google.api.http) = {
             delete: "/v1/homepage/{ID}"
+        };
+    }
+  
+  // CreatePhoto takes a Photo object to create.
+  rpc CreatePhoto(CreatePhotoRequest) returns (CreatePhotoResponse) {
+    option (google.api.http) ={
+      post: "/v1/photo"
+      body: "*"
+    };
+  }
+  // GetPhoto takes an ID and returns a single Photo.
+  rpc GetPhoto(GetPhotoRequest) returns (GetPhotoResponse) {
+    option (google.api.http) ={
+      get: "/v1/photo/{ID}"
+    };
+  }
+    // List Photo, takes filters, limit, and cursor param.
+  rpc ListPhoto(ListPhotoRequest) returns (ListPhotoResponse) {
+  option (google.api.http) ={
+    get: "/v1/photo"
+  };
+}
+    // Update Photo
+    rpc UpdatePhoto(UpdatePhotoRequest) returns (UpdatePhotoResponse) {
+        option (google.api.http) = {
+            put: "/v1/photo/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/photo/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Photo
+    rpc DeletePhoto(DeletePhotoRequest) returns (DeletePhotoResponse) {
+        option (google.api.http) = {
+            delete: "/v1/photo/{ID}"
         };
     }
   

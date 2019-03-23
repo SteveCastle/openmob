@@ -20,7 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog post pages.
-    result.data.wren.listCause.forEach(cause => {
+    (result.data.wren.listCause || []).forEach(cause => {
         console.log(cause.Slug);
       createPage({
         // Path for this page — required

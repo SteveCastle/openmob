@@ -15491,6 +15491,9 @@
         },
         "HomePage": {
           "type": "string"
+        },
+        "Photo": {
+          "type": "string"
         }
       }
     },
@@ -15525,6 +15528,9 @@
         },
         "HomePage": {
           "type": "string"
+        },
+        "Photo": {
+          "type": "string"
         }
       }
     },
@@ -15555,6 +15561,9 @@
           "type": "string"
         },
         "HomePage": {
+          "type": "string"
+        },
+        "Photo": {
           "type": "string"
         }
       }
@@ -16325,6 +16334,9 @@
           "type": "string"
         },
         "HomePage": {
+          "type": "string"
+        },
+        "Photo": {
           "type": "string"
         }
       }
@@ -17903,8 +17915,16 @@
     "v1CreatePhoto": {
       "type": "object",
       "properties": {
-        "ImgURL": {
+        "URI": {
           "type": "string"
+        },
+        "Width": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Height": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -23625,8 +23645,16 @@
           "type": "string",
           "format": "date-time"
         },
-        "ImgURL": {
+        "URI": {
           "type": "string"
+        },
+        "Width": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Height": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -23650,8 +23678,16 @@
           "type": "string",
           "format": "date-time"
         },
-        "ImgURL": {
+        "URI": {
           "type": "string"
+        },
+        "Width": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Height": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -23672,8 +23708,16 @@
           "type": "string",
           "format": "date-time"
         },
-        "ImgURL": {
+        "URI": {
           "type": "string"
+        },
+        "Width": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Height": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

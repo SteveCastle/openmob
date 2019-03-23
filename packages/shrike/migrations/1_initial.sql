@@ -62,7 +62,9 @@ CREATE TABLE photo
     id UUID NOT NULL DEFAULT gen_random_uuid(),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    img_url VARCHAR(255) NOT NULL,
+    uri VARCHAR(255) NOT NULL,
+    width INTEGER NOT NULL,
+    height INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 -- CMS TABLES
@@ -623,6 +625,8 @@ CREATE TABLE agent_membership
 
 --ADD CAUSE RELATIONS
 ALTER TABLE cause ADD COLUMN home_page UUID REFERENCES home_page(id);
+ALTER TABLE cause ADD COLUMN photo UUID REFERENCES photo(id);
+
 ALTER TABLE field_type ADD COLUMN component_type UUID REFERENCES component_type(id);
 
 -- +migrate Down
@@ -630,6 +634,7 @@ ALTER TABLE field_type ADD COLUMN component_type UUID REFERENCES component_type(
 
 --REMOVE CAUSE RELATIONS
 ALTER TABLE field_type DROP COLUMN component_type;
+ALTER TABLE cause DROP COLUMN photo;
 ALTER TABLE cause DROP COLUMN home_page;
 
 -- CMS MEMBERSHIPS

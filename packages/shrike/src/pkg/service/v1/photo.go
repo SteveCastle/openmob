@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePho
 	defer c.Close()
 	var id string
 	// insert Photo entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO photo (img_url) VALUES($1)  RETURNING id;",
-		req.Item.ImgURL).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO photo (uri, width, height) VALUES($1, $2, $3)  RETURNING id;",
+		req.Item.URI, req.Item.Width, req.Item.Height).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Photo-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 	defer c.Close()
 
 	// query Photo by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, img_url FROM photo WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, uri, width, height FROM photo WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Photo-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 	var createdAt pq.NullTime
 	var updatedAt pq.NullTime
 
-	if err := rows.Scan(&photo.ID, &createdAt, &updatedAt, &photo.ImgURL); err != nil {
+	if err := rows.Scan(&photo.ID, &createdAt, &updatedAt, &photo.URI, &photo.Width, &photo.Height); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Photo row-> "+err.Error())
 	}
 
@@ -124,7 +124,7 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 	// Generate SQL to select all columns in Photo Table
 	// Then generate filtering and ordering sql and finally run query.
 
-	baseSQL := "SELECT id, created_at, updated_at, img_url FROM photo"
+	baseSQL := "SELECT id, created_at, updated_at, uri, width, height FROM photo"
 	querySQL := queries.BuildPhotoFilters(req.Filters, req.Ordering, req.Limit)
 	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
 	rows, err := c.QueryContext(ctx, SQL)
@@ -140,7 +140,7 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 
 	for rows.Next() {
 		photo := new(v1.Photo)
-		if err := rows.Scan(&photo.ID, &createdAt, &updatedAt, &photo.ImgURL); err != nil {
+		if err := rows.Scan(&photo.ID, &createdAt, &updatedAt, &photo.URI, &photo.Width, &photo.Height); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Photo row-> "+err.Error())
 		}
 		// Convert pq.NullTime from database into proto timestamp.
@@ -185,8 +185,8 @@ func (s *shrikeServiceServer) UpdatePhoto(ctx context.Context, req *v1.UpdatePho
 	defer c.Close()
 
 	// update photo
-	res, err := c.ExecContext(ctx, "UPDATE photo SET img_url=$2 WHERE id=$1",
-		req.Item.ID, req.Item.ImgURL)
+	res, err := c.ExecContext(ctx, "UPDATE photo SET uri=$2, width=$3, height=$4 WHERE id=$1",
+		req.Item.ID, req.Item.URI, req.Item.Width, req.Item.Height)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Photo-> "+err.Error())
 	}

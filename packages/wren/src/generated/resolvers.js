@@ -1,5 +1,12 @@
 module.exports = client => ({
 
+  LayoutType : {
+    Layouts: ({ ID }) =>
+    client
+      .ListLayout()
+      .sendMessage({ api: 'v1', filters: [{ LayoutType: ID }], limit: 10 })
+      .then(res => res.items),
+},
   ACL : {
 },
   MailingAddress : {
@@ -7,15 +14,6 @@ module.exports = client => ({
   PhoneNumber : {
 },
   EmailAddress : {
-},
-  Photo : {
-},
-  LayoutType : {
-    Layouts: ({ ID }) =>
-    client
-      .ListLayout()
-      .sendMessage({ api: 'v1', filters: [{ LayoutType: ID }], limit: 10 })
-      .then(res => res.items),
 },
   LayoutRow : {
     LayoutColumns: ({ ID }) =>
@@ -129,12 +127,6 @@ module.exports = client => ({
       .GetElection()
       .sendMessage({ api: 'v1',  ID: Election })
       .then(res => res.item),},
-  Office : {
-    Election: ({ Election }) =>
-    client
-      .GetElection()
-      .sendMessage({ api: 'v1',  ID: Election })
-      .then(res => res.item),},
   DistrictType : {
     Districts: ({ ID }) =>
     client
@@ -147,6 +139,12 @@ module.exports = client => ({
     client
       .GetDistrictType()
       .sendMessage({ api: 'v1',  ID: DistrictType })
+      .then(res => res.item),},
+  Office : {
+    Election: ({ Election }) =>
+    client
+      .GetElection()
+      .sendMessage({ api: 'v1',  ID: Election })
       .then(res => res.item),},
   PollItem : {
     Poll: ({ Poll }) =>
@@ -170,18 +168,18 @@ module.exports = client => ({
 },
   Company : {
 },
-  CustomerCart : {
-    CustomerOrders: ({ ID }) =>
-    client
-      .ListCustomerOrder()
-      .sendMessage({ api: 'v1', filters: [{ CustomerCart: ID }], limit: 10 })
-      .then(res => res.items),
-},
   ProductType : {
     Products: ({ ID }) =>
     client
       .ListProduct()
       .sendMessage({ api: 'v1', filters: [{ ProductType: ID }], limit: 10 })
+      .then(res => res.items),
+},
+  CustomerCart : {
+    CustomerOrders: ({ ID }) =>
+    client
+      .ListCustomerOrder()
+      .sendMessage({ api: 'v1', filters: [{ CustomerCart: ID }], limit: 10 })
       .then(res => res.items),
 },
   Payment : {
@@ -281,23 +279,6 @@ module.exports = client => ({
       .GetLiveEvent()
       .sendMessage({ api: 'v1',  ID: LiveEvent })
       .then(res => res.item),},
-  Petition : {
-    PetitionMemberships: ({ ID }) =>
-    client
-      .ListPetitionMembership()
-      .sendMessage({ api: 'v1', filters: [{ Petition: ID }], limit: 10 })
-      .then(res => res.items),
-    PollMemberships: ({ ID }) =>
-    client
-      .ListPollMembership()
-      .sendMessage({ api: 'v1', filters: [{ Petition: ID }], limit: 10 })
-      .then(res => res.items),
-    PetitionSigners: ({ ID }) =>
-    client
-      .ListPetitionSigner()
-      .sendMessage({ api: 'v1', filters: [{ Petition: ID }], limit: 10 })
-      .then(res => res.items),
-},
   Product : {
     ProductMemberships: ({ ID }) =>
     client
@@ -336,6 +317,23 @@ module.exports = client => ({
       .GetDonationCampaign()
       .sendMessage({ api: 'v1',  ID: DonationCampaign })
       .then(res => res.item),},
+  Petition : {
+    PetitionMemberships: ({ ID }) =>
+    client
+      .ListPetitionMembership()
+      .sendMessage({ api: 'v1', filters: [{ Petition: ID }], limit: 10 })
+      .then(res => res.items),
+    PollMemberships: ({ ID }) =>
+    client
+      .ListPollMembership()
+      .sendMessage({ api: 'v1', filters: [{ Petition: ID }], limit: 10 })
+      .then(res => res.items),
+    PetitionSigners: ({ ID }) =>
+    client
+      .ListPetitionSigner()
+      .sendMessage({ api: 'v1', filters: [{ Petition: ID }], limit: 10 })
+      .then(res => res.items),
+},
   PetitionSigner : {
     Petition: ({ Petition }) =>
     client
@@ -390,20 +388,6 @@ module.exports = client => ({
       .GetCause()
       .sendMessage({ api: 'v1',  ID: Cause })
       .then(res => res.item),},
-  Donor : {
-    CustomerOrder: ({ CustomerOrder }) =>
-    client
-      .GetCustomerOrder()
-      .sendMessage({ api: 'v1',  ID: CustomerOrder })
-      .then(res => res.item),    Contact: ({ Contact }) =>
-    client
-      .GetContact()
-      .sendMessage({ api: 'v1',  ID: Contact })
-      .then(res => res.item),    Cause: ({ Cause }) =>
-    client
-      .GetCause()
-      .sendMessage({ api: 'v1',  ID: Cause })
-      .then(res => res.item),},
   CustomerOrder : {
     Payments: ({ ID }) =>
     client
@@ -424,6 +408,20 @@ module.exports = client => ({
     client
       .GetCustomerCart()
       .sendMessage({ api: 'v1',  ID: CustomerCart })
+      .then(res => res.item),},
+  Donor : {
+    CustomerOrder: ({ CustomerOrder }) =>
+    client
+      .GetCustomerOrder()
+      .sendMessage({ api: 'v1',  ID: CustomerOrder })
+      .then(res => res.item),    Contact: ({ Contact }) =>
+    client
+      .GetContact()
+      .sendMessage({ api: 'v1',  ID: Contact })
+      .then(res => res.item),    Cause: ({ Cause }) =>
+    client
+      .GetCause()
+      .sendMessage({ api: 'v1',  ID: Cause })
       .then(res => res.item),},
   LiveEvent : {
     LiveEventMemberships: ({ ID }) =>
@@ -659,6 +657,13 @@ module.exports = client => ({
       .GetLayout()
       .sendMessage({ api: 'v1',  ID: Layout })
       .then(res => res.item),},
+  Photo : {
+    Causes: ({ ID }) =>
+    client
+      .ListCause()
+      .sendMessage({ api: 'v1', filters: [{ Photo: ID }], limit: 10 })
+      .then(res => res.items),
+},
   Cause : {
     LandingPages: ({ ID }) =>
     client
@@ -774,6 +779,10 @@ module.exports = client => ({
     client
       .GetHomePage()
       .sendMessage({ api: 'v1',  ID: HomePage })
+      .then(res => res.item),    Photo: ({ Photo }) =>
+    client
+      .GetPhoto()
+      .sendMessage({ api: 'v1',  ID: Photo })
       .then(res => res.item),},
   ComponentType : {
     Components: ({ ID }) =>
@@ -800,6 +809,16 @@ module.exports = client => ({
       .then(res => res.item),},
   Query: {
     
+    listLayoutType: (_, { limit, ordering, filters }) =>
+      client
+        .ListLayoutType()
+        .sendMessage({ api: 'v1', limit, ordering, filters })
+        .then(res => res.items),
+    getLayoutType: (_, { ID }) =>
+      client
+        .GetLayoutType()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
     listACL: (_, { limit, ordering, filters }) =>
       client
         .ListACL()
@@ -838,26 +857,6 @@ module.exports = client => ({
     getEmailAddress: (_, { ID }) =>
       client
         .GetEmailAddress()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
-    listPhoto: (_, { limit, ordering, filters }) =>
-      client
-        .ListPhoto()
-        .sendMessage({ api: 'v1', limit, ordering, filters })
-        .then(res => res.items),
-    getPhoto: (_, { ID }) =>
-      client
-        .GetPhoto()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
-    listLayoutType: (_, { limit, ordering, filters }) =>
-      client
-        .ListLayoutType()
-        .sendMessage({ api: 'v1', limit, ordering, filters })
-        .then(res => res.items),
-    getLayoutType: (_, { ID }) =>
-      client
-        .GetLayoutType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
     listLayoutRow: (_, { limit, ordering, filters }) =>
@@ -960,16 +959,6 @@ module.exports = client => ({
         .GetCandidate()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
-    listOffice: (_, { limit, ordering, filters }) =>
-      client
-        .ListOffice()
-        .sendMessage({ api: 'v1', limit, ordering, filters })
-        .then(res => res.items),
-    getOffice: (_, { ID }) =>
-      client
-        .GetOffice()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
     listDistrictType: (_, { limit, ordering, filters }) =>
       client
         .ListDistrictType()
@@ -988,6 +977,16 @@ module.exports = client => ({
     getDistrict: (_, { ID }) =>
       client
         .GetDistrict()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
+    listOffice: (_, { limit, ordering, filters }) =>
+      client
+        .ListOffice()
+        .sendMessage({ api: 'v1', limit, ordering, filters })
+        .then(res => res.items),
+    getOffice: (_, { ID }) =>
+      client
+        .GetOffice()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
     listPollItem: (_, { limit, ordering, filters }) =>
@@ -1030,16 +1029,6 @@ module.exports = client => ({
         .GetCompany()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
-    listCustomerCart: (_, { limit, ordering, filters }) =>
-      client
-        .ListCustomerCart()
-        .sendMessage({ api: 'v1', limit, ordering, filters })
-        .then(res => res.items),
-    getCustomerCart: (_, { ID }) =>
-      client
-        .GetCustomerCart()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
     listProductType: (_, { limit, ordering, filters }) =>
       client
         .ListProductType()
@@ -1048,6 +1037,16 @@ module.exports = client => ({
     getProductType: (_, { ID }) =>
       client
         .GetProductType()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
+    listCustomerCart: (_, { limit, ordering, filters }) =>
+      client
+        .ListCustomerCart()
+        .sendMessage({ api: 'v1', limit, ordering, filters })
+        .then(res => res.items),
+    getCustomerCart: (_, { ID }) =>
+      client
+        .GetCustomerCart()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
     listPayment: (_, { limit, ordering, filters }) =>
@@ -1150,16 +1149,6 @@ module.exports = client => ({
         .GetLiveEventMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
-    listPetition: (_, { limit, ordering, filters }) =>
-      client
-        .ListPetition()
-        .sendMessage({ api: 'v1', limit, ordering, filters })
-        .then(res => res.items),
-    getPetition: (_, { ID }) =>
-      client
-        .GetPetition()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
     listProduct: (_, { limit, ordering, filters }) =>
       client
         .ListProduct()
@@ -1198,6 +1187,16 @@ module.exports = client => ({
     getDonationCampaignMembership: (_, { ID }) =>
       client
         .GetDonationCampaignMembership()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
+    listPetition: (_, { limit, ordering, filters }) =>
+      client
+        .ListPetition()
+        .sendMessage({ api: 'v1', limit, ordering, filters })
+        .then(res => res.items),
+    getPetition: (_, { ID }) =>
+      client
+        .GetPetition()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
     listPetitionSigner: (_, { limit, ordering, filters }) =>
@@ -1240,16 +1239,6 @@ module.exports = client => ({
         .GetPurchaser()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
-    listDonor: (_, { limit, ordering, filters }) =>
-      client
-        .ListDonor()
-        .sendMessage({ api: 'v1', limit, ordering, filters })
-        .then(res => res.items),
-    getDonor: (_, { ID }) =>
-      client
-        .GetDonor()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
     listCustomerOrder: (_, { limit, ordering, filters }) =>
       client
         .ListCustomerOrder()
@@ -1258,6 +1247,16 @@ module.exports = client => ({
     getCustomerOrder: (_, { ID }) =>
       client
         .GetCustomerOrder()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
+    listDonor: (_, { limit, ordering, filters }) =>
+      client
+        .ListDonor()
+        .sendMessage({ api: 'v1', limit, ordering, filters })
+        .then(res => res.items),
+    getDonor: (_, { ID }) =>
+      client
+        .GetDonor()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
     listLiveEvent: (_, { limit, ordering, filters }) =>
@@ -1430,6 +1429,16 @@ module.exports = client => ({
         .GetHomePage()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
+    listPhoto: (_, { limit, ordering, filters }) =>
+      client
+        .ListPhoto()
+        .sendMessage({ api: 'v1', limit, ordering, filters })
+        .then(res => res.items),
+    getPhoto: (_, { ID }) =>
+      client
+        .GetPhoto()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
     listCause: (_, { limit, ordering, filters }) =>
       client
         .ListCause()
@@ -1463,6 +1472,21 @@ module.exports = client => ({
   },
   Mutation: {
     
+    createLayoutType: (_, { layoutType, buildStatic = false }) =>
+      client
+        .CreateLayoutType()
+        .sendMessage({ api: 'v1', item: { ...layoutType }, buildStatic })
+        .then(res => ({ ID: res.ID, ...layoutType})),
+    updateLayoutType: (_, { ID, layoutType, buildStatic = false }) =>
+      client
+        .UpdateLayoutType()
+        .sendMessage({ api: 'v1', item: { ID, ...layoutType }, buildStatic  })
+        .then(res => res.updated),
+    deleteLayoutType: (_, { ID }) =>
+      client
+        .DeleteLayoutType()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
     createACL: (_, { acl, buildStatic = false }) =>
       client
         .CreateACL()
@@ -1521,36 +1545,6 @@ module.exports = client => ({
     deleteEmailAddress: (_, { ID }) =>
       client
         .DeleteEmailAddress()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted),
-    createPhoto: (_, { photo, buildStatic = false }) =>
-      client
-        .CreatePhoto()
-        .sendMessage({ api: 'v1', item: { ...photo }, buildStatic })
-        .then(res => ({ ID: res.ID, ...photo})),
-    updatePhoto: (_, { ID, photo, buildStatic = false }) =>
-      client
-        .UpdatePhoto()
-        .sendMessage({ api: 'v1', item: { ID, ...photo }, buildStatic  })
-        .then(res => res.updated),
-    deletePhoto: (_, { ID }) =>
-      client
-        .DeletePhoto()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted),
-    createLayoutType: (_, { layoutType, buildStatic = false }) =>
-      client
-        .CreateLayoutType()
-        .sendMessage({ api: 'v1', item: { ...layoutType }, buildStatic })
-        .then(res => ({ ID: res.ID, ...layoutType})),
-    updateLayoutType: (_, { ID, layoutType, buildStatic = false }) =>
-      client
-        .UpdateLayoutType()
-        .sendMessage({ api: 'v1', item: { ID, ...layoutType }, buildStatic  })
-        .then(res => res.updated),
-    deleteLayoutType: (_, { ID }) =>
-      client
-        .DeleteLayoutType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createLayoutRow: (_, { layoutRow, buildStatic = false }) =>
@@ -1703,21 +1697,6 @@ module.exports = client => ({
         .DeleteCandidate()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createOffice: (_, { office, buildStatic = false }) =>
-      client
-        .CreateOffice()
-        .sendMessage({ api: 'v1', item: { ...office }, buildStatic })
-        .then(res => ({ ID: res.ID, ...office})),
-    updateOffice: (_, { ID, office, buildStatic = false }) =>
-      client
-        .UpdateOffice()
-        .sendMessage({ api: 'v1', item: { ID, ...office }, buildStatic  })
-        .then(res => res.updated),
-    deleteOffice: (_, { ID }) =>
-      client
-        .DeleteOffice()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted),
     createDistrictType: (_, { districtType, buildStatic = false }) =>
       client
         .CreateDistrictType()
@@ -1746,6 +1725,21 @@ module.exports = client => ({
     deleteDistrict: (_, { ID }) =>
       client
         .DeleteDistrict()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createOffice: (_, { office, buildStatic = false }) =>
+      client
+        .CreateOffice()
+        .sendMessage({ api: 'v1', item: { ...office }, buildStatic })
+        .then(res => ({ ID: res.ID, ...office})),
+    updateOffice: (_, { ID, office, buildStatic = false }) =>
+      client
+        .UpdateOffice()
+        .sendMessage({ api: 'v1', item: { ID, ...office }, buildStatic  })
+        .then(res => res.updated),
+    deleteOffice: (_, { ID }) =>
+      client
+        .DeleteOffice()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createPollItem: (_, { pollItem, buildStatic = false }) =>
@@ -1808,21 +1802,6 @@ module.exports = client => ({
         .DeleteCompany()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createCustomerCart: (_, { customerCart, buildStatic = false }) =>
-      client
-        .CreateCustomerCart()
-        .sendMessage({ api: 'v1', item: { ...customerCart }, buildStatic })
-        .then(res => ({ ID: res.ID, ...customerCart})),
-    updateCustomerCart: (_, { ID, customerCart, buildStatic = false }) =>
-      client
-        .UpdateCustomerCart()
-        .sendMessage({ api: 'v1', item: { ID, ...customerCart }, buildStatic  })
-        .then(res => res.updated),
-    deleteCustomerCart: (_, { ID }) =>
-      client
-        .DeleteCustomerCart()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted),
     createProductType: (_, { productType, buildStatic = false }) =>
       client
         .CreateProductType()
@@ -1836,6 +1815,21 @@ module.exports = client => ({
     deleteProductType: (_, { ID }) =>
       client
         .DeleteProductType()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createCustomerCart: (_, { customerCart, buildStatic = false }) =>
+      client
+        .CreateCustomerCart()
+        .sendMessage({ api: 'v1', item: { ...customerCart }, buildStatic })
+        .then(res => ({ ID: res.ID, ...customerCart})),
+    updateCustomerCart: (_, { ID, customerCart, buildStatic = false }) =>
+      client
+        .UpdateCustomerCart()
+        .sendMessage({ api: 'v1', item: { ID, ...customerCart }, buildStatic  })
+        .then(res => res.updated),
+    deleteCustomerCart: (_, { ID }) =>
+      client
+        .DeleteCustomerCart()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createPayment: (_, { payment, buildStatic = false }) =>
@@ -1988,21 +1982,6 @@ module.exports = client => ({
         .DeleteLiveEventMembership()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createPetition: (_, { petition, buildStatic = false }) =>
-      client
-        .CreatePetition()
-        .sendMessage({ api: 'v1', item: { ...petition }, buildStatic })
-        .then(res => ({ ID: res.ID, ...petition})),
-    updatePetition: (_, { ID, petition, buildStatic = false }) =>
-      client
-        .UpdatePetition()
-        .sendMessage({ api: 'v1', item: { ID, ...petition }, buildStatic  })
-        .then(res => res.updated),
-    deletePetition: (_, { ID }) =>
-      client
-        .DeletePetition()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted),
     createProduct: (_, { product, buildStatic = false }) =>
       client
         .CreateProduct()
@@ -2061,6 +2040,21 @@ module.exports = client => ({
     deleteDonationCampaignMembership: (_, { ID }) =>
       client
         .DeleteDonationCampaignMembership()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createPetition: (_, { petition, buildStatic = false }) =>
+      client
+        .CreatePetition()
+        .sendMessage({ api: 'v1', item: { ...petition }, buildStatic })
+        .then(res => ({ ID: res.ID, ...petition})),
+    updatePetition: (_, { ID, petition, buildStatic = false }) =>
+      client
+        .UpdatePetition()
+        .sendMessage({ api: 'v1', item: { ID, ...petition }, buildStatic  })
+        .then(res => res.updated),
+    deletePetition: (_, { ID }) =>
+      client
+        .DeletePetition()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createPetitionSigner: (_, { petitionSigner, buildStatic = false }) =>
@@ -2123,21 +2117,6 @@ module.exports = client => ({
         .DeletePurchaser()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
-    createDonor: (_, { donor, buildStatic = false }) =>
-      client
-        .CreateDonor()
-        .sendMessage({ api: 'v1', item: { ...donor }, buildStatic })
-        .then(res => ({ ID: res.ID, ...donor})),
-    updateDonor: (_, { ID, donor, buildStatic = false }) =>
-      client
-        .UpdateDonor()
-        .sendMessage({ api: 'v1', item: { ID, ...donor }, buildStatic  })
-        .then(res => res.updated),
-    deleteDonor: (_, { ID }) =>
-      client
-        .DeleteDonor()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.deleted),
     createCustomerOrder: (_, { customerOrder, buildStatic = false }) =>
       client
         .CreateCustomerOrder()
@@ -2151,6 +2130,21 @@ module.exports = client => ({
     deleteCustomerOrder: (_, { ID }) =>
       client
         .DeleteCustomerOrder()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createDonor: (_, { donor, buildStatic = false }) =>
+      client
+        .CreateDonor()
+        .sendMessage({ api: 'v1', item: { ...donor }, buildStatic })
+        .then(res => ({ ID: res.ID, ...donor})),
+    updateDonor: (_, { ID, donor, buildStatic = false }) =>
+      client
+        .UpdateDonor()
+        .sendMessage({ api: 'v1', item: { ID, ...donor }, buildStatic  })
+        .then(res => res.updated),
+    deleteDonor: (_, { ID }) =>
+      client
+        .DeleteDonor()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createLiveEvent: (_, { liveEvent, buildStatic = false }) =>
@@ -2406,6 +2400,21 @@ module.exports = client => ({
     deleteHomePage: (_, { ID }) =>
       client
         .DeleteHomePage()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.deleted),
+    createPhoto: (_, { photo, buildStatic = false }) =>
+      client
+        .CreatePhoto()
+        .sendMessage({ api: 'v1', item: { ...photo }, buildStatic })
+        .then(res => ({ ID: res.ID, ...photo})),
+    updatePhoto: (_, { ID, photo, buildStatic = false }) =>
+      client
+        .UpdatePhoto()
+        .sendMessage({ api: 'v1', item: { ID, ...photo }, buildStatic  })
+        .then(res => res.updated),
+    deletePhoto: (_, { ID }) =>
+      client
+        .DeletePhoto()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.deleted),
     createCause: (_, { cause, buildStatic = false }) =>

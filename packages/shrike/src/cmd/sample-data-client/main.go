@@ -191,6 +191,22 @@ func main() {
 
 	homepageID := homepageRes.ID
 
+	// Create a Photo
+	photoRequest := v1.CreatePhotoRequest{
+		Api: apiVersion,
+		Item: &v1.CreatePhoto{
+			URI:    "https://picsum.photos/400/400",
+			Width:  400,
+			Height: 400,
+		},
+	}
+	photoRes, err := c.CreatePhoto(ctx, &photoRequest)
+	if err != nil {
+		log.Fatalf("Create failed: %v", err)
+	}
+	log.Printf("Create photo Result: <%+v>\n\n", photoRes)
+	photoID := photoRes.ID
+
 	// Create a Cause
 	causeTitle := faker.Company().Name()
 	causeRequest := v1.CreateCauseRequest{
@@ -200,6 +216,7 @@ func main() {
 			Slug:     slugify.Slugify(causeTitle),
 			Summary:  faker.Company().CatchPhrase(),
 			HomePage: homepageID,
+			Photo:    photoID,
 		},
 		BuildStatic: true,
 	}

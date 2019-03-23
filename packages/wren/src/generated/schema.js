@@ -9,6 +9,11 @@ input TimeInput {
     nanos: Int!
   }
 
+input LayoutTypeInput {
+  secret: Int
+  Title: String!
+}
+​
 input ACLInput {
   secret: Int
 }
@@ -29,16 +34,6 @@ input PhoneNumberInput {
 input EmailAddressInput {
   secret: Int
   Address: String!
-}
-​
-input PhotoInput {
-  secret: Int
-  ImgURL: String!
-}
-​
-input LayoutTypeInput {
-  secret: Int
-  Title: String!
 }
 ​
 input LayoutRowInput {
@@ -106,12 +101,6 @@ input CandidateInput {
   Election: ID!
 }
 ​
-input OfficeInput {
-  secret: Int
-  Title: String!
-  Election: ID
-}
-​
 input DistrictTypeInput {
   secret: Int
   Title: String!
@@ -122,6 +111,12 @@ input DistrictInput {
   Geom: Float
   Title: String!
   DistrictType: ID!
+}
+​
+input OfficeInput {
+  secret: Int
+  Title: String!
+  Election: ID
 }
 ​
 input PollItemInput {
@@ -145,13 +140,13 @@ input CompanyInput {
   Title: String!
 }
 ​
-input CustomerCartInput {
-  secret: Int
-}
-​
 input ProductTypeInput {
   secret: Int
   Title: String!
+}
+​
+input CustomerCartInput {
+  secret: Int
 }
 ​
 input PaymentInput {
@@ -209,11 +204,6 @@ input LiveEventMembershipInput {
   LiveEvent: ID!
 }
 ​
-input PetitionInput {
-  secret: Int
-  Title: String!
-}
-​
 input ProductInput {
   secret: Int
   Title: String!
@@ -235,6 +225,11 @@ input DonationCampaignMembershipInput {
   secret: Int
   Cause: ID!
   DonationCampaign: ID!
+}
+​
+input PetitionInput {
+  secret: Int
+  Title: String!
 }
 ​
 input PetitionSignerInput {
@@ -263,16 +258,16 @@ input PurchaserInput {
   Cause: ID!
 }
 ​
+input CustomerOrderInput {
+  secret: Int
+  CustomerCart: ID!
+}
+​
 input DonorInput {
   secret: Int
   CustomerOrder: ID!
   Contact: ID!
   Cause: ID!
-}
-​
-input CustomerOrderInput {
-  secret: Int
-  CustomerCart: ID!
 }
 ​
 input LiveEventInput {
@@ -381,12 +376,20 @@ input HomePageInput {
   Layout: ID
 }
 ​
+input PhotoInput {
+  secret: Int
+  URI: String!
+  Width: Int!
+  Height: Int!
+}
+​
 input CauseInput {
   secret: Int
   Title: String!
   Slug: String!
   Summary: String
   HomePage: ID
+  Photo: ID
 }
 ​
 input ComponentTypeInput {
@@ -409,6 +412,14 @@ input FieldTypeInput {
 ​
 
 
+type LayoutType {
+  ID: ID!
+  Layouts: [Layout]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
+}
+​
 type ACL {
   ID: ID!
   CreatedAt: Time!
@@ -437,21 +448,6 @@ type EmailAddress {
   CreatedAt: Time!
   UpdatedAt: Time!
   Address: String!
-}
-​
-type Photo {
-  ID: ID!
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  ImgURL: String!
-}
-​
-type LayoutType {
-  ID: ID!
-  Layouts: [Layout]
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
 }
 ​
 type LayoutRow {
@@ -547,14 +543,6 @@ type Candidate {
   Election: Election
 }
 ​
-type Office {
-  ID: ID!
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
-  Election: Election
-}
-​
 type DistrictType {
   ID: ID!
   Districts: [District]
@@ -570,6 +558,14 @@ type District {
   Geom: Float
   Title: String!
   DistrictType: DistrictType
+}
+​
+type Office {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
+  Election: Election
 }
 ​
 type PollItem {
@@ -603,19 +599,19 @@ type Company {
   Title: String!
 }
 ​
-type CustomerCart {
-  ID: ID!
-  CustomerOrders: [CustomerOrder]
-  CreatedAt: Time!
-  UpdatedAt: Time!
-}
-​
 type ProductType {
   ID: ID!
   Products: [Product]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
+}
+​
+type CustomerCart {
+  ID: ID!
+  CustomerOrders: [CustomerOrder]
+  CreatedAt: Time!
+  UpdatedAt: Time!
 }
 ​
 type Payment {
@@ -698,16 +694,6 @@ type LiveEventMembership {
   LiveEvent: LiveEvent
 }
 ​
-type Petition {
-  ID: ID!
-  PetitionMemberships: [PetitionMembership]
-  PollMemberships: [PollMembership]
-  PetitionSigners: [PetitionSigner]
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
-}
-​
 type Product {
   ID: ID!
   ProductMemberships: [ProductMembership]
@@ -739,6 +725,16 @@ type DonationCampaignMembership {
   UpdatedAt: Time!
   Cause: Cause
   DonationCampaign: DonationCampaign
+}
+​
+type Petition {
+  ID: ID!
+  PetitionMemberships: [PetitionMembership]
+  PollMemberships: [PollMembership]
+  PetitionSigners: [PetitionSigner]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
 }
 ​
 type PetitionSigner {
@@ -777,15 +773,6 @@ type Purchaser {
   Cause: Cause
 }
 ​
-type Donor {
-  ID: ID!
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  CustomerOrder: CustomerOrder
-  Contact: Contact
-  Cause: Cause
-}
-​
 type CustomerOrder {
   ID: ID!
   Payments: [Payment]
@@ -794,6 +781,15 @@ type CustomerOrder {
   CreatedAt: Time!
   UpdatedAt: Time!
   CustomerCart: CustomerCart
+}
+​
+type Donor {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  CustomerOrder: CustomerOrder
+  Contact: Contact
+  Cause: Cause
 }
 ​
 type LiveEvent {
@@ -956,6 +952,16 @@ type HomePage {
   Layout: Layout
 }
 ​
+type Photo {
+  ID: ID!
+  Causes: [Cause]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  URI: String!
+  Width: Int!
+  Height: Int!
+}
+​
 type Cause {
   ID: ID!
   LandingPages: [LandingPage]
@@ -986,6 +992,7 @@ type Cause {
   Slug: String!
   Summary: String
   HomePage: HomePage
+  Photo: Photo
 }
 ​
 type ComponentType {
@@ -1016,6 +1023,8 @@ type FieldType {
 
   type Query {
     
+    getLayoutType(ID: ID!): LayoutType
+    listLayoutType(limit: Int): [LayoutType]
     getACL(ID: ID!): ACL
     listACL(limit: Int): [ACL]
     getMailingAddress(ID: ID!): MailingAddress
@@ -1024,10 +1033,6 @@ type FieldType {
     listPhoneNumber(limit: Int): [PhoneNumber]
     getEmailAddress(ID: ID!): EmailAddress
     listEmailAddress(limit: Int): [EmailAddress]
-    getPhoto(ID: ID!): Photo
-    listPhoto(limit: Int): [Photo]
-    getLayoutType(ID: ID!): LayoutType
-    listLayoutType(limit: Int): [LayoutType]
     getLayoutRow(ID: ID!): LayoutRow
     listLayoutRow(limit: Int): [LayoutRow]
     getComponentImplementation(ID: ID!): ComponentImplementation
@@ -1048,12 +1053,12 @@ type FieldType {
     listIssue(limit: Int): [Issue]
     getCandidate(ID: ID!): Candidate
     listCandidate(limit: Int): [Candidate]
-    getOffice(ID: ID!): Office
-    listOffice(limit: Int): [Office]
     getDistrictType(ID: ID!): DistrictType
     listDistrictType(limit: Int): [DistrictType]
     getDistrict(ID: ID!): District
     listDistrict(limit: Int): [District]
+    getOffice(ID: ID!): Office
+    listOffice(limit: Int): [Office]
     getPollItem(ID: ID!): PollItem
     listPollItem(limit: Int): [PollItem]
     getVolunteerOpportunityType(ID: ID!): VolunteerOpportunityType
@@ -1062,10 +1067,10 @@ type FieldType {
     listLiveEventType(limit: Int): [LiveEventType]
     getCompany(ID: ID!): Company
     listCompany(limit: Int): [Company]
-    getCustomerCart(ID: ID!): CustomerCart
-    listCustomerCart(limit: Int): [CustomerCart]
     getProductType(ID: ID!): ProductType
     listProductType(limit: Int): [ProductType]
+    getCustomerCart(ID: ID!): CustomerCart
+    listCustomerCart(limit: Int): [CustomerCart]
     getPayment(ID: ID!): Payment
     listPayment(limit: Int): [Payment]
     getDelivery(ID: ID!): Delivery
@@ -1086,8 +1091,6 @@ type FieldType {
     listVolunteerOpportunityMembership(limit: Int): [VolunteerOpportunityMembership]
     getLiveEventMembership(ID: ID!): LiveEventMembership
     listLiveEventMembership(limit: Int): [LiveEventMembership]
-    getPetition(ID: ID!): Petition
-    listPetition(limit: Int): [Petition]
     getProduct(ID: ID!): Product
     listProduct(limit: Int): [Product]
     getProductMembership(ID: ID!): ProductMembership
@@ -1096,6 +1099,8 @@ type FieldType {
     listDonationCampaign(limit: Int): [DonationCampaign]
     getDonationCampaignMembership(ID: ID!): DonationCampaignMembership
     listDonationCampaignMembership(limit: Int): [DonationCampaignMembership]
+    getPetition(ID: ID!): Petition
+    listPetition(limit: Int): [Petition]
     getPetitionSigner(ID: ID!): PetitionSigner
     listPetitionSigner(limit: Int): [PetitionSigner]
     getPoll(ID: ID!): Poll
@@ -1104,10 +1109,10 @@ type FieldType {
     listPollRespondant(limit: Int): [PollRespondant]
     getPurchaser(ID: ID!): Purchaser
     listPurchaser(limit: Int): [Purchaser]
-    getDonor(ID: ID!): Donor
-    listDonor(limit: Int): [Donor]
     getCustomerOrder(ID: ID!): CustomerOrder
     listCustomerOrder(limit: Int): [CustomerOrder]
+    getDonor(ID: ID!): Donor
+    listDonor(limit: Int): [Donor]
     getLiveEvent(ID: ID!): LiveEvent
     listLiveEvent(limit: Int): [LiveEvent]
     getEventAttendee(ID: ID!): EventAttendee
@@ -1142,6 +1147,8 @@ type FieldType {
     listAgentMembership(limit: Int): [AgentMembership]
     getHomePage(ID: ID!): HomePage
     listHomePage(limit: Int): [HomePage]
+    getPhoto(ID: ID!): Photo
+    listPhoto(limit: Int): [Photo]
     getCause(ID: ID!): Cause
     listCause(limit: Int): [Cause]
     getComponentType(ID: ID!): ComponentType
@@ -1152,6 +1159,9 @@ type FieldType {
 
   type Mutation {
     
+    createLayoutType(layoutType: LayoutTypeInput, buildStatic: Boolean): LayoutType
+    updateLayoutType(ID: ID!, layoutType: LayoutTypeInput, buildStatic: Boolean): Int
+    deleteLayoutType(ID: ID!, buildStatic: Boolean): Int
     createACL(acl: ACLInput, buildStatic: Boolean): ACL
     updateACL(ID: ID!, acl: ACLInput, buildStatic: Boolean): Int
     deleteACL(ID: ID!, buildStatic: Boolean): Int
@@ -1164,12 +1174,6 @@ type FieldType {
     createEmailAddress(emailAddress: EmailAddressInput, buildStatic: Boolean): EmailAddress
     updateEmailAddress(ID: ID!, emailAddress: EmailAddressInput, buildStatic: Boolean): Int
     deleteEmailAddress(ID: ID!, buildStatic: Boolean): Int
-    createPhoto(photo: PhotoInput, buildStatic: Boolean): Photo
-    updatePhoto(ID: ID!, photo: PhotoInput, buildStatic: Boolean): Int
-    deletePhoto(ID: ID!, buildStatic: Boolean): Int
-    createLayoutType(layoutType: LayoutTypeInput, buildStatic: Boolean): LayoutType
-    updateLayoutType(ID: ID!, layoutType: LayoutTypeInput, buildStatic: Boolean): Int
-    deleteLayoutType(ID: ID!, buildStatic: Boolean): Int
     createLayoutRow(layoutRow: LayoutRowInput, buildStatic: Boolean): LayoutRow
     updateLayoutRow(ID: ID!, layoutRow: LayoutRowInput, buildStatic: Boolean): Int
     deleteLayoutRow(ID: ID!, buildStatic: Boolean): Int
@@ -1200,15 +1204,15 @@ type FieldType {
     createCandidate(candidate: CandidateInput, buildStatic: Boolean): Candidate
     updateCandidate(ID: ID!, candidate: CandidateInput, buildStatic: Boolean): Int
     deleteCandidate(ID: ID!, buildStatic: Boolean): Int
-    createOffice(office: OfficeInput, buildStatic: Boolean): Office
-    updateOffice(ID: ID!, office: OfficeInput, buildStatic: Boolean): Int
-    deleteOffice(ID: ID!, buildStatic: Boolean): Int
     createDistrictType(districtType: DistrictTypeInput, buildStatic: Boolean): DistrictType
     updateDistrictType(ID: ID!, districtType: DistrictTypeInput, buildStatic: Boolean): Int
     deleteDistrictType(ID: ID!, buildStatic: Boolean): Int
     createDistrict(district: DistrictInput, buildStatic: Boolean): District
     updateDistrict(ID: ID!, district: DistrictInput, buildStatic: Boolean): Int
     deleteDistrict(ID: ID!, buildStatic: Boolean): Int
+    createOffice(office: OfficeInput, buildStatic: Boolean): Office
+    updateOffice(ID: ID!, office: OfficeInput, buildStatic: Boolean): Int
+    deleteOffice(ID: ID!, buildStatic: Boolean): Int
     createPollItem(pollItem: PollItemInput, buildStatic: Boolean): PollItem
     updatePollItem(ID: ID!, pollItem: PollItemInput, buildStatic: Boolean): Int
     deletePollItem(ID: ID!, buildStatic: Boolean): Int
@@ -1221,12 +1225,12 @@ type FieldType {
     createCompany(company: CompanyInput, buildStatic: Boolean): Company
     updateCompany(ID: ID!, company: CompanyInput, buildStatic: Boolean): Int
     deleteCompany(ID: ID!, buildStatic: Boolean): Int
-    createCustomerCart(customerCart: CustomerCartInput, buildStatic: Boolean): CustomerCart
-    updateCustomerCart(ID: ID!, customerCart: CustomerCartInput, buildStatic: Boolean): Int
-    deleteCustomerCart(ID: ID!, buildStatic: Boolean): Int
     createProductType(productType: ProductTypeInput, buildStatic: Boolean): ProductType
     updateProductType(ID: ID!, productType: ProductTypeInput, buildStatic: Boolean): Int
     deleteProductType(ID: ID!, buildStatic: Boolean): Int
+    createCustomerCart(customerCart: CustomerCartInput, buildStatic: Boolean): CustomerCart
+    updateCustomerCart(ID: ID!, customerCart: CustomerCartInput, buildStatic: Boolean): Int
+    deleteCustomerCart(ID: ID!, buildStatic: Boolean): Int
     createPayment(payment: PaymentInput, buildStatic: Boolean): Payment
     updatePayment(ID: ID!, payment: PaymentInput, buildStatic: Boolean): Int
     deletePayment(ID: ID!, buildStatic: Boolean): Int
@@ -1257,9 +1261,6 @@ type FieldType {
     createLiveEventMembership(liveEventMembership: LiveEventMembershipInput, buildStatic: Boolean): LiveEventMembership
     updateLiveEventMembership(ID: ID!, liveEventMembership: LiveEventMembershipInput, buildStatic: Boolean): Int
     deleteLiveEventMembership(ID: ID!, buildStatic: Boolean): Int
-    createPetition(petition: PetitionInput, buildStatic: Boolean): Petition
-    updatePetition(ID: ID!, petition: PetitionInput, buildStatic: Boolean): Int
-    deletePetition(ID: ID!, buildStatic: Boolean): Int
     createProduct(product: ProductInput, buildStatic: Boolean): Product
     updateProduct(ID: ID!, product: ProductInput, buildStatic: Boolean): Int
     deleteProduct(ID: ID!, buildStatic: Boolean): Int
@@ -1272,6 +1273,9 @@ type FieldType {
     createDonationCampaignMembership(donationCampaignMembership: DonationCampaignMembershipInput, buildStatic: Boolean): DonationCampaignMembership
     updateDonationCampaignMembership(ID: ID!, donationCampaignMembership: DonationCampaignMembershipInput, buildStatic: Boolean): Int
     deleteDonationCampaignMembership(ID: ID!, buildStatic: Boolean): Int
+    createPetition(petition: PetitionInput, buildStatic: Boolean): Petition
+    updatePetition(ID: ID!, petition: PetitionInput, buildStatic: Boolean): Int
+    deletePetition(ID: ID!, buildStatic: Boolean): Int
     createPetitionSigner(petitionSigner: PetitionSignerInput, buildStatic: Boolean): PetitionSigner
     updatePetitionSigner(ID: ID!, petitionSigner: PetitionSignerInput, buildStatic: Boolean): Int
     deletePetitionSigner(ID: ID!, buildStatic: Boolean): Int
@@ -1284,12 +1288,12 @@ type FieldType {
     createPurchaser(purchaser: PurchaserInput, buildStatic: Boolean): Purchaser
     updatePurchaser(ID: ID!, purchaser: PurchaserInput, buildStatic: Boolean): Int
     deletePurchaser(ID: ID!, buildStatic: Boolean): Int
-    createDonor(donor: DonorInput, buildStatic: Boolean): Donor
-    updateDonor(ID: ID!, donor: DonorInput, buildStatic: Boolean): Int
-    deleteDonor(ID: ID!, buildStatic: Boolean): Int
     createCustomerOrder(customerOrder: CustomerOrderInput, buildStatic: Boolean): CustomerOrder
     updateCustomerOrder(ID: ID!, customerOrder: CustomerOrderInput, buildStatic: Boolean): Int
     deleteCustomerOrder(ID: ID!, buildStatic: Boolean): Int
+    createDonor(donor: DonorInput, buildStatic: Boolean): Donor
+    updateDonor(ID: ID!, donor: DonorInput, buildStatic: Boolean): Int
+    deleteDonor(ID: ID!, buildStatic: Boolean): Int
     createLiveEvent(liveEvent: LiveEventInput, buildStatic: Boolean): LiveEvent
     updateLiveEvent(ID: ID!, liveEvent: LiveEventInput, buildStatic: Boolean): Int
     deleteLiveEvent(ID: ID!, buildStatic: Boolean): Int
@@ -1341,6 +1345,9 @@ type FieldType {
     createHomePage(homePage: HomePageInput, buildStatic: Boolean): HomePage
     updateHomePage(ID: ID!, homePage: HomePageInput, buildStatic: Boolean): Int
     deleteHomePage(ID: ID!, buildStatic: Boolean): Int
+    createPhoto(photo: PhotoInput, buildStatic: Boolean): Photo
+    updatePhoto(ID: ID!, photo: PhotoInput, buildStatic: Boolean): Int
+    deletePhoto(ID: ID!, buildStatic: Boolean): Int
     createCause(cause: CauseInput, buildStatic: Boolean): Cause
     updateCause(ID: ID!, cause: CauseInput, buildStatic: Boolean): Int
     deleteCause(ID: ID!, buildStatic: Boolean): Int
