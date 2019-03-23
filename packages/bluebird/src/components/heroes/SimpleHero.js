@@ -24,19 +24,34 @@ const StyledHero = styled.section`
   ${justifyContent}
   ${color}
   ${display}
+  min-height: 400px;
+  background: #3494E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);
+  background: linear-gradient(to right, #EC6EAD, #3494E6); 
+  `;
+const Title = styled.h1`
+  ${borders}
+  ${borderRadius}
+  ${space}
+  ${width}
+  ${fontSize}
+  ${alignItems}
+  ${justifyContent}
+  ${color}
+  ${display}
   `;
 
 function SimpleHero({ title }) {
   return (
     <StyledHero display={'flex'} justifyContent="center" alignItems="center">
-      <h1>{title.StringValue}</h1>
+      <Title color="gray.0" size={4}>{title.StringValue}</Title>
     </StyledHero>
   );
 }
 
 SimpleHero.propTypes = {
-    title: PropTypes.string
-  };
-  SimpleHero.defaultProps = {};
+  title: PropTypes.string
+};
+SimpleHero.defaultProps = {};
 
 export default SimpleHero;

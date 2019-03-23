@@ -14,7 +14,7 @@ import Column from '../components/layout/Column';
 import Container from '../components/layout/Container';
 import Form from '../components/forms/Form';
 import SimpleHero from '../components/heroes/SimpleHero';
-import Masonry from '../components/photos/Masonry';
+import Masonry from '../components/galleries/Masonry';
 import SubHeader from '../components/type/SubHeader';
 
 storiesOf('Typography', module)
