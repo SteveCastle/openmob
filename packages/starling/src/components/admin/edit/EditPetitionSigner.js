@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const EditPetitionSigner = () => (
   <div>
@@ -8,7 +8,7 @@ const EditPetitionSigner = () => (
 )
 
 EditPetitionSigner.propTypes = {
-    id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default EditPetitionSigner

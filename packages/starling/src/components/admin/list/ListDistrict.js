@@ -1,12 +1,62 @@
-import React from "react"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useQuery } from 'react-apollo-hooks'
+import { Link } from '@reach/router'
+import gql from 'graphql-tag'
+import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const ListDistrict = () => (
-  <div>
-    <h1>List District</h1>
-  </div>
-)
+const LIST_DISTRICT = gql`
+  {
+    listDistrict(limit: 20) {
+      ID
+    }
+  }
+`
+
+function ListDistrict({ navigate }) {
+  const {
+    data: { listDistrict: items = [] },
+    error,
+    loading,
+  } = useQuery(LIST_DISTRICT)
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>Error! {error.message}</div>
+  }
+
+  if (items === null || items.length === 0) {
+    return (
+      <div>
+        <Button
+          label="Create the first District"
+          onClick={() => navigate('create')}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <h1>List District</h1>
+      <Button
+        label="Create a new District"
+        onClick={() => navigate('create')}
+      />
+      {(items || []).map(item => (
+        <li>
+          <Link to={`/app/admin/district/${item.ID}`}>{item.ID}</Link>
+        </li>
+      ))}
+    </div>
+  )
+}
 
 ListDistrict.propTypes = {
+  navigate: PropTypes.func.isRequired,
 }
 
 export default ListDistrict

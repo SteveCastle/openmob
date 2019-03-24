@@ -1,14 +1,14 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const CreateOffice = ({id}) => (
+const CreateOffice = ({ id }) => (
   <div>
     <h1>Create Office</h1>
   </div>
 )
 
 CreateOffice.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default CreateOffice

@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const EditField = () => (
   <div>
@@ -8,7 +8,7 @@ const EditField = () => (
 )
 
 EditField.propTypes = {
-    id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default EditField

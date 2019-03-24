@@ -1,12 +1,48 @@
 import React from "react"
+import PropTypes from 'prop-types';
+import { useQuery } from "react-apollo-hooks"
+import { Link } from "@reach/router"
+import gql from "graphql-tag"
+import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const List{{.Table.Name}} = () => (
-  <div>
-    <h1>List {{.Table.Name}}</h1>
-  </div>
-)
+const LIST_{{toUpper .Table.Name}}= gql`
+  {
+    list{{.Table.Name}}(limit: 20) {
+      ID
+    }
+  }
+`
+
+function List{{.Table.Name}}({ navigate }) {
+  const { data: {list{{.Table.Name}}: items = []}, error, loading } = useQuery(LIST_{{toUpper .Table.Name}})
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>Error! {error.message}</div>
+  }
+
+  if (items === null || items.length === 0) {
+    return <div><Button label="Create the first {{.Table.Name}}" onClick={() => navigate('create')}/></div>
+  }
+
+  return (
+    <div>
+      <h1>List {{.Table.Name}}</h1>
+      <Button label="Create a new {{.Table.Name}}" onClick={() => navigate('create')}/>
+      {(items || []).map(item => (
+        <li>
+          <Link to={`/app/admin/{{toLower .Table.Name}}/${item.ID}`}>{item.ID}</Link>
+        </li>
+      ))}
+    </div>
+  )
+}
 
 List{{.Table.Name}}.propTypes = {
+  navigate: PropTypes.func.isRequired
 }
 
 export default List{{.Table.Name}}

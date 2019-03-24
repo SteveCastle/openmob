@@ -31,7 +31,7 @@ const Layout = ({ children, title, id, summary }) => (
         </MenuHeader>
         <MenuBody>
 {{range .Schema.Tables}}<MenuItem>
-          <Link to="/app/admin/{{kebab .Name}}s">{{.Name}}</Link>
+          <Link to="/app/admin/{{kebab .Name}}">{{.Name}}</Link>
         </MenuItem>
 {{end}}
         </MenuBody>
@@ -39,9 +39,9 @@ const Layout = ({ children, title, id, summary }) => (
     </SideBar>
     <Content>
     <Router>
-{{range .Schema.Tables}}<List{{.Name}} path="/{{kebab .Name}}s"/>
-<Create{{.Name}} path="/{{kebab .Name}}s/create"/>
-<Edit{{.Name}} path="/{{kebab .Name}}s/:id"/>
+{{range .Schema.Tables}}<List{{.Name}} path="/{{kebab .Name}}"/>
+<Create{{.Name}} path="/{{kebab .Name}}/create"/>
+<Edit{{.Name}} path="/{{kebab .Name}}/:id"/>
 {{end}}
     </Router>
     </Content>

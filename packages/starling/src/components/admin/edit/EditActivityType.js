@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const EditActivityType = () => (
   <div>
@@ -8,7 +8,7 @@ const EditActivityType = () => (
 )
 
 EditActivityType.propTypes = {
-    id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default EditActivityType

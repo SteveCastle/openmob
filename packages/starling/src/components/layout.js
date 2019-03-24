@@ -1,8 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
-import Header from "./Header"
-import "./Layout.css"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { StaticQuery, graphql } from 'gatsby'
+import Header from './Header'
+import './Layout.css'
 
 const Layout = ({ children, title, id, summary }) => (
   <StaticQuery
@@ -18,12 +18,12 @@ const Layout = ({ children, title, id, summary }) => (
     render={data => (
       <>
         <Header siteTitle={title} id={id} summary={summary} />
-          <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.openmob.org">OpenMob</a>
-          </footer>
+        <main>{children}</main>
+        <footer>
+          © {new Date().getFullYear()}, Built with
+          {` `}
+          <a href="https://www.openmob.org">OpenMob</a>
+        </footer>
       </>
     )}
   />

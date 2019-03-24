@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const EditLayout = () => (
   <div>
@@ -8,7 +8,7 @@ const EditLayout = () => (
 )
 
 EditLayout.propTypes = {
-    id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default EditLayout

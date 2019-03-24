@@ -1,14 +1,14 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const CreateLayoutType = ({id}) => (
+const CreateLayoutType = ({ id }) => (
   <div>
     <h1>Create LayoutType</h1>
   </div>
 )
 
 CreateLayoutType.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default CreateLayoutType

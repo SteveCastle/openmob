@@ -1,14 +1,14 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const CreateBoycottMembership = ({id}) => (
+const CreateBoycottMembership = ({ id }) => (
   <div>
     <h1>Create BoycottMembership</h1>
   </div>
 )
 
 CreateBoycottMembership.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default CreateBoycottMembership

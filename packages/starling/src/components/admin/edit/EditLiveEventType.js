@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const EditLiveEventType = () => (
   <div>
@@ -8,7 +8,7 @@ const EditLiveEventType = () => (
 )
 
 EditLiveEventType.propTypes = {
-    id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default EditLiveEventType

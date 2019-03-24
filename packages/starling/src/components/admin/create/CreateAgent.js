@@ -1,14 +1,14 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const CreateAgent = ({id}) => (
+const CreateAgent = ({ id }) => (
   <div>
     <h1>Create Agent</h1>
   </div>
 )
 
 CreateAgent.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default CreateAgent

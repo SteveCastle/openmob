@@ -1,14 +1,14 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const CreatePollMembership = ({id}) => (
+const CreatePollMembership = ({ id }) => (
   <div>
     <h1>Create PollMembership</h1>
   </div>
 )
 
 CreatePollMembership.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default CreatePollMembership

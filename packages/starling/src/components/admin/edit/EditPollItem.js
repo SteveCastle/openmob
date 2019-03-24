@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const EditPollItem = () => (
   <div>
@@ -8,7 +8,7 @@ const EditPollItem = () => (
 )
 
 EditPollItem.propTypes = {
-    id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default EditPollItem
