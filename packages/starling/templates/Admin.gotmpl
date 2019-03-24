@@ -1,16 +1,22 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Router } from "@reach/router"
 import { Link } from "gatsby"
 
 import App from "@openmob/bluebird/src/components/layout/App"
+import Content from "@openmob/bluebird/src/components/layout/Content"
 import SideBar from "@openmob/bluebird/src/components/sidebar/SideBar"
-import SideBarHeader from "@openmob/bluebird/src/components/layout/SideBarHeader"
+import SideBarHeader from "@openmob/bluebird/src/components/sidebar/SideBarHeader"
 import Menu from "@openmob/bluebird/src/components/menu/Menu"
 import MenuHeader from "@openmob/bluebird/src/components/menu/MenuHeader"
 import Input from "@openmob/bluebird/src/components/forms/Input"
 import MenuItem from "@openmob/bluebird/src/components/menu/MenuItem"
 import MenuBody from "@openmob/bluebird/src/components/menu/MenuBody"
 
+{{range .Schema.Tables}}import Edit{{.Name}} from './edit/Edit{{.Name}}'
+import Create{{.Name}} from './create/Create{{.Name}}'
+import List{{.Name}} from './list/List{{.Name}}'
+{{end}}
 const Layout = ({ children, title, id, summary }) => (
   <App>
     <SideBar>
@@ -24,14 +30,21 @@ const Layout = ({ children, title, id, summary }) => (
           <Input />
         </MenuHeader>
         <MenuBody>
-        {{range .Schema.Tables}}
-        <MenuItem>
+{{range .Schema.Tables}}<MenuItem>
           <Link to="/app/admin/{{kebab .Name}}s">{{.Name}}</Link>
         </MenuItem>
-        {{end}}
+{{end}}
         </MenuBody>
       </Menu>
     </SideBar>
+    <Content>
+    <Router>
+{{range .Schema.Tables}}<List{{.Name}} path="/{{kebab .Name}}s"/>
+<Create{{.Name}} path="/{{kebab .Name}}s/create"/>
+<Edit{{.Name}} path="/{{kebab .Name}}s/:id"/>
+{{end}}
+    </Router>
+    </Content>
   </App>
 )
 

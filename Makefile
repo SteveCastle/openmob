@@ -1,15 +1,15 @@
 rebuild:
 	(cd packages/shrike; make schema-update)
 	(cd packages/wren; make codegen)
-start-db:
+startdb:
 	(cd packages/shrike; make startdb)
-start-server:
+server:
 	(cd packages/shrike; make startdb) &
 	(cd packages/shrike; make start) &
 	(cd packages/wren; make start)
-load-data:
+mock:
 	(cd packages/shrike; make load-data)
-start-client:
+client:
 	(cd packages/starling; make hard-start)
 
 reset:

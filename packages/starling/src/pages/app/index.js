@@ -1,19 +1,27 @@
 import React from "react"
 import { Router } from "@reach/router"
-import Admin from '../../components/admin/Admin'
-import Home from '../../components/admin/Home'
+import ApolloClient from "apollo-boost"
+import { ApolloProvider } from "react-apollo"
+import Admin from "../../components/admin/Admin"
+import Home from "../../components/admin/Home"
 
 import ThemeProvider from "@openmob/bluebird/src/ThemeProvider"
 import skyward from "@openmob/bluebird/src/themes/skyward"
-import './reset.css';
+import "./reset.css"
+
+const client = new ApolloClient({
+  uri: "localhost:4000",
+})
 
 function App() {
   return (
     <ThemeProvider theme={skyward}>
-    <Router>
-      <Home path="app" />
-      <Admin path="app/admin/*" />
-    </Router>
+      <ApolloProvider client={client}>
+        <Router>
+          <Home path="app" />
+          <Admin path="app/admin/*" />
+        </Router>
+      </ApolloProvider>
     </ThemeProvider>
   )
 }

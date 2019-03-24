@@ -10,7 +10,8 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap
+  flexWrap,
+  flexDirection
 } from 'styled-system';
 
 const StyledApp = styled.div`
@@ -21,6 +22,7 @@ const StyledApp = styled.div`
   ${height}
   ${fontSize}
   ${flexWrap}
+  ${flexDirection}
   ${color}
   ${display}
 `;
@@ -31,6 +33,7 @@ function App({ children }) {
       display={'flex'}
       border={0}
       flexWrap="wrap"
+      flexDirection="column"
       width={1}
       height={5}
       fontSize={1}
