@@ -5,10 +5,28 @@ import { Link } from '@reach/router'
 import gql from 'graphql-tag'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const isObject = a => !!a && a.constructor === Object
+const getValue = obj =>
+  Object.entries(obj).reduce(entry =>
+    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
+  )
+const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+
 const LIST_CONTACT = gql`
   {
     listContact(limit: 20) {
       ID
+      CreatedAt {
+        seconds
+      }
+      UpdatedAt {
+        seconds
+      }
+      FirstName
+      MiddleName
+      LastName
+      Email
+      PhoneNumber
     }
   }
 `
@@ -43,11 +61,34 @@ function ListContact({ navigate }) {
     <div>
       <h1>List Contact</h1>
       <Button label="Create a new Contact" onClick={() => navigate('create')} />
-      {(items || []).map(item => (
-        <li>
-          <Link to={`/app/admin/contact/${item.ID}`}>{item.ID}</Link>
-        </li>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>FirstName</th>
+            <th>MiddleName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>PhoneNumber</th>
+          </tr>
+        </thead>
+        {(items || []).map(item => (
+          <tr>
+            <td>
+              <Link to={`/app/admin/contact/${item.ID}`}>{item.ID}</Link>
+            </td>
+            <td>{parseObject(item.CreatedAt)}</td>
+            <td>{parseObject(item.UpdatedAt)}</td>
+            <td>{parseObject(item.FirstName)}</td>
+            <td>{parseObject(item.MiddleName)}</td>
+            <td>{parseObject(item.LastName)}</td>
+            <td>{parseObject(item.Email)}</td>
+            <td>{parseObject(item.PhoneNumber)}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

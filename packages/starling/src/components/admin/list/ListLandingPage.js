@@ -5,10 +5,30 @@ import { Link } from '@reach/router'
 import gql from 'graphql-tag'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const isObject = a => !!a && a.constructor === Object
+const getValue = obj =>
+  Object.entries(obj).reduce(entry =>
+    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
+  )
+const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+
 const LIST_LANDINGPAGE = gql`
   {
     listLandingPage(limit: 20) {
       ID
+      CreatedAt {
+        seconds
+      }
+      UpdatedAt {
+        seconds
+      }
+      Title
+      Cause {
+        ID
+      }
+      Layout {
+        ID
+      }
     }
   }
 `
@@ -46,11 +66,30 @@ function ListLandingPage({ navigate }) {
         label="Create a new LandingPage"
         onClick={() => navigate('create')}
       />
-      {(items || []).map(item => (
-        <li>
-          <Link to={`/app/admin/landingpage/${item.ID}`}>{item.ID}</Link>
-        </li>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>Title</th>
+            <th>Cause</th>
+            <th>Layout</th>
+          </tr>
+        </thead>
+        {(items || []).map(item => (
+          <tr>
+            <td>
+              <Link to={`/app/admin/landing-page/${item.ID}`}>{item.ID}</Link>
+            </td>
+            <td>{parseObject(item.CreatedAt)}</td>
+            <td>{parseObject(item.UpdatedAt)}</td>
+            <td>{parseObject(item.Title)}</td>
+            <td>{parseObject(item.Cause)}</td>
+            <td>{parseObject(item.Layout)}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

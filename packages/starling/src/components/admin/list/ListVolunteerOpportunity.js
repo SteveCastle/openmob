@@ -5,10 +5,27 @@ import { Link } from '@reach/router'
 import gql from 'graphql-tag'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const isObject = a => !!a && a.constructor === Object
+const getValue = obj =>
+  Object.entries(obj).reduce(entry =>
+    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
+  )
+const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+
 const LIST_VOLUNTEEROPPORTUNITY = gql`
   {
     listVolunteerOpportunity(limit: 20) {
       ID
+      CreatedAt {
+        seconds
+      }
+      UpdatedAt {
+        seconds
+      }
+      Title
+      VolunteerOpportunityType {
+        ID
+      }
     }
   }
 `
@@ -46,13 +63,30 @@ function ListVolunteerOpportunity({ navigate }) {
         label="Create a new VolunteerOpportunity"
         onClick={() => navigate('create')}
       />
-      {(items || []).map(item => (
-        <li>
-          <Link to={`/app/admin/volunteeropportunity/${item.ID}`}>
-            {item.ID}
-          </Link>
-        </li>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>Title</th>
+            <th>VolunteerOpportunityType</th>
+          </tr>
+        </thead>
+        {(items || []).map(item => (
+          <tr>
+            <td>
+              <Link to={`/app/admin/volunteer-opportunity/${item.ID}`}>
+                {item.ID}
+              </Link>
+            </td>
+            <td>{parseObject(item.CreatedAt)}</td>
+            <td>{parseObject(item.UpdatedAt)}</td>
+            <td>{parseObject(item.Title)}</td>
+            <td>{parseObject(item.VolunteerOpportunityType)}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

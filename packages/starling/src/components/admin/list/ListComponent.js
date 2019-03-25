@@ -5,10 +5,32 @@ import { Link } from '@reach/router'
 import gql from 'graphql-tag'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const isObject = a => !!a && a.constructor === Object
+const getValue = obj =>
+  Object.entries(obj).reduce(entry =>
+    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
+  )
+const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+
 const LIST_COMPONENT = gql`
   {
     listComponent(limit: 20) {
       ID
+      CreatedAt {
+        seconds
+      }
+      UpdatedAt {
+        seconds
+      }
+      ComponentType {
+        ID
+      }
+      ComponentImplementation {
+        ID
+      }
+      LayoutColumn {
+        ID
+      }
     }
   }
 `
@@ -46,11 +68,30 @@ function ListComponent({ navigate }) {
         label="Create a new Component"
         onClick={() => navigate('create')}
       />
-      {(items || []).map(item => (
-        <li>
-          <Link to={`/app/admin/component/${item.ID}`}>{item.ID}</Link>
-        </li>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>ComponentType</th>
+            <th>ComponentImplementation</th>
+            <th>LayoutColumn</th>
+          </tr>
+        </thead>
+        {(items || []).map(item => (
+          <tr>
+            <td>
+              <Link to={`/app/admin/component/${item.ID}`}>{item.ID}</Link>
+            </td>
+            <td>{parseObject(item.CreatedAt)}</td>
+            <td>{parseObject(item.UpdatedAt)}</td>
+            <td>{parseObject(item.ComponentType)}</td>
+            <td>{parseObject(item.ComponentImplementation)}</td>
+            <td>{parseObject(item.LayoutColumn)}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

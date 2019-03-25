@@ -13,9 +13,6 @@ import Input from '@openmob/bluebird/src/components/forms/Input'
 import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem'
 import MenuBody from '@openmob/bluebird/src/components/menu/MenuBody'
 
-import EditLayoutType from './edit/EditLayoutType'
-import CreateLayoutType from './create/CreateLayoutType'
-import ListLayoutType from './list/ListLayoutType'
 import EditACL from './edit/EditACL'
 import CreateACL from './create/CreateACL'
 import ListACL from './list/ListACL'
@@ -28,6 +25,9 @@ import ListPhoneNumber from './list/ListPhoneNumber'
 import EditEmailAddress from './edit/EditEmailAddress'
 import CreateEmailAddress from './create/CreateEmailAddress'
 import ListEmailAddress from './list/ListEmailAddress'
+import EditLayoutType from './edit/EditLayoutType'
+import CreateLayoutType from './create/CreateLayoutType'
+import ListLayoutType from './list/ListLayoutType'
 import EditLayoutRow from './edit/EditLayoutRow'
 import CreateLayoutRow from './create/CreateLayoutRow'
 import ListLayoutRow from './list/ListLayoutRow'
@@ -55,6 +55,9 @@ import ListExperiment from './list/ListExperiment'
 import EditIssue from './edit/EditIssue'
 import CreateIssue from './create/CreateIssue'
 import ListIssue from './list/ListIssue'
+import EditOffice from './edit/EditOffice'
+import CreateOffice from './create/CreateOffice'
+import ListOffice from './list/ListOffice'
 import EditCandidate from './edit/EditCandidate'
 import CreateCandidate from './create/CreateCandidate'
 import ListCandidate from './list/ListCandidate'
@@ -64,15 +67,15 @@ import ListDistrictType from './list/ListDistrictType'
 import EditDistrict from './edit/EditDistrict'
 import CreateDistrict from './create/CreateDistrict'
 import ListDistrict from './list/ListDistrict'
-import EditOffice from './edit/EditOffice'
-import CreateOffice from './create/CreateOffice'
-import ListOffice from './list/ListOffice'
 import EditPollItem from './edit/EditPollItem'
 import CreatePollItem from './create/CreatePollItem'
 import ListPollItem from './list/ListPollItem'
 import EditVolunteerOpportunityType from './edit/EditVolunteerOpportunityType'
 import CreateVolunteerOpportunityType from './create/CreateVolunteerOpportunityType'
 import ListVolunteerOpportunityType from './list/ListVolunteerOpportunityType'
+import EditCustomerCart from './edit/EditCustomerCart'
+import CreateCustomerCart from './create/CreateCustomerCart'
+import ListCustomerCart from './list/ListCustomerCart'
 import EditLiveEventType from './edit/EditLiveEventType'
 import CreateLiveEventType from './create/CreateLiveEventType'
 import ListLiveEventType from './list/ListLiveEventType'
@@ -82,9 +85,6 @@ import ListCompany from './list/ListCompany'
 import EditProductType from './edit/EditProductType'
 import CreateProductType from './create/CreateProductType'
 import ListProductType from './list/ListProductType'
-import EditCustomerCart from './edit/EditCustomerCart'
-import CreateCustomerCart from './create/CreateCustomerCart'
-import ListCustomerCart from './list/ListCustomerCart'
 import EditPayment from './edit/EditPayment'
 import CreatePayment from './create/CreatePayment'
 import ListPayment from './list/ListPayment'
@@ -112,6 +112,9 @@ import ListPollMembership from './list/ListPollMembership'
 import EditVolunteerOpportunityMembership from './edit/EditVolunteerOpportunityMembership'
 import CreateVolunteerOpportunityMembership from './create/CreateVolunteerOpportunityMembership'
 import ListVolunteerOpportunityMembership from './list/ListVolunteerOpportunityMembership'
+import EditPetition from './edit/EditPetition'
+import CreatePetition from './create/CreatePetition'
+import ListPetition from './list/ListPetition'
 import EditLiveEventMembership from './edit/EditLiveEventMembership'
 import CreateLiveEventMembership from './create/CreateLiveEventMembership'
 import ListLiveEventMembership from './list/ListLiveEventMembership'
@@ -127,9 +130,6 @@ import ListDonationCampaign from './list/ListDonationCampaign'
 import EditDonationCampaignMembership from './edit/EditDonationCampaignMembership'
 import CreateDonationCampaignMembership from './create/CreateDonationCampaignMembership'
 import ListDonationCampaignMembership from './list/ListDonationCampaignMembership'
-import EditPetition from './edit/EditPetition'
-import CreatePetition from './create/CreatePetition'
-import ListPetition from './list/ListPetition'
 import EditPetitionSigner from './edit/EditPetitionSigner'
 import CreatePetitionSigner from './create/CreatePetitionSigner'
 import ListPetitionSigner from './list/ListPetitionSigner'
@@ -139,15 +139,15 @@ import ListPoll from './list/ListPoll'
 import EditPollRespondant from './edit/EditPollRespondant'
 import CreatePollRespondant from './create/CreatePollRespondant'
 import ListPollRespondant from './list/ListPollRespondant'
+import EditDonor from './edit/EditDonor'
+import CreateDonor from './create/CreateDonor'
+import ListDonor from './list/ListDonor'
 import EditPurchaser from './edit/EditPurchaser'
 import CreatePurchaser from './create/CreatePurchaser'
 import ListPurchaser from './list/ListPurchaser'
 import EditCustomerOrder from './edit/EditCustomerOrder'
 import CreateCustomerOrder from './create/CreateCustomerOrder'
 import ListCustomerOrder from './list/ListCustomerOrder'
-import EditDonor from './edit/EditDonor'
-import CreateDonor from './create/CreateDonor'
-import ListDonor from './list/ListDonor'
 import EditLiveEvent from './edit/EditLiveEvent'
 import CreateLiveEvent from './create/CreateLiveEvent'
 import ListLiveEvent from './list/ListLiveEvent'
@@ -175,15 +175,15 @@ import ListActivityType from './list/ListActivityType'
 import EditActivity from './edit/EditActivity'
 import CreateActivity from './create/CreateActivity'
 import ListActivity from './list/ListActivity'
-import EditNote from './edit/EditNote'
-import CreateNote from './create/CreateNote'
-import ListNote from './list/ListNote'
 import EditAccount from './edit/EditAccount'
 import CreateAccount from './create/CreateAccount'
 import ListAccount from './list/ListAccount'
 import EditOwnerMembership from './edit/EditOwnerMembership'
 import CreateOwnerMembership from './create/CreateOwnerMembership'
 import ListOwnerMembership from './list/ListOwnerMembership'
+import EditNote from './edit/EditNote'
+import CreateNote from './create/CreateNote'
+import ListNote from './list/ListNote'
 import EditContact from './edit/EditContact'
 import CreateContact from './create/CreateContact'
 import ListContact from './list/ListContact'
@@ -224,9 +224,6 @@ const Layout = ({ children, title, id, summary }) => (
         </MenuHeader>
         <MenuBody>
           <MenuItem>
-            <Link to="/app/admin/layout-type">LayoutType</Link>
-          </MenuItem>
-          <MenuItem>
             <Link to="/app/admin/acl">ACL</Link>
           </MenuItem>
           <MenuItem>
@@ -237,6 +234,9 @@ const Layout = ({ children, title, id, summary }) => (
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/email-address">EmailAddress</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/app/admin/layout-type">LayoutType</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/layout-row">LayoutRow</Link>
@@ -268,6 +268,9 @@ const Layout = ({ children, title, id, summary }) => (
             <Link to="/app/admin/issue">Issue</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/office">Office</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/candidate">Candidate</Link>
           </MenuItem>
           <MenuItem>
@@ -275,9 +278,6 @@ const Layout = ({ children, title, id, summary }) => (
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/district">District</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/office">Office</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/poll-item">PollItem</Link>
@@ -288,6 +288,9 @@ const Layout = ({ children, title, id, summary }) => (
             </Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/customer-cart">CustomerCart</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/live-event-type">LiveEventType</Link>
           </MenuItem>
           <MenuItem>
@@ -295,9 +298,6 @@ const Layout = ({ children, title, id, summary }) => (
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/product-type">ProductType</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/customer-cart">CustomerCart</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/payment">Payment</Link>
@@ -329,6 +329,9 @@ const Layout = ({ children, title, id, summary }) => (
             </Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/petition">Petition</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/live-event-membership">
               LiveEventMembership
             </Link>
@@ -348,9 +351,6 @@ const Layout = ({ children, title, id, summary }) => (
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/app/admin/petition">Petition</Link>
-          </MenuItem>
-          <MenuItem>
             <Link to="/app/admin/petition-signer">PetitionSigner</Link>
           </MenuItem>
           <MenuItem>
@@ -360,13 +360,13 @@ const Layout = ({ children, title, id, summary }) => (
             <Link to="/app/admin/poll-respondant">PollRespondant</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/donor">Donor</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/purchaser">Purchaser</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/customer-order">CustomerOrder</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/donor">Donor</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/live-event">LiveEvent</Link>
@@ -398,13 +398,13 @@ const Layout = ({ children, title, id, summary }) => (
             <Link to="/app/admin/activity">Activity</Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/app/admin/note">Note</Link>
-          </MenuItem>
-          <MenuItem>
             <Link to="/app/admin/account">Account</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/owner-membership">OwnerMembership</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/app/admin/note">Note</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/contact">Contact</Link>
@@ -438,9 +438,6 @@ const Layout = ({ children, title, id, summary }) => (
     </SideBar>
     <Content>
       <Router>
-        <ListLayoutType path="/layout-type" />
-        <CreateLayoutType path="/layout-type/create" />
-        <EditLayoutType path="/layout-type/:id" />
         <ListACL path="/acl" />
         <CreateACL path="/acl/create" />
         <EditACL path="/acl/:id" />
@@ -453,6 +450,9 @@ const Layout = ({ children, title, id, summary }) => (
         <ListEmailAddress path="/email-address" />
         <CreateEmailAddress path="/email-address/create" />
         <EditEmailAddress path="/email-address/:id" />
+        <ListLayoutType path="/layout-type" />
+        <CreateLayoutType path="/layout-type/create" />
+        <EditLayoutType path="/layout-type/:id" />
         <ListLayoutRow path="/layout-row" />
         <CreateLayoutRow path="/layout-row/create" />
         <EditLayoutRow path="/layout-row/:id" />
@@ -480,6 +480,9 @@ const Layout = ({ children, title, id, summary }) => (
         <ListIssue path="/issue" />
         <CreateIssue path="/issue/create" />
         <EditIssue path="/issue/:id" />
+        <ListOffice path="/office" />
+        <CreateOffice path="/office/create" />
+        <EditOffice path="/office/:id" />
         <ListCandidate path="/candidate" />
         <CreateCandidate path="/candidate/create" />
         <EditCandidate path="/candidate/:id" />
@@ -489,15 +492,15 @@ const Layout = ({ children, title, id, summary }) => (
         <ListDistrict path="/district" />
         <CreateDistrict path="/district/create" />
         <EditDistrict path="/district/:id" />
-        <ListOffice path="/office" />
-        <CreateOffice path="/office/create" />
-        <EditOffice path="/office/:id" />
         <ListPollItem path="/poll-item" />
         <CreatePollItem path="/poll-item/create" />
         <EditPollItem path="/poll-item/:id" />
         <ListVolunteerOpportunityType path="/volunteer-opportunity-type" />
         <CreateVolunteerOpportunityType path="/volunteer-opportunity-type/create" />
         <EditVolunteerOpportunityType path="/volunteer-opportunity-type/:id" />
+        <ListCustomerCart path="/customer-cart" />
+        <CreateCustomerCart path="/customer-cart/create" />
+        <EditCustomerCart path="/customer-cart/:id" />
         <ListLiveEventType path="/live-event-type" />
         <CreateLiveEventType path="/live-event-type/create" />
         <EditLiveEventType path="/live-event-type/:id" />
@@ -507,9 +510,6 @@ const Layout = ({ children, title, id, summary }) => (
         <ListProductType path="/product-type" />
         <CreateProductType path="/product-type/create" />
         <EditProductType path="/product-type/:id" />
-        <ListCustomerCart path="/customer-cart" />
-        <CreateCustomerCart path="/customer-cart/create" />
-        <EditCustomerCart path="/customer-cart/:id" />
         <ListPayment path="/payment" />
         <CreatePayment path="/payment/create" />
         <EditPayment path="/payment/:id" />
@@ -537,6 +537,9 @@ const Layout = ({ children, title, id, summary }) => (
         <ListVolunteerOpportunityMembership path="/volunteer-opportunity-membership" />
         <CreateVolunteerOpportunityMembership path="/volunteer-opportunity-membership/create" />
         <EditVolunteerOpportunityMembership path="/volunteer-opportunity-membership/:id" />
+        <ListPetition path="/petition" />
+        <CreatePetition path="/petition/create" />
+        <EditPetition path="/petition/:id" />
         <ListLiveEventMembership path="/live-event-membership" />
         <CreateLiveEventMembership path="/live-event-membership/create" />
         <EditLiveEventMembership path="/live-event-membership/:id" />
@@ -552,9 +555,6 @@ const Layout = ({ children, title, id, summary }) => (
         <ListDonationCampaignMembership path="/donation-campaign-membership" />
         <CreateDonationCampaignMembership path="/donation-campaign-membership/create" />
         <EditDonationCampaignMembership path="/donation-campaign-membership/:id" />
-        <ListPetition path="/petition" />
-        <CreatePetition path="/petition/create" />
-        <EditPetition path="/petition/:id" />
         <ListPetitionSigner path="/petition-signer" />
         <CreatePetitionSigner path="/petition-signer/create" />
         <EditPetitionSigner path="/petition-signer/:id" />
@@ -564,15 +564,15 @@ const Layout = ({ children, title, id, summary }) => (
         <ListPollRespondant path="/poll-respondant" />
         <CreatePollRespondant path="/poll-respondant/create" />
         <EditPollRespondant path="/poll-respondant/:id" />
+        <ListDonor path="/donor" />
+        <CreateDonor path="/donor/create" />
+        <EditDonor path="/donor/:id" />
         <ListPurchaser path="/purchaser" />
         <CreatePurchaser path="/purchaser/create" />
         <EditPurchaser path="/purchaser/:id" />
         <ListCustomerOrder path="/customer-order" />
         <CreateCustomerOrder path="/customer-order/create" />
         <EditCustomerOrder path="/customer-order/:id" />
-        <ListDonor path="/donor" />
-        <CreateDonor path="/donor/create" />
-        <EditDonor path="/donor/:id" />
         <ListLiveEvent path="/live-event" />
         <CreateLiveEvent path="/live-event/create" />
         <EditLiveEvent path="/live-event/:id" />
@@ -600,15 +600,15 @@ const Layout = ({ children, title, id, summary }) => (
         <ListActivity path="/activity" />
         <CreateActivity path="/activity/create" />
         <EditActivity path="/activity/:id" />
-        <ListNote path="/note" />
-        <CreateNote path="/note/create" />
-        <EditNote path="/note/:id" />
         <ListAccount path="/account" />
         <CreateAccount path="/account/create" />
         <EditAccount path="/account/:id" />
         <ListOwnerMembership path="/owner-membership" />
         <CreateOwnerMembership path="/owner-membership/create" />
         <EditOwnerMembership path="/owner-membership/:id" />
+        <ListNote path="/note" />
+        <CreateNote path="/note/create" />
+        <EditNote path="/note/:id" />
         <ListContact path="/contact" />
         <CreateContact path="/contact/create" />
         <EditContact path="/contact/:id" />

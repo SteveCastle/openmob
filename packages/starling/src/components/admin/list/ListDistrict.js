@@ -5,10 +5,28 @@ import { Link } from '@reach/router'
 import gql from 'graphql-tag'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const isObject = a => !!a && a.constructor === Object
+const getValue = obj =>
+  Object.entries(obj).reduce(entry =>
+    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
+  )
+const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+
 const LIST_DISTRICT = gql`
   {
     listDistrict(limit: 20) {
       ID
+      CreatedAt {
+        seconds
+      }
+      UpdatedAt {
+        seconds
+      }
+      Geom
+      Title
+      DistrictType {
+        ID
+      }
     }
   }
 `
@@ -46,11 +64,30 @@ function ListDistrict({ navigate }) {
         label="Create a new District"
         onClick={() => navigate('create')}
       />
-      {(items || []).map(item => (
-        <li>
-          <Link to={`/app/admin/district/${item.ID}`}>{item.ID}</Link>
-        </li>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>Geom</th>
+            <th>Title</th>
+            <th>DistrictType</th>
+          </tr>
+        </thead>
+        {(items || []).map(item => (
+          <tr>
+            <td>
+              <Link to={`/app/admin/district/${item.ID}`}>{item.ID}</Link>
+            </td>
+            <td>{parseObject(item.CreatedAt)}</td>
+            <td>{parseObject(item.UpdatedAt)}</td>
+            <td>{parseObject(item.Geom)}</td>
+            <td>{parseObject(item.Title)}</td>
+            <td>{parseObject(item.DistrictType)}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

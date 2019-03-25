@@ -20,7 +20,7 @@ const StyledInput = styled.input`
   outline: none;
 `;
 
-function Input({ onChange, label, block, dark }) {
+function Input({ onChange, label, block, dark, value, placeholder }) {
   return (
     <StyledInput
       border={0}
@@ -30,6 +30,9 @@ function Input({ onChange, label, block, dark }) {
       fontSize={1}
       color={dark ? 'forms.lightText' : 'forms.darkText'}
       width={block ? 1 : null}
+      value={value}
+      placeholder={placeholder}
+
     >
       {label}
     </StyledInput>
@@ -41,6 +44,8 @@ Input.propTypes = {
   label: PropTypes.string,
   state: PropTypes.oneOf(['ready', 'valid', 'error']),
   block: PropTypes.bool,
-  dark: PropTypes.bool
+  dark: PropTypes.bool,
+  value: PropTypes.string,
+  placeholder: PropTypes.string
 };
 export default Input;

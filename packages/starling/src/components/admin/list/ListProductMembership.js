@@ -5,10 +5,29 @@ import { Link } from '@reach/router'
 import gql from 'graphql-tag'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const isObject = a => !!a && a.constructor === Object
+const getValue = obj =>
+  Object.entries(obj).reduce(entry =>
+    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
+  )
+const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+
 const LIST_PRODUCTMEMBERSHIP = gql`
   {
     listProductMembership(limit: 20) {
       ID
+      CreatedAt {
+        seconds
+      }
+      UpdatedAt {
+        seconds
+      }
+      Cause {
+        ID
+      }
+      Product {
+        ID
+      }
     }
   }
 `
@@ -46,11 +65,30 @@ function ListProductMembership({ navigate }) {
         label="Create a new ProductMembership"
         onClick={() => navigate('create')}
       />
-      {(items || []).map(item => (
-        <li>
-          <Link to={`/app/admin/productmembership/${item.ID}`}>{item.ID}</Link>
-        </li>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>Cause</th>
+            <th>Product</th>
+          </tr>
+        </thead>
+        {(items || []).map(item => (
+          <tr>
+            <td>
+              <Link to={`/app/admin/product-membership/${item.ID}`}>
+                {item.ID}
+              </Link>
+            </td>
+            <td>{parseObject(item.CreatedAt)}</td>
+            <td>{parseObject(item.UpdatedAt)}</td>
+            <td>{parseObject(item.Cause)}</td>
+            <td>{parseObject(item.Product)}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

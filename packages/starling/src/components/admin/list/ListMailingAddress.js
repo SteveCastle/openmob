@@ -5,10 +5,27 @@ import { Link } from '@reach/router'
 import gql from 'graphql-tag'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const isObject = a => !!a && a.constructor === Object
+const getValue = obj =>
+  Object.entries(obj).reduce(entry =>
+    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
+  )
+const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+
 const LIST_MAILINGADDRESS = gql`
   {
     listMailingAddress(limit: 20) {
       ID
+      CreatedAt {
+        seconds
+      }
+      UpdatedAt {
+        seconds
+      }
+      StreetAddress
+      City
+      State
+      ZipCode
     }
   }
 `
@@ -46,11 +63,34 @@ function ListMailingAddress({ navigate }) {
         label="Create a new MailingAddress"
         onClick={() => navigate('create')}
       />
-      {(items || []).map(item => (
-        <li>
-          <Link to={`/app/admin/mailingaddress/${item.ID}`}>{item.ID}</Link>
-        </li>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th>StreetAddress</th>
+            <th>City</th>
+            <th>State</th>
+            <th>ZipCode</th>
+          </tr>
+        </thead>
+        {(items || []).map(item => (
+          <tr>
+            <td>
+              <Link to={`/app/admin/mailing-address/${item.ID}`}>
+                {item.ID}
+              </Link>
+            </td>
+            <td>{parseObject(item.CreatedAt)}</td>
+            <td>{parseObject(item.UpdatedAt)}</td>
+            <td>{parseObject(item.StreetAddress)}</td>
+            <td>{parseObject(item.City)}</td>
+            <td>{parseObject(item.State)}</td>
+            <td>{parseObject(item.ZipCode)}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   )
 }

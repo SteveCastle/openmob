@@ -16,7 +16,31 @@ const Layout = ({ children, title, id, summary }) => (
       </SideBarHeader>
       <Menu vertical>
         <MenuItem>
-          <Link to="/app/admin">Advanced Admin</Link>
+          <Link to="/app/pages">Pages</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/contacts">Contacts</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/contacts">Volunteer Coordination</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/shop">Fundraising</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/events">Events</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/elections">Elections</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/boycotts">BoyCotts</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/elections">Map</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/admin">CRUD</Link>
         </MenuItem>
       </Menu>
     </SideBar>

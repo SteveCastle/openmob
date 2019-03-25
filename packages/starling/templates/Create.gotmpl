@@ -1,9 +1,17 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Input from '@openmob/bluebird/src/components/forms/Input'
+import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const Create{{.Table.Name}} = ({id}) => (
   <div>
     <h1>Create {{.Table.Name}}</h1>
+{{range $i, $value := .Table.Columns}}  <div>
+      <label>{{.Name}}</label>
+      <Input placeholder="{{.Type}}"/>
+  </div>
+{{end}}
+      <Button label="Edit" />
   </div>
 )
 

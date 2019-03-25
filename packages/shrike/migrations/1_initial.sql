@@ -92,7 +92,7 @@ CREATE TABLE layout_row
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     layout UUID REFERENCES layout(id) NOT NULL,
-    container BOOLEAN NOT NULL DEFAULT FALSE,
+    container BOOLEAN,
     PRIMARY KEY (id)
 );
 

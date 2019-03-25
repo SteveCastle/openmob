@@ -5,10 +5,18 @@ import { Link } from "@reach/router"
 import gql from "graphql-tag"
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const isObject = a => !!a && a.constructor === Object
+const getValue = obj =>
+  Object.entries(obj).reduce(entry =>
+    entry[0] === "seconds" || entry[0] === "ID" ? entry[1] : null
+  )
+const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+
 const LIST_{{toUpper .Table.Name}}= gql`
   {
     list{{.Table.Name}}(limit: 20) {
-      ID
+      {{range $i, $value := .Table.Columns}}{{.Name}}{{if eq .Type "Time!"}}{seconds}{{end}}{{if eq .Type "Time"}}{seconds}{{end}}{{if eq .Type "ID"}}{ID}{{end}}{{if eq .Type "ID!"}}{{if ne $i 0}}{ID}{{end}}{{end}}
+      {{end}}
     }
   }
 `
@@ -32,11 +40,19 @@ function List{{.Table.Name}}({ navigate }) {
     <div>
       <h1>List {{.Table.Name}}</h1>
       <Button label="Create a new {{.Table.Name}}" onClick={() => navigate('create')}/>
+      <table>
+      <thead>
+      <tr>
+{{range $i, $value := .Table.Columns}}<th>{{.Name}}</th>{{end}}
+      </tr>
+      </thead>
       {(items || []).map(item => (
-        <li>
-          <Link to={`/app/admin/{{toLower .Table.Name}}/${item.ID}`}>{item.ID}</Link>
-        </li>
+        <tr>
+          {{range $i, $value := .Table.Columns}}<td>{{if eq $i 0}}<Link to={`/app/admin/{{kebab .Table.Name}}/${item.ID}`}>{item.{{.Name}}}</Link>{{end}}{{if ne $i 0}}{parseObject(item.{{.Name}})}{{end}}</td>
+{{end}}
+        </tr>
       ))}
+      </table>
     </div>
   )
 }

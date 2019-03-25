@@ -70,7 +70,8 @@ func main() {
 	layoutRowReq := v1.CreateLayoutRowRequest{
 		Api: apiVersion,
 		Item: &v1.CreateLayoutRow{
-			Layout: layoutID,
+			Layout:    layoutID,
+			Container: false,
 		},
 	}
 	layoutRowRes, err := c.CreateLayoutRow(ctx, &layoutRowReq)
