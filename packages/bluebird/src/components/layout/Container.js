@@ -23,7 +23,6 @@ const StyledContainer = styled.div`
   ${display}
   ${flexWrap}
   ${maxWidth}
-
 `;
 
 function Container({ dark, children, tracing }) {

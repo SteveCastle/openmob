@@ -15,7 +15,7 @@ import (
 
 type server struct{}
 
-//LoggingInterceptor is a test Interceptor
+//LoggingInterceptor logs requests to standard output.
 func LoggingInterceptor(
 	ctx context.Context,
 	req interface{},
@@ -24,6 +24,9 @@ func LoggingInterceptor(
 	start := time.Now()
 	// Calls the handler
 	h, err := handler(ctx, req)
+	if err != nil {
+		return nil, err
+	}
 	// Logging with grpclog (grpclog.LoggerV2)
 	fmt.Printf("Request - Method:%s\tDuration:%s\tError:%v\n",
 		info.FullMethod,
@@ -43,7 +46,7 @@ func BuildInterceptor(
 	// Calls the handler
 	h, err := handler(ctx, req)
 	if err != nil {
-		log.Fatalln(err)
+		return nil, err
 	}
 
 	// Translate the request in to a map so we can safely check for BuildStatic key.
