@@ -71,7 +71,7 @@ function EditField({ id }) {
   if (error) {
     return <div>Error! {error.message}</div>
   }
-  console.log(item)
+
   return (
     <Content>
       <Card>
