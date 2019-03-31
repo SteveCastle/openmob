@@ -18,6 +18,7 @@ const StyledButton = styled.button`
   ${fontSize}
   ${color}
   outline: none;
+  box-sizing: border-box;
 `;
 
 function Button({ onClick, label, icon, loader, block, variant, state }) {
@@ -28,7 +29,6 @@ function Button({ onClick, label, icon, loader, block, variant, state }) {
       borderRadius={2}
       onClick={onClick}
       p={3}
-      m={1}
       bg={variant === 'dark' ? 'buttons.dark.bg' : 'buttons.light.bg'}
       fontSize={1}
       color={variant === 'dark' ? 'buttons.light.text' : 'buttons.dark.text'}
