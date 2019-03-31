@@ -6,7 +6,7 @@ import {
   width,
   fontSize,
   color,
-  borders,
+  borderBottom,
   borderRadius,
   display,
   alignItems,
@@ -15,7 +15,7 @@ import {
 } from 'styled-system';
 
 const StyledItem = styled.div`
-  ${borders}
+  ${borderBottom}
   ${borderRadius}
   ${space}
   ${width}
@@ -28,17 +28,20 @@ const StyledItem = styled.div`
   a {
     text-decoration: none;
     color: white;
+    height: 100%;
+    width: 100%;
+    padding: 16px 0 16px 16px;
   }
 `;
 
 function MenuItem({ children }) {
   return (
     <StyledItem
+      borderBottom="1px solid #3f3f73"
       color="gray.0"
       display="flex"
-      p={2}
       fontSize={2}
-      justifyContent="center"
+      justifyContent="flex-start"
       alignItems="center"
     >
       {children}
@@ -47,7 +50,7 @@ function MenuItem({ children }) {
 }
 
 MenuItem.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.arrayOf(PropTypes.element)
 };
 
 export default MenuItem;

@@ -18,6 +18,7 @@ const StyledInput = styled.input`
   ${fontSize}
   ${color}
   outline: none;
+  box-sizing: border-box;
 `;
 
 function Input({ onChange, label, block, dark, value, placeholder }) {
@@ -26,6 +27,8 @@ function Input({ onChange, label, block, dark, value, placeholder }) {
       border={0}
       onChange={onChange}
       p={3}
+      m={2}
+      borderRadius={1}
       bg={dark ? 'forms.darkBackground' : 'forms.lightBackground'}
       fontSize={1}
       color={dark ? 'forms.lightText' : 'forms.darkText'}

@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
+  themeGet,
   space,
   width,
   maxWidth,
   height,
   fontSize,
   color,
-  borders,
-  boxShadow,
+  borderBottom,
   borderRadius,
   display,
   flexWrap,
@@ -18,10 +18,9 @@ import {
   justifyContent
 } from 'styled-system';
 
-const StyledCard = styled.div`
-  ${borders}
+const StyledTableCell = styled.td`
+  ${borderBottom}
   ${borderRadius}
-  ${boxShadow}
   ${space}
   ${width}
   ${maxWidth}
@@ -34,29 +33,31 @@ const StyledCard = styled.div`
   ${display}
   ${alignItems}
   ${justifyContent}
+
+  &:hover {
+      background-color: ${themeGet('colors.cellHover')}
+    }
+
+  & a {
+    text-decoration: none;
+    color: ${themeGet('colors.links')}
+  }
+ &  a:hover {
+      color: ${themeGet('colors.linksHover')}
+    }
 `;
 
-function Card({ children }) {
+function TableCell({ children }) {
   return (
-    <StyledCard
-      display="flex"
-      bg="gray.0"
-      p={2}
-      border={0}
-      boxShadow={0}
-      borderRadius={2}
-      flexWrap="wrap"
-      flexDirection="column"
-      fontSize={1}
-    >
+    <StyledTableCell px={2} py={3} fontSize={1}>
       {children}
-    </StyledCard>
+    </StyledTableCell>
   );
 }
 
-Card.propTypes = {
+TableCell.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element)
 };
-Card.defaultProps = {};
+TableCell.defaultProps = {};
 
-export default Card;
+export default TableCell;

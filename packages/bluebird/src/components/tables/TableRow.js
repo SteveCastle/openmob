@@ -4,47 +4,47 @@ import styled from 'styled-components';
 import {
   space,
   width,
+  maxWidth,
+  height,
   fontSize,
   color,
-  borders,
+  borderBottom,
   borderRadius,
   display,
-  height,
-  alignItems,
-  justifyContent,
   flexWrap,
-  flexDirection
+  flexDirection,
+  alignItems,
+  justifyContent
 } from 'styled-system';
 
-const StyledMenuBody = styled.div`
-  ${borders}
+const StyledTableRow = styled.tr`
+  ${borderBottom}
   ${borderRadius}
   ${space}
   ${width}
+  ${maxWidth}
   ${height}
-  ${alignItems}
-  ${justifyContent}
   ${fontSize}
-  ${color}
   ${display}
   ${flexWrap}
   ${flexDirection}
-  overflow: scroll;
-  position: fixed;
-  top: 13%;
-  left: 0;
+  ${color}
+  ${display}
+  ${alignItems}
+  ${justifyContent}
 `;
 
-function MenuBody({ children }) {
+function TableRow({ children }) {
   return (
-    <StyledMenuBody flexDirection="column" fontSize={4} height={'80%'}>
+    <StyledTableRow p={2} fontSize={1}>
       {children}
-    </StyledMenuBody>
+    </StyledTableRow>
   );
 }
 
-MenuBody.propTypes = {
+TableRow.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element)
 };
+TableRow.defaultProps = {};
 
-export default MenuBody;
+export default TableRow;

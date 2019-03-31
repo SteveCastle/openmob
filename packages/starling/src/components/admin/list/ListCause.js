@@ -6,6 +6,11 @@ import gql from 'graphql-tag'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
+import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
+import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
+import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
+import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
+import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
 
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
@@ -74,34 +79,34 @@ function ListCause({ navigate }) {
           block
           variant="primary"
         />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>CreatedAt</th>
-              <th>UpdatedAt</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Summary</th>
-              <th>HomePage</th>
-              <th>Photo</th>
-            </tr>
-          </thead>
+        <DataTable>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell>ID</TableHeaderCell>
+              <TableHeaderCell>CreatedAt</TableHeaderCell>
+              <TableHeaderCell>UpdatedAt</TableHeaderCell>
+              <TableHeaderCell>Title</TableHeaderCell>
+              <TableHeaderCell>Slug</TableHeaderCell>
+              <TableHeaderCell>Summary</TableHeaderCell>
+              <TableHeaderCell>HomePage</TableHeaderCell>
+              <TableHeaderCell>Photo</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
           {(items || []).map(item => (
-            <tr>
-              <td>
+            <TableRow>
+              <TableCell>
                 <Link to={`/app/admin/cause/${item.ID}`}>{item.ID}</Link>
-              </td>
-              <td>{parseObject(item.CreatedAt)}</td>
-              <td>{parseObject(item.UpdatedAt)}</td>
-              <td>{parseObject(item.Title)}</td>
-              <td>{parseObject(item.Slug)}</td>
-              <td>{parseObject(item.Summary)}</td>
-              <td>{parseObject(item.HomePage)}</td>
-              <td>{parseObject(item.Photo)}</td>
-            </tr>
+              </TableCell>
+              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+              <TableCell>{parseObject(item.Title)}</TableCell>
+              <TableCell>{parseObject(item.Slug)}</TableCell>
+              <TableCell>{parseObject(item.Summary)}</TableCell>
+              <TableCell>{parseObject(item.HomePage)}</TableCell>
+              <TableCell>{parseObject(item.Photo)}</TableCell>
+            </TableRow>
           ))}
-        </table>
+        </DataTable>
       </Card>
     </Content>
   )

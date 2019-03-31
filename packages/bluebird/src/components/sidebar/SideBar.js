@@ -27,7 +27,7 @@ const StyledSideBar = styled.div`
 `;
 function SideBar({ children }) {
   return (
-    <StyledSideBar width={256} bg="blue.9" height="5">
+    <StyledSideBar width={256} bg="admin.light.sidebarBg" height="5">
       {children}
     </StyledSideBar>
   );

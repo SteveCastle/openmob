@@ -6,6 +6,11 @@ import gql from 'graphql-tag'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
+import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
+import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
+import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
+import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
+import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
 
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
@@ -70,34 +75,34 @@ function ListContact({ navigate }) {
           block
           variant="primary"
         />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>CreatedAt</th>
-              <th>UpdatedAt</th>
-              <th>FirstName</th>
-              <th>MiddleName</th>
-              <th>LastName</th>
-              <th>Email</th>
-              <th>PhoneNumber</th>
-            </tr>
-          </thead>
+        <DataTable>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell>ID</TableHeaderCell>
+              <TableHeaderCell>CreatedAt</TableHeaderCell>
+              <TableHeaderCell>UpdatedAt</TableHeaderCell>
+              <TableHeaderCell>FirstName</TableHeaderCell>
+              <TableHeaderCell>MiddleName</TableHeaderCell>
+              <TableHeaderCell>LastName</TableHeaderCell>
+              <TableHeaderCell>Email</TableHeaderCell>
+              <TableHeaderCell>PhoneNumber</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
           {(items || []).map(item => (
-            <tr>
-              <td>
+            <TableRow>
+              <TableCell>
                 <Link to={`/app/admin/contact/${item.ID}`}>{item.ID}</Link>
-              </td>
-              <td>{parseObject(item.CreatedAt)}</td>
-              <td>{parseObject(item.UpdatedAt)}</td>
-              <td>{parseObject(item.FirstName)}</td>
-              <td>{parseObject(item.MiddleName)}</td>
-              <td>{parseObject(item.LastName)}</td>
-              <td>{parseObject(item.Email)}</td>
-              <td>{parseObject(item.PhoneNumber)}</td>
-            </tr>
+              </TableCell>
+              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+              <TableCell>{parseObject(item.FirstName)}</TableCell>
+              <TableCell>{parseObject(item.MiddleName)}</TableCell>
+              <TableCell>{parseObject(item.LastName)}</TableCell>
+              <TableCell>{parseObject(item.Email)}</TableCell>
+              <TableCell>{parseObject(item.PhoneNumber)}</TableCell>
+            </TableRow>
           ))}
-        </table>
+        </DataTable>
       </Card>
     </Content>
   )

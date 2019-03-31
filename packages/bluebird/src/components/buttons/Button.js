@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
+  themeGet,
   space,
   width,
   fontSize,
   color,
   borders,
+  boxShadow,
   borderRadius
 } from 'styled-system';
 
 const StyledButton = styled.button`
   ${borders}
+  ${boxShadow}
   ${borderRadius}
   ${space}
   ${width}
@@ -19,6 +22,14 @@ const StyledButton = styled.button`
   ${color}
   outline: none;
   box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover{
+    background-color: ${themeGet('colors.buttons.light.primary.hover')};
+  }
+  &:active{
+    box-shadow: none;
+  }
 `;
 
 function Button({
@@ -35,6 +46,7 @@ function Button({
     <StyledButton
       block={block}
       border={0}
+      boxShadow={0}
       borderRadius={2}
       onClick={onClick}
       p={3}

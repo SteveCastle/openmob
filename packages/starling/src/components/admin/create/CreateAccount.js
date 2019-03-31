@@ -14,18 +14,6 @@ const CreateAccount = ({ id }) => (
       <Form>
         <h1>Create Account</h1>
         <Widget>
-          <Label>ID</Label>
-          <Input placeholder="ID!" />
-        </Widget>
-        <Widget>
-          <Label>CreatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
-          <Label>UpdatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
           <Label>Username</Label>
           <Input placeholder="String!" />
         </Widget>

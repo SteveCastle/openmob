@@ -14,18 +14,6 @@ const CreateIssue = ({ id }) => (
       <Form>
         <h1>Create Issue</h1>
         <Widget>
-          <Label>ID</Label>
-          <Input placeholder="ID!" />
-        </Widget>
-        <Widget>
-          <Label>CreatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
-          <Label>UpdatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
           <Label>Title</Label>
           <Input placeholder="String!" />
         </Widget>

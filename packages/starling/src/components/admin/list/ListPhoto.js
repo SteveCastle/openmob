@@ -6,6 +6,11 @@ import gql from 'graphql-tag'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
+import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
+import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
+import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
+import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
+import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
 
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
@@ -68,30 +73,30 @@ function ListPhoto({ navigate }) {
           block
           variant="primary"
         />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>CreatedAt</th>
-              <th>UpdatedAt</th>
-              <th>URI</th>
-              <th>Width</th>
-              <th>Height</th>
-            </tr>
-          </thead>
+        <DataTable>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell>ID</TableHeaderCell>
+              <TableHeaderCell>CreatedAt</TableHeaderCell>
+              <TableHeaderCell>UpdatedAt</TableHeaderCell>
+              <TableHeaderCell>URI</TableHeaderCell>
+              <TableHeaderCell>Width</TableHeaderCell>
+              <TableHeaderCell>Height</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
           {(items || []).map(item => (
-            <tr>
-              <td>
+            <TableRow>
+              <TableCell>
                 <Link to={`/app/admin/photo/${item.ID}`}>{item.ID}</Link>
-              </td>
-              <td>{parseObject(item.CreatedAt)}</td>
-              <td>{parseObject(item.UpdatedAt)}</td>
-              <td>{parseObject(item.URI)}</td>
-              <td>{parseObject(item.Width)}</td>
-              <td>{parseObject(item.Height)}</td>
-            </tr>
+              </TableCell>
+              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+              <TableCell>{parseObject(item.URI)}</TableCell>
+              <TableCell>{parseObject(item.Width)}</TableCell>
+              <TableCell>{parseObject(item.Height)}</TableCell>
+            </TableRow>
           ))}
-        </table>
+        </DataTable>
       </Card>
     </Content>
   )

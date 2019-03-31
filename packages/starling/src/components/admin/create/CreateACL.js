@@ -13,18 +13,6 @@ const CreateACL = ({ id }) => (
     <Card>
       <Form>
         <h1>Create ACL</h1>
-        <Widget>
-          <Label>ID</Label>
-          <Input placeholder="ID!" />
-        </Widget>
-        <Widget>
-          <Label>CreatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
-          <Label>UpdatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
 
         <Button label="Create" block variant="primary" />
       </Form>

@@ -6,6 +6,11 @@ import gql from 'graphql-tag'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
+import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
+import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
+import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
+import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
+import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
 
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
@@ -78,42 +83,42 @@ function ListFieldType({ navigate }) {
           block
           variant="primary"
         />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>CreatedAt</th>
-              <th>UpdatedAt</th>
-              <th>Title</th>
-              <th>DataType</th>
-              <th>PropName</th>
-              <th>StringValueDefault</th>
-              <th>IntValueDefault</th>
-              <th>FloatValueDefault</th>
-              <th>BooleanValueDefault</th>
-              <th>DateTimeValueDefault</th>
-              <th>ComponentType</th>
-            </tr>
-          </thead>
+        <DataTable>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell>ID</TableHeaderCell>
+              <TableHeaderCell>CreatedAt</TableHeaderCell>
+              <TableHeaderCell>UpdatedAt</TableHeaderCell>
+              <TableHeaderCell>Title</TableHeaderCell>
+              <TableHeaderCell>DataType</TableHeaderCell>
+              <TableHeaderCell>PropName</TableHeaderCell>
+              <TableHeaderCell>StringValueDefault</TableHeaderCell>
+              <TableHeaderCell>IntValueDefault</TableHeaderCell>
+              <TableHeaderCell>FloatValueDefault</TableHeaderCell>
+              <TableHeaderCell>BooleanValueDefault</TableHeaderCell>
+              <TableHeaderCell>DateTimeValueDefault</TableHeaderCell>
+              <TableHeaderCell>ComponentType</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
           {(items || []).map(item => (
-            <tr>
-              <td>
+            <TableRow>
+              <TableCell>
                 <Link to={`/app/admin/field-type/${item.ID}`}>{item.ID}</Link>
-              </td>
-              <td>{parseObject(item.CreatedAt)}</td>
-              <td>{parseObject(item.UpdatedAt)}</td>
-              <td>{parseObject(item.Title)}</td>
-              <td>{parseObject(item.DataType)}</td>
-              <td>{parseObject(item.PropName)}</td>
-              <td>{parseObject(item.StringValueDefault)}</td>
-              <td>{parseObject(item.IntValueDefault)}</td>
-              <td>{parseObject(item.FloatValueDefault)}</td>
-              <td>{parseObject(item.BooleanValueDefault)}</td>
-              <td>{parseObject(item.DateTimeValueDefault)}</td>
-              <td>{parseObject(item.ComponentType)}</td>
-            </tr>
+              </TableCell>
+              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+              <TableCell>{parseObject(item.Title)}</TableCell>
+              <TableCell>{parseObject(item.DataType)}</TableCell>
+              <TableCell>{parseObject(item.PropName)}</TableCell>
+              <TableCell>{parseObject(item.StringValueDefault)}</TableCell>
+              <TableCell>{parseObject(item.IntValueDefault)}</TableCell>
+              <TableCell>{parseObject(item.FloatValueDefault)}</TableCell>
+              <TableCell>{parseObject(item.BooleanValueDefault)}</TableCell>
+              <TableCell>{parseObject(item.DateTimeValueDefault)}</TableCell>
+              <TableCell>{parseObject(item.ComponentType)}</TableCell>
+            </TableRow>
           ))}
-        </table>
+        </DataTable>
       </Card>
     </Content>
   )

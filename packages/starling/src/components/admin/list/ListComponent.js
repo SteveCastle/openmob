@@ -6,6 +6,11 @@ import gql from 'graphql-tag'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
+import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
+import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
+import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
+import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
+import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
 
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
@@ -74,30 +79,30 @@ function ListComponent({ navigate }) {
           block
           variant="primary"
         />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>CreatedAt</th>
-              <th>UpdatedAt</th>
-              <th>ComponentType</th>
-              <th>ComponentImplementation</th>
-              <th>LayoutColumn</th>
-            </tr>
-          </thead>
+        <DataTable>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell>ID</TableHeaderCell>
+              <TableHeaderCell>CreatedAt</TableHeaderCell>
+              <TableHeaderCell>UpdatedAt</TableHeaderCell>
+              <TableHeaderCell>ComponentType</TableHeaderCell>
+              <TableHeaderCell>ComponentImplementation</TableHeaderCell>
+              <TableHeaderCell>LayoutColumn</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
           {(items || []).map(item => (
-            <tr>
-              <td>
+            <TableRow>
+              <TableCell>
                 <Link to={`/app/admin/component/${item.ID}`}>{item.ID}</Link>
-              </td>
-              <td>{parseObject(item.CreatedAt)}</td>
-              <td>{parseObject(item.UpdatedAt)}</td>
-              <td>{parseObject(item.ComponentType)}</td>
-              <td>{parseObject(item.ComponentImplementation)}</td>
-              <td>{parseObject(item.LayoutColumn)}</td>
-            </tr>
+              </TableCell>
+              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+              <TableCell>{parseObject(item.ComponentType)}</TableCell>
+              <TableCell>{parseObject(item.ComponentImplementation)}</TableCell>
+              <TableCell>{parseObject(item.LayoutColumn)}</TableCell>
+            </TableRow>
           ))}
-        </table>
+        </DataTable>
       </Card>
     </Content>
   )

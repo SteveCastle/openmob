@@ -14,18 +14,6 @@ const CreateCustomerOrder = ({ id }) => (
       <Form>
         <h1>Create CustomerOrder</h1>
         <Widget>
-          <Label>ID</Label>
-          <Input placeholder="ID!" />
-        </Widget>
-        <Widget>
-          <Label>CreatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
-          <Label>UpdatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
           <Label>CustomerCart</Label>
           <Input placeholder="ID!" />
         </Widget>

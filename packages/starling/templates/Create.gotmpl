@@ -13,11 +13,11 @@ const Create{{.Table.Name}} = ({id}) => (
   <Card>
   <Form>
     <h1>Create {{.Table.Name}}</h1>
-{{range $i, $value := .Table.Columns}}  <Widget>
+{{range $i, $value := .Table.Columns}}{{if gt $i 2}}  <Widget>
       <Label>{{.Name}}</Label>
       <Input placeholder="{{.Type}}"/>
   </Widget>
-{{end}}
+{{end}}{{end}}
       <Button label="Create" block variant="primary" />
       </Form>
   </Card>

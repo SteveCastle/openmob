@@ -6,6 +6,11 @@ import gql from 'graphql-tag'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
+import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
+import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
+import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
+import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
+import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
 
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
@@ -78,38 +83,38 @@ function ListField({ navigate }) {
           block
           variant="primary"
         />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>CreatedAt</th>
-              <th>UpdatedAt</th>
-              <th>FieldType</th>
-              <th>StringValue</th>
-              <th>IntValue</th>
-              <th>FloatValue</th>
-              <th>BooleanValue</th>
-              <th>DateTimeValue</th>
-              <th>Component</th>
-            </tr>
-          </thead>
+        <DataTable>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell>ID</TableHeaderCell>
+              <TableHeaderCell>CreatedAt</TableHeaderCell>
+              <TableHeaderCell>UpdatedAt</TableHeaderCell>
+              <TableHeaderCell>FieldType</TableHeaderCell>
+              <TableHeaderCell>StringValue</TableHeaderCell>
+              <TableHeaderCell>IntValue</TableHeaderCell>
+              <TableHeaderCell>FloatValue</TableHeaderCell>
+              <TableHeaderCell>BooleanValue</TableHeaderCell>
+              <TableHeaderCell>DateTimeValue</TableHeaderCell>
+              <TableHeaderCell>Component</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
           {(items || []).map(item => (
-            <tr>
-              <td>
+            <TableRow>
+              <TableCell>
                 <Link to={`/app/admin/field/${item.ID}`}>{item.ID}</Link>
-              </td>
-              <td>{parseObject(item.CreatedAt)}</td>
-              <td>{parseObject(item.UpdatedAt)}</td>
-              <td>{parseObject(item.FieldType)}</td>
-              <td>{parseObject(item.StringValue)}</td>
-              <td>{parseObject(item.IntValue)}</td>
-              <td>{parseObject(item.FloatValue)}</td>
-              <td>{parseObject(item.BooleanValue)}</td>
-              <td>{parseObject(item.DateTimeValue)}</td>
-              <td>{parseObject(item.Component)}</td>
-            </tr>
+              </TableCell>
+              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+              <TableCell>{parseObject(item.FieldType)}</TableCell>
+              <TableCell>{parseObject(item.StringValue)}</TableCell>
+              <TableCell>{parseObject(item.IntValue)}</TableCell>
+              <TableCell>{parseObject(item.FloatValue)}</TableCell>
+              <TableCell>{parseObject(item.BooleanValue)}</TableCell>
+              <TableCell>{parseObject(item.DateTimeValue)}</TableCell>
+              <TableCell>{parseObject(item.Component)}</TableCell>
+            </TableRow>
           ))}
-        </table>
+        </DataTable>
       </Card>
     </Content>
   )

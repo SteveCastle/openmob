@@ -190,29 +190,39 @@ const theme = {
     '16px solid',
     '32px solid'
   ],
-  radii: [0, 2, 4, 16, 9999, '100%'],
+  radii: [0, 2, 4, 8, 16, 32, '100%'],
   widths: [16, 32, 64, 128, 256],
   heights: [16, 32, 64, 128, 256, '100%'],
   maxWidths: [16, 32, 64, 128, 256, 512, 768, 1024, 1536],
+  shadows: ['0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;'],
   colors: {
     ...colors,
+    links: colors.blue[5],
+    cellHover: colors.gray[1],
+    linksHover: colors.blue[4],
     admin: {
       light: {
-        bg: colors.gray[1]
+        bg: colors.gray[1],
+        sidebarBg: colors.blue[9]
       },
-      dark: { bg: colors.gray[8] }
+      dark: { bg: colors.gray[8], sidebarBg: colors.blue[9] }
     },
     buttons: {
       light: {
-        primary: { bg: colors.green[5], label: colors.white }
+        primary: {
+          bg: colors.green[5],
+          label: colors.white,
+          hover: colors.green[4]
+        }
       },
       dark: { primary: { bg: colors.gray[9], label: colors.white } }
     },
     forms: {
       light: {
-        bg: colors.gray[2]
+        bg: colors.gray[2],
+        value: colors.blue[9]
       },
-      dark: { bg: colors.gray[9] }
+      dark: { bg: colors.gray[9], value: colors.blue[9] }
     },
     type: {
       light: {

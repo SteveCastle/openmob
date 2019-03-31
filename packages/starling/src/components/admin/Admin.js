@@ -220,7 +220,7 @@ const Layout = ({ children, title, id, summary }) => (
       </SideBarHeader>
       <Menu vertical>
         <MenuHeader>
-          <Input />
+          <Input block />
         </MenuHeader>
         <MenuBody>
           <MenuItem>

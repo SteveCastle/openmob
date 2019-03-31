@@ -24,6 +24,7 @@ function Label({ children, block, dark }) {
     <StyledLabel
       border={0}
       p={3}
+      m={1}
       fontSize={1}
       color={dark ? 'forms.lightText' : 'forms.darkText'}
       width={block ? 1 : 1 / 3}

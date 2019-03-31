@@ -6,6 +6,11 @@ import gql from "graphql-tag"
 import Content from "@openmob/bluebird/src/components/layout/Content"
 import Card from "@openmob/bluebird/src/components/cards/Card"
 import Button from '@openmob/bluebird/src/components/buttons/Button'
+import DataTable from "@openmob/bluebird/src/components/tables/DataTable"
+import TableHeader from "@openmob/bluebird/src/components/tables/TableHeader"
+import TableHeaderCell from "@openmob/bluebird/src/components/tables/TableHeaderCell"
+import TableRow from "@openmob/bluebird/src/components/tables/TableRow"
+import TableCell from "@openmob/bluebird/src/components/tables/TableCell"
 
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
@@ -43,19 +48,19 @@ function List{{.Table.Name}}({ navigate }) {
     <Card>
       <h1>List {{.Table.Name}}</h1>
       <Button label="Create a new {{.Table.Name}}" onClick={() => navigate('create')} block variant="primary" />
-      <table>
-      <thead>
-      <tr>
-{{range $i, $value := .Table.Columns}}<th>{{.Name}}</th>{{end}}
-      </tr>
-      </thead>
+      <DataTable>
+      <TableHeader>
+      <TableRow>
+{{range $i, $value := .Table.Columns}}<TableHeaderCell>{{.Name}}</TableHeaderCell>{{end}}
+      </TableRow>
+      </TableHeader>
       {(items || []).map(item => (
-        <tr>
-          {{range $i, $value := .Table.Columns}}<td>{{if eq $i 0}}<Link to={`/app/admin/{{kebab .Table.Name}}/${item.ID}`}>{item.{{.Name}}}</Link>{{end}}{{if ne $i 0}}{parseObject(item.{{.Name}})}{{end}}</td>
+        <TableRow>
+          {{range $i, $value := .Table.Columns}}<TableCell>{{if eq $i 0}}<Link to={`/app/admin/{{kebab .Table.Name}}/${item.ID}`}>{item.{{.Name}}}</Link>{{end}}{{if ne $i 0}}{parseObject(item.{{.Name}})}{{end}}</TableCell>
 {{end}}
-        </tr>
+        </TableRow>
       ))}
-      </table>
+      </DataTable>
       </Card>
     </Content>
   )

@@ -14,18 +14,6 @@ const CreatePayment = ({ id }) => (
       <Form>
         <h1>Create Payment</h1>
         <Widget>
-          <Label>ID</Label>
-          <Input placeholder="ID!" />
-        </Widget>
-        <Widget>
-          <Label>CreatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
-          <Label>UpdatedAt</Label>
-          <Input placeholder="Time!" />
-        </Widget>
-        <Widget>
           <Label>CustomerOrder</Label>
           <Input placeholder="ID!" />
         </Widget>
