@@ -1,54 +1,63 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Content from '@openmob/bluebird/src/components/layout/Content'
+import Card from '@openmob/bluebird/src/components/cards/Card'
+import Form from '@openmob/bluebird/src/components/forms/Form'
+import Widget from '@openmob/bluebird/src/components/forms/Widget'
+import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const CreateField = ({ id }) => (
-  <div>
-    <h1>Create Field</h1>
-    <div>
-      <label>ID</label>
-      <Input placeholder="ID!" />
-    </div>
-    <div>
-      <label>CreatedAt</label>
-      <Input placeholder="Time!" />
-    </div>
-    <div>
-      <label>UpdatedAt</label>
-      <Input placeholder="Time!" />
-    </div>
-    <div>
-      <label>FieldType</label>
-      <Input placeholder="ID!" />
-    </div>
-    <div>
-      <label>StringValue</label>
-      <Input placeholder="String" />
-    </div>
-    <div>
-      <label>IntValue</label>
-      <Input placeholder="Int" />
-    </div>
-    <div>
-      <label>FloatValue</label>
-      <Input placeholder="Float" />
-    </div>
-    <div>
-      <label>BooleanValue</label>
-      <Input placeholder="Boolean" />
-    </div>
-    <div>
-      <label>DateTimeValue</label>
-      <Input placeholder="Time" />
-    </div>
-    <div>
-      <label>Component</label>
-      <Input placeholder="ID" />
-    </div>
+  <Content>
+    <Card>
+      <Form>
+        <h1>Create Field</h1>
+        <Widget>
+          <Label>ID</Label>
+          <Input placeholder="ID!" />
+        </Widget>
+        <Widget>
+          <Label>CreatedAt</Label>
+          <Input placeholder="Time!" />
+        </Widget>
+        <Widget>
+          <Label>UpdatedAt</Label>
+          <Input placeholder="Time!" />
+        </Widget>
+        <Widget>
+          <Label>FieldType</Label>
+          <Input placeholder="ID!" />
+        </Widget>
+        <Widget>
+          <Label>StringValue</Label>
+          <Input placeholder="String" />
+        </Widget>
+        <Widget>
+          <Label>IntValue</Label>
+          <Input placeholder="Int" />
+        </Widget>
+        <Widget>
+          <Label>FloatValue</Label>
+          <Input placeholder="Float" />
+        </Widget>
+        <Widget>
+          <Label>BooleanValue</Label>
+          <Input placeholder="Boolean" />
+        </Widget>
+        <Widget>
+          <Label>DateTimeValue</Label>
+          <Input placeholder="Time" />
+        </Widget>
+        <Widget>
+          <Label>Component</Label>
+          <Input placeholder="ID" />
+        </Widget>
 
-    <Button label="Edit" />
-  </div>
+        <Button label="Edit" />
+      </Form>
+    </Card>
+  </Content>
 )
 
 CreateField.propTypes = {

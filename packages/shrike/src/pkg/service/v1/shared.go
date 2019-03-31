@@ -19,7 +19,7 @@ type shrikeServiceServer struct {
 	db *sql.DB
 }
 
-// NewShrikeServiceServer creates {{.Table.Name}} service
+// NewShrikeServiceServer creates Shrike service
 func NewShrikeServiceServer(db *sql.DB) v1.ShrikeServiceServer {
 	return &shrikeServiceServer{db: db}
 }

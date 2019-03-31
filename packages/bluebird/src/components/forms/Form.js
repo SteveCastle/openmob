@@ -10,7 +10,7 @@ import {
   borderRadius
 } from 'styled-system';
 
-const StyledForm = styled.form`
+const StyledForm = styled.div`
   ${borders}
   ${borderRadius}
   ${space}
@@ -19,11 +19,16 @@ const StyledForm = styled.form`
   ${color}
 `;
 
-function Form({ onChange, state }) {
-  return <StyledForm border={0} p={3} fontSize={1} />;
+function Form({ children, onChange, state }) {
+  return (
+    <StyledForm border={0} p={3} fontSize={1}>
+      {children}
+    </StyledForm>
+  );
 }
 
 Form.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element),
   onChange: PropTypes.func,
   state: PropTypes.oneOf(['ready', 'valid', 'error'])
 };

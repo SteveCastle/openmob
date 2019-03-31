@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { useQuery } from 'react-apollo-hooks'
 import { Link } from '@reach/router'
 import gql from 'graphql-tag'
+import Content from '@openmob/bluebird/src/components/layout/Content'
+import Card from '@openmob/bluebird/src/components/cards/Card'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const isObject = a => !!a && a.constructor === Object
@@ -46,40 +48,45 @@ function ListPayment({ navigate }) {
 
   if (items === null || items.length === 0) {
     return (
-      <div>
+      <Content>
         <Button
           label="Create the first Payment"
           onClick={() => navigate('create')}
         />
-      </div>
+      </Content>
     )
   }
 
   return (
-    <div>
-      <h1>List Payment</h1>
-      <Button label="Create a new Payment" onClick={() => navigate('create')} />
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>CreatedAt</th>
-            <th>UpdatedAt</th>
-            <th>CustomerOrder</th>
-          </tr>
-        </thead>
-        {(items || []).map(item => (
-          <tr>
-            <td>
-              <Link to={`/app/admin/payment/${item.ID}`}>{item.ID}</Link>
-            </td>
-            <td>{parseObject(item.CreatedAt)}</td>
-            <td>{parseObject(item.UpdatedAt)}</td>
-            <td>{parseObject(item.CustomerOrder)}</td>
-          </tr>
-        ))}
-      </table>
-    </div>
+    <Content>
+      <Card>
+        <h1>List Payment</h1>
+        <Button
+          label="Create a new Payment"
+          onClick={() => navigate('create')}
+        />
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>CreatedAt</th>
+              <th>UpdatedAt</th>
+              <th>CustomerOrder</th>
+            </tr>
+          </thead>
+          {(items || []).map(item => (
+            <tr>
+              <td>
+                <Link to={`/app/admin/payment/${item.ID}`}>{item.ID}</Link>
+              </td>
+              <td>{parseObject(item.CreatedAt)}</td>
+              <td>{parseObject(item.UpdatedAt)}</td>
+              <td>{parseObject(item.CustomerOrder)}</td>
+            </tr>
+          ))}
+        </table>
+      </Card>
+    </Content>
   )
 }
 

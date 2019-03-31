@@ -13,8 +13,10 @@ body {
 
 div[role="group"][tabindex] {
   height: 100%;
+  width: 100%;
 }
 
 #___gatsby {
   height: 100%;
+  width: 100%;
 }

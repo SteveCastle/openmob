@@ -29,13 +29,9 @@ function Button({ onClick, label, icon, loader, block, variant, state }) {
       onClick={onClick}
       p={3}
       m={1}
-      bg={
-        variant === 'dark'
-          ? 'buttons.darkBackground'
-          : 'buttons.lightBackground'
-      }
+      bg={variant === 'dark' ? 'buttons.dark.bg' : 'buttons.light.bg'}
       fontSize={1}
-      color={variant === 'dark' ? 'buttons.lightText' : 'buttons.darkText'}
+      color={variant === 'dark' ? 'buttons.light.text' : 'buttons.dark.text'}
       width={block ? 1 : null}
     >
       {label}

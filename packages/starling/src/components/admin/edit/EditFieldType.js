@@ -2,6 +2,11 @@ import React from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
+import Content from '@openmob/bluebird/src/components/layout/Content'
+import Card from '@openmob/bluebird/src/components/cards/Card'
+import Form from '@openmob/bluebird/src/components/forms/Form'
+import Widget from '@openmob/bluebird/src/components/forms/Widget'
+import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
@@ -57,59 +62,63 @@ function EditFieldType({ id }) {
   }
 
   return (
-    <div>
-      <h1>Edit {item.ID}</h1>
-      <div>
-        <label>ID</label>
-        <Input placeholder={parseObject(item.ID)} />
-      </div>
-      <div>
-        <label>CreatedAt</label>
-        <Input placeholder={parseObject(item.CreatedAt)} />
-      </div>
-      <div>
-        <label>UpdatedAt</label>
-        <Input placeholder={parseObject(item.UpdatedAt)} />
-      </div>
-      <div>
-        <label>Title</label>
-        <Input placeholder={parseObject(item.Title)} />
-      </div>
-      <div>
-        <label>DataType</label>
-        <Input placeholder={parseObject(item.DataType)} />
-      </div>
-      <div>
-        <label>PropName</label>
-        <Input placeholder={parseObject(item.PropName)} />
-      </div>
-      <div>
-        <label>StringValueDefault</label>
-        <Input placeholder={parseObject(item.StringValueDefault)} />
-      </div>
-      <div>
-        <label>IntValueDefault</label>
-        <Input placeholder={parseObject(item.IntValueDefault)} />
-      </div>
-      <div>
-        <label>FloatValueDefault</label>
-        <Input placeholder={parseObject(item.FloatValueDefault)} />
-      </div>
-      <div>
-        <label>BooleanValueDefault</label>
-        <Input placeholder={parseObject(item.BooleanValueDefault)} />
-      </div>
-      <div>
-        <label>DateTimeValueDefault</label>
-        <Input placeholder={parseObject(item.DateTimeValueDefault)} />
-      </div>
-      <div>
-        <label>ComponentType</label>
-        <Input placeholder={parseObject(item.ComponentType)} />
-      </div>
+    <Content>
+      <Card>
+        <Form>
+          <h1>Edit {item.ID}</h1>
+          <Widget>
+            <Label>ID</Label>
+            <Input placeholder={parseObject(item.ID)} />
+          </Widget>
+          <Widget>
+            <Label>CreatedAt</Label>
+            <Input placeholder={parseObject(item.CreatedAt)} />
+          </Widget>
+          <Widget>
+            <Label>UpdatedAt</Label>
+            <Input placeholder={parseObject(item.UpdatedAt)} />
+          </Widget>
+          <Widget>
+            <Label>Title</Label>
+            <Input placeholder={parseObject(item.Title)} />
+          </Widget>
+          <Widget>
+            <Label>DataType</Label>
+            <Input placeholder={parseObject(item.DataType)} />
+          </Widget>
+          <Widget>
+            <Label>PropName</Label>
+            <Input placeholder={parseObject(item.PropName)} />
+          </Widget>
+          <Widget>
+            <Label>StringValueDefault</Label>
+            <Input placeholder={parseObject(item.StringValueDefault)} />
+          </Widget>
+          <Widget>
+            <Label>IntValueDefault</Label>
+            <Input placeholder={parseObject(item.IntValueDefault)} />
+          </Widget>
+          <Widget>
+            <Label>FloatValueDefault</Label>
+            <Input placeholder={parseObject(item.FloatValueDefault)} />
+          </Widget>
+          <Widget>
+            <Label>BooleanValueDefault</Label>
+            <Input placeholder={parseObject(item.BooleanValueDefault)} />
+          </Widget>
+          <Widget>
+            <Label>DateTimeValueDefault</Label>
+            <Input placeholder={parseObject(item.DateTimeValueDefault)} />
+          </Widget>
+          <Widget>
+            <Label>ComponentType</Label>
+            <Input placeholder={parseObject(item.ComponentType)} />
+          </Widget>
 
-      <Button label="Edit" />
-    </div>
+          <Button label="Edit" />
+        </Form>
+      </Card>
+    </Content>
   )
 }
 

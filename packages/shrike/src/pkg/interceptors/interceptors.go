@@ -58,12 +58,12 @@ func BuildInterceptor(
 
 		webhookMessage, err := json.Marshal(message)
 		if err != nil {
-			log.Fatalln(err)
+			log.Println(err)
 		}
 
 		resp, err := http.Post("http://localhost:8000/__refresh", "application/json", bytes.NewBuffer(webhookMessage))
 		if err != nil {
-			log.Fatalln(err)
+			log.Println(err)
 		}
 		fmt.Printf("Build finished with response: %v\n", resp)
 	}

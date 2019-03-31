@@ -2,7 +2,12 @@ import React from "react"
 import { useQuery } from "react-apollo-hooks"
 import gql from "graphql-tag"
 import PropTypes from "prop-types"
-import Input from '@openmob/bluebird/src/components/forms/Input'
+import Content from "@openmob/bluebird/src/components/layout/Content"
+import Card from "@openmob/bluebird/src/components/cards/Card"
+import Form from "@openmob/bluebird/src/components/forms/Form"
+import Widget from "@openmob/bluebird/src/components/forms/Widget"
+import Label from "@openmob/bluebird/src/components/forms/Label"
+import Input from "@openmob/bluebird/src/components/forms/Input"
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const isObject = a => !!a && a.constructor === Object
@@ -39,15 +44,19 @@ function Edit{{.Table.Name}}({ id }) {
   }
 
   return (
-    <div>
+    <Content>
+    <Card>
+    <Form>
       <h1>Edit {item.ID}</h1>
-{{range $i, $value := .Table.Columns}}  <div>
-      <label>{{.Name}}</label>
+{{range $i, $value := .Table.Columns}}  <Widget>
+      <Label>{{.Name}}</Label>
       <Input placeholder={parseObject(item.{{.Name}})}/>
-  </div>
+  </Widget>
 {{end}}
       <Button label="Edit" />
-    </div>
+      </Form>
+    </Card>
+    </Content>
   )
 }
 

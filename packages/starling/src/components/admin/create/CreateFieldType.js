@@ -1,62 +1,71 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Content from '@openmob/bluebird/src/components/layout/Content'
+import Card from '@openmob/bluebird/src/components/cards/Card'
+import Form from '@openmob/bluebird/src/components/forms/Form'
+import Widget from '@openmob/bluebird/src/components/forms/Widget'
+import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const CreateFieldType = ({ id }) => (
-  <div>
-    <h1>Create FieldType</h1>
-    <div>
-      <label>ID</label>
-      <Input placeholder="ID!" />
-    </div>
-    <div>
-      <label>CreatedAt</label>
-      <Input placeholder="Time!" />
-    </div>
-    <div>
-      <label>UpdatedAt</label>
-      <Input placeholder="Time!" />
-    </div>
-    <div>
-      <label>Title</label>
-      <Input placeholder="String!" />
-    </div>
-    <div>
-      <label>DataType</label>
-      <Input placeholder="String!" />
-    </div>
-    <div>
-      <label>PropName</label>
-      <Input placeholder="String!" />
-    </div>
-    <div>
-      <label>StringValueDefault</label>
-      <Input placeholder="String" />
-    </div>
-    <div>
-      <label>IntValueDefault</label>
-      <Input placeholder="Int" />
-    </div>
-    <div>
-      <label>FloatValueDefault</label>
-      <Input placeholder="Float" />
-    </div>
-    <div>
-      <label>BooleanValueDefault</label>
-      <Input placeholder="Boolean" />
-    </div>
-    <div>
-      <label>DateTimeValueDefault</label>
-      <Input placeholder="Time" />
-    </div>
-    <div>
-      <label>ComponentType</label>
-      <Input placeholder="ID" />
-    </div>
+  <Content>
+    <Card>
+      <Form>
+        <h1>Create FieldType</h1>
+        <Widget>
+          <Label>ID</Label>
+          <Input placeholder="ID!" />
+        </Widget>
+        <Widget>
+          <Label>CreatedAt</Label>
+          <Input placeholder="Time!" />
+        </Widget>
+        <Widget>
+          <Label>UpdatedAt</Label>
+          <Input placeholder="Time!" />
+        </Widget>
+        <Widget>
+          <Label>Title</Label>
+          <Input placeholder="String!" />
+        </Widget>
+        <Widget>
+          <Label>DataType</Label>
+          <Input placeholder="String!" />
+        </Widget>
+        <Widget>
+          <Label>PropName</Label>
+          <Input placeholder="String!" />
+        </Widget>
+        <Widget>
+          <Label>StringValueDefault</Label>
+          <Input placeholder="String" />
+        </Widget>
+        <Widget>
+          <Label>IntValueDefault</Label>
+          <Input placeholder="Int" />
+        </Widget>
+        <Widget>
+          <Label>FloatValueDefault</Label>
+          <Input placeholder="Float" />
+        </Widget>
+        <Widget>
+          <Label>BooleanValueDefault</Label>
+          <Input placeholder="Boolean" />
+        </Widget>
+        <Widget>
+          <Label>DateTimeValueDefault</Label>
+          <Input placeholder="Time" />
+        </Widget>
+        <Widget>
+          <Label>ComponentType</Label>
+          <Input placeholder="ID" />
+        </Widget>
 
-    <Button label="Edit" />
-  </div>
+        <Button label="Edit" />
+      </Form>
+    </Card>
+  </Content>
 )
 
 CreateFieldType.propTypes = {

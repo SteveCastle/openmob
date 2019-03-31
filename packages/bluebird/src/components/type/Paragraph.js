@@ -28,7 +28,7 @@ function Paragraph({ children, dark }) {
       fontSize={3}
       width={1}
       maxWidth={6}
-      color={dark ? 'type.lightText' : 'type.darkText'}
+      color={dark ? 'type.light.f' : 'type.dark.f'}
     >
       {children}
     </StyledParagraph>

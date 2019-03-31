@@ -28,9 +28,9 @@ function Header({ children, dark }) {
       pb={0}
       mb={0}
       fontSize={6}
-      fontFamily='sansSerif'
+      fontFamily="sansSerif"
       width={1}
-      color={dark ? 'violet.0' : 'gray.9'}
+      color={dark ? 'type.light.header' : 'type.dark.header'}
     >
       {children}
     </StyledHeader>

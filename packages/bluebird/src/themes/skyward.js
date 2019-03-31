@@ -195,27 +195,35 @@ const theme = {
   maxWidths: [16, 32, 64, 128, 256, 512, 768, 1024, 1536],
   colors: {
     ...colors,
-    darkBackground: colors.gray[9],
-    lightText: colors.lime[0],
-    lightBackground: colors.gray[1],
-    darkText: colors.gray[9],
+    admin: {
+      light: {
+        bg: colors.gray[1]
+      },
+      dark: { bg: colors.gray[8] }
+    },
     buttons: {
-      darkBackground: colors.gray[9],
-      lightText: colors.lime[0],
-      lightBackground: colors.gray[1],
-      darkText: colors.gray[9]
+      light: {
+        bg: colors.gray[2]
+      },
+      dark: { bg: colors.gray[9] }
     },
     forms: {
-      darkBackground: colors.blue[9],
-      lightText: colors.lime[0],
-      lightBackground: colors.gray[1],
-      darkText: colors.gray[9]
+      light: {
+        bg: colors.gray[2]
+      },
+      dark: { bg: colors.gray[9] }
     },
     type: {
-      darkBackground: colors.blue[9],
-      lightText: colors.lime[0],
-      lightBackground: colors.gray[1],
-      darkText: colors.gray[9]
+      light: {
+        header: colors.gray[9],
+        subHeader: colors.gray[9],
+        paragraph: colors.gray[9]
+      },
+      dark: {
+        header: colors.gray[2],
+        subHeader: colors.gray[2],
+        paragraph: colors.gray[2]
+      }
     }
   }
 };

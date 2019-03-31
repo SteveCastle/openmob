@@ -1,26 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Content from '@openmob/bluebird/src/components/layout/Content'
+import Card from '@openmob/bluebird/src/components/cards/Card'
+import Form from '@openmob/bluebird/src/components/forms/Form'
+import Widget from '@openmob/bluebird/src/components/forms/Widget'
+import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const CreateACL = ({ id }) => (
-  <div>
-    <h1>Create ACL</h1>
-    <div>
-      <label>ID</label>
-      <Input placeholder="ID!" />
-    </div>
-    <div>
-      <label>CreatedAt</label>
-      <Input placeholder="Time!" />
-    </div>
-    <div>
-      <label>UpdatedAt</label>
-      <Input placeholder="Time!" />
-    </div>
+  <Content>
+    <Card>
+      <Form>
+        <h1>Create ACL</h1>
+        <Widget>
+          <Label>ID</Label>
+          <Input placeholder="ID!" />
+        </Widget>
+        <Widget>
+          <Label>CreatedAt</Label>
+          <Input placeholder="Time!" />
+        </Widget>
+        <Widget>
+          <Label>UpdatedAt</Label>
+          <Input placeholder="Time!" />
+        </Widget>
 
-    <Button label="Edit" />
-  </div>
+        <Button label="Edit" />
+      </Form>
+    </Card>
+  </Content>
 )
 
 CreateACL.propTypes = {

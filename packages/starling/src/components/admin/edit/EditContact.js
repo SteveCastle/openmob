@@ -2,6 +2,11 @@ import React from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
+import Content from '@openmob/bluebird/src/components/layout/Content'
+import Card from '@openmob/bluebird/src/components/cards/Card'
+import Form from '@openmob/bluebird/src/components/forms/Form'
+import Widget from '@openmob/bluebird/src/components/forms/Widget'
+import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
@@ -49,43 +54,47 @@ function EditContact({ id }) {
   }
 
   return (
-    <div>
-      <h1>Edit {item.ID}</h1>
-      <div>
-        <label>ID</label>
-        <Input placeholder={parseObject(item.ID)} />
-      </div>
-      <div>
-        <label>CreatedAt</label>
-        <Input placeholder={parseObject(item.CreatedAt)} />
-      </div>
-      <div>
-        <label>UpdatedAt</label>
-        <Input placeholder={parseObject(item.UpdatedAt)} />
-      </div>
-      <div>
-        <label>FirstName</label>
-        <Input placeholder={parseObject(item.FirstName)} />
-      </div>
-      <div>
-        <label>MiddleName</label>
-        <Input placeholder={parseObject(item.MiddleName)} />
-      </div>
-      <div>
-        <label>LastName</label>
-        <Input placeholder={parseObject(item.LastName)} />
-      </div>
-      <div>
-        <label>Email</label>
-        <Input placeholder={parseObject(item.Email)} />
-      </div>
-      <div>
-        <label>PhoneNumber</label>
-        <Input placeholder={parseObject(item.PhoneNumber)} />
-      </div>
+    <Content>
+      <Card>
+        <Form>
+          <h1>Edit {item.ID}</h1>
+          <Widget>
+            <Label>ID</Label>
+            <Input placeholder={parseObject(item.ID)} />
+          </Widget>
+          <Widget>
+            <Label>CreatedAt</Label>
+            <Input placeholder={parseObject(item.CreatedAt)} />
+          </Widget>
+          <Widget>
+            <Label>UpdatedAt</Label>
+            <Input placeholder={parseObject(item.UpdatedAt)} />
+          </Widget>
+          <Widget>
+            <Label>FirstName</Label>
+            <Input placeholder={parseObject(item.FirstName)} />
+          </Widget>
+          <Widget>
+            <Label>MiddleName</Label>
+            <Input placeholder={parseObject(item.MiddleName)} />
+          </Widget>
+          <Widget>
+            <Label>LastName</Label>
+            <Input placeholder={parseObject(item.LastName)} />
+          </Widget>
+          <Widget>
+            <Label>Email</Label>
+            <Input placeholder={parseObject(item.Email)} />
+          </Widget>
+          <Widget>
+            <Label>PhoneNumber</Label>
+            <Input placeholder={parseObject(item.PhoneNumber)} />
+          </Widget>
 
-      <Button label="Edit" />
-    </div>
+          <Button label="Edit" />
+        </Form>
+      </Card>
+    </Content>
   )
 }
 

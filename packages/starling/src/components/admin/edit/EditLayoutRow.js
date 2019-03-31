@@ -2,6 +2,11 @@ import React from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
+import Content from '@openmob/bluebird/src/components/layout/Content'
+import Card from '@openmob/bluebird/src/components/cards/Card'
+import Form from '@openmob/bluebird/src/components/forms/Form'
+import Widget from '@openmob/bluebird/src/components/forms/Widget'
+import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
@@ -48,31 +53,35 @@ function EditLayoutRow({ id }) {
   }
 
   return (
-    <div>
-      <h1>Edit {item.ID}</h1>
-      <div>
-        <label>ID</label>
-        <Input placeholder={parseObject(item.ID)} />
-      </div>
-      <div>
-        <label>CreatedAt</label>
-        <Input placeholder={parseObject(item.CreatedAt)} />
-      </div>
-      <div>
-        <label>UpdatedAt</label>
-        <Input placeholder={parseObject(item.UpdatedAt)} />
-      </div>
-      <div>
-        <label>Layout</label>
-        <Input placeholder={parseObject(item.Layout)} />
-      </div>
-      <div>
-        <label>Container</label>
-        <Input placeholder={parseObject(item.Container)} />
-      </div>
+    <Content>
+      <Card>
+        <Form>
+          <h1>Edit {item.ID}</h1>
+          <Widget>
+            <Label>ID</Label>
+            <Input placeholder={parseObject(item.ID)} />
+          </Widget>
+          <Widget>
+            <Label>CreatedAt</Label>
+            <Input placeholder={parseObject(item.CreatedAt)} />
+          </Widget>
+          <Widget>
+            <Label>UpdatedAt</Label>
+            <Input placeholder={parseObject(item.UpdatedAt)} />
+          </Widget>
+          <Widget>
+            <Label>Layout</Label>
+            <Input placeholder={parseObject(item.Layout)} />
+          </Widget>
+          <Widget>
+            <Label>Container</Label>
+            <Input placeholder={parseObject(item.Container)} />
+          </Widget>
 
-      <Button label="Edit" />
-    </div>
+          <Button label="Edit" />
+        </Form>
+      </Card>
+    </Content>
   )
 }
 

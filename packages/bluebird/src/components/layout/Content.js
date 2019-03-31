@@ -10,7 +10,9 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap
+  flexWrap,
+  alignItems,
+  justifyContent
 } from 'styled-system';
 
 const StyledContent = styled.div`
@@ -20,19 +22,25 @@ const StyledContent = styled.div`
   ${width}
   ${height}
   ${fontSize}
+  ${display}
   ${flexWrap}
   ${color}
   ${display}
+  ${alignItems}
+  ${justifyContent}
 `;
 
 function Content({ children }) {
   return (
     <StyledContent
-      display={'flex'}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      bg="admin.light.bg"
       border={0}
       flexWrap="wrap"
-      width={1}
-      height={5}
+      width="100%"
+      height="100%"
       fontSize={1}
     >
       {children}
@@ -41,7 +49,7 @@ function Content({ children }) {
 }
 
 Content.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.arrayOf(PropTypes.element)
 };
 Content.defaultProps = {};
 

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { useQuery } from 'react-apollo-hooks'
 import { Link } from '@reach/router'
 import gql from 'graphql-tag'
+import Content from '@openmob/bluebird/src/components/layout/Content'
+import Card from '@openmob/bluebird/src/components/cards/Card'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const isObject = a => !!a && a.constructor === Object
@@ -56,59 +58,61 @@ function ListFieldType({ navigate }) {
 
   if (items === null || items.length === 0) {
     return (
-      <div>
+      <Content>
         <Button
           label="Create the first FieldType"
           onClick={() => navigate('create')}
         />
-      </div>
+      </Content>
     )
   }
 
   return (
-    <div>
-      <h1>List FieldType</h1>
-      <Button
-        label="Create a new FieldType"
-        onClick={() => navigate('create')}
-      />
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>CreatedAt</th>
-            <th>UpdatedAt</th>
-            <th>Title</th>
-            <th>DataType</th>
-            <th>PropName</th>
-            <th>StringValueDefault</th>
-            <th>IntValueDefault</th>
-            <th>FloatValueDefault</th>
-            <th>BooleanValueDefault</th>
-            <th>DateTimeValueDefault</th>
-            <th>ComponentType</th>
-          </tr>
-        </thead>
-        {(items || []).map(item => (
-          <tr>
-            <td>
-              <Link to={`/app/admin/field-type/${item.ID}`}>{item.ID}</Link>
-            </td>
-            <td>{parseObject(item.CreatedAt)}</td>
-            <td>{parseObject(item.UpdatedAt)}</td>
-            <td>{parseObject(item.Title)}</td>
-            <td>{parseObject(item.DataType)}</td>
-            <td>{parseObject(item.PropName)}</td>
-            <td>{parseObject(item.StringValueDefault)}</td>
-            <td>{parseObject(item.IntValueDefault)}</td>
-            <td>{parseObject(item.FloatValueDefault)}</td>
-            <td>{parseObject(item.BooleanValueDefault)}</td>
-            <td>{parseObject(item.DateTimeValueDefault)}</td>
-            <td>{parseObject(item.ComponentType)}</td>
-          </tr>
-        ))}
-      </table>
-    </div>
+    <Content>
+      <Card>
+        <h1>List FieldType</h1>
+        <Button
+          label="Create a new FieldType"
+          onClick={() => navigate('create')}
+        />
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>CreatedAt</th>
+              <th>UpdatedAt</th>
+              <th>Title</th>
+              <th>DataType</th>
+              <th>PropName</th>
+              <th>StringValueDefault</th>
+              <th>IntValueDefault</th>
+              <th>FloatValueDefault</th>
+              <th>BooleanValueDefault</th>
+              <th>DateTimeValueDefault</th>
+              <th>ComponentType</th>
+            </tr>
+          </thead>
+          {(items || []).map(item => (
+            <tr>
+              <td>
+                <Link to={`/app/admin/field-type/${item.ID}`}>{item.ID}</Link>
+              </td>
+              <td>{parseObject(item.CreatedAt)}</td>
+              <td>{parseObject(item.UpdatedAt)}</td>
+              <td>{parseObject(item.Title)}</td>
+              <td>{parseObject(item.DataType)}</td>
+              <td>{parseObject(item.PropName)}</td>
+              <td>{parseObject(item.StringValueDefault)}</td>
+              <td>{parseObject(item.IntValueDefault)}</td>
+              <td>{parseObject(item.FloatValueDefault)}</td>
+              <td>{parseObject(item.BooleanValueDefault)}</td>
+              <td>{parseObject(item.DateTimeValueDefault)}</td>
+              <td>{parseObject(item.ComponentType)}</td>
+            </tr>
+          ))}
+        </table>
+      </Card>
+    </Content>
   )
 }
 

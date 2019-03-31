@@ -4,9 +4,9 @@ import { Router } from "@reach/router"
 import { Link } from "gatsby"
 
 import App from "@openmob/bluebird/src/components/layout/App"
-import Content from "@openmob/bluebird/src/components/layout/Content"
 import SideBar from "@openmob/bluebird/src/components/sidebar/SideBar"
 import SideBarHeader from "@openmob/bluebird/src/components/sidebar/SideBarHeader"
+import ContentPanel from "@openmob/bluebird/src/components/layout/ContentPanel"
 import Menu from "@openmob/bluebird/src/components/menu/Menu"
 import MenuHeader from "@openmob/bluebird/src/components/menu/MenuHeader"
 import Input from "@openmob/bluebird/src/components/forms/Input"
@@ -37,14 +37,14 @@ const Layout = ({ children, title, id, summary }) => (
         </MenuBody>
       </Menu>
     </SideBar>
-    <Content>
+    <ContentPanel>
     <Router>
 {{range .Schema.Tables}}<List{{.Name}} path="/{{kebab .Name}}"/>
 <Create{{.Name}} path="/{{kebab .Name}}/create"/>
 <Edit{{.Name}} path="/{{kebab .Name}}/:id"/>
 {{end}}
     </Router>
-    </Content>
+    </ContentPanel>
   </App>
 )
 
