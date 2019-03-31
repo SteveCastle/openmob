@@ -28,6 +28,7 @@ const StyledContent = styled.div`
   ${display}
   ${alignItems}
   ${justifyContent}
+  overflow-y: auto
 `;
 
 function Content({ children }) {
