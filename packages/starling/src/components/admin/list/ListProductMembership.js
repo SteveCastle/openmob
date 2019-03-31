@@ -67,6 +67,7 @@ function ListProductMembership({ navigate }) {
         <Button
           label="Create a new ProductMembership"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

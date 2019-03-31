@@ -67,6 +67,7 @@ function ListPetitionMembership({ navigate }) {
         <Button
           label="Create a new PetitionMembership"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

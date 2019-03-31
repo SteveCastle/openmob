@@ -70,6 +70,7 @@ function ListPollRespondant({ navigate }) {
         <Button
           label="Create a new PollRespondant"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

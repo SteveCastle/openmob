@@ -71,6 +71,7 @@ function ListActivity({ navigate }) {
         <Button
           label="Create a new Activity"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

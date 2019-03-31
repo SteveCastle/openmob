@@ -80,7 +80,7 @@ function EditLiveEventMembership({ id }) {
             <Input placeholder={parseObject(item.LiveEvent)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

@@ -62,6 +62,7 @@ function ListElection({ navigate }) {
         <Button
           label="Create a new Election"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

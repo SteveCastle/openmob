@@ -62,6 +62,7 @@ function ListVolunteerOpportunityType({ navigate }) {
         <Button
           label="Create a new VolunteerOpportunityType"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

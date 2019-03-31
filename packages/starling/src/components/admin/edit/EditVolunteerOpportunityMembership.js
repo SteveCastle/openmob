@@ -80,7 +80,7 @@ function EditVolunteerOpportunityMembership({ id }) {
             <Input placeholder={parseObject(item.VolunteerOpportunity)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

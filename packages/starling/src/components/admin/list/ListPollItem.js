@@ -65,6 +65,7 @@ function ListPollItem({ navigate }) {
         <Button
           label="Create a new PollItem"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

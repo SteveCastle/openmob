@@ -62,6 +62,7 @@ function ListLiveEventType({ navigate }) {
         <Button
           label="Create a new LiveEventType"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

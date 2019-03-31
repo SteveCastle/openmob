@@ -74,6 +74,7 @@ function ListFieldType({ navigate }) {
         <Button
           label="Create a new FieldType"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

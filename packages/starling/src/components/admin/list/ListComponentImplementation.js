@@ -63,6 +63,7 @@ function ListComponentImplementation({ navigate }) {
         <Button
           label="Create a new ComponentImplementation"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

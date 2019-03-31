@@ -67,6 +67,7 @@ function ListContactMembership({ navigate }) {
         <Button
           label="Create a new ContactMembership"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

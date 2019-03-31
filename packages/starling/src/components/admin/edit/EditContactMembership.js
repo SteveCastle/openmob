@@ -80,7 +80,7 @@ function EditContactMembership({ id }) {
             <Input placeholder={parseObject(item.Contact)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

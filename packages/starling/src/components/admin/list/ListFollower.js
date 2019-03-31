@@ -67,6 +67,7 @@ function ListFollower({ navigate }) {
         <Button
           label="Create a new Follower"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

@@ -91,7 +91,7 @@ function EditContact({ id }) {
             <Input placeholder={parseObject(item.PhoneNumber)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

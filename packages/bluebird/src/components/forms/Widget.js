@@ -7,6 +7,8 @@ import {
   fontSize,
   color,
   borders,
+  display,
+  justifyContent,
   borderRadius
 } from 'styled-system';
 
@@ -15,13 +17,22 @@ const StyledWidget = styled.div`
   ${borderRadius}
   ${space}
   ${width}
+  ${display}
+  ${justifyContent}
   ${fontSize}
   ${color}
 `;
 
 function Widget({ children, block }) {
   return (
-    <StyledWidget border={0} p={3} fontSize={1} width={block ? 1 : null}>
+    <StyledWidget
+      border={0}
+      p={3}
+      fontSize={1}
+      width={block ? 1 : null}
+      display="flex"
+      justifyContent="flex-end"
+    >
       {children}
     </StyledWidget>
   );

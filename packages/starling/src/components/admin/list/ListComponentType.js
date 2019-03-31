@@ -62,6 +62,7 @@ function ListComponentType({ navigate }) {
         <Button
           label="Create a new ComponentType"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

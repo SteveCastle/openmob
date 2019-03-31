@@ -64,6 +64,7 @@ function ListCustomerOrder({ navigate }) {
         <Button
           label="Create a new CustomerOrder"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

@@ -67,6 +67,7 @@ function ListOwnerMembership({ navigate }) {
         <Button
           label="Create a new OwnerMembership"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

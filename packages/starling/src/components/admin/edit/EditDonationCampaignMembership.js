@@ -80,7 +80,7 @@ function EditDonationCampaignMembership({ id }) {
             <Input placeholder={parseObject(item.DonationCampaign)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

@@ -78,7 +78,7 @@ function EditLayoutRow({ id }) {
             <Input placeholder={parseObject(item.Container)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

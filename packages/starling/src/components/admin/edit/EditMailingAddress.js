@@ -86,7 +86,7 @@ function EditMailingAddress({ id }) {
             <Input placeholder={parseObject(item.ZipCode)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

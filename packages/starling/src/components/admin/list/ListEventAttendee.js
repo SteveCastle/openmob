@@ -70,6 +70,7 @@ function ListEventAttendee({ navigate }) {
         <Button
           label="Create a new EventAttendee"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

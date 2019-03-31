@@ -65,6 +65,7 @@ function ListMailingAddress({ navigate }) {
         <Button
           label="Create a new MailingAddress"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

@@ -71,7 +71,11 @@ function ListField({ navigate }) {
     <Content>
       <Card>
         <h1>List Field</h1>
-        <Button label="Create a new Field" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Field"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

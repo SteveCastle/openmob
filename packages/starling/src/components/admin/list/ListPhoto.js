@@ -61,7 +61,11 @@ function ListPhoto({ navigate }) {
     <Content>
       <Card>
         <h1>List Photo</h1>
-        <Button label="Create a new Photo" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Photo"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

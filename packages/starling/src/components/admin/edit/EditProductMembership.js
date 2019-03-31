@@ -80,7 +80,7 @@ function EditProductMembership({ id }) {
             <Input placeholder={parseObject(item.Product)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

@@ -70,6 +70,7 @@ function ListPetitionSigner({ navigate }) {
         <Button
           label="Create a new PetitionSigner"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

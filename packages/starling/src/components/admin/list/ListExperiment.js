@@ -65,6 +65,7 @@ function ListExperiment({ navigate }) {
         <Button
           label="Create a new Experiment"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

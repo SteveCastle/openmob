@@ -65,6 +65,7 @@ function ListProduct({ navigate }) {
         <Button
           label="Create a new Product"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

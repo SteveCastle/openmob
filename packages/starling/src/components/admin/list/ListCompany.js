@@ -62,6 +62,7 @@ function ListCompany({ navigate }) {
         <Button
           label="Create a new Company"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

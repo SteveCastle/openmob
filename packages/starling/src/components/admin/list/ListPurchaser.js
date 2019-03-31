@@ -70,6 +70,7 @@ function ListPurchaser({ navigate }) {
         <Button
           label="Create a new Purchaser"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

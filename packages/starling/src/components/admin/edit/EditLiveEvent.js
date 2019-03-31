@@ -78,7 +78,7 @@ function EditLiveEvent({ id }) {
             <Input placeholder={parseObject(item.LiveEventType)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

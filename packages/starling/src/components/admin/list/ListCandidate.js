@@ -64,6 +64,7 @@ function ListCandidate({ navigate }) {
         <Button
           label="Create a new Candidate"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

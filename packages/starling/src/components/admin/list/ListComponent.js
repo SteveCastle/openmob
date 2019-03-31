@@ -70,6 +70,7 @@ function ListComponent({ navigate }) {
         <Button
           label="Create a new Component"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

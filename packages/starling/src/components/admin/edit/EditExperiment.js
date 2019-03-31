@@ -78,7 +78,7 @@ function EditExperiment({ id }) {
             <Input placeholder={parseObject(item.LandingPage)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

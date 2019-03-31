@@ -62,6 +62,7 @@ function ListActivityType({ navigate }) {
         <Button
           label="Create a new ActivityType"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

@@ -71,7 +71,7 @@ function EditEmailAddress({ id }) {
             <Input placeholder={parseObject(item.Address)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

@@ -67,7 +67,11 @@ function ListDonor({ navigate }) {
     <Content>
       <Card>
         <h1>List Donor</h1>
-        <Button label="Create a new Donor" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Donor"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

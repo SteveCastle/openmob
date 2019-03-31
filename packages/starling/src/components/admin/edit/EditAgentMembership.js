@@ -80,7 +80,7 @@ function EditAgentMembership({ id }) {
             <Input placeholder={parseObject(item.Agent)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

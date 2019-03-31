@@ -68,6 +68,7 @@ function ListLandingPage({ navigate }) {
         <Button
           label="Create a new LandingPage"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

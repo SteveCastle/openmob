@@ -62,7 +62,11 @@ function ListIssue({ navigate }) {
     <Content>
       <Card>
         <h1>List Issue</h1>
-        <Button label="Create a new Issue" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Issue"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

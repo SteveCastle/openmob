@@ -61,6 +61,7 @@ function ListCustomerCart({ navigate }) {
         <Button
           label="Create a new CustomerCart"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

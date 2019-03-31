@@ -64,7 +64,11 @@ function ListVoter({ navigate }) {
     <Content>
       <Card>
         <h1>List Voter</h1>
-        <Button label="Create a new Voter" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Voter"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

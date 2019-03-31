@@ -62,6 +62,7 @@ function ListEmailAddress({ navigate }) {
         <Button
           label="Create a new EmailAddress"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

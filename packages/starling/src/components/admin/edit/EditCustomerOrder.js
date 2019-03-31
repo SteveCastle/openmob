@@ -73,7 +73,7 @@ function EditCustomerOrder({ id }) {
             <Input placeholder={parseObject(item.CustomerCart)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

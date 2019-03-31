@@ -62,6 +62,7 @@ function ListAccount({ navigate }) {
         <Button
           label="Create a new Account"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

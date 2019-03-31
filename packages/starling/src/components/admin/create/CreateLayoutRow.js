@@ -34,7 +34,7 @@ const CreateLayoutRow = ({ id }) => (
           <Input placeholder="Boolean" />
         </Widget>
 
-        <Button label="Edit" />
+        <Button label="Create" block />
       </Form>
     </Card>
   </Content>

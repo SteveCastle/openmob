@@ -107,7 +107,7 @@ function EditField({ id }) {
             <Input placeholder={parseObject(item.Component)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

@@ -64,6 +64,7 @@ function ListPayment({ navigate }) {
         <Button
           label="Create a new Payment"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

@@ -62,6 +62,7 @@ function ListPhoneNumber({ navigate }) {
         <Button
           label="Create a new PhoneNumber"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

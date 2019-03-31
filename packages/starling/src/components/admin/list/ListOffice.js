@@ -65,6 +65,7 @@ function ListOffice({ navigate }) {
         <Button
           label="Create a new Office"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

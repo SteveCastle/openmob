@@ -65,7 +65,11 @@ function ListNote({ navigate }) {
     <Content>
       <Card>
         <h1>List Note</h1>
-        <Button label="Create a new Note" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Note"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

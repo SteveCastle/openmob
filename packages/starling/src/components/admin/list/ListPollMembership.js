@@ -67,6 +67,7 @@ function ListPollMembership({ navigate }) {
         <Button
           label="Create a new PollMembership"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

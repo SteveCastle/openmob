@@ -73,7 +73,7 @@ function EditLayout({ id }) {
             <Input placeholder={parseObject(item.LayoutType)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

@@ -70,6 +70,7 @@ function ListVolunteer({ navigate }) {
         <Button
           label="Create a new Volunteer"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

@@ -67,6 +67,7 @@ function ListLiveEventMembership({ navigate }) {
         <Button
           label="Create a new LiveEventMembership"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

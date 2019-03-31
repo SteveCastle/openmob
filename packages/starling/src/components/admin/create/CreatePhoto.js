@@ -38,7 +38,7 @@ const CreatePhoto = ({ id }) => (
           <Input placeholder="Int!" />
         </Widget>
 
-        <Button label="Edit" />
+        <Button label="Create" block />
       </Form>
     </Card>
   </Content>

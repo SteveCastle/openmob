@@ -62,6 +62,7 @@ function ListLayoutType({ navigate }) {
         <Button
           label="Create a new LayoutType"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

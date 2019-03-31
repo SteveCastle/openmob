@@ -59,7 +59,11 @@ function ListPoll({ navigate }) {
     <Content>
       <Card>
         <h1>List Poll</h1>
-        <Button label="Create a new Poll" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Poll"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

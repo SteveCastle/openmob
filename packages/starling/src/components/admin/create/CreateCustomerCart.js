@@ -26,7 +26,7 @@ const CreateCustomerCart = ({ id }) => (
           <Input placeholder="Time!" />
         </Widget>
 
-        <Button label="Edit" />
+        <Button label="Create" block />
       </Form>
     </Card>
   </Content>

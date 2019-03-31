@@ -80,7 +80,7 @@ function EditFollower({ id }) {
             <Input placeholder={parseObject(item.Cause)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

@@ -78,7 +78,7 @@ function EditOffice({ id }) {
             <Input placeholder={parseObject(item.Election)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

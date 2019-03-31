@@ -62,6 +62,7 @@ function ListTerritory({ navigate }) {
         <Button
           label="Create a new Territory"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

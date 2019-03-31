@@ -65,6 +65,7 @@ function ListHomePage({ navigate }) {
         <Button
           label="Create a new HomePage"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

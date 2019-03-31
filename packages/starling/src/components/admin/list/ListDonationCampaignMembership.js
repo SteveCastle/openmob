@@ -67,6 +67,7 @@ function ListDonationCampaignMembership({ navigate }) {
         <Button
           label="Create a new DonationCampaignMembership"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

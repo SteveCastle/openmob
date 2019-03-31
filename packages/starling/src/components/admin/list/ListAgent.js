@@ -61,7 +61,11 @@ function ListAgent({ navigate }) {
     <Content>
       <Card>
         <h1>List Agent</h1>
-        <Button label="Create a new Agent" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Agent"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

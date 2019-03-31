@@ -71,7 +71,7 @@ function EditAccount({ id }) {
             <Input placeholder={parseObject(item.Username)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

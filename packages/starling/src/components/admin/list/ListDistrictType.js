@@ -62,6 +62,7 @@ function ListDistrictType({ navigate }) {
         <Button
           label="Create a new DistrictType"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

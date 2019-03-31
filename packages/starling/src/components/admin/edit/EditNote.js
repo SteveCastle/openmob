@@ -85,7 +85,7 @@ function EditNote({ id }) {
             <Input placeholder={parseObject(item.Body)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

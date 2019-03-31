@@ -66,7 +66,7 @@ function EditCustomerCart({ id }) {
             <Input placeholder={parseObject(item.UpdatedAt)} />
           </Widget>
 
-          <Button label="Edit" />
+          <Button label="Edit" block />
         </Form>
       </Card>
     </Content>

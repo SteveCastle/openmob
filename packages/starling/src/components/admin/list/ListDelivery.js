@@ -61,6 +61,7 @@ function ListDelivery({ navigate }) {
         <Button
           label="Create a new Delivery"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

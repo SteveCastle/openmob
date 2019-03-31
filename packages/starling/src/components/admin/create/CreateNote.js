@@ -38,7 +38,7 @@ const CreateNote = ({ id }) => (
           <Input placeholder="String" />
         </Widget>
 
-        <Button label="Edit" />
+        <Button label="Create" block />
       </Form>
     </Card>
   </Content>

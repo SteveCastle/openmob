@@ -67,7 +67,11 @@ function ListCause({ navigate }) {
     <Content>
       <Card>
         <h1>List Cause</h1>
-        <Button label="Create a new Cause" onClick={() => navigate('create')} />
+        <Button
+          label="Create a new Cause"
+          onClick={() => navigate('create')}
+          block
+        />
         <table>
           <thead>
             <tr>

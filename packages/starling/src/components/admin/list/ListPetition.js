@@ -62,6 +62,7 @@ function ListPetition({ navigate }) {
         <Button
           label="Create a new Petition"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

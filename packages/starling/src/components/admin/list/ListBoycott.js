@@ -62,6 +62,7 @@ function ListBoycott({ navigate }) {
         <Button
           label="Create a new Boycott"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>

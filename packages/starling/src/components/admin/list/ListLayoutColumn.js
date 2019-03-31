@@ -65,6 +65,7 @@ function ListLayoutColumn({ navigate }) {
         <Button
           label="Create a new LayoutColumn"
           onClick={() => navigate('create')}
+          block
         />
         <table>
           <thead>
