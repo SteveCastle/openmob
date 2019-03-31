@@ -51,7 +51,7 @@ func BuildInterceptor(
 
 	// Translate the request in to a map so we can safely check for BuildStatic key.
 	s := structs.Map(req)
-	// If build static is set and equals true, call the build webhook from config.
+	// If BuildStatic is set and equals true, call the build webhook from config.
 	if s["BuildStatic"] == true {
 		fmt.Printf("Build requested: %v\n", s["BuildStatic"])
 		message := map[string]interface{}{}

@@ -1,7 +1,12 @@
-import React, { lazy, Suspense } from 'react'
-import ErrorBoundary from './ErrorBoundary'
+import React from "react"
+import Loadable from "react-loadable"
+import ErrorBoundary from "./ErrorBoundary"
+
 const getComponent = path =>
-  lazy(() => import(`@openmob/bluebird/src/components${path}`))
+  Loadable({
+    loader: () => import(`@openmob/bluebird/src/components${path}`),
+    loading: () => <div>loading</div>,
+  })
 
 const getProps = fields =>
   fields.reduce(
@@ -14,9 +19,7 @@ function Node({ path, fields, id }) {
   const Component = getComponent(path)
   return (
     <ErrorBoundary>
-      <Suspense maxDuration={500} fallback={<div />}>
-        <Component {...getProps(fields)} key={id} />
-      </Suspense>
+      <Component {...getProps(fields)} key={id} />
     </ErrorBoundary>
   )
 }
