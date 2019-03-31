@@ -23,9 +23,11 @@ const GET_VOLUNTEEROPPORTUNITY = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
       VolunteerOpportunityType {

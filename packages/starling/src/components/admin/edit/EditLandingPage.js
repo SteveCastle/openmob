@@ -23,9 +23,11 @@ const GET_LANDINGPAGE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
       Cause {

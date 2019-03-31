@@ -23,9 +23,11 @@ const GET_POLLRESPONDANT = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Poll {
         ID

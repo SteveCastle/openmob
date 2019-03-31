@@ -23,9 +23,11 @@ const GET_DISTRICTTYPE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
     }

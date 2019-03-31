@@ -23,9 +23,11 @@ const GET_ACTIVITY = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
       ActivityType {

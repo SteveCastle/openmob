@@ -23,9 +23,11 @@ const GET_LAYOUT = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       LayoutType {
         ID

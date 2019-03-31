@@ -23,9 +23,11 @@ const GET_PAYMENT = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       CustomerOrder {
         ID

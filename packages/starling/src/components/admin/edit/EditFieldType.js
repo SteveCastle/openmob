@@ -23,9 +23,11 @@ const GET_FIELDTYPE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
       DataType
@@ -36,6 +38,7 @@ const GET_FIELDTYPE = gql`
       BooleanValueDefault
       DateTimeValueDefault {
         seconds
+        nanos
       }
       ComponentType {
         ID

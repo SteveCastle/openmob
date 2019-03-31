@@ -23,9 +23,11 @@ const GET_EVENTATTENDEE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       LiveEvent {
         ID

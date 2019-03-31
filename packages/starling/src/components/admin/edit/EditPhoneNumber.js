@@ -23,9 +23,11 @@ const GET_PHONENUMBER = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       PhoneNumber
     }

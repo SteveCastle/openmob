@@ -21,7 +21,7 @@ const StyledInput = styled.input`
   box-sizing: border-box;
 `;
 
-function Input({ onChange, label, block, dark, value, placeholder }) {
+function Input({ onChange, label, block, dark, value, placeholder, disabled }) {
   return (
     <StyledInput
       border={0}
@@ -35,6 +35,7 @@ function Input({ onChange, label, block, dark, value, placeholder }) {
       width={block ? 1 : 2 / 3}
       value={value}
       placeholder={placeholder}
+      disabled={disabled}
     >
       {label}
     </StyledInput>
@@ -48,6 +49,7 @@ Input.propTypes = {
   block: PropTypes.bool,
   dark: PropTypes.bool,
   value: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool
 };
 export default Input;

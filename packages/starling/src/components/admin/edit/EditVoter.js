@@ -23,9 +23,11 @@ const GET_VOTER = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Contact {
         ID

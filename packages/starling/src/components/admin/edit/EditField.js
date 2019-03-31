@@ -10,11 +10,19 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
+const MILLISECONDS = 1000
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
-  Object.entries(obj).reduce(entry =>
-    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
-  )
+  Object.entries(obj).reduce((acc, entry) => {
+    debugger
+    if (entry[0] === 'seconds') {
+      return new Date(entry[1] * MILLISECONDS)
+    }
+    if (entry[0] === 'ID') {
+      return entry[1]
+    }
+    return acc
+  }, '')
 const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
 
 const GET_FIELD = gql`
@@ -23,9 +31,11 @@ const GET_FIELD = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       FieldType {
         ID
@@ -36,6 +46,7 @@ const GET_FIELD = gql`
       BooleanValue
       DateTimeValue {
         seconds
+        nanos
       }
       Component {
         ID
@@ -60,7 +71,7 @@ function EditField({ id }) {
   if (error) {
     return <div>Error! {error.message}</div>
   }
-
+  console.log(item)
   return (
     <Content>
       <Card>
@@ -68,15 +79,15 @@ function EditField({ id }) {
           <h1>Edit {item.ID}</h1>
           <Widget>
             <Label>ID</Label>
-            <Input value={parseObject(item.ID)} />
+            <Input value={parseObject(item.ID)} disabled />
           </Widget>
           <Widget>
             <Label>CreatedAt</Label>
-            <Input value={parseObject(item.CreatedAt)} />
+            <Input value={parseObject(item.CreatedAt)} disabled />
           </Widget>
           <Widget>
             <Label>UpdatedAt</Label>
-            <Input value={parseObject(item.UpdatedAt)} />
+            <Input value={parseObject(item.UpdatedAt)} disabled />
           </Widget>
           <Widget>
             <Label>FieldType</Label>

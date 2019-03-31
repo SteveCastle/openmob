@@ -23,9 +23,11 @@ const GET_VOLUNTEER = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       VolunteerOpportunity {
         ID

@@ -23,9 +23,11 @@ const GET_OFFICE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
       Election {

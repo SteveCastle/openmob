@@ -23,9 +23,11 @@ const GET_LAYOUTCOLUMN = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       LayoutRow {
         ID

@@ -23,9 +23,11 @@ const GET_MAILINGADDRESS = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       StreetAddress
       City

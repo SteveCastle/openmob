@@ -23,9 +23,11 @@ const GET_CANDIDATE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Election {
         ID

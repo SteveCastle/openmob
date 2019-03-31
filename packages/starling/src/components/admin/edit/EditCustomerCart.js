@@ -23,9 +23,11 @@ const GET_CUSTOMERCART = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
     }
   }

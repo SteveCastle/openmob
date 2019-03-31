@@ -23,9 +23,11 @@ const GET_COMPONENT = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       ComponentType {
         ID

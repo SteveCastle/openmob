@@ -23,9 +23,11 @@ const GET_DISTRICT = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Geom
       Title

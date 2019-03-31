@@ -23,9 +23,11 @@ const GET_DELIVERY = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
     }
   }

@@ -23,9 +23,11 @@ const GET_CONTACT = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       FirstName
       MiddleName

@@ -23,9 +23,11 @@ const GET_CONTACTMEMBERSHIP = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Cause {
         ID

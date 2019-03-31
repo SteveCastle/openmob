@@ -23,9 +23,11 @@ const GET_LAYOUTTYPE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
     }

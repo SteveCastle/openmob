@@ -23,9 +23,11 @@ const GET_CAUSE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
       Slug

@@ -23,9 +23,11 @@ const GET_PHOTO = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       URI
       Width

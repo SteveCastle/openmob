@@ -23,9 +23,11 @@ const GET_NOTE = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Contact {
         ID

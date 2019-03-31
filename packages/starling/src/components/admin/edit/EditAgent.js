@@ -23,9 +23,11 @@ const GET_AGENT = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Account {
         ID

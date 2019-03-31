@@ -23,9 +23,11 @@ const GET_LIVEEVENTMEMBERSHIP = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Cause {
         ID

@@ -20,7 +20,7 @@ const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
 const GET_{{toUpper .Table.Name}} = gql`
   query get{{.Table.Name}}ById($id: ID!){
     get{{.Table.Name}}(ID: $id) {
-      {{range $i, $value := .Table.Columns}}{{.Name}}{{if eq .Type "Time!"}}{seconds}{{end}}{{if eq .Type "Time"}}{seconds}{{end}}{{if eq .Type "ID"}}{ID}{{end}}{{if eq .Type "ID!"}}{{if ne $i 0}}{ID}{{end}}{{end}}
+      {{range $i, $value := .Table.Columns}}{{.Name}}{{if eq .Type "Time!"}}{seconds, nanos}{{end}}{{if eq .Type "Time"}}{seconds, nanos}{{end}}{{if eq .Type "ID"}}{ID}{{end}}{{if eq .Type "ID!"}}{{if ne $i 0}}{ID}{{end}}{{end}}
       {{end}}
     }
   }

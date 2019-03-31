@@ -23,9 +23,11 @@ const GET_BOYCOTTMEMBERSHIP = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Cause {
         ID

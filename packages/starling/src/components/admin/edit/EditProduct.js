@@ -23,9 +23,11 @@ const GET_PRODUCT = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
       ProductType {

@@ -23,9 +23,11 @@ const GET_TERRITORY = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Title
     }

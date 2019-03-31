@@ -23,9 +23,11 @@ const GET_FOLLOWER = gql`
       ID
       CreatedAt {
         seconds
+        nanos
       }
       UpdatedAt {
         seconds
+        nanos
       }
       Contact {
         ID
