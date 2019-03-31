@@ -50,6 +50,7 @@ function ListLiveEventType({ navigate }) {
         <Button
           label="Create the first LiveEventType"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListLiveEventType({ navigate }) {
           label="Create a new LiveEventType"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

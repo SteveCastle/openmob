@@ -34,7 +34,7 @@ const CreateFollower = ({ id }) => (
           <Input placeholder="ID!" />
         </Widget>
 
-        <Button label="Create" block />
+        <Button label="Create" block variant="primary" />
       </Form>
     </Card>
   </Content>

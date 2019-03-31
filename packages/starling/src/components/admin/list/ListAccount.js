@@ -50,6 +50,7 @@ function ListAccount({ navigate }) {
         <Button
           label="Create the first Account"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListAccount({ navigate }) {
           label="Create a new Account"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

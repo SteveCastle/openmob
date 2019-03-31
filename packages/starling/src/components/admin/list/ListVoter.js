@@ -55,6 +55,7 @@ function ListVoter({ navigate }) {
         <Button
           label="Create the first Voter"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -68,6 +69,7 @@ function ListVoter({ navigate }) {
           label="Create a new Voter"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

@@ -55,6 +55,7 @@ function ListBoycottMembership({ navigate }) {
         <Button
           label="Create the first BoycottMembership"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -68,6 +69,7 @@ function ListBoycottMembership({ navigate }) {
           label="Create a new BoycottMembership"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

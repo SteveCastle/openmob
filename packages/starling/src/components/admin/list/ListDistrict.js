@@ -54,6 +54,7 @@ function ListDistrict({ navigate }) {
         <Button
           label="Create the first District"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -67,6 +68,7 @@ function ListDistrict({ navigate }) {
           label="Create a new District"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

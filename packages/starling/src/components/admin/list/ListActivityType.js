@@ -50,6 +50,7 @@ function ListActivityType({ navigate }) {
         <Button
           label="Create the first ActivityType"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListActivityType({ navigate }) {
           label="Create a new ActivityType"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

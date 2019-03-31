@@ -53,6 +53,7 @@ function ListPollItem({ navigate }) {
         <Button
           label="Create the first PollItem"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -66,6 +67,7 @@ function ListPollItem({ navigate }) {
           label="Create a new PollItem"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

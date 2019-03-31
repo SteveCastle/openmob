@@ -58,6 +58,7 @@ function ListVolunteer({ navigate }) {
         <Button
           label="Create the first Volunteer"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -71,6 +72,7 @@ function ListVolunteer({ navigate }) {
           label="Create a new Volunteer"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

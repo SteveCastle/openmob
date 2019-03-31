@@ -53,6 +53,7 @@ function ListOffice({ navigate }) {
         <Button
           label="Create the first Office"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -66,6 +67,7 @@ function ListOffice({ navigate }) {
           label="Create a new Office"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

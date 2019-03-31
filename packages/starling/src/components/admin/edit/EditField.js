@@ -68,46 +68,46 @@ function EditField({ id }) {
           <h1>Edit {item.ID}</h1>
           <Widget>
             <Label>ID</Label>
-            <Input placeholder={parseObject(item.ID)} />
+            <Input value={parseObject(item.ID)} />
           </Widget>
           <Widget>
             <Label>CreatedAt</Label>
-            <Input placeholder={parseObject(item.CreatedAt)} />
+            <Input value={parseObject(item.CreatedAt)} />
           </Widget>
           <Widget>
             <Label>UpdatedAt</Label>
-            <Input placeholder={parseObject(item.UpdatedAt)} />
+            <Input value={parseObject(item.UpdatedAt)} />
           </Widget>
           <Widget>
             <Label>FieldType</Label>
-            <Input placeholder={parseObject(item.FieldType)} />
+            <Input value={parseObject(item.FieldType)} />
           </Widget>
           <Widget>
             <Label>StringValue</Label>
-            <Input placeholder={parseObject(item.StringValue)} />
+            <Input value={parseObject(item.StringValue)} />
           </Widget>
           <Widget>
             <Label>IntValue</Label>
-            <Input placeholder={parseObject(item.IntValue)} />
+            <Input value={parseObject(item.IntValue)} />
           </Widget>
           <Widget>
             <Label>FloatValue</Label>
-            <Input placeholder={parseObject(item.FloatValue)} />
+            <Input value={parseObject(item.FloatValue)} />
           </Widget>
           <Widget>
             <Label>BooleanValue</Label>
-            <Input placeholder={parseObject(item.BooleanValue)} />
+            <Input value={parseObject(item.BooleanValue)} />
           </Widget>
           <Widget>
             <Label>DateTimeValue</Label>
-            <Input placeholder={parseObject(item.DateTimeValue)} />
+            <Input value={parseObject(item.DateTimeValue)} />
           </Widget>
           <Widget>
             <Label>Component</Label>
-            <Input placeholder={parseObject(item.Component)} />
+            <Input value={parseObject(item.Component)} />
           </Widget>
 
-          <Button label="Edit" block />
+          <Button label="Edit" block variant="primary" />
         </Form>
       </Card>
     </Content>

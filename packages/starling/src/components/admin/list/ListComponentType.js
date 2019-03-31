@@ -50,6 +50,7 @@ function ListComponentType({ navigate }) {
         <Button
           label="Create the first ComponentType"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListComponentType({ navigate }) {
           label="Create a new ComponentType"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

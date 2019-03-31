@@ -56,6 +56,7 @@ function ListLandingPage({ navigate }) {
         <Button
           label="Create the first LandingPage"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -69,6 +70,7 @@ function ListLandingPage({ navigate }) {
           label="Create a new LandingPage"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

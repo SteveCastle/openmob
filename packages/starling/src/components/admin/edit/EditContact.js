@@ -60,38 +60,38 @@ function EditContact({ id }) {
           <h1>Edit {item.ID}</h1>
           <Widget>
             <Label>ID</Label>
-            <Input placeholder={parseObject(item.ID)} />
+            <Input value={parseObject(item.ID)} />
           </Widget>
           <Widget>
             <Label>CreatedAt</Label>
-            <Input placeholder={parseObject(item.CreatedAt)} />
+            <Input value={parseObject(item.CreatedAt)} />
           </Widget>
           <Widget>
             <Label>UpdatedAt</Label>
-            <Input placeholder={parseObject(item.UpdatedAt)} />
+            <Input value={parseObject(item.UpdatedAt)} />
           </Widget>
           <Widget>
             <Label>FirstName</Label>
-            <Input placeholder={parseObject(item.FirstName)} />
+            <Input value={parseObject(item.FirstName)} />
           </Widget>
           <Widget>
             <Label>MiddleName</Label>
-            <Input placeholder={parseObject(item.MiddleName)} />
+            <Input value={parseObject(item.MiddleName)} />
           </Widget>
           <Widget>
             <Label>LastName</Label>
-            <Input placeholder={parseObject(item.LastName)} />
+            <Input value={parseObject(item.LastName)} />
           </Widget>
           <Widget>
             <Label>Email</Label>
-            <Input placeholder={parseObject(item.Email)} />
+            <Input value={parseObject(item.Email)} />
           </Widget>
           <Widget>
             <Label>PhoneNumber</Label>
-            <Input placeholder={parseObject(item.PhoneNumber)} />
+            <Input value={parseObject(item.PhoneNumber)} />
           </Widget>
 
-          <Button label="Edit" block />
+          <Button label="Edit" block variant="primary" />
         </Form>
       </Card>
     </Content>

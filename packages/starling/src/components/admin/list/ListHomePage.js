@@ -53,6 +53,7 @@ function ListHomePage({ navigate }) {
         <Button
           label="Create the first HomePage"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -66,6 +67,7 @@ function ListHomePage({ navigate }) {
           label="Create a new HomePage"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

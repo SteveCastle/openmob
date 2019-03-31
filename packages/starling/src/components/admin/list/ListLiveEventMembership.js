@@ -55,6 +55,7 @@ function ListLiveEventMembership({ navigate }) {
         <Button
           label="Create the first LiveEventMembership"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -68,6 +69,7 @@ function ListLiveEventMembership({ navigate }) {
           label="Create a new LiveEventMembership"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

@@ -52,6 +52,7 @@ function ListLayout({ navigate }) {
         <Button
           label="Create the first Layout"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -65,6 +66,7 @@ function ListLayout({ navigate }) {
           label="Create a new Layout"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

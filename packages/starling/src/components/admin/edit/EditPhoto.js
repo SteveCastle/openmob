@@ -58,30 +58,30 @@ function EditPhoto({ id }) {
           <h1>Edit {item.ID}</h1>
           <Widget>
             <Label>ID</Label>
-            <Input placeholder={parseObject(item.ID)} />
+            <Input value={parseObject(item.ID)} />
           </Widget>
           <Widget>
             <Label>CreatedAt</Label>
-            <Input placeholder={parseObject(item.CreatedAt)} />
+            <Input value={parseObject(item.CreatedAt)} />
           </Widget>
           <Widget>
             <Label>UpdatedAt</Label>
-            <Input placeholder={parseObject(item.UpdatedAt)} />
+            <Input value={parseObject(item.UpdatedAt)} />
           </Widget>
           <Widget>
             <Label>URI</Label>
-            <Input placeholder={parseObject(item.URI)} />
+            <Input value={parseObject(item.URI)} />
           </Widget>
           <Widget>
             <Label>Width</Label>
-            <Input placeholder={parseObject(item.Width)} />
+            <Input value={parseObject(item.Width)} />
           </Widget>
           <Widget>
             <Label>Height</Label>
-            <Input placeholder={parseObject(item.Height)} />
+            <Input value={parseObject(item.Height)} />
           </Widget>
 
-          <Button label="Edit" block />
+          <Button label="Edit" block variant="primary" />
         </Form>
       </Card>
     </Content>

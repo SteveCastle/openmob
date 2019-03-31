@@ -29,10 +29,9 @@ function Input({ onChange, label, block, dark, value, placeholder }) {
       bg={dark ? 'forms.darkBackground' : 'forms.lightBackground'}
       fontSize={1}
       color={dark ? 'forms.lightText' : 'forms.darkText'}
-      width={block ? 1 : null}
+      width={block ? 1 : 2 / 3}
       value={value}
       placeholder={placeholder}
-
     >
       {label}
     </StyledInput>

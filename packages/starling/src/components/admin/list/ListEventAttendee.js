@@ -58,6 +58,7 @@ function ListEventAttendee({ navigate }) {
         <Button
           label="Create the first EventAttendee"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -71,6 +72,7 @@ function ListEventAttendee({ navigate }) {
           label="Create a new EventAttendee"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

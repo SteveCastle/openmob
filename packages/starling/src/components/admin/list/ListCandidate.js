@@ -52,6 +52,7 @@ function ListCandidate({ navigate }) {
         <Button
           label="Create the first Candidate"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -65,6 +66,7 @@ function ListCandidate({ navigate }) {
           label="Create a new Candidate"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

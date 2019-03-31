@@ -50,6 +50,7 @@ function ListDonationCampaign({ navigate }) {
         <Button
           label="Create the first DonationCampaign"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListDonationCampaign({ navigate }) {
           label="Create a new DonationCampaign"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

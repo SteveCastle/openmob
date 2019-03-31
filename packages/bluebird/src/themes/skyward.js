@@ -1,6 +1,7 @@
 const colors = {
   base: '#3457a1',
   black: '#393f4a',
+  white: '#fff',
   gray: [
     '#f9f9fa',
     '#ecedef',
@@ -203,9 +204,9 @@ const theme = {
     },
     buttons: {
       light: {
-        bg: colors.gray[2]
+        primary: { bg: colors.green[5], label: colors.white }
       },
-      dark: { bg: colors.gray[9] }
+      dark: { primary: { bg: colors.gray[9], label: colors.white } }
     },
     forms: {
       light: {

@@ -68,54 +68,54 @@ function EditFieldType({ id }) {
           <h1>Edit {item.ID}</h1>
           <Widget>
             <Label>ID</Label>
-            <Input placeholder={parseObject(item.ID)} />
+            <Input value={parseObject(item.ID)} />
           </Widget>
           <Widget>
             <Label>CreatedAt</Label>
-            <Input placeholder={parseObject(item.CreatedAt)} />
+            <Input value={parseObject(item.CreatedAt)} />
           </Widget>
           <Widget>
             <Label>UpdatedAt</Label>
-            <Input placeholder={parseObject(item.UpdatedAt)} />
+            <Input value={parseObject(item.UpdatedAt)} />
           </Widget>
           <Widget>
             <Label>Title</Label>
-            <Input placeholder={parseObject(item.Title)} />
+            <Input value={parseObject(item.Title)} />
           </Widget>
           <Widget>
             <Label>DataType</Label>
-            <Input placeholder={parseObject(item.DataType)} />
+            <Input value={parseObject(item.DataType)} />
           </Widget>
           <Widget>
             <Label>PropName</Label>
-            <Input placeholder={parseObject(item.PropName)} />
+            <Input value={parseObject(item.PropName)} />
           </Widget>
           <Widget>
             <Label>StringValueDefault</Label>
-            <Input placeholder={parseObject(item.StringValueDefault)} />
+            <Input value={parseObject(item.StringValueDefault)} />
           </Widget>
           <Widget>
             <Label>IntValueDefault</Label>
-            <Input placeholder={parseObject(item.IntValueDefault)} />
+            <Input value={parseObject(item.IntValueDefault)} />
           </Widget>
           <Widget>
             <Label>FloatValueDefault</Label>
-            <Input placeholder={parseObject(item.FloatValueDefault)} />
+            <Input value={parseObject(item.FloatValueDefault)} />
           </Widget>
           <Widget>
             <Label>BooleanValueDefault</Label>
-            <Input placeholder={parseObject(item.BooleanValueDefault)} />
+            <Input value={parseObject(item.BooleanValueDefault)} />
           </Widget>
           <Widget>
             <Label>DateTimeValueDefault</Label>
-            <Input placeholder={parseObject(item.DateTimeValueDefault)} />
+            <Input value={parseObject(item.DateTimeValueDefault)} />
           </Widget>
           <Widget>
             <Label>ComponentType</Label>
-            <Input placeholder={parseObject(item.ComponentType)} />
+            <Input value={parseObject(item.ComponentType)} />
           </Widget>
 
-          <Button label="Edit" block />
+          <Button label="Edit" block variant="primary" />
         </Form>
       </Card>
     </Content>

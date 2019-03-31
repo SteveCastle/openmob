@@ -49,6 +49,7 @@ function ListCustomerCart({ navigate }) {
         <Button
           label="Create the first CustomerCart"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -62,6 +63,7 @@ function ListCustomerCart({ navigate }) {
           label="Create a new CustomerCart"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

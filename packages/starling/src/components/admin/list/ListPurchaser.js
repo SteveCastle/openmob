@@ -58,6 +58,7 @@ function ListPurchaser({ navigate }) {
         <Button
           label="Create the first Purchaser"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -71,6 +72,7 @@ function ListPurchaser({ navigate }) {
           label="Create a new Purchaser"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

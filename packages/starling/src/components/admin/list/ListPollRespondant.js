@@ -58,6 +58,7 @@ function ListPollRespondant({ navigate }) {
         <Button
           label="Create the first PollRespondant"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -71,6 +72,7 @@ function ListPollRespondant({ navigate }) {
           label="Create a new PollRespondant"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

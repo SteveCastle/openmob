@@ -50,6 +50,7 @@ function ListPoll({ navigate }) {
         <Button
           label="Create the first Poll"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListPoll({ navigate }) {
           label="Create a new Poll"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

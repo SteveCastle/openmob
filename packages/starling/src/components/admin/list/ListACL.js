@@ -49,6 +49,7 @@ function ListACL({ navigate }) {
         <Button
           label="Create the first ACL"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -62,6 +63,7 @@ function ListACL({ navigate }) {
           label="Create a new ACL"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

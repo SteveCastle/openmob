@@ -62,6 +62,7 @@ function ListField({ navigate }) {
         <Button
           label="Create the first Field"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -75,6 +76,7 @@ function ListField({ navigate }) {
           label="Create a new Field"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

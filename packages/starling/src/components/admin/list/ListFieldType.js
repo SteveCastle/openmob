@@ -62,6 +62,7 @@ function ListFieldType({ navigate }) {
         <Button
           label="Create the first FieldType"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -75,6 +76,7 @@ function ListFieldType({ navigate }) {
           label="Create a new FieldType"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

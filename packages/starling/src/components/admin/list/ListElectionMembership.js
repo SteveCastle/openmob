@@ -55,6 +55,7 @@ function ListElectionMembership({ navigate }) {
         <Button
           label="Create the first ElectionMembership"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -68,6 +69,7 @@ function ListElectionMembership({ navigate }) {
           label="Create a new ElectionMembership"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

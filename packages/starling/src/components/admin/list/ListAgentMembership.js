@@ -55,6 +55,7 @@ function ListAgentMembership({ navigate }) {
         <Button
           label="Create the first AgentMembership"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -68,6 +69,7 @@ function ListAgentMembership({ navigate }) {
           label="Create a new AgentMembership"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

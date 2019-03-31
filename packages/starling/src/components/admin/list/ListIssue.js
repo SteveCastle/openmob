@@ -53,6 +53,7 @@ function ListIssue({ navigate }) {
         <Button
           label="Create the first Issue"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -66,6 +67,7 @@ function ListIssue({ navigate }) {
           label="Create a new Issue"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

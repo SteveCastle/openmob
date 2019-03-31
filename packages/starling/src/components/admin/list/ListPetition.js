@@ -50,6 +50,7 @@ function ListPetition({ navigate }) {
         <Button
           label="Create the first Petition"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListPetition({ navigate }) {
           label="Create a new Petition"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

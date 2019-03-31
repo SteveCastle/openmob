@@ -35,14 +35,14 @@ function List{{.Table.Name}}({ navigate }) {
   }
 
   if (items === null || items.length === 0) {
-    return <Content><Button label="Create the first {{.Table.Name}}" onClick={() => navigate('create')}/></Content>
+    return <Content><Button label="Create the first {{.Table.Name}}" onClick={() => navigate('create')} variant="primary" /></Content>
   }
 
   return (
     <Content>
     <Card>
       <h1>List {{.Table.Name}}</h1>
-      <Button label="Create a new {{.Table.Name}}" onClick={() => navigate('create')} block/>
+      <Button label="Create a new {{.Table.Name}}" onClick={() => navigate('create')} block variant="primary" />
       <table>
       <thead>
       <tr>

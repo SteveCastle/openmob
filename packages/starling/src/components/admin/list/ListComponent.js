@@ -58,6 +58,7 @@ function ListComponent({ navigate }) {
         <Button
           label="Create the first Component"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -71,6 +72,7 @@ function ListComponent({ navigate }) {
           label="Create a new Component"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

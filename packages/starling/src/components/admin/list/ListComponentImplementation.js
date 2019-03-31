@@ -51,6 +51,7 @@ function ListComponentImplementation({ navigate }) {
         <Button
           label="Create the first ComponentImplementation"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -64,6 +65,7 @@ function ListComponentImplementation({ navigate }) {
           label="Create a new ComponentImplementation"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

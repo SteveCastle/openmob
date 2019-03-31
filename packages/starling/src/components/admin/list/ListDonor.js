@@ -58,6 +58,7 @@ function ListDonor({ navigate }) {
         <Button
           label="Create the first Donor"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -71,6 +72,7 @@ function ListDonor({ navigate }) {
           label="Create a new Donor"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

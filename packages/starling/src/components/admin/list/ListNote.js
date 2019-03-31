@@ -56,6 +56,7 @@ function ListNote({ navigate }) {
         <Button
           label="Create the first Note"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -69,6 +70,7 @@ function ListNote({ navigate }) {
           label="Create a new Note"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

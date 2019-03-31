@@ -55,6 +55,7 @@ function ListOwnerMembership({ navigate }) {
         <Button
           label="Create the first OwnerMembership"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -68,6 +69,7 @@ function ListOwnerMembership({ navigate }) {
           label="Create a new OwnerMembership"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

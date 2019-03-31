@@ -64,30 +64,30 @@ function EditComponent({ id }) {
           <h1>Edit {item.ID}</h1>
           <Widget>
             <Label>ID</Label>
-            <Input placeholder={parseObject(item.ID)} />
+            <Input value={parseObject(item.ID)} />
           </Widget>
           <Widget>
             <Label>CreatedAt</Label>
-            <Input placeholder={parseObject(item.CreatedAt)} />
+            <Input value={parseObject(item.CreatedAt)} />
           </Widget>
           <Widget>
             <Label>UpdatedAt</Label>
-            <Input placeholder={parseObject(item.UpdatedAt)} />
+            <Input value={parseObject(item.UpdatedAt)} />
           </Widget>
           <Widget>
             <Label>ComponentType</Label>
-            <Input placeholder={parseObject(item.ComponentType)} />
+            <Input value={parseObject(item.ComponentType)} />
           </Widget>
           <Widget>
             <Label>ComponentImplementation</Label>
-            <Input placeholder={parseObject(item.ComponentImplementation)} />
+            <Input value={parseObject(item.ComponentImplementation)} />
           </Widget>
           <Widget>
             <Label>LayoutColumn</Label>
-            <Input placeholder={parseObject(item.LayoutColumn)} />
+            <Input value={parseObject(item.LayoutColumn)} />
           </Widget>
 
-          <Button label="Edit" block />
+          <Button label="Edit" block variant="primary" />
         </Form>
       </Card>
     </Content>

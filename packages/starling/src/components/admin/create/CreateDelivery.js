@@ -26,7 +26,7 @@ const CreateDelivery = ({ id }) => (
           <Input placeholder="Time!" />
         </Widget>
 
-        <Button label="Create" block />
+        <Button label="Create" block variant="primary" />
       </Form>
     </Card>
   </Content>

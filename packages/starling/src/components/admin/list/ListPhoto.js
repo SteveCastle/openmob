@@ -52,6 +52,7 @@ function ListPhoto({ navigate }) {
         <Button
           label="Create the first Photo"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -65,6 +66,7 @@ function ListPhoto({ navigate }) {
           label="Create a new Photo"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

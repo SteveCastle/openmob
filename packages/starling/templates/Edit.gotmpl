@@ -50,10 +50,10 @@ function Edit{{.Table.Name}}({ id }) {
       <h1>Edit {item.ID}</h1>
 {{range $i, $value := .Table.Columns}}  <Widget>
       <Label>{{.Name}}</Label>
-      <Input placeholder={parseObject(item.{{.Name}})}/>
+      <Input value={parseObject(item.{{.Name}})}/>
   </Widget>
 {{end}}
-      <Button label="Edit" block/>
+      <Button label="Edit" block variant="primary" />
       </Form>
     </Card>
     </Content>

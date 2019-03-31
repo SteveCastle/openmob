@@ -30,7 +30,7 @@ const CreatePhoneNumber = ({ id }) => (
           <Input placeholder="String!" />
         </Widget>
 
-        <Button label="Create" block />
+        <Button label="Create" block variant="primary" />
       </Form>
     </Card>
   </Content>

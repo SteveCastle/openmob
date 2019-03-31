@@ -55,6 +55,7 @@ function ListFollower({ navigate }) {
         <Button
           label="Create the first Follower"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -68,6 +69,7 @@ function ListFollower({ navigate }) {
           label="Create a new Follower"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

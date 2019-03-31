@@ -59,6 +59,7 @@ function ListActivity({ navigate }) {
         <Button
           label="Create the first Activity"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -72,6 +73,7 @@ function ListActivity({ navigate }) {
           label="Create a new Activity"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

@@ -52,6 +52,7 @@ function ListAgent({ navigate }) {
         <Button
           label="Create the first Agent"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -65,6 +66,7 @@ function ListAgent({ navigate }) {
           label="Create a new Agent"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

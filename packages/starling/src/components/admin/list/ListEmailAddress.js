@@ -50,6 +50,7 @@ function ListEmailAddress({ navigate }) {
         <Button
           label="Create the first EmailAddress"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListEmailAddress({ navigate }) {
           label="Create a new EmailAddress"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

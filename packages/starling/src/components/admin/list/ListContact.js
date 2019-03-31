@@ -54,6 +54,7 @@ function ListContact({ navigate }) {
         <Button
           label="Create the first Contact"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -67,6 +68,7 @@ function ListContact({ navigate }) {
           label="Create a new Contact"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

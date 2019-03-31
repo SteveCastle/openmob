@@ -49,6 +49,7 @@ function ListDelivery({ navigate }) {
         <Button
           label="Create the first Delivery"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -62,6 +63,7 @@ function ListDelivery({ navigate }) {
           label="Create a new Delivery"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

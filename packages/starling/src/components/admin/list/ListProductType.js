@@ -50,6 +50,7 @@ function ListProductType({ navigate }) {
         <Button
           label="Create the first ProductType"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -63,6 +64,7 @@ function ListProductType({ navigate }) {
           label="Create a new ProductType"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

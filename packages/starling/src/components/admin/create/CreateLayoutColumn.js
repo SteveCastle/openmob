@@ -34,7 +34,7 @@ const CreateLayoutColumn = ({ id }) => (
           <Input placeholder="Int!" />
         </Widget>
 
-        <Button label="Create" block />
+        <Button label="Create" block variant="primary" />
       </Form>
     </Card>
   </Content>

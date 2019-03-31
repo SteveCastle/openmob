@@ -58,6 +58,7 @@ function ListCause({ navigate }) {
         <Button
           label="Create the first Cause"
           onClick={() => navigate('create')}
+          variant="primary"
         />
       </Content>
     )
@@ -71,6 +72,7 @@ function ListCause({ navigate }) {
           label="Create a new Cause"
           onClick={() => navigate('create')}
           block
+          variant="primary"
         />
         <table>
           <thead>

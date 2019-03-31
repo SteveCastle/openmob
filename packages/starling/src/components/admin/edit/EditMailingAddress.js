@@ -59,34 +59,34 @@ function EditMailingAddress({ id }) {
           <h1>Edit {item.ID}</h1>
           <Widget>
             <Label>ID</Label>
-            <Input placeholder={parseObject(item.ID)} />
+            <Input value={parseObject(item.ID)} />
           </Widget>
           <Widget>
             <Label>CreatedAt</Label>
-            <Input placeholder={parseObject(item.CreatedAt)} />
+            <Input value={parseObject(item.CreatedAt)} />
           </Widget>
           <Widget>
             <Label>UpdatedAt</Label>
-            <Input placeholder={parseObject(item.UpdatedAt)} />
+            <Input value={parseObject(item.UpdatedAt)} />
           </Widget>
           <Widget>
             <Label>StreetAddress</Label>
-            <Input placeholder={parseObject(item.StreetAddress)} />
+            <Input value={parseObject(item.StreetAddress)} />
           </Widget>
           <Widget>
             <Label>City</Label>
-            <Input placeholder={parseObject(item.City)} />
+            <Input value={parseObject(item.City)} />
           </Widget>
           <Widget>
             <Label>State</Label>
-            <Input placeholder={parseObject(item.State)} />
+            <Input value={parseObject(item.State)} />
           </Widget>
           <Widget>
             <Label>ZipCode</Label>
-            <Input placeholder={parseObject(item.ZipCode)} />
+            <Input value={parseObject(item.ZipCode)} />
           </Widget>
 
-          <Button label="Edit" block />
+          <Button label="Edit" block variant="primary" />
         </Form>
       </Card>
     </Content>

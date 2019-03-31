@@ -26,7 +26,7 @@ function Label({ children, block, dark }) {
       p={3}
       fontSize={1}
       color={dark ? 'forms.lightText' : 'forms.darkText'}
-      width={block ? 1 : null}
+      width={block ? 1 : 1 / 3}
     >
       {children}
     </StyledLabel>

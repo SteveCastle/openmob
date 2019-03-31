@@ -21,7 +21,16 @@ const StyledButton = styled.button`
   box-sizing: border-box;
 `;
 
-function Button({ onClick, label, icon, loader, block, variant, state }) {
+function Button({
+  onClick,
+  label,
+  icon,
+  loader,
+  block,
+  variant = 'default',
+  state,
+  dark
+}) {
   return (
     <StyledButton
       block={block}
@@ -29,9 +38,13 @@ function Button({ onClick, label, icon, loader, block, variant, state }) {
       borderRadius={2}
       onClick={onClick}
       p={3}
-      bg={variant === 'dark' ? 'buttons.dark.bg' : 'buttons.light.bg'}
+      bg={dark ? `buttons.dark.${variant}.bg` : `buttons.light.${variant}.bg`}
       fontSize={1}
-      color={variant === 'dark' ? 'buttons.light.text' : 'buttons.dark.text'}
+      color={
+        dark
+          ? `buttons.dark.${variant}.label`
+          : `buttons.light.${variant}.label`
+      }
       width={block ? 1 : null}
     >
       {label}
@@ -44,11 +57,12 @@ Button.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   loader: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  variant: PropTypes.oneOf(['primary', 'default', 'warning', 'dark'])
+  variant: PropTypes.oneOf(['primary', 'default', 'warning', 'outline'])
     .isRequired,
   state: PropTypes.oneOf(['ready', 'loading', 'success', 'error', 'disabled'])
     .isRequired,
-  block: PropTypes.bool
+  block: PropTypes.bool,
+  dark: PropTypes.bool
 };
 Button.defaultProps = {
   state: 'ready'
