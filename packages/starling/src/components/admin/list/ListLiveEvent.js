@@ -37,7 +37,7 @@ const LIST_LIVEEVENT = gql`
   }
 `
 
-function ListLiveEvent({ navigate }) {
+function ListLiveEvent({ navigate = () => {} }) {
   const {
     data: { listLiveEvent: items = [] },
     error,
@@ -84,17 +84,19 @@ function ListLiveEvent({ navigate }) {
               <TableHeaderCell>LiveEventType</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/live-event/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-              <TableCell>{parseObject(item.LiveEventType)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/live-event/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>{parseObject(item.LiveEventType)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -102,7 +104,7 @@ function ListLiveEvent({ navigate }) {
 }
 
 ListLiveEvent.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListLiveEvent

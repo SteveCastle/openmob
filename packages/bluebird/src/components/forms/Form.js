@@ -28,7 +28,10 @@ function Form({ children, onChange, state }) {
 }
 
 Form.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   onChange: PropTypes.func,
   state: PropTypes.oneOf(['ready', 'valid', 'error'])
 };

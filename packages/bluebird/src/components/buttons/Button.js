@@ -67,8 +67,14 @@ function Button({
 Button.propTypes = {
   onClick: PropTypes.func,
   label: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  loader: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  icon: PropTypes.oneOfType([
+    PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    PropTypes.string
+  ]),
+  loader: PropTypes.oneOfType([
+    PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    PropTypes.string
+  ]),
   variant: PropTypes.oneOf(['primary', 'default', 'warning', 'outline'])
     .isRequired,
   state: PropTypes.oneOf(['ready', 'loading', 'success', 'error', 'disabled'])

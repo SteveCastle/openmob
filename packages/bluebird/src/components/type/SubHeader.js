@@ -40,7 +40,10 @@ function SubHeader({ children, dark }) {
 }
 
 SubHeader.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   dark: PropTypes.bool
 };
 export default SubHeader;

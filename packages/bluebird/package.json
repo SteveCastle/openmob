@@ -1,7 +1,6 @@
 {
   "name": "@openmob/bluebird",
   "version": "0.1.0",
-  "private": true,
   "main": "index.js",
   "dependencies": {
     "@rebass/components": "^4.0.0-1",

@@ -21,7 +21,16 @@ const StyledInput = styled.input`
   box-sizing: border-box;
 `;
 
-function Input({ onChange, label, block, dark, value, placeholder, disabled }) {
+function Input({
+  name,
+  onChange,
+  label,
+  block,
+  dark,
+  value,
+  placeholder,
+  disabled
+}) {
   return (
     <StyledInput
       border={0}
@@ -33,6 +42,7 @@ function Input({ onChange, label, block, dark, value, placeholder, disabled }) {
       fontSize={1}
       color={dark ? 'forms.lightText' : 'forms.darkText'}
       width={block ? 1 : 2 / 3}
+      name={name}
       value={value}
       placeholder={placeholder}
       disabled={disabled}
@@ -43,6 +53,7 @@ function Input({ onChange, label, block, dark, value, placeholder, disabled }) {
 }
 
 Input.propTypes = {
+  name: PropTypes.string,
   onChange: PropTypes.func,
   label: PropTypes.string,
   state: PropTypes.oneOf(['ready', 'valid', 'error']),

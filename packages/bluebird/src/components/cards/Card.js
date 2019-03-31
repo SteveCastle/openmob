@@ -55,7 +55,10 @@ function Card({ children }) {
 }
 
 Card.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element)
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 Card.defaultProps = {};
 

@@ -37,7 +37,7 @@ const LIST_LAYOUTROW = gql`
   }
 `
 
-function ListLayoutRow({ navigate }) {
+function ListLayoutRow({ navigate = () => {} }) {
   const {
     data: { listLayoutRow: items = [] },
     error,
@@ -84,17 +84,19 @@ function ListLayoutRow({ navigate }) {
               <TableHeaderCell>Container</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/layout-row/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Layout)}</TableCell>
-              <TableCell>{parseObject(item.Container)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/layout-row/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Layout)}</TableCell>
+                <TableCell>{parseObject(item.Container)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -102,7 +104,7 @@ function ListLayoutRow({ navigate }) {
 }
 
 ListLayoutRow.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListLayoutRow

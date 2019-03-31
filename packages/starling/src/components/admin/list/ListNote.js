@@ -40,7 +40,7 @@ const LIST_NOTE = gql`
   }
 `
 
-function ListNote({ navigate }) {
+function ListNote({ navigate = () => {} }) {
   const {
     data: { listNote: items = [] },
     error,
@@ -88,18 +88,20 @@ function ListNote({ navigate }) {
               <TableHeaderCell>Body</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/note/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Contact)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-              <TableCell>{parseObject(item.Body)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/note/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Contact)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>{parseObject(item.Body)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -107,7 +109,7 @@ function ListNote({ navigate }) {
 }
 
 ListNote.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListNote

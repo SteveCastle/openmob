@@ -43,7 +43,7 @@ const LIST_ACTIVITY = gql`
   }
 `
 
-function ListActivity({ navigate }) {
+function ListActivity({ navigate = () => {} }) {
   const {
     data: { listActivity: items = [] },
     error,
@@ -92,19 +92,21 @@ function ListActivity({ navigate }) {
               <TableHeaderCell>Cause</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/activity/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-              <TableCell>{parseObject(item.ActivityType)}</TableCell>
-              <TableCell>{parseObject(item.Contact)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/activity/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>{parseObject(item.ActivityType)}</TableCell>
+                <TableCell>{parseObject(item.Contact)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -112,7 +114,7 @@ function ListActivity({ navigate }) {
 }
 
 ListActivity.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListActivity

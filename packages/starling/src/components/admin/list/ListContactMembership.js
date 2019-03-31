@@ -39,7 +39,7 @@ const LIST_CONTACTMEMBERSHIP = gql`
   }
 `
 
-function ListContactMembership({ navigate }) {
+function ListContactMembership({ navigate = () => {} }) {
   const {
     data: { listContactMembership: items = [] },
     error,
@@ -86,19 +86,21 @@ function ListContactMembership({ navigate }) {
               <TableHeaderCell>Contact</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/contact-membership/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-              <TableCell>{parseObject(item.Contact)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/contact-membership/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>{parseObject(item.Contact)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -106,7 +108,7 @@ function ListContactMembership({ navigate }) {
 }
 
 ListContactMembership.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListContactMembership

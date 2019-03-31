@@ -34,7 +34,7 @@ const LIST_PETITION = gql`
   }
 `
 
-function ListPetition({ navigate }) {
+function ListPetition({ navigate = () => {} }) {
   const {
     data: { listPetition: items = [] },
     error,
@@ -80,16 +80,18 @@ function ListPetition({ navigate }) {
               <TableHeaderCell>Title</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/petition/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/petition/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -97,7 +99,7 @@ function ListPetition({ navigate }) {
 }
 
 ListPetition.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListPetition

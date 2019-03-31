@@ -1,6 +1,7 @@
 import React from 'react'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import PropTypes from 'prop-types'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
@@ -14,9 +15,8 @@ const MILLISECONDS = 1000
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
   Object.entries(obj).reduce((acc, entry) => {
-    debugger
     if (entry[0] === 'seconds') {
-      return new Date(entry[1] * MILLISECONDS)
+      return new Date(entry[1] * MILLISECONDS).toString()
     }
     if (entry[0] === 'ID') {
       return entry[1]
@@ -43,6 +43,11 @@ const GET_AGENT = gql`
     }
   }
 `
+const UPDATE_AGENT = gql`
+  mutation updateAgent($id: ID!, $agent: AgentInput) {
+    updateAgent(ID: $id, agent: $agent, buildStatic: false)
+  }
+`
 
 function EditAgent({ id }) {
   const {
@@ -53,6 +58,8 @@ function EditAgent({ id }) {
     variables: { id },
   })
 
+  const updateAgent = useMutation(UPDATE_AGENT)
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -62,31 +69,86 @@ function EditAgent({ id }) {
   }
 
   return (
-    <Content>
-      <Card>
-        <Form>
-          <h1>Edit {item.ID}</h1>
-          <Widget>
-            <Label>ID</Label>
-            <Input value={parseObject(item.ID)} disabled />
-          </Widget>
-          <Widget>
-            <Label>CreatedAt</Label>
-            <Input value={parseObject(item.CreatedAt)} disabled />
-          </Widget>
-          <Widget>
-            <Label>UpdatedAt</Label>
-            <Input value={parseObject(item.UpdatedAt)} disabled />
-          </Widget>
-          <Widget>
-            <Label>Account</Label>
-            <Input value={parseObject(item.Account)} />
-          </Widget>
+    <Formik
+      initialValues={{
+        ID: parseObject(item.ID),
+        CreatedAt: parseObject(item.CreatedAt),
+        UpdatedAt: parseObject(item.UpdatedAt),
+        Account: parseObject(item.Account),
+      }}
+      onSubmit={(values, { setSubmitting }) =>
+        updateAgent({
+          variables: {
+            id: item.ID,
+            agent: {
+              ...values,
+              ID: undefined,
+              CreatedAt: undefined,
+              UpdatedAt: undefined,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Edit {item.ID}</h1>
+                <Widget>
+                  <Label>ID</Label>
+                  <Input
+                    value={values.ID}
+                    disabled
+                    name="ID"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>CreatedAt</Label>
+                  <Input
+                    value={values.CreatedAt}
+                    disabled
+                    name="CreatedAt"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>UpdatedAt</Label>
+                  <Input
+                    value={values.UpdatedAt}
+                    disabled
+                    name="UpdatedAt"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Account</Label>
+                  <Input
+                    value={values.Account}
+                    name="Account"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
 
-          <Button label="Edit" block variant="primary" />
-        </Form>
-      </Card>
-    </Content>
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
   )
 }
 

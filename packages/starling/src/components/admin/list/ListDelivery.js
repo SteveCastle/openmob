@@ -33,7 +33,7 @@ const LIST_DELIVERY = gql`
   }
 `
 
-function ListDelivery({ navigate }) {
+function ListDelivery({ navigate = () => {} }) {
   const {
     data: { listDelivery: items = [] },
     error,
@@ -78,15 +78,17 @@ function ListDelivery({ navigate }) {
               <TableHeaderCell>UpdatedAt</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/delivery/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/delivery/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -94,7 +96,7 @@ function ListDelivery({ navigate }) {
 }
 
 ListDelivery.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListDelivery

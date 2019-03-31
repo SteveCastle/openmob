@@ -37,7 +37,7 @@ const LIST_PRODUCT = gql`
   }
 `
 
-function ListProduct({ navigate }) {
+function ListProduct({ navigate = () => {} }) {
   const {
     data: { listProduct: items = [] },
     error,
@@ -84,17 +84,19 @@ function ListProduct({ navigate }) {
               <TableHeaderCell>ProductType</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/product/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-              <TableCell>{parseObject(item.ProductType)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/product/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>{parseObject(item.ProductType)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -102,7 +104,7 @@ function ListProduct({ navigate }) {
 }
 
 ListProduct.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListProduct

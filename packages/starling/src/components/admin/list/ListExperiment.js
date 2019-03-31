@@ -37,7 +37,7 @@ const LIST_EXPERIMENT = gql`
   }
 `
 
-function ListExperiment({ navigate }) {
+function ListExperiment({ navigate = () => {} }) {
   const {
     data: { listExperiment: items = [] },
     error,
@@ -84,17 +84,19 @@ function ListExperiment({ navigate }) {
               <TableHeaderCell>LandingPage</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/experiment/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-              <TableCell>{parseObject(item.LandingPage)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/experiment/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>{parseObject(item.LandingPage)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -102,7 +104,7 @@ function ListExperiment({ navigate }) {
 }
 
 ListExperiment.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListExperiment

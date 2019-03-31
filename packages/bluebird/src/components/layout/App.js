@@ -44,7 +44,10 @@ function App({ children }) {
 }
 
 App.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 App.defaultProps = {};
 

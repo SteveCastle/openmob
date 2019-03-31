@@ -40,7 +40,7 @@ const LIST_LANDINGPAGE = gql`
   }
 `
 
-function ListLandingPage({ navigate }) {
+function ListLandingPage({ navigate = () => {} }) {
   const {
     data: { listLandingPage: items = [] },
     error,
@@ -88,18 +88,22 @@ function ListLandingPage({ navigate }) {
               <TableHeaderCell>Layout</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/landing-page/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-              <TableCell>{parseObject(item.Layout)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/landing-page/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>{parseObject(item.Layout)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -107,7 +111,7 @@ function ListLandingPage({ navigate }) {
 }
 
 ListLandingPage.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListLandingPage

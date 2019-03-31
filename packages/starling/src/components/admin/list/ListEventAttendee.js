@@ -42,7 +42,7 @@ const LIST_EVENTATTENDEE = gql`
   }
 `
 
-function ListEventAttendee({ navigate }) {
+function ListEventAttendee({ navigate = () => {} }) {
   const {
     data: { listEventAttendee: items = [] },
     error,
@@ -90,20 +90,22 @@ function ListEventAttendee({ navigate }) {
               <TableHeaderCell>Cause</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/event-attendee/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.LiveEvent)}</TableCell>
-              <TableCell>{parseObject(item.Contact)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/event-attendee/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.LiveEvent)}</TableCell>
+                <TableCell>{parseObject(item.Contact)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -111,7 +113,7 @@ function ListEventAttendee({ navigate }) {
 }
 
 ListEventAttendee.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListEventAttendee

@@ -39,7 +39,7 @@ const LIST_PETITIONMEMBERSHIP = gql`
   }
 `
 
-function ListPetitionMembership({ navigate }) {
+function ListPetitionMembership({ navigate = () => {} }) {
   const {
     data: { listPetitionMembership: items = [] },
     error,
@@ -86,19 +86,21 @@ function ListPetitionMembership({ navigate }) {
               <TableHeaderCell>Petition</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/petition-membership/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-              <TableCell>{parseObject(item.Petition)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/petition-membership/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>{parseObject(item.Petition)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -106,7 +108,7 @@ function ListPetitionMembership({ navigate }) {
 }
 
 ListPetitionMembership.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListPetitionMembership

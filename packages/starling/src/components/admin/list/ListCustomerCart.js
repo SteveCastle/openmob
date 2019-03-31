@@ -33,7 +33,7 @@ const LIST_CUSTOMERCART = gql`
   }
 `
 
-function ListCustomerCart({ navigate }) {
+function ListCustomerCart({ navigate = () => {} }) {
   const {
     data: { listCustomerCart: items = [] },
     error,
@@ -78,17 +78,19 @@ function ListCustomerCart({ navigate }) {
               <TableHeaderCell>UpdatedAt</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/customer-cart/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/customer-cart/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -96,7 +98,7 @@ function ListCustomerCart({ navigate }) {
 }
 
 ListCustomerCart.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListCustomerCart

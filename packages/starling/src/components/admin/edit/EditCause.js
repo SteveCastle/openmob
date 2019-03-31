@@ -1,6 +1,7 @@
 import React from 'react'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import PropTypes from 'prop-types'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
@@ -14,9 +15,8 @@ const MILLISECONDS = 1000
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
   Object.entries(obj).reduce((acc, entry) => {
-    debugger
     if (entry[0] === 'seconds') {
-      return new Date(entry[1] * MILLISECONDS)
+      return new Date(entry[1] * MILLISECONDS).toString()
     }
     if (entry[0] === 'ID') {
       return entry[1]
@@ -49,6 +49,11 @@ const GET_CAUSE = gql`
     }
   }
 `
+const UPDATE_CAUSE = gql`
+  mutation updateCause($id: ID!, $cause: CauseInput) {
+    updateCause(ID: $id, cause: $cause, buildStatic: false)
+  }
+`
 
 function EditCause({ id }) {
   const {
@@ -59,6 +64,8 @@ function EditCause({ id }) {
     variables: { id },
   })
 
+  const updateCause = useMutation(UPDATE_CAUSE)
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -68,47 +75,126 @@ function EditCause({ id }) {
   }
 
   return (
-    <Content>
-      <Card>
-        <Form>
-          <h1>Edit {item.ID}</h1>
-          <Widget>
-            <Label>ID</Label>
-            <Input value={parseObject(item.ID)} disabled />
-          </Widget>
-          <Widget>
-            <Label>CreatedAt</Label>
-            <Input value={parseObject(item.CreatedAt)} disabled />
-          </Widget>
-          <Widget>
-            <Label>UpdatedAt</Label>
-            <Input value={parseObject(item.UpdatedAt)} disabled />
-          </Widget>
-          <Widget>
-            <Label>Title</Label>
-            <Input value={parseObject(item.Title)} />
-          </Widget>
-          <Widget>
-            <Label>Slug</Label>
-            <Input value={parseObject(item.Slug)} />
-          </Widget>
-          <Widget>
-            <Label>Summary</Label>
-            <Input value={parseObject(item.Summary)} />
-          </Widget>
-          <Widget>
-            <Label>HomePage</Label>
-            <Input value={parseObject(item.HomePage)} />
-          </Widget>
-          <Widget>
-            <Label>Photo</Label>
-            <Input value={parseObject(item.Photo)} />
-          </Widget>
+    <Formik
+      initialValues={{
+        ID: parseObject(item.ID),
+        CreatedAt: parseObject(item.CreatedAt),
+        UpdatedAt: parseObject(item.UpdatedAt),
+        Title: parseObject(item.Title),
+        Slug: parseObject(item.Slug),
+        Summary: parseObject(item.Summary),
+        HomePage: parseObject(item.HomePage),
+        Photo: parseObject(item.Photo),
+      }}
+      onSubmit={(values, { setSubmitting }) =>
+        updateCause({
+          variables: {
+            id: item.ID,
+            cause: {
+              ...values,
+              ID: undefined,
+              CreatedAt: undefined,
+              UpdatedAt: undefined,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Edit {item.ID}</h1>
+                <Widget>
+                  <Label>ID</Label>
+                  <Input
+                    value={values.ID}
+                    disabled
+                    name="ID"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>CreatedAt</Label>
+                  <Input
+                    value={values.CreatedAt}
+                    disabled
+                    name="CreatedAt"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>UpdatedAt</Label>
+                  <Input
+                    value={values.UpdatedAt}
+                    disabled
+                    name="UpdatedAt"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Title</Label>
+                  <Input
+                    value={values.Title}
+                    name="Title"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Slug</Label>
+                  <Input
+                    value={values.Slug}
+                    name="Slug"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Summary</Label>
+                  <Input
+                    value={values.Summary}
+                    name="Summary"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>HomePage</Label>
+                  <Input
+                    value={values.HomePage}
+                    name="HomePage"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Photo</Label>
+                  <Input
+                    value={values.Photo}
+                    name="Photo"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
 
-          <Button label="Edit" block variant="primary" />
-        </Form>
-      </Card>
-    </Content>
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
   )
 }
 

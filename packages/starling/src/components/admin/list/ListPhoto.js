@@ -36,7 +36,7 @@ const LIST_PHOTO = gql`
   }
 `
 
-function ListPhoto({ navigate }) {
+function ListPhoto({ navigate = () => {} }) {
   const {
     data: { listPhoto: items = [] },
     error,
@@ -84,18 +84,20 @@ function ListPhoto({ navigate }) {
               <TableHeaderCell>Height</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/photo/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.URI)}</TableCell>
-              <TableCell>{parseObject(item.Width)}</TableCell>
-              <TableCell>{parseObject(item.Height)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/photo/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.URI)}</TableCell>
+                <TableCell>{parseObject(item.Width)}</TableCell>
+                <TableCell>{parseObject(item.Height)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -103,7 +105,7 @@ function ListPhoto({ navigate }) {
 }
 
 ListPhoto.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListPhoto

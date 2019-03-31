@@ -42,7 +42,7 @@ const LIST_COMPONENT = gql`
   }
 `
 
-function ListComponent({ navigate }) {
+function ListComponent({ navigate = () => {} }) {
   const {
     data: { listComponent: items = [] },
     error,
@@ -90,18 +90,22 @@ function ListComponent({ navigate }) {
               <TableHeaderCell>LayoutColumn</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/component/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.ComponentType)}</TableCell>
-              <TableCell>{parseObject(item.ComponentImplementation)}</TableCell>
-              <TableCell>{parseObject(item.LayoutColumn)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/component/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.ComponentType)}</TableCell>
+                <TableCell>
+                  {parseObject(item.ComponentImplementation)}
+                </TableCell>
+                <TableCell>{parseObject(item.LayoutColumn)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -109,7 +113,7 @@ function ListComponent({ navigate }) {
 }
 
 ListComponent.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListComponent

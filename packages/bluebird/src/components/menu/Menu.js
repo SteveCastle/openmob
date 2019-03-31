@@ -29,7 +29,10 @@ function Menu({ children, vertical }) {
 }
 
 Menu.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   vertical: PropTypes.bool
 };
 

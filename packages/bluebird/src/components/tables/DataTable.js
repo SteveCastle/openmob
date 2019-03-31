@@ -43,7 +43,10 @@ function DataTable({ children }) {
 }
 
 DataTable.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element)
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 DataTable.defaultProps = {};
 

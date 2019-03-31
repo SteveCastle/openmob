@@ -38,7 +38,10 @@ function Header({ children, dark }) {
 }
 
 Header.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   dark: PropTypes.bool
 };
 export default Header;

@@ -39,7 +39,7 @@ const LIST_BOYCOTTMEMBERSHIP = gql`
   }
 `
 
-function ListBoycottMembership({ navigate }) {
+function ListBoycottMembership({ navigate = () => {} }) {
   const {
     data: { listBoycottMembership: items = [] },
     error,
@@ -86,19 +86,21 @@ function ListBoycottMembership({ navigate }) {
               <TableHeaderCell>Boycott</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/boycott-membership/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-              <TableCell>{parseObject(item.Boycott)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/boycott-membership/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>{parseObject(item.Boycott)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -106,7 +108,7 @@ function ListBoycottMembership({ navigate }) {
 }
 
 ListBoycottMembership.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListBoycottMembership

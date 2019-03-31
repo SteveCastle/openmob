@@ -48,7 +48,10 @@ function SideBarHeader({ children }) {
 }
 
 StyledSideBarHeader.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 
 export default SideBarHeader;

@@ -37,7 +37,7 @@ const LIST_VOLUNTEEROPPORTUNITY = gql`
   }
 `
 
-function ListVolunteerOpportunity({ navigate }) {
+function ListVolunteerOpportunity({ navigate = () => {} }) {
   const {
     data: { listVolunteerOpportunity: items = [] },
     error,
@@ -84,21 +84,23 @@ function ListVolunteerOpportunity({ navigate }) {
               <TableHeaderCell>VolunteerOpportunityType</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/volunteer-opportunity/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-              <TableCell>
-                {parseObject(item.VolunteerOpportunityType)}
-              </TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/volunteer-opportunity/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>
+                  {parseObject(item.VolunteerOpportunityType)}
+                </TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -106,7 +108,7 @@ function ListVolunteerOpportunity({ navigate }) {
 }
 
 ListVolunteerOpportunity.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListVolunteerOpportunity

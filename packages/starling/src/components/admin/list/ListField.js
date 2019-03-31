@@ -46,7 +46,7 @@ const LIST_FIELD = gql`
   }
 `
 
-function ListField({ navigate }) {
+function ListField({ navigate = () => {} }) {
   const {
     data: { listField: items = [] },
     error,
@@ -98,22 +98,24 @@ function ListField({ navigate }) {
               <TableHeaderCell>Component</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/field/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.FieldType)}</TableCell>
-              <TableCell>{parseObject(item.StringValue)}</TableCell>
-              <TableCell>{parseObject(item.IntValue)}</TableCell>
-              <TableCell>{parseObject(item.FloatValue)}</TableCell>
-              <TableCell>{parseObject(item.BooleanValue)}</TableCell>
-              <TableCell>{parseObject(item.DateTimeValue)}</TableCell>
-              <TableCell>{parseObject(item.Component)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/field/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.FieldType)}</TableCell>
+                <TableCell>{parseObject(item.StringValue)}</TableCell>
+                <TableCell>{parseObject(item.IntValue)}</TableCell>
+                <TableCell>{parseObject(item.FloatValue)}</TableCell>
+                <TableCell>{parseObject(item.BooleanValue)}</TableCell>
+                <TableCell>{parseObject(item.DateTimeValue)}</TableCell>
+                <TableCell>{parseObject(item.Component)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -121,7 +123,7 @@ function ListField({ navigate }) {
 }
 
 ListField.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListField

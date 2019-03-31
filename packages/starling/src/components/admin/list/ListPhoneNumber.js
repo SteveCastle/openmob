@@ -34,7 +34,7 @@ const LIST_PHONENUMBER = gql`
   }
 `
 
-function ListPhoneNumber({ navigate }) {
+function ListPhoneNumber({ navigate = () => {} }) {
   const {
     data: { listPhoneNumber: items = [] },
     error,
@@ -80,16 +80,20 @@ function ListPhoneNumber({ navigate }) {
               <TableHeaderCell>PhoneNumber</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/phone-number/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.PhoneNumber)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/phone-number/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.PhoneNumber)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -97,7 +101,7 @@ function ListPhoneNumber({ navigate }) {
 }
 
 ListPhoneNumber.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListPhoneNumber

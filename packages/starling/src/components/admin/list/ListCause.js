@@ -42,7 +42,7 @@ const LIST_CAUSE = gql`
   }
 `
 
-function ListCause({ navigate }) {
+function ListCause({ navigate = () => {} }) {
   const {
     data: { listCause: items = [] },
     error,
@@ -92,20 +92,22 @@ function ListCause({ navigate }) {
               <TableHeaderCell>Photo</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/cause/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-              <TableCell>{parseObject(item.Slug)}</TableCell>
-              <TableCell>{parseObject(item.Summary)}</TableCell>
-              <TableCell>{parseObject(item.HomePage)}</TableCell>
-              <TableCell>{parseObject(item.Photo)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>{parseObject(item.Slug)}</TableCell>
+                <TableCell>{parseObject(item.Summary)}</TableCell>
+                <TableCell>{parseObject(item.HomePage)}</TableCell>
+                <TableCell>{parseObject(item.Photo)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -113,7 +115,7 @@ function ListCause({ navigate }) {
 }
 
 ListCause.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListCause

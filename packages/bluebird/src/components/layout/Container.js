@@ -34,11 +34,7 @@ function Container({ dark, children, tracing }) {
       m="auto"
       width={1}
       maxWidth={7}
-      bg={
-        tracing
-          ? `violet.${tracing}`
-          : null
-      }
+      bg={tracing ? `violet.${tracing}` : null}
       fontSize={1}
     >
       {children}
@@ -47,7 +43,10 @@ function Container({ dark, children, tracing }) {
 }
 
 Container.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   dark: PropTypes.bool,
   tracing: PropTypes.number
 };

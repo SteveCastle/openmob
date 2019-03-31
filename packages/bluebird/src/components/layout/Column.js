@@ -28,11 +28,7 @@ function Column({ dark, children, tracing, size }) {
       mx={2}
       my={2}
       width={[1, size / 12]}
-      bg={
-        tracing
-          ? `blue.${tracing}`
-          : null
-      }
+      bg={tracing ? `blue.${tracing}` : null}
       fontSize={1}
     >
       {children}
@@ -41,7 +37,10 @@ function Column({ dark, children, tracing, size }) {
 }
 
 Column.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   size: PropTypes.number,
   dark: PropTypes.bool,
   tracing: PropTypes.number

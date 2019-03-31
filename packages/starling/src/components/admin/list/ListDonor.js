@@ -42,7 +42,7 @@ const LIST_DONOR = gql`
   }
 `
 
-function ListDonor({ navigate }) {
+function ListDonor({ navigate = () => {} }) {
   const {
     data: { listDonor: items = [] },
     error,
@@ -90,18 +90,20 @@ function ListDonor({ navigate }) {
               <TableHeaderCell>Cause</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/donor/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.CustomerOrder)}</TableCell>
-              <TableCell>{parseObject(item.Contact)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/donor/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.CustomerOrder)}</TableCell>
+                <TableCell>{parseObject(item.Contact)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -109,7 +111,7 @@ function ListDonor({ navigate }) {
 }
 
 ListDonor.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListDonor

@@ -38,7 +38,7 @@ const LIST_CONTACT = gql`
   }
 `
 
-function ListContact({ navigate }) {
+function ListContact({ navigate = () => {} }) {
   const {
     data: { listContact: items = [] },
     error,
@@ -88,20 +88,22 @@ function ListContact({ navigate }) {
               <TableHeaderCell>PhoneNumber</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/contact/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.FirstName)}</TableCell>
-              <TableCell>{parseObject(item.MiddleName)}</TableCell>
-              <TableCell>{parseObject(item.LastName)}</TableCell>
-              <TableCell>{parseObject(item.Email)}</TableCell>
-              <TableCell>{parseObject(item.PhoneNumber)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/contact/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.FirstName)}</TableCell>
+                <TableCell>{parseObject(item.MiddleName)}</TableCell>
+                <TableCell>{parseObject(item.LastName)}</TableCell>
+                <TableCell>{parseObject(item.Email)}</TableCell>
+                <TableCell>{parseObject(item.PhoneNumber)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -109,7 +111,7 @@ function ListContact({ navigate }) {
 }
 
 ListContact.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListContact

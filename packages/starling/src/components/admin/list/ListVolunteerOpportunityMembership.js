@@ -39,7 +39,7 @@ const LIST_VOLUNTEEROPPORTUNITYMEMBERSHIP = gql`
   }
 `
 
-function ListVolunteerOpportunityMembership({ navigate }) {
+function ListVolunteerOpportunityMembership({ navigate = () => {} }) {
   const {
     data: { listVolunteerOpportunityMembership: items = [] },
     error,
@@ -86,21 +86,25 @@ function ListVolunteerOpportunityMembership({ navigate }) {
               <TableHeaderCell>VolunteerOpportunity</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link
-                  to={`/app/admin/volunteer-opportunity-membership/${item.ID}`}
-                >
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-              <TableCell>{parseObject(item.VolunteerOpportunity)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/volunteer-opportunity-membership/${
+                      item.ID
+                    }`}
+                  >
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>{parseObject(item.VolunteerOpportunity)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -108,7 +112,7 @@ function ListVolunteerOpportunityMembership({ navigate }) {
 }
 
 ListVolunteerOpportunityMembership.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListVolunteerOpportunityMembership

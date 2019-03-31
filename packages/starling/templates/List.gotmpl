@@ -28,7 +28,7 @@ const LIST_{{toUpper .Table.Name}}= gql`
   }
 `
 
-function List{{.Table.Name}}({ navigate }) {
+function List{{.Table.Name}}({ navigate = ()=>{} }) {
   const { data: {list{{.Table.Name}}: items = []}, error, loading } = useQuery(LIST_{{toUpper .Table.Name}})
 
   if (loading) {
@@ -54,12 +54,14 @@ function List{{.Table.Name}}({ navigate }) {
 {{range $i, $value := .Table.Columns}}<TableHeaderCell>{{.Name}}</TableHeaderCell>{{end}}
       </TableRow>
       </TableHeader>
+            <tbody>
       {(items || []).map(item => (
-        <TableRow>
+        <TableRow key={item.ID}>
           {{range $i, $value := .Table.Columns}}<TableCell>{{if eq $i 0}}<Link to={`/app/admin/{{kebab .Table.Name}}/${item.ID}`}>{item.{{.Name}}}</Link>{{end}}{{if ne $i 0}}{parseObject(item.{{.Name}})}{{end}}</TableCell>
 {{end}}
         </TableRow>
       ))}
+      </tbody>
       </DataTable>
       </Card>
     </Content>
@@ -67,7 +69,7 @@ function List{{.Table.Name}}({ navigate }) {
 }
 
 List{{.Table.Name}}.propTypes = {
-  navigate: PropTypes.func.isRequired
+  navigate: PropTypes.func
 }
 
 export default List{{.Table.Name}}

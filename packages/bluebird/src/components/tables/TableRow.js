@@ -43,7 +43,10 @@ function TableRow({ children }) {
 }
 
 TableRow.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element)
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 TableRow.defaultProps = {};
 

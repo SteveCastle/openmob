@@ -35,7 +35,10 @@ function Label({ children, block, dark }) {
 }
 
 Label.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   state: PropTypes.oneOf(['ready', 'valid', 'error'])
 };
 export default Label;

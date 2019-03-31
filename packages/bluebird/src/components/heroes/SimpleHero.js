@@ -41,16 +41,20 @@ const Title = styled.h1`
   ${display}
   `;
 
-function SimpleHero({ title }) {
+function SimpleHero({ title: { StringValue: title } }) {
   return (
     <StyledHero display={'flex'} justifyContent="center" alignItems="center">
-      <Title color="gray.0" size={4}>{title.StringValue}</Title>
+      <Title color="gray.0" size={4}>
+        {title}
+      </Title>
     </StyledHero>
   );
 }
 
 SimpleHero.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.shape({
+    StringValue: PropTypes.string.isRequired
+  })
 };
 SimpleHero.defaultProps = {};
 

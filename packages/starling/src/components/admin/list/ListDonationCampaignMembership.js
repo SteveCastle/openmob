@@ -39,7 +39,7 @@ const LIST_DONATIONCAMPAIGNMEMBERSHIP = gql`
   }
 `
 
-function ListDonationCampaignMembership({ navigate }) {
+function ListDonationCampaignMembership({ navigate = () => {} }) {
   const {
     data: { listDonationCampaignMembership: items = [] },
     error,
@@ -86,19 +86,23 @@ function ListDonationCampaignMembership({ navigate }) {
               <TableHeaderCell>DonationCampaign</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/donation-campaign-membership/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Cause)}</TableCell>
-              <TableCell>{parseObject(item.DonationCampaign)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/donation-campaign-membership/${item.ID}`}
+                  >
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>{parseObject(item.DonationCampaign)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -106,7 +110,7 @@ function ListDonationCampaignMembership({ navigate }) {
 }
 
 ListDonationCampaignMembership.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListDonationCampaignMembership

@@ -36,7 +36,7 @@ const LIST_CUSTOMERORDER = gql`
   }
 `
 
-function ListCustomerOrder({ navigate }) {
+function ListCustomerOrder({ navigate = () => {} }) {
   const {
     data: { listCustomerOrder: items = [] },
     error,
@@ -82,18 +82,20 @@ function ListCustomerOrder({ navigate }) {
               <TableHeaderCell>CustomerCart</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/customer-order/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.CustomerCart)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/customer-order/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.CustomerCart)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -101,7 +103,7 @@ function ListCustomerOrder({ navigate }) {
 }
 
 ListCustomerOrder.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListCustomerOrder

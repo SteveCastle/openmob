@@ -37,7 +37,7 @@ const LIST_MAILINGADDRESS = gql`
   }
 `
 
-function ListMailingAddress({ navigate }) {
+function ListMailingAddress({ navigate = () => {} }) {
   const {
     data: { listMailingAddress: items = [] },
     error,
@@ -86,21 +86,23 @@ function ListMailingAddress({ navigate }) {
               <TableHeaderCell>ZipCode</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/mailing-address/${item.ID}`}>
-                  {item.ID}
-                </Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.StreetAddress)}</TableCell>
-              <TableCell>{parseObject(item.City)}</TableCell>
-              <TableCell>{parseObject(item.State)}</TableCell>
-              <TableCell>{parseObject(item.ZipCode)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/mailing-address/${item.ID}`}>
+                    {item.ID}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.StreetAddress)}</TableCell>
+                <TableCell>{parseObject(item.City)}</TableCell>
+                <TableCell>{parseObject(item.State)}</TableCell>
+                <TableCell>{parseObject(item.ZipCode)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -108,7 +110,7 @@ function ListMailingAddress({ navigate }) {
 }
 
 ListMailingAddress.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListMailingAddress

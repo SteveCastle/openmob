@@ -34,11 +34,7 @@ function Row({ dark, children, tracing }) {
       mx={2}
       my={1}
       width={1}
-      bg={
-        tracing
-          ? `fuschia.${tracing}`
-          : null
-      }
+      bg={tracing ? `fuschia.${tracing}` : null}
       fontSize={1}
     >
       {children}
@@ -47,7 +43,10 @@ function Row({ dark, children, tracing }) {
 }
 
 Row.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   dark: PropTypes.bool,
   tracing: PropTypes.number
 };

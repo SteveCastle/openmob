@@ -1,6 +1,7 @@
 import React from 'react'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import PropTypes from 'prop-types'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
@@ -14,9 +15,8 @@ const MILLISECONDS = 1000
 const isObject = a => !!a && a.constructor === Object
 const getValue = obj =>
   Object.entries(obj).reduce((acc, entry) => {
-    debugger
     if (entry[0] === 'seconds') {
-      return new Date(entry[1] * MILLISECONDS)
+      return new Date(entry[1] * MILLISECONDS).toString()
     }
     if (entry[0] === 'ID') {
       return entry[1]
@@ -41,6 +41,11 @@ const GET_PHONENUMBER = gql`
     }
   }
 `
+const UPDATE_PHONENUMBER = gql`
+  mutation updatePhoneNumber($id: ID!, $phoneNumber: PhoneNumberInput) {
+    updatePhoneNumber(ID: $id, phoneNumber: $phoneNumber, buildStatic: false)
+  }
+`
 
 function EditPhoneNumber({ id }) {
   const {
@@ -51,6 +56,8 @@ function EditPhoneNumber({ id }) {
     variables: { id },
   })
 
+  const updatePhoneNumber = useMutation(UPDATE_PHONENUMBER)
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -60,31 +67,86 @@ function EditPhoneNumber({ id }) {
   }
 
   return (
-    <Content>
-      <Card>
-        <Form>
-          <h1>Edit {item.ID}</h1>
-          <Widget>
-            <Label>ID</Label>
-            <Input value={parseObject(item.ID)} disabled />
-          </Widget>
-          <Widget>
-            <Label>CreatedAt</Label>
-            <Input value={parseObject(item.CreatedAt)} disabled />
-          </Widget>
-          <Widget>
-            <Label>UpdatedAt</Label>
-            <Input value={parseObject(item.UpdatedAt)} disabled />
-          </Widget>
-          <Widget>
-            <Label>PhoneNumber</Label>
-            <Input value={parseObject(item.PhoneNumber)} />
-          </Widget>
+    <Formik
+      initialValues={{
+        ID: parseObject(item.ID),
+        CreatedAt: parseObject(item.CreatedAt),
+        UpdatedAt: parseObject(item.UpdatedAt),
+        PhoneNumber: parseObject(item.PhoneNumber),
+      }}
+      onSubmit={(values, { setSubmitting }) =>
+        updatePhoneNumber({
+          variables: {
+            id: item.ID,
+            phoneNumber: {
+              ...values,
+              ID: undefined,
+              CreatedAt: undefined,
+              UpdatedAt: undefined,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Edit {item.ID}</h1>
+                <Widget>
+                  <Label>ID</Label>
+                  <Input
+                    value={values.ID}
+                    disabled
+                    name="ID"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>CreatedAt</Label>
+                  <Input
+                    value={values.CreatedAt}
+                    disabled
+                    name="CreatedAt"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>UpdatedAt</Label>
+                  <Input
+                    value={values.UpdatedAt}
+                    disabled
+                    name="UpdatedAt"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>PhoneNumber</Label>
+                  <Input
+                    value={values.PhoneNumber}
+                    name="PhoneNumber"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
 
-          <Button label="Edit" block variant="primary" />
-        </Form>
-      </Card>
-    </Content>
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
   )
 }
 

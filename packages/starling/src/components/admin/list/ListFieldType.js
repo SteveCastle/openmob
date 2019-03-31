@@ -46,7 +46,7 @@ const LIST_FIELDTYPE = gql`
   }
 `
 
-function ListFieldType({ navigate }) {
+function ListFieldType({ navigate = () => {} }) {
   const {
     data: { listFieldType: items = [] },
     error,
@@ -100,24 +100,26 @@ function ListFieldType({ navigate }) {
               <TableHeaderCell>ComponentType</TableHeaderCell>
             </TableRow>
           </TableHeader>
-          {(items || []).map(item => (
-            <TableRow>
-              <TableCell>
-                <Link to={`/app/admin/field-type/${item.ID}`}>{item.ID}</Link>
-              </TableCell>
-              <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-              <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-              <TableCell>{parseObject(item.Title)}</TableCell>
-              <TableCell>{parseObject(item.DataType)}</TableCell>
-              <TableCell>{parseObject(item.PropName)}</TableCell>
-              <TableCell>{parseObject(item.StringValueDefault)}</TableCell>
-              <TableCell>{parseObject(item.IntValueDefault)}</TableCell>
-              <TableCell>{parseObject(item.FloatValueDefault)}</TableCell>
-              <TableCell>{parseObject(item.BooleanValueDefault)}</TableCell>
-              <TableCell>{parseObject(item.DateTimeValueDefault)}</TableCell>
-              <TableCell>{parseObject(item.ComponentType)}</TableCell>
-            </TableRow>
-          ))}
+          <tbody>
+            {(items || []).map(item => (
+              <TableRow key={item.ID}>
+                <TableCell>
+                  <Link to={`/app/admin/field-type/${item.ID}`}>{item.ID}</Link>
+                </TableCell>
+                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
+                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
+                <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>{parseObject(item.DataType)}</TableCell>
+                <TableCell>{parseObject(item.PropName)}</TableCell>
+                <TableCell>{parseObject(item.StringValueDefault)}</TableCell>
+                <TableCell>{parseObject(item.IntValueDefault)}</TableCell>
+                <TableCell>{parseObject(item.FloatValueDefault)}</TableCell>
+                <TableCell>{parseObject(item.BooleanValueDefault)}</TableCell>
+                <TableCell>{parseObject(item.DateTimeValueDefault)}</TableCell>
+                <TableCell>{parseObject(item.ComponentType)}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
         </DataTable>
       </Card>
     </Content>
@@ -125,7 +127,7 @@ function ListFieldType({ navigate }) {
 }
 
 ListFieldType.propTypes = {
-  navigate: PropTypes.func.isRequired,
+  navigate: PropTypes.func,
 }
 
 export default ListFieldType
