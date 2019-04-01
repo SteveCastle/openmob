@@ -22,7 +22,6 @@
     "gatsby-transformer-sharp": "^2.1.14",
     "graphql": "^14.1.1",
     "isomorphic-fetch": "^2.2.1",
-    "node-fetch": "^2.3.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-apollo": "^2.5.2",
