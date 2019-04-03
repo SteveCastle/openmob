@@ -3,8 +3,9 @@ package models
 import (
 	"time"
 
-	"github.com/SteveCastle/openmob/packages/shrike/src/geography"
 	uuid "github.com/gofrs/uuid"
+
+	"github.com/SteveCastle/openmob/packages/shrike/src/geography"
 )
 
 // District is a type for district db element.

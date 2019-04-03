@@ -4,7 +4,9 @@ import (
 	"time"
 
 	uuid "github.com/gofrs/uuid"
-	"github.com/SteveCastle/openmob/packages/shrike/src/geography"
+	{{range .Table.Columns}}{{if eq .Type "geography.Region"}}"github.com/SteveCastle/openmob/packages/shrike/src/geography"{{end}}{{end}}
+	{{range .Table.Columns}}{{if eq .Type "geography.NullRegion"}}"github.com/SteveCastle/openmob/packages/shrike/src/geography"{{end}}{{end}}
+
 )
 
 // {{.Table.Name}} is a type for {{snake .Table.Name}} db element.
