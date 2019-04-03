@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,37 +11,96 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreateCause = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create Cause</h1>
-        <Widget>
-          <Label>Title</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>Slug</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>Summary</Label>
-          <Input placeholder="String" />
-        </Widget>
-        <Widget>
-          <Label>HomePage</Label>
-          <Input placeholder="ID" />
-        </Widget>
-        <Widget>
-          <Label>Photo</Label>
-          <Input placeholder="ID" />
-        </Widget>
+const CREATE_CAUSE = gql`
+  mutation createCause($cause: CauseInput) {
+    createCause(cause: $cause, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreateCause = ({ id }) => {
+  const createCause = useMutation(CREATE_CAUSE)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createCause({
+          variables: {
+            cause: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create Cause</h1>
+                <Widget>
+                  <Label>Title</Label>
+                  <Input
+                    value={values.Title}
+                    name="Title"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Slug</Label>
+                  <Input
+                    value={values.Slug}
+                    name="Slug"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Summary</Label>
+                  <Input
+                    value={values.Summary}
+                    name="Summary"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>HomePage</Label>
+                  <Input
+                    value={values.HomePage}
+                    name="HomePage"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Photo</Label>
+                  <Input
+                    value={values.Photo}
+                    name="Photo"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreateCause.propTypes = {
   id: PropTypes.string,

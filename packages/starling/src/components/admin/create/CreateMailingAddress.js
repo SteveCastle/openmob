@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,33 +11,87 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreateMailingAddress = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create MailingAddress</h1>
-        <Widget>
-          <Label>StreetAddress</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>City</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>State</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>ZipCode</Label>
-          <Input placeholder="String!" />
-        </Widget>
+const CREATE_MAILINGADDRESS = gql`
+  mutation createMailingAddress($mailingAddress: MailingAddressInput) {
+    createMailingAddress(mailingAddress: $mailingAddress, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreateMailingAddress = ({ id }) => {
+  const createMailingAddress = useMutation(CREATE_MAILINGADDRESS)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createMailingAddress({
+          variables: {
+            mailingAddress: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create MailingAddress</h1>
+                <Widget>
+                  <Label>StreetAddress</Label>
+                  <Input
+                    value={values.StreetAddress}
+                    name="StreetAddress"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>City</Label>
+                  <Input
+                    value={values.City}
+                    name="City"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>State</Label>
+                  <Input
+                    value={values.State}
+                    name="State"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>ZipCode</Label>
+                  <Input
+                    value={values.ZipCode}
+                    name="ZipCode"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreateMailingAddress.propTypes = {
   id: PropTypes.string,

@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,29 +11,78 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreateDistrict = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create District</h1>
-        <Widget>
-          <Label>Geom</Label>
-          <Input placeholder="Float" />
-        </Widget>
-        <Widget>
-          <Label>Title</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>DistrictType</Label>
-          <Input placeholder="ID!" />
-        </Widget>
+const CREATE_DISTRICT = gql`
+  mutation createDistrict($district: DistrictInput) {
+    createDistrict(district: $district, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreateDistrict = ({ id }) => {
+  const createDistrict = useMutation(CREATE_DISTRICT)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createDistrict({
+          variables: {
+            district: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create District</h1>
+                <Widget>
+                  <Label>Geom</Label>
+                  <Input
+                    value={values.Geom}
+                    name="Geom"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Title</Label>
+                  <Input
+                    value={values.Title}
+                    name="Title"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>DistrictType</Label>
+                  <Input
+                    value={values.DistrictType}
+                    name="DistrictType"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreateDistrict.propTypes = {
   id: PropTypes.string,

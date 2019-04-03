@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,37 +11,96 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreateContact = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create Contact</h1>
-        <Widget>
-          <Label>FirstName</Label>
-          <Input placeholder="String" />
-        </Widget>
-        <Widget>
-          <Label>MiddleName</Label>
-          <Input placeholder="String" />
-        </Widget>
-        <Widget>
-          <Label>LastName</Label>
-          <Input placeholder="String" />
-        </Widget>
-        <Widget>
-          <Label>Email</Label>
-          <Input placeholder="String" />
-        </Widget>
-        <Widget>
-          <Label>PhoneNumber</Label>
-          <Input placeholder="String" />
-        </Widget>
+const CREATE_CONTACT = gql`
+  mutation createContact($contact: ContactInput) {
+    createContact(contact: $contact, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreateContact = ({ id }) => {
+  const createContact = useMutation(CREATE_CONTACT)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createContact({
+          variables: {
+            contact: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create Contact</h1>
+                <Widget>
+                  <Label>FirstName</Label>
+                  <Input
+                    value={values.FirstName}
+                    name="FirstName"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>MiddleName</Label>
+                  <Input
+                    value={values.MiddleName}
+                    name="MiddleName"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>LastName</Label>
+                  <Input
+                    value={values.LastName}
+                    name="LastName"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Email</Label>
+                  <Input
+                    value={values.Email}
+                    name="Email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>PhoneNumber</Label>
+                  <Input
+                    value={values.PhoneNumber}
+                    name="PhoneNumber"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreateContact.propTypes = {
   id: PropTypes.string,

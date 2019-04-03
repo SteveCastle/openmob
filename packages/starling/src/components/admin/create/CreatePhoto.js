@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,29 +11,78 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreatePhoto = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create Photo</h1>
-        <Widget>
-          <Label>URI</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>Width</Label>
-          <Input placeholder="Int!" />
-        </Widget>
-        <Widget>
-          <Label>Height</Label>
-          <Input placeholder="Int!" />
-        </Widget>
+const CREATE_PHOTO = gql`
+  mutation createPhoto($photo: PhotoInput) {
+    createPhoto(photo: $photo, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreatePhoto = ({ id }) => {
+  const createPhoto = useMutation(CREATE_PHOTO)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createPhoto({
+          variables: {
+            photo: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create Photo</h1>
+                <Widget>
+                  <Label>URI</Label>
+                  <Input
+                    value={values.URI}
+                    name="URI"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Width</Label>
+                  <Input
+                    value={values.Width}
+                    name="Width"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Height</Label>
+                  <Input
+                    value={values.Height}
+                    name="Height"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreatePhoto.propTypes = {
   id: PropTypes.string,

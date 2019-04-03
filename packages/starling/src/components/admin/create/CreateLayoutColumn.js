@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,25 +11,69 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreateLayoutColumn = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create LayoutColumn</h1>
-        <Widget>
-          <Label>LayoutRow</Label>
-          <Input placeholder="ID!" />
-        </Widget>
-        <Widget>
-          <Label>Width</Label>
-          <Input placeholder="Int!" />
-        </Widget>
+const CREATE_LAYOUTCOLUMN = gql`
+  mutation createLayoutColumn($layoutColumn: LayoutColumnInput) {
+    createLayoutColumn(layoutColumn: $layoutColumn, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreateLayoutColumn = ({ id }) => {
+  const createLayoutColumn = useMutation(CREATE_LAYOUTCOLUMN)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createLayoutColumn({
+          variables: {
+            layoutColumn: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create LayoutColumn</h1>
+                <Widget>
+                  <Label>LayoutRow</Label>
+                  <Input
+                    value={values.LayoutRow}
+                    name="LayoutRow"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Width</Label>
+                  <Input
+                    value={values.Width}
+                    name="Width"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreateLayoutColumn.propTypes = {
   id: PropTypes.string,

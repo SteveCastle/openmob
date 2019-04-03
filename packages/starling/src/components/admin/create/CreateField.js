@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,45 +11,114 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreateField = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create Field</h1>
-        <Widget>
-          <Label>FieldType</Label>
-          <Input placeholder="ID!" />
-        </Widget>
-        <Widget>
-          <Label>StringValue</Label>
-          <Input placeholder="String" />
-        </Widget>
-        <Widget>
-          <Label>IntValue</Label>
-          <Input placeholder="Int" />
-        </Widget>
-        <Widget>
-          <Label>FloatValue</Label>
-          <Input placeholder="Float" />
-        </Widget>
-        <Widget>
-          <Label>BooleanValue</Label>
-          <Input placeholder="Boolean" />
-        </Widget>
-        <Widget>
-          <Label>DateTimeValue</Label>
-          <Input placeholder="Time" />
-        </Widget>
-        <Widget>
-          <Label>Component</Label>
-          <Input placeholder="ID" />
-        </Widget>
+const CREATE_FIELD = gql`
+  mutation createField($field: FieldInput) {
+    createField(field: $field, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreateField = ({ id }) => {
+  const createField = useMutation(CREATE_FIELD)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createField({
+          variables: {
+            field: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create Field</h1>
+                <Widget>
+                  <Label>FieldType</Label>
+                  <Input
+                    value={values.FieldType}
+                    name="FieldType"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>StringValue</Label>
+                  <Input
+                    value={values.StringValue}
+                    name="StringValue"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>IntValue</Label>
+                  <Input
+                    value={values.IntValue}
+                    name="IntValue"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>FloatValue</Label>
+                  <Input
+                    value={values.FloatValue}
+                    name="FloatValue"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>BooleanValue</Label>
+                  <Input
+                    value={values.BooleanValue}
+                    name="BooleanValue"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>DateTimeValue</Label>
+                  <Input
+                    value={values.DateTimeValue}
+                    name="DateTimeValue"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Component</Label>
+                  <Input
+                    value={values.Component}
+                    name="Component"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreateField.propTypes = {
   id: PropTypes.string,

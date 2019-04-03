@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,29 +11,78 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreateLandingPage = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create LandingPage</h1>
-        <Widget>
-          <Label>Title</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>Cause</Label>
-          <Input placeholder="ID!" />
-        </Widget>
-        <Widget>
-          <Label>Layout</Label>
-          <Input placeholder="ID" />
-        </Widget>
+const CREATE_LANDINGPAGE = gql`
+  mutation createLandingPage($landingPage: LandingPageInput) {
+    createLandingPage(landingPage: $landingPage, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreateLandingPage = ({ id }) => {
+  const createLandingPage = useMutation(CREATE_LANDINGPAGE)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createLandingPage({
+          variables: {
+            landingPage: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create LandingPage</h1>
+                <Widget>
+                  <Label>Title</Label>
+                  <Input
+                    value={values.Title}
+                    name="Title"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Cause</Label>
+                  <Input
+                    value={values.Cause}
+                    name="Cause"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Layout</Label>
+                  <Input
+                    value={values.Layout}
+                    name="Layout"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreateLandingPage.propTypes = {
   id: PropTypes.string,

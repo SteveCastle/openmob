@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,25 +11,69 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreateProduct = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create Product</h1>
-        <Widget>
-          <Label>Title</Label>
-          <Input placeholder="String!" />
-        </Widget>
-        <Widget>
-          <Label>ProductType</Label>
-          <Input placeholder="ID!" />
-        </Widget>
+const CREATE_PRODUCT = gql`
+  mutation createProduct($product: ProductInput) {
+    createProduct(product: $product, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreateProduct = ({ id }) => {
+  const createProduct = useMutation(CREATE_PRODUCT)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createProduct({
+          variables: {
+            product: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create Product</h1>
+                <Widget>
+                  <Label>Title</Label>
+                  <Input
+                    value={values.Title}
+                    name="Title"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>ProductType</Label>
+                  <Input
+                    value={values.ProductType}
+                    name="ProductType"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreateProduct.propTypes = {
   id: PropTypes.string,

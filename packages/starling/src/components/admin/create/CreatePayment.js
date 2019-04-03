@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+import { Formik } from 'formik'
 import Content from '@openmob/bluebird/src/components/layout/Content'
 import Card from '@openmob/bluebird/src/components/cards/Card'
 import Form from '@openmob/bluebird/src/components/forms/Form'
@@ -8,21 +11,60 @@ import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
-const CreatePayment = ({ id }) => (
-  <Content>
-    <Card>
-      <Form>
-        <h1>Create Payment</h1>
-        <Widget>
-          <Label>CustomerOrder</Label>
-          <Input placeholder="ID!" />
-        </Widget>
+const CREATE_PAYMENT = gql`
+  mutation createPayment($payment: PaymentInput) {
+    createPayment(payment: $payment, buildStatic: true) {
+      ID
+    }
+  }
+`
 
-        <Button label="Create" block variant="primary" />
-      </Form>
-    </Card>
-  </Content>
-)
+const CreatePayment = ({ id }) => {
+  const createPayment = useMutation(CREATE_PAYMENT)
+
+  return (
+    <Formik
+      onSubmit={(values, { setSubmitting }) =>
+        createPayment({
+          variables: {
+            payment: {
+              ...values,
+            },
+          },
+        })
+      }
+    >
+      {props => {
+        const { values, handleChange, handleBlur, handleSubmit } = props
+        return (
+          <Content>
+            <Card>
+              <Form>
+                <h1>Create Payment</h1>
+                <Widget>
+                  <Label>CustomerOrder</Label>
+                  <Input
+                    value={values.CustomerOrder}
+                    name="CustomerOrder"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+
+                <Button
+                  label="Save"
+                  block
+                  variant="primary"
+                  onClick={handleSubmit}
+                />
+              </Form>
+            </Card>
+          </Content>
+        )
+      }}
+    </Formik>
+  )
+}
 
 CreatePayment.propTypes = {
   id: PropTypes.string,
