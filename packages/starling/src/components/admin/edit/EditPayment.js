@@ -45,7 +45,7 @@ const GET_PAYMENT = gql`
 `
 const UPDATE_PAYMENT = gql`
   mutation updatePayment($id: ID!, $payment: PaymentInput) {
-    updatePayment(ID: $id, payment: $payment, buildStatic: false)
+    updatePayment(ID: $id, payment: $payment, buildStatic: true)
   }
 `
 

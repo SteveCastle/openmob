@@ -46,7 +46,7 @@ const GET_HOMEPAGE = gql`
 `
 const UPDATE_HOMEPAGE = gql`
   mutation updateHomePage($id: ID!, $homePage: HomePageInput) {
-    updateHomePage(ID: $id, homePage: $homePage, buildStatic: false)
+    updateHomePage(ID: $id, homePage: $homePage, buildStatic: true)
   }
 `
 

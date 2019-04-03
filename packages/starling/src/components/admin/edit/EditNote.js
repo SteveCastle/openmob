@@ -49,7 +49,7 @@ const GET_NOTE = gql`
 `
 const UPDATE_NOTE = gql`
   mutation updateNote($id: ID!, $note: NoteInput) {
-    updateNote(ID: $id, note: $note, buildStatic: false)
+    updateNote(ID: $id, note: $note, buildStatic: true)
   }
 `
 

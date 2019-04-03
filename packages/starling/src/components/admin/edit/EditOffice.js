@@ -46,7 +46,7 @@ const GET_OFFICE = gql`
 `
 const UPDATE_OFFICE = gql`
   mutation updateOffice($id: ID!, $office: OfficeInput) {
-    updateOffice(ID: $id, office: $office, buildStatic: false)
+    updateOffice(ID: $id, office: $office, buildStatic: true)
   }
 `
 

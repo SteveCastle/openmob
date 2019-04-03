@@ -45,7 +45,7 @@ const GET_AGENT = gql`
 `
 const UPDATE_AGENT = gql`
   mutation updateAgent($id: ID!, $agent: AgentInput) {
-    updateAgent(ID: $id, agent: $agent, buildStatic: false)
+    updateAgent(ID: $id, agent: $agent, buildStatic: true)
   }
 `
 

@@ -46,7 +46,7 @@ const GET_POLLITEM = gql`
 `
 const UPDATE_POLLITEM = gql`
   mutation updatePollItem($id: ID!, $pollItem: PollItemInput) {
-    updatePollItem(ID: $id, pollItem: $pollItem, buildStatic: false)
+    updatePollItem(ID: $id, pollItem: $pollItem, buildStatic: true)
   }
 `
 

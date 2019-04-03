@@ -46,7 +46,7 @@ const GET_EXPERIMENT = gql`
 `
 const UPDATE_EXPERIMENT = gql`
   mutation updateExperiment($id: ID!, $experiment: ExperimentInput) {
-    updateExperiment(ID: $id, experiment: $experiment, buildStatic: false)
+    updateExperiment(ID: $id, experiment: $experiment, buildStatic: true)
   }
 `
 

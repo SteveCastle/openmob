@@ -51,7 +51,7 @@ const GET_PURCHASER = gql`
 `
 const UPDATE_PURCHASER = gql`
   mutation updatePurchaser($id: ID!, $purchaser: PurchaserInput) {
-    updatePurchaser(ID: $id, purchaser: $purchaser, buildStatic: false)
+    updatePurchaser(ID: $id, purchaser: $purchaser, buildStatic: true)
   }
 `
 

@@ -130,11 +130,9 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 
 	// Generate SQL to select all columns in FieldType Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, title, data_type, prop_name, string_value_default, int_value_default, float_value_default, boolean_value_default, date_time_value_default, component_type FROM field_type"
-	querySQL := queries.BuildFieldTypeFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildFieldTypeListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from FieldType-> "+err.Error())
 	}

@@ -1,6 +1,6 @@
-import React from "react"
-import Loadable from "react-loadable"
-import ErrorBoundary from "./ErrorBoundary"
+import React from 'react'
+import Loadable from 'react-loadable'
+import ErrorBoundary from './ErrorBoundary'
 
 const getComponent = path =>
   Loadable({

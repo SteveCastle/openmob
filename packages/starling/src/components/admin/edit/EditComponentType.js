@@ -46,7 +46,7 @@ const UPDATE_COMPONENTTYPE = gql`
     updateComponentType(
       ID: $id
       componentType: $componentType
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

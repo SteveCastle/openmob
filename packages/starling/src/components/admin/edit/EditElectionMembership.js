@@ -54,7 +54,7 @@ const UPDATE_ELECTIONMEMBERSHIP = gql`
     updateElectionMembership(
       ID: $id
       electionMembership: $electionMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

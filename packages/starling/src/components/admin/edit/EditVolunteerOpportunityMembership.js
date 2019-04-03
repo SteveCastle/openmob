@@ -54,7 +54,7 @@ const UPDATE_VOLUNTEEROPPORTUNITYMEMBERSHIP = gql`
     updateVolunteerOpportunityMembership(
       ID: $id
       volunteerOpportunityMembership: $volunteerOpportunityMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

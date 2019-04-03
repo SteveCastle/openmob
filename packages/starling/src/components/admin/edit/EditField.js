@@ -56,7 +56,7 @@ const GET_FIELD = gql`
 `
 const UPDATE_FIELD = gql`
   mutation updateField($id: ID!, $field: FieldInput) {
-    updateField(ID: $id, field: $field, buildStatic: false)
+    updateField(ID: $id, field: $field, buildStatic: true)
   }
 `
 

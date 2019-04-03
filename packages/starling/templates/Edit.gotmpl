@@ -35,7 +35,7 @@ const GET_{{toUpper .Table.Name}} = gql`
 `
 const UPDATE_{{toUpper .Table.Name}} = gql`
   mutation update{{.Table.Name}}($id: ID!, ${{camel .Table.Name}}: {{.Table.Name}}Input) {
-    update{{.Table.Name}}(ID: $id, {{camel .Table.Name}}: ${{camel .Table.Name}}, buildStatic: false)
+    update{{.Table.Name}}(ID: $id, {{camel .Table.Name}}: ${{camel .Table.Name}}, buildStatic: true)
   }
 `
 

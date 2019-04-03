@@ -49,7 +49,7 @@ const UPDATE_VOLUNTEEROPPORTUNITYTYPE = gql`
     updateVolunteerOpportunityType(
       ID: $id
       volunteerOpportunityType: $volunteerOpportunityType
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

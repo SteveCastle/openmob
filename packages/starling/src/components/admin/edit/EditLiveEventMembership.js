@@ -54,7 +54,7 @@ const UPDATE_LIVEEVENTMEMBERSHIP = gql`
     updateLiveEventMembership(
       ID: $id
       liveEventMembership: $liveEventMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

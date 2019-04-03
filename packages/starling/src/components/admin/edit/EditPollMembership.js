@@ -54,7 +54,7 @@ const UPDATE_POLLMEMBERSHIP = gql`
     updatePollMembership(
       ID: $id
       pollMembership: $pollMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

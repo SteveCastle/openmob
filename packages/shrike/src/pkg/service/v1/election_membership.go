@@ -123,11 +123,9 @@ func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v
 
 	// Generate SQL to select all columns in ElectionMembership Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, cause, election FROM election_membership"
-	querySQL := queries.BuildElectionMembershipFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildElectionMembershipListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ElectionMembership-> "+err.Error())
 	}

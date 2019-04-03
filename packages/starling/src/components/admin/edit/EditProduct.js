@@ -46,7 +46,7 @@ const GET_PRODUCT = gql`
 `
 const UPDATE_PRODUCT = gql`
   mutation updateProduct($id: ID!, $product: ProductInput) {
-    updateProduct(ID: $id, product: $product, buildStatic: false)
+    updateProduct(ID: $id, product: $product, buildStatic: true)
   }
 `
 

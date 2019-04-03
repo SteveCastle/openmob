@@ -48,7 +48,7 @@ const UPDATE_CUSTOMERORDER = gql`
     updateCustomerOrder(
       ID: $id
       customerOrder: $customerOrder
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

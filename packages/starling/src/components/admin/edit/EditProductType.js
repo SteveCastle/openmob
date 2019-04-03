@@ -43,7 +43,7 @@ const GET_PRODUCTTYPE = gql`
 `
 const UPDATE_PRODUCTTYPE = gql`
   mutation updateProductType($id: ID!, $productType: ProductTypeInput) {
-    updateProductType(ID: $id, productType: $productType, buildStatic: false)
+    updateProductType(ID: $id, productType: $productType, buildStatic: true)
   }
 `
 

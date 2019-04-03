@@ -49,7 +49,7 @@ const GET_LANDINGPAGE = gql`
 `
 const UPDATE_LANDINGPAGE = gql`
   mutation updateLandingPage($id: ID!, $landingPage: LandingPageInput) {
-    updateLandingPage(ID: $id, landingPage: $landingPage, buildStatic: false)
+    updateLandingPage(ID: $id, landingPage: $landingPage, buildStatic: true)
   }
 `
 

@@ -54,7 +54,7 @@ const UPDATE_PRODUCTMEMBERSHIP = gql`
     updateProductMembership(
       ID: $id
       productMembership: $productMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

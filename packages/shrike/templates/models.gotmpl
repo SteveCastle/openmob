@@ -1,0 +1,13 @@
+package models
+
+import (
+	"time"
+
+	uuid "github.com/gofrs/uuid"
+	"github.com/SteveCastle/openmob/packages/shrike/src/geography"
+)
+
+// {{.Table.Name}} is a type for {{snake .Table.Name}} db element.
+type {{.Table.Name}} struct { {{range $index, $value := .Table.Columns}}
+	{{.Name}} {{.Type}}{{end}}
+}

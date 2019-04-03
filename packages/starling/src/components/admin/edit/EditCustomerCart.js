@@ -42,7 +42,7 @@ const GET_CUSTOMERCART = gql`
 `
 const UPDATE_CUSTOMERCART = gql`
   mutation updateCustomerCart($id: ID!, $customerCart: CustomerCartInput) {
-    updateCustomerCart(ID: $id, customerCart: $customerCart, buildStatic: false)
+    updateCustomerCart(ID: $id, customerCart: $customerCart, buildStatic: true)
   }
 `
 

@@ -42,7 +42,7 @@ const GET_ACL = gql`
 `
 const UPDATE_ACL = gql`
   mutation updateACL($id: ID!, $acl: ACLInput) {
-    updateACL(ID: $id, acl: $acl, buildStatic: false)
+    updateACL(ID: $id, acl: $acl, buildStatic: true)
   }
 `
 

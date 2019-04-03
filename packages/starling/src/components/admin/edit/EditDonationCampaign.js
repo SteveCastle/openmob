@@ -49,7 +49,7 @@ const UPDATE_DONATIONCAMPAIGN = gql`
     updateDonationCampaign(
       ID: $id
       donationCampaign: $donationCampaign
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

@@ -118,11 +118,9 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 
 	// Generate SQL to select all columns in {{.Table.Name}} Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT {{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}{{end}} FROM {{snake .Table.Name}}"
-	querySQL := queries.Build{{.Table.Name}}Filters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.Build{{.Table.Name}}ListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
 	}

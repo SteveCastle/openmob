@@ -45,7 +45,7 @@ const GET_PHOTO = gql`
 `
 const UPDATE_PHOTO = gql`
   mutation updatePhoto($id: ID!, $photo: PhotoInput) {
-    updatePhoto(ID: $id, photo: $photo, buildStatic: false)
+    updatePhoto(ID: $id, photo: $photo, buildStatic: true)
   }
 `
 

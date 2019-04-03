@@ -45,7 +45,7 @@ const GET_LAYOUT = gql`
 `
 const UPDATE_LAYOUT = gql`
   mutation updateLayout($id: ID!, $layout: LayoutInput) {
-    updateLayout(ID: $id, layout: $layout, buildStatic: false)
+    updateLayout(ID: $id, layout: $layout, buildStatic: true)
   }
 `
 

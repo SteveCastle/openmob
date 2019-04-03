@@ -81,8 +81,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 # "tables.gotmpl" would render tables.gotmpl template with data from the the
 # "public.users" table to ./public/users/users.go.
 [TablePaths]
-"pkg/models/v1/{{snake .Table}}.go" = "templates/handlers.gotmpl"
-"pkg/queries/{{snake .Table}}.go" = "templates/queries.gotmpl"
+"pkg/models/v1/{{snake .Table}}.go" = "templates/models.gotmpl"
 
 # SchemaPaths iis a map of output paths to template paths that tells Gnorm how
 # to render and output its schema info.  Each template will be rendered with
@@ -134,7 +133,8 @@ NoOverwriteGlobs = ["*.perm.go"]
 "int8" = "int64"
 "numeric" = "float64"
 "bigint" = "int64"
-"book_type" = "enum.BookType"
+"geometry" = "geography.Region"
+"jsonb" = "generated.Jsonb"
 
 [NullableTypeMap]
 "timestamp with time zone" = "pq.NullTime"
@@ -146,6 +146,7 @@ NoOverwriteGlobs = ["*.perm.go"]
 "integer" = "sql.NullInt64"
 "numeric" = "sql.NullFloat64"
 "hstore" = "hstore.Hstore"
+"geometry" = "geography.NullRegion"
 "jsonb" = "generated.Jsonb"
 
 # Params contains any data you may want to pass to your templates.  This is a

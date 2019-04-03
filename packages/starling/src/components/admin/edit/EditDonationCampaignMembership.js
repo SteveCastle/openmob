@@ -54,7 +54,7 @@ const UPDATE_DONATIONCAMPAIGNMEMBERSHIP = gql`
     updateDonationCampaignMembership(
       ID: $id
       donationCampaignMembership: $donationCampaignMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

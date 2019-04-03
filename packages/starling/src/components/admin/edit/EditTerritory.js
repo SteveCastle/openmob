@@ -43,7 +43,7 @@ const GET_TERRITORY = gql`
 `
 const UPDATE_TERRITORY = gql`
   mutation updateTerritory($id: ID!, $territory: TerritoryInput) {
-    updateTerritory(ID: $id, territory: $territory, buildStatic: false)
+    updateTerritory(ID: $id, territory: $territory, buildStatic: true)
   }
 `
 

@@ -54,7 +54,7 @@ const UPDATE_BOYCOTTMEMBERSHIP = gql`
     updateBoycottMembership(
       ID: $id
       boycottMembership: $boycottMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

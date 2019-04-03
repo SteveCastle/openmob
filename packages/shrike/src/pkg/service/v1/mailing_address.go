@@ -123,11 +123,9 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 
 	// Generate SQL to select all columns in MailingAddress Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, street_address, city, state, zip_code FROM mailing_address"
-	querySQL := queries.BuildMailingAddressFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildMailingAddressListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from MailingAddress-> "+err.Error())
 	}

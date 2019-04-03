@@ -54,7 +54,7 @@ const UPDATE_OWNERMEMBERSHIP = gql`
     updateOwnerMembership(
       ID: $id
       ownerMembership: $ownerMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

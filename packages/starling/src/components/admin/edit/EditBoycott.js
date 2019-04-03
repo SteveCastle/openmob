@@ -43,7 +43,7 @@ const GET_BOYCOTT = gql`
 `
 const UPDATE_BOYCOTT = gql`
   mutation updateBoycott($id: ID!, $boycott: BoycottInput) {
-    updateBoycott(ID: $id, boycott: $boycott, buildStatic: false)
+    updateBoycott(ID: $id, boycott: $boycott, buildStatic: true)
   }
 `
 

@@ -42,7 +42,7 @@ const GET_DELIVERY = gql`
 `
 const UPDATE_DELIVERY = gql`
   mutation updateDelivery($id: ID!, $delivery: DeliveryInput) {
-    updateDelivery(ID: $id, delivery: $delivery, buildStatic: false)
+    updateDelivery(ID: $id, delivery: $delivery, buildStatic: true)
   }
 `
 

@@ -12,6 +12,7 @@ require (
 	github.com/lib/pq v1.0.0
 	github.com/mozillazg/go-slugify v0.2.0
 	github.com/mozillazg/go-unidecode v0.1.0 // indirect
+	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.3.0 // indirect
 	golang.org/x/net v0.0.0-20190110200230-915654e7eabc
 	google.golang.org/genproto v0.0.0-20190111180523-db91494dd46c

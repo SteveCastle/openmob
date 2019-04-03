@@ -29,10 +29,15 @@ const StyledMenuBody = styled.div`
   ${display}
   ${flexWrap}
   ${flexDirection}
-  overflow: scroll;
-  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
   top: 13%;
   left: 0;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
 `;
 
 function MenuBody({ children }) {

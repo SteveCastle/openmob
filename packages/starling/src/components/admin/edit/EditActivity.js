@@ -52,7 +52,7 @@ const GET_ACTIVITY = gql`
 `
 const UPDATE_ACTIVITY = gql`
   mutation updateActivity($id: ID!, $activity: ActivityInput) {
-    updateActivity(ID: $id, activity: $activity, buildStatic: false)
+    updateActivity(ID: $id, activity: $activity, buildStatic: true)
   }
 `
 

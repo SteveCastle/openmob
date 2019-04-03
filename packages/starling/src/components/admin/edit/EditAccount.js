@@ -43,7 +43,7 @@ const GET_ACCOUNT = gql`
 `
 const UPDATE_ACCOUNT = gql`
   mutation updateAccount($id: ID!, $account: AccountInput) {
-    updateAccount(ID: $id, account: $account, buildStatic: false)
+    updateAccount(ID: $id, account: $account, buildStatic: true)
   }
 `
 

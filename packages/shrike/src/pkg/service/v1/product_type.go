@@ -123,11 +123,9 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 
 	// Generate SQL to select all columns in ProductType Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, title FROM product_type"
-	querySQL := queries.BuildProductTypeFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildProductTypeListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ProductType-> "+err.Error())
 	}

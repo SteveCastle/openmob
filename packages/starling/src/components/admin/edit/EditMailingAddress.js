@@ -52,7 +52,7 @@ const UPDATE_MAILINGADDRESS = gql`
     updateMailingAddress(
       ID: $id
       mailingAddress: $mailingAddress
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

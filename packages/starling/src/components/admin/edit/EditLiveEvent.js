@@ -46,7 +46,7 @@ const GET_LIVEEVENT = gql`
 `
 const UPDATE_LIVEEVENT = gql`
   mutation updateLiveEvent($id: ID!, $liveEvent: LiveEventInput) {
-    updateLiveEvent(ID: $id, liveEvent: $liveEvent, buildStatic: false)
+    updateLiveEvent(ID: $id, liveEvent: $liveEvent, buildStatic: true)
   }
 `
 

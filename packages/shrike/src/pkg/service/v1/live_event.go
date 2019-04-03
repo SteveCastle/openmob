@@ -123,11 +123,9 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 
 	// Generate SQL to select all columns in LiveEvent Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, title, live_event_type FROM live_event"
-	querySQL := queries.BuildLiveEventFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildLiveEventListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
 	}

@@ -123,11 +123,9 @@ func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context
 
 	// Generate SQL to select all columns in DonationCampaignMembership Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, cause, donation_campaign FROM donation_campaign_membership"
-	querySQL := queries.BuildDonationCampaignMembershipFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildDonationCampaignMembershipListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaignMembership-> "+err.Error())
 	}

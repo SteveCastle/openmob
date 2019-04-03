@@ -47,7 +47,7 @@ const GET_CONTACT = gql`
 `
 const UPDATE_CONTACT = gql`
   mutation updateContact($id: ID!, $contact: ContactInput) {
-    updateContact(ID: $id, contact: $contact, buildStatic: false)
+    updateContact(ID: $id, contact: $contact, buildStatic: true)
   }
 `
 

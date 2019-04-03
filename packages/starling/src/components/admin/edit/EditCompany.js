@@ -43,7 +43,7 @@ const GET_COMPANY = gql`
 `
 const UPDATE_COMPANY = gql`
   mutation updateCompany($id: ID!, $company: CompanyInput) {
-    updateCompany(ID: $id, company: $company, buildStatic: false)
+    updateCompany(ID: $id, company: $company, buildStatic: true)
   }
 `
 

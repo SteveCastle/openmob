@@ -51,7 +51,7 @@ const GET_DONOR = gql`
 `
 const UPDATE_DONOR = gql`
   mutation updateDonor($id: ID!, $donor: DonorInput) {
-    updateDonor(ID: $id, donor: $donor, buildStatic: false)
+    updateDonor(ID: $id, donor: $donor, buildStatic: true)
   }
 `
 

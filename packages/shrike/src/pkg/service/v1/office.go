@@ -123,11 +123,9 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 
 	// Generate SQL to select all columns in Office Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, title, election FROM office"
-	querySQL := queries.BuildOfficeFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildOfficeListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Office-> "+err.Error())
 	}

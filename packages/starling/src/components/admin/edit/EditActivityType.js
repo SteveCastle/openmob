@@ -43,7 +43,7 @@ const GET_ACTIVITYTYPE = gql`
 `
 const UPDATE_ACTIVITYTYPE = gql`
   mutation updateActivityType($id: ID!, $activityType: ActivityTypeInput) {
-    updateActivityType(ID: $id, activityType: $activityType, buildStatic: false)
+    updateActivityType(ID: $id, activityType: $activityType, buildStatic: true)
   }
 `
 

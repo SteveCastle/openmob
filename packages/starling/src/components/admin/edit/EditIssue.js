@@ -46,7 +46,7 @@ const GET_ISSUE = gql`
 `
 const UPDATE_ISSUE = gql`
   mutation updateIssue($id: ID!, $issue: IssueInput) {
-    updateIssue(ID: $id, issue: $issue, buildStatic: false)
+    updateIssue(ID: $id, issue: $issue, buildStatic: true)
   }
 `
 

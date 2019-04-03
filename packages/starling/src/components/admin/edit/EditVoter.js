@@ -48,7 +48,7 @@ const GET_VOTER = gql`
 `
 const UPDATE_VOTER = gql`
   mutation updateVoter($id: ID!, $voter: VoterInput) {
-    updateVoter(ID: $id, voter: $voter, buildStatic: false)
+    updateVoter(ID: $id, voter: $voter, buildStatic: true)
   }
 `
 

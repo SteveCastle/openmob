@@ -51,7 +51,7 @@ const GET_COMPONENT = gql`
 `
 const UPDATE_COMPONENT = gql`
   mutation updateComponent($id: ID!, $component: ComponentInput) {
-    updateComponent(ID: $id, component: $component, buildStatic: false)
+    updateComponent(ID: $id, component: $component, buildStatic: true)
   }
 `
 

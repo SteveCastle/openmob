@@ -123,11 +123,9 @@ func (s *shrikeServiceServer) ListPollRespondant(ctx context.Context, req *v1.Li
 
 	// Generate SQL to select all columns in PollRespondant Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, poll, contact, cause FROM poll_respondant"
-	querySQL := queries.BuildPollRespondantFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildPollRespondantListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PollRespondant-> "+err.Error())
 	}

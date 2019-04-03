@@ -54,7 +54,7 @@ const UPDATE_CONTACTMEMBERSHIP = gql`
     updateContactMembership(
       ID: $id
       contactMembership: $contactMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

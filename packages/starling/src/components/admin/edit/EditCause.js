@@ -51,7 +51,7 @@ const GET_CAUSE = gql`
 `
 const UPDATE_CAUSE = gql`
   mutation updateCause($id: ID!, $cause: CauseInput) {
-    updateCause(ID: $id, cause: $cause, buildStatic: false)
+    updateCause(ID: $id, cause: $cause, buildStatic: true)
   }
 `
 

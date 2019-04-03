@@ -47,7 +47,7 @@ const GET_DISTRICT = gql`
 `
 const UPDATE_DISTRICT = gql`
   mutation updateDistrict($id: ID!, $district: DistrictInput) {
-    updateDistrict(ID: $id, district: $district, buildStatic: false)
+    updateDistrict(ID: $id, district: $district, buildStatic: true)
   }
 `
 

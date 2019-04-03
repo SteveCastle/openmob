@@ -123,11 +123,9 @@ func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v
 
 	// Generate SQL to select all columns in PetitionMembership Table
 	// Then generate filtering and ordering sql and finally run query.
-
-	baseSQL := "SELECT id, created_at, updated_at, cause, petition FROM petition_membership"
-	querySQL := queries.BuildPetitionMembershipFilters(req.Filters, req.Ordering, req.Limit)
-	SQL := fmt.Sprintf("%s %s", baseSQL, querySQL)
-	rows, err := c.QueryContext(ctx, SQL)
+	querySQL := queries.BuildPetitionMembershipListQuery(req.Filters, req.Ordering, req.Limit)
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from PetitionMembership-> "+err.Error())
 	}

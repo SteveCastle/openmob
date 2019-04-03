@@ -54,7 +54,7 @@ const UPDATE_EVENTATTENDEE = gql`
     updateEventAttendee(
       ID: $id
       eventAttendee: $eventAttendee
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

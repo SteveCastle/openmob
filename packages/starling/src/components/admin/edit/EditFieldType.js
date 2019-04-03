@@ -56,7 +56,7 @@ const GET_FIELDTYPE = gql`
 `
 const UPDATE_FIELDTYPE = gql`
   mutation updateFieldType($id: ID!, $fieldType: FieldTypeInput) {
-    updateFieldType(ID: $id, fieldType: $fieldType, buildStatic: false)
+    updateFieldType(ID: $id, fieldType: $fieldType, buildStatic: true)
   }
 `
 

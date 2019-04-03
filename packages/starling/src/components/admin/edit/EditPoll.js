@@ -43,7 +43,7 @@ const GET_POLL = gql`
 `
 const UPDATE_POLL = gql`
   mutation updatePoll($id: ID!, $poll: PollInput) {
-    updatePoll(ID: $id, poll: $poll, buildStatic: false)
+    updatePoll(ID: $id, poll: $poll, buildStatic: true)
   }
 `
 

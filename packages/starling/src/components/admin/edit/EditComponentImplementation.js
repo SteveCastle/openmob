@@ -50,7 +50,7 @@ const UPDATE_COMPONENTIMPLEMENTATION = gql`
     updateComponentImplementation(
       ID: $id
       componentImplementation: $componentImplementation
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

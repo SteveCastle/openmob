@@ -43,7 +43,7 @@ const GET_PHONENUMBER = gql`
 `
 const UPDATE_PHONENUMBER = gql`
   mutation updatePhoneNumber($id: ID!, $phoneNumber: PhoneNumberInput) {
-    updatePhoneNumber(ID: $id, phoneNumber: $phoneNumber, buildStatic: false)
+    updatePhoneNumber(ID: $id, phoneNumber: $phoneNumber, buildStatic: true)
   }
 `
 

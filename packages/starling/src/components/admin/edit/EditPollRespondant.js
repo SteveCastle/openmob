@@ -57,7 +57,7 @@ const UPDATE_POLLRESPONDANT = gql`
     updatePollRespondant(
       ID: $id
       pollRespondant: $pollRespondant
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

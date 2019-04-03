@@ -43,7 +43,7 @@ const GET_EMAILADDRESS = gql`
 `
 const UPDATE_EMAILADDRESS = gql`
   mutation updateEmailAddress($id: ID!, $emailAddress: EmailAddressInput) {
-    updateEmailAddress(ID: $id, emailAddress: $emailAddress, buildStatic: false)
+    updateEmailAddress(ID: $id, emailAddress: $emailAddress, buildStatic: true)
   }
 `
 

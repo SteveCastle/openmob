@@ -48,7 +48,7 @@ const GET_FOLLOWER = gql`
 `
 const UPDATE_FOLLOWER = gql`
   mutation updateFollower($id: ID!, $follower: FollowerInput) {
-    updateFollower(ID: $id, follower: $follower, buildStatic: false)
+    updateFollower(ID: $id, follower: $follower, buildStatic: true)
   }
 `
 

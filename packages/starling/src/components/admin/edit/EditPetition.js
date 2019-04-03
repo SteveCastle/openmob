@@ -43,7 +43,7 @@ const GET_PETITION = gql`
 `
 const UPDATE_PETITION = gql`
   mutation updatePetition($id: ID!, $petition: PetitionInput) {
-    updatePetition(ID: $id, petition: $petition, buildStatic: false)
+    updatePetition(ID: $id, petition: $petition, buildStatic: true)
   }
 `
 

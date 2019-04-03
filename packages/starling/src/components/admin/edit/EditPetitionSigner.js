@@ -57,7 +57,7 @@ const UPDATE_PETITIONSIGNER = gql`
     updatePetitionSigner(
       ID: $id
       petitionSigner: $petitionSigner
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

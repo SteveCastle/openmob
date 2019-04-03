@@ -46,7 +46,7 @@ const UPDATE_LIVEEVENTTYPE = gql`
     updateLiveEventType(
       ID: $id
       liveEventType: $liveEventType
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

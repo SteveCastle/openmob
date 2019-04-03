@@ -46,7 +46,7 @@ const GET_LAYOUTROW = gql`
 `
 const UPDATE_LAYOUTROW = gql`
   mutation updateLayoutRow($id: ID!, $layoutRow: LayoutRowInput) {
-    updateLayoutRow(ID: $id, layoutRow: $layoutRow, buildStatic: false)
+    updateLayoutRow(ID: $id, layoutRow: $layoutRow, buildStatic: true)
   }
 `
 

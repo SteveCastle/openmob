@@ -54,7 +54,7 @@ const UPDATE_PETITIONMEMBERSHIP = gql`
     updatePetitionMembership(
       ID: $id
       petitionMembership: $petitionMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

@@ -54,7 +54,7 @@ const UPDATE_AGENTMEMBERSHIP = gql`
     updateAgentMembership(
       ID: $id
       agentMembership: $agentMembership
-      buildStatic: false
+      buildStatic: true
     )
   }
 `

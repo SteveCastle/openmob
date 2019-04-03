@@ -7,36 +7,39 @@ import (
 	"github.com/SteveCastle/structs"
 )
 
-// BuildPhoneNumberFilters takes a filter and ordering object for a cause.
+// BuildPhoneNumberListQuery takes a filter and ordering object for a cause.
 // and returns an SQL string
-func BuildPhoneNumberFilters(filters []*v1.PhoneNumberFilterRule, orderings []*v1.PhoneNumberOrdering, limit int64) string {
-	var sql string
+func BuildPhoneNumberListQuery(filters []*v1.PhoneNumberFilterRule, orderings []*v1.PhoneNumberOrdering, limit int64) string {
+	// SQL to get all PhoneNumbers and all columns.
+	baseSQL := "SELECT id, created_at, updated_at, phone_number FROM phone_number"
+	// Generate WHERE clause from filters passed in request.
 	for i, r := range filters {
 		// Insert where clause before the first filter.
 		// And the Logical operator of each successive filter.
 		if i == 0 {
-			sql = fmt.Sprintf("%s %s", sql, "WHERE")
+			baseSQL = fmt.Sprintf("%s %s", baseSQL, "WHERE")
 		} else {
-			sql = fmt.Sprintf("%s %s", sql, "AND")
+			baseSQL = fmt.Sprintf("%s %s", baseSQL, "AND")
 		}
 		s := structs.New(r.GetField())
 		for _, f := range s.Fields() {
 			if f.IsExported() {
-				sql = fmt.Sprintf("%s %s %s '%s'", sql, ToSnakeCase(f.Name()), Comparison["EQ"], f.Value())
+				baseSQL = fmt.Sprintf("%s %s %s '%s'", baseSQL, ToSnakeCase(f.Name()), Comparison["EQ"], f.Value())
 			}
 		}
 	}
+	// Generate ORDER BY clause from ordering passed in request.
 	for _, r := range orderings {
 		s := structs.New(r.GetField())
 		for _, f := range s.Fields() {
-			sql = fmt.Sprintf("%s %s", sql, "ORDER BY")
+			baseSQL = fmt.Sprintf("%s %s", baseSQL, "ORDER BY")
 			if f.IsExported() {
-				sql = fmt.Sprintf("%s %s ASC", sql, ToSnakeCase(f.Name()))
+				baseSQL = fmt.Sprintf("%s %s ASC", baseSQL, ToSnakeCase(f.Name()))
 			}
 		}
 
 	}
-	sql = fmt.Sprintf("%s LIMIT %d;", sql, limit)
-	fmt.Printf("List SQL Executed: %v\n", sql)
-	return sql
+	baseSQL = fmt.Sprintf("%s LIMIT %d;", baseSQL, limit)
+	fmt.Printf("List SQL Executed: %v\n", baseSQL)
+	return baseSQL
 }
