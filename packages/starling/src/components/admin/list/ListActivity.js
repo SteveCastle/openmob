@@ -11,13 +11,7 @@ import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
 import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
 import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
 import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
-
-const isObject = a => !!a && a.constructor === Object
-const getValue = obj =>
-  Object.entries(obj).reduce(entry =>
-    entry[0] === 'seconds' || entry[0] === 'ID' ? entry[1] : null
-  )
-const parseObject = obj => (isObject(obj) ? getValue(obj) : obj)
+import parseObject from '../../../common/helpers'
 
 const LIST_ACTIVITY = gql`
   {
