@@ -10,9 +10,9 @@ const PROTO_PATH = path.resolve(
 const THIRD_PARTY = path.resolve(__dirname, '../../shrike/third_party');
 
 // Import generated API
-const generatedSchema = require('./generated/schema.js');
+const generatedSchema = require('./schema.js');
 
-const generatedResolvers = require('./generated/resolvers.js');
+const generatedResolvers = require('./resolvers.js');
 // Connect to Shrike gRPC server.
 var packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
