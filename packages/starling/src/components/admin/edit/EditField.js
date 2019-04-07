@@ -35,6 +35,7 @@ const GET_FIELD = gql`
         seconds
         nanos
       }
+      DataPath
       Component {
         ID
       }
@@ -78,6 +79,7 @@ function EditField({ id }) {
         FloatValue: parseObject(item.FloatValue),
         BooleanValue: parseObject(item.BooleanValue),
         DateTimeValue: parseObject(item.DateTimeValue),
+        DataPath: parseObject(item.DataPath),
         Component: parseObject(item.Component),
       }}
       onSubmit={(values, { setSubmitting }) =>
@@ -181,6 +183,15 @@ function EditField({ id }) {
                   <Input
                     value={values.DateTimeValue}
                     name="DateTimeValue"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>DataPath</Label>
+                  <Input
+                    value={values.DataPath}
+                    name="DataPath"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

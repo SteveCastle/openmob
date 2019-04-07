@@ -84,12 +84,22 @@ function ListFollower({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/follower/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/follower/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Contact)}</TableCell>
-                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/contact/${parseObject(item.Contact)}`}>
+                    {parseObject(item.Contact)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${parseObject(item.Cause)}`}>
+                    {parseObject(item.Cause)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

@@ -84,14 +84,24 @@ function ListProductMembership({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/product-membership/${item.ID}`}>
-                    {item.ID}
+                  <Link
+                    to={`/app/admin/product-membership/${parseObject(item.ID)}`}
+                  >
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Cause)}</TableCell>
-                <TableCell>{parseObject(item.Product)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${parseObject(item.Cause)}`}>
+                    {parseObject(item.Cause)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/product/${parseObject(item.Product)}`}>
+                    {parseObject(item.Product)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

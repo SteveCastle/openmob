@@ -82,12 +82,18 @@ function ListHomePage({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/home-page/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/home-page/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
                 <TableCell>{parseObject(item.Title)}</TableCell>
-                <TableCell>{parseObject(item.Layout)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/layout/${parseObject(item.Layout)}`}>
+                    {parseObject(item.Layout)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

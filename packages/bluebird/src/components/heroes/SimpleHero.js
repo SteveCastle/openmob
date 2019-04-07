@@ -41,7 +41,7 @@ const Title = styled.h1`
   ${display}
   `;
 
-function SimpleHero({ title: { StringValue: title } }) {
+function SimpleHero({ title }) {
   return (
     <StyledHero display={'flex'} justifyContent="center" alignItems="center">
       <Title color="gray.0" size={4}>

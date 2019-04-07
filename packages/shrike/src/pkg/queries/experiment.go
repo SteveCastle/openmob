@@ -11,7 +11,7 @@ import (
 // and returns an SQL string
 func BuildExperimentListQuery(filters []*v1.ExperimentFilterRule, orderings []*v1.ExperimentOrdering, limit int64) string {
 	// SQL to get all Experiments and all columns.
-	baseSQL := "SELECT id, created_at, updated_at, title, landing_page FROM experiment"
+	baseSQL := "SELECT id, created_at, updated_at, title FROM experiment"
 	// Generate WHERE clause from filters passed in request.
 	for i, r := range filters {
 		// Insert where clause before the first filter.

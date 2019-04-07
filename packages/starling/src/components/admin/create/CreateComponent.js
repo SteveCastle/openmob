@@ -68,6 +68,15 @@ const CreateComponent = ({ id }) => {
                     onBlur={handleBlur}
                   />
                 </Widget>
+                <Widget>
+                  <Label>Weight</Label>
+                  <Input
+                    value={values.Weight}
+                    name="Weight"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
 
                 <Button
                   label="Save"

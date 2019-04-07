@@ -28,6 +28,7 @@ const GET_LAYOUTROW = gql`
         ID
       }
       Container
+      Weight
     }
   }
 `
@@ -64,6 +65,7 @@ function EditLayoutRow({ id }) {
         UpdatedAt: parseObject(item.UpdatedAt),
         Layout: parseObject(item.Layout),
         Container: parseObject(item.Container),
+        Weight: parseObject(item.Weight),
       }}
       onSubmit={(values, { setSubmitting }) =>
         updateLayoutRow({
@@ -130,6 +132,15 @@ function EditLayoutRow({ id }) {
                   <Input
                     value={values.Container}
                     name="Container"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Weight</Label>
+                  <Input
+                    value={values.Weight}
+                    name="Weight"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

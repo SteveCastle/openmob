@@ -80,11 +80,21 @@ function ListPayment({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/payment/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/payment/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.CustomerOrder)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/customer-order/${parseObject(
+                      item.CustomerOrder
+                    )}`}
+                  >
+                    {parseObject(item.CustomerOrder)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

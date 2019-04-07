@@ -96,6 +96,15 @@ const CreateField = ({ id }) => {
                   />
                 </Widget>
                 <Widget>
+                  <Label>DataPath</Label>
+                  <Input
+                    value={values.DataPath}
+                    name="DataPath"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
                   <Label>Component</Label>
                   <Input
                     value={values.Component}

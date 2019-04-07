@@ -84,14 +84,24 @@ function ListAgentMembership({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/agent-membership/${item.ID}`}>
-                    {item.ID}
+                  <Link
+                    to={`/app/admin/agent-membership/${parseObject(item.ID)}`}
+                  >
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Cause)}</TableCell>
-                <TableCell>{parseObject(item.Agent)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${parseObject(item.Cause)}`}>
+                    {parseObject(item.Cause)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/agent/${parseObject(item.Agent)}`}>
+                    {parseObject(item.Agent)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

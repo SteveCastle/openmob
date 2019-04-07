@@ -80,11 +80,17 @@ function ListAgent({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/agent/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/agent/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Account)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/account/${parseObject(item.Account)}`}>
+                    {parseObject(item.Account)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

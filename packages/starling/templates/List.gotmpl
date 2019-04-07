@@ -51,7 +51,7 @@ function List{{.Table.Name}}({ navigate = ()=>{} }) {
             <tbody>
       {(items || []).map(item => (
         <TableRow key={item.ID}>
-          {{range $i, $value := .Table.Columns}}<TableCell>{{if eq $i 0}}<Link to={`/app/admin/{{kebab .Table.Name}}/${item.ID}`}>{item.{{.Name}}}</Link>{{end}}{{if ne $i 0}}{parseObject(item.{{.Name}})}{{end}}</TableCell>
+          {{range $i, $value := .Table.Columns}}<TableCell>{{if eq (trimSuffix .Type "!") "ID"}}<Link to={`/app/admin/{{if eq .Name "ID"}}{{kebab .Table.Name}}{{end}}{{if ne .Name "ID"}}{{kebab .Name}}{{end}}/${parseObject(item.{{.Name}})}`}>{parseObject(item.{{.Name}})}</Link>{{end}}{{if ne (trimSuffix .Type "!") "ID"}}{parseObject(item.{{.Name}})}{{end}}</TableCell>
 {{end}}
         </TableRow>
       ))}

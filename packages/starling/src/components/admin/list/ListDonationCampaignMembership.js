@@ -85,15 +85,29 @@ function ListDonationCampaignMembership({ navigate = () => {} }) {
               <TableRow key={item.ID}>
                 <TableCell>
                   <Link
-                    to={`/app/admin/donation-campaign-membership/${item.ID}`}
+                    to={`/app/admin/donation-campaign-membership/${parseObject(
+                      item.ID
+                    )}`}
                   >
-                    {item.ID}
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Cause)}</TableCell>
-                <TableCell>{parseObject(item.DonationCampaign)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${parseObject(item.Cause)}`}>
+                    {parseObject(item.Cause)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/donation-campaign/${parseObject(
+                      item.DonationCampaign
+                    )}`}
+                  >
+                    {parseObject(item.DonationCampaign)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

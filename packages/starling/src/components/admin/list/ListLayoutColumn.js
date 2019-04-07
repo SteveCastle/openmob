@@ -27,6 +27,7 @@ const LIST_LAYOUTCOLUMN = gql`
         ID
       }
       Width
+      Weight
     }
   }
 `
@@ -76,20 +77,28 @@ function ListLayoutColumn({ navigate = () => {} }) {
               <TableHeaderCell>UpdatedAt</TableHeaderCell>
               <TableHeaderCell>LayoutRow</TableHeaderCell>
               <TableHeaderCell>Width</TableHeaderCell>
+              <TableHeaderCell>Weight</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <tbody>
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/layout-column/${item.ID}`}>
-                    {item.ID}
+                  <Link to={`/app/admin/layout-column/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.LayoutRow)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/layout-row/${parseObject(item.LayoutRow)}`}
+                  >
+                    {parseObject(item.LayoutRow)}
+                  </Link>
+                </TableCell>
                 <TableCell>{parseObject(item.Width)}</TableCell>
+                <TableCell>{parseObject(item.Weight)}</TableCell>
               </TableRow>
             ))}
           </tbody>

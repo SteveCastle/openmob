@@ -1,6 +1,7 @@
 rebuild:
 	(cd packages/shrike; make schema-update)
 	(cd packages/wren; make codegen)
+	(cd packages/starling; make gen; make prettier)
 startdb:
 	(cd packages/shrike; make startdb)
 server:

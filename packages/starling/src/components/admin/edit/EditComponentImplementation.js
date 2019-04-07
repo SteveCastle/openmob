@@ -26,6 +26,9 @@ const GET_COMPONENTIMPLEMENTATION = gql`
       }
       Title
       Path
+      ComponentType {
+        ID
+      }
     }
   }
 `
@@ -71,6 +74,7 @@ function EditComponentImplementation({ id }) {
         UpdatedAt: parseObject(item.UpdatedAt),
         Title: parseObject(item.Title),
         Path: parseObject(item.Path),
+        ComponentType: parseObject(item.ComponentType),
       }}
       onSubmit={(values, { setSubmitting }) =>
         updateComponentImplementation({
@@ -137,6 +141,15 @@ function EditComponentImplementation({ id }) {
                   <Input
                     value={values.Path}
                     name="Path"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>ComponentType</Label>
+                  <Input
+                    value={values.ComponentType}
+                    name="ComponentType"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

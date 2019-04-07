@@ -90,15 +90,27 @@ function ListCause({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/cause/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/cause/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
                 <TableCell>{parseObject(item.Title)}</TableCell>
                 <TableCell>{parseObject(item.Slug)}</TableCell>
                 <TableCell>{parseObject(item.Summary)}</TableCell>
-                <TableCell>{parseObject(item.HomePage)}</TableCell>
-                <TableCell>{parseObject(item.Photo)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/home-page/${parseObject(item.HomePage)}`}
+                  >
+                    {parseObject(item.HomePage)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/photo/${parseObject(item.Photo)}`}>
+                    {parseObject(item.Photo)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

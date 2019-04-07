@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.Crea
 	defer c.Close()
 	var id string
 	// insert Experiment entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO experiment (title, landing_page) VALUES($1, $2)  RETURNING id;",
-		req.Item.Title, req.Item.LandingPage).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO experiment (title) VALUES($1)  RETURNING id;",
+		req.Item.Title).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Experiment-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 	defer c.Close()
 
 	// query Experiment by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, landing_page FROM experiment WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM experiment WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Experiment-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 	var createdAt pq.NullTime
 	var updatedAt pq.NullTime
 
-	if err := rows.Scan(&experiment.ID, &createdAt, &updatedAt, &experiment.Title, &experiment.LandingPage); err != nil {
+	if err := rows.Scan(&experiment.ID, &createdAt, &updatedAt, &experiment.Title); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Experiment row-> "+err.Error())
 	}
 
@@ -138,7 +138,7 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 
 	for rows.Next() {
 		experiment := new(v1.Experiment)
-		if err := rows.Scan(&experiment.ID, &createdAt, &updatedAt, &experiment.Title, &experiment.LandingPage); err != nil {
+		if err := rows.Scan(&experiment.ID, &createdAt, &updatedAt, &experiment.Title); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Experiment row-> "+err.Error())
 		}
 		// Convert pq.NullTime from database into proto timestamp.
@@ -183,8 +183,8 @@ func (s *shrikeServiceServer) UpdateExperiment(ctx context.Context, req *v1.Upda
 	defer c.Close()
 
 	// update experiment
-	res, err := c.ExecContext(ctx, "UPDATE experiment SET title=$2, landing_page=$3 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.LandingPage)
+	res, err := c.ExecContext(ctx, "UPDATE experiment SET title=$2 WHERE id=$1",
+		req.Item.ID, req.Item.Title)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Experiment-> "+err.Error())
 	}

@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateField(ctx context.Context, req *v1.CreateFie
 	defer c.Close()
 	var id string
 	// insert Field entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO field (field_type, string_value, int_value, float_value, boolean_value, date_time_value, component) VALUES($1, $2, $3, $4, $5, $6, $7)  RETURNING id;",
-		req.Item.FieldType, req.Item.StringValue, req.Item.IntValue, req.Item.FloatValue, req.Item.BooleanValue, req.Item.DateTimeValue, req.Item.Component).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO field (field_type, string_value, int_value, float_value, boolean_value, date_time_value, data_path, component) VALUES($1, $2, $3, $4, $5, $6, $7, $8)  RETURNING id;",
+		req.Item.FieldType, req.Item.StringValue, req.Item.IntValue, req.Item.FloatValue, req.Item.BooleanValue, req.Item.DateTimeValue, req.Item.DataPath, req.Item.Component).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Field-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetField(ctx context.Context, req *v1.GetFieldRequ
 	defer c.Close()
 
 	// query Field by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, string_value, int_value, float_value, boolean_value, date_time_value, component FROM field WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, field_type, string_value, int_value, float_value, boolean_value, date_time_value, data_path, component FROM field WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Field-> "+err.Error())
@@ -78,7 +78,7 @@ func (s *shrikeServiceServer) GetField(ctx context.Context, req *v1.GetFieldRequ
 	var updatedAt pq.NullTime
 	var dateTimeValue pq.NullTime
 
-	if err := rows.Scan(&field.ID, &createdAt, &updatedAt, &field.FieldType, &field.StringValue, &field.IntValue, &field.FloatValue, &field.BooleanValue, &dateTimeValue, &field.Component); err != nil {
+	if err := rows.Scan(&field.ID, &createdAt, &updatedAt, &field.FieldType, &field.StringValue, &field.IntValue, &field.FloatValue, &field.BooleanValue, &dateTimeValue, &field.DataPath, &field.Component); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Field row-> "+err.Error())
 	}
 
@@ -146,7 +146,7 @@ func (s *shrikeServiceServer) ListField(ctx context.Context, req *v1.ListFieldRe
 
 	for rows.Next() {
 		field := new(v1.Field)
-		if err := rows.Scan(&field.ID, &createdAt, &updatedAt, &field.FieldType, &field.StringValue, &field.IntValue, &field.FloatValue, &field.BooleanValue, &dateTimeValue, &field.Component); err != nil {
+		if err := rows.Scan(&field.ID, &createdAt, &updatedAt, &field.FieldType, &field.StringValue, &field.IntValue, &field.FloatValue, &field.BooleanValue, &dateTimeValue, &field.DataPath, &field.Component); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Field row-> "+err.Error())
 		}
 		// Convert pq.NullTime from database into proto timestamp.
@@ -197,8 +197,8 @@ func (s *shrikeServiceServer) UpdateField(ctx context.Context, req *v1.UpdateFie
 	defer c.Close()
 
 	// update field
-	res, err := c.ExecContext(ctx, "UPDATE field SET field_type=$2, string_value=$3, int_value=$4, float_value=$5, boolean_value=$6, date_time_value=$7, component=$8 WHERE id=$1",
-		req.Item.ID, req.Item.FieldType, req.Item.StringValue, req.Item.IntValue, req.Item.FloatValue, req.Item.BooleanValue, req.Item.DateTimeValue, req.Item.Component)
+	res, err := c.ExecContext(ctx, "UPDATE field SET field_type=$2, string_value=$3, int_value=$4, float_value=$5, boolean_value=$6, date_time_value=$7, data_path=$8, component=$9 WHERE id=$1",
+		req.Item.ID, req.Item.FieldType, req.Item.StringValue, req.Item.IntValue, req.Item.FloatValue, req.Item.BooleanValue, req.Item.DateTimeValue, req.Item.DataPath, req.Item.Component)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Field-> "+err.Error())
 	}

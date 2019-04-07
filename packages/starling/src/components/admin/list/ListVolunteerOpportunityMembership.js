@@ -85,17 +85,29 @@ function ListVolunteerOpportunityMembership({ navigate = () => {} }) {
               <TableRow key={item.ID}>
                 <TableCell>
                   <Link
-                    to={`/app/admin/volunteer-opportunity-membership/${
+                    to={`/app/admin/volunteer-opportunity-membership/${parseObject(
                       item.ID
-                    }`}
+                    )}`}
                   >
-                    {item.ID}
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Cause)}</TableCell>
-                <TableCell>{parseObject(item.VolunteerOpportunity)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${parseObject(item.Cause)}`}>
+                    {parseObject(item.Cause)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/volunteer-opportunity/${parseObject(
+                      item.VolunteerOpportunity
+                    )}`}
+                  >
+                    {parseObject(item.VolunteerOpportunity)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

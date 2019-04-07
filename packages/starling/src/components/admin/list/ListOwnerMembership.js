@@ -84,14 +84,24 @@ function ListOwnerMembership({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/owner-membership/${item.ID}`}>
-                    {item.ID}
+                  <Link
+                    to={`/app/admin/owner-membership/${parseObject(item.ID)}`}
+                  >
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Cause)}</TableCell>
-                <TableCell>{parseObject(item.Account)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${parseObject(item.Cause)}`}>
+                    {parseObject(item.Cause)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/account/${parseObject(item.Account)}`}>
+                    {parseObject(item.Account)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

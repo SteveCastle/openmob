@@ -82,12 +82,22 @@ function ListLiveEvent({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/live-event/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/live-event/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
                 <TableCell>{parseObject(item.Title)}</TableCell>
-                <TableCell>{parseObject(item.LiveEventType)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/live-event-type/${parseObject(
+                      item.LiveEventType
+                    )}`}
+                  >
+                    {parseObject(item.LiveEventType)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

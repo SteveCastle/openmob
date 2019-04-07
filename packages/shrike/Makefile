@@ -31,7 +31,7 @@ endif
 
 startdb:
 	./scripts/start-db.sh
-initial-migration:
+init:
 	./scripts/initialize-db.sh
 destroy:
 	./scripts/purge-db.sh
@@ -49,17 +49,17 @@ protogen:
 	./scripts/protogen.sh
 generate: codegen protogen
 
-build-server:
-	cd src/cmd/grpc-server; go build .
 build-client:
 	cd src/cmd/sample-data-client; go build .
-build: build-server build-client
+build-server:
+	cd src/cmd/grpc-server; go build .
+build: build-server
 start: build-server
 	cd src/cmd/grpc-server; ./grpc-server
 load-data: build-client
 	cd src/cmd/sample-data-client; ./sample-data-client -server=localhost:9090
-bootstrap: startdb install initial-migration generate build
-schema-update: destroy initial-migration generate build
+bootstrap: startdb install init generate build
+schema-update: destroy init generate build
 
 swagger:
 	./scripts/start-swagger.sh

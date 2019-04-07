@@ -33,9 +33,7 @@ const LIST_FIELDTYPE = gql`
       DateTimeValueDefault {
         seconds
       }
-      ComponentType {
-        ID
-      }
+      DataPath
     }
   }
 `
@@ -91,14 +89,16 @@ function ListFieldType({ navigate = () => {} }) {
               <TableHeaderCell>FloatValueDefault</TableHeaderCell>
               <TableHeaderCell>BooleanValueDefault</TableHeaderCell>
               <TableHeaderCell>DateTimeValueDefault</TableHeaderCell>
-              <TableHeaderCell>ComponentType</TableHeaderCell>
+              <TableHeaderCell>DataPath</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <tbody>
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/field-type/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/field-type/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
@@ -110,7 +110,7 @@ function ListFieldType({ navigate = () => {} }) {
                 <TableCell>{parseObject(item.FloatValueDefault)}</TableCell>
                 <TableCell>{parseObject(item.BooleanValueDefault)}</TableCell>
                 <TableCell>{parseObject(item.DateTimeValueDefault)}</TableCell>
-                <TableCell>{parseObject(item.ComponentType)}</TableCell>
+                <TableCell>{parseObject(item.DataPath)}</TableCell>
               </TableRow>
             ))}
           </tbody>

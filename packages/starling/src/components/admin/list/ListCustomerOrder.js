@@ -80,13 +80,23 @@ function ListCustomerOrder({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/customer-order/${item.ID}`}>
-                    {item.ID}
+                  <Link
+                    to={`/app/admin/customer-order/${parseObject(item.ID)}`}
+                  >
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.CustomerCart)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/customer-cart/${parseObject(
+                      item.CustomerCart
+                    )}`}
+                  >
+                    {parseObject(item.CustomerCart)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

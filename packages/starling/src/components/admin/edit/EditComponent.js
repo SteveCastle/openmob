@@ -33,6 +33,7 @@ const GET_COMPONENT = gql`
       LayoutColumn {
         ID
       }
+      Weight
     }
   }
 `
@@ -70,6 +71,7 @@ function EditComponent({ id }) {
         ComponentType: parseObject(item.ComponentType),
         ComponentImplementation: parseObject(item.ComponentImplementation),
         LayoutColumn: parseObject(item.LayoutColumn),
+        Weight: parseObject(item.Weight),
       }}
       onSubmit={(values, { setSubmitting }) =>
         updateComponent({
@@ -145,6 +147,15 @@ function EditComponent({ id }) {
                   <Input
                     value={values.LayoutColumn}
                     name="LayoutColumn"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
+                <Widget>
+                  <Label>Weight</Label>
+                  <Input
+                    value={values.Weight}
+                    name="Weight"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

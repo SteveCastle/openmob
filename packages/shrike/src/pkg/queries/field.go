@@ -11,7 +11,7 @@ import (
 // and returns an SQL string
 func BuildFieldListQuery(filters []*v1.FieldFilterRule, orderings []*v1.FieldOrdering, limit int64) string {
 	// SQL to get all Fields and all columns.
-	baseSQL := "SELECT id, created_at, updated_at, field_type, string_value, int_value, float_value, boolean_value, date_time_value, component FROM field"
+	baseSQL := "SELECT id, created_at, updated_at, field_type, string_value, int_value, float_value, boolean_value, date_time_value, data_path, component FROM field"
 	// Generate WHERE clause from filters passed in request.
 	for i, r := range filters {
 		// Insert where clause before the first filter.

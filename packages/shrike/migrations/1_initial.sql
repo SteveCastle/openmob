@@ -93,6 +93,7 @@ CREATE TABLE layout_row
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     layout UUID REFERENCES layout(id) NOT NULL,
     container BOOLEAN,
+    weight INTEGER DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -103,6 +104,7 @@ CREATE TABLE layout_column
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     layout_row UUID REFERENCES layout_row(id) NOT NULL,
     width INTEGER NOT NULL DEFAULT 12 CHECK(width BETWEEN 1 AND 12),
+    weight INTEGER DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -119,16 +121,7 @@ CREATE TABLE field_type
     float_value_default NUMERIC,
     boolean_value_default BOOLEAN,
     date_time_value_default TIMESTAMPTZ,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE component_implementation
-(
-    id UUID NOT NULL DEFAULT gen_random_uuid(),
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    title VARCHAR(255) NOT NULL,
-    path VARCHAR(255) NOT NULL,
+    data_path TEXT,
     PRIMARY KEY (id)
 );
 
@@ -140,6 +133,29 @@ CREATE TABLE component_type
     title VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE component_implementation
+(
+    id UUID NOT NULL DEFAULT gen_random_uuid(),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL,
+    path VARCHAR(255) NOT NULL,
+    component_type UUID REFERENCES component_type(id) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE component_type_fields
+(
+    id UUID NOT NULL DEFAULT gen_random_uuid(),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    component_type UUID REFERENCES component_type(id) NOT NULL,
+    field_type UUID REFERENCES field_type(id) NOT NULL,
+    weight INTEGER DEFAULT 0,
+    required BOOLEAN DEFAULT false
+);
+
 CREATE TABLE component
 (
     id UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -148,6 +164,7 @@ CREATE TABLE component
     component_type UUID REFERENCES component_type(id) NOT NULL,
     component_implementation UUID REFERENCES component_implementation(id) NOT NULL,
     layout_column UUID REFERENCES layout_column(id),
+    weight INTEGER DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -162,6 +179,7 @@ CREATE TABLE field
     float_value NUMERIC,
     boolean_value BOOLEAN,
     date_time_value TIMESTAMPTZ,
+    data_path TEXT,
     component UUID REFERENCES component(id),
     PRIMARY KEY (id)
 );
@@ -190,11 +208,22 @@ CREATE TABLE experiment
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
-    landing_page UUID REFERENCES landing_page(id),
     PRIMARY KEY (id)
 );
 
-
+CREATE TABLE experiment_variant
+(
+    id UUID NOT NULL DEFAULT gen_random_uuid(),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    title VARCHAR(255) NOT NULL,
+    variant_type VARCHAR(255),
+    experiment UUID REFERENCES experiment(id) NOT NULL,
+    landing_page UUID REFERENCES landing_page(id),
+    field UUID REFERENCES field(id),
+    component UUID REFERENCES component(id),
+    PRIMARY KEY (id)
+);
 -- END LAYOUT TABLES
 -- CONTENT TABLES
 CREATE TABLE election
@@ -594,7 +623,7 @@ CREATE TABLE note
     PRIMARY KEY (id)
 );
 
--- CMS MEMBERSHIPS
+-- CRM MEMBERSHIPS
 CREATE TABLE owner_membership
 (
     id UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -627,13 +656,10 @@ CREATE TABLE agent_membership
 ALTER TABLE cause ADD COLUMN home_page UUID REFERENCES home_page(id);
 ALTER TABLE cause ADD COLUMN photo UUID REFERENCES photo(id);
 
-ALTER TABLE field_type ADD COLUMN component_type UUID REFERENCES component_type(id);
-
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
 
 --REMOVE CAUSE RELATIONS
-ALTER TABLE field_type DROP COLUMN component_type;
 ALTER TABLE cause DROP COLUMN photo;
 ALTER TABLE cause DROP COLUMN home_page;
 
@@ -669,14 +695,16 @@ DROP TABLE product_membership;
 DROP TABLE donation_campaign_membership;
 
 --CMS TABLES
+DROP TABLE component_type_fields;
+DROP TABLE experiment_variant;
+DROP TABLE experiment;
 DROP TABLE field;
 DROP TABLE component;
-DROP TABLE component_type;
 DROP TABLE component_implementation;
+DROP TABLE component_type;
 DROP TABLE field_type;
 DROP TABLE layout_column;
 DROP TABLE layout_row;
-DROP TABLE experiment;
 DROP TABLE landing_page;
 DROP TABLE home_page;
 DROP TABLE layout;

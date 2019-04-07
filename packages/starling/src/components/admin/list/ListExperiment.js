@@ -24,9 +24,6 @@ const LIST_EXPERIMENT = gql`
         seconds
       }
       Title
-      LandingPage {
-        ID
-      }
     }
   }
 `
@@ -75,19 +72,19 @@ function ListExperiment({ navigate = () => {} }) {
               <TableHeaderCell>CreatedAt</TableHeaderCell>
               <TableHeaderCell>UpdatedAt</TableHeaderCell>
               <TableHeaderCell>Title</TableHeaderCell>
-              <TableHeaderCell>LandingPage</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <tbody>
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/experiment/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/experiment/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
                 <TableCell>{parseObject(item.Title)}</TableCell>
-                <TableCell>{parseObject(item.LandingPage)}</TableCell>
               </TableRow>
             ))}
           </tbody>

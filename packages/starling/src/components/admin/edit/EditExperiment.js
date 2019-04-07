@@ -25,9 +25,6 @@ const GET_EXPERIMENT = gql`
         nanos
       }
       Title
-      LandingPage {
-        ID
-      }
     }
   }
 `
@@ -63,7 +60,6 @@ function EditExperiment({ id }) {
         CreatedAt: parseObject(item.CreatedAt),
         UpdatedAt: parseObject(item.UpdatedAt),
         Title: parseObject(item.Title),
-        LandingPage: parseObject(item.LandingPage),
       }}
       onSubmit={(values, { setSubmitting }) =>
         updateExperiment({
@@ -121,15 +117,6 @@ function EditExperiment({ id }) {
                   <Input
                     value={values.Title}
                     name="Title"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </Widget>
-                <Widget>
-                  <Label>LandingPage</Label>
-                  <Input
-                    value={values.LandingPage}
-                    name="LandingPage"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

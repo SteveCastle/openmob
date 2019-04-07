@@ -80,11 +80,21 @@ function ListLayout({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/layout/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/layout/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.LayoutType)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/layout-type/${parseObject(
+                      item.LayoutType
+                    )}`}
+                  >
+                    {parseObject(item.LayoutType)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

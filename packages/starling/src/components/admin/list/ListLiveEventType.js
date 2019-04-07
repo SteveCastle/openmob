@@ -78,8 +78,10 @@ function ListLiveEventType({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/live-event-type/${item.ID}`}>
-                    {item.ID}
+                  <Link
+                    to={`/app/admin/live-event-type/${parseObject(item.ID)}`}
+                  >
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>

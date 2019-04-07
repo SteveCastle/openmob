@@ -21,6 +21,13 @@ input MailingAddressInput {
   ZipCode: String!
 }
 ​
+input LayoutRowInput {
+  secret: Int
+  Layout: ID!
+  Container: Boolean
+  Weight: Int
+}
+​
 input PhoneNumberInput {
   secret: Int
   PhoneNumber: String!
@@ -36,29 +43,61 @@ input LayoutTypeInput {
   Title: String!
 }
 ​
-input LayoutRowInput {
+input ComponentTypeFieldsInput {
   secret: Int
-  Layout: ID!
-  Container: Boolean
+  ComponentType: ID!
+  FieldType: ID!
+  Weight: Int
+  Required: Boolean
+}
+​
+input ComponentTypeInput {
+  secret: Int
+  Title: String!
 }
 ​
 input ComponentImplementationInput {
   secret: Int
   Title: String!
   Path: String!
+  ComponentType: ID!
 }
 ​
 input LayoutColumnInput {
   secret: Int
   LayoutRow: ID!
   Width: Int!
+  Weight: Int
 }
 ​
-input ComponentInput {
+input FieldTypeInput {
   secret: Int
-  ComponentType: ID!
-  ComponentImplementation: ID!
-  LayoutColumn: ID
+  Title: String!
+  DataType: String!
+  PropName: String!
+  StringValueDefault: String
+  IntValueDefault: Int
+  FloatValueDefault: Float
+  BooleanValueDefault: Boolean
+  DateTimeValueDefault: TimeInput
+  DataPath: String
+}
+​
+input LandingPageInput {
+  secret: Int
+  Title: String!
+  Cause: ID!
+  Layout: ID
+}
+​
+input LayoutInput {
+  secret: Int
+  LayoutType: ID
+}
+​
+input ExperimentInput {
+  secret: Int
+  Title: String!
 }
 ​
 input FieldInput {
@@ -69,37 +108,32 @@ input FieldInput {
   FloatValue: Float
   BooleanValue: Boolean
   DateTimeValue: TimeInput
+  DataPath: String
   Component: ID
 }
 ​
-input LayoutInput {
+input ComponentInput {
   secret: Int
-  LayoutType: ID
+  ComponentType: ID!
+  ComponentImplementation: ID!
+  LayoutColumn: ID
+  Weight: Int
 }
 ​
-input LandingPageInput {
+input ExperimentVariantInput {
   secret: Int
   Title: String!
-  Cause: ID!
-  Layout: ID
-}
-​
-input ExperimentInput {
-  secret: Int
-  Title: String!
+  VariantType: String
+  Experiment: ID!
   LandingPage: ID
+  Field: ID
+  Component: ID
 }
 ​
 input IssueInput {
   secret: Int
   Title: String!
   Election: ID!
-}
-​
-input OfficeInput {
-  secret: Int
-  Title: String!
-  Election: ID
 }
 ​
 input CandidateInput {
@@ -119,6 +153,12 @@ input DistrictInput {
   DistrictType: ID!
 }
 ​
+input OfficeInput {
+  secret: Int
+  Title: String!
+  Election: ID
+}
+​
 input PollItemInput {
   secret: Int
   Title: String!
@@ -128,10 +168,6 @@ input PollItemInput {
 input VolunteerOpportunityTypeInput {
   secret: Int
   Title: String!
-}
-​
-input CustomerCartInput {
-  secret: Int
 }
 ​
 input LiveEventTypeInput {
@@ -147,6 +183,10 @@ input CompanyInput {
 input ProductTypeInput {
   secret: Int
   Title: String!
+}
+​
+input CustomerCartInput {
+  secret: Int
 }
 ​
 input PaymentInput {
@@ -180,13 +220,13 @@ input ElectionMembershipInput {
   Election: ID!
 }
 ​
-input PetitionMembershipInput {
+input PollMembershipInput {
   secret: Int
   Cause: ID!
   Petition: ID!
 }
 ​
-input PollMembershipInput {
+input PetitionMembershipInput {
   secret: Int
   Cause: ID!
   Petition: ID!
@@ -196,11 +236,6 @@ input VolunteerOpportunityMembershipInput {
   secret: Int
   Cause: ID!
   VolunteerOpportunity: ID!
-}
-​
-input PetitionInput {
-  secret: Int
-  Title: String!
 }
 ​
 input LiveEventMembershipInput {
@@ -230,6 +265,11 @@ input DonationCampaignMembershipInput {
   secret: Int
   Cause: ID!
   DonationCampaign: ID!
+}
+​
+input PetitionInput {
+  secret: Int
+  Title: String!
 }
 ​
 input PetitionSignerInput {
@@ -326,6 +366,13 @@ input ActivityInput {
   Cause: ID!
 }
 ​
+input NoteInput {
+  secret: Int
+  Contact: ID!
+  Cause: ID!
+  Body: String
+}
+​
 input AccountInput {
   secret: Int
   Username: String!
@@ -335,13 +382,6 @@ input OwnerMembershipInput {
   secret: Int
   Cause: ID!
   Account: ID!
-}
-​
-input NoteInput {
-  secret: Int
-  Contact: ID!
-  Cause: ID!
-  Body: String
 }
 ​
 input ContactInput {
@@ -392,24 +432,6 @@ input CauseInput {
   Photo: ID
 }
 ​
-input ComponentTypeInput {
-  secret: Int
-  Title: String!
-}
-​
-input FieldTypeInput {
-  secret: Int
-  Title: String!
-  DataType: String!
-  PropName: String!
-  StringValueDefault: String
-  IntValueDefault: Int
-  FloatValueDefault: Float
-  BooleanValueDefault: Boolean
-  DateTimeValueDefault: TimeInput
-  ComponentType: ID
-}
-​
 
 
 type ACL {
@@ -426,6 +448,16 @@ type MailingAddress {
   City: String!
   State: String!
   ZipCode: String!
+}
+​
+type LayoutRow {
+  ID: ID!
+  LayoutColumns: [LayoutColumn]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Layout: Layout
+  Container: Boolean
+  Weight: Int
 }
 ​
 type PhoneNumber {
@@ -450,13 +482,24 @@ type LayoutType {
   Title: String!
 }
 ​
-type LayoutRow {
+type ComponentTypeFields {
   ID: ID!
-  LayoutColumns: [LayoutColumn]
   CreatedAt: Time!
   UpdatedAt: Time!
-  Layout: Layout
-  Container: Boolean
+  ComponentType: ComponentType
+  FieldType: FieldType
+  Weight: Int
+  Required: Boolean
+}
+​
+type ComponentType {
+  ID: ID!
+  ComponentTypeFieldss: [ComponentTypeFields]
+  ComponentImplementations: [ComponentImplementation]
+  Components: [Component]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
 }
 ​
 type ComponentImplementation {
@@ -466,6 +509,7 @@ type ComponentImplementation {
   UpdatedAt: Time!
   Title: String!
   Path: String!
+  ComponentType: ComponentType
 }
 ​
 type LayoutColumn {
@@ -475,29 +519,34 @@ type LayoutColumn {
   UpdatedAt: Time!
   LayoutRow: LayoutRow
   Width: Int!
+  Weight: Int
 }
 ​
-type Component {
+type FieldType {
   ID: ID!
+  ComponentTypeFieldss: [ComponentTypeFields]
   Fields: [Field]
   CreatedAt: Time!
   UpdatedAt: Time!
-  ComponentType: ComponentType
-  ComponentImplementation: ComponentImplementation
-  LayoutColumn: LayoutColumn
+  Title: String!
+  DataType: String!
+  PropName: String!
+  StringValueDefault: String
+  IntValueDefault: Int
+  FloatValueDefault: Float
+  BooleanValueDefault: Boolean
+  DateTimeValueDefault: Time
+  DataPath: String
 }
 ​
-type Field {
+type LandingPage {
   ID: ID!
+  ExperimentVariants: [ExperimentVariant]
   CreatedAt: Time!
   UpdatedAt: Time!
-  FieldType: FieldType
-  StringValue: String
-  IntValue: Int
-  FloatValue: Float
-  BooleanValue: Boolean
-  DateTimeValue: Time
-  Component: Component
+  Title: String!
+  Cause: Cause
+  Layout: Layout
 }
 ​
 type Layout {
@@ -510,33 +559,54 @@ type Layout {
   LayoutType: LayoutType
 }
 ​
-type LandingPage {
-  ID: ID!
-  Experiments: [Experiment]
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
-  Cause: Cause
-  Layout: Layout
-}
-​
 type Experiment {
   ID: ID!
+  ExperimentVariants: [ExperimentVariant]
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
+}
+​
+type Field {
+  ID: ID!
+  ExperimentVariants: [ExperimentVariant]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  FieldType: FieldType
+  StringValue: String
+  IntValue: Int
+  FloatValue: Float
+  BooleanValue: Boolean
+  DateTimeValue: Time
+  DataPath: String
+  Component: Component
+}
+​
+type Component {
+  ID: ID!
+  Fields: [Field]
+  ExperimentVariants: [ExperimentVariant]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  ComponentType: ComponentType
+  ComponentImplementation: ComponentImplementation
+  LayoutColumn: LayoutColumn
+  Weight: Int
+}
+​
+type ExperimentVariant {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
+  VariantType: String
+  Experiment: Experiment
   LandingPage: LandingPage
+  Field: Field
+  Component: Component
 }
 ​
 type Issue {
-  ID: ID!
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
-  Election: Election
-}
-​
-type Office {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
@@ -568,6 +638,14 @@ type District {
   DistrictType: DistrictType
 }
 ​
+type Office {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
+  Election: Election
+}
+​
 type PollItem {
   ID: ID!
   CreatedAt: Time!
@@ -582,13 +660,6 @@ type VolunteerOpportunityType {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-}
-​
-type CustomerCart {
-  ID: ID!
-  CustomerOrders: [CustomerOrder]
-  CreatedAt: Time!
-  UpdatedAt: Time!
 }
 ​
 type LiveEventType {
@@ -612,6 +683,13 @@ type ProductType {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
+}
+​
+type CustomerCart {
+  ID: ID!
+  CustomerOrders: [CustomerOrder]
+  CreatedAt: Time!
+  UpdatedAt: Time!
 }
 ​
 type Payment {
@@ -646,8 +724,8 @@ type BoycottMembership {
 type Election {
   ID: ID!
   Issues: [Issue]
-  Offices: [Office]
   Candidates: [Candidate]
+  Offices: [Office]
   ElectionMemberships: [ElectionMembership]
   CreatedAt: Time!
   UpdatedAt: Time!
@@ -662,7 +740,7 @@ type ElectionMembership {
   Election: Election
 }
 ​
-type PetitionMembership {
+type PollMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
@@ -670,7 +748,7 @@ type PetitionMembership {
   Petition: Petition
 }
 ​
-type PollMembership {
+type PetitionMembership {
   ID: ID!
   CreatedAt: Time!
   UpdatedAt: Time!
@@ -684,16 +762,6 @@ type VolunteerOpportunityMembership {
   UpdatedAt: Time!
   Cause: Cause
   VolunteerOpportunity: VolunteerOpportunity
-}
-​
-type Petition {
-  ID: ID!
-  PetitionMemberships: [PetitionMembership]
-  PollMemberships: [PollMembership]
-  PetitionSigners: [PetitionSigner]
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
 }
 ​
 type LiveEventMembership {
@@ -735,6 +803,16 @@ type DonationCampaignMembership {
   UpdatedAt: Time!
   Cause: Cause
   DonationCampaign: DonationCampaign
+}
+​
+type Petition {
+  ID: ID!
+  PollMemberships: [PollMembership]
+  PetitionMemberships: [PetitionMembership]
+  PetitionSigners: [PetitionSigner]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
 }
 ​
 type PetitionSigner {
@@ -871,6 +949,15 @@ type Activity {
   Cause: Cause
 }
 ​
+type Note {
+  ID: ID!
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Contact: Contact
+  Cause: Cause
+  Body: String
+}
+​
 type Account {
   ID: ID!
   OwnerMemberships: [OwnerMembership]
@@ -886,15 +973,6 @@ type OwnerMembership {
   UpdatedAt: Time!
   Cause: Cause
   Account: Account
-}
-​
-type Note {
-  ID: ID!
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Contact: Contact
-  Cause: Cause
-  Body: String
 }
 ​
 type Contact {
@@ -967,8 +1045,8 @@ type Cause {
   LandingPages: [LandingPage]
   BoycottMemberships: [BoycottMembership]
   ElectionMemberships: [ElectionMembership]
-  PetitionMemberships: [PetitionMembership]
   PollMemberships: [PollMembership]
+  PetitionMemberships: [PetitionMembership]
   VolunteerOpportunityMemberships: [VolunteerOpportunityMembership]
   LiveEventMemberships: [LiveEventMembership]
   ProductMemberships: [ProductMembership]
@@ -982,8 +1060,8 @@ type Cause {
   Volunteers: [Volunteer]
   Followers: [Follower]
   Activitys: [Activity]
-  OwnerMemberships: [OwnerMembership]
   Notes: [Note]
+  OwnerMemberships: [OwnerMembership]
   ContactMemberships: [ContactMembership]
   AgentMemberships: [AgentMembership]
   CreatedAt: Time!
@@ -995,31 +1073,6 @@ type Cause {
   Photo: Photo
 }
 ​
-type ComponentType {
-  ID: ID!
-  Components: [Component]
-  FieldTypes: [FieldType]
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
-}
-​
-type FieldType {
-  ID: ID!
-  Fields: [Field]
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
-  DataType: String!
-  PropName: String!
-  StringValueDefault: String
-  IntValueDefault: Int
-  FloatValueDefault: Float
-  BooleanValueDefault: Boolean
-  DateTimeValueDefault: Time
-  ComponentType: ComponentType
-}
-​
 
   type Query {
     
@@ -1027,50 +1080,58 @@ type FieldType {
     listACL(limit: Int): [ACL]
     getMailingAddress(ID: ID!): MailingAddress
     listMailingAddress(limit: Int): [MailingAddress]
+    getLayoutRow(ID: ID!): LayoutRow
+    listLayoutRow(limit: Int): [LayoutRow]
     getPhoneNumber(ID: ID!): PhoneNumber
     listPhoneNumber(limit: Int): [PhoneNumber]
     getEmailAddress(ID: ID!): EmailAddress
     listEmailAddress(limit: Int): [EmailAddress]
     getLayoutType(ID: ID!): LayoutType
     listLayoutType(limit: Int): [LayoutType]
-    getLayoutRow(ID: ID!): LayoutRow
-    listLayoutRow(limit: Int): [LayoutRow]
+    getComponentTypeFields(ID: ID!): ComponentTypeFields
+    listComponentTypeFields(limit: Int): [ComponentTypeFields]
+    getComponentType(ID: ID!): ComponentType
+    listComponentType(limit: Int): [ComponentType]
     getComponentImplementation(ID: ID!): ComponentImplementation
     listComponentImplementation(limit: Int): [ComponentImplementation]
     getLayoutColumn(ID: ID!): LayoutColumn
     listLayoutColumn(limit: Int): [LayoutColumn]
-    getComponent(ID: ID!): Component
-    listComponent(limit: Int): [Component]
-    getField(ID: ID!): Field
-    listField(limit: Int): [Field]
-    getLayout(ID: ID!): Layout
-    listLayout(limit: Int): [Layout]
+    getFieldType(ID: ID!): FieldType
+    listFieldType(limit: Int): [FieldType]
     getLandingPage(ID: ID!): LandingPage
     listLandingPage(limit: Int): [LandingPage]
+    getLayout(ID: ID!): Layout
+    listLayout(limit: Int): [Layout]
     getExperiment(ID: ID!): Experiment
     listExperiment(limit: Int): [Experiment]
+    getField(ID: ID!): Field
+    listField(limit: Int): [Field]
+    getComponent(ID: ID!): Component
+    listComponent(limit: Int): [Component]
+    getExperimentVariant(ID: ID!): ExperimentVariant
+    listExperimentVariant(limit: Int): [ExperimentVariant]
     getIssue(ID: ID!): Issue
     listIssue(limit: Int): [Issue]
-    getOffice(ID: ID!): Office
-    listOffice(limit: Int): [Office]
     getCandidate(ID: ID!): Candidate
     listCandidate(limit: Int): [Candidate]
     getDistrictType(ID: ID!): DistrictType
     listDistrictType(limit: Int): [DistrictType]
     getDistrict(ID: ID!): District
     listDistrict(limit: Int): [District]
+    getOffice(ID: ID!): Office
+    listOffice(limit: Int): [Office]
     getPollItem(ID: ID!): PollItem
     listPollItem(limit: Int): [PollItem]
     getVolunteerOpportunityType(ID: ID!): VolunteerOpportunityType
     listVolunteerOpportunityType(limit: Int): [VolunteerOpportunityType]
-    getCustomerCart(ID: ID!): CustomerCart
-    listCustomerCart(limit: Int): [CustomerCart]
     getLiveEventType(ID: ID!): LiveEventType
     listLiveEventType(limit: Int): [LiveEventType]
     getCompany(ID: ID!): Company
     listCompany(limit: Int): [Company]
     getProductType(ID: ID!): ProductType
     listProductType(limit: Int): [ProductType]
+    getCustomerCart(ID: ID!): CustomerCart
+    listCustomerCart(limit: Int): [CustomerCart]
     getPayment(ID: ID!): Payment
     listPayment(limit: Int): [Payment]
     getDelivery(ID: ID!): Delivery
@@ -1083,14 +1144,12 @@ type FieldType {
     listElection(limit: Int): [Election]
     getElectionMembership(ID: ID!): ElectionMembership
     listElectionMembership(limit: Int): [ElectionMembership]
-    getPetitionMembership(ID: ID!): PetitionMembership
-    listPetitionMembership(limit: Int): [PetitionMembership]
     getPollMembership(ID: ID!): PollMembership
     listPollMembership(limit: Int): [PollMembership]
+    getPetitionMembership(ID: ID!): PetitionMembership
+    listPetitionMembership(limit: Int): [PetitionMembership]
     getVolunteerOpportunityMembership(ID: ID!): VolunteerOpportunityMembership
     listVolunteerOpportunityMembership(limit: Int): [VolunteerOpportunityMembership]
-    getPetition(ID: ID!): Petition
-    listPetition(limit: Int): [Petition]
     getLiveEventMembership(ID: ID!): LiveEventMembership
     listLiveEventMembership(limit: Int): [LiveEventMembership]
     getProduct(ID: ID!): Product
@@ -1101,6 +1160,8 @@ type FieldType {
     listDonationCampaign(limit: Int): [DonationCampaign]
     getDonationCampaignMembership(ID: ID!): DonationCampaignMembership
     listDonationCampaignMembership(limit: Int): [DonationCampaignMembership]
+    getPetition(ID: ID!): Petition
+    listPetition(limit: Int): [Petition]
     getPetitionSigner(ID: ID!): PetitionSigner
     listPetitionSigner(limit: Int): [PetitionSigner]
     getPoll(ID: ID!): Poll
@@ -1131,12 +1192,12 @@ type FieldType {
     listActivityType(limit: Int): [ActivityType]
     getActivity(ID: ID!): Activity
     listActivity(limit: Int): [Activity]
+    getNote(ID: ID!): Note
+    listNote(limit: Int): [Note]
     getAccount(ID: ID!): Account
     listAccount(limit: Int): [Account]
     getOwnerMembership(ID: ID!): OwnerMembership
     listOwnerMembership(limit: Int): [OwnerMembership]
-    getNote(ID: ID!): Note
-    listNote(limit: Int): [Note]
     getContact(ID: ID!): Contact
     listContact(limit: Int): [Contact]
     getContactMembership(ID: ID!): ContactMembership
@@ -1151,10 +1212,6 @@ type FieldType {
     listPhoto(limit: Int): [Photo]
     getCause(ID: ID!): Cause
     listCause(limit: Int): [Cause]
-    getComponentType(ID: ID!): ComponentType
-    listComponentType(limit: Int): [ComponentType]
-    getFieldType(ID: ID!): FieldType
-    listFieldType(limit: Int): [FieldType]
   }
 
   type Mutation {
@@ -1165,6 +1222,9 @@ type FieldType {
     createMailingAddress(mailingAddress: MailingAddressInput, buildStatic: Boolean): MailingAddress
     updateMailingAddress(ID: ID!, mailingAddress: MailingAddressInput, buildStatic: Boolean): Int
     deleteMailingAddress(ID: ID!, buildStatic: Boolean): Int
+    createLayoutRow(layoutRow: LayoutRowInput, buildStatic: Boolean): LayoutRow
+    updateLayoutRow(ID: ID!, layoutRow: LayoutRowInput, buildStatic: Boolean): Int
+    deleteLayoutRow(ID: ID!, buildStatic: Boolean): Int
     createPhoneNumber(phoneNumber: PhoneNumberInput, buildStatic: Boolean): PhoneNumber
     updatePhoneNumber(ID: ID!, phoneNumber: PhoneNumberInput, buildStatic: Boolean): Int
     deletePhoneNumber(ID: ID!, buildStatic: Boolean): Int
@@ -1174,36 +1234,42 @@ type FieldType {
     createLayoutType(layoutType: LayoutTypeInput, buildStatic: Boolean): LayoutType
     updateLayoutType(ID: ID!, layoutType: LayoutTypeInput, buildStatic: Boolean): Int
     deleteLayoutType(ID: ID!, buildStatic: Boolean): Int
-    createLayoutRow(layoutRow: LayoutRowInput, buildStatic: Boolean): LayoutRow
-    updateLayoutRow(ID: ID!, layoutRow: LayoutRowInput, buildStatic: Boolean): Int
-    deleteLayoutRow(ID: ID!, buildStatic: Boolean): Int
+    createComponentTypeFields(componentTypeFields: ComponentTypeFieldsInput, buildStatic: Boolean): ComponentTypeFields
+    updateComponentTypeFields(ID: ID!, componentTypeFields: ComponentTypeFieldsInput, buildStatic: Boolean): Int
+    deleteComponentTypeFields(ID: ID!, buildStatic: Boolean): Int
+    createComponentType(componentType: ComponentTypeInput, buildStatic: Boolean): ComponentType
+    updateComponentType(ID: ID!, componentType: ComponentTypeInput, buildStatic: Boolean): Int
+    deleteComponentType(ID: ID!, buildStatic: Boolean): Int
     createComponentImplementation(componentImplementation: ComponentImplementationInput, buildStatic: Boolean): ComponentImplementation
     updateComponentImplementation(ID: ID!, componentImplementation: ComponentImplementationInput, buildStatic: Boolean): Int
     deleteComponentImplementation(ID: ID!, buildStatic: Boolean): Int
     createLayoutColumn(layoutColumn: LayoutColumnInput, buildStatic: Boolean): LayoutColumn
     updateLayoutColumn(ID: ID!, layoutColumn: LayoutColumnInput, buildStatic: Boolean): Int
     deleteLayoutColumn(ID: ID!, buildStatic: Boolean): Int
-    createComponent(component: ComponentInput, buildStatic: Boolean): Component
-    updateComponent(ID: ID!, component: ComponentInput, buildStatic: Boolean): Int
-    deleteComponent(ID: ID!, buildStatic: Boolean): Int
-    createField(field: FieldInput, buildStatic: Boolean): Field
-    updateField(ID: ID!, field: FieldInput, buildStatic: Boolean): Int
-    deleteField(ID: ID!, buildStatic: Boolean): Int
-    createLayout(layout: LayoutInput, buildStatic: Boolean): Layout
-    updateLayout(ID: ID!, layout: LayoutInput, buildStatic: Boolean): Int
-    deleteLayout(ID: ID!, buildStatic: Boolean): Int
+    createFieldType(fieldType: FieldTypeInput, buildStatic: Boolean): FieldType
+    updateFieldType(ID: ID!, fieldType: FieldTypeInput, buildStatic: Boolean): Int
+    deleteFieldType(ID: ID!, buildStatic: Boolean): Int
     createLandingPage(landingPage: LandingPageInput, buildStatic: Boolean): LandingPage
     updateLandingPage(ID: ID!, landingPage: LandingPageInput, buildStatic: Boolean): Int
     deleteLandingPage(ID: ID!, buildStatic: Boolean): Int
+    createLayout(layout: LayoutInput, buildStatic: Boolean): Layout
+    updateLayout(ID: ID!, layout: LayoutInput, buildStatic: Boolean): Int
+    deleteLayout(ID: ID!, buildStatic: Boolean): Int
     createExperiment(experiment: ExperimentInput, buildStatic: Boolean): Experiment
     updateExperiment(ID: ID!, experiment: ExperimentInput, buildStatic: Boolean): Int
     deleteExperiment(ID: ID!, buildStatic: Boolean): Int
+    createField(field: FieldInput, buildStatic: Boolean): Field
+    updateField(ID: ID!, field: FieldInput, buildStatic: Boolean): Int
+    deleteField(ID: ID!, buildStatic: Boolean): Int
+    createComponent(component: ComponentInput, buildStatic: Boolean): Component
+    updateComponent(ID: ID!, component: ComponentInput, buildStatic: Boolean): Int
+    deleteComponent(ID: ID!, buildStatic: Boolean): Int
+    createExperimentVariant(experimentVariant: ExperimentVariantInput, buildStatic: Boolean): ExperimentVariant
+    updateExperimentVariant(ID: ID!, experimentVariant: ExperimentVariantInput, buildStatic: Boolean): Int
+    deleteExperimentVariant(ID: ID!, buildStatic: Boolean): Int
     createIssue(issue: IssueInput, buildStatic: Boolean): Issue
     updateIssue(ID: ID!, issue: IssueInput, buildStatic: Boolean): Int
     deleteIssue(ID: ID!, buildStatic: Boolean): Int
-    createOffice(office: OfficeInput, buildStatic: Boolean): Office
-    updateOffice(ID: ID!, office: OfficeInput, buildStatic: Boolean): Int
-    deleteOffice(ID: ID!, buildStatic: Boolean): Int
     createCandidate(candidate: CandidateInput, buildStatic: Boolean): Candidate
     updateCandidate(ID: ID!, candidate: CandidateInput, buildStatic: Boolean): Int
     deleteCandidate(ID: ID!, buildStatic: Boolean): Int
@@ -1213,15 +1279,15 @@ type FieldType {
     createDistrict(district: DistrictInput, buildStatic: Boolean): District
     updateDistrict(ID: ID!, district: DistrictInput, buildStatic: Boolean): Int
     deleteDistrict(ID: ID!, buildStatic: Boolean): Int
+    createOffice(office: OfficeInput, buildStatic: Boolean): Office
+    updateOffice(ID: ID!, office: OfficeInput, buildStatic: Boolean): Int
+    deleteOffice(ID: ID!, buildStatic: Boolean): Int
     createPollItem(pollItem: PollItemInput, buildStatic: Boolean): PollItem
     updatePollItem(ID: ID!, pollItem: PollItemInput, buildStatic: Boolean): Int
     deletePollItem(ID: ID!, buildStatic: Boolean): Int
     createVolunteerOpportunityType(volunteerOpportunityType: VolunteerOpportunityTypeInput, buildStatic: Boolean): VolunteerOpportunityType
     updateVolunteerOpportunityType(ID: ID!, volunteerOpportunityType: VolunteerOpportunityTypeInput, buildStatic: Boolean): Int
     deleteVolunteerOpportunityType(ID: ID!, buildStatic: Boolean): Int
-    createCustomerCart(customerCart: CustomerCartInput, buildStatic: Boolean): CustomerCart
-    updateCustomerCart(ID: ID!, customerCart: CustomerCartInput, buildStatic: Boolean): Int
-    deleteCustomerCart(ID: ID!, buildStatic: Boolean): Int
     createLiveEventType(liveEventType: LiveEventTypeInput, buildStatic: Boolean): LiveEventType
     updateLiveEventType(ID: ID!, liveEventType: LiveEventTypeInput, buildStatic: Boolean): Int
     deleteLiveEventType(ID: ID!, buildStatic: Boolean): Int
@@ -1231,6 +1297,9 @@ type FieldType {
     createProductType(productType: ProductTypeInput, buildStatic: Boolean): ProductType
     updateProductType(ID: ID!, productType: ProductTypeInput, buildStatic: Boolean): Int
     deleteProductType(ID: ID!, buildStatic: Boolean): Int
+    createCustomerCart(customerCart: CustomerCartInput, buildStatic: Boolean): CustomerCart
+    updateCustomerCart(ID: ID!, customerCart: CustomerCartInput, buildStatic: Boolean): Int
+    deleteCustomerCart(ID: ID!, buildStatic: Boolean): Int
     createPayment(payment: PaymentInput, buildStatic: Boolean): Payment
     updatePayment(ID: ID!, payment: PaymentInput, buildStatic: Boolean): Int
     deletePayment(ID: ID!, buildStatic: Boolean): Int
@@ -1249,18 +1318,15 @@ type FieldType {
     createElectionMembership(electionMembership: ElectionMembershipInput, buildStatic: Boolean): ElectionMembership
     updateElectionMembership(ID: ID!, electionMembership: ElectionMembershipInput, buildStatic: Boolean): Int
     deleteElectionMembership(ID: ID!, buildStatic: Boolean): Int
-    createPetitionMembership(petitionMembership: PetitionMembershipInput, buildStatic: Boolean): PetitionMembership
-    updatePetitionMembership(ID: ID!, petitionMembership: PetitionMembershipInput, buildStatic: Boolean): Int
-    deletePetitionMembership(ID: ID!, buildStatic: Boolean): Int
     createPollMembership(pollMembership: PollMembershipInput, buildStatic: Boolean): PollMembership
     updatePollMembership(ID: ID!, pollMembership: PollMembershipInput, buildStatic: Boolean): Int
     deletePollMembership(ID: ID!, buildStatic: Boolean): Int
+    createPetitionMembership(petitionMembership: PetitionMembershipInput, buildStatic: Boolean): PetitionMembership
+    updatePetitionMembership(ID: ID!, petitionMembership: PetitionMembershipInput, buildStatic: Boolean): Int
+    deletePetitionMembership(ID: ID!, buildStatic: Boolean): Int
     createVolunteerOpportunityMembership(volunteerOpportunityMembership: VolunteerOpportunityMembershipInput, buildStatic: Boolean): VolunteerOpportunityMembership
     updateVolunteerOpportunityMembership(ID: ID!, volunteerOpportunityMembership: VolunteerOpportunityMembershipInput, buildStatic: Boolean): Int
     deleteVolunteerOpportunityMembership(ID: ID!, buildStatic: Boolean): Int
-    createPetition(petition: PetitionInput, buildStatic: Boolean): Petition
-    updatePetition(ID: ID!, petition: PetitionInput, buildStatic: Boolean): Int
-    deletePetition(ID: ID!, buildStatic: Boolean): Int
     createLiveEventMembership(liveEventMembership: LiveEventMembershipInput, buildStatic: Boolean): LiveEventMembership
     updateLiveEventMembership(ID: ID!, liveEventMembership: LiveEventMembershipInput, buildStatic: Boolean): Int
     deleteLiveEventMembership(ID: ID!, buildStatic: Boolean): Int
@@ -1276,6 +1342,9 @@ type FieldType {
     createDonationCampaignMembership(donationCampaignMembership: DonationCampaignMembershipInput, buildStatic: Boolean): DonationCampaignMembership
     updateDonationCampaignMembership(ID: ID!, donationCampaignMembership: DonationCampaignMembershipInput, buildStatic: Boolean): Int
     deleteDonationCampaignMembership(ID: ID!, buildStatic: Boolean): Int
+    createPetition(petition: PetitionInput, buildStatic: Boolean): Petition
+    updatePetition(ID: ID!, petition: PetitionInput, buildStatic: Boolean): Int
+    deletePetition(ID: ID!, buildStatic: Boolean): Int
     createPetitionSigner(petitionSigner: PetitionSignerInput, buildStatic: Boolean): PetitionSigner
     updatePetitionSigner(ID: ID!, petitionSigner: PetitionSignerInput, buildStatic: Boolean): Int
     deletePetitionSigner(ID: ID!, buildStatic: Boolean): Int
@@ -1321,15 +1390,15 @@ type FieldType {
     createActivity(activity: ActivityInput, buildStatic: Boolean): Activity
     updateActivity(ID: ID!, activity: ActivityInput, buildStatic: Boolean): Int
     deleteActivity(ID: ID!, buildStatic: Boolean): Int
+    createNote(note: NoteInput, buildStatic: Boolean): Note
+    updateNote(ID: ID!, note: NoteInput, buildStatic: Boolean): Int
+    deleteNote(ID: ID!, buildStatic: Boolean): Int
     createAccount(account: AccountInput, buildStatic: Boolean): Account
     updateAccount(ID: ID!, account: AccountInput, buildStatic: Boolean): Int
     deleteAccount(ID: ID!, buildStatic: Boolean): Int
     createOwnerMembership(ownerMembership: OwnerMembershipInput, buildStatic: Boolean): OwnerMembership
     updateOwnerMembership(ID: ID!, ownerMembership: OwnerMembershipInput, buildStatic: Boolean): Int
     deleteOwnerMembership(ID: ID!, buildStatic: Boolean): Int
-    createNote(note: NoteInput, buildStatic: Boolean): Note
-    updateNote(ID: ID!, note: NoteInput, buildStatic: Boolean): Int
-    deleteNote(ID: ID!, buildStatic: Boolean): Int
     createContact(contact: ContactInput, buildStatic: Boolean): Contact
     updateContact(ID: ID!, contact: ContactInput, buildStatic: Boolean): Int
     deleteContact(ID: ID!, buildStatic: Boolean): Int
@@ -1351,11 +1420,5 @@ type FieldType {
     createCause(cause: CauseInput, buildStatic: Boolean): Cause
     updateCause(ID: ID!, cause: CauseInput, buildStatic: Boolean): Int
     deleteCause(ID: ID!, buildStatic: Boolean): Int
-    createComponentType(componentType: ComponentTypeInput, buildStatic: Boolean): ComponentType
-    updateComponentType(ID: ID!, componentType: ComponentTypeInput, buildStatic: Boolean): Int
-    deleteComponentType(ID: ID!, buildStatic: Boolean): Int
-    createFieldType(fieldType: FieldTypeInput, buildStatic: Boolean): FieldType
-    updateFieldType(ID: ID!, fieldType: FieldTypeInput, buildStatic: Boolean): Int
-    deleteFieldType(ID: ID!, buildStatic: Boolean): Int
   }
   `.replace(/[\u200B-\u200D\uFEFF]/g, '');

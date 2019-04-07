@@ -80,11 +80,19 @@ function ListCandidate({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/candidate/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/candidate/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Election)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/election/${parseObject(item.Election)}`}
+                  >
+                    {parseObject(item.Election)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

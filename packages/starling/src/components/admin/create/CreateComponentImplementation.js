@@ -66,6 +66,15 @@ const CreateComponentImplementation = ({ id }) => {
                     onBlur={handleBlur}
                   />
                 </Widget>
+                <Widget>
+                  <Label>ComponentType</Label>
+                  <Input
+                    value={values.ComponentType}
+                    name="ComponentType"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
 
                 <Button
                   label="Save"

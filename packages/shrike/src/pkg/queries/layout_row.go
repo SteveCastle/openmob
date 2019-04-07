@@ -11,7 +11,7 @@ import (
 // and returns an SQL string
 func BuildLayoutRowListQuery(filters []*v1.LayoutRowFilterRule, orderings []*v1.LayoutRowOrdering, limit int64) string {
 	// SQL to get all LayoutRows and all columns.
-	baseSQL := "SELECT id, created_at, updated_at, layout, container FROM layout_row"
+	baseSQL := "SELECT id, created_at, updated_at, layout, container, weight FROM layout_row"
 	// Generate WHERE clause from filters passed in request.
 	for i, r := range filters {
 		// Insert where clause before the first filter.

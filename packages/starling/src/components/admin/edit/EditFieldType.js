@@ -35,9 +35,7 @@ const GET_FIELDTYPE = gql`
         seconds
         nanos
       }
-      ComponentType {
-        ID
-      }
+      DataPath
     }
   }
 `
@@ -80,7 +78,7 @@ function EditFieldType({ id }) {
         FloatValueDefault: parseObject(item.FloatValueDefault),
         BooleanValueDefault: parseObject(item.BooleanValueDefault),
         DateTimeValueDefault: parseObject(item.DateTimeValueDefault),
-        ComponentType: parseObject(item.ComponentType),
+        DataPath: parseObject(item.DataPath),
       }}
       onSubmit={(values, { setSubmitting }) =>
         updateFieldType({
@@ -206,10 +204,10 @@ function EditFieldType({ id }) {
                   />
                 </Widget>
                 <Widget>
-                  <Label>ComponentType</Label>
+                  <Label>DataPath</Label>
                   <Input
-                    value={values.ComponentType}
-                    name="ComponentType"
+                    value={values.DataPath}
+                    name="DataPath"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

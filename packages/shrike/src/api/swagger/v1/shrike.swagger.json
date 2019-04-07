@@ -3155,6 +3155,230 @@
         ]
       }
     },
+    "/v1/componenttypefields": {
+      "get": {
+        "summary": "List ComponentTypeFields, takes filters, limit, and cursor param.",
+        "operationId": "ListComponentTypeFields",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListComponentTypeFieldsResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "post": {
+        "summary": "CreateComponentTypeFields takes a ComponentTypeFields object to create.",
+        "operationId": "CreateComponentTypeFields",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateComponentTypeFieldsResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateComponentTypeFieldsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/componenttypefields/{ID}": {
+      "get": {
+        "summary": "GetComponentTypeFields takes an ID and returns a single ComponentTypeFields.",
+        "operationId": "GetComponentTypeFields",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetComponentTypeFieldsResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete ComponentTypeFields",
+        "operationId": "DeleteComponentTypeFields",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteComponentTypeFieldsResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/componenttypefields/{item.ID}": {
+      "put": {
+        "summary": "Update ComponentTypeFields",
+        "operationId": "UpdateComponentTypeFields",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateComponentTypeFieldsResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateComponentTypeFieldsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "patch": {
+        "summary": "Update ComponentTypeFields",
+        "operationId": "UpdateComponentTypeFields2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateComponentTypeFieldsResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateComponentTypeFieldsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
     "/v1/contact": {
       "get": {
         "summary": "List Contact, takes filters, limit, and cursor param.",
@@ -6507,6 +6731,230 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/v1UpdateExperimentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/experimentvariant": {
+      "get": {
+        "summary": "List ExperimentVariant, takes filters, limit, and cursor param.",
+        "operationId": "ListExperimentVariant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListExperimentVariantResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "post": {
+        "summary": "CreateExperimentVariant takes a ExperimentVariant object to create.",
+        "operationId": "CreateExperimentVariant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateExperimentVariantResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateExperimentVariantRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/experimentvariant/{ID}": {
+      "get": {
+        "summary": "GetExperimentVariant takes an ID and returns a single ExperimentVariant.",
+        "operationId": "GetExperimentVariant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetExperimentVariantResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete ExperimentVariant",
+        "operationId": "DeleteExperimentVariant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteExperimentVariantResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "api",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "buildStatic",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      }
+    },
+    "/v1/experimentvariant/{item.ID}": {
+      "put": {
+        "summary": "Update ExperimentVariant",
+        "operationId": "UpdateExperimentVariant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateExperimentVariantResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateExperimentVariantRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ShrikeService"
+        ]
+      },
+      "patch": {
+        "summary": "Update ExperimentVariant",
+        "operationId": "UpdateExperimentVariant2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateExperimentVariantResponse"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "format": "string"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item.ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateExperimentVariantRequest"
             }
           }
         ],
@@ -15656,6 +16104,10 @@
         },
         "LayoutColumn": {
           "type": "string"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -15687,6 +16139,10 @@
         },
         "LayoutColumn": {
           "type": "string"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -15708,6 +16164,9 @@
           "type": "string"
         },
         "Path": {
+          "type": "string"
+        },
+        "ComponentType": {
           "type": "string"
         }
       }
@@ -15737,6 +16196,9 @@
         },
         "Path": {
           "type": "string"
+        },
+        "ComponentType": {
+          "type": "string"
         }
       }
     },
@@ -15761,6 +16223,9 @@
           "type": "string"
         },
         "Path": {
+          "type": "string"
+        },
+        "ComponentType": {
           "type": "string"
         }
       }
@@ -15790,6 +16255,10 @@
         },
         "LayoutColumn": {
           "type": "string"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -15809,6 +16278,105 @@
         },
         "Title": {
           "type": "string"
+        }
+      }
+    },
+    "v1ComponentTypeFields": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ComponentType": {
+          "type": "string"
+        },
+        "FieldType": {
+          "type": "string"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Required": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1ComponentTypeFieldsFilterRule": {
+      "type": "object",
+      "properties": {
+        "Rule": {
+          "$ref": "#/definitions/v1Rule"
+        },
+        "LogicalOperator": {
+          "$ref": "#/definitions/v1LogicalOperator"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ComponentType": {
+          "type": "string"
+        },
+        "FieldType": {
+          "type": "string"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Required": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1ComponentTypeFieldsOrdering": {
+      "type": "object",
+      "properties": {
+        "Direction": {
+          "$ref": "#/definitions/v1Direction"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ComponentType": {
+          "type": "string"
+        },
+        "FieldType": {
+          "type": "string"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Required": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -16412,6 +16980,10 @@
         },
         "LayoutColumn": {
           "type": "string"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -16422,6 +16994,9 @@
           "type": "string"
         },
         "Path": {
+          "type": "string"
+        },
+        "ComponentType": {
           "type": "string"
         }
       }
@@ -16482,6 +17057,51 @@
       "type": "object",
       "properties": {
         "Title": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateComponentTypeFields": {
+      "type": "object",
+      "properties": {
+        "ComponentType": {
+          "type": "string"
+        },
+        "FieldType": {
+          "type": "string"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Required": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1CreateComponentTypeFieldsRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1CreateComponentTypeFields"
+        },
+        "buildStatic": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1CreateComponentTypeFieldsResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "ID": {
           "type": "string"
         }
       }
@@ -17023,9 +17643,6 @@
       "properties": {
         "Title": {
           "type": "string"
-        },
-        "LandingPage": {
-          "type": "string"
         }
       }
     },
@@ -17045,6 +17662,55 @@
       }
     },
     "v1CreateExperimentResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateExperimentVariant": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "VariantType": {
+          "type": "string"
+        },
+        "Experiment": {
+          "type": "string"
+        },
+        "LandingPage": {
+          "type": "string"
+        },
+        "Field": {
+          "type": "string"
+        },
+        "Component": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateExperimentVariantRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1CreateExperimentVariant"
+        },
+        "buildStatic": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1CreateExperimentVariantResponse": {
       "type": "object",
       "properties": {
         "api": {
@@ -17079,6 +17745,9 @@
         "DateTimeValue": {
           "type": "string",
           "format": "date-time"
+        },
+        "DataPath": {
+          "type": "string"
         },
         "Component": {
           "type": "string"
@@ -17142,7 +17811,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "ComponentType": {
+        "DataPath": {
           "type": "string"
         }
       }
@@ -17341,6 +18010,10 @@
         "Width": {
           "type": "string",
           "format": "int64"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -17405,6 +18078,10 @@
         "Container": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -18748,6 +19425,18 @@
         }
       }
     },
+    "v1DeleteComponentTypeFieldsResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1DeleteComponentTypeResponse": {
       "type": "object",
       "properties": {
@@ -18929,6 +19618,18 @@
       }
     },
     "v1DeleteExperimentResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1DeleteExperimentVariantResponse": {
       "type": "object",
       "properties": {
         "api": {
@@ -20135,9 +20836,6 @@
         },
         "Title": {
           "type": "string"
-        },
-        "LandingPage": {
-          "type": "string"
         }
       }
     },
@@ -20163,9 +20861,6 @@
         },
         "Title": {
           "type": "string"
-        },
-        "LandingPage": {
-          "type": "string"
         }
       }
     },
@@ -20188,8 +20883,116 @@
         },
         "Title": {
           "type": "string"
+        }
+      }
+    },
+    "v1ExperimentVariant": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "VariantType": {
+          "type": "string"
+        },
+        "Experiment": {
+          "type": "string"
         },
         "LandingPage": {
+          "type": "string"
+        },
+        "Field": {
+          "type": "string"
+        },
+        "Component": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ExperimentVariantFilterRule": {
+      "type": "object",
+      "properties": {
+        "Rule": {
+          "$ref": "#/definitions/v1Rule"
+        },
+        "LogicalOperator": {
+          "$ref": "#/definitions/v1LogicalOperator"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "VariantType": {
+          "type": "string"
+        },
+        "Experiment": {
+          "type": "string"
+        },
+        "LandingPage": {
+          "type": "string"
+        },
+        "Field": {
+          "type": "string"
+        },
+        "Component": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ExperimentVariantOrdering": {
+      "type": "object",
+      "properties": {
+        "Direction": {
+          "$ref": "#/definitions/v1Direction"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "VariantType": {
+          "type": "string"
+        },
+        "Experiment": {
+          "type": "string"
+        },
+        "LandingPage": {
+          "type": "string"
+        },
+        "Field": {
+          "type": "string"
+        },
+        "Component": {
           "type": "string"
         }
       }
@@ -20229,6 +21032,9 @@
         "DateTimeValue": {
           "type": "string",
           "format": "date-time"
+        },
+        "DataPath": {
+          "type": "string"
         },
         "Component": {
           "type": "string"
@@ -20277,6 +21083,9 @@
           "type": "string",
           "format": "date-time"
         },
+        "DataPath": {
+          "type": "string"
+        },
         "Component": {
           "type": "string"
         }
@@ -20320,6 +21129,9 @@
         "DateTimeValue": {
           "type": "string",
           "format": "date-time"
+        },
+        "DataPath": {
+          "type": "string"
         },
         "Component": {
           "type": "string"
@@ -20368,7 +21180,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "ComponentType": {
+        "DataPath": {
           "type": "string"
         }
       }
@@ -20421,7 +21233,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "ComponentType": {
+        "DataPath": {
           "type": "string"
         }
       }
@@ -20471,7 +21283,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "ComponentType": {
+        "DataPath": {
           "type": "string"
         }
       }
@@ -20694,6 +21506,17 @@
         }
       }
     },
+    "v1GetComponentTypeFieldsResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1ComponentTypeFields"
+        }
+      }
+    },
     "v1GetComponentTypeResponse": {
       "type": "object",
       "properties": {
@@ -20867,6 +21690,17 @@
         },
         "item": {
           "$ref": "#/definitions/v1Experiment"
+        }
+      }
+    },
+    "v1GetExperimentVariantResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1ExperimentVariant"
         }
       }
     },
@@ -21550,6 +22384,10 @@
         "Width": {
           "type": "string",
           "format": "int64"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -21579,6 +22417,10 @@
         "Width": {
           "type": "string",
           "format": "int64"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -21603,6 +22445,10 @@
           "type": "string"
         },
         "Width": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Weight": {
           "type": "string",
           "format": "int64"
         }
@@ -21675,6 +22521,10 @@
         "Container": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -21704,6 +22554,10 @@
         "Container": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -21730,6 +22584,10 @@
         "Container": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "Weight": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
@@ -21981,6 +22839,20 @@
         }
       }
     },
+    "v1ListComponentTypeFieldsResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ComponentTypeFields"
+          }
+        }
+      }
+    },
     "v1ListComponentTypeResponse": {
       "type": "object",
       "properties": {
@@ -22201,6 +23073,20 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Experiment"
+          }
+        }
+      }
+    },
+    "v1ListExperimentVariantResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ExperimentVariant"
           }
         }
       }
@@ -24751,6 +25637,33 @@
         }
       }
     },
+    "v1UpdateComponentTypeFieldsRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1ComponentTypeFields"
+        },
+        "buildStatic": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1UpdateComponentTypeFieldsResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1UpdateComponentTypeRequest": {
       "type": "object",
       "properties": {
@@ -25172,6 +26085,33 @@
       }
     },
     "v1UpdateExperimentResponse": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1UpdateExperimentVariantRequest": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1ExperimentVariant"
+        },
+        "buildStatic": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1UpdateExperimentVariantResponse": {
       "type": "object",
       "properties": {
         "api": {

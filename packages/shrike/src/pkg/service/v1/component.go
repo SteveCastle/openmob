@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateComponent(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id string
 	// insert Component entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component (component_type, component_implementation, layout_column) VALUES($1, $2, $3)  RETURNING id;",
-		req.Item.ComponentType, req.Item.ComponentImplementation, req.Item.LayoutColumn).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO component (component_type, component_implementation, layout_column, weight) VALUES($1, $2, $3, $4)  RETURNING id;",
+		req.Item.ComponentType, req.Item.ComponentImplementation, req.Item.LayoutColumn, req.Item.Weight).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into Component-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetComponent(ctx context.Context, req *v1.GetCompo
 	defer c.Close()
 
 	// query Component by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, component_type, component_implementation, layout_column FROM component WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, component_type, component_implementation, layout_column, weight FROM component WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from Component-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetComponent(ctx context.Context, req *v1.GetCompo
 	var createdAt pq.NullTime
 	var updatedAt pq.NullTime
 
-	if err := rows.Scan(&component.ID, &createdAt, &updatedAt, &component.ComponentType, &component.ComponentImplementation, &component.LayoutColumn); err != nil {
+	if err := rows.Scan(&component.ID, &createdAt, &updatedAt, &component.ComponentType, &component.ComponentImplementation, &component.LayoutColumn, &component.Weight); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Component row-> "+err.Error())
 	}
 
@@ -138,7 +138,7 @@ func (s *shrikeServiceServer) ListComponent(ctx context.Context, req *v1.ListCom
 
 	for rows.Next() {
 		component := new(v1.Component)
-		if err := rows.Scan(&component.ID, &createdAt, &updatedAt, &component.ComponentType, &component.ComponentImplementation, &component.LayoutColumn); err != nil {
+		if err := rows.Scan(&component.ID, &createdAt, &updatedAt, &component.ComponentType, &component.ComponentImplementation, &component.LayoutColumn, &component.Weight); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Component row-> "+err.Error())
 		}
 		// Convert pq.NullTime from database into proto timestamp.
@@ -183,8 +183,8 @@ func (s *shrikeServiceServer) UpdateComponent(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update component
-	res, err := c.ExecContext(ctx, "UPDATE component SET component_type=$2, component_implementation=$3, layout_column=$4 WHERE id=$1",
-		req.Item.ID, req.Item.ComponentType, req.Item.ComponentImplementation, req.Item.LayoutColumn)
+	res, err := c.ExecContext(ctx, "UPDATE component SET component_type=$2, component_implementation=$3, layout_column=$4, weight=$5 WHERE id=$1",
+		req.Item.ID, req.Item.ComponentType, req.Item.ComponentImplementation, req.Item.LayoutColumn, req.Item.Weight)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update Component-> "+err.Error())
 	}

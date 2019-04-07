@@ -26,8 +26,8 @@ func (s *shrikeServiceServer) CreateLayoutRow(ctx context.Context, req *v1.Creat
 	defer c.Close()
 	var id string
 	// insert LayoutRow entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO layout_row (layout, container) VALUES($1, $2)  RETURNING id;",
-		req.Item.Layout, req.Item.Container).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO layout_row (layout, container, weight) VALUES($1, $2, $3)  RETURNING id;",
+		req.Item.Layout, req.Item.Container, req.Item.Weight).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into LayoutRow-> "+err.Error())
 	}
@@ -57,7 +57,7 @@ func (s *shrikeServiceServer) GetLayoutRow(ctx context.Context, req *v1.GetLayou
 	defer c.Close()
 
 	// query LayoutRow by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout, container FROM layout_row WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, layout, container, weight FROM layout_row WHERE id=$1",
 		req.ID)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from LayoutRow-> "+err.Error())
@@ -77,7 +77,7 @@ func (s *shrikeServiceServer) GetLayoutRow(ctx context.Context, req *v1.GetLayou
 	var createdAt pq.NullTime
 	var updatedAt pq.NullTime
 
-	if err := rows.Scan(&layoutrow.ID, &createdAt, &updatedAt, &layoutrow.Layout, &layoutrow.Container); err != nil {
+	if err := rows.Scan(&layoutrow.ID, &createdAt, &updatedAt, &layoutrow.Layout, &layoutrow.Container, &layoutrow.Weight); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutRow row-> "+err.Error())
 	}
 
@@ -138,7 +138,7 @@ func (s *shrikeServiceServer) ListLayoutRow(ctx context.Context, req *v1.ListLay
 
 	for rows.Next() {
 		layoutrow := new(v1.LayoutRow)
-		if err := rows.Scan(&layoutrow.ID, &createdAt, &updatedAt, &layoutrow.Layout, &layoutrow.Container); err != nil {
+		if err := rows.Scan(&layoutrow.ID, &createdAt, &updatedAt, &layoutrow.Layout, &layoutrow.Container, &layoutrow.Weight); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LayoutRow row-> "+err.Error())
 		}
 		// Convert pq.NullTime from database into proto timestamp.
@@ -183,8 +183,8 @@ func (s *shrikeServiceServer) UpdateLayoutRow(ctx context.Context, req *v1.Updat
 	defer c.Close()
 
 	// update layout_row
-	res, err := c.ExecContext(ctx, "UPDATE layout_row SET layout=$2, container=$3 WHERE id=$1",
-		req.Item.ID, req.Item.Layout, req.Item.Container)
+	res, err := c.ExecContext(ctx, "UPDATE layout_row SET layout=$2, container=$3, weight=$4 WHERE id=$1",
+		req.Item.ID, req.Item.Layout, req.Item.Container, req.Item.Weight)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update LayoutRow-> "+err.Error())
 	}

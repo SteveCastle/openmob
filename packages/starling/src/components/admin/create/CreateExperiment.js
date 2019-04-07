@@ -50,15 +50,6 @@ const CreateExperiment = ({ id }) => {
                     onBlur={handleBlur}
                   />
                 </Widget>
-                <Widget>
-                  <Label>LandingPage</Label>
-                  <Input
-                    value={values.LandingPage}
-                    name="LandingPage"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </Widget>
 
                 <Button
                   label="Save"

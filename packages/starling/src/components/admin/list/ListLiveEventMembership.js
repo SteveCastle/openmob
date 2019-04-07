@@ -84,14 +84,28 @@ function ListLiveEventMembership({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/live-event-membership/${item.ID}`}>
-                    {item.ID}
+                  <Link
+                    to={`/app/admin/live-event-membership/${parseObject(
+                      item.ID
+                    )}`}
+                  >
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Cause)}</TableCell>
-                <TableCell>{parseObject(item.LiveEvent)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${parseObject(item.Cause)}`}>
+                    {parseObject(item.Cause)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/live-event/${parseObject(item.LiveEvent)}`}
+                  >
+                    {parseObject(item.LiveEvent)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

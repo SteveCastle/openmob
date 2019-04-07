@@ -114,10 +114,10 @@ const CreateFieldType = ({ id }) => {
                   />
                 </Widget>
                 <Widget>
-                  <Label>ComponentType</Label>
+                  <Label>DataPath</Label>
                   <Input
-                    value={values.ComponentType}
-                    name="ComponentType"
+                    value={values.DataPath}
+                    name="DataPath"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

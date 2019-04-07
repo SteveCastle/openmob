@@ -88,15 +88,31 @@ function ListEventAttendee({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/event-attendee/${item.ID}`}>
-                    {item.ID}
+                  <Link
+                    to={`/app/admin/event-attendee/${parseObject(item.ID)}`}
+                  >
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.LiveEvent)}</TableCell>
-                <TableCell>{parseObject(item.Contact)}</TableCell>
-                <TableCell>{parseObject(item.Cause)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/live-event/${parseObject(item.LiveEvent)}`}
+                  >
+                    {parseObject(item.LiveEvent)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/contact/${parseObject(item.Contact)}`}>
+                    {parseObject(item.Contact)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/cause/${parseObject(item.Cause)}`}>
+                    {parseObject(item.Cause)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

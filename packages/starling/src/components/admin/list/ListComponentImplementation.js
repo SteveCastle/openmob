@@ -25,6 +25,9 @@ const LIST_COMPONENTIMPLEMENTATION = gql`
       }
       Title
       Path
+      ComponentType {
+        ID
+      }
     }
   }
 `
@@ -74,20 +77,34 @@ function ListComponentImplementation({ navigate = () => {} }) {
               <TableHeaderCell>UpdatedAt</TableHeaderCell>
               <TableHeaderCell>Title</TableHeaderCell>
               <TableHeaderCell>Path</TableHeaderCell>
+              <TableHeaderCell>ComponentType</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <tbody>
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/component-implementation/${item.ID}`}>
-                    {item.ID}
+                  <Link
+                    to={`/app/admin/component-implementation/${parseObject(
+                      item.ID
+                    )}`}
+                  >
+                    {parseObject(item.ID)}
                   </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
                 <TableCell>{parseObject(item.Title)}</TableCell>
                 <TableCell>{parseObject(item.Path)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/component-type/${parseObject(
+                      item.ComponentType
+                    )}`}
+                  >
+                    {parseObject(item.ComponentType)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

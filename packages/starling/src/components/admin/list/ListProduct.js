@@ -82,12 +82,22 @@ function ListProduct({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/product/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/product/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
                 <TableCell>{parseObject(item.Title)}</TableCell>
-                <TableCell>{parseObject(item.ProductType)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/product-type/${parseObject(
+                      item.ProductType
+                    )}`}
+                  >
+                    {parseObject(item.ProductType)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

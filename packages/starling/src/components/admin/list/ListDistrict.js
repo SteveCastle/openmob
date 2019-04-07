@@ -84,13 +84,23 @@ function ListDistrict({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/district/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/district/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
                 <TableCell>{parseObject(item.Geom)}</TableCell>
                 <TableCell>{parseObject(item.Title)}</TableCell>
-                <TableCell>{parseObject(item.DistrictType)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/district-type/${parseObject(
+                      item.DistrictType
+                    )}`}
+                  >
+                    {parseObject(item.DistrictType)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

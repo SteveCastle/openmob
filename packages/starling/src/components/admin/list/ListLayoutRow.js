@@ -27,6 +27,7 @@ const LIST_LAYOUTROW = gql`
         ID
       }
       Container
+      Weight
     }
   }
 `
@@ -76,18 +77,26 @@ function ListLayoutRow({ navigate = () => {} }) {
               <TableHeaderCell>UpdatedAt</TableHeaderCell>
               <TableHeaderCell>Layout</TableHeaderCell>
               <TableHeaderCell>Container</TableHeaderCell>
+              <TableHeaderCell>Weight</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <tbody>
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/layout-row/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/layout-row/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Layout)}</TableCell>
+                <TableCell>
+                  <Link to={`/app/admin/layout/${parseObject(item.Layout)}`}>
+                    {parseObject(item.Layout)}
+                  </Link>
+                </TableCell>
                 <TableCell>{parseObject(item.Container)}</TableCell>
+                <TableCell>{parseObject(item.Weight)}</TableCell>
               </TableRow>
             ))}
           </tbody>

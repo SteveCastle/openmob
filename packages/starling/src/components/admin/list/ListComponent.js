@@ -32,6 +32,7 @@ const LIST_COMPONENT = gql`
       LayoutColumn {
         ID
       }
+      Weight
     }
   }
 `
@@ -82,21 +83,47 @@ function ListComponent({ navigate = () => {} }) {
               <TableHeaderCell>ComponentType</TableHeaderCell>
               <TableHeaderCell>ComponentImplementation</TableHeaderCell>
               <TableHeaderCell>LayoutColumn</TableHeaderCell>
+              <TableHeaderCell>Weight</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <tbody>
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/component/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/component/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.ComponentType)}</TableCell>
                 <TableCell>
-                  {parseObject(item.ComponentImplementation)}
+                  <Link
+                    to={`/app/admin/component-type/${parseObject(
+                      item.ComponentType
+                    )}`}
+                  >
+                    {parseObject(item.ComponentType)}
+                  </Link>
                 </TableCell>
-                <TableCell>{parseObject(item.LayoutColumn)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/component-implementation/${parseObject(
+                      item.ComponentImplementation
+                    )}`}
+                  >
+                    {parseObject(item.ComponentImplementation)}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/layout-column/${parseObject(
+                      item.LayoutColumn
+                    )}`}
+                  >
+                    {parseObject(item.LayoutColumn)}
+                  </Link>
+                </TableCell>
+                <TableCell>{parseObject(item.Weight)}</TableCell>
               </TableRow>
             ))}
           </tbody>

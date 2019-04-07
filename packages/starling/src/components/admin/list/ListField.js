@@ -33,6 +33,7 @@ const LIST_FIELD = gql`
       DateTimeValue {
         seconds
       }
+      DataPath
       Component {
         ID
       }
@@ -89,6 +90,7 @@ function ListField({ navigate = () => {} }) {
               <TableHeaderCell>FloatValue</TableHeaderCell>
               <TableHeaderCell>BooleanValue</TableHeaderCell>
               <TableHeaderCell>DateTimeValue</TableHeaderCell>
+              <TableHeaderCell>DataPath</TableHeaderCell>
               <TableHeaderCell>Component</TableHeaderCell>
             </TableRow>
           </TableHeader>
@@ -96,17 +98,32 @@ function ListField({ navigate = () => {} }) {
             {(items || []).map(item => (
               <TableRow key={item.ID}>
                 <TableCell>
-                  <Link to={`/app/admin/field/${item.ID}`}>{item.ID}</Link>
+                  <Link to={`/app/admin/field/${parseObject(item.ID)}`}>
+                    {parseObject(item.ID)}
+                  </Link>
                 </TableCell>
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.FieldType)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/field-type/${parseObject(item.FieldType)}`}
+                  >
+                    {parseObject(item.FieldType)}
+                  </Link>
+                </TableCell>
                 <TableCell>{parseObject(item.StringValue)}</TableCell>
                 <TableCell>{parseObject(item.IntValue)}</TableCell>
                 <TableCell>{parseObject(item.FloatValue)}</TableCell>
                 <TableCell>{parseObject(item.BooleanValue)}</TableCell>
                 <TableCell>{parseObject(item.DateTimeValue)}</TableCell>
-                <TableCell>{parseObject(item.Component)}</TableCell>
+                <TableCell>{parseObject(item.DataPath)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/component/${parseObject(item.Component)}`}
+                  >
+                    {parseObject(item.Component)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>

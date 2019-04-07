@@ -11,7 +11,7 @@ import (
 // and returns an SQL string
 func BuildComponentImplementationListQuery(filters []*v1.ComponentImplementationFilterRule, orderings []*v1.ComponentImplementationOrdering, limit int64) string {
 	// SQL to get all ComponentImplementations and all columns.
-	baseSQL := "SELECT id, created_at, updated_at, title, path FROM component_implementation"
+	baseSQL := "SELECT id, created_at, updated_at, title, path, component_type FROM component_implementation"
 	// Generate WHERE clause from filters passed in request.
 	for i, r := range filters {
 		// Insert where clause before the first filter.

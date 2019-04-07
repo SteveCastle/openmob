@@ -36,21 +36,83 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	// Create a Layout Type
-	layoutTypeReq := v1.CreateLayoutTypeRequest{
+	// Data
+	layoutTypes := []v1.CreateLayoutType{
+		v1.CreateLayoutType{Title: "HomePage"},
+	}
+
+	componentImplementations := []v1.CreateComponentImplementation{
+		v1.CreateComponentImplementation{Title: "HomePage", Path: "/heroes/SimpleHero"},
+	}
+
+	componentTypes := []v1.CreateComponentType{
+		v1.CreateComponentType{Title: "Simple Header"},
+	}
+
+	// Create Layout Types
+	var layoutTypeID string
+	for _, item := range layoutTypes {
+		layoutTypeReq := v1.CreateLayoutTypeRequest{
+			Api:  apiVersion,
+			Item: &item,
+		}
+		layoutTypeRes, err := c.CreateLayoutType(ctx, &layoutTypeReq)
+		if err != nil {
+			log.Fatalf("Create failed: %v", err)
+		}
+		log.Printf("Create layoutType Result: <%+v>\n\n", layoutTypeRes)
+
+		layoutTypeID = layoutTypeRes.ID
+	}
+	// Create a ComponentType
+	var componentTypeID string
+	for _, item := range componentTypes {
+		componentTypeReq := v1.CreateComponentTypeRequest{
+			Api:  apiVersion,
+			Item: &item,
+		}
+		componentTypeRes, err := c.CreateComponentType(ctx, &componentTypeReq)
+		if err != nil {
+			log.Fatalf("Create failed: %v", err)
+		}
+		log.Printf("Create componentType Result: <%+v>\n\n", componentTypeRes)
+
+		componentTypeID = componentTypeRes.ID
+	}
+	// Create ComponentImplementations
+	var componentImplementationID string
+	for _, item := range componentImplementations {
+		item.ComponentType = componentTypeID
+		componentImplementationReq := v1.CreateComponentImplementationRequest{
+			Api:  apiVersion,
+			Item: &item,
+		}
+		componentImplementationRes, err := c.CreateComponentImplementation(ctx, &componentImplementationReq)
+		if err != nil {
+			log.Fatalf("Create failed: %v", err)
+		}
+		log.Printf("Create componentImplementation Result: <%+v>\n\n", componentImplementationRes)
+
+		componentImplementationID = componentImplementationRes.ID
+	}
+
+	// Create a FieldType
+	fieldTypeReq := v1.CreateFieldTypeRequest{
 		Api: apiVersion,
-		Item: &v1.CreateLayoutType{
-			Title: "Homepage",
+		Item: &v1.CreateFieldType{
+			Title:    "Title",
+			DataType: "string",
+			PropName: "title",
 		},
 	}
-	layoutTypeRes, err := c.CreateLayoutType(ctx, &layoutTypeReq)
+	fieldTypeRes, err := c.CreateFieldType(ctx, &fieldTypeReq)
 	if err != nil {
 		log.Fatalf("Create failed: %v", err)
 	}
-	log.Printf("Create layoutType Result: <%+v>\n\n", layoutTypeRes)
+	log.Printf("Create fieldType Result: <%+v>\n\n", fieldTypeRes)
+	fieldTypeID := fieldTypeRes.ID
 
-	layoutTypeID := layoutTypeRes.ID
-
+	// Cause specific data.
 	// Create a Layout
 	layoutReq := v1.CreateLayoutRequest{
 		Api: apiVersion,
@@ -98,37 +160,6 @@ func main() {
 
 	layoutColumnID := layoutColumnRes.ID
 
-	// Create a ComponentImplemntation
-	componentImplementationReq := v1.CreateComponentImplementationRequest{
-		Api: apiVersion,
-		Item: &v1.CreateComponentImplementation{
-			Title: "Simple Hero",
-			Path:  "/heroes/SimpleHero",
-		},
-	}
-	componentImplementationRes, err := c.CreateComponentImplementation(ctx, &componentImplementationReq)
-	if err != nil {
-		log.Fatalf("Create failed: %v", err)
-	}
-	log.Printf("Create componentImplementation Result: <%+v>\n\n", componentImplementationRes)
-
-	componentImplementationID := componentImplementationRes.ID
-
-	// Create a ComponentType
-	componentTypeReq := v1.CreateComponentTypeRequest{
-		Api: apiVersion,
-		Item: &v1.CreateComponentType{
-			Title: "Header",
-		},
-	}
-	componentTypeRes, err := c.CreateComponentType(ctx, &componentTypeReq)
-	if err != nil {
-		log.Fatalf("Create failed: %v", err)
-	}
-	log.Printf("Create componentType Result: <%+v>\n\n", componentTypeRes)
-
-	componentTypeID := componentTypeRes.ID
-
 	// Create a Component
 	componentReq := v1.CreateComponentRequest{
 		Api: apiVersion,
@@ -145,22 +176,6 @@ func main() {
 	log.Printf("Create component Result: <%+v>\n\n", componentRes)
 	componentID := componentRes.ID
 
-	// Create a FieldType
-	fieldTypeReq := v1.CreateFieldTypeRequest{
-		Api: apiVersion,
-		Item: &v1.CreateFieldType{
-			Title:         "Title",
-			DataType:      "string",
-			PropName:      "title",
-			ComponentType: componentTypeID,
-		},
-	}
-	fieldTypeRes, err := c.CreateFieldType(ctx, &fieldTypeReq)
-	if err != nil {
-		log.Fatalf("Create failed: %v", err)
-	}
-	log.Printf("Create fieldType Result: <%+v>\n\n", fieldTypeRes)
-	fieldTypeID := fieldTypeRes.ID
 	// Create a Field
 	fieldReq := v1.CreateFieldRequest{
 		Api: apiVersion,
