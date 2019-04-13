@@ -5,6 +5,7 @@ github.com/SteveCastle/openmob v0.0.0-20190121042731-0f63e347be18 h1:ARlhtPhkeKG
 github.com/SteveCastle/openmob v0.0.0-20190121044536-11c777355e62 h1:+uEJzvrYfatxXZY7s+wGfJDfaa/fM77EAqHcvTBVzZ4=
 github.com/SteveCastle/openmob v0.0.0-20190121071316-9dbcad4c9f22 h1:BqXM9EJjIXbcOn3beMRIsCy3jCMOc8etWUNS/zwx+F8=
 github.com/SteveCastle/openmob v0.0.0-20190121071931-97e091ab5c50 h1:xGGBauQ4xtWUHxQhHETrQMNkdmwamLb4pZKkxlumaCA=
+github.com/SteveCastle/openmob v0.0.0-20190407192603-45c575b75346 h1:xNxBu6f03pegNeWW2YOfwwRIyoPhgBVH8oUPW6CUBdI=
 github.com/SteveCastle/structs v1.1.0 h1:CrTvzU2eR2/2dxCOPUIvahNNKXJoW7/rRCjor5DmD+Y=
 github.com/SteveCastle/structs v1.1.0/go.mod h1:ScxSaKJM04T39nnhDTZ9/y4DA5LVfrAJc4gfE93T3J0=
 github.com/amsokol/go-grpc-http-rest-microservice-tutorial v0.0.0-20180918193307-017ec2aae0ec h1:e56FA3qgFWWB3nwAy26MFCVCFDb4+7E/B8MDHoRSr1g=

@@ -5,9 +5,7 @@ import (
 	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -49,60 +47,18 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Cause Manager
+	m := models.NewCauseManager(s.db)
+
+	// Get a list of causes given filters, ordering, and limit rules.
+	cause, err := m.GetCause(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Cause by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, slug, summary, home_page, photo FROM cause WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Cause-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Cause-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Cause data into protobuf model
-	var cause v1.Cause
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Slug, &cause.Summary, &cause.HomePage, &cause.Photo); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Cause row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		cause.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		cause.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Cause rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetCauseResponse{
 		Api:  apiVersion,
-		Item: &cause,
+		Item: m.GetProto(cause),
 	}, nil
 
 }
@@ -114,57 +70,18 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Cause Manager
+	m := models.NewCauseManager(s.db)
+
+	// Get a list of causes given filters, ordering, and limit rules.
+	list, err := m.ListCause(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Cause Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildCauseListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Cause-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Cause{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		cause := new(v1.Cause)
-		if err := rows.Scan(&cause.ID, &createdAt, &updatedAt, &cause.Title, &cause.Slug, &cause.Summary, &cause.HomePage, &cause.Photo); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Cause row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			cause.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			cause.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, cause)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Cause-> "+err.Error())
 	}
 
 	return &v1.ListCauseResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 

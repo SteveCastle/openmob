@@ -6,13 +6,14 @@ import (
 	"net"
 	"os"
 	"os/signal"
-	"github.com/grpc-ecosystem/go-grpc-middleware"
-	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
-	"github.com/grpc-ecosystem/go-grpc-middleware/validator"
 
-	"google.golang.org/grpc"
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
+	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
+
+	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/interceptors"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"google.golang.org/grpc"
 )
 
 // RunServer runs gRPC service to publish Cause service
@@ -26,12 +27,12 @@ func RunServer(ctx context.Context, v1API v1.ShrikeServiceServer, port string) e
 	server := grpc.NewServer(
 		grpc.StreamInterceptor(
 			grpc_middleware.ChainStreamServer()),
-    	grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
 			grpc_recovery.UnaryServerInterceptor(),
 			grpc_validator.UnaryServerInterceptor(),
 			interceptors.BuildInterceptor,
 			interceptors.LoggingInterceptor,
-			),
+		),
 		),
 	)
 	v1.RegisterShrikeServiceServer(server, v1API)
