@@ -2,12 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 // Create new Cause
@@ -16,28 +13,17 @@ func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCau
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Cause Manager
+	m := models.NewCauseManager(s.db)
+
+	// Get a list of causes given filters, ordering, and limit rules.
+	id, err := m.CreateCause(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Cause entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO cause (title, slug, summary, home_page, photo) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		req.Item.Title, req.Item.Slug, req.Item.Summary, req.Item.HomePage, req.Item.Photo).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Cause-> "+err.Error())
-	}
-
-	// get ID of creates Cause
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Cause-> "+err.Error())
-	}
-
 	return &v1.CreateCauseResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -91,34 +77,18 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Cause Manager
+	m := models.NewCauseManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of causes given filters, ordering, and limit rules.
+	rows, err := m.UpdateCause(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update cause
-	res, err := c.ExecContext(ctx, "UPDATE cause SET title=$2, slug=$3, summary=$4, home_page=$5, photo=$6 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.Slug, req.Item.Summary, req.Item.HomePage, req.Item.Photo)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Cause-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateCauseResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -128,32 +98,17 @@ func (s *shrikeServiceServer) DeleteCause(ctx context.Context, req *v1.DeleteCau
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Cause Manager
+	m := models.NewCauseManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of causes given filters, ordering, and limit rules.
+	rows, err := m.DeleteCause(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete cause
-	res, err := c.ExecContext(ctx, "DELETE FROM cause WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Cause-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteCauseResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

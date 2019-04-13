@@ -12,6 +12,7 @@ import (
 	uuid "github.com/gofrs/uuid"
 	"github.com/golang/protobuf/ptypes"
 	"github.com/golang/protobuf/ptypes/timestamp"
+	"github.com/lib/pq"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -112,18 +113,83 @@ func (m *CauseManager) ListCause(ctx context.Context, filters []*v1.CauseFilterR
 }
 
 // CreateCause creates a cause.
-func (m *CauseManager) CreateCause() {
+func (m *CauseManager) CreateCause(ctx context.Context, item *v1.CreateCause) (*string, error) {
+	// get SQL connection from pool
+	c, err := m.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+	var id string
+	// insert Cause entity data
+	err = c.QueryRowContext(ctx, "INSERT INTO cause (title, slug, summary, home_page, photo) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
+		item.Title, item.Slug, item.Summary, item.HomePage, item.Photo).Scan(&id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to insert into Cause-> "+err.Error())
+	}
 
+	// get ID of creates Cause
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Cause-> "+err.Error())
+	}
+	return &id, nil
 }
 
 // UpdateCause updates a cause.
-func (m *CauseManager) UpdateCause() {
+func (m *CauseManager) UpdateCause(ctx context.Context, item *v1.Cause) (*int64, error) {
 
+	// get SQL connection from pool
+	c, err := m.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// update cause
+	res, err := c.ExecContext(ctx, "UPDATE cause SET title=$2, slug=$3, summary=$4, home_page=$5, photo=$6 WHERE id=$1",
+		item.ID, item.Title, item.Slug, item.Summary, item.HomePage, item.Photo)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to update Cause-> "+err.Error())
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
+	}
+
+	if rows == 0 {
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%s' is not found",
+			item.ID))
+	}
+	return &rows, nil
 }
 
 //DeleteCause deletes a cause.
-func (m *CauseManager) DeleteCause() {
+func (m *CauseManager) DeleteCause(ctx context.Context, id string) (*int64, error) {
+	// get SQL connection from pool
+	c, err := m.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
 
+	// delete cause
+	res, err := c.ExecContext(ctx, "DELETE FROM cause WHERE id=$1", id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to delete Cause-> "+err.Error())
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
+	}
+
+	if rows == 0 {
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("Cause with ID='%s' is not found",
+			id))
+	}
+
+	return &rows, nil
 }
 
 func convertTimeToProto(t time.Time) (*timestamp.Timestamp, error) {
@@ -146,6 +212,14 @@ func safeNullUUID(u uuid.NullUUID) string {
 	}
 	return u.UUID.String()
 }
+
+func safeTime(nt pq.NullTime) *time.Time {
+	if !nt.Valid {
+		return nil
+	}
+	return &nt.Time
+}
+
 func convertToProto(c *Cause) *v1.Cause {
 	createdAt, _ := convertTimeToProto(c.CreatedAt)
 	updatedAt, _ := convertTimeToProto(c.UpdatedAt)
@@ -185,6 +259,7 @@ func BuildCauseListQuery(filters []*v1.CauseFilterRule, orderings []*v1.CauseOrd
 	for i, r := range filters {
 		// Insert where clause before the first filter.
 		// And the Logical operator of each successive filter.
+
 		if i == 0 {
 			baseSQL = fmt.Sprintf("%s %s", baseSQL, "WHERE")
 		} else {
@@ -199,6 +274,7 @@ func BuildCauseListQuery(filters []*v1.CauseFilterRule, orderings []*v1.CauseOrd
 	}
 	// Generate ORDER BY clause from ordering passed in request.
 	for _, r := range orderings {
+		fmt.Println("f rule: ", r.GetDirection())
 		s := structs.New(r.GetField())
 		for _, f := range s.Fields() {
 			baseSQL = fmt.Sprintf("%s %s", baseSQL, "ORDER BY")
