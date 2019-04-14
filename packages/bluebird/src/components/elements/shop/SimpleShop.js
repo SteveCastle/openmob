@@ -43,8 +43,8 @@ function SimpleShop({ title }) {
     <StyledShop
       display={'flex'}
       justifyContent="center"
-      alignItems="flex-end"
-      bg="orange.8"
+      alignItems="center"
+      bg="blue.4"
     >
       <Title color="gray.0" size={1}>
         {title}

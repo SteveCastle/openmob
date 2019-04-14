@@ -43,8 +43,8 @@ function SimpleFooter({ title = 'SimpleFooter' }) {
     <StyledFooter
       display={'flex'}
       justifyContent="center"
-      alignItems="flex-end"
-      bg="orange.8"
+      alignItems="center"
+      bg="blue.6"
     >
       <Title color="gray.0" size={1}>
         {title}

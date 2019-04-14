@@ -14,7 +14,7 @@ import {
   justifyContent
 } from 'styled-system';
 
-const StyledContent = styled.section`
+const StyledVolunteering = styled.section`
   ${borders}
   ${borderRadius}
   ${space}
@@ -38,24 +38,24 @@ const Title = styled.h1`
   ${display}
   `;
 
-function SimpleContent({ title }) {
+function SimpleVolunteering({ title }) {
   return (
-    <StyledContent
+    <StyledVolunteering
       display={'flex'}
       justifyContent="center"
       alignItems="center"
-      bg="pink.3"
+      bg="orange.4"
     >
       <Title color="gray.0" size={1}>
         {title}
       </Title>
-    </StyledContent>
+    </StyledVolunteering>
   );
 }
 
-SimpleContent.propTypes = {
+SimpleVolunteering.propTypes = {
   title: PropTypes.string.isRequired
 };
-SimpleContent.defaultProps = { title: 'Simple Content' };
+SimpleVolunteering.defaultProps = { title: 'Simple Volunteering' };
 
-export default SimpleContent;
+export default SimpleVolunteering;

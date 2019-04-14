@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
-import ThemeProvider from '@openmob/bluebird/src/ThemeProvider'
-import skyward from '@openmob/bluebird/src/themes/skyward'
+import React from "react"
+import PropTypes from "prop-types"
+import { graphql, Link } from "gatsby"
+import ThemeProvider from "@openmob/bluebird/src/ThemeProvider"
+import skyward from "@openmob/bluebird/src/themes/skyward"
 
-import Row from '@openmob/bluebird/src/components/layout/Row'
-import Column from '@openmob/bluebird/src/components/layout/Column'
+import Row from "@openmob/bluebird/src/components/layout/Row"
+import Column from "@openmob/bluebird/src/components/layout/Column"
 
-import Layout from '../components/Layout'
-import Node from '../components/Node'
+import Layout from "../components/Layout"
+import Node from "../components/Node"
 
-import SEO from '../components/SEO'
+import SEO from "../components/SEO"
 
 const IndexPage = ({
   data: {
@@ -20,11 +20,11 @@ const IndexPage = ({
   <ThemeProvider theme={skyward}>
     <Layout title={cause.Title} id={cause.ID} summary={cause.Summary}>
       <SEO title={cause.Title} keywords={[`gatsby`, `application`, `react`]} />
-      {cause.HomePage.Layout.LayoutRows.map(row => (
-        <Row key={row.ID}>
-          {row.LayoutColumns.map(column => (
-            <Column key={column.ID} width={column.Width}>
-              {column.Components.map(component => (
+      {(cause.HomePage.Layout.LayoutRows || []).map(row => (
+        <Row key={row.ID} container={row.Container}>
+          {(row.LayoutColumns || []).map(column => (
+            <Column key={column.ID} size={column.Width}>
+              {(column.Components || []).map(component => (
                 <Node
                   fields={component.Fields}
                   path={component.ComponentImplementation.Path}
@@ -55,8 +55,12 @@ export const pageQuery = graphql`
             ID
             LayoutRows {
               ID
+              Container
+              Weight
               LayoutColumns {
                 ID
+                Width
+                Weight
                 Components {
                   ID
                   Fields {

@@ -42,11 +42,31 @@ func main() {
 	}
 
 	componentImplementations := []v1.CreateComponentImplementation{
-		v1.CreateComponentImplementation{Title: "HomePage", Path: "/heroes/SimpleHero"},
+		v1.CreateComponentImplementation{Title: "SimpleHero", Path: "/heroes/SimpleHero"},
+		v1.CreateComponentImplementation{Title: "SimpleFooter", Path: "/footers/SimpleFooter"},
+		v1.CreateComponentImplementation{Title: "SimpleBoycott", Path: "/boycotts/SimpleBoycott"},
+		v1.CreateComponentImplementation{Title: "SimpleContent", Path: "/content/SimpleContent"},
+		v1.CreateComponentImplementation{Title: "SimpleDonationDrive", Path: "/donations/SimpleDonationDrive"},
+		v1.CreateComponentImplementation{Title: "SimpleElection", Path: "/elections/SimpleElection"},
+		v1.CreateComponentImplementation{Title: "SimplePetition", Path: "/petitions/SimplePetition"},
+		v1.CreateComponentImplementation{Title: "SimpleShop", Path: "/shop/SimpleShop"},
+		v1.CreateComponentImplementation{Title: "SimpleSignups", Path: "/signups/SimpleSignups"},
+		v1.CreateComponentImplementation{Title: "SimpleVolunteering", Path: "/volunteers/SimpleVolunteering"},
+		v1.CreateComponentImplementation{Title: "SimpleBlogPost", Path: "/blogs/SimpleBlogPost"},
 	}
 
 	componentTypes := []v1.CreateComponentType{
 		v1.CreateComponentType{Title: "Simple Header"},
+		v1.CreateComponentType{Title: "Simple Footer"},
+		v1.CreateComponentType{Title: "SimpleBoycott"},
+		v1.CreateComponentType{Title: "SimpleContent"},
+		v1.CreateComponentType{Title: "SimpleDonationDrive"},
+		v1.CreateComponentType{Title: "SimpleElection"},
+		v1.CreateComponentType{Title: "SimplePetition"},
+		v1.CreateComponentType{Title: "SimpleShop"},
+		v1.CreateComponentType{Title: "SimpleSignups"},
+		v1.CreateComponentType{Title: "SimpleVolunteering"},
+		v1.CreateComponentType{Title: "SimpleBlogPost"},
 	}
 
 	// Create Layout Types

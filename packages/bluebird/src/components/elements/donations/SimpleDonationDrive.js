@@ -43,10 +43,10 @@ function SimpleDonationDrive({ title }) {
     <StyledDonationDrive
       display={'flex'}
       justifyContent="center"
-      alignItems="flex-end"
-      bg="orange.8"
+      alignItems="center"
+      bg="lime.4"
     >
-      <Title color="gray.0" size={1}>
+      <Title color="gray.1" size={1}>
         {title}
       </Title>
     </StyledDonationDrive>

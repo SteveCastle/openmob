@@ -43,8 +43,8 @@ function SimpleSignups({ title }) {
     <StyledSignups
       display={'flex'}
       justifyContent="center"
-      alignItems="flex-end"
-      bg="orange.8"
+      alignItems="center"
+      bg="fuschia.8"
     >
       <Title color="gray.0" size={1}>
         {title}

@@ -12,6 +12,8 @@ import {
   flexWrap
 } from 'styled-system';
 
+import Container from './Container';
+
 const StyledRow = styled.div`
   ${borders}
   ${borderRadius}
@@ -25,7 +27,7 @@ const StyledRow = styled.div`
 
 `;
 
-function Row({ dark, children, tracing }) {
+function Row({ children, container, tracing }) {
   return (
     <StyledRow
       display={'flex'}
@@ -37,7 +39,7 @@ function Row({ dark, children, tracing }) {
       bg={tracing ? `fuschia.${tracing}` : null}
       fontSize={1}
     >
-      {children}
+      {container ? <Container>{children}</Container> : children}
     </StyledRow>
   );
 }
@@ -47,9 +49,9 @@ Row.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  dark: PropTypes.bool,
+  container: PropTypes.bool,
   tracing: PropTypes.number
 };
-Row.defaultProps = {};
+Row.defaultProps = { container: false };
 
 export default Row;
