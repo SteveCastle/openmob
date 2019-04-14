@@ -94,6 +94,7 @@ function EditDistrict({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -104,6 +105,7 @@ function EditDistrict({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -114,6 +116,7 @@ function EditDistrict({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -123,6 +126,7 @@ function EditDistrict({ id }) {
                   <Input
                     value={values.Geom}
                     name="Geom"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -132,6 +136,7 @@ function EditDistrict({ id }) {
                   <Input
                     value={values.Title}
                     name="Title"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -141,6 +146,7 @@ function EditDistrict({ id }) {
                   <Input
                     value={values.DistrictType}
                     name="DistrictType"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

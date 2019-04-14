@@ -26,7 +26,7 @@ function Header({ children, dark }) {
     <StyledHeader
       p={3}
       pb={0}
-      mb={0}
+      m={0}
       fontSize={6}
       fontFamily="sansSerif"
       width={1}

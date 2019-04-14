@@ -107,6 +107,7 @@ function EditFieldType({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -117,6 +118,7 @@ function EditFieldType({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -127,6 +129,7 @@ function EditFieldType({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -136,6 +139,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.Title}
                     name="Title"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -145,6 +149,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.DataType}
                     name="DataType"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -154,6 +159,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.PropName}
                     name="PropName"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -163,6 +169,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.StringValueDefault}
                     name="StringValueDefault"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -172,6 +179,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.IntValueDefault}
                     name="IntValueDefault"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -181,6 +189,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.FloatValueDefault}
                     name="FloatValueDefault"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -190,6 +199,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.BooleanValueDefault}
                     name="BooleanValueDefault"
+                    type="checkbox"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -199,6 +209,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.DateTimeValueDefault}
                     name="DateTimeValueDefault"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -208,6 +219,7 @@ function EditFieldType({ id }) {
                   <Input
                     value={values.DataPath}
                     name="DataPath"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

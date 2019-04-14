@@ -88,6 +88,7 @@ function EditEmailAddress({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -98,6 +99,7 @@ function EditEmailAddress({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -108,6 +110,7 @@ function EditEmailAddress({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -117,6 +120,7 @@ function EditEmailAddress({ id }) {
                   <Input
                     value={values.Address}
                     name="Address"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

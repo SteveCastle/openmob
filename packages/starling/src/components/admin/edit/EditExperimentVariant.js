@@ -113,6 +113,7 @@ function EditExperimentVariant({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -123,6 +124,7 @@ function EditExperimentVariant({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -133,6 +135,7 @@ function EditExperimentVariant({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -142,6 +145,7 @@ function EditExperimentVariant({ id }) {
                   <Input
                     value={values.Title}
                     name="Title"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -151,6 +155,7 @@ function EditExperimentVariant({ id }) {
                   <Input
                     value={values.VariantType}
                     name="VariantType"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -160,6 +165,7 @@ function EditExperimentVariant({ id }) {
                   <Input
                     value={values.Experiment}
                     name="Experiment"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -169,6 +175,7 @@ function EditExperimentVariant({ id }) {
                   <Input
                     value={values.LandingPage}
                     name="LandingPage"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -178,6 +185,7 @@ function EditExperimentVariant({ id }) {
                   <Input
                     value={values.Field}
                     name="Field"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -187,6 +195,7 @@ function EditExperimentVariant({ id }) {
                   <Input
                     value={values.Component}
                     name="Component"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

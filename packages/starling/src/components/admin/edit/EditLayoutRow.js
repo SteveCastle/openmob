@@ -94,6 +94,7 @@ function EditLayoutRow({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -104,6 +105,7 @@ function EditLayoutRow({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -114,6 +116,7 @@ function EditLayoutRow({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -123,6 +126,7 @@ function EditLayoutRow({ id }) {
                   <Input
                     value={values.Layout}
                     name="Layout"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -132,6 +136,7 @@ function EditLayoutRow({ id }) {
                   <Input
                     value={values.Container}
                     name="Container"
+                    type="checkbox"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -141,6 +146,7 @@ function EditLayoutRow({ id }) {
                   <Input
                     value={values.Weight}
                     name="Weight"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

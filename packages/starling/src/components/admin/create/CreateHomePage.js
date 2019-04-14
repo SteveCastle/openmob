@@ -45,6 +45,7 @@ const CreateHomePage = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateHomePage = ({ id }) => {
                   <Label>Layout</Label>
                   <Input
                     value={values.Layout}
+                    type="text"
                     name="Layout"
                     onChange={handleChange}
                     onBlur={handleBlur}

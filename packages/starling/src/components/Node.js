@@ -1,10 +1,10 @@
-import React from "react"
-import Loadable from "react-loadable"
-import ErrorBoundary from "./ErrorBoundary"
+import React from 'react'
+import Loadable from 'react-loadable'
+import ErrorBoundary from './ErrorBoundary'
 
 const getFieldValue = field => {
   switch (field.FieldType.DataType) {
-    case "string":
+    case 'string':
       return field.StringValue
   }
 }

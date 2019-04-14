@@ -45,6 +45,7 @@ const CreatePollItem = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreatePollItem = ({ id }) => {
                   <Label>Poll</Label>
                   <Input
                     value={values.Poll}
+                    type="text"
                     name="Poll"
                     onChange={handleChange}
                     onBlur={handleBlur}

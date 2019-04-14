@@ -12,6 +12,8 @@ import Node from "../components/Node"
 
 import SEO from "../components/SEO"
 
+const sortByWeight = (a, b) => a.Weight - b.Weight
+
 const IndexPage = ({
   data: {
     wren: { getCause: cause = {} },
@@ -20,11 +22,11 @@ const IndexPage = ({
   <ThemeProvider theme={skyward}>
     <Layout title={cause.Title} id={cause.ID} summary={cause.Summary}>
       <SEO title={cause.Title} keywords={[`gatsby`, `application`, `react`]} />
-      {(cause.HomePage.Layout.LayoutRows || []).map(row => (
+      {(cause.HomePage.Layout.LayoutRows || []).sort(sortByWeight).map(row => (
         <Row key={row.ID} container={row.Container}>
-          {(row.LayoutColumns || []).map(column => (
+          {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
             <Column key={column.ID} size={column.Width}>
-              {(column.Components || []).map(component => (
+              {(column.Components || []).sort(sortByWeight).map(component => (
                 <Node
                   fields={component.Fields}
                   path={component.ComponentImplementation.Path}

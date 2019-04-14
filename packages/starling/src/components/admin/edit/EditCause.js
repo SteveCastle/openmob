@@ -100,6 +100,7 @@ function EditCause({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -110,6 +111,7 @@ function EditCause({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -120,6 +122,7 @@ function EditCause({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -129,6 +132,7 @@ function EditCause({ id }) {
                   <Input
                     value={values.Title}
                     name="Title"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -138,6 +142,7 @@ function EditCause({ id }) {
                   <Input
                     value={values.Slug}
                     name="Slug"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -147,6 +152,7 @@ function EditCause({ id }) {
                   <Input
                     value={values.Summary}
                     name="Summary"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -156,6 +162,7 @@ function EditCause({ id }) {
                   <Input
                     value={values.HomePage}
                     name="HomePage"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -165,6 +172,7 @@ function EditCause({ id }) {
                   <Input
                     value={values.Photo}
                     name="Photo"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

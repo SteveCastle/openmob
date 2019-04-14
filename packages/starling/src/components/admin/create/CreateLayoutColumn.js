@@ -45,6 +45,7 @@ const CreateLayoutColumn = ({ id }) => {
                   <Label>LayoutRow</Label>
                   <Input
                     value={values.LayoutRow}
+                    type="text"
                     name="LayoutRow"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateLayoutColumn = ({ id }) => {
                   <Label>Width</Label>
                   <Input
                     value={values.Width}
+                    type="number"
                     name="Width"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateLayoutColumn = ({ id }) => {
                   <Label>Weight</Label>
                   <Input
                     value={values.Weight}
+                    type="number"
                     name="Weight"
                     onChange={handleChange}
                     onBlur={handleBlur}

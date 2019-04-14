@@ -45,6 +45,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>DataType</Label>
                   <Input
                     value={values.DataType}
+                    type="text"
                     name="DataType"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>PropName</Label>
                   <Input
                     value={values.PropName}
+                    type="text"
                     name="PropName"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -72,6 +75,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>StringValueDefault</Label>
                   <Input
                     value={values.StringValueDefault}
+                    type="text"
                     name="StringValueDefault"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -81,6 +85,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>IntValueDefault</Label>
                   <Input
                     value={values.IntValueDefault}
+                    type="number"
                     name="IntValueDefault"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -90,6 +95,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>FloatValueDefault</Label>
                   <Input
                     value={values.FloatValueDefault}
+                    type="number"
                     name="FloatValueDefault"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -99,6 +105,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>BooleanValueDefault</Label>
                   <Input
                     value={values.BooleanValueDefault}
+                    type="checkbox"
                     name="BooleanValueDefault"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -108,6 +115,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>DateTimeValueDefault</Label>
                   <Input
                     value={values.DateTimeValueDefault}
+                    type="text"
                     name="DateTimeValueDefault"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -117,6 +125,7 @@ const CreateFieldType = ({ id }) => {
                   <Label>DataPath</Label>
                   <Input
                     value={values.DataPath}
+                    type="text"
                     name="DataPath"
                     onChange={handleChange}
                     onBlur={handleBlur}

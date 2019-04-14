@@ -45,6 +45,7 @@ const CreatePollMembership = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreatePollMembership = ({ id }) => {
                   <Label>Petition</Label>
                   <Input
                     value={values.Petition}
+                    type="text"
                     name="Petition"
                     onChange={handleChange}
                     onBlur={handleBlur}

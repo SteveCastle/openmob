@@ -49,24 +49,24 @@ import ListFieldType from './list/ListFieldType'
 import EditLayout from './edit/EditLayout'
 import CreateLayout from './create/CreateLayout'
 import ListLayout from './list/ListLayout'
+import EditExperimentVariant from './edit/EditExperimentVariant'
+import CreateExperimentVariant from './create/CreateExperimentVariant'
+import ListExperimentVariant from './list/ListExperimentVariant'
 import EditExperiment from './edit/EditExperiment'
 import CreateExperiment from './create/CreateExperiment'
 import ListExperiment from './list/ListExperiment'
 import EditLandingPage from './edit/EditLandingPage'
 import CreateLandingPage from './create/CreateLandingPage'
 import ListLandingPage from './list/ListLandingPage'
+import EditIssue from './edit/EditIssue'
+import CreateIssue from './create/CreateIssue'
+import ListIssue from './list/ListIssue'
 import EditField from './edit/EditField'
 import CreateField from './create/CreateField'
 import ListField from './list/ListField'
 import EditComponent from './edit/EditComponent'
 import CreateComponent from './create/CreateComponent'
 import ListComponent from './list/ListComponent'
-import EditExperimentVariant from './edit/EditExperimentVariant'
-import CreateExperimentVariant from './create/CreateExperimentVariant'
-import ListExperimentVariant from './list/ListExperimentVariant'
-import EditIssue from './edit/EditIssue'
-import CreateIssue from './create/CreateIssue'
-import ListIssue from './list/ListIssue'
 import EditCandidate from './edit/EditCandidate'
 import CreateCandidate from './create/CreateCandidate'
 import ListCandidate from './list/ListCandidate'
@@ -76,15 +76,15 @@ import ListDistrictType from './list/ListDistrictType'
 import EditDistrict from './edit/EditDistrict'
 import CreateDistrict from './create/CreateDistrict'
 import ListDistrict from './list/ListDistrict'
+import EditVolunteerOpportunityType from './edit/EditVolunteerOpportunityType'
+import CreateVolunteerOpportunityType from './create/CreateVolunteerOpportunityType'
+import ListVolunteerOpportunityType from './list/ListVolunteerOpportunityType'
 import EditOffice from './edit/EditOffice'
 import CreateOffice from './create/CreateOffice'
 import ListOffice from './list/ListOffice'
 import EditPollItem from './edit/EditPollItem'
 import CreatePollItem from './create/CreatePollItem'
 import ListPollItem from './list/ListPollItem'
-import EditVolunteerOpportunityType from './edit/EditVolunteerOpportunityType'
-import CreateVolunteerOpportunityType from './create/CreateVolunteerOpportunityType'
-import ListVolunteerOpportunityType from './list/ListVolunteerOpportunityType'
 import EditLiveEventType from './edit/EditLiveEventType'
 import CreateLiveEventType from './create/CreateLiveEventType'
 import ListLiveEventType from './list/ListLiveEventType'
@@ -103,15 +103,15 @@ import ListPayment from './list/ListPayment'
 import EditDelivery from './edit/EditDelivery'
 import CreateDelivery from './create/CreateDelivery'
 import ListDelivery from './list/ListDelivery'
+import EditElection from './edit/EditElection'
+import CreateElection from './create/CreateElection'
+import ListElection from './list/ListElection'
 import EditBoycott from './edit/EditBoycott'
 import CreateBoycott from './create/CreateBoycott'
 import ListBoycott from './list/ListBoycott'
 import EditBoycottMembership from './edit/EditBoycottMembership'
 import CreateBoycottMembership from './create/CreateBoycottMembership'
 import ListBoycottMembership from './list/ListBoycottMembership'
-import EditElection from './edit/EditElection'
-import CreateElection from './create/CreateElection'
-import ListElection from './list/ListElection'
 import EditElectionMembership from './edit/EditElectionMembership'
 import CreateElectionMembership from './create/CreateElectionMembership'
 import ListElectionMembership from './list/ListElectionMembership'
@@ -175,39 +175,39 @@ import ListVolunteerOpportunity from './list/ListVolunteerOpportunity'
 import EditVolunteer from './edit/EditVolunteer'
 import CreateVolunteer from './create/CreateVolunteer'
 import ListVolunteer from './list/ListVolunteer'
+import EditActivityType from './edit/EditActivityType'
+import CreateActivityType from './create/CreateActivityType'
+import ListActivityType from './list/ListActivityType'
 import EditFollower from './edit/EditFollower'
 import CreateFollower from './create/CreateFollower'
 import ListFollower from './list/ListFollower'
 import EditTerritory from './edit/EditTerritory'
 import CreateTerritory from './create/CreateTerritory'
 import ListTerritory from './list/ListTerritory'
-import EditActivityType from './edit/EditActivityType'
-import CreateActivityType from './create/CreateActivityType'
-import ListActivityType from './list/ListActivityType'
 import EditActivity from './edit/EditActivity'
 import CreateActivity from './create/CreateActivity'
 import ListActivity from './list/ListActivity'
 import EditNote from './edit/EditNote'
 import CreateNote from './create/CreateNote'
 import ListNote from './list/ListNote'
+import EditAgent from './edit/EditAgent'
+import CreateAgent from './create/CreateAgent'
+import ListAgent from './list/ListAgent'
 import EditAccount from './edit/EditAccount'
 import CreateAccount from './create/CreateAccount'
 import ListAccount from './list/ListAccount'
 import EditOwnerMembership from './edit/EditOwnerMembership'
 import CreateOwnerMembership from './create/CreateOwnerMembership'
 import ListOwnerMembership from './list/ListOwnerMembership'
+import EditAgentMembership from './edit/EditAgentMembership'
+import CreateAgentMembership from './create/CreateAgentMembership'
+import ListAgentMembership from './list/ListAgentMembership'
 import EditContact from './edit/EditContact'
 import CreateContact from './create/CreateContact'
 import ListContact from './list/ListContact'
 import EditContactMembership from './edit/EditContactMembership'
 import CreateContactMembership from './create/CreateContactMembership'
 import ListContactMembership from './list/ListContactMembership'
-import EditAgent from './edit/EditAgent'
-import CreateAgent from './create/CreateAgent'
-import ListAgent from './list/ListAgent'
-import EditAgentMembership from './edit/EditAgentMembership'
-import CreateAgentMembership from './create/CreateAgentMembership'
-import ListAgentMembership from './list/ListAgentMembership'
 import EditHomePage from './edit/EditHomePage'
 import CreateHomePage from './create/CreateHomePage'
 import ListHomePage from './list/ListHomePage'
@@ -270,22 +270,22 @@ const Layout = ({ children, title, id, summary }) => (
             <Link to="/app/admin/layout">Layout</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/experiment-variant">ExperimentVariant</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/experiment">Experiment</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/landing-page">LandingPage</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/issue">Issue</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/field">Field</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/component">Component</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/experiment-variant">ExperimentVariant</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/issue">Issue</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/candidate">Candidate</Link>
@@ -297,15 +297,15 @@ const Layout = ({ children, title, id, summary }) => (
             <Link to="/app/admin/district">District</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/volunteer-opportunity-type">
+              VolunteerOpportunityType
+            </Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/office">Office</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/poll-item">PollItem</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/volunteer-opportunity-type">
-              VolunteerOpportunityType
-            </Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/live-event-type">LiveEventType</Link>
@@ -326,13 +326,13 @@ const Layout = ({ children, title, id, summary }) => (
             <Link to="/app/admin/delivery">Delivery</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/election">Election</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/boycott">Boycott</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/boycott-membership">BoycottMembership</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/election">Election</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/election-membership">ElectionMembership</Link>
@@ -406,13 +406,13 @@ const Layout = ({ children, title, id, summary }) => (
             <Link to="/app/admin/volunteer">Volunteer</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/activity-type">ActivityType</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/follower">Follower</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/territory">Territory</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/activity-type">ActivityType</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/activity">Activity</Link>
@@ -421,22 +421,22 @@ const Layout = ({ children, title, id, summary }) => (
             <Link to="/app/admin/note">Note</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/agent">Agent</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/account">Account</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/owner-membership">OwnerMembership</Link>
           </MenuItem>
           <MenuItem>
+            <Link to="/app/admin/agent-membership">AgentMembership</Link>
+          </MenuItem>
+          <MenuItem>
             <Link to="/app/admin/contact">Contact</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/contact-membership">ContactMembership</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/agent">Agent</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/app/admin/agent-membership">AgentMembership</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/home-page">HomePage</Link>
@@ -488,24 +488,24 @@ const Layout = ({ children, title, id, summary }) => (
         <ListLayout path="/layout" />
         <CreateLayout path="/layout/create" />
         <EditLayout path="/layout/:id" />
+        <ListExperimentVariant path="/experiment-variant" />
+        <CreateExperimentVariant path="/experiment-variant/create" />
+        <EditExperimentVariant path="/experiment-variant/:id" />
         <ListExperiment path="/experiment" />
         <CreateExperiment path="/experiment/create" />
         <EditExperiment path="/experiment/:id" />
         <ListLandingPage path="/landing-page" />
         <CreateLandingPage path="/landing-page/create" />
         <EditLandingPage path="/landing-page/:id" />
+        <ListIssue path="/issue" />
+        <CreateIssue path="/issue/create" />
+        <EditIssue path="/issue/:id" />
         <ListField path="/field" />
         <CreateField path="/field/create" />
         <EditField path="/field/:id" />
         <ListComponent path="/component" />
         <CreateComponent path="/component/create" />
         <EditComponent path="/component/:id" />
-        <ListExperimentVariant path="/experiment-variant" />
-        <CreateExperimentVariant path="/experiment-variant/create" />
-        <EditExperimentVariant path="/experiment-variant/:id" />
-        <ListIssue path="/issue" />
-        <CreateIssue path="/issue/create" />
-        <EditIssue path="/issue/:id" />
         <ListCandidate path="/candidate" />
         <CreateCandidate path="/candidate/create" />
         <EditCandidate path="/candidate/:id" />
@@ -515,15 +515,15 @@ const Layout = ({ children, title, id, summary }) => (
         <ListDistrict path="/district" />
         <CreateDistrict path="/district/create" />
         <EditDistrict path="/district/:id" />
+        <ListVolunteerOpportunityType path="/volunteer-opportunity-type" />
+        <CreateVolunteerOpportunityType path="/volunteer-opportunity-type/create" />
+        <EditVolunteerOpportunityType path="/volunteer-opportunity-type/:id" />
         <ListOffice path="/office" />
         <CreateOffice path="/office/create" />
         <EditOffice path="/office/:id" />
         <ListPollItem path="/poll-item" />
         <CreatePollItem path="/poll-item/create" />
         <EditPollItem path="/poll-item/:id" />
-        <ListVolunteerOpportunityType path="/volunteer-opportunity-type" />
-        <CreateVolunteerOpportunityType path="/volunteer-opportunity-type/create" />
-        <EditVolunteerOpportunityType path="/volunteer-opportunity-type/:id" />
         <ListLiveEventType path="/live-event-type" />
         <CreateLiveEventType path="/live-event-type/create" />
         <EditLiveEventType path="/live-event-type/:id" />
@@ -542,15 +542,15 @@ const Layout = ({ children, title, id, summary }) => (
         <ListDelivery path="/delivery" />
         <CreateDelivery path="/delivery/create" />
         <EditDelivery path="/delivery/:id" />
+        <ListElection path="/election" />
+        <CreateElection path="/election/create" />
+        <EditElection path="/election/:id" />
         <ListBoycott path="/boycott" />
         <CreateBoycott path="/boycott/create" />
         <EditBoycott path="/boycott/:id" />
         <ListBoycottMembership path="/boycott-membership" />
         <CreateBoycottMembership path="/boycott-membership/create" />
         <EditBoycottMembership path="/boycott-membership/:id" />
-        <ListElection path="/election" />
-        <CreateElection path="/election/create" />
-        <EditElection path="/election/:id" />
         <ListElectionMembership path="/election-membership" />
         <CreateElectionMembership path="/election-membership/create" />
         <EditElectionMembership path="/election-membership/:id" />
@@ -614,39 +614,39 @@ const Layout = ({ children, title, id, summary }) => (
         <ListVolunteer path="/volunteer" />
         <CreateVolunteer path="/volunteer/create" />
         <EditVolunteer path="/volunteer/:id" />
+        <ListActivityType path="/activity-type" />
+        <CreateActivityType path="/activity-type/create" />
+        <EditActivityType path="/activity-type/:id" />
         <ListFollower path="/follower" />
         <CreateFollower path="/follower/create" />
         <EditFollower path="/follower/:id" />
         <ListTerritory path="/territory" />
         <CreateTerritory path="/territory/create" />
         <EditTerritory path="/territory/:id" />
-        <ListActivityType path="/activity-type" />
-        <CreateActivityType path="/activity-type/create" />
-        <EditActivityType path="/activity-type/:id" />
         <ListActivity path="/activity" />
         <CreateActivity path="/activity/create" />
         <EditActivity path="/activity/:id" />
         <ListNote path="/note" />
         <CreateNote path="/note/create" />
         <EditNote path="/note/:id" />
+        <ListAgent path="/agent" />
+        <CreateAgent path="/agent/create" />
+        <EditAgent path="/agent/:id" />
         <ListAccount path="/account" />
         <CreateAccount path="/account/create" />
         <EditAccount path="/account/:id" />
         <ListOwnerMembership path="/owner-membership" />
         <CreateOwnerMembership path="/owner-membership/create" />
         <EditOwnerMembership path="/owner-membership/:id" />
+        <ListAgentMembership path="/agent-membership" />
+        <CreateAgentMembership path="/agent-membership/create" />
+        <EditAgentMembership path="/agent-membership/:id" />
         <ListContact path="/contact" />
         <CreateContact path="/contact/create" />
         <EditContact path="/contact/:id" />
         <ListContactMembership path="/contact-membership" />
         <CreateContactMembership path="/contact-membership/create" />
         <EditContactMembership path="/contact-membership/:id" />
-        <ListAgent path="/agent" />
-        <CreateAgent path="/agent/create" />
-        <EditAgent path="/agent/:id" />
-        <ListAgentMembership path="/agent-membership" />
-        <CreateAgentMembership path="/agent-membership/create" />
-        <EditAgentMembership path="/agent-membership/:id" />
         <ListHomePage path="/home-page" />
         <CreateHomePage path="/home-page/create" />
         <EditHomePage path="/home-page/:id" />

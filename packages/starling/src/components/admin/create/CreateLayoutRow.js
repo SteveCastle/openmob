@@ -45,6 +45,7 @@ const CreateLayoutRow = ({ id }) => {
                   <Label>Layout</Label>
                   <Input
                     value={values.Layout}
+                    type="text"
                     name="Layout"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateLayoutRow = ({ id }) => {
                   <Label>Container</Label>
                   <Input
                     value={values.Container}
+                    type="checkbox"
                     name="Container"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateLayoutRow = ({ id }) => {
                   <Label>Weight</Label>
                   <Input
                     value={values.Weight}
+                    type="number"
                     name="Weight"
                     onChange={handleChange}
                     onBlur={handleBlur}

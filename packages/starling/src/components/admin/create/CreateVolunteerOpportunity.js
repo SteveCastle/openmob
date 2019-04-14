@@ -50,6 +50,7 @@ const CreateVolunteerOpportunity = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -59,6 +60,7 @@ const CreateVolunteerOpportunity = ({ id }) => {
                   <Label>VolunteerOpportunityType</Label>
                   <Input
                     value={values.VolunteerOpportunityType}
+                    type="text"
                     name="VolunteerOpportunityType"
                     onChange={handleChange}
                     onBlur={handleBlur}

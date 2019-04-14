@@ -105,6 +105,7 @@ function EditComponentTypeFields({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -115,6 +116,7 @@ function EditComponentTypeFields({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -125,6 +127,7 @@ function EditComponentTypeFields({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -134,6 +137,7 @@ function EditComponentTypeFields({ id }) {
                   <Input
                     value={values.ComponentType}
                     name="ComponentType"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -143,6 +147,7 @@ function EditComponentTypeFields({ id }) {
                   <Input
                     value={values.FieldType}
                     name="FieldType"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -152,6 +157,7 @@ function EditComponentTypeFields({ id }) {
                   <Input
                     value={values.Weight}
                     name="Weight"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -161,6 +167,7 @@ function EditComponentTypeFields({ id }) {
                   <Input
                     value={values.Required}
                     name="Required"
+                    type="checkbox"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

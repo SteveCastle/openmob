@@ -45,6 +45,7 @@ const CreateLayout = ({ id }) => {
                   <Label>LayoutType</Label>
                   <Input
                     value={values.LayoutType}
+                    type="text"
                     name="LayoutType"
                     onChange={handleChange}
                     onBlur={handleBlur}

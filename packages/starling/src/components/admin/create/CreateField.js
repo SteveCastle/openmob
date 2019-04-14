@@ -45,6 +45,7 @@ const CreateField = ({ id }) => {
                   <Label>FieldType</Label>
                   <Input
                     value={values.FieldType}
+                    type="text"
                     name="FieldType"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateField = ({ id }) => {
                   <Label>StringValue</Label>
                   <Input
                     value={values.StringValue}
+                    type="text"
                     name="StringValue"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateField = ({ id }) => {
                   <Label>IntValue</Label>
                   <Input
                     value={values.IntValue}
+                    type="number"
                     name="IntValue"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -72,6 +75,7 @@ const CreateField = ({ id }) => {
                   <Label>FloatValue</Label>
                   <Input
                     value={values.FloatValue}
+                    type="number"
                     name="FloatValue"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -81,6 +85,7 @@ const CreateField = ({ id }) => {
                   <Label>BooleanValue</Label>
                   <Input
                     value={values.BooleanValue}
+                    type="checkbox"
                     name="BooleanValue"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -90,6 +95,7 @@ const CreateField = ({ id }) => {
                   <Label>DateTimeValue</Label>
                   <Input
                     value={values.DateTimeValue}
+                    type="text"
                     name="DateTimeValue"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -99,6 +105,7 @@ const CreateField = ({ id }) => {
                   <Label>DataPath</Label>
                   <Input
                     value={values.DataPath}
+                    type="text"
                     name="DataPath"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -108,6 +115,7 @@ const CreateField = ({ id }) => {
                   <Label>Component</Label>
                   <Input
                     value={values.Component}
+                    type="text"
                     name="Component"
                     onChange={handleChange}
                     onBlur={handleBlur}

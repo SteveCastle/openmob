@@ -105,6 +105,7 @@ function EditPetitionSigner({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -115,6 +116,7 @@ function EditPetitionSigner({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -125,6 +127,7 @@ function EditPetitionSigner({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -134,6 +137,7 @@ function EditPetitionSigner({ id }) {
                   <Input
                     value={values.Petition}
                     name="Petition"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -143,6 +147,7 @@ function EditPetitionSigner({ id }) {
                   <Input
                     value={values.Contact}
                     name="Contact"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -152,6 +157,7 @@ function EditPetitionSigner({ id }) {
                   <Input
                     value={values.Cause}
                     name="Cause"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

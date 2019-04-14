@@ -45,6 +45,7 @@ const CreateLiveEvent = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateLiveEvent = ({ id }) => {
                   <Label>LiveEventType</Label>
                   <Input
                     value={values.LiveEventType}
+                    type="text"
                     name="LiveEventType"
                     onChange={handleChange}
                     onBlur={handleBlur}

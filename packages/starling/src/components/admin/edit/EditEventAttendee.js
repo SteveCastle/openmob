@@ -102,6 +102,7 @@ function EditEventAttendee({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -112,6 +113,7 @@ function EditEventAttendee({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -122,6 +124,7 @@ function EditEventAttendee({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -131,6 +134,7 @@ function EditEventAttendee({ id }) {
                   <Input
                     value={values.LiveEvent}
                     name="LiveEvent"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -140,6 +144,7 @@ function EditEventAttendee({ id }) {
                   <Input
                     value={values.Contact}
                     name="Contact"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -149,6 +154,7 @@ function EditEventAttendee({ id }) {
                   <Input
                     value={values.Cause}
                     name="Cause"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

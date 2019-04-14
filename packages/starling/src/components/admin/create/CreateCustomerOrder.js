@@ -45,6 +45,7 @@ const CreateCustomerOrder = ({ id }) => {
                   <Label>CustomerCart</Label>
                   <Input
                     value={values.CustomerCart}
+                    type="text"
                     name="CustomerCart"
                     onChange={handleChange}
                     onBlur={handleBlur}

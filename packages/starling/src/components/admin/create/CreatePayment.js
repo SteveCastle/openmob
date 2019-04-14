@@ -45,6 +45,7 @@ const CreatePayment = ({ id }) => {
                   <Label>CustomerOrder</Label>
                   <Input
                     value={values.CustomerOrder}
+                    type="text"
                     name="CustomerOrder"
                     onChange={handleChange}
                     onBlur={handleBlur}

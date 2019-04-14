@@ -98,6 +98,7 @@ function EditVolunteer({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -108,6 +109,7 @@ function EditVolunteer({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -118,6 +120,7 @@ function EditVolunteer({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -127,6 +130,7 @@ function EditVolunteer({ id }) {
                   <Input
                     value={values.VolunteerOpportunity}
                     name="VolunteerOpportunity"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -136,6 +140,7 @@ function EditVolunteer({ id }) {
                   <Input
                     value={values.Contact}
                     name="Contact"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -145,6 +150,7 @@ function EditVolunteer({ id }) {
                   <Input
                     value={values.Cause}
                     name="Cause"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

@@ -1,13 +1,13 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql, Link } from "gatsby"
-import ThemeProvider from "@openmob/bluebird/src/ThemeProvider"
-import skyward from "@openmob/bluebird/src/themes/skyward"
-import ImageGrid from "@openmob/bluebird/src/components/lists/ImageGrid"
-import GridItem from "@openmob/bluebird/src/components/lists/GridItem"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { graphql, Link } from 'gatsby'
+import ThemeProvider from '@openmob/bluebird/src/ThemeProvider'
+import skyward from '@openmob/bluebird/src/themes/skyward'
+import ImageGrid from '@openmob/bluebird/src/components/lists/ImageGrid'
+import GridItem from '@openmob/bluebird/src/components/lists/GridItem'
 
-import Layout from "../components/Layout"
-import SEO from "../components/SEO"
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 
 const IndexPage = ({
   data: {

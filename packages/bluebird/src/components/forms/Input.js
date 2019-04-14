@@ -28,6 +28,7 @@ function Input({
   block,
   dark,
   value,
+  type,
   placeholder,
   disabled
 }) {
@@ -45,6 +46,7 @@ function Input({
       name={name}
       value={value}
       placeholder={placeholder}
+      type={type}
       disabled={disabled}
     >
       {label}
@@ -57,6 +59,7 @@ Input.propTypes = {
   onChange: PropTypes.func,
   label: PropTypes.string,
   state: PropTypes.oneOf(['ready', 'valid', 'error']),
+  type: PropTypes.string,
   block: PropTypes.bool,
   dark: PropTypes.bool,
   value: PropTypes.string,

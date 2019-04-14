@@ -52,6 +52,7 @@ const CreateDonationCampaignMembership = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -61,6 +62,7 @@ const CreateDonationCampaignMembership = ({ id }) => {
                   <Label>DonationCampaign</Label>
                   <Input
                     value={values.DonationCampaign}
+                    type="text"
                     name="DonationCampaign"
                     onChange={handleChange}
                     onBlur={handleBlur}

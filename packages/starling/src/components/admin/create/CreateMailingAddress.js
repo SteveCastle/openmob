@@ -45,6 +45,7 @@ const CreateMailingAddress = ({ id }) => {
                   <Label>StreetAddress</Label>
                   <Input
                     value={values.StreetAddress}
+                    type="text"
                     name="StreetAddress"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateMailingAddress = ({ id }) => {
                   <Label>City</Label>
                   <Input
                     value={values.City}
+                    type="text"
                     name="City"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateMailingAddress = ({ id }) => {
                   <Label>State</Label>
                   <Input
                     value={values.State}
+                    type="text"
                     name="State"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -72,6 +75,7 @@ const CreateMailingAddress = ({ id }) => {
                   <Label>ZipCode</Label>
                   <Input
                     value={values.ZipCode}
+                    type="text"
                     name="ZipCode"
                     onChange={handleChange}
                     onBlur={handleBlur}

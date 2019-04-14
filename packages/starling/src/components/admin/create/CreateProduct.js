@@ -45,6 +45,7 @@ const CreateProduct = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateProduct = ({ id }) => {
                   <Label>ProductType</Label>
                   <Input
                     value={values.ProductType}
+                    type="text"
                     name="ProductType"
                     onChange={handleChange}
                     onBlur={handleBlur}

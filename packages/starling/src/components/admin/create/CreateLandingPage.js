@@ -45,6 +45,7 @@ const CreateLandingPage = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateLandingPage = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateLandingPage = ({ id }) => {
                   <Label>Layout</Label>
                   <Input
                     value={values.Layout}
+                    type="text"
                     name="Layout"
                     onChange={handleChange}
                     onBlur={handleBlur}

@@ -45,6 +45,7 @@ const CreateDistrict = ({ id }) => {
                   <Label>Geom</Label>
                   <Input
                     value={values.Geom}
+                    type="number"
                     name="Geom"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateDistrict = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateDistrict = ({ id }) => {
                   <Label>DistrictType</Label>
                   <Input
                     value={values.DistrictType}
+                    type="text"
                     name="DistrictType"
                     onChange={handleChange}
                     onBlur={handleBlur}

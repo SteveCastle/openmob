@@ -72,7 +72,14 @@ function Edit{{.Table.Name}}({ id }) {
       <h1>Edit {item.ID}</h1>
 {{range $i, $value := .Table.Columns}}  <Widget>
       <Label>{{.Name}}</Label>
-      <Input value={values.{{.Name}}} {{if le $i 2}}disabled{{end}} name="{{.Name}}" onChange={handleChange} onBlur={handleBlur}/>
+      <Input
+       value={values.{{.Name}}}
+        {{if le $i 2}}disabled{{end}}
+        name="{{.Name}}"
+        type={{if hasPrefix .Type "Time"}}"text"{{end}}{{if hasPrefix .Type "String"}}"text"{{end}}{{if hasPrefix .Type "ID"}}"text"{{end}}{{if hasPrefix .Type "Int"}}"number"{{end}}{{if hasPrefix .Type "Float"}}"number"{{end}}{{if hasPrefix .Type "Bool"}}"checkbox"{{end}}
+
+        onChange={handleChange}
+        onBlur={handleBlur}/>
   </Widget>
 {{end}}
       <Button label="Save" block variant="primary" onClick={handleSubmit} />

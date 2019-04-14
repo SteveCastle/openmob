@@ -45,6 +45,7 @@ const CreateComponent = ({ id }) => {
                   <Label>ComponentType</Label>
                   <Input
                     value={values.ComponentType}
+                    type="text"
                     name="ComponentType"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateComponent = ({ id }) => {
                   <Label>ComponentImplementation</Label>
                   <Input
                     value={values.ComponentImplementation}
+                    type="text"
                     name="ComponentImplementation"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateComponent = ({ id }) => {
                   <Label>LayoutColumn</Label>
                   <Input
                     value={values.LayoutColumn}
+                    type="text"
                     name="LayoutColumn"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -72,6 +75,7 @@ const CreateComponent = ({ id }) => {
                   <Label>Weight</Label>
                   <Input
                     value={values.Weight}
+                    type="number"
                     name="Weight"
                     onChange={handleChange}
                     onBlur={handleBlur}

@@ -101,6 +101,7 @@ function EditMailingAddress({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -111,6 +112,7 @@ function EditMailingAddress({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -121,6 +123,7 @@ function EditMailingAddress({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -130,6 +133,7 @@ function EditMailingAddress({ id }) {
                   <Input
                     value={values.StreetAddress}
                     name="StreetAddress"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -139,6 +143,7 @@ function EditMailingAddress({ id }) {
                   <Input
                     value={values.City}
                     name="City"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -148,6 +153,7 @@ function EditMailingAddress({ id }) {
                   <Input
                     value={values.State}
                     name="State"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -157,6 +163,7 @@ function EditMailingAddress({ id }) {
                   <Input
                     value={values.ZipCode}
                     name="ZipCode"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

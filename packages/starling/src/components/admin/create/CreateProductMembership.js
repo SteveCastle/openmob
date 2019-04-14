@@ -48,6 +48,7 @@ const CreateProductMembership = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -57,6 +58,7 @@ const CreateProductMembership = ({ id }) => {
                   <Label>Product</Label>
                   <Input
                     value={values.Product}
+                    type="text"
                     name="Product"
                     onChange={handleChange}
                     onBlur={handleBlur}

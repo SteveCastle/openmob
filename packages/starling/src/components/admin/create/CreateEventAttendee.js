@@ -45,6 +45,7 @@ const CreateEventAttendee = ({ id }) => {
                   <Label>LiveEvent</Label>
                   <Input
                     value={values.LiveEvent}
+                    type="text"
                     name="LiveEvent"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateEventAttendee = ({ id }) => {
                   <Label>Contact</Label>
                   <Input
                     value={values.Contact}
+                    type="text"
                     name="Contact"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateEventAttendee = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}

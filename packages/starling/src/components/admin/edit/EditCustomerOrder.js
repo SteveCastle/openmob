@@ -94,6 +94,7 @@ function EditCustomerOrder({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -104,6 +105,7 @@ function EditCustomerOrder({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -114,6 +116,7 @@ function EditCustomerOrder({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -123,6 +126,7 @@ function EditCustomerOrder({ id }) {
                   <Input
                     value={values.CustomerCart}
                     name="CustomerCart"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

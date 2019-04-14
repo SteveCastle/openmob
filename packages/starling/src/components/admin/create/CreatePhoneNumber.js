@@ -45,6 +45,7 @@ const CreatePhoneNumber = ({ id }) => {
                   <Label>PhoneNumber</Label>
                   <Input
                     value={values.PhoneNumber}
+                    type="text"
                     name="PhoneNumber"
                     onChange={handleChange}
                     onBlur={handleBlur}

@@ -45,6 +45,7 @@ const CreateCandidate = ({ id }) => {
                   <Label>Election</Label>
                   <Input
                     value={values.Election}
+                    type="text"
                     name="Election"
                     onChange={handleChange}
                     onBlur={handleBlur}

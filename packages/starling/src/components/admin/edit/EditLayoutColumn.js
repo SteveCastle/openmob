@@ -94,6 +94,7 @@ function EditLayoutColumn({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -104,6 +105,7 @@ function EditLayoutColumn({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -114,6 +116,7 @@ function EditLayoutColumn({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -123,6 +126,7 @@ function EditLayoutColumn({ id }) {
                   <Input
                     value={values.LayoutRow}
                     name="LayoutRow"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -132,6 +136,7 @@ function EditLayoutColumn({ id }) {
                   <Input
                     value={values.Width}
                     name="Width"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -141,6 +146,7 @@ function EditLayoutColumn({ id }) {
                   <Input
                     value={values.Weight}
                     name="Weight"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

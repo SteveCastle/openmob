@@ -48,6 +48,7 @@ const CreateAgentMembership = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -57,6 +58,7 @@ const CreateAgentMembership = ({ id }) => {
                   <Label>Agent</Label>
                   <Input
                     value={values.Agent}
+                    type="text"
                     name="Agent"
                     onChange={handleChange}
                     onBlur={handleBlur}

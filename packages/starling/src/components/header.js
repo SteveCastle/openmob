@@ -1,8 +1,7 @@
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
-import React from 'react'
-import PageHeader from '@openmob/bluebird/src/components/type/Header'
-import SubHeader from '@openmob/bluebird/src/components/type/SubHeader'
+import { Link } from "gatsby"
+import PropTypes from "prop-types"
+import React from "react"
+import PageHeader from "@openmob/bluebird/src/components/type/Header"
 
 const Header = ({ siteTitle, id, summary }) => (
   <header
@@ -15,7 +14,7 @@ const Header = ({ siteTitle, id, summary }) => (
       style={{
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        padding: `.4rem 1.0875rem`,
       }}
     >
       <PageHeader dark>
@@ -32,19 +31,17 @@ const Header = ({ siteTitle, id, summary }) => (
       <Link
         to="/app"
         style={{
-          position: 'absolute',
-          top: '0',
-          right: '0',
-          backgroundColor: 'white',
-          padding: '4px',
-          margin: '4px',
-          borderRadius: '4px',
+          position: "absolute",
+          top: "0",
+          right: "0",
+          backgroundColor: "white",
+          padding: "4px",
+          margin: "4px",
+          borderRadius: "4px",
         }}
       >
         Admin
       </Link>
-      <SubHeader dark>{id}</SubHeader>
-      <SubHeader dark>{summary}</SubHeader>
     </div>
   </header>
 )

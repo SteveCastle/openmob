@@ -45,6 +45,7 @@ const CreatePhoto = ({ id }) => {
                   <Label>URI</Label>
                   <Input
                     value={values.URI}
+                    type="text"
                     name="URI"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreatePhoto = ({ id }) => {
                   <Label>Width</Label>
                   <Input
                     value={values.Width}
+                    type="number"
                     name="Width"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreatePhoto = ({ id }) => {
                   <Label>Height</Label>
                   <Input
                     value={values.Height}
+                    type="number"
                     name="Height"
                     onChange={handleChange}
                     onBlur={handleBlur}

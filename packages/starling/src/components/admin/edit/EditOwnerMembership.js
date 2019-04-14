@@ -101,6 +101,7 @@ function EditOwnerMembership({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -111,6 +112,7 @@ function EditOwnerMembership({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -121,6 +123,7 @@ function EditOwnerMembership({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -130,6 +133,7 @@ function EditOwnerMembership({ id }) {
                   <Input
                     value={values.Cause}
                     name="Cause"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -139,6 +143,7 @@ function EditOwnerMembership({ id }) {
                   <Input
                     value={values.Account}
                     name="Account"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

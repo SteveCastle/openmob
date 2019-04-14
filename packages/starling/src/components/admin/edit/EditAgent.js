@@ -90,6 +90,7 @@ function EditAgent({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -100,6 +101,7 @@ function EditAgent({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -110,6 +112,7 @@ function EditAgent({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -119,6 +122,7 @@ function EditAgent({ id }) {
                   <Input
                     value={values.Account}
                     name="Account"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

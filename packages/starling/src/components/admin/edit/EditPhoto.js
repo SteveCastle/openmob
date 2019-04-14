@@ -92,6 +92,7 @@ function EditPhoto({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -102,6 +103,7 @@ function EditPhoto({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -112,6 +114,7 @@ function EditPhoto({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -121,6 +124,7 @@ function EditPhoto({ id }) {
                   <Input
                     value={values.URI}
                     name="URI"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -130,6 +134,7 @@ function EditPhoto({ id }) {
                   <Input
                     value={values.Width}
                     name="Width"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -139,6 +144,7 @@ function EditPhoto({ id }) {
                   <Input
                     value={values.Height}
                     name="Height"
+                    type="number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

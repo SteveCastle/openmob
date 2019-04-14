@@ -45,6 +45,7 @@ const CreateActivity = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateActivity = ({ id }) => {
                   <Label>ActivityType</Label>
                   <Input
                     value={values.ActivityType}
+                    type="text"
                     name="ActivityType"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateActivity = ({ id }) => {
                   <Label>Contact</Label>
                   <Input
                     value={values.Contact}
+                    type="text"
                     name="Contact"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -72,6 +75,7 @@ const CreateActivity = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}

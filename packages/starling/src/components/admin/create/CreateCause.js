@@ -45,6 +45,7 @@ const CreateCause = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateCause = ({ id }) => {
                   <Label>Slug</Label>
                   <Input
                     value={values.Slug}
+                    type="text"
                     name="Slug"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateCause = ({ id }) => {
                   <Label>Summary</Label>
                   <Input
                     value={values.Summary}
+                    type="text"
                     name="Summary"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -72,6 +75,7 @@ const CreateCause = ({ id }) => {
                   <Label>HomePage</Label>
                   <Input
                     value={values.HomePage}
+                    type="text"
                     name="HomePage"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -81,6 +85,7 @@ const CreateCause = ({ id }) => {
                   <Label>Photo</Label>
                   <Input
                     value={values.Photo}
+                    type="text"
                     name="Photo"
                     onChange={handleChange}
                     onBlur={handleBlur}

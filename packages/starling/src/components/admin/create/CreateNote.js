@@ -45,6 +45,7 @@ const CreateNote = ({ id }) => {
                   <Label>Contact</Label>
                   <Input
                     value={values.Contact}
+                    type="text"
                     name="Contact"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateNote = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateNote = ({ id }) => {
                   <Label>Body</Label>
                   <Input
                     value={values.Body}
+                    type="text"
                     name="Body"
                     onChange={handleChange}
                     onBlur={handleBlur}

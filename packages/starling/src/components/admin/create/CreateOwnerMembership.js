@@ -48,6 +48,7 @@ const CreateOwnerMembership = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -57,6 +58,7 @@ const CreateOwnerMembership = ({ id }) => {
                   <Label>Account</Label>
                   <Input
                     value={values.Account}
+                    type="text"
                     name="Account"
                     onChange={handleChange}
                     onBlur={handleBlur}

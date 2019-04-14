@@ -96,6 +96,7 @@ function EditContact({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -106,6 +107,7 @@ function EditContact({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -116,6 +118,7 @@ function EditContact({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -125,6 +128,7 @@ function EditContact({ id }) {
                   <Input
                     value={values.FirstName}
                     name="FirstName"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -134,6 +138,7 @@ function EditContact({ id }) {
                   <Input
                     value={values.MiddleName}
                     name="MiddleName"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -143,6 +148,7 @@ function EditContact({ id }) {
                   <Input
                     value={values.LastName}
                     name="LastName"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -152,6 +158,7 @@ function EditContact({ id }) {
                   <Input
                     value={values.Email}
                     name="Email"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -161,6 +168,7 @@ function EditContact({ id }) {
                   <Input
                     value={values.PhoneNumber}
                     name="PhoneNumber"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

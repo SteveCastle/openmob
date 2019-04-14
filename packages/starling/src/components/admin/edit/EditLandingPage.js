@@ -96,6 +96,7 @@ function EditLandingPage({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -106,6 +107,7 @@ function EditLandingPage({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -116,6 +118,7 @@ function EditLandingPage({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -125,6 +128,7 @@ function EditLandingPage({ id }) {
                   <Input
                     value={values.Title}
                     name="Title"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -134,6 +138,7 @@ function EditLandingPage({ id }) {
                   <Input
                     value={values.Cause}
                     name="Cause"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -143,6 +148,7 @@ function EditLandingPage({ id }) {
                   <Input
                     value={values.Layout}
                     name="Layout"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

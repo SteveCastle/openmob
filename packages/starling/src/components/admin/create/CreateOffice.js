@@ -45,6 +45,7 @@ const CreateOffice = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateOffice = ({ id }) => {
                   <Label>Election</Label>
                   <Input
                     value={values.Election}
+                    type="text"
                     name="Election"
                     onChange={handleChange}
                     onBlur={handleBlur}

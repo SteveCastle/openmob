@@ -50,6 +50,7 @@ const CreateComponentTypeFields = ({ id }) => {
                   <Label>ComponentType</Label>
                   <Input
                     value={values.ComponentType}
+                    type="text"
                     name="ComponentType"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -59,6 +60,7 @@ const CreateComponentTypeFields = ({ id }) => {
                   <Label>FieldType</Label>
                   <Input
                     value={values.FieldType}
+                    type="text"
                     name="FieldType"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -68,6 +70,7 @@ const CreateComponentTypeFields = ({ id }) => {
                   <Label>Weight</Label>
                   <Input
                     value={values.Weight}
+                    type="number"
                     name="Weight"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -77,6 +80,7 @@ const CreateComponentTypeFields = ({ id }) => {
                   <Label>Required</Label>
                   <Input
                     value={values.Required}
+                    type="checkbox"
                     name="Required"
                     onChange={handleChange}
                     onBlur={handleBlur}

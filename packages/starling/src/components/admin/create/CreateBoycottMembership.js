@@ -48,6 +48,7 @@ const CreateBoycottMembership = ({ id }) => {
                   <Label>Cause</Label>
                   <Input
                     value={values.Cause}
+                    type="text"
                     name="Cause"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -57,6 +58,7 @@ const CreateBoycottMembership = ({ id }) => {
                   <Label>Boycott</Label>
                   <Input
                     value={values.Boycott}
+                    type="text"
                     name="Boycott"
                     onChange={handleChange}
                     onBlur={handleBlur}

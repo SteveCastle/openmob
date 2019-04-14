@@ -103,6 +103,7 @@ function EditDonationCampaignMembership({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -113,6 +114,7 @@ function EditDonationCampaignMembership({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -123,6 +125,7 @@ function EditDonationCampaignMembership({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -132,6 +135,7 @@ function EditDonationCampaignMembership({ id }) {
                   <Input
                     value={values.Cause}
                     name="Cause"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -141,6 +145,7 @@ function EditDonationCampaignMembership({ id }) {
                   <Input
                     value={values.DonationCampaign}
                     name="DonationCampaign"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

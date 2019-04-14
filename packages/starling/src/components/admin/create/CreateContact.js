@@ -45,6 +45,7 @@ const CreateContact = ({ id }) => {
                   <Label>FirstName</Label>
                   <Input
                     value={values.FirstName}
+                    type="text"
                     name="FirstName"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -54,6 +55,7 @@ const CreateContact = ({ id }) => {
                   <Label>MiddleName</Label>
                   <Input
                     value={values.MiddleName}
+                    type="text"
                     name="MiddleName"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,6 +65,7 @@ const CreateContact = ({ id }) => {
                   <Label>LastName</Label>
                   <Input
                     value={values.LastName}
+                    type="text"
                     name="LastName"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -72,6 +75,7 @@ const CreateContact = ({ id }) => {
                   <Label>Email</Label>
                   <Input
                     value={values.Email}
+                    type="text"
                     name="Email"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -81,6 +85,7 @@ const CreateContact = ({ id }) => {
                   <Label>PhoneNumber</Label>
                   <Input
                     value={values.PhoneNumber}
+                    type="text"
                     name="PhoneNumber"
                     onChange={handleChange}
                     onBlur={handleBlur}

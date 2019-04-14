@@ -103,6 +103,7 @@ function EditComponentImplementation({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -113,6 +114,7 @@ function EditComponentImplementation({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -123,6 +125,7 @@ function EditComponentImplementation({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -132,6 +135,7 @@ function EditComponentImplementation({ id }) {
                   <Input
                     value={values.Title}
                     name="Title"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -141,6 +145,7 @@ function EditComponentImplementation({ id }) {
                   <Input
                     value={values.Path}
                     name="Path"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -150,6 +155,7 @@ function EditComponentImplementation({ id }) {
                   <Input
                     value={values.ComponentType}
                     name="ComponentType"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

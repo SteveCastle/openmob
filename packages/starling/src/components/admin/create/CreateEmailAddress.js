@@ -45,6 +45,7 @@ const CreateEmailAddress = ({ id }) => {
                   <Label>Address</Label>
                   <Input
                     value={values.Address}
+                    type="text"
                     name="Address"
                     onChange={handleChange}
                     onBlur={handleBlur}

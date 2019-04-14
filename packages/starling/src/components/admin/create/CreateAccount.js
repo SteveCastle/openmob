@@ -45,6 +45,7 @@ const CreateAccount = ({ id }) => {
                   <Label>Username</Label>
                   <Input
                     value={values.Username}
+                    type="text"
                     name="Username"
                     onChange={handleChange}
                     onBlur={handleBlur}

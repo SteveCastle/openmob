@@ -52,6 +52,7 @@ const CreateComponentImplementation = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -61,6 +62,7 @@ const CreateComponentImplementation = ({ id }) => {
                   <Label>Path</Label>
                   <Input
                     value={values.Path}
+                    type="text"
                     name="Path"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -70,6 +72,7 @@ const CreateComponentImplementation = ({ id }) => {
                   <Label>ComponentType</Label>
                   <Input
                     value={values.ComponentType}
+                    type="text"
                     name="ComponentType"
                     onChange={handleChange}
                     onBlur={handleBlur}

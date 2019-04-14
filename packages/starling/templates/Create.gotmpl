@@ -45,6 +45,7 @@ const Create{{.Table.Name}} = ({ id }) => {
                   <Label>{{.Name}}</Label>
                   <Input
                     value={values.{{.Name}}}
+                    type={{if hasPrefix .Type "Time"}}"text"{{end}}{{if hasPrefix .Type "String"}}"text"{{end}}{{if hasPrefix .Type "ID"}}"text"{{end}}{{if hasPrefix .Type "Int"}}"number"{{end}}{{if hasPrefix .Type "Float"}}"number"{{end}}{{if hasPrefix .Type "Bool"}}"checkbox"{{end}}
                     name="{{.Name}}"
                     onChange={handleChange}
                     onBlur={handleBlur}

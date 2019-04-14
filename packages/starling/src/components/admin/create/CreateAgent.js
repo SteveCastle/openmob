@@ -45,6 +45,7 @@ const CreateAgent = ({ id }) => {
                   <Label>Account</Label>
                   <Input
                     value={values.Account}
+                    type="text"
                     name="Account"
                     onChange={handleChange}
                     onBlur={handleBlur}

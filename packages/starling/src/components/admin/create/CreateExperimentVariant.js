@@ -48,6 +48,7 @@ const CreateExperimentVariant = ({ id }) => {
                   <Label>Title</Label>
                   <Input
                     value={values.Title}
+                    type="text"
                     name="Title"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -57,6 +58,7 @@ const CreateExperimentVariant = ({ id }) => {
                   <Label>VariantType</Label>
                   <Input
                     value={values.VariantType}
+                    type="text"
                     name="VariantType"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -66,6 +68,7 @@ const CreateExperimentVariant = ({ id }) => {
                   <Label>Experiment</Label>
                   <Input
                     value={values.Experiment}
+                    type="text"
                     name="Experiment"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -75,6 +78,7 @@ const CreateExperimentVariant = ({ id }) => {
                   <Label>LandingPage</Label>
                   <Input
                     value={values.LandingPage}
+                    type="text"
                     name="LandingPage"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -84,6 +88,7 @@ const CreateExperimentVariant = ({ id }) => {
                   <Label>Field</Label>
                   <Input
                     value={values.Field}
+                    type="text"
                     name="Field"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -93,6 +98,7 @@ const CreateExperimentVariant = ({ id }) => {
                   <Label>Component</Label>
                   <Input
                     value={values.Component}
+                    type="text"
                     name="Component"
                     onChange={handleChange}
                     onBlur={handleBlur}

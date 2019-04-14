@@ -101,6 +101,7 @@ function EditProductMembership({ id }) {
                     value={values.ID}
                     disabled
                     name="ID"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -111,6 +112,7 @@ function EditProductMembership({ id }) {
                     value={values.CreatedAt}
                     disabled
                     name="CreatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -121,6 +123,7 @@ function EditProductMembership({ id }) {
                     value={values.UpdatedAt}
                     disabled
                     name="UpdatedAt"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -130,6 +133,7 @@ function EditProductMembership({ id }) {
                   <Input
                     value={values.Cause}
                     name="Cause"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -139,6 +143,7 @@ function EditProductMembership({ id }) {
                   <Input
                     value={values.Product}
                     name="Product"
+                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
