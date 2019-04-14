@@ -45,6 +45,7 @@ install:
 
 codegen:
 	gnorm gen
+	gnorm gen -c gnorm_go.toml
 protogen:
 	./scripts/protogen.sh
 generate: codegen protogen

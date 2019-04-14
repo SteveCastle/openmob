@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Donor
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDon
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Donor Manager
+	m := models.NewDonorManager(s.db)
+
+	// Get a list of donors given filters, ordering, and limit rules.
+	id, err := m.CreateDonor(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Donor entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donor (customer_order, contact, cause) VALUES($1, $2, $3)  RETURNING id;",
-		req.Item.CustomerOrder, req.Item.Contact, req.Item.Cause).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Donor-> "+err.Error())
-	}
-
-	// get ID of creates Donor
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Donor-> "+err.Error())
-	}
-
 	return &v1.CreateDonorResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Donor Manager
+	m := models.NewDonorManager(s.db)
+
+	// Get a list of donors given filters, ordering, and limit rules.
+	donor, err := m.GetDonor(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Donor by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, customer_order, contact, cause FROM donor WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Donor-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Donor-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Donor data into protobuf model
-	var donor v1.Donor
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&donor.ID, &createdAt, &updatedAt, &donor.CustomerOrder, &donor.Contact, &donor.Cause); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Donor row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		donor.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		donor.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Donor rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetDonorResponse{
 		Api:  apiVersion,
-		Item: &donor,
+		Item: m.GetProto(donor),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Donor Manager
+	m := models.NewDonorManager(s.db)
+
+	// Get a list of donors given filters, ordering, and limit rules.
+	list, err := m.ListDonor(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Donor Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildDonorListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Donor-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Donor{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		donor := new(v1.Donor)
-		if err := rows.Scan(&donor.ID, &createdAt, &updatedAt, &donor.CustomerOrder, &donor.Contact, &donor.Cause); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Donor row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			donor.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			donor.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, donor)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Donor-> "+err.Error())
 	}
 
 	return &v1.ListDonorResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateDonor(ctx context.Context, req *v1.UpdateDon
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Donor Manager
+	m := models.NewDonorManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of donors given filters, ordering, and limit rules.
+	rows, err := m.UpdateDonor(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update donor
-	res, err := c.ExecContext(ctx, "UPDATE donor SET customer_order=$2, contact=$3, cause=$4 WHERE id=$1",
-		req.Item.ID, req.Item.CustomerOrder, req.Item.Contact, req.Item.Cause)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Donor-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateDonorResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteDonor(ctx context.Context, req *v1.DeleteDon
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Donor Manager
+	m := models.NewDonorManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of donors given filters, ordering, and limit rules.
+	rows, err := m.DeleteDonor(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete donor
-	res, err := c.ExecContext(ctx, "DELETE FROM donor WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Donor-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Donor with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteDonorResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new VolunteerOpportunityType
@@ -18,91 +13,38 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityType(ctx context.Context
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a VolunteerOpportunityType Manager
+	m := models.NewVolunteerOpportunityTypeManager(s.db)
+
+	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
+	id, err := m.CreateVolunteerOpportunityType(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert VolunteerOpportunityType entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO volunteer_opportunity_type (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into VolunteerOpportunityType-> "+err.Error())
-	}
-
-	// get ID of creates VolunteerOpportunityType
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created VolunteerOpportunityType-> "+err.Error())
-	}
-
 	return &v1.CreateVolunteerOpportunityTypeResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
-// Get volunteer_opportunity_type by id.
+// Get volunteerOpportunityType by id.
 func (s *shrikeServiceServer) GetVolunteerOpportunityType(ctx context.Context, req *v1.GetVolunteerOpportunityTypeRequest) (*v1.GetVolunteerOpportunityTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a VolunteerOpportunityType Manager
+	m := models.NewVolunteerOpportunityTypeManager(s.db)
+
+	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
+	volunteerOpportunityType, err := m.GetVolunteerOpportunityType(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query VolunteerOpportunityType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM volunteer_opportunity_type WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityType-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from VolunteerOpportunityType-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan VolunteerOpportunityType data into protobuf model
-	var volunteeropportunitytype v1.VolunteerOpportunityType
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&volunteeropportunitytype.ID, &createdAt, &updatedAt, &volunteeropportunitytype.Title); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunityType row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		volunteeropportunitytype.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		volunteeropportunitytype.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple VolunteerOpportunityType rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetVolunteerOpportunityTypeResponse{
 		Api:  apiVersion,
-		Item: &volunteeropportunitytype,
+		Item: m.GetProto(volunteerOpportunityType),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityType(ctx context.Context, 
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a VolunteerOpportunityType Manager
+	m := models.NewVolunteerOpportunityTypeManager(s.db)
+
+	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
+	list, err := m.ListVolunteerOpportunityType(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in VolunteerOpportunityType Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildVolunteerOpportunityTypeListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from VolunteerOpportunityType-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.VolunteerOpportunityType{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		volunteeropportunitytype := new(v1.VolunteerOpportunityType)
-		if err := rows.Scan(&volunteeropportunitytype.ID, &createdAt, &updatedAt, &volunteeropportunitytype.Title); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from VolunteerOpportunityType row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			volunteeropportunitytype.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			volunteeropportunitytype.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, volunteeropportunitytype)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from VolunteerOpportunityType-> "+err.Error())
 	}
 
 	return &v1.ListVolunteerOpportunityTypeResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,69 +77,38 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityType(ctx context.Context
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a VolunteerOpportunityType Manager
+	m := models.NewVolunteerOpportunityTypeManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
+	rows, err := m.UpdateVolunteerOpportunityType(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update volunteer_opportunity_type
-	res, err := c.ExecContext(ctx, "UPDATE volunteer_opportunity_type SET title=$2 WHERE id=$1",
-		req.Item.ID, req.Item.Title)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update VolunteerOpportunityType-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateVolunteerOpportunityTypeResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
-// Delete volunteer_opportunity_type
+// Delete volunteerOpportunityType
 func (s *shrikeServiceServer) DeleteVolunteerOpportunityType(ctx context.Context, req *v1.DeleteVolunteerOpportunityTypeRequest) (*v1.DeleteVolunteerOpportunityTypeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a VolunteerOpportunityType Manager
+	m := models.NewVolunteerOpportunityTypeManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
+	rows, err := m.DeleteVolunteerOpportunityType(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete volunteer_opportunity_type
-	res, err := c.ExecContext(ctx, "DELETE FROM volunteer_opportunity_type WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete VolunteerOpportunityType-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("VolunteerOpportunityType with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteVolunteerOpportunityTypeResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

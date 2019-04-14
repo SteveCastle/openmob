@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Account
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateAccount(ctx context.Context, req *v1.CreateA
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Account Manager
+	m := models.NewAccountManager(s.db)
+
+	// Get a list of accounts given filters, ordering, and limit rules.
+	id, err := m.CreateAccount(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Account entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO account (username) VALUES($1)  RETURNING id;",
-		req.Item.Username).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Account-> "+err.Error())
-	}
-
-	// get ID of creates Account
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Account-> "+err.Error())
-	}
-
 	return &v1.CreateAccountResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Account Manager
+	m := models.NewAccountManager(s.db)
+
+	// Get a list of accounts given filters, ordering, and limit rules.
+	account, err := m.GetAccount(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Account by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, username FROM account WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Account-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Account-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Account data into protobuf model
-	var account v1.Account
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&account.ID, &createdAt, &updatedAt, &account.Username); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		account.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		account.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Account rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetAccountResponse{
 		Api:  apiVersion,
-		Item: &account,
+		Item: m.GetProto(account),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Account Manager
+	m := models.NewAccountManager(s.db)
+
+	// Get a list of accounts given filters, ordering, and limit rules.
+	list, err := m.ListAccount(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Account Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildAccountListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Account-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Account{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		account := new(v1.Account)
-		if err := rows.Scan(&account.ID, &createdAt, &updatedAt, &account.Username); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Account row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			account.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			account.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, account)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Account-> "+err.Error())
 	}
 
 	return &v1.ListAccountResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateAccount(ctx context.Context, req *v1.UpdateA
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Account Manager
+	m := models.NewAccountManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of accounts given filters, ordering, and limit rules.
+	rows, err := m.UpdateAccount(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update account
-	res, err := c.ExecContext(ctx, "UPDATE account SET username=$2 WHERE id=$1",
-		req.Item.ID, req.Item.Username)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Account-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateAccountResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteAccount(ctx context.Context, req *v1.DeleteA
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Account Manager
+	m := models.NewAccountManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of accounts given filters, ordering, and limit rules.
+	rows, err := m.DeleteAccount(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete account
-	res, err := c.ExecContext(ctx, "DELETE FROM account WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Account-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Account with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteAccountResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

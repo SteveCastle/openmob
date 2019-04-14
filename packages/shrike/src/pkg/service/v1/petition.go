@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Petition
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreatePetition(ctx context.Context, req *v1.Create
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Petition Manager
+	m := models.NewPetitionManager(s.db)
+
+	// Get a list of petitions given filters, ordering, and limit rules.
+	id, err := m.CreatePetition(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Petition entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO petition (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Petition-> "+err.Error())
-	}
-
-	// get ID of creates Petition
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Petition-> "+err.Error())
-	}
-
 	return &v1.CreatePetitionResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetPetition(ctx context.Context, req *v1.GetPetiti
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Petition Manager
+	m := models.NewPetitionManager(s.db)
+
+	// Get a list of petitions given filters, ordering, and limit rules.
+	petition, err := m.GetPetition(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Petition by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM petition WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Petition-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Petition-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Petition with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Petition data into protobuf model
-	var petition v1.Petition
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&petition.ID, &createdAt, &updatedAt, &petition.Title); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Petition row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		petition.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		petition.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Petition rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetPetitionResponse{
 		Api:  apiVersion,
-		Item: &petition,
+		Item: m.GetProto(petition),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListPetition(ctx context.Context, req *v1.ListPeti
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Petition Manager
+	m := models.NewPetitionManager(s.db)
+
+	// Get a list of petitions given filters, ordering, and limit rules.
+	list, err := m.ListPetition(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Petition Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildPetitionListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Petition-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Petition{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		petition := new(v1.Petition)
-		if err := rows.Scan(&petition.ID, &createdAt, &updatedAt, &petition.Title); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Petition row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			petition.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			petition.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, petition)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Petition-> "+err.Error())
 	}
 
 	return &v1.ListPetitionResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdatePetition(ctx context.Context, req *v1.Update
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Petition Manager
+	m := models.NewPetitionManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of petitions given filters, ordering, and limit rules.
+	rows, err := m.UpdatePetition(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update petition
-	res, err := c.ExecContext(ctx, "UPDATE petition SET title=$2 WHERE id=$1",
-		req.Item.ID, req.Item.Title)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Petition-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Petition with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdatePetitionResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeletePetition(ctx context.Context, req *v1.Delete
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Petition Manager
+	m := models.NewPetitionManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of petitions given filters, ordering, and limit rules.
+	rows, err := m.DeletePetition(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete petition
-	res, err := c.ExecContext(ctx, "DELETE FROM petition WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Petition-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Petition with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeletePetitionResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

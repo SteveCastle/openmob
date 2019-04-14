@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new District
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateDistrict(ctx context.Context, req *v1.Create
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a District Manager
+	m := models.NewDistrictManager(s.db)
+
+	// Get a list of districts given filters, ordering, and limit rules.
+	id, err := m.CreateDistrict(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert District entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO district (geom, title, district_type) VALUES($1, $2, $3)  RETURNING id;",
-		req.Item.Geom, req.Item.Title, req.Item.DistrictType).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into District-> "+err.Error())
-	}
-
-	// get ID of creates District
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created District-> "+err.Error())
-	}
-
 	return &v1.CreateDistrictResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetDistrict(ctx context.Context, req *v1.GetDistri
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a District Manager
+	m := models.NewDistrictManager(s.db)
+
+	// Get a list of districts given filters, ordering, and limit rules.
+	district, err := m.GetDistrict(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query District by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, geom, title, district_type FROM district WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from District-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from District-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan District data into protobuf model
-	var district v1.District
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&district.ID, &createdAt, &updatedAt, &district.Geom, &district.Title, &district.DistrictType); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from District row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		district.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		district.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple District rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetDistrictResponse{
 		Api:  apiVersion,
-		Item: &district,
+		Item: m.GetProto(district),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListDistrict(ctx context.Context, req *v1.ListDist
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a District Manager
+	m := models.NewDistrictManager(s.db)
+
+	// Get a list of districts given filters, ordering, and limit rules.
+	list, err := m.ListDistrict(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in District Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildDistrictListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from District-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.District{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		district := new(v1.District)
-		if err := rows.Scan(&district.ID, &createdAt, &updatedAt, &district.Geom, &district.Title, &district.DistrictType); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from District row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			district.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			district.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, district)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from District-> "+err.Error())
 	}
 
 	return &v1.ListDistrictResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateDistrict(ctx context.Context, req *v1.Update
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a District Manager
+	m := models.NewDistrictManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of districts given filters, ordering, and limit rules.
+	rows, err := m.UpdateDistrict(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update district
-	res, err := c.ExecContext(ctx, "UPDATE district SET geom=$2, title=$3, district_type=$4 WHERE id=$1",
-		req.Item.ID, req.Item.Geom, req.Item.Title, req.Item.DistrictType)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update District-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateDistrictResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteDistrict(ctx context.Context, req *v1.Delete
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a District Manager
+	m := models.NewDistrictManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of districts given filters, ordering, and limit rules.
+	rows, err := m.DeleteDistrict(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete district
-	res, err := c.ExecContext(ctx, "DELETE FROM district WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete District-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("District with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteDistrictResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new LiveEvent
@@ -18,91 +13,38 @@ func (s *shrikeServiceServer) CreateLiveEvent(ctx context.Context, req *v1.Creat
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a LiveEvent Manager
+	m := models.NewLiveEventManager(s.db)
+
+	// Get a list of liveEvents given filters, ordering, and limit rules.
+	id, err := m.CreateLiveEvent(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert LiveEvent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO live_event (title, live_event_type) VALUES($1, $2)  RETURNING id;",
-		req.Item.Title, req.Item.LiveEventType).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into LiveEvent-> "+err.Error())
-	}
-
-	// get ID of creates LiveEvent
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created LiveEvent-> "+err.Error())
-	}
-
 	return &v1.CreateLiveEventResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
-// Get live_event by id.
+// Get liveEvent by id.
 func (s *shrikeServiceServer) GetLiveEvent(ctx context.Context, req *v1.GetLiveEventRequest) (*v1.GetLiveEventResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a LiveEvent Manager
+	m := models.NewLiveEventManager(s.db)
+
+	// Get a list of liveEvents given filters, ordering, and limit rules.
+	liveEvent, err := m.GetLiveEvent(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query LiveEvent by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, live_event_type FROM live_event WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from LiveEvent-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan LiveEvent data into protobuf model
-	var liveevent v1.LiveEvent
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&liveevent.ID, &createdAt, &updatedAt, &liveevent.Title, &liveevent.LiveEventType); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEvent row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		liveevent.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		liveevent.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple LiveEvent rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetLiveEventResponse{
 		Api:  apiVersion,
-		Item: &liveevent,
+		Item: m.GetProto(liveEvent),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListLiveEvent(ctx context.Context, req *v1.ListLiv
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a LiveEvent Manager
+	m := models.NewLiveEventManager(s.db)
+
+	// Get a list of liveEvents given filters, ordering, and limit rules.
+	list, err := m.ListLiveEvent(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in LiveEvent Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildLiveEventListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from LiveEvent-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.LiveEvent{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		liveevent := new(v1.LiveEvent)
-		if err := rows.Scan(&liveevent.ID, &createdAt, &updatedAt, &liveevent.Title, &liveevent.LiveEventType); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from LiveEvent row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			liveevent.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			liveevent.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, liveevent)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from LiveEvent-> "+err.Error())
 	}
 
 	return &v1.ListLiveEventResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,69 +77,38 @@ func (s *shrikeServiceServer) UpdateLiveEvent(ctx context.Context, req *v1.Updat
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a LiveEvent Manager
+	m := models.NewLiveEventManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of liveEvents given filters, ordering, and limit rules.
+	rows, err := m.UpdateLiveEvent(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update live_event
-	res, err := c.ExecContext(ctx, "UPDATE live_event SET title=$2, live_event_type=$3 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.LiveEventType)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update LiveEvent-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateLiveEventResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
-// Delete live_event
+// Delete liveEvent
 func (s *shrikeServiceServer) DeleteLiveEvent(ctx context.Context, req *v1.DeleteLiveEventRequest) (*v1.DeleteLiveEventResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a LiveEvent Manager
+	m := models.NewLiveEventManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of liveEvents given filters, ordering, and limit rules.
+	rows, err := m.DeleteLiveEvent(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete live_event
-	res, err := c.ExecContext(ctx, "DELETE FROM live_event WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete LiveEvent-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("LiveEvent with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteLiveEventResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

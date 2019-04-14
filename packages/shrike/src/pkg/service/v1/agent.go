@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Agent
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateAgent(ctx context.Context, req *v1.CreateAge
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Agent Manager
+	m := models.NewAgentManager(s.db)
+
+	// Get a list of agents given filters, ordering, and limit rules.
+	id, err := m.CreateAgent(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Agent entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO agent (account) VALUES($1)  RETURNING id;",
-		req.Item.Account).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Agent-> "+err.Error())
-	}
-
-	// get ID of creates Agent
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Agent-> "+err.Error())
-	}
-
 	return &v1.CreateAgentResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetAgent(ctx context.Context, req *v1.GetAgentRequ
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Agent Manager
+	m := models.NewAgentManager(s.db)
+
+	// Get a list of agents given filters, ordering, and limit rules.
+	agent, err := m.GetAgent(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Agent by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, account FROM agent WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Agent-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Agent-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Agent data into protobuf model
-	var agent v1.Agent
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&agent.ID, &createdAt, &updatedAt, &agent.Account); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Agent row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		agent.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		agent.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Agent rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetAgentResponse{
 		Api:  apiVersion,
-		Item: &agent,
+		Item: m.GetProto(agent),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListAgent(ctx context.Context, req *v1.ListAgentRe
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Agent Manager
+	m := models.NewAgentManager(s.db)
+
+	// Get a list of agents given filters, ordering, and limit rules.
+	list, err := m.ListAgent(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Agent Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildAgentListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Agent-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Agent{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		agent := new(v1.Agent)
-		if err := rows.Scan(&agent.ID, &createdAt, &updatedAt, &agent.Account); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Agent row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			agent.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			agent.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, agent)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Agent-> "+err.Error())
 	}
 
 	return &v1.ListAgentResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateAgent(ctx context.Context, req *v1.UpdateAge
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Agent Manager
+	m := models.NewAgentManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of agents given filters, ordering, and limit rules.
+	rows, err := m.UpdateAgent(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update agent
-	res, err := c.ExecContext(ctx, "UPDATE agent SET account=$2 WHERE id=$1",
-		req.Item.ID, req.Item.Account)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Agent-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateAgentResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteAgent(ctx context.Context, req *v1.DeleteAge
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Agent Manager
+	m := models.NewAgentManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of agents given filters, ordering, and limit rules.
+	rows, err := m.DeleteAgent(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete agent
-	res, err := c.ExecContext(ctx, "DELETE FROM agent WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Agent-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Agent with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteAgentResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

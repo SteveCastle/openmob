@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Boycott
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateBoycott(ctx context.Context, req *v1.CreateB
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Boycott Manager
+	m := models.NewBoycottManager(s.db)
+
+	// Get a list of boycotts given filters, ordering, and limit rules.
+	id, err := m.CreateBoycott(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Boycott entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO boycott (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Boycott-> "+err.Error())
-	}
-
-	// get ID of creates Boycott
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Boycott-> "+err.Error())
-	}
-
 	return &v1.CreateBoycottResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetBoycott(ctx context.Context, req *v1.GetBoycott
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Boycott Manager
+	m := models.NewBoycottManager(s.db)
+
+	// Get a list of boycotts given filters, ordering, and limit rules.
+	boycott, err := m.GetBoycott(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Boycott by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM boycott WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Boycott-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Boycott-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Boycott data into protobuf model
-	var boycott v1.Boycott
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&boycott.ID, &createdAt, &updatedAt, &boycott.Title); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Boycott row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		boycott.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		boycott.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Boycott rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetBoycottResponse{
 		Api:  apiVersion,
-		Item: &boycott,
+		Item: m.GetProto(boycott),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListBoycott(ctx context.Context, req *v1.ListBoyco
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Boycott Manager
+	m := models.NewBoycottManager(s.db)
+
+	// Get a list of boycotts given filters, ordering, and limit rules.
+	list, err := m.ListBoycott(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Boycott Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildBoycottListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Boycott-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Boycott{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		boycott := new(v1.Boycott)
-		if err := rows.Scan(&boycott.ID, &createdAt, &updatedAt, &boycott.Title); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Boycott row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			boycott.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			boycott.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, boycott)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Boycott-> "+err.Error())
 	}
 
 	return &v1.ListBoycottResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateBoycott(ctx context.Context, req *v1.UpdateB
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Boycott Manager
+	m := models.NewBoycottManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of boycotts given filters, ordering, and limit rules.
+	rows, err := m.UpdateBoycott(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update boycott
-	res, err := c.ExecContext(ctx, "UPDATE boycott SET title=$2 WHERE id=$1",
-		req.Item.ID, req.Item.Title)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Boycott-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateBoycottResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteBoycott(ctx context.Context, req *v1.DeleteB
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Boycott Manager
+	m := models.NewBoycottManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of boycotts given filters, ordering, and limit rules.
+	rows, err := m.DeleteBoycott(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete boycott
-	res, err := c.ExecContext(ctx, "DELETE FROM boycott WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Boycott-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Boycott with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteBoycottResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

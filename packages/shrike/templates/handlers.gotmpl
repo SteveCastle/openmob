@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-	"github.com/lib/pq"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new {{.Table.Name}}
@@ -18,86 +13,38 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a {{.Table.Name}} Manager
+	m := models.New{{.Table.Name}}Manager(s.db)
+
+	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
+	id, err := m.Create{{.Table.Name}}(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert {{.Table.Name}} entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}{{.DBName}}{{end}}{{end}}) VALUES({{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}${{dec (dec $index)}}{{end}}{{end}})  RETURNING id;",
-		{{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}req.Item.{{.Name}}{{end}}{{end}}).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into {{.Table.Name}}-> "+err.Error())
-	}
-
-	// get ID of creates {{.Table.Name}}
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created {{.Table.Name}}-> "+err.Error())
-	}
-
 	return &v1.Create{{.Table.Name}}Response{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
-// Get {{snake .Table.Name}} by id.
+// Get {{camel .Table.Name}} by id.
 func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Get{{.Table.Name}}Request) (*v1.Get{{.Table.Name}}Response, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a {{.Table.Name}} Manager
+	m := models.New{{.Table.Name}}Manager(s.db)
+
+	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
+	{{camel .Table.Name}}, err := m.Get{{.Table.Name}}(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query {{.Table.Name}} by ID
-	rows, err := c.QueryContext(ctx, "SELECT {{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}{{end}} FROM {{snake .Table.Name}} WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from {{.Table.Name}}-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan {{.Table.Name}} data into protobuf model
-	var {{toLower .Table.Name}} v1.{{.Table.Name}}
-	{{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}var {{camel .Name}} pq.NullTime
-{{end}}{{end}}
-
-	if err := rows.Scan({{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}&{{camel .Name}}{{end}}{{if ne .Type "google.protobuf.Timestamp"}}&{{toLower .Table.Name}}.{{.Name}}{{end}}, {{end}}); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	{{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}if {{camel .Name}}.Valid {
-		{{toLower .Table.Name}}.{{.Name}}, err = ptypes.TimestampProto({{camel .Name}}.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-{{end}}{{end}}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple {{.Table.Name}} rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.Get{{.Table.Name}}Response{
 		Api:  apiVersion,
-		Item: &{{toLower .Table.Name}},
+		Item: m.GetProto({{camel .Table.Name}}),
 	}, nil
 
 }
@@ -109,52 +56,18 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a {{.Table.Name}} Manager
+	m := models.New{{.Table.Name}}Manager(s.db)
+
+	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
+	list, err := m.List{{.Table.Name}}(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in {{.Table.Name}} Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.Build{{.Table.Name}}ListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
-	}
-	defer rows.Close()
-
-    // Variables to store results returned by database.
-	list := []*v1.{{.Table.Name}}{}
-	{{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}var {{camel .Name}} pq.NullTime
-{{end}}{{end}}
-
-	for rows.Next() {
-		{{toLower .Table.Name}} := new(v1.{{.Table.Name}})
-		if err := rows.Scan({{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}&{{camel .Name}}{{end}}{{if ne .Type "google.protobuf.Timestamp"}}&{{toLower .Table.Name}}.{{.Name}}{{end}}, {{end}}); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
-		}
-	// Convert pq.NullTime from database into proto timestamp.
-	{{range .Table.Columns}}{{if eq .Type "google.protobuf.Timestamp"}}if {{camel .Name}}.Valid {
-		{{toLower .Table.Name}}.{{.Name}}, err = ptypes.TimestampProto({{camel .Name}}.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-{{end}}{{end}}
-
-		list = append(list, {{toLower .Table.Name}})
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from {{.Table.Name}}-> "+err.Error())
 	}
 
 	return &v1.List{{.Table.Name}}Response{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -164,69 +77,38 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a {{.Table.Name}} Manager
+	m := models.New{{.Table.Name}}Manager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
+	rows, err := m.Update{{.Table.Name}}(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update {{snake .Table.Name}}
-	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}{{.DBName}}=${{dec $index}}{{end}}{{end}} WHERE id=$1",
-		{{range $index, $value := .Table.Columns}}{{if ne $index 1}}{{if ne $index 2}}req.Item.{{.Name}},{{end}}{{end}}{{end}} )
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update {{.Table.Name}}-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.Update{{.Table.Name}}Response{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
-// Delete {{snake .Table.Name}}
+// Delete {{camel .Table.Name}}
 func (s *shrikeServiceServer) Delete{{.Table.Name}}(ctx context.Context, req *v1.Delete{{.Table.Name}}Request) (*v1.Delete{{.Table.Name}}Response, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a {{.Table.Name}} Manager
+	m := models.New{{.Table.Name}}Manager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
+	rows, err := m.Delete{{.Table.Name}}(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete {{snake .Table.Name}}
-	res, err := c.ExecContext(ctx, "DELETE FROM {{snake .Table.Name}} WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete {{.Table.Name}}-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.Delete{{.Table.Name}}Response{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }
