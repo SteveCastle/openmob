@@ -44,7 +44,7 @@ function SimpleContent({ title }) {
       display={'flex'}
       justifyContent="center"
       alignItems="center"
-      bg="pink.3"
+      bg="cyan.3"
     >
       <Title color="gray.0" size={1}>
         {title}

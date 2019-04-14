@@ -44,7 +44,7 @@ function SimpleElection({ title = 'SimpleElection' }) {
       display={'flex'}
       justifyContent="center"
       alignItems="center"
-      bg="red.8"
+      bg="teal.4"
     >
       <Title color="gray.0" size={1}>
         {title}

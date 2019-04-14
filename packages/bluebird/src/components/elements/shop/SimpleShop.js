@@ -44,7 +44,7 @@ function SimpleShop({ title }) {
       display={'flex'}
       justifyContent="center"
       alignItems="center"
-      bg="blue.4"
+      bg="violet.7"
     >
       <Title color="gray.0" size={1}>
         {title}

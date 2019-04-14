@@ -14,7 +14,7 @@ import {
   justifyContent
 } from 'styled-system';
 
-const StyledDonationDrive = styled.section`
+const StyledPetition = styled.section`
   ${borders}
   ${borderRadius}
   ${space}
@@ -38,24 +38,24 @@ const Title = styled.h1`
   ${display}
   `;
 
-function SimpleDonationDrive({ title }) {
+function SimplePetition({ title }) {
   return (
-    <StyledDonationDrive
+    <StyledPetition
       display={'flex'}
       justifyContent="center"
-      alignItems="flex-end"
-      bg="orange.8"
+      alignItems="center"
+      bg="yellow.4"
     >
-      <Title color="gray.0" size={1}>
+      <Title color="gray.0" size={5}>
         {title}
       </Title>
-    </StyledDonationDrive>
+    </StyledPetition>
   );
 }
 
-SimpleDonationDrive.propTypes = {
+SimplePetition.propTypes = {
   title: PropTypes.string.isRequired
 };
-SimpleDonationDrive.defaultProps = { title: 'Simple Petition' };
+SimplePetition.defaultProps = { title: 'Simple Petition' };
 
-export default SimpleDonationDrive;
+export default SimplePetition;

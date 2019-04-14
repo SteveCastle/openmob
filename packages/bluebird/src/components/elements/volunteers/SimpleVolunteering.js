@@ -44,7 +44,7 @@ function SimpleVolunteering({ title }) {
       display={'flex'}
       justifyContent="center"
       alignItems="center"
-      bg="orange.4"
+      bg="red.4"
     >
       <Title color="gray.0" size={1}>
         {title}

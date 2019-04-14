@@ -44,7 +44,7 @@ function SimpleBoycott({ title }) {
       display={'flex'}
       justifyContent="center"
       alignItems="center"
-      bg="orange.8"
+      bg="pink.5"
     >
       <Title color="gray.0" size={1}>
         {title}
