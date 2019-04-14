@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new AgentMembership
@@ -18,91 +13,38 @@ func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a AgentMembership Manager
+	m := models.NewAgentMembershipManager(s.db)
+
+	// Get a list of agentMemberships given filters, ordering, and limit rules.
+	id, err := m.CreateAgentMembership(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert AgentMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO agent_membership (cause, agent) VALUES($1, $2)  RETURNING id;",
-		req.Item.Cause, req.Item.Agent).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into AgentMembership-> "+err.Error())
-	}
-
-	// get ID of creates AgentMembership
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created AgentMembership-> "+err.Error())
-	}
-
 	return &v1.CreateAgentMembershipResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
-// Get agent_membership by id.
+// Get agentMembership by id.
 func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.GetAgentMembershipRequest) (*v1.GetAgentMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a AgentMembership Manager
+	m := models.NewAgentMembershipManager(s.db)
+
+	// Get a list of agentMemberships given filters, ordering, and limit rules.
+	agentMembership, err := m.GetAgentMembership(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query AgentMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, agent FROM agent_membership WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from AgentMembership-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from AgentMembership-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("AgentMembership with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan AgentMembership data into protobuf model
-	var agentmembership v1.AgentMembership
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&agentmembership.ID, &createdAt, &updatedAt, &agentmembership.Cause, &agentmembership.Agent); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from AgentMembership row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		agentmembership.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		agentmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple AgentMembership rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetAgentMembershipResponse{
 		Api:  apiVersion,
-		Item: &agentmembership,
+		Item: m.GetProto(agentMembership),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.L
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a AgentMembership Manager
+	m := models.NewAgentMembershipManager(s.db)
+
+	// Get a list of agentMemberships given filters, ordering, and limit rules.
+	list, err := m.ListAgentMembership(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in AgentMembership Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildAgentMembershipListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from AgentMembership-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.AgentMembership{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		agentmembership := new(v1.AgentMembership)
-		if err := rows.Scan(&agentmembership.ID, &createdAt, &updatedAt, &agentmembership.Cause, &agentmembership.Agent); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from AgentMembership row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			agentmembership.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			agentmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, agentmembership)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from AgentMembership-> "+err.Error())
 	}
 
 	return &v1.ListAgentMembershipResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,69 +77,38 @@ func (s *shrikeServiceServer) UpdateAgentMembership(ctx context.Context, req *v1
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a AgentMembership Manager
+	m := models.NewAgentMembershipManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of agentMemberships given filters, ordering, and limit rules.
+	rows, err := m.UpdateAgentMembership(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update agent_membership
-	res, err := c.ExecContext(ctx, "UPDATE agent_membership SET cause=$2, agent=$3 WHERE id=$1",
-		req.Item.ID, req.Item.Cause, req.Item.Agent)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update AgentMembership-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("AgentMembership with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateAgentMembershipResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
-// Delete agent_membership
+// Delete agentMembership
 func (s *shrikeServiceServer) DeleteAgentMembership(ctx context.Context, req *v1.DeleteAgentMembershipRequest) (*v1.DeleteAgentMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a AgentMembership Manager
+	m := models.NewAgentMembershipManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of agentMemberships given filters, ordering, and limit rules.
+	rows, err := m.DeleteAgentMembership(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete agent_membership
-	res, err := c.ExecContext(ctx, "DELETE FROM agent_membership WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete AgentMembership-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("AgentMembership with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteAgentMembershipResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

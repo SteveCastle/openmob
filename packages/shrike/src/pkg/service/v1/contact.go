@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Contact
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateC
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Contact Manager
+	m := models.NewContactManager(s.db)
+
+	// Get a list of contacts given filters, ordering, and limit rules.
+	id, err := m.CreateContact(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Contact entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO contact (first_name, middle_name, last_name, email, phone_number) VALUES($1, $2, $3, $4, $5)  RETURNING id;",
-		req.Item.FirstName, req.Item.MiddleName, req.Item.LastName, req.Item.Email, req.Item.PhoneNumber).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Contact-> "+err.Error())
-	}
-
-	// get ID of creates Contact
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Contact-> "+err.Error())
-	}
-
 	return &v1.CreateContactResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Contact Manager
+	m := models.NewContactManager(s.db)
+
+	// Get a list of contacts given filters, ordering, and limit rules.
+	contact, err := m.GetContact(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Contact by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, first_name, middle_name, last_name, email, phone_number FROM contact WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Contact-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Contact data into protobuf model
-	var contact v1.Contact
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&contact.ID, &createdAt, &updatedAt, &contact.FirstName, &contact.MiddleName, &contact.LastName, &contact.Email, &contact.PhoneNumber); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		contact.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		contact.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Contact rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetContactResponse{
 		Api:  apiVersion,
-		Item: &contact,
+		Item: m.GetProto(contact),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Contact Manager
+	m := models.NewContactManager(s.db)
+
+	// Get a list of contacts given filters, ordering, and limit rules.
+	list, err := m.ListContact(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Contact Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildContactListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Contact-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Contact{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		contact := new(v1.Contact)
-		if err := rows.Scan(&contact.ID, &createdAt, &updatedAt, &contact.FirstName, &contact.MiddleName, &contact.LastName, &contact.Email, &contact.PhoneNumber); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Contact row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			contact.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			contact.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, contact)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Contact-> "+err.Error())
 	}
 
 	return &v1.ListContactResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateC
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Contact Manager
+	m := models.NewContactManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of contacts given filters, ordering, and limit rules.
+	rows, err := m.UpdateContact(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update contact
-	res, err := c.ExecContext(ctx, "UPDATE contact SET first_name=$2, middle_name=$3, last_name=$4, email=$5, phone_number=$6 WHERE id=$1",
-		req.Item.ID, req.Item.FirstName, req.Item.MiddleName, req.Item.LastName, req.Item.Email, req.Item.PhoneNumber)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Contact-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateContactResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteContact(ctx context.Context, req *v1.DeleteC
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Contact Manager
+	m := models.NewContactManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of contacts given filters, ordering, and limit rules.
+	rows, err := m.DeleteContact(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete contact
-	res, err := c.ExecContext(ctx, "DELETE FROM contact WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Contact-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Contact with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteContactResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new EventAttendee
@@ -18,91 +13,38 @@ func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.C
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a EventAttendee Manager
+	m := models.NewEventAttendeeManager(s.db)
+
+	// Get a list of eventAttendees given filters, ordering, and limit rules.
+	id, err := m.CreateEventAttendee(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert EventAttendee entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO event_attendee (live_event, contact, cause) VALUES($1, $2, $3)  RETURNING id;",
-		req.Item.LiveEvent, req.Item.Contact, req.Item.Cause).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into EventAttendee-> "+err.Error())
-	}
-
-	// get ID of creates EventAttendee
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created EventAttendee-> "+err.Error())
-	}
-
 	return &v1.CreateEventAttendeeResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
-// Get event_attendee by id.
+// Get eventAttendee by id.
 func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetEventAttendeeRequest) (*v1.GetEventAttendeeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a EventAttendee Manager
+	m := models.NewEventAttendeeManager(s.db)
+
+	// Get a list of eventAttendees given filters, ordering, and limit rules.
+	eventAttendee, err := m.GetEventAttendee(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query EventAttendee by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, live_event, contact, cause FROM event_attendee WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from EventAttendee-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from EventAttendee-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("EventAttendee with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan EventAttendee data into protobuf model
-	var eventattendee v1.EventAttendee
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&eventattendee.ID, &createdAt, &updatedAt, &eventattendee.LiveEvent, &eventattendee.Contact, &eventattendee.Cause); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from EventAttendee row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		eventattendee.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		eventattendee.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple EventAttendee rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetEventAttendeeResponse{
 		Api:  apiVersion,
-		Item: &eventattendee,
+		Item: m.GetProto(eventAttendee),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a EventAttendee Manager
+	m := models.NewEventAttendeeManager(s.db)
+
+	// Get a list of eventAttendees given filters, ordering, and limit rules.
+	list, err := m.ListEventAttendee(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in EventAttendee Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildEventAttendeeListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from EventAttendee-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.EventAttendee{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		eventattendee := new(v1.EventAttendee)
-		if err := rows.Scan(&eventattendee.ID, &createdAt, &updatedAt, &eventattendee.LiveEvent, &eventattendee.Contact, &eventattendee.Cause); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from EventAttendee row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			eventattendee.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			eventattendee.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, eventattendee)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from EventAttendee-> "+err.Error())
 	}
 
 	return &v1.ListEventAttendeeResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,69 +77,38 @@ func (s *shrikeServiceServer) UpdateEventAttendee(ctx context.Context, req *v1.U
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a EventAttendee Manager
+	m := models.NewEventAttendeeManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of eventAttendees given filters, ordering, and limit rules.
+	rows, err := m.UpdateEventAttendee(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update event_attendee
-	res, err := c.ExecContext(ctx, "UPDATE event_attendee SET live_event=$2, contact=$3, cause=$4 WHERE id=$1",
-		req.Item.ID, req.Item.LiveEvent, req.Item.Contact, req.Item.Cause)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update EventAttendee-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("EventAttendee with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateEventAttendeeResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
-// Delete event_attendee
+// Delete eventAttendee
 func (s *shrikeServiceServer) DeleteEventAttendee(ctx context.Context, req *v1.DeleteEventAttendeeRequest) (*v1.DeleteEventAttendeeResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a EventAttendee Manager
+	m := models.NewEventAttendeeManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of eventAttendees given filters, ordering, and limit rules.
+	rows, err := m.DeleteEventAttendee(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete event_attendee
-	res, err := c.ExecContext(ctx, "DELETE FROM event_attendee WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete EventAttendee-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("EventAttendee with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteEventAttendeeResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

@@ -11,6 +11,6 @@ type Region []Point
 
 // NullRegion is an optional enclosed shape on a globe.
 type NullRegion struct {
-	Exists bool
+	Valid  bool
 	Region Region
 }

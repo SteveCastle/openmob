@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new ComponentImplementation
@@ -18,91 +13,38 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a ComponentImplementation Manager
+	m := models.NewComponentImplementationManager(s.db)
+
+	// Get a list of componentImplementations given filters, ordering, and limit rules.
+	id, err := m.CreateComponentImplementation(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert ComponentImplementation entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component_implementation (title, path, component_type) VALUES($1, $2, $3)  RETURNING id;",
-		req.Item.Title, req.Item.Path, req.Item.ComponentType).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into ComponentImplementation-> "+err.Error())
-	}
-
-	// get ID of creates ComponentImplementation
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created ComponentImplementation-> "+err.Error())
-	}
-
 	return &v1.CreateComponentImplementationResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
-// Get component_implementation by id.
+// Get componentImplementation by id.
 func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, req *v1.GetComponentImplementationRequest) (*v1.GetComponentImplementationResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a ComponentImplementation Manager
+	m := models.NewComponentImplementationManager(s.db)
+
+	// Get a list of componentImplementations given filters, ordering, and limit rules.
+	componentImplementation, err := m.GetComponentImplementation(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query ComponentImplementation by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, path, component_type FROM component_implementation WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from ComponentImplementation-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan ComponentImplementation data into protobuf model
-	var componentimplementation v1.ComponentImplementation
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&componentimplementation.ID, &createdAt, &updatedAt, &componentimplementation.Title, &componentimplementation.Path, &componentimplementation.ComponentType); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		componentimplementation.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		componentimplementation.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple ComponentImplementation rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetComponentImplementationResponse{
 		Api:  apiVersion,
-		Item: &componentimplementation,
+		Item: m.GetProto(componentImplementation),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a ComponentImplementation Manager
+	m := models.NewComponentImplementationManager(s.db)
+
+	// Get a list of componentImplementations given filters, ordering, and limit rules.
+	list, err := m.ListComponentImplementation(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in ComponentImplementation Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildComponentImplementationListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from ComponentImplementation-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.ComponentImplementation{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		componentimplementation := new(v1.ComponentImplementation)
-		if err := rows.Scan(&componentimplementation.ID, &createdAt, &updatedAt, &componentimplementation.Title, &componentimplementation.Path, &componentimplementation.ComponentType); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentImplementation row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			componentimplementation.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			componentimplementation.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, componentimplementation)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from ComponentImplementation-> "+err.Error())
 	}
 
 	return &v1.ListComponentImplementationResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,69 +77,38 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a ComponentImplementation Manager
+	m := models.NewComponentImplementationManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of componentImplementations given filters, ordering, and limit rules.
+	rows, err := m.UpdateComponentImplementation(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update component_implementation
-	res, err := c.ExecContext(ctx, "UPDATE component_implementation SET title=$2, path=$3, component_type=$4 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.Path, req.Item.ComponentType)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update ComponentImplementation-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateComponentImplementationResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
-// Delete component_implementation
+// Delete componentImplementation
 func (s *shrikeServiceServer) DeleteComponentImplementation(ctx context.Context, req *v1.DeleteComponentImplementationRequest) (*v1.DeleteComponentImplementationResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a ComponentImplementation Manager
+	m := models.NewComponentImplementationManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of componentImplementations given filters, ordering, and limit rules.
+	rows, err := m.DeleteComponentImplementation(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete component_implementation
-	res, err := c.ExecContext(ctx, "DELETE FROM component_implementation WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete ComponentImplementation-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("ComponentImplementation with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteComponentImplementationResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

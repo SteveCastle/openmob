@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Candidate
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateCandidate(ctx context.Context, req *v1.Creat
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Candidate Manager
+	m := models.NewCandidateManager(s.db)
+
+	// Get a list of candidates given filters, ordering, and limit rules.
+	id, err := m.CreateCandidate(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Candidate entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO candidate (election) VALUES($1)  RETURNING id;",
-		req.Item.Election).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Candidate-> "+err.Error())
-	}
-
-	// get ID of creates Candidate
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Candidate-> "+err.Error())
-	}
-
 	return &v1.CreateCandidateResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetCandidate(ctx context.Context, req *v1.GetCandi
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Candidate Manager
+	m := models.NewCandidateManager(s.db)
+
+	// Get a list of candidates given filters, ordering, and limit rules.
+	candidate, err := m.GetCandidate(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Candidate by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, election FROM candidate WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Candidate-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Candidate-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Candidate data into protobuf model
-	var candidate v1.Candidate
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&candidate.ID, &createdAt, &updatedAt, &candidate.Election); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Candidate row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		candidate.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		candidate.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Candidate rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetCandidateResponse{
 		Api:  apiVersion,
-		Item: &candidate,
+		Item: m.GetProto(candidate),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListCandidate(ctx context.Context, req *v1.ListCan
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Candidate Manager
+	m := models.NewCandidateManager(s.db)
+
+	// Get a list of candidates given filters, ordering, and limit rules.
+	list, err := m.ListCandidate(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Candidate Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildCandidateListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Candidate-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Candidate{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		candidate := new(v1.Candidate)
-		if err := rows.Scan(&candidate.ID, &createdAt, &updatedAt, &candidate.Election); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Candidate row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			candidate.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			candidate.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, candidate)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Candidate-> "+err.Error())
 	}
 
 	return &v1.ListCandidateResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateCandidate(ctx context.Context, req *v1.Updat
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Candidate Manager
+	m := models.NewCandidateManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of candidates given filters, ordering, and limit rules.
+	rows, err := m.UpdateCandidate(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update candidate
-	res, err := c.ExecContext(ctx, "UPDATE candidate SET election=$2 WHERE id=$1",
-		req.Item.ID, req.Item.Election)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Candidate-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateCandidateResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteCandidate(ctx context.Context, req *v1.Delet
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Candidate Manager
+	m := models.NewCandidateManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of candidates given filters, ordering, and limit rules.
+	rows, err := m.DeleteCandidate(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete candidate
-	res, err := c.ExecContext(ctx, "DELETE FROM candidate WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Candidate-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Candidate with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteCandidateResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

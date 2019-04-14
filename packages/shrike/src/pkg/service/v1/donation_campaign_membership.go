@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new DonationCampaignMembership
@@ -18,91 +13,38 @@ func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Conte
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a DonationCampaignMembership Manager
+	m := models.NewDonationCampaignMembershipManager(s.db)
+
+	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
+	id, err := m.CreateDonationCampaignMembership(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert DonationCampaignMembership entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO donation_campaign_membership (cause, donation_campaign) VALUES($1, $2)  RETURNING id;",
-		req.Item.Cause, req.Item.DonationCampaign).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into DonationCampaignMembership-> "+err.Error())
-	}
-
-	// get ID of creates DonationCampaignMembership
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created DonationCampaignMembership-> "+err.Error())
-	}
-
 	return &v1.CreateDonationCampaignMembershipResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
-// Get donation_campaign_membership by id.
+// Get donationCampaignMembership by id.
 func (s *shrikeServiceServer) GetDonationCampaignMembership(ctx context.Context, req *v1.GetDonationCampaignMembershipRequest) (*v1.GetDonationCampaignMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a DonationCampaignMembership Manager
+	m := models.NewDonationCampaignMembershipManager(s.db)
+
+	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
+	donationCampaignMembership, err := m.GetDonationCampaignMembership(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query DonationCampaignMembership by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, cause, donation_campaign FROM donation_campaign_membership WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaignMembership-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from DonationCampaignMembership-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaignMembership with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan DonationCampaignMembership data into protobuf model
-	var donationcampaignmembership v1.DonationCampaignMembership
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&donationcampaignmembership.ID, &createdAt, &updatedAt, &donationcampaignmembership.Cause, &donationcampaignmembership.DonationCampaign); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaignMembership row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		donationcampaignmembership.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		donationcampaignmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple DonationCampaignMembership rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetDonationCampaignMembershipResponse{
 		Api:  apiVersion,
-		Item: &donationcampaignmembership,
+		Item: m.GetProto(donationCampaignMembership),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a DonationCampaignMembership Manager
+	m := models.NewDonationCampaignMembershipManager(s.db)
+
+	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
+	list, err := m.ListDonationCampaignMembership(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in DonationCampaignMembership Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildDonationCampaignMembershipListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from DonationCampaignMembership-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.DonationCampaignMembership{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		donationcampaignmembership := new(v1.DonationCampaignMembership)
-		if err := rows.Scan(&donationcampaignmembership.ID, &createdAt, &updatedAt, &donationcampaignmembership.Cause, &donationcampaignmembership.DonationCampaign); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from DonationCampaignMembership row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			donationcampaignmembership.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			donationcampaignmembership.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, donationcampaignmembership)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from DonationCampaignMembership-> "+err.Error())
 	}
 
 	return &v1.ListDonationCampaignMembershipResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,69 +77,38 @@ func (s *shrikeServiceServer) UpdateDonationCampaignMembership(ctx context.Conte
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a DonationCampaignMembership Manager
+	m := models.NewDonationCampaignMembershipManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
+	rows, err := m.UpdateDonationCampaignMembership(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update donation_campaign_membership
-	res, err := c.ExecContext(ctx, "UPDATE donation_campaign_membership SET cause=$2, donation_campaign=$3 WHERE id=$1",
-		req.Item.ID, req.Item.Cause, req.Item.DonationCampaign)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update DonationCampaignMembership-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaignMembership with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateDonationCampaignMembershipResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
-// Delete donation_campaign_membership
+// Delete donationCampaignMembership
 func (s *shrikeServiceServer) DeleteDonationCampaignMembership(ctx context.Context, req *v1.DeleteDonationCampaignMembershipRequest) (*v1.DeleteDonationCampaignMembershipResponse, error) {
 	// check if the API version requested by client is supported by server
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a DonationCampaignMembership Manager
+	m := models.NewDonationCampaignMembershipManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
+	rows, err := m.DeleteDonationCampaignMembership(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete donation_campaign_membership
-	res, err := c.ExecContext(ctx, "DELETE FROM donation_campaign_membership WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete DonationCampaignMembership-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("DonationCampaignMembership with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteDonationCampaignMembershipResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

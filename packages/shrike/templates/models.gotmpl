@@ -1,9 +1,17 @@
 package models
 
 import (
+	"context"
+	"database/sql"
+	"fmt"
 	"time"
 
+	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+	"github.com/SteveCastle/structs"
 	uuid "github.com/gofrs/uuid"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	{{range .Table.Columns}}{{if eq .Type "geography.Region"}}"github.com/SteveCastle/openmob/packages/shrike/src/geography"{{end}}{{end}}
 	{{range .Table.Columns}}{{if eq .Type "geography.NullRegion"}}"github.com/SteveCastle/openmob/packages/shrike/src/geography"{{end}}{{end}}
 
@@ -12,4 +20,233 @@ import (
 // {{.Table.Name}} is a type for {{snake .Table.Name}} db element.
 type {{.Table.Name}} struct { {{range $index, $value := .Table.Columns}}
 	{{.Name}} {{.Type}}{{end}}
+}
+
+// {{.Table.Name}}Manager manages queries returning a {{camel .Table.Name}} or list of {{camel .Table.Name}}s.
+// It is configured with a db field to contain the db driver.
+type {{.Table.Name}}Manager struct {
+	db *sql.DB
+}
+
+// New{{.Table.Name}}Manager creates a {{camel .Table.Name}} manager
+func New{{.Table.Name}}Manager(db *sql.DB) *{{.Table.Name}}Manager {
+	return &{{.Table.Name}}Manager{db: db}
+}
+
+// CRUD Methods for the {{.Table.Name}}Manager.
+
+// Create{{.Table.Name}} creates a {{camel .Table.Name}}.
+func (m *{{.Table.Name}}Manager) Create{{.Table.Name}}(ctx context.Context, item *v1.Create{{.Table.Name}}) (*string, error) {
+	c, err := m.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+	var id string
+	// Execute INSERT query and then scan the resulting id into id string.
+	err = c.QueryRowContext(ctx, "INSERT INTO {{snake .Table.Name}} ({{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}{{.DBName}}{{end}}{{end}}) VALUES({{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}${{dec (dec $index)}}{{end}}{{end}})  RETURNING id;",
+		{{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}item.{{.Name}}{{end}}{{end}}).Scan(&id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to insert into {{.Table.Name}}-> "+err.Error())
+	}
+
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve id for created {{.Table.Name}}-> "+err.Error())
+	}
+	return &id, nil
+}
+
+// Get{{.Table.Name}} gets a single {{camel .Table.Name}} from the database by ID.
+func (m *{{.Table.Name}}Manager) Get{{.Table.Name}}(ctx context.Context, id string) (*{{.Table.Name}}, error) {
+	c, err := m.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// query {{.Table.Name}} by ID
+	rows, err := c.QueryContext(ctx, "SELECT {{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}{{end}} FROM {{snake .Table.Name}} WHERE id=$1",
+	id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
+	}
+	defer rows.Close()
+
+	if !rows.Next() {
+		if err := rows.Err(); err != nil {
+			return nil, status.Error(codes.Unknown, "failed to retrieve data from {{.Table.Name}}-> "+err.Error())
+		}
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%s' is not found", id))
+	}
+
+	// scan {{.Table.Name}} data into protobuf model
+	var {{camel .Table.Name}} {{.Table.Name}}
+
+	if err := rows.Scan({{range .Table.Columns}}&{{camel .Table.Name}}.{{.Name}}, {{end}}); err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
+	}
+
+	if rows.Next() {
+		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple {{.Table.Name}} rows with ID='%s'",
+			id))
+	}
+	return &{{camel .Table.Name}}, nil
+}
+
+// List{{.Table.Name}} returns a slice of all {{camel .Table.Name}}s meeting the filter criteria.
+func (m *{{.Table.Name}}Manager) List{{.Table.Name}}(ctx context.Context, filters []*v1.{{.Table.Name}}FilterRule, orderings []*v1.{{.Table.Name}}Ordering, limit int64) ([]*{{.Table.Name}}, error) {
+
+	c, err := m.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	// Generate SQL to select all columns in {{.Table.Name}} Table
+	// TODO: Allow column selection.
+	// Then generate filtering and ordering sql and finally run query.
+	querySQL := Build{{.Table.Name}}ListQuery(filters, orderings, limit)
+
+	// Execute query and scan into return type.
+	rows, err := c.QueryContext(ctx, querySQL)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to select from {{.Table.Name}}-> "+err.Error())
+	}
+	defer rows.Close()
+
+	// Scan the results into a slice.
+	list := []*{{.Table.Name}}{}
+	for rows.Next() {
+		{{camel .Table.Name}} := new({{.Table.Name}})
+		if err := rows.Scan({{range .Table.Columns}}&{{camel .Table.Name}}.{{.Name}}, {{end}}); err != nil {
+			return nil, status.Error(codes.Unknown, "failed to retrieve field values from {{.Table.Name}} row-> "+err.Error())
+		}
+		list = append(list, {{camel .Table.Name}})
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve data from {{.Table.Name}}-> "+err.Error())
+	}
+	return list, nil
+}
+
+// Update{{.Table.Name}} runs an update query on the provided db and returns the rows affected as an int64.
+func (m *{{.Table.Name}}Manager) Update{{.Table.Name}}(ctx context.Context, item *v1.{{.Table.Name}}) (*int64, error) {
+
+	c, err := m.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	res, err := c.ExecContext(ctx, "UPDATE {{snake .Table.Name}} SET {{range $index, $value := .Table.Columns}}{{if gt $index 2}}{{if gt $index 3}}, {{end}}{{.DBName}}=${{dec $index}}{{end}}{{end}} WHERE id=$1",
+		{{range $index, $value := .Table.Columns}}{{if ne $index 1}}{{if ne $index 2}}item.{{.Name}},{{end}}{{end}}{{end}} )
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to update {{.Table.Name}}-> "+err.Error())
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
+	}
+
+	if rows == 0 {
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%s' is not found",
+			item.ID))
+	}
+	return &rows, nil
+}
+
+//Delete{{.Table.Name}} creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *{{.Table.Name}}Manager) Delete{{.Table.Name}}(ctx context.Context, id string) (*int64, error) {
+	c, err := m.connect(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer c.Close()
+
+	res, err := c.ExecContext(ctx, "DELETE FROM {{camel .Table.Name}} WHERE id=$1", id)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to delete {{.Table.Name}}-> "+err.Error())
+	}
+
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
+	}
+
+	if rows == 0 {
+		return nil, status.Error(codes.NotFound, fmt.Sprintf("{{.Table.Name}} with ID='%s' is not found",
+			id))
+	}
+
+	return &rows, nil
+}
+
+// convertTo{{.Table.Name}}Proto accepts a {{camel .Table.Name}} struct and returns a protobuf {{camel .Table.Name}} struct.
+func convertTo{{.Table.Name}}Proto(c *{{.Table.Name}}) *v1.{{.Table.Name}} {
+	createdAt, _ := convertTimeToProto(c.CreatedAt)
+	updatedAt, _ := convertTimeToProto(c.UpdatedAt)
+
+	return &v1.{{.Table.Name}}{
+{{range .Table.Columns}}{{.Name}}:{{if eq .Type "uuid.UUID"}}c.{{.Name}}.String(){{end}}{{if eq .Type "time.Time"}}{{camel .Name}}{{end}}{{if eq .Type "string"}}c.{{.Name}}{{end}}{{if eq .Type "sql.NullString"}}*safeNullString(c.{{.Name}}){{end}}{{if eq .Type "uuid.NullUUID"}}*safeNullUUID(c.{{.Name}}){{end}}{{if eq .Type "int64"}}c.{{.Name}}{{end}}{{if eq .Type "bool"}}c.{{.Name}}{{end}}{{if eq .Type "sql.NullBool"}}*safeNullBool(c.{{.Name}}){{end}}{{if eq .Type "sql.NullInt64"}}*safeNullInt64(c.{{.Name}}){{end}}{{if eq .Type "sql.NullFloat64"}}*safeNullFloat64(c.{{.Name}}){{end}}{{if eq .Type "pq.NullTime"}}safeNullTime(c.{{.Name}}){{end}}{{if eq .Type "geography.NullRegion"}}*safeNullRegion(c.{{.Name}}){{end}},
+{{end}}}
+}
+
+//GetProtoList returns a slice of protobuf typed struct of a {{camel .Table.Name}}.
+func (*{{.Table.Name}}Manager) GetProtoList(l []*{{.Table.Name}}) []*v1.{{.Table.Name}} {
+	list := []*v1.{{.Table.Name}}{}
+	for _, v := range l {
+		list = append(list, convertTo{{.Table.Name}}Proto(v))
+	}
+	return list
+}
+
+//GetProto returns a single protobuf typed struct of a {{camel .Table.Name}}.
+func (*{{.Table.Name}}Manager) GetProto(c *{{.Table.Name}}) *v1.{{.Table.Name}} {
+	return convertTo{{.Table.Name}}Proto(c)
+}
+
+// Build{{.Table.Name}}ListQuery takes a filter and ordering object for a {{camel .Table.Name}}.
+// and returns an SQL string
+func Build{{.Table.Name}}ListQuery(filters []*v1.{{.Table.Name}}FilterRule, orderings []*v1.{{.Table.Name}}Ordering, limit int64) string {
+	baseSQL := "SELECT {{range $index, $value := .Table.Columns}}{{if $index}}, {{end}}{{.DBName}}{{end}} FROM {{snake .Table.Name}}"
+	// Range over the provided rules and create where clauses.
+	for i, r := range filters {
+		if i == 0 {
+			baseSQL = fmt.Sprintf("%s %s", baseSQL, "WHERE")
+		} else {
+			baseSQL = fmt.Sprintf("%s %s", baseSQL, r.LogicalOperator)
+		}
+		s := structs.New(r.GetField())
+		for _, f := range s.Fields() {
+			if f.IsExported() {
+				baseSQL = fmt.Sprintf("%s %s %s '%s'", baseSQL, ToSnakeCase(f.Name()), Comparison[r.Rule.String()], f.Value())
+			}
+		}
+	}
+	// Range over ordering rules and create ORDER BY clauses.
+	for _, r := range orderings {
+		fmt.Println(r.Direction)
+		s := structs.New(r.GetField())
+		for _, f := range s.Fields() {
+			baseSQL = fmt.Sprintf("%s %s", baseSQL, "ORDER BY")
+			if f.IsExported() {
+				baseSQL = fmt.Sprintf("%s %s %s", baseSQL, ToSnakeCase(f.Name()), SQLDirections[r.Direction.String()])
+			}
+		}
+
+	}
+	baseSQL = fmt.Sprintf("%s LIMIT %d;", baseSQL, limit)
+	fmt.Printf("List SQL Executed: %v\n", baseSQL)
+	return baseSQL
+}
+
+// connect returns SQL database connection from the pool.
+func (m *{{.Table.Name}}Manager) connect(ctx context.Context) (*sql.Conn, error) {
+	c, err := m.db.Conn(ctx)
+	if err != nil {
+		return nil, status.Error(codes.Unknown, "failed to connect to database-> "+err.Error())
+	}
+	return c, nil
 }

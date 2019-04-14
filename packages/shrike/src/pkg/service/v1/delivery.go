@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Delivery
@@ -18,27 +13,17 @@ func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.Create
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Delivery Manager
+	m := models.NewDeliveryManager(s.db)
+
+	// Get a list of deliverys given filters, ordering, and limit rules.
+	id, err := m.CreateDelivery(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Delivery entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO delivery () VALUES()  RETURNING id;").Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Delivery-> "+err.Error())
-	}
-
-	// get ID of creates Delivery
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Delivery-> "+err.Error())
-	}
-
 	return &v1.CreateDeliveryResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -48,60 +33,18 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Delivery Manager
+	m := models.NewDeliveryManager(s.db)
+
+	// Get a list of deliverys given filters, ordering, and limit rules.
+	delivery, err := m.GetDelivery(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Delivery by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at FROM delivery WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Delivery-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Delivery-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Delivery data into protobuf model
-	var delivery v1.Delivery
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&delivery.ID, &createdAt, &updatedAt); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Delivery row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		delivery.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		delivery.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Delivery rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetDeliveryResponse{
 		Api:  apiVersion,
-		Item: &delivery,
+		Item: m.GetProto(delivery),
 	}, nil
 
 }
@@ -113,57 +56,18 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Delivery Manager
+	m := models.NewDeliveryManager(s.db)
+
+	// Get a list of deliverys given filters, ordering, and limit rules.
+	list, err := m.ListDelivery(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Delivery Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildDeliveryListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Delivery-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Delivery{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		delivery := new(v1.Delivery)
-		if err := rows.Scan(&delivery.ID, &createdAt, &updatedAt); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Delivery row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			delivery.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			delivery.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, delivery)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Delivery-> "+err.Error())
 	}
 
 	return &v1.ListDeliveryResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -173,34 +77,18 @@ func (s *shrikeServiceServer) UpdateDelivery(ctx context.Context, req *v1.Update
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Delivery Manager
+	m := models.NewDeliveryManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of deliverys given filters, ordering, and limit rules.
+	rows, err := m.UpdateDelivery(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update delivery
-	res, err := c.ExecContext(ctx, "UPDATE delivery SET  WHERE id=$1",
-		req.Item.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Delivery-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateDeliveryResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -210,32 +98,17 @@ func (s *shrikeServiceServer) DeleteDelivery(ctx context.Context, req *v1.Delete
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Delivery Manager
+	m := models.NewDeliveryManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of deliverys given filters, ordering, and limit rules.
+	rows, err := m.DeleteDelivery(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete delivery
-	res, err := c.ExecContext(ctx, "DELETE FROM delivery WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Delivery-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Delivery with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteDeliveryResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

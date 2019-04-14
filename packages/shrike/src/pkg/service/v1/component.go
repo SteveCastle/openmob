@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Component
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateComponent(ctx context.Context, req *v1.Creat
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Component Manager
+	m := models.NewComponentManager(s.db)
+
+	// Get a list of components given filters, ordering, and limit rules.
+	id, err := m.CreateComponent(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Component entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO component (component_type, component_implementation, layout_column, weight) VALUES($1, $2, $3, $4)  RETURNING id;",
-		req.Item.ComponentType, req.Item.ComponentImplementation, req.Item.LayoutColumn, req.Item.Weight).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Component-> "+err.Error())
-	}
-
-	// get ID of creates Component
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Component-> "+err.Error())
-	}
-
 	return &v1.CreateComponentResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetComponent(ctx context.Context, req *v1.GetCompo
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Component Manager
+	m := models.NewComponentManager(s.db)
+
+	// Get a list of components given filters, ordering, and limit rules.
+	component, err := m.GetComponent(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Component by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, component_type, component_implementation, layout_column, weight FROM component WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Component-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Component-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Component with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Component data into protobuf model
-	var component v1.Component
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&component.ID, &createdAt, &updatedAt, &component.ComponentType, &component.ComponentImplementation, &component.LayoutColumn, &component.Weight); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Component row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		component.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		component.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Component rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetComponentResponse{
 		Api:  apiVersion,
-		Item: &component,
+		Item: m.GetProto(component),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListComponent(ctx context.Context, req *v1.ListCom
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Component Manager
+	m := models.NewComponentManager(s.db)
+
+	// Get a list of components given filters, ordering, and limit rules.
+	list, err := m.ListComponent(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Component Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildComponentListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Component-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Component{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		component := new(v1.Component)
-		if err := rows.Scan(&component.ID, &createdAt, &updatedAt, &component.ComponentType, &component.ComponentImplementation, &component.LayoutColumn, &component.Weight); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Component row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			component.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			component.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, component)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Component-> "+err.Error())
 	}
 
 	return &v1.ListComponentResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateComponent(ctx context.Context, req *v1.Updat
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Component Manager
+	m := models.NewComponentManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of components given filters, ordering, and limit rules.
+	rows, err := m.UpdateComponent(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update component
-	res, err := c.ExecContext(ctx, "UPDATE component SET component_type=$2, component_implementation=$3, layout_column=$4, weight=$5 WHERE id=$1",
-		req.Item.ID, req.Item.ComponentType, req.Item.ComponentImplementation, req.Item.LayoutColumn, req.Item.Weight)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Component-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Component with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateComponentResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteComponent(ctx context.Context, req *v1.Delet
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Component Manager
+	m := models.NewComponentManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of components given filters, ordering, and limit rules.
+	rows, err := m.DeleteComponent(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete component
-	res, err := c.ExecContext(ctx, "DELETE FROM component WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Component-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Component with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteComponentResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

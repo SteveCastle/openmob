@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Territory
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateTerritory(ctx context.Context, req *v1.Creat
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Territory Manager
+	m := models.NewTerritoryManager(s.db)
+
+	// Get a list of territorys given filters, ordering, and limit rules.
+	id, err := m.CreateTerritory(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Territory entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO territory (title) VALUES($1)  RETURNING id;",
-		req.Item.Title).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Territory-> "+err.Error())
-	}
-
-	// get ID of creates Territory
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Territory-> "+err.Error())
-	}
-
 	return &v1.CreateTerritoryResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetTerritory(ctx context.Context, req *v1.GetTerri
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Territory Manager
+	m := models.NewTerritoryManager(s.db)
+
+	// Get a list of territorys given filters, ordering, and limit rules.
+	territory, err := m.GetTerritory(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Territory by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM territory WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Territory-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Territory-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Territory with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Territory data into protobuf model
-	var territory v1.Territory
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&territory.ID, &createdAt, &updatedAt, &territory.Title); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Territory row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		territory.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		territory.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Territory rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetTerritoryResponse{
 		Api:  apiVersion,
-		Item: &territory,
+		Item: m.GetProto(territory),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTer
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Territory Manager
+	m := models.NewTerritoryManager(s.db)
+
+	// Get a list of territorys given filters, ordering, and limit rules.
+	list, err := m.ListTerritory(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Territory Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildTerritoryListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Territory-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Territory{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		territory := new(v1.Territory)
-		if err := rows.Scan(&territory.ID, &createdAt, &updatedAt, &territory.Title); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Territory row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			territory.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			territory.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, territory)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Territory-> "+err.Error())
 	}
 
 	return &v1.ListTerritoryResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateTerritory(ctx context.Context, req *v1.Updat
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Territory Manager
+	m := models.NewTerritoryManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of territorys given filters, ordering, and limit rules.
+	rows, err := m.UpdateTerritory(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update territory
-	res, err := c.ExecContext(ctx, "UPDATE territory SET title=$2 WHERE id=$1",
-		req.Item.ID, req.Item.Title)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Territory-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Territory with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateTerritoryResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteTerritory(ctx context.Context, req *v1.Delet
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Territory Manager
+	m := models.NewTerritoryManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of territorys given filters, ordering, and limit rules.
+	rows, err := m.DeleteTerritory(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete territory
-	res, err := c.ExecContext(ctx, "DELETE FROM territory WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Territory-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Territory with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteTerritoryResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }

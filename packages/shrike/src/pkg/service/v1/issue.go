@@ -2,14 +2,9 @@ package v1
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/queries"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/lib/pq"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
 )
 
 // Create new Issue
@@ -18,28 +13,17 @@ func (s *shrikeServiceServer) CreateIssue(ctx context.Context, req *v1.CreateIss
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Issue Manager
+	m := models.NewIssueManager(s.db)
+
+	// Get a list of issues given filters, ordering, and limit rules.
+	id, err := m.CreateIssue(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
-	defer c.Close()
-	var id string
-	// insert Issue entity data
-	err = c.QueryRowContext(ctx, "INSERT INTO issue (title, election) VALUES($1, $2)  RETURNING id;",
-		req.Item.Title, req.Item.Election).Scan(&id)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to insert into Issue-> "+err.Error())
-	}
-
-	// get ID of creates Issue
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve id for created Issue-> "+err.Error())
-	}
-
 	return &v1.CreateIssueResponse{
 		Api: apiVersion,
-		ID:  id,
+		ID:  *id,
 	}, nil
 }
 
@@ -49,60 +33,18 @@ func (s *shrikeServiceServer) GetIssue(ctx context.Context, req *v1.GetIssueRequ
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Issue Manager
+	m := models.NewIssueManager(s.db)
+
+	// Get a list of issues given filters, ordering, and limit rules.
+	issue, err := m.GetIssue(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// query Issue by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, election FROM issue WHERE id=$1",
-		req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Issue-> "+err.Error())
-	}
-	defer rows.Close()
-
-	if !rows.Next() {
-		if err := rows.Err(); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve data from Issue-> "+err.Error())
-		}
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%s' is not found",
-			req.ID))
-	}
-
-	// scan Issue data into protobuf model
-	var issue v1.Issue
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	if err := rows.Scan(&issue.ID, &createdAt, &updatedAt, &issue.Title, &issue.Election); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve field values from Issue row-> "+err.Error())
-	}
-
-	// Convert pq.NullTime from database into proto timestamp.
-	if createdAt.Valid {
-		issue.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-	if updatedAt.Valid {
-		issue.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-		if err != nil {
-			return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-		}
-	}
-
-	if rows.Next() {
-		return nil, status.Error(codes.Unknown, fmt.Sprintf("found multiple Issue rows with ID='%s'",
-			req.ID))
 	}
 
 	return &v1.GetIssueResponse{
 		Api:  apiVersion,
-		Item: &issue,
+		Item: m.GetProto(issue),
 	}, nil
 
 }
@@ -114,57 +56,18 @@ func (s *shrikeServiceServer) ListIssue(ctx context.Context, req *v1.ListIssueRe
 		return nil, err
 	}
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Create a Issue Manager
+	m := models.NewIssueManager(s.db)
+
+	// Get a list of issues given filters, ordering, and limit rules.
+	list, err := m.ListIssue(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// Generate SQL to select all columns in Issue Table
-	// Then generate filtering and ordering sql and finally run query.
-	querySQL := queries.BuildIssueListQuery(req.Filters, req.Ordering, req.Limit)
-	// Execute query and scan into return type.
-	rows, err := c.QueryContext(ctx, querySQL)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to select from Issue-> "+err.Error())
-	}
-	defer rows.Close()
-
-	// Variables to store results returned by database.
-	list := []*v1.Issue{}
-	var createdAt pq.NullTime
-	var updatedAt pq.NullTime
-
-	for rows.Next() {
-		issue := new(v1.Issue)
-		if err := rows.Scan(&issue.ID, &createdAt, &updatedAt, &issue.Title, &issue.Election); err != nil {
-			return nil, status.Error(codes.Unknown, "failed to retrieve field values from Issue row-> "+err.Error())
-		}
-		// Convert pq.NullTime from database into proto timestamp.
-		if createdAt.Valid {
-			issue.CreatedAt, err = ptypes.TimestampProto(createdAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-		if updatedAt.Valid {
-			issue.UpdatedAt, err = ptypes.TimestampProto(updatedAt.Time)
-			if err != nil {
-				return nil, status.Error(codes.Unknown, "createdAt field has invalid format-> "+err.Error())
-			}
-		}
-
-		list = append(list, issue)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve data from Issue-> "+err.Error())
 	}
 
 	return &v1.ListIssueResponse{
 		Api:   apiVersion,
-		Items: list,
+		Items: m.GetProtoList(list),
 	}, nil
 }
 
@@ -174,34 +77,18 @@ func (s *shrikeServiceServer) UpdateIssue(ctx context.Context, req *v1.UpdateIss
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Issue Manager
+	m := models.NewIssueManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of issues given filters, ordering, and limit rules.
+	rows, err := m.UpdateIssue(ctx, req.Item)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// update issue
-	res, err := c.ExecContext(ctx, "UPDATE issue SET title=$2, election=$3 WHERE id=$1",
-		req.Item.ID, req.Item.Title, req.Item.Election)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to update Issue-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%s' is not found",
-			req.Item.ID))
 	}
 
 	return &v1.UpdateIssueResponse{
 		Api:     apiVersion,
-		Updated: rows,
+		Updated: *rows,
 	}, nil
 }
 
@@ -211,32 +98,17 @@ func (s *shrikeServiceServer) DeleteIssue(ctx context.Context, req *v1.DeleteIss
 	if err := s.checkAPI(req.Api); err != nil {
 		return nil, err
 	}
+	// Create a Issue Manager
+	m := models.NewIssueManager(s.db)
 
-	// get SQL connection from pool
-	c, err := s.connect(ctx)
+	// Get a list of issues given filters, ordering, and limit rules.
+	rows, err := m.DeleteIssue(ctx, req.ID)
 	if err != nil {
 		return nil, err
-	}
-	defer c.Close()
-
-	// delete issue
-	res, err := c.ExecContext(ctx, "DELETE FROM issue WHERE id=$1", req.ID)
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to delete Issue-> "+err.Error())
-	}
-
-	rows, err := res.RowsAffected()
-	if err != nil {
-		return nil, status.Error(codes.Unknown, "failed to retrieve rows affected value-> "+err.Error())
-	}
-
-	if rows == 0 {
-		return nil, status.Error(codes.NotFound, fmt.Sprintf("Issue with ID='%s' is not found",
-			req.ID))
 	}
 
 	return &v1.DeleteIssueResponse{
 		Api:     apiVersion,
-		Deleted: rows,
+		Deleted: *rows,
 	}, nil
 }
