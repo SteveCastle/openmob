@@ -14,7 +14,7 @@ import {
   justifyContent
 } from 'styled-system';
 
-const StyledFooter = styled.section`
+const StyledShop = styled.section`
   ${borders}
   ${borderRadius}
   ${space}
@@ -38,26 +38,24 @@ const Title = styled.h1`
   ${display}
   `;
 
-function SimpleFooter({ title }) {
+function SimpleShop({ title }) {
   return (
-    <StyledFooter
+    <StyledShop
       display={'flex'}
       justifyContent="center"
       alignItems="flex-end"
-      bg="blue.8"
+      bg="orange.8"
     >
       <Title color="gray.0" size={1}>
         {title}
       </Title>
-    </StyledFooter>
+    </StyledShop>
   );
 }
 
-SimpleFooter.propTypes = {
-  title: PropTypes.shape({
-    StringValue: PropTypes.string.isRequired
-  })
+SimpleShop.propTypes = {
+  title: PropTypes.string.isRequired
 };
-SimpleFooter.defaultProps = {};
+SimpleShop.defaultProps = { title: 'Simple Shop' };
 
-export default SimpleFooter;
+export default SimpleShop;

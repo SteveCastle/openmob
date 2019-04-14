@@ -1,17 +1,17 @@
-import React from 'react'
-import Loadable from 'react-loadable'
-import ErrorBoundary from './ErrorBoundary'
+import React from "react"
+import Loadable from "react-loadable"
+import ErrorBoundary from "./ErrorBoundary"
 
 const getFieldValue = field => {
   switch (field.FieldType.DataType) {
-    case 'string':
+    case "string":
       return field.StringValue
   }
 }
 
 const getComponent = path =>
   Loadable({
-    loader: () => import(`@openmob/bluebird/src/components${path}`),
+    loader: () => import(`@openmob/bluebird/src/components/elements${path}`),
     loading: () => <div>loading</div>,
   })
 
