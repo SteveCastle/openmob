@@ -24,7 +24,7 @@ const StyledMenu = styled.div`
   overflow: hidden;
 `;
 
-function Menu({ children, vertical }) {
+function Menu({ children, vertical = true }) {
   return <StyledMenu>{children}</StyledMenu>;
 }
 

@@ -203,7 +203,8 @@ const theme = {
     admin: {
       light: {
         bg: colors.gray[1],
-        sidebarBg: colors.blue[9]
+        sidebarBg: colors.blue[9],
+        menubarBg: colors.gray[1]
       },
       dark: { bg: colors.gray[8], sidebarBg: colors.blue[9] }
     },

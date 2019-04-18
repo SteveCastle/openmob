@@ -45,11 +45,34 @@ const StyledTitle = styled.h2`
   ${color}
 `;
 
-function GridItem({ uri, width, height, title, id, slug }) {
+const StyledCaption = styled.p`
+  ${borders}
+  ${borderRadius}
+  ${space}
+  ${width}
+  ${fontSize}
+  ${position}
+  ${bottom}
+  ${color}
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+`;
+
+function GridItem({ uri, width, height, title, id, slug, caption }) {
   return (
-    <StyledItem  m={2} position="relative">
-      <StyledImage src={uri} width={1} m={0} p={0}/>
-      <StyledTitle color="gray.0" position="absolute" m={4} bottom="0">{title}</StyledTitle>
+    <StyledItem m={2} position="relative">
+      <StyledImage src={uri} width={1} m={0} p={0} />
+      <StyledTitle color="gray.0" position="absolute" m={4} bottom="0">
+        {title}
+      </StyledTitle>
+      <StyledCaption
+        color="gray.0"
+        position="absolute"
+        mx={4}
+        my={3}
+        bottom="0"
+      >
+        {caption}
+      </StyledCaption>
     </StyledItem>
   );
 }
@@ -59,6 +82,7 @@ GridItem.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   title: PropTypes.string,
+  caption: PropTypes.string,
   id: PropTypes.string,
   slug: PropTypes.string
 };

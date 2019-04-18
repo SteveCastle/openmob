@@ -1,10 +1,10 @@
-import React from 'react'
-import Loadable from 'react-loadable'
-import ErrorBoundary from './ErrorBoundary'
-
+import React from "react"
+import Loadable from "react-loadable"
+import ErrorBoundary from "./ErrorBoundary"
+import Spinner from "@openmob/bluebird/src/components/loaders/Spinner"
 const getFieldValue = field => {
   switch (field.FieldType.DataType) {
-    case 'string':
+    case "string":
       return field.StringValue
   }
 }
@@ -12,7 +12,7 @@ const getFieldValue = field => {
 const getComponent = path =>
   Loadable({
     loader: () => import(`@openmob/bluebird/src/components/elements${path}`),
-    loading: () => <div>loading</div>,
+    loading: () => <Spinner />,
   })
 
 const getProps = fields =>
