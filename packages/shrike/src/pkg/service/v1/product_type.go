@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateProductType(ctx context.Context, req *v1.Cre
 	m := models.NewProductTypeManager(s.db)
 
 	// Get a list of productTypes given filters, ordering, and limit rules.
-	id, err := m.CreateProductType(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetProductType(ctx context.Context, req *v1.GetPro
 	m := models.NewProductTypeManager(s.db)
 
 	// Get a list of productTypes given filters, ordering, and limit rules.
-	productType, err := m.GetProductType(ctx, req.ID)
+	productType, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListProductType(ctx context.Context, req *v1.ListP
 	m := models.NewProductTypeManager(s.db)
 
 	// Get a list of productTypes given filters, ordering, and limit rules.
-	list, err := m.ListProductType(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateProductType(ctx context.Context, req *v1.Upd
 	m := models.NewProductTypeManager(s.db)
 
 	// Get a list of productTypes given filters, ordering, and limit rules.
-	rows, err := m.UpdateProductType(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteProductType(ctx context.Context, req *v1.Del
 	m := models.NewProductTypeManager(s.db)
 
 	// Get a list of productTypes given filters, ordering, and limit rules.
-	rows, err := m.DeleteProductType(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

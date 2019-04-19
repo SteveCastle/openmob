@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateLandingPage(ctx context.Context, req *v1.Cre
 	m := models.NewLandingPageManager(s.db)
 
 	// Get a list of landingPages given filters, ordering, and limit rules.
-	id, err := m.CreateLandingPage(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetLandingPage(ctx context.Context, req *v1.GetLan
 	m := models.NewLandingPageManager(s.db)
 
 	// Get a list of landingPages given filters, ordering, and limit rules.
-	landingPage, err := m.GetLandingPage(ctx, req.ID)
+	landingPage, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListLandingPage(ctx context.Context, req *v1.ListL
 	m := models.NewLandingPageManager(s.db)
 
 	// Get a list of landingPages given filters, ordering, and limit rules.
-	list, err := m.ListLandingPage(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateLandingPage(ctx context.Context, req *v1.Upd
 	m := models.NewLandingPageManager(s.db)
 
 	// Get a list of landingPages given filters, ordering, and limit rules.
-	rows, err := m.UpdateLandingPage(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteLandingPage(ctx context.Context, req *v1.Del
 	m := models.NewLandingPageManager(s.db)
 
 	// Get a list of landingPages given filters, ordering, and limit rules.
-	rows, err := m.DeleteLandingPage(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

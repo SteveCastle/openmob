@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePurchaser(ctx context.Context, req *v1.Creat
 	m := models.NewPurchaserManager(s.db)
 
 	// Get a list of purchasers given filters, ordering, and limit rules.
-	id, err := m.CreatePurchaser(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPurchaser(ctx context.Context, req *v1.GetPurch
 	m := models.NewPurchaserManager(s.db)
 
 	// Get a list of purchasers given filters, ordering, and limit rules.
-	purchaser, err := m.GetPurchaser(ctx, req.ID)
+	purchaser, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPurchaser(ctx context.Context, req *v1.ListPur
 	m := models.NewPurchaserManager(s.db)
 
 	// Get a list of purchasers given filters, ordering, and limit rules.
-	list, err := m.ListPurchaser(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePurchaser(ctx context.Context, req *v1.Updat
 	m := models.NewPurchaserManager(s.db)
 
 	// Get a list of purchasers given filters, ordering, and limit rules.
-	rows, err := m.UpdatePurchaser(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePurchaser(ctx context.Context, req *v1.Delet
 	m := models.NewPurchaserManager(s.db)
 
 	// Get a list of purchasers given filters, ordering, and limit rules.
-	rows, err := m.DeletePurchaser(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

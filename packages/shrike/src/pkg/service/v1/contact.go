@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateContact(ctx context.Context, req *v1.CreateC
 	m := models.NewContactManager(s.db)
 
 	// Get a list of contacts given filters, ordering, and limit rules.
-	id, err := m.CreateContact(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetContact(ctx context.Context, req *v1.GetContact
 	m := models.NewContactManager(s.db)
 
 	// Get a list of contacts given filters, ordering, and limit rules.
-	contact, err := m.GetContact(ctx, req.ID)
+	contact, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListContact(ctx context.Context, req *v1.ListConta
 	m := models.NewContactManager(s.db)
 
 	// Get a list of contacts given filters, ordering, and limit rules.
-	list, err := m.ListContact(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateContact(ctx context.Context, req *v1.UpdateC
 	m := models.NewContactManager(s.db)
 
 	// Get a list of contacts given filters, ordering, and limit rules.
-	rows, err := m.UpdateContact(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteContact(ctx context.Context, req *v1.DeleteC
 	m := models.NewContactManager(s.db)
 
 	// Get a list of contacts given filters, ordering, and limit rules.
-	rows, err := m.DeleteContact(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

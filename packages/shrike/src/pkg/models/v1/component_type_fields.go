@@ -38,8 +38,8 @@ func NewComponentTypeFieldsManager(db *sql.DB) *ComponentTypeFieldsManager {
 
 // CRUD Methods for the ComponentTypeFieldsManager.
 
-// CreateComponentTypeFields creates a componentTypeFields.
-func (m *ComponentTypeFieldsManager) CreateComponentTypeFields(ctx context.Context, item *v1.CreateComponentTypeFields) (*string, error) {
+// Create creates a componentTypeFields.
+func (m *ComponentTypeFieldsManager) Create(ctx context.Context, item *v1.CreateComponentTypeFields) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -59,8 +59,8 @@ func (m *ComponentTypeFieldsManager) CreateComponentTypeFields(ctx context.Conte
 	return &id, nil
 }
 
-// GetComponentTypeFields gets a single componentTypeFields from the database by ID.
-func (m *ComponentTypeFieldsManager) GetComponentTypeFields(ctx context.Context, id string) (*ComponentTypeFields, error) {
+// Get gets a single componentTypeFields from the database by ID.
+func (m *ComponentTypeFieldsManager) Get(ctx context.Context, id string) (*ComponentTypeFields, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -96,8 +96,8 @@ func (m *ComponentTypeFieldsManager) GetComponentTypeFields(ctx context.Context,
 	return &componentTypeFields, nil
 }
 
-// ListComponentTypeFields returns a slice of all componentTypeFieldss meeting the filter criteria.
-func (m *ComponentTypeFieldsManager) ListComponentTypeFields(ctx context.Context, filters []*v1.ComponentTypeFieldsFilterRule, orderings []*v1.ComponentTypeFieldsOrdering, limit int64) ([]*ComponentTypeFields, error) {
+// List returns a slice of all componentTypeFieldss meeting the filter criteria.
+func (m *ComponentTypeFieldsManager) List(ctx context.Context, filters []*v1.ComponentTypeFieldsFilterRule, orderings []*v1.ComponentTypeFieldsOrdering, limit int64) ([]*ComponentTypeFields, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -133,8 +133,8 @@ func (m *ComponentTypeFieldsManager) ListComponentTypeFields(ctx context.Context
 	return list, nil
 }
 
-// UpdateComponentTypeFields runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ComponentTypeFieldsManager) UpdateComponentTypeFields(ctx context.Context, item *v1.ComponentTypeFields) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ComponentTypeFieldsManager) Update(ctx context.Context, item *v1.ComponentTypeFields) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -160,8 +160,8 @@ func (m *ComponentTypeFieldsManager) UpdateComponentTypeFields(ctx context.Conte
 	return &rows, nil
 }
 
-//DeleteComponentTypeFields creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ComponentTypeFieldsManager) DeleteComponentTypeFields(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ComponentTypeFieldsManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

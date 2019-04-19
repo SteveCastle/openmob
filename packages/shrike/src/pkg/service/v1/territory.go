@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateTerritory(ctx context.Context, req *v1.Creat
 	m := models.NewTerritoryManager(s.db)
 
 	// Get a list of territorys given filters, ordering, and limit rules.
-	id, err := m.CreateTerritory(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetTerritory(ctx context.Context, req *v1.GetTerri
 	m := models.NewTerritoryManager(s.db)
 
 	// Get a list of territorys given filters, ordering, and limit rules.
-	territory, err := m.GetTerritory(ctx, req.ID)
+	territory, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListTerritory(ctx context.Context, req *v1.ListTer
 	m := models.NewTerritoryManager(s.db)
 
 	// Get a list of territorys given filters, ordering, and limit rules.
-	list, err := m.ListTerritory(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateTerritory(ctx context.Context, req *v1.Updat
 	m := models.NewTerritoryManager(s.db)
 
 	// Get a list of territorys given filters, ordering, and limit rules.
-	rows, err := m.UpdateTerritory(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteTerritory(ctx context.Context, req *v1.Delet
 	m := models.NewTerritoryManager(s.db)
 
 	// Get a list of territorys given filters, ordering, and limit rules.
-	rows, err := m.DeleteTerritory(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

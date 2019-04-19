@@ -39,8 +39,8 @@ func NewContactManager(db *sql.DB) *ContactManager {
 
 // CRUD Methods for the ContactManager.
 
-// CreateContact creates a contact.
-func (m *ContactManager) CreateContact(ctx context.Context, item *v1.CreateContact) (*string, error) {
+// Create creates a contact.
+func (m *ContactManager) Create(ctx context.Context, item *v1.CreateContact) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (m *ContactManager) CreateContact(ctx context.Context, item *v1.CreateConta
 	return &id, nil
 }
 
-// GetContact gets a single contact from the database by ID.
-func (m *ContactManager) GetContact(ctx context.Context, id string) (*Contact, error) {
+// Get gets a single contact from the database by ID.
+func (m *ContactManager) Get(ctx context.Context, id string) (*Contact, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -97,8 +97,8 @@ func (m *ContactManager) GetContact(ctx context.Context, id string) (*Contact, e
 	return &contact, nil
 }
 
-// ListContact returns a slice of all contacts meeting the filter criteria.
-func (m *ContactManager) ListContact(ctx context.Context, filters []*v1.ContactFilterRule, orderings []*v1.ContactOrdering, limit int64) ([]*Contact, error) {
+// List returns a slice of all contacts meeting the filter criteria.
+func (m *ContactManager) List(ctx context.Context, filters []*v1.ContactFilterRule, orderings []*v1.ContactOrdering, limit int64) ([]*Contact, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -134,8 +134,8 @@ func (m *ContactManager) ListContact(ctx context.Context, filters []*v1.ContactF
 	return list, nil
 }
 
-// UpdateContact runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ContactManager) UpdateContact(ctx context.Context, item *v1.Contact) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ContactManager) Update(ctx context.Context, item *v1.Contact) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -161,8 +161,8 @@ func (m *ContactManager) UpdateContact(ctx context.Context, item *v1.Contact) (*
 	return &rows, nil
 }
 
-//DeleteContact creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ContactManager) DeleteContact(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ContactManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

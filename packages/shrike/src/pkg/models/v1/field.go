@@ -43,8 +43,8 @@ func NewFieldManager(db *sql.DB) *FieldManager {
 
 // CRUD Methods for the FieldManager.
 
-// CreateField creates a field.
-func (m *FieldManager) CreateField(ctx context.Context, item *v1.CreateField) (*string, error) {
+// Create creates a field.
+func (m *FieldManager) Create(ctx context.Context, item *v1.CreateField) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -64,8 +64,8 @@ func (m *FieldManager) CreateField(ctx context.Context, item *v1.CreateField) (*
 	return &id, nil
 }
 
-// GetField gets a single field from the database by ID.
-func (m *FieldManager) GetField(ctx context.Context, id string) (*Field, error) {
+// Get gets a single field from the database by ID.
+func (m *FieldManager) Get(ctx context.Context, id string) (*Field, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -101,8 +101,8 @@ func (m *FieldManager) GetField(ctx context.Context, id string) (*Field, error) 
 	return &field, nil
 }
 
-// ListField returns a slice of all fields meeting the filter criteria.
-func (m *FieldManager) ListField(ctx context.Context, filters []*v1.FieldFilterRule, orderings []*v1.FieldOrdering, limit int64) ([]*Field, error) {
+// List returns a slice of all fields meeting the filter criteria.
+func (m *FieldManager) List(ctx context.Context, filters []*v1.FieldFilterRule, orderings []*v1.FieldOrdering, limit int64) ([]*Field, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -138,8 +138,8 @@ func (m *FieldManager) ListField(ctx context.Context, filters []*v1.FieldFilterR
 	return list, nil
 }
 
-// UpdateField runs an update query on the provided db and returns the rows affected as an int64.
-func (m *FieldManager) UpdateField(ctx context.Context, item *v1.Field) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *FieldManager) Update(ctx context.Context, item *v1.Field) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -165,8 +165,8 @@ func (m *FieldManager) UpdateField(ctx context.Context, item *v1.Field) (*int64,
 	return &rows, nil
 }
 
-//DeleteField creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *FieldManager) DeleteField(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *FieldManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

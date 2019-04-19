@@ -36,8 +36,8 @@ func NewProductManager(db *sql.DB) *ProductManager {
 
 // CRUD Methods for the ProductManager.
 
-// CreateProduct creates a product.
-func (m *ProductManager) CreateProduct(ctx context.Context, item *v1.CreateProduct) (*string, error) {
+// Create creates a product.
+func (m *ProductManager) Create(ctx context.Context, item *v1.CreateProduct) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *ProductManager) CreateProduct(ctx context.Context, item *v1.CreateProdu
 	return &id, nil
 }
 
-// GetProduct gets a single product from the database by ID.
-func (m *ProductManager) GetProduct(ctx context.Context, id string) (*Product, error) {
+// Get gets a single product from the database by ID.
+func (m *ProductManager) Get(ctx context.Context, id string) (*Product, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *ProductManager) GetProduct(ctx context.Context, id string) (*Product, e
 	return &product, nil
 }
 
-// ListProduct returns a slice of all products meeting the filter criteria.
-func (m *ProductManager) ListProduct(ctx context.Context, filters []*v1.ProductFilterRule, orderings []*v1.ProductOrdering, limit int64) ([]*Product, error) {
+// List returns a slice of all products meeting the filter criteria.
+func (m *ProductManager) List(ctx context.Context, filters []*v1.ProductFilterRule, orderings []*v1.ProductOrdering, limit int64) ([]*Product, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *ProductManager) ListProduct(ctx context.Context, filters []*v1.ProductF
 	return list, nil
 }
 
-// UpdateProduct runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ProductManager) UpdateProduct(ctx context.Context, item *v1.Product) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ProductManager) Update(ctx context.Context, item *v1.Product) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *ProductManager) UpdateProduct(ctx context.Context, item *v1.Product) (*
 	return &rows, nil
 }
 
-//DeleteProduct creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ProductManager) DeleteProduct(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ProductManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

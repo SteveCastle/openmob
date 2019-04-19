@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateComponentType(ctx context.Context, req *v1.C
 	m := models.NewComponentTypeManager(s.db)
 
 	// Get a list of componentTypes given filters, ordering, and limit rules.
-	id, err := m.CreateComponentType(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetComponentType(ctx context.Context, req *v1.GetC
 	m := models.NewComponentTypeManager(s.db)
 
 	// Get a list of componentTypes given filters, ordering, and limit rules.
-	componentType, err := m.GetComponentType(ctx, req.ID)
+	componentType, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListComponentType(ctx context.Context, req *v1.Lis
 	m := models.NewComponentTypeManager(s.db)
 
 	// Get a list of componentTypes given filters, ordering, and limit rules.
-	list, err := m.ListComponentType(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateComponentType(ctx context.Context, req *v1.U
 	m := models.NewComponentTypeManager(s.db)
 
 	// Get a list of componentTypes given filters, ordering, and limit rules.
-	rows, err := m.UpdateComponentType(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteComponentType(ctx context.Context, req *v1.D
 	m := models.NewComponentTypeManager(s.db)
 
 	// Get a list of componentTypes given filters, ordering, and limit rules.
-	rows, err := m.DeleteComponentType(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

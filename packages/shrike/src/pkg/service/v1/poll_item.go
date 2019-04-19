@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePollItem(ctx context.Context, req *v1.Create
 	m := models.NewPollItemManager(s.db)
 
 	// Get a list of pollItems given filters, ordering, and limit rules.
-	id, err := m.CreatePollItem(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPollItem(ctx context.Context, req *v1.GetPollIt
 	m := models.NewPollItemManager(s.db)
 
 	// Get a list of pollItems given filters, ordering, and limit rules.
-	pollItem, err := m.GetPollItem(ctx, req.ID)
+	pollItem, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPollItem(ctx context.Context, req *v1.ListPoll
 	m := models.NewPollItemManager(s.db)
 
 	// Get a list of pollItems given filters, ordering, and limit rules.
-	list, err := m.ListPollItem(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePollItem(ctx context.Context, req *v1.Update
 	m := models.NewPollItemManager(s.db)
 
 	// Get a list of pollItems given filters, ordering, and limit rules.
-	rows, err := m.UpdatePollItem(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePollItem(ctx context.Context, req *v1.Delete
 	m := models.NewPollItemManager(s.db)
 
 	// Get a list of pollItems given filters, ordering, and limit rules.
-	rows, err := m.DeletePollItem(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

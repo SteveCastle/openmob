@@ -35,8 +35,8 @@ func NewPollManager(db *sql.DB) *PollManager {
 
 // CRUD Methods for the PollManager.
 
-// CreatePoll creates a poll.
-func (m *PollManager) CreatePoll(ctx context.Context, item *v1.CreatePoll) (*string, error) {
+// Create creates a poll.
+func (m *PollManager) Create(ctx context.Context, item *v1.CreatePoll) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *PollManager) CreatePoll(ctx context.Context, item *v1.CreatePoll) (*str
 	return &id, nil
 }
 
-// GetPoll gets a single poll from the database by ID.
-func (m *PollManager) GetPoll(ctx context.Context, id string) (*Poll, error) {
+// Get gets a single poll from the database by ID.
+func (m *PollManager) Get(ctx context.Context, id string) (*Poll, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *PollManager) GetPoll(ctx context.Context, id string) (*Poll, error) {
 	return &poll, nil
 }
 
-// ListPoll returns a slice of all polls meeting the filter criteria.
-func (m *PollManager) ListPoll(ctx context.Context, filters []*v1.PollFilterRule, orderings []*v1.PollOrdering, limit int64) ([]*Poll, error) {
+// List returns a slice of all polls meeting the filter criteria.
+func (m *PollManager) List(ctx context.Context, filters []*v1.PollFilterRule, orderings []*v1.PollOrdering, limit int64) ([]*Poll, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *PollManager) ListPoll(ctx context.Context, filters []*v1.PollFilterRule
 	return list, nil
 }
 
-// UpdatePoll runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PollManager) UpdatePoll(ctx context.Context, item *v1.Poll) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PollManager) Update(ctx context.Context, item *v1.Poll) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *PollManager) UpdatePoll(ctx context.Context, item *v1.Poll) (*int64, er
 	return &rows, nil
 }
 
-//DeletePoll creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PollManager) DeletePoll(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PollManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

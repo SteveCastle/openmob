@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) Create{{.Table.Name}}(ctx context.Context, req *v1
 	m := models.New{{.Table.Name}}Manager(s.db)
 
 	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
-	id, err := m.Create{{.Table.Name}}(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) Get{{.Table.Name}}(ctx context.Context, req *v1.Ge
 	m := models.New{{.Table.Name}}Manager(s.db)
 
 	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
-	{{camel .Table.Name}}, err := m.Get{{.Table.Name}}(ctx, req.ID)
+	{{camel .Table.Name}}, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) List{{.Table.Name}}(ctx context.Context, req *v1.L
 	m := models.New{{.Table.Name}}Manager(s.db)
 
 	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
-	list, err := m.List{{.Table.Name}}(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) Update{{.Table.Name}}(ctx context.Context, req *v1
 	m := models.New{{.Table.Name}}Manager(s.db)
 
 	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
-	rows, err := m.Update{{.Table.Name}}(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) Delete{{.Table.Name}}(ctx context.Context, req *v1
 	m := models.New{{.Table.Name}}Manager(s.db)
 
 	// Get a list of {{camel .Table.Name}}s given filters, ordering, and limit rules.
-	rows, err := m.Delete{{.Table.Name}}(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

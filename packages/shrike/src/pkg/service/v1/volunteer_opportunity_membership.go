@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityMembership(ctx context.C
 	m := models.NewVolunteerOpportunityMembershipManager(s.db)
 
 	// Get a list of volunteerOpportunityMemberships given filters, ordering, and limit rules.
-	id, err := m.CreateVolunteerOpportunityMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityMembership(ctx context.Cont
 	m := models.NewVolunteerOpportunityMembershipManager(s.db)
 
 	// Get a list of volunteerOpportunityMemberships given filters, ordering, and limit rules.
-	volunteerOpportunityMembership, err := m.GetVolunteerOpportunityMembership(ctx, req.ID)
+	volunteerOpportunityMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityMembership(ctx context.Con
 	m := models.NewVolunteerOpportunityMembershipManager(s.db)
 
 	// Get a list of volunteerOpportunityMemberships given filters, ordering, and limit rules.
-	list, err := m.ListVolunteerOpportunityMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityMembership(ctx context.C
 	m := models.NewVolunteerOpportunityMembershipManager(s.db)
 
 	// Get a list of volunteerOpportunityMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdateVolunteerOpportunityMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunityMembership(ctx context.C
 	m := models.NewVolunteerOpportunityMembershipManager(s.db)
 
 	// Get a list of volunteerOpportunityMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeleteVolunteerOpportunityMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

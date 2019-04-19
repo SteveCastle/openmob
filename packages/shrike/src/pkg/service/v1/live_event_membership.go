@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateLiveEventMembership(ctx context.Context, req
 	m := models.NewLiveEventMembershipManager(s.db)
 
 	// Get a list of liveEventMemberships given filters, ordering, and limit rules.
-	id, err := m.CreateLiveEventMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetLiveEventMembership(ctx context.Context, req *v
 	m := models.NewLiveEventMembershipManager(s.db)
 
 	// Get a list of liveEventMemberships given filters, ordering, and limit rules.
-	liveEventMembership, err := m.GetLiveEventMembership(ctx, req.ID)
+	liveEventMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListLiveEventMembership(ctx context.Context, req *
 	m := models.NewLiveEventMembershipManager(s.db)
 
 	// Get a list of liveEventMemberships given filters, ordering, and limit rules.
-	list, err := m.ListLiveEventMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateLiveEventMembership(ctx context.Context, req
 	m := models.NewLiveEventMembershipManager(s.db)
 
 	// Get a list of liveEventMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdateLiveEventMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteLiveEventMembership(ctx context.Context, req
 	m := models.NewLiveEventMembershipManager(s.db)
 
 	// Get a list of liveEventMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeleteLiveEventMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

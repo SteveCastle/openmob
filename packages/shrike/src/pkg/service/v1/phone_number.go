@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePhoneNumber(ctx context.Context, req *v1.Cre
 	m := models.NewPhoneNumberManager(s.db)
 
 	// Get a list of phoneNumbers given filters, ordering, and limit rules.
-	id, err := m.CreatePhoneNumber(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPhoneNumber(ctx context.Context, req *v1.GetPho
 	m := models.NewPhoneNumberManager(s.db)
 
 	// Get a list of phoneNumbers given filters, ordering, and limit rules.
-	phoneNumber, err := m.GetPhoneNumber(ctx, req.ID)
+	phoneNumber, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPhoneNumber(ctx context.Context, req *v1.ListP
 	m := models.NewPhoneNumberManager(s.db)
 
 	// Get a list of phoneNumbers given filters, ordering, and limit rules.
-	list, err := m.ListPhoneNumber(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePhoneNumber(ctx context.Context, req *v1.Upd
 	m := models.NewPhoneNumberManager(s.db)
 
 	// Get a list of phoneNumbers given filters, ordering, and limit rules.
-	rows, err := m.UpdatePhoneNumber(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePhoneNumber(ctx context.Context, req *v1.Del
 	m := models.NewPhoneNumberManager(s.db)
 
 	// Get a list of phoneNumbers given filters, ordering, and limit rules.
-	rows, err := m.DeletePhoneNumber(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

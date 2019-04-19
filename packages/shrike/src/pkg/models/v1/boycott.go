@@ -35,8 +35,8 @@ func NewBoycottManager(db *sql.DB) *BoycottManager {
 
 // CRUD Methods for the BoycottManager.
 
-// CreateBoycott creates a boycott.
-func (m *BoycottManager) CreateBoycott(ctx context.Context, item *v1.CreateBoycott) (*string, error) {
+// Create creates a boycott.
+func (m *BoycottManager) Create(ctx context.Context, item *v1.CreateBoycott) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *BoycottManager) CreateBoycott(ctx context.Context, item *v1.CreateBoyco
 	return &id, nil
 }
 
-// GetBoycott gets a single boycott from the database by ID.
-func (m *BoycottManager) GetBoycott(ctx context.Context, id string) (*Boycott, error) {
+// Get gets a single boycott from the database by ID.
+func (m *BoycottManager) Get(ctx context.Context, id string) (*Boycott, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *BoycottManager) GetBoycott(ctx context.Context, id string) (*Boycott, e
 	return &boycott, nil
 }
 
-// ListBoycott returns a slice of all boycotts meeting the filter criteria.
-func (m *BoycottManager) ListBoycott(ctx context.Context, filters []*v1.BoycottFilterRule, orderings []*v1.BoycottOrdering, limit int64) ([]*Boycott, error) {
+// List returns a slice of all boycotts meeting the filter criteria.
+func (m *BoycottManager) List(ctx context.Context, filters []*v1.BoycottFilterRule, orderings []*v1.BoycottOrdering, limit int64) ([]*Boycott, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *BoycottManager) ListBoycott(ctx context.Context, filters []*v1.BoycottF
 	return list, nil
 }
 
-// UpdateBoycott runs an update query on the provided db and returns the rows affected as an int64.
-func (m *BoycottManager) UpdateBoycott(ctx context.Context, item *v1.Boycott) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *BoycottManager) Update(ctx context.Context, item *v1.Boycott) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *BoycottManager) UpdateBoycott(ctx context.Context, item *v1.Boycott) (*
 	return &rows, nil
 }
 
-//DeleteBoycott creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *BoycottManager) DeleteBoycott(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *BoycottManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

@@ -36,8 +36,8 @@ func NewPetitionMembershipManager(db *sql.DB) *PetitionMembershipManager {
 
 // CRUD Methods for the PetitionMembershipManager.
 
-// CreatePetitionMembership creates a petitionMembership.
-func (m *PetitionMembershipManager) CreatePetitionMembership(ctx context.Context, item *v1.CreatePetitionMembership) (*string, error) {
+// Create creates a petitionMembership.
+func (m *PetitionMembershipManager) Create(ctx context.Context, item *v1.CreatePetitionMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *PetitionMembershipManager) CreatePetitionMembership(ctx context.Context
 	return &id, nil
 }
 
-// GetPetitionMembership gets a single petitionMembership from the database by ID.
-func (m *PetitionMembershipManager) GetPetitionMembership(ctx context.Context, id string) (*PetitionMembership, error) {
+// Get gets a single petitionMembership from the database by ID.
+func (m *PetitionMembershipManager) Get(ctx context.Context, id string) (*PetitionMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *PetitionMembershipManager) GetPetitionMembership(ctx context.Context, i
 	return &petitionMembership, nil
 }
 
-// ListPetitionMembership returns a slice of all petitionMemberships meeting the filter criteria.
-func (m *PetitionMembershipManager) ListPetitionMembership(ctx context.Context, filters []*v1.PetitionMembershipFilterRule, orderings []*v1.PetitionMembershipOrdering, limit int64) ([]*PetitionMembership, error) {
+// List returns a slice of all petitionMemberships meeting the filter criteria.
+func (m *PetitionMembershipManager) List(ctx context.Context, filters []*v1.PetitionMembershipFilterRule, orderings []*v1.PetitionMembershipOrdering, limit int64) ([]*PetitionMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *PetitionMembershipManager) ListPetitionMembership(ctx context.Context, 
 	return list, nil
 }
 
-// UpdatePetitionMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PetitionMembershipManager) UpdatePetitionMembership(ctx context.Context, item *v1.PetitionMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PetitionMembershipManager) Update(ctx context.Context, item *v1.PetitionMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *PetitionMembershipManager) UpdatePetitionMembership(ctx context.Context
 	return &rows, nil
 }
 
-//DeletePetitionMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PetitionMembershipManager) DeletePetitionMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PetitionMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

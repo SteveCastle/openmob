@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateDonationCampaignMembership(ctx context.Conte
 	m := models.NewDonationCampaignMembershipManager(s.db)
 
 	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
-	id, err := m.CreateDonationCampaignMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetDonationCampaignMembership(ctx context.Context,
 	m := models.NewDonationCampaignMembershipManager(s.db)
 
 	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
-	donationCampaignMembership, err := m.GetDonationCampaignMembership(ctx, req.ID)
+	donationCampaignMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListDonationCampaignMembership(ctx context.Context
 	m := models.NewDonationCampaignMembershipManager(s.db)
 
 	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
-	list, err := m.ListDonationCampaignMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateDonationCampaignMembership(ctx context.Conte
 	m := models.NewDonationCampaignMembershipManager(s.db)
 
 	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdateDonationCampaignMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteDonationCampaignMembership(ctx context.Conte
 	m := models.NewDonationCampaignMembershipManager(s.db)
 
 	// Get a list of donationCampaignMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeleteDonationCampaignMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

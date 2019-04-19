@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateCause(ctx context.Context, req *v1.CreateCau
 	m := models.NewCauseManager(s.db)
 
 	// Get a list of causes given filters, ordering, and limit rules.
-	id, err := m.CreateCause(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetCause(ctx context.Context, req *v1.GetCauseRequ
 	m := models.NewCauseManager(s.db)
 
 	// Get a list of causes given filters, ordering, and limit rules.
-	cause, err := m.GetCause(ctx, req.ID)
+	cause, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListCause(ctx context.Context, req *v1.ListCauseRe
 	m := models.NewCauseManager(s.db)
 
 	// Get a list of causes given filters, ordering, and limit rules.
-	list, err := m.ListCause(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateCause(ctx context.Context, req *v1.UpdateCau
 	m := models.NewCauseManager(s.db)
 
 	// Get a list of causes given filters, ordering, and limit rules.
-	rows, err := m.UpdateCause(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteCause(ctx context.Context, req *v1.DeleteCau
 	m := models.NewCauseManager(s.db)
 
 	// Get a list of causes given filters, ordering, and limit rules.
-	rows, err := m.DeleteCause(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

@@ -36,8 +36,8 @@ func NewLiveEventManager(db *sql.DB) *LiveEventManager {
 
 // CRUD Methods for the LiveEventManager.
 
-// CreateLiveEvent creates a liveEvent.
-func (m *LiveEventManager) CreateLiveEvent(ctx context.Context, item *v1.CreateLiveEvent) (*string, error) {
+// Create creates a liveEvent.
+func (m *LiveEventManager) Create(ctx context.Context, item *v1.CreateLiveEvent) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *LiveEventManager) CreateLiveEvent(ctx context.Context, item *v1.CreateL
 	return &id, nil
 }
 
-// GetLiveEvent gets a single liveEvent from the database by ID.
-func (m *LiveEventManager) GetLiveEvent(ctx context.Context, id string) (*LiveEvent, error) {
+// Get gets a single liveEvent from the database by ID.
+func (m *LiveEventManager) Get(ctx context.Context, id string) (*LiveEvent, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *LiveEventManager) GetLiveEvent(ctx context.Context, id string) (*LiveEv
 	return &liveEvent, nil
 }
 
-// ListLiveEvent returns a slice of all liveEvents meeting the filter criteria.
-func (m *LiveEventManager) ListLiveEvent(ctx context.Context, filters []*v1.LiveEventFilterRule, orderings []*v1.LiveEventOrdering, limit int64) ([]*LiveEvent, error) {
+// List returns a slice of all liveEvents meeting the filter criteria.
+func (m *LiveEventManager) List(ctx context.Context, filters []*v1.LiveEventFilterRule, orderings []*v1.LiveEventOrdering, limit int64) ([]*LiveEvent, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *LiveEventManager) ListLiveEvent(ctx context.Context, filters []*v1.Live
 	return list, nil
 }
 
-// UpdateLiveEvent runs an update query on the provided db and returns the rows affected as an int64.
-func (m *LiveEventManager) UpdateLiveEvent(ctx context.Context, item *v1.LiveEvent) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *LiveEventManager) Update(ctx context.Context, item *v1.LiveEvent) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *LiveEventManager) UpdateLiveEvent(ctx context.Context, item *v1.LiveEve
 	return &rows, nil
 }
 
-//DeleteLiveEvent creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *LiveEventManager) DeleteLiveEvent(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *LiveEventManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

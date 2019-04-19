@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePollMembership(ctx context.Context, req *v1.
 	m := models.NewPollMembershipManager(s.db)
 
 	// Get a list of pollMemberships given filters, ordering, and limit rules.
-	id, err := m.CreatePollMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPollMembership(ctx context.Context, req *v1.Get
 	m := models.NewPollMembershipManager(s.db)
 
 	// Get a list of pollMemberships given filters, ordering, and limit rules.
-	pollMembership, err := m.GetPollMembership(ctx, req.ID)
+	pollMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPollMembership(ctx context.Context, req *v1.Li
 	m := models.NewPollMembershipManager(s.db)
 
 	// Get a list of pollMemberships given filters, ordering, and limit rules.
-	list, err := m.ListPollMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePollMembership(ctx context.Context, req *v1.
 	m := models.NewPollMembershipManager(s.db)
 
 	// Get a list of pollMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdatePollMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePollMembership(ctx context.Context, req *v1.
 	m := models.NewPollMembershipManager(s.db)
 
 	// Get a list of pollMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeletePollMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

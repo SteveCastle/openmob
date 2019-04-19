@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateOwnerMembership(ctx context.Context, req *v1
 	m := models.NewOwnerMembershipManager(s.db)
 
 	// Get a list of ownerMemberships given filters, ordering, and limit rules.
-	id, err := m.CreateOwnerMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetOwnerMembership(ctx context.Context, req *v1.Ge
 	m := models.NewOwnerMembershipManager(s.db)
 
 	// Get a list of ownerMemberships given filters, ordering, and limit rules.
-	ownerMembership, err := m.GetOwnerMembership(ctx, req.ID)
+	ownerMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListOwnerMembership(ctx context.Context, req *v1.L
 	m := models.NewOwnerMembershipManager(s.db)
 
 	// Get a list of ownerMemberships given filters, ordering, and limit rules.
-	list, err := m.ListOwnerMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateOwnerMembership(ctx context.Context, req *v1
 	m := models.NewOwnerMembershipManager(s.db)
 
 	// Get a list of ownerMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdateOwnerMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteOwnerMembership(ctx context.Context, req *v1
 	m := models.NewOwnerMembershipManager(s.db)
 
 	// Get a list of ownerMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeleteOwnerMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

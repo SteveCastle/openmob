@@ -35,8 +35,8 @@ func NewExperimentManager(db *sql.DB) *ExperimentManager {
 
 // CRUD Methods for the ExperimentManager.
 
-// CreateExperiment creates a experiment.
-func (m *ExperimentManager) CreateExperiment(ctx context.Context, item *v1.CreateExperiment) (*string, error) {
+// Create creates a experiment.
+func (m *ExperimentManager) Create(ctx context.Context, item *v1.CreateExperiment) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *ExperimentManager) CreateExperiment(ctx context.Context, item *v1.Creat
 	return &id, nil
 }
 
-// GetExperiment gets a single experiment from the database by ID.
-func (m *ExperimentManager) GetExperiment(ctx context.Context, id string) (*Experiment, error) {
+// Get gets a single experiment from the database by ID.
+func (m *ExperimentManager) Get(ctx context.Context, id string) (*Experiment, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *ExperimentManager) GetExperiment(ctx context.Context, id string) (*Expe
 	return &experiment, nil
 }
 
-// ListExperiment returns a slice of all experiments meeting the filter criteria.
-func (m *ExperimentManager) ListExperiment(ctx context.Context, filters []*v1.ExperimentFilterRule, orderings []*v1.ExperimentOrdering, limit int64) ([]*Experiment, error) {
+// List returns a slice of all experiments meeting the filter criteria.
+func (m *ExperimentManager) List(ctx context.Context, filters []*v1.ExperimentFilterRule, orderings []*v1.ExperimentOrdering, limit int64) ([]*Experiment, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *ExperimentManager) ListExperiment(ctx context.Context, filters []*v1.Ex
 	return list, nil
 }
 
-// UpdateExperiment runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ExperimentManager) UpdateExperiment(ctx context.Context, item *v1.Experiment) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ExperimentManager) Update(ctx context.Context, item *v1.Experiment) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *ExperimentManager) UpdateExperiment(ctx context.Context, item *v1.Exper
 	return &rows, nil
 }
 
-//DeleteExperiment creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ExperimentManager) DeleteExperiment(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ExperimentManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

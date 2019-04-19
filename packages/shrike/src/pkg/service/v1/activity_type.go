@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateActivityType(ctx context.Context, req *v1.Cr
 	m := models.NewActivityTypeManager(s.db)
 
 	// Get a list of activityTypes given filters, ordering, and limit rules.
-	id, err := m.CreateActivityType(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetActivityType(ctx context.Context, req *v1.GetAc
 	m := models.NewActivityTypeManager(s.db)
 
 	// Get a list of activityTypes given filters, ordering, and limit rules.
-	activityType, err := m.GetActivityType(ctx, req.ID)
+	activityType, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListActivityType(ctx context.Context, req *v1.List
 	m := models.NewActivityTypeManager(s.db)
 
 	// Get a list of activityTypes given filters, ordering, and limit rules.
-	list, err := m.ListActivityType(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateActivityType(ctx context.Context, req *v1.Up
 	m := models.NewActivityTypeManager(s.db)
 
 	// Get a list of activityTypes given filters, ordering, and limit rules.
-	rows, err := m.UpdateActivityType(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteActivityType(ctx context.Context, req *v1.De
 	m := models.NewActivityTypeManager(s.db)
 
 	// Get a list of activityTypes given filters, ordering, and limit rules.
-	rows, err := m.DeleteActivityType(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

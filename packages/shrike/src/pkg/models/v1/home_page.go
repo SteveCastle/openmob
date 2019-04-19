@@ -36,8 +36,8 @@ func NewHomePageManager(db *sql.DB) *HomePageManager {
 
 // CRUD Methods for the HomePageManager.
 
-// CreateHomePage creates a homePage.
-func (m *HomePageManager) CreateHomePage(ctx context.Context, item *v1.CreateHomePage) (*string, error) {
+// Create creates a homePage.
+func (m *HomePageManager) Create(ctx context.Context, item *v1.CreateHomePage) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *HomePageManager) CreateHomePage(ctx context.Context, item *v1.CreateHom
 	return &id, nil
 }
 
-// GetHomePage gets a single homePage from the database by ID.
-func (m *HomePageManager) GetHomePage(ctx context.Context, id string) (*HomePage, error) {
+// Get gets a single homePage from the database by ID.
+func (m *HomePageManager) Get(ctx context.Context, id string) (*HomePage, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *HomePageManager) GetHomePage(ctx context.Context, id string) (*HomePage
 	return &homePage, nil
 }
 
-// ListHomePage returns a slice of all homePages meeting the filter criteria.
-func (m *HomePageManager) ListHomePage(ctx context.Context, filters []*v1.HomePageFilterRule, orderings []*v1.HomePageOrdering, limit int64) ([]*HomePage, error) {
+// List returns a slice of all homePages meeting the filter criteria.
+func (m *HomePageManager) List(ctx context.Context, filters []*v1.HomePageFilterRule, orderings []*v1.HomePageOrdering, limit int64) ([]*HomePage, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *HomePageManager) ListHomePage(ctx context.Context, filters []*v1.HomePa
 	return list, nil
 }
 
-// UpdateHomePage runs an update query on the provided db and returns the rows affected as an int64.
-func (m *HomePageManager) UpdateHomePage(ctx context.Context, item *v1.HomePage) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *HomePageManager) Update(ctx context.Context, item *v1.HomePage) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *HomePageManager) UpdateHomePage(ctx context.Context, item *v1.HomePage)
 	return &rows, nil
 }
 
-//DeleteHomePage creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *HomePageManager) DeleteHomePage(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *HomePageManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

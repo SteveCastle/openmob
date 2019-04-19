@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePayment(ctx context.Context, req *v1.CreateP
 	m := models.NewPaymentManager(s.db)
 
 	// Get a list of payments given filters, ordering, and limit rules.
-	id, err := m.CreatePayment(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPayment(ctx context.Context, req *v1.GetPayment
 	m := models.NewPaymentManager(s.db)
 
 	// Get a list of payments given filters, ordering, and limit rules.
-	payment, err := m.GetPayment(ctx, req.ID)
+	payment, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPayment(ctx context.Context, req *v1.ListPayme
 	m := models.NewPaymentManager(s.db)
 
 	// Get a list of payments given filters, ordering, and limit rules.
-	list, err := m.ListPayment(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePayment(ctx context.Context, req *v1.UpdateP
 	m := models.NewPaymentManager(s.db)
 
 	// Get a list of payments given filters, ordering, and limit rules.
-	rows, err := m.UpdatePayment(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePayment(ctx context.Context, req *v1.DeleteP
 	m := models.NewPaymentManager(s.db)
 
 	// Get a list of payments given filters, ordering, and limit rules.
-	rows, err := m.DeletePayment(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

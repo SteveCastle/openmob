@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateCandidate(ctx context.Context, req *v1.Creat
 	m := models.NewCandidateManager(s.db)
 
 	// Get a list of candidates given filters, ordering, and limit rules.
-	id, err := m.CreateCandidate(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetCandidate(ctx context.Context, req *v1.GetCandi
 	m := models.NewCandidateManager(s.db)
 
 	// Get a list of candidates given filters, ordering, and limit rules.
-	candidate, err := m.GetCandidate(ctx, req.ID)
+	candidate, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListCandidate(ctx context.Context, req *v1.ListCan
 	m := models.NewCandidateManager(s.db)
 
 	// Get a list of candidates given filters, ordering, and limit rules.
-	list, err := m.ListCandidate(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateCandidate(ctx context.Context, req *v1.Updat
 	m := models.NewCandidateManager(s.db)
 
 	// Get a list of candidates given filters, ordering, and limit rules.
-	rows, err := m.UpdateCandidate(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteCandidate(ctx context.Context, req *v1.Delet
 	m := models.NewCandidateManager(s.db)
 
 	// Get a list of candidates given filters, ordering, and limit rules.
-	rows, err := m.DeleteCandidate(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

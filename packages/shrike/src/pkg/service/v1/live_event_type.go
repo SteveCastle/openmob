@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateLiveEventType(ctx context.Context, req *v1.C
 	m := models.NewLiveEventTypeManager(s.db)
 
 	// Get a list of liveEventTypes given filters, ordering, and limit rules.
-	id, err := m.CreateLiveEventType(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetLiveEventType(ctx context.Context, req *v1.GetL
 	m := models.NewLiveEventTypeManager(s.db)
 
 	// Get a list of liveEventTypes given filters, ordering, and limit rules.
-	liveEventType, err := m.GetLiveEventType(ctx, req.ID)
+	liveEventType, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListLiveEventType(ctx context.Context, req *v1.Lis
 	m := models.NewLiveEventTypeManager(s.db)
 
 	// Get a list of liveEventTypes given filters, ordering, and limit rules.
-	list, err := m.ListLiveEventType(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateLiveEventType(ctx context.Context, req *v1.U
 	m := models.NewLiveEventTypeManager(s.db)
 
 	// Get a list of liveEventTypes given filters, ordering, and limit rules.
-	rows, err := m.UpdateLiveEventType(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteLiveEventType(ctx context.Context, req *v1.D
 	m := models.NewLiveEventTypeManager(s.db)
 
 	// Get a list of liveEventTypes given filters, ordering, and limit rules.
-	rows, err := m.DeleteLiveEventType(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

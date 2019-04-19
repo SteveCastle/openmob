@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateBoycottMembership(ctx context.Context, req *
 	m := models.NewBoycottMembershipManager(s.db)
 
 	// Get a list of boycottMemberships given filters, ordering, and limit rules.
-	id, err := m.CreateBoycottMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetBoycottMembership(ctx context.Context, req *v1.
 	m := models.NewBoycottMembershipManager(s.db)
 
 	// Get a list of boycottMemberships given filters, ordering, and limit rules.
-	boycottMembership, err := m.GetBoycottMembership(ctx, req.ID)
+	boycottMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListBoycottMembership(ctx context.Context, req *v1
 	m := models.NewBoycottMembershipManager(s.db)
 
 	// Get a list of boycottMemberships given filters, ordering, and limit rules.
-	list, err := m.ListBoycottMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateBoycottMembership(ctx context.Context, req *
 	m := models.NewBoycottMembershipManager(s.db)
 
 	// Get a list of boycottMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdateBoycottMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteBoycottMembership(ctx context.Context, req *
 	m := models.NewBoycottMembershipManager(s.db)
 
 	// Get a list of boycottMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeleteBoycottMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

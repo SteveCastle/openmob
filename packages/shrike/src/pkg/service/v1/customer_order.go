@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateCustomerOrder(ctx context.Context, req *v1.C
 	m := models.NewCustomerOrderManager(s.db)
 
 	// Get a list of customerOrders given filters, ordering, and limit rules.
-	id, err := m.CreateCustomerOrder(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetCustomerOrder(ctx context.Context, req *v1.GetC
 	m := models.NewCustomerOrderManager(s.db)
 
 	// Get a list of customerOrders given filters, ordering, and limit rules.
-	customerOrder, err := m.GetCustomerOrder(ctx, req.ID)
+	customerOrder, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListCustomerOrder(ctx context.Context, req *v1.Lis
 	m := models.NewCustomerOrderManager(s.db)
 
 	// Get a list of customerOrders given filters, ordering, and limit rules.
-	list, err := m.ListCustomerOrder(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateCustomerOrder(ctx context.Context, req *v1.U
 	m := models.NewCustomerOrderManager(s.db)
 
 	// Get a list of customerOrders given filters, ordering, and limit rules.
-	rows, err := m.UpdateCustomerOrder(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteCustomerOrder(ctx context.Context, req *v1.D
 	m := models.NewCustomerOrderManager(s.db)
 
 	// Get a list of customerOrders given filters, ordering, and limit rules.
-	rows, err := m.DeleteCustomerOrder(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

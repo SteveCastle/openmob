@@ -37,8 +37,8 @@ func NewVolunteerManager(db *sql.DB) *VolunteerManager {
 
 // CRUD Methods for the VolunteerManager.
 
-// CreateVolunteer creates a volunteer.
-func (m *VolunteerManager) CreateVolunteer(ctx context.Context, item *v1.CreateVolunteer) (*string, error) {
+// Create creates a volunteer.
+func (m *VolunteerManager) Create(ctx context.Context, item *v1.CreateVolunteer) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *VolunteerManager) CreateVolunteer(ctx context.Context, item *v1.CreateV
 	return &id, nil
 }
 
-// GetVolunteer gets a single volunteer from the database by ID.
-func (m *VolunteerManager) GetVolunteer(ctx context.Context, id string) (*Volunteer, error) {
+// Get gets a single volunteer from the database by ID.
+func (m *VolunteerManager) Get(ctx context.Context, id string) (*Volunteer, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *VolunteerManager) GetVolunteer(ctx context.Context, id string) (*Volunt
 	return &volunteer, nil
 }
 
-// ListVolunteer returns a slice of all volunteers meeting the filter criteria.
-func (m *VolunteerManager) ListVolunteer(ctx context.Context, filters []*v1.VolunteerFilterRule, orderings []*v1.VolunteerOrdering, limit int64) ([]*Volunteer, error) {
+// List returns a slice of all volunteers meeting the filter criteria.
+func (m *VolunteerManager) List(ctx context.Context, filters []*v1.VolunteerFilterRule, orderings []*v1.VolunteerOrdering, limit int64) ([]*Volunteer, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *VolunteerManager) ListVolunteer(ctx context.Context, filters []*v1.Volu
 	return list, nil
 }
 
-// UpdateVolunteer runs an update query on the provided db and returns the rows affected as an int64.
-func (m *VolunteerManager) UpdateVolunteer(ctx context.Context, item *v1.Volunteer) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *VolunteerManager) Update(ctx context.Context, item *v1.Volunteer) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *VolunteerManager) UpdateVolunteer(ctx context.Context, item *v1.Volunte
 	return &rows, nil
 }
 
-//DeleteVolunteer creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *VolunteerManager) DeleteVolunteer(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *VolunteerManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

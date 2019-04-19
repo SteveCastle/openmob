@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateVolunteerOpportunityType(ctx context.Context
 	m := models.NewVolunteerOpportunityTypeManager(s.db)
 
 	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
-	id, err := m.CreateVolunteerOpportunityType(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetVolunteerOpportunityType(ctx context.Context, r
 	m := models.NewVolunteerOpportunityTypeManager(s.db)
 
 	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
-	volunteerOpportunityType, err := m.GetVolunteerOpportunityType(ctx, req.ID)
+	volunteerOpportunityType, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListVolunteerOpportunityType(ctx context.Context, 
 	m := models.NewVolunteerOpportunityTypeManager(s.db)
 
 	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
-	list, err := m.ListVolunteerOpportunityType(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateVolunteerOpportunityType(ctx context.Context
 	m := models.NewVolunteerOpportunityTypeManager(s.db)
 
 	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
-	rows, err := m.UpdateVolunteerOpportunityType(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteVolunteerOpportunityType(ctx context.Context
 	m := models.NewVolunteerOpportunityTypeManager(s.db)
 
 	// Get a list of volunteerOpportunityTypes given filters, ordering, and limit rules.
-	rows, err := m.DeleteVolunteerOpportunityType(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

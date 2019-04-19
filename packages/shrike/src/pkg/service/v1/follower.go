@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateFollower(ctx context.Context, req *v1.Create
 	m := models.NewFollowerManager(s.db)
 
 	// Get a list of followers given filters, ordering, and limit rules.
-	id, err := m.CreateFollower(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetFollower(ctx context.Context, req *v1.GetFollow
 	m := models.NewFollowerManager(s.db)
 
 	// Get a list of followers given filters, ordering, and limit rules.
-	follower, err := m.GetFollower(ctx, req.ID)
+	follower, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListFollower(ctx context.Context, req *v1.ListFoll
 	m := models.NewFollowerManager(s.db)
 
 	// Get a list of followers given filters, ordering, and limit rules.
-	list, err := m.ListFollower(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateFollower(ctx context.Context, req *v1.Update
 	m := models.NewFollowerManager(s.db)
 
 	// Get a list of followers given filters, ordering, and limit rules.
-	rows, err := m.UpdateFollower(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteFollower(ctx context.Context, req *v1.Delete
 	m := models.NewFollowerManager(s.db)
 
 	// Get a list of followers given filters, ordering, and limit rules.
-	rows, err := m.DeleteFollower(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

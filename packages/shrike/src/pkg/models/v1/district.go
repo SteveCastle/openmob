@@ -39,8 +39,8 @@ func NewDistrictManager(db *sql.DB) *DistrictManager {
 
 // CRUD Methods for the DistrictManager.
 
-// CreateDistrict creates a district.
-func (m *DistrictManager) CreateDistrict(ctx context.Context, item *v1.CreateDistrict) (*string, error) {
+// Create creates a district.
+func (m *DistrictManager) Create(ctx context.Context, item *v1.CreateDistrict) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (m *DistrictManager) CreateDistrict(ctx context.Context, item *v1.CreateDis
 	return &id, nil
 }
 
-// GetDistrict gets a single district from the database by ID.
-func (m *DistrictManager) GetDistrict(ctx context.Context, id string) (*District, error) {
+// Get gets a single district from the database by ID.
+func (m *DistrictManager) Get(ctx context.Context, id string) (*District, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -97,8 +97,8 @@ func (m *DistrictManager) GetDistrict(ctx context.Context, id string) (*District
 	return &district, nil
 }
 
-// ListDistrict returns a slice of all districts meeting the filter criteria.
-func (m *DistrictManager) ListDistrict(ctx context.Context, filters []*v1.DistrictFilterRule, orderings []*v1.DistrictOrdering, limit int64) ([]*District, error) {
+// List returns a slice of all districts meeting the filter criteria.
+func (m *DistrictManager) List(ctx context.Context, filters []*v1.DistrictFilterRule, orderings []*v1.DistrictOrdering, limit int64) ([]*District, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -134,8 +134,8 @@ func (m *DistrictManager) ListDistrict(ctx context.Context, filters []*v1.Distri
 	return list, nil
 }
 
-// UpdateDistrict runs an update query on the provided db and returns the rows affected as an int64.
-func (m *DistrictManager) UpdateDistrict(ctx context.Context, item *v1.District) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *DistrictManager) Update(ctx context.Context, item *v1.District) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -161,8 +161,8 @@ func (m *DistrictManager) UpdateDistrict(ctx context.Context, item *v1.District)
 	return &rows, nil
 }
 
-//DeleteDistrict creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *DistrictManager) DeleteDistrict(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *DistrictManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

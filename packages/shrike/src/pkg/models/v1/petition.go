@@ -35,8 +35,8 @@ func NewPetitionManager(db *sql.DB) *PetitionManager {
 
 // CRUD Methods for the PetitionManager.
 
-// CreatePetition creates a petition.
-func (m *PetitionManager) CreatePetition(ctx context.Context, item *v1.CreatePetition) (*string, error) {
+// Create creates a petition.
+func (m *PetitionManager) Create(ctx context.Context, item *v1.CreatePetition) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *PetitionManager) CreatePetition(ctx context.Context, item *v1.CreatePet
 	return &id, nil
 }
 
-// GetPetition gets a single petition from the database by ID.
-func (m *PetitionManager) GetPetition(ctx context.Context, id string) (*Petition, error) {
+// Get gets a single petition from the database by ID.
+func (m *PetitionManager) Get(ctx context.Context, id string) (*Petition, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *PetitionManager) GetPetition(ctx context.Context, id string) (*Petition
 	return &petition, nil
 }
 
-// ListPetition returns a slice of all petitions meeting the filter criteria.
-func (m *PetitionManager) ListPetition(ctx context.Context, filters []*v1.PetitionFilterRule, orderings []*v1.PetitionOrdering, limit int64) ([]*Petition, error) {
+// List returns a slice of all petitions meeting the filter criteria.
+func (m *PetitionManager) List(ctx context.Context, filters []*v1.PetitionFilterRule, orderings []*v1.PetitionOrdering, limit int64) ([]*Petition, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *PetitionManager) ListPetition(ctx context.Context, filters []*v1.Petiti
 	return list, nil
 }
 
-// UpdatePetition runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PetitionManager) UpdatePetition(ctx context.Context, item *v1.Petition) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PetitionManager) Update(ctx context.Context, item *v1.Petition) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *PetitionManager) UpdatePetition(ctx context.Context, item *v1.Petition)
 	return &rows, nil
 }
 
-//DeletePetition creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PetitionManager) DeletePetition(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PetitionManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

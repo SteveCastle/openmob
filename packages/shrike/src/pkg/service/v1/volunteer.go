@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateVolunteer(ctx context.Context, req *v1.Creat
 	m := models.NewVolunteerManager(s.db)
 
 	// Get a list of volunteers given filters, ordering, and limit rules.
-	id, err := m.CreateVolunteer(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetVolunteer(ctx context.Context, req *v1.GetVolun
 	m := models.NewVolunteerManager(s.db)
 
 	// Get a list of volunteers given filters, ordering, and limit rules.
-	volunteer, err := m.GetVolunteer(ctx, req.ID)
+	volunteer, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListVolunteer(ctx context.Context, req *v1.ListVol
 	m := models.NewVolunteerManager(s.db)
 
 	// Get a list of volunteers given filters, ordering, and limit rules.
-	list, err := m.ListVolunteer(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateVolunteer(ctx context.Context, req *v1.Updat
 	m := models.NewVolunteerManager(s.db)
 
 	// Get a list of volunteers given filters, ordering, and limit rules.
-	rows, err := m.UpdateVolunteer(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteVolunteer(ctx context.Context, req *v1.Delet
 	m := models.NewVolunteerManager(s.db)
 
 	// Get a list of volunteers given filters, ordering, and limit rules.
-	rows, err := m.DeleteVolunteer(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

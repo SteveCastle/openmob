@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateFieldType(ctx context.Context, req *v1.Creat
 	m := models.NewFieldTypeManager(s.db)
 
 	// Get a list of fieldTypes given filters, ordering, and limit rules.
-	id, err := m.CreateFieldType(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetFieldType(ctx context.Context, req *v1.GetField
 	m := models.NewFieldTypeManager(s.db)
 
 	// Get a list of fieldTypes given filters, ordering, and limit rules.
-	fieldType, err := m.GetFieldType(ctx, req.ID)
+	fieldType, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListFieldType(ctx context.Context, req *v1.ListFie
 	m := models.NewFieldTypeManager(s.db)
 
 	// Get a list of fieldTypes given filters, ordering, and limit rules.
-	list, err := m.ListFieldType(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateFieldType(ctx context.Context, req *v1.Updat
 	m := models.NewFieldTypeManager(s.db)
 
 	// Get a list of fieldTypes given filters, ordering, and limit rules.
-	rows, err := m.UpdateFieldType(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteFieldType(ctx context.Context, req *v1.Delet
 	m := models.NewFieldTypeManager(s.db)
 
 	// Get a list of fieldTypes given filters, ordering, and limit rules.
-	rows, err := m.DeleteFieldType(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

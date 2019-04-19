@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateLayoutType(ctx context.Context, req *v1.Crea
 	m := models.NewLayoutTypeManager(s.db)
 
 	// Get a list of layoutTypes given filters, ordering, and limit rules.
-	id, err := m.CreateLayoutType(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetLayoutType(ctx context.Context, req *v1.GetLayo
 	m := models.NewLayoutTypeManager(s.db)
 
 	// Get a list of layoutTypes given filters, ordering, and limit rules.
-	layoutType, err := m.GetLayoutType(ctx, req.ID)
+	layoutType, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListLayoutType(ctx context.Context, req *v1.ListLa
 	m := models.NewLayoutTypeManager(s.db)
 
 	// Get a list of layoutTypes given filters, ordering, and limit rules.
-	list, err := m.ListLayoutType(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateLayoutType(ctx context.Context, req *v1.Upda
 	m := models.NewLayoutTypeManager(s.db)
 
 	// Get a list of layoutTypes given filters, ordering, and limit rules.
-	rows, err := m.UpdateLayoutType(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteLayoutType(ctx context.Context, req *v1.Dele
 	m := models.NewLayoutTypeManager(s.db)
 
 	// Get a list of layoutTypes given filters, ordering, and limit rules.
-	rows, err := m.DeleteLayoutType(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

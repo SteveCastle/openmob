@@ -35,8 +35,8 @@ func NewPaymentManager(db *sql.DB) *PaymentManager {
 
 // CRUD Methods for the PaymentManager.
 
-// CreatePayment creates a payment.
-func (m *PaymentManager) CreatePayment(ctx context.Context, item *v1.CreatePayment) (*string, error) {
+// Create creates a payment.
+func (m *PaymentManager) Create(ctx context.Context, item *v1.CreatePayment) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *PaymentManager) CreatePayment(ctx context.Context, item *v1.CreatePayme
 	return &id, nil
 }
 
-// GetPayment gets a single payment from the database by ID.
-func (m *PaymentManager) GetPayment(ctx context.Context, id string) (*Payment, error) {
+// Get gets a single payment from the database by ID.
+func (m *PaymentManager) Get(ctx context.Context, id string) (*Payment, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *PaymentManager) GetPayment(ctx context.Context, id string) (*Payment, e
 	return &payment, nil
 }
 
-// ListPayment returns a slice of all payments meeting the filter criteria.
-func (m *PaymentManager) ListPayment(ctx context.Context, filters []*v1.PaymentFilterRule, orderings []*v1.PaymentOrdering, limit int64) ([]*Payment, error) {
+// List returns a slice of all payments meeting the filter criteria.
+func (m *PaymentManager) List(ctx context.Context, filters []*v1.PaymentFilterRule, orderings []*v1.PaymentOrdering, limit int64) ([]*Payment, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *PaymentManager) ListPayment(ctx context.Context, filters []*v1.PaymentF
 	return list, nil
 }
 
-// UpdatePayment runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PaymentManager) UpdatePayment(ctx context.Context, item *v1.Payment) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PaymentManager) Update(ctx context.Context, item *v1.Payment) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *PaymentManager) UpdatePayment(ctx context.Context, item *v1.Payment) (*
 	return &rows, nil
 }
 
-//DeletePayment creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PaymentManager) DeletePayment(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PaymentManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

@@ -35,8 +35,8 @@ func NewVolunteerOpportunityTypeManager(db *sql.DB) *VolunteerOpportunityTypeMan
 
 // CRUD Methods for the VolunteerOpportunityTypeManager.
 
-// CreateVolunteerOpportunityType creates a volunteerOpportunityType.
-func (m *VolunteerOpportunityTypeManager) CreateVolunteerOpportunityType(ctx context.Context, item *v1.CreateVolunteerOpportunityType) (*string, error) {
+// Create creates a volunteerOpportunityType.
+func (m *VolunteerOpportunityTypeManager) Create(ctx context.Context, item *v1.CreateVolunteerOpportunityType) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *VolunteerOpportunityTypeManager) CreateVolunteerOpportunityType(ctx con
 	return &id, nil
 }
 
-// GetVolunteerOpportunityType gets a single volunteerOpportunityType from the database by ID.
-func (m *VolunteerOpportunityTypeManager) GetVolunteerOpportunityType(ctx context.Context, id string) (*VolunteerOpportunityType, error) {
+// Get gets a single volunteerOpportunityType from the database by ID.
+func (m *VolunteerOpportunityTypeManager) Get(ctx context.Context, id string) (*VolunteerOpportunityType, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *VolunteerOpportunityTypeManager) GetVolunteerOpportunityType(ctx contex
 	return &volunteerOpportunityType, nil
 }
 
-// ListVolunteerOpportunityType returns a slice of all volunteerOpportunityTypes meeting the filter criteria.
-func (m *VolunteerOpportunityTypeManager) ListVolunteerOpportunityType(ctx context.Context, filters []*v1.VolunteerOpportunityTypeFilterRule, orderings []*v1.VolunteerOpportunityTypeOrdering, limit int64) ([]*VolunteerOpportunityType, error) {
+// List returns a slice of all volunteerOpportunityTypes meeting the filter criteria.
+func (m *VolunteerOpportunityTypeManager) List(ctx context.Context, filters []*v1.VolunteerOpportunityTypeFilterRule, orderings []*v1.VolunteerOpportunityTypeOrdering, limit int64) ([]*VolunteerOpportunityType, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *VolunteerOpportunityTypeManager) ListVolunteerOpportunityType(ctx conte
 	return list, nil
 }
 
-// UpdateVolunteerOpportunityType runs an update query on the provided db and returns the rows affected as an int64.
-func (m *VolunteerOpportunityTypeManager) UpdateVolunteerOpportunityType(ctx context.Context, item *v1.VolunteerOpportunityType) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *VolunteerOpportunityTypeManager) Update(ctx context.Context, item *v1.VolunteerOpportunityType) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *VolunteerOpportunityTypeManager) UpdateVolunteerOpportunityType(ctx con
 	return &rows, nil
 }
 
-//DeleteVolunteerOpportunityType creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *VolunteerOpportunityTypeManager) DeleteVolunteerOpportunityType(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *VolunteerOpportunityTypeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

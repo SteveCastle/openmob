@@ -35,8 +35,8 @@ func NewActivityTypeManager(db *sql.DB) *ActivityTypeManager {
 
 // CRUD Methods for the ActivityTypeManager.
 
-// CreateActivityType creates a activityType.
-func (m *ActivityTypeManager) CreateActivityType(ctx context.Context, item *v1.CreateActivityType) (*string, error) {
+// Create creates a activityType.
+func (m *ActivityTypeManager) Create(ctx context.Context, item *v1.CreateActivityType) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *ActivityTypeManager) CreateActivityType(ctx context.Context, item *v1.C
 	return &id, nil
 }
 
-// GetActivityType gets a single activityType from the database by ID.
-func (m *ActivityTypeManager) GetActivityType(ctx context.Context, id string) (*ActivityType, error) {
+// Get gets a single activityType from the database by ID.
+func (m *ActivityTypeManager) Get(ctx context.Context, id string) (*ActivityType, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *ActivityTypeManager) GetActivityType(ctx context.Context, id string) (*
 	return &activityType, nil
 }
 
-// ListActivityType returns a slice of all activityTypes meeting the filter criteria.
-func (m *ActivityTypeManager) ListActivityType(ctx context.Context, filters []*v1.ActivityTypeFilterRule, orderings []*v1.ActivityTypeOrdering, limit int64) ([]*ActivityType, error) {
+// List returns a slice of all activityTypes meeting the filter criteria.
+func (m *ActivityTypeManager) List(ctx context.Context, filters []*v1.ActivityTypeFilterRule, orderings []*v1.ActivityTypeOrdering, limit int64) ([]*ActivityType, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *ActivityTypeManager) ListActivityType(ctx context.Context, filters []*v
 	return list, nil
 }
 
-// UpdateActivityType runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ActivityTypeManager) UpdateActivityType(ctx context.Context, item *v1.ActivityType) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ActivityTypeManager) Update(ctx context.Context, item *v1.ActivityType) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *ActivityTypeManager) UpdateActivityType(ctx context.Context, item *v1.A
 	return &rows, nil
 }
 
-//DeleteActivityType creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ActivityTypeManager) DeleteActivityType(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ActivityTypeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

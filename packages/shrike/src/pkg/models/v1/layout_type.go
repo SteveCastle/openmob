@@ -35,8 +35,8 @@ func NewLayoutTypeManager(db *sql.DB) *LayoutTypeManager {
 
 // CRUD Methods for the LayoutTypeManager.
 
-// CreateLayoutType creates a layoutType.
-func (m *LayoutTypeManager) CreateLayoutType(ctx context.Context, item *v1.CreateLayoutType) (*string, error) {
+// Create creates a layoutType.
+func (m *LayoutTypeManager) Create(ctx context.Context, item *v1.CreateLayoutType) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *LayoutTypeManager) CreateLayoutType(ctx context.Context, item *v1.Creat
 	return &id, nil
 }
 
-// GetLayoutType gets a single layoutType from the database by ID.
-func (m *LayoutTypeManager) GetLayoutType(ctx context.Context, id string) (*LayoutType, error) {
+// Get gets a single layoutType from the database by ID.
+func (m *LayoutTypeManager) Get(ctx context.Context, id string) (*LayoutType, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *LayoutTypeManager) GetLayoutType(ctx context.Context, id string) (*Layo
 	return &layoutType, nil
 }
 
-// ListLayoutType returns a slice of all layoutTypes meeting the filter criteria.
-func (m *LayoutTypeManager) ListLayoutType(ctx context.Context, filters []*v1.LayoutTypeFilterRule, orderings []*v1.LayoutTypeOrdering, limit int64) ([]*LayoutType, error) {
+// List returns a slice of all layoutTypes meeting the filter criteria.
+func (m *LayoutTypeManager) List(ctx context.Context, filters []*v1.LayoutTypeFilterRule, orderings []*v1.LayoutTypeOrdering, limit int64) ([]*LayoutType, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *LayoutTypeManager) ListLayoutType(ctx context.Context, filters []*v1.La
 	return list, nil
 }
 
-// UpdateLayoutType runs an update query on the provided db and returns the rows affected as an int64.
-func (m *LayoutTypeManager) UpdateLayoutType(ctx context.Context, item *v1.LayoutType) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *LayoutTypeManager) Update(ctx context.Context, item *v1.LayoutType) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *LayoutTypeManager) UpdateLayoutType(ctx context.Context, item *v1.Layou
 	return &rows, nil
 }
 
-//DeleteLayoutType creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *LayoutTypeManager) DeleteLayoutType(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *LayoutTypeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

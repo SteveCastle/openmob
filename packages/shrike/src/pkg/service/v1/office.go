@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateOffice(ctx context.Context, req *v1.CreateOf
 	m := models.NewOfficeManager(s.db)
 
 	// Get a list of offices given filters, ordering, and limit rules.
-	id, err := m.CreateOffice(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetOffice(ctx context.Context, req *v1.GetOfficeRe
 	m := models.NewOfficeManager(s.db)
 
 	// Get a list of offices given filters, ordering, and limit rules.
-	office, err := m.GetOffice(ctx, req.ID)
+	office, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListOffice(ctx context.Context, req *v1.ListOffice
 	m := models.NewOfficeManager(s.db)
 
 	// Get a list of offices given filters, ordering, and limit rules.
-	list, err := m.ListOffice(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateOffice(ctx context.Context, req *v1.UpdateOf
 	m := models.NewOfficeManager(s.db)
 
 	// Get a list of offices given filters, ordering, and limit rules.
-	rows, err := m.UpdateOffice(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteOffice(ctx context.Context, req *v1.DeleteOf
 	m := models.NewOfficeManager(s.db)
 
 	// Get a list of offices given filters, ordering, and limit rules.
-	rows, err := m.DeleteOffice(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

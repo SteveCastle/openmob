@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateAgentMembership(ctx context.Context, req *v1
 	m := models.NewAgentMembershipManager(s.db)
 
 	// Get a list of agentMemberships given filters, ordering, and limit rules.
-	id, err := m.CreateAgentMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetAgentMembership(ctx context.Context, req *v1.Ge
 	m := models.NewAgentMembershipManager(s.db)
 
 	// Get a list of agentMemberships given filters, ordering, and limit rules.
-	agentMembership, err := m.GetAgentMembership(ctx, req.ID)
+	agentMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListAgentMembership(ctx context.Context, req *v1.L
 	m := models.NewAgentMembershipManager(s.db)
 
 	// Get a list of agentMemberships given filters, ordering, and limit rules.
-	list, err := m.ListAgentMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateAgentMembership(ctx context.Context, req *v1
 	m := models.NewAgentMembershipManager(s.db)
 
 	// Get a list of agentMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdateAgentMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteAgentMembership(ctx context.Context, req *v1
 	m := models.NewAgentMembershipManager(s.db)
 
 	// Get a list of agentMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeleteAgentMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

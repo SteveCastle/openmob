@@ -347,6 +347,37 @@ message LayoutFilterRule {
   }
 }
 
+message ExperimentVariantOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+    string VariantType = 7;
+    string Experiment = 8;
+    string LandingPage = 9;
+    string Field = 10;
+    string Component = 11;
+  }
+}
+
+message ExperimentVariantFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+    string VariantType = 7;
+    string Experiment = 8;
+    string LandingPage = 9;
+    string Field = 10;
+    string Component = 11;
+  }
+}
+
 message ExperimentOrdering {
   Direction Direction = 1;
   oneof field {
@@ -390,6 +421,29 @@ message LandingPageFilterRule {
     string Title = 6;
     string Cause = 7;
     string Layout = 8;
+  }
+}
+
+message IssueOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+    string Election = 7;
+  }
+}
+
+message IssueFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+    string Election = 7;
   }
 }
 
@@ -452,60 +506,6 @@ message ComponentFilterRule {
     string ComponentImplementation = 7;
     string LayoutColumn = 8;
     int64 Weight = 9;
-  }
-}
-
-message ExperimentVariantOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-    string VariantType = 7;
-    string Experiment = 8;
-    string LandingPage = 9;
-    string Field = 10;
-    string Component = 11;
-  }
-}
-
-message ExperimentVariantFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-    string VariantType = 7;
-    string Experiment = 8;
-    string LandingPage = 9;
-    string Field = 10;
-    string Component = 11;
-  }
-}
-
-message IssueOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-    string Election = 7;
-  }
-}
-
-message IssueFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-    string Election = 7;
   }
 }
 
@@ -576,6 +576,27 @@ message DistrictFilterRule {
   }
 }
 
+message VolunteerOpportunityTypeOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
+message VolunteerOpportunityTypeFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
 message OfficeOrdering {
   Direction Direction = 1;
   oneof field {
@@ -619,27 +640,6 @@ message PollItemFilterRule {
     google.protobuf.Timestamp UpdatedAt = 5;
     string Title = 6;
     string Poll = 7;
-  }
-}
-
-message VolunteerOpportunityTypeOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
-message VolunteerOpportunityTypeFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
   }
 }
 
@@ -765,6 +765,27 @@ message DeliveryFilterRule {
   }
 }
 
+message ElectionOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
+message ElectionFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
 message BoycottOrdering {
   Direction Direction = 1;
   oneof field {
@@ -806,27 +827,6 @@ message BoycottMembershipFilterRule {
     google.protobuf.Timestamp UpdatedAt = 5;
     string Cause = 6;
     string Boycott = 7;
-  }
-}
-
-message ElectionOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
-message ElectionFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
   }
 }
 
@@ -1317,6 +1317,27 @@ message VolunteerFilterRule {
   }
 }
 
+message ActivityTypeOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
+message ActivityTypeFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+  }
+}
+
 message FollowerOrdering {
   Direction Direction = 1;
   oneof field {
@@ -1351,27 +1372,6 @@ message TerritoryOrdering {
 }
 
 message TerritoryFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
-message ActivityTypeOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
-message ActivityTypeFilterRule {
   Rule Rule = 1;
   LogicalOperator LogicalOperator = 2;
   oneof field {
@@ -1434,6 +1434,27 @@ message NoteFilterRule {
   }
 }
 
+message AgentOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Account = 6;
+  }
+}
+
+message AgentFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Account = 6;
+  }
+}
+
 message AccountOrdering {
   Direction Direction = 1;
   oneof field {
@@ -1475,6 +1496,29 @@ message OwnerMembershipFilterRule {
     google.protobuf.Timestamp UpdatedAt = 5;
     string Cause = 6;
     string Account = 7;
+  }
+}
+
+message AgentMembershipOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Cause = 6;
+    string Agent = 7;
+  }
+}
+
+message AgentMembershipFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Cause = 6;
+    string Agent = 7;
   }
 }
 
@@ -1527,50 +1571,6 @@ message ContactMembershipFilterRule {
     google.protobuf.Timestamp UpdatedAt = 5;
     string Cause = 6;
     string Contact = 7;
-  }
-}
-
-message AgentOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Account = 6;
-  }
-}
-
-message AgentFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Account = 6;
-  }
-}
-
-message AgentMembershipOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Cause = 6;
-    string Agent = 7;
-  }
-}
-
-message AgentMembershipFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Cause = 6;
-    string Agent = 7;
   }
 }
 
@@ -2483,6 +2483,82 @@ message DeleteLayoutResponse {
   int64 deleted = 2;
 }
 
+message ExperimentVariant {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+  string VariantType = 5;
+  string Experiment = 6;
+  string LandingPage = 7;
+  string Field = 8;
+  string Component = 9;
+}
+
+message CreateExperimentVariant {
+  string Title = 1;
+  string VariantType = 2;
+  string Experiment = 3;
+  string LandingPage = 4;
+  string Field = 5;
+  string Component = 6;
+}
+
+message CreateExperimentVariantRequest {
+  string api = 1;
+  CreateExperimentVariant item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateExperimentVariantResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetExperimentVariantRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetExperimentVariantResponse {
+  string api = 1;
+  ExperimentVariant item = 2;
+}
+
+message ListExperimentVariantRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated ExperimentVariantOrdering ordering = 3;
+  repeated ExperimentVariantFilterRule filters = 4;
+}
+
+message ListExperimentVariantResponse {
+  string api = 1;
+  repeated ExperimentVariant items = 2;
+}
+
+message UpdateExperimentVariantRequest{
+  string api = 1;
+  ExperimentVariant item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateExperimentVariantResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteExperimentVariantRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteExperimentVariantResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
 message Experiment {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -2615,6 +2691,74 @@ message DeleteLandingPageRequest {
 }
 
 message DeleteLandingPageResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
+message Issue {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+  string Election = 5;
+}
+
+message CreateIssue {
+  string Title = 1;
+  string Election = 2;
+}
+
+message CreateIssueRequest {
+  string api = 1;
+  CreateIssue item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateIssueResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetIssueRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetIssueResponse {
+  string api = 1;
+  Issue item = 2;
+}
+
+message ListIssueRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated IssueOrdering ordering = 3;
+  repeated IssueFilterRule filters = 4;
+}
+
+message ListIssueResponse {
+  string api = 1;
+  repeated Issue items = 2;
+}
+
+message UpdateIssueRequest{
+  string api = 1;
+  Issue item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateIssueResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteIssueRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteIssueResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -2767,150 +2911,6 @@ message DeleteComponentRequest {
 }
 
 message DeleteComponentResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message ExperimentVariant {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-  string VariantType = 5;
-  string Experiment = 6;
-  string LandingPage = 7;
-  string Field = 8;
-  string Component = 9;
-}
-
-message CreateExperimentVariant {
-  string Title = 1;
-  string VariantType = 2;
-  string Experiment = 3;
-  string LandingPage = 4;
-  string Field = 5;
-  string Component = 6;
-}
-
-message CreateExperimentVariantRequest {
-  string api = 1;
-  CreateExperimentVariant item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateExperimentVariantResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetExperimentVariantRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetExperimentVariantResponse {
-  string api = 1;
-  ExperimentVariant item = 2;
-}
-
-message ListExperimentVariantRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated ExperimentVariantOrdering ordering = 3;
-  repeated ExperimentVariantFilterRule filters = 4;
-}
-
-message ListExperimentVariantResponse {
-  string api = 1;
-  repeated ExperimentVariant items = 2;
-}
-
-message UpdateExperimentVariantRequest{
-  string api = 1;
-  ExperimentVariant item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateExperimentVariantResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteExperimentVariantRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteExperimentVariantResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message Issue {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-  string Election = 5;
-}
-
-message CreateIssue {
-  string Title = 1;
-  string Election = 2;
-}
-
-message CreateIssueRequest {
-  string api = 1;
-  CreateIssue item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateIssueResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetIssueRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetIssueResponse {
-  string api = 1;
-  Issue item = 2;
-}
-
-message ListIssueRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated IssueOrdering ordering = 3;
-  repeated IssueFilterRule filters = 4;
-}
-
-message ListIssueResponse {
-  string api = 1;
-  repeated Issue items = 2;
-}
-
-message UpdateIssueRequest{
-  string api = 1;
-  Issue item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateIssueResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteIssueRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteIssueResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -3117,6 +3117,72 @@ message DeleteDistrictResponse {
   int64 deleted = 2;
 }
 
+message VolunteerOpportunityType {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+}
+
+message CreateVolunteerOpportunityType {
+  string Title = 1;
+}
+
+message CreateVolunteerOpportunityTypeRequest {
+  string api = 1;
+  CreateVolunteerOpportunityType item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateVolunteerOpportunityTypeResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetVolunteerOpportunityTypeRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetVolunteerOpportunityTypeResponse {
+  string api = 1;
+  VolunteerOpportunityType item = 2;
+}
+
+message ListVolunteerOpportunityTypeRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated VolunteerOpportunityTypeOrdering ordering = 3;
+  repeated VolunteerOpportunityTypeFilterRule filters = 4;
+}
+
+message ListVolunteerOpportunityTypeResponse {
+  string api = 1;
+  repeated VolunteerOpportunityType items = 2;
+}
+
+message UpdateVolunteerOpportunityTypeRequest{
+  string api = 1;
+  VolunteerOpportunityType item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateVolunteerOpportunityTypeResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteVolunteerOpportunityTypeRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteVolunteerOpportunityTypeResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
 message Office {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -3249,72 +3315,6 @@ message DeletePollItemRequest {
 }
 
 message DeletePollItemResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message VolunteerOpportunityType {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-}
-
-message CreateVolunteerOpportunityType {
-  string Title = 1;
-}
-
-message CreateVolunteerOpportunityTypeRequest {
-  string api = 1;
-  CreateVolunteerOpportunityType item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateVolunteerOpportunityTypeResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetVolunteerOpportunityTypeRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetVolunteerOpportunityTypeResponse {
-  string api = 1;
-  VolunteerOpportunityType item = 2;
-}
-
-message ListVolunteerOpportunityTypeRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated VolunteerOpportunityTypeOrdering ordering = 3;
-  repeated VolunteerOpportunityTypeFilterRule filters = 4;
-}
-
-message ListVolunteerOpportunityTypeResponse {
-  string api = 1;
-  repeated VolunteerOpportunityType items = 2;
-}
-
-message UpdateVolunteerOpportunityTypeRequest{
-  string api = 1;
-  VolunteerOpportunityType item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateVolunteerOpportunityTypeResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteVolunteerOpportunityTypeRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteVolunteerOpportunityTypeResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -3711,6 +3711,72 @@ message DeleteDeliveryResponse {
   int64 deleted = 2;
 }
 
+message Election {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+}
+
+message CreateElection {
+  string Title = 1;
+}
+
+message CreateElectionRequest {
+  string api = 1;
+  CreateElection item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateElectionResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetElectionRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetElectionResponse {
+  string api = 1;
+  Election item = 2;
+}
+
+message ListElectionRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated ElectionOrdering ordering = 3;
+  repeated ElectionFilterRule filters = 4;
+}
+
+message ListElectionResponse {
+  string api = 1;
+  repeated Election items = 2;
+}
+
+message UpdateElectionRequest{
+  string api = 1;
+  Election item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateElectionResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteElectionRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteElectionResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
 message Boycott {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -3841,72 +3907,6 @@ message DeleteBoycottMembershipRequest {
 }
 
 message DeleteBoycottMembershipResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message Election {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-}
-
-message CreateElection {
-  string Title = 1;
-}
-
-message CreateElectionRequest {
-  string api = 1;
-  CreateElection item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateElectionResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetElectionRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetElectionResponse {
-  string api = 1;
-  Election item = 2;
-}
-
-message ListElectionRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated ElectionOrdering ordering = 3;
-  repeated ElectionFilterRule filters = 4;
-}
-
-message ListElectionResponse {
-  string api = 1;
-  repeated Election items = 2;
-}
-
-message UpdateElectionRequest{
-  string api = 1;
-  Election item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateElectionResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteElectionRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteElectionResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -5343,6 +5343,72 @@ message DeleteVolunteerResponse {
   int64 deleted = 2;
 }
 
+message ActivityType {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+}
+
+message CreateActivityType {
+  string Title = 1;
+}
+
+message CreateActivityTypeRequest {
+  string api = 1;
+  CreateActivityType item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateActivityTypeResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetActivityTypeRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetActivityTypeResponse {
+  string api = 1;
+  ActivityType item = 2;
+}
+
+message ListActivityTypeRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated ActivityTypeOrdering ordering = 3;
+  repeated ActivityTypeFilterRule filters = 4;
+}
+
+message ListActivityTypeResponse {
+  string api = 1;
+  repeated ActivityType items = 2;
+}
+
+message UpdateActivityTypeRequest{
+  string api = 1;
+  ActivityType item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateActivityTypeResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteActivityTypeRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteActivityTypeResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
 message Follower {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -5473,72 +5539,6 @@ message DeleteTerritoryRequest {
 }
 
 message DeleteTerritoryResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message ActivityType {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-}
-
-message CreateActivityType {
-  string Title = 1;
-}
-
-message CreateActivityTypeRequest {
-  string api = 1;
-  CreateActivityType item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateActivityTypeResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetActivityTypeRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetActivityTypeResponse {
-  string api = 1;
-  ActivityType item = 2;
-}
-
-message ListActivityTypeRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated ActivityTypeOrdering ordering = 3;
-  repeated ActivityTypeFilterRule filters = 4;
-}
-
-message ListActivityTypeResponse {
-  string api = 1;
-  repeated ActivityType items = 2;
-}
-
-message UpdateActivityTypeRequest{
-  string api = 1;
-  ActivityType item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateActivityTypeResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteActivityTypeRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteActivityTypeResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -5685,6 +5685,72 @@ message DeleteNoteResponse {
   int64 deleted = 2;
 }
 
+message Agent {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Account = 4;
+}
+
+message CreateAgent {
+  string Account = 1;
+}
+
+message CreateAgentRequest {
+  string api = 1;
+  CreateAgent item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateAgentResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetAgentRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetAgentResponse {
+  string api = 1;
+  Agent item = 2;
+}
+
+message ListAgentRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated AgentOrdering ordering = 3;
+  repeated AgentFilterRule filters = 4;
+}
+
+message ListAgentResponse {
+  string api = 1;
+  repeated Agent items = 2;
+}
+
+message UpdateAgentRequest{
+  string api = 1;
+  Agent item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateAgentResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteAgentRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteAgentResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
 message Account {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -5815,6 +5881,74 @@ message DeleteOwnerMembershipRequest {
 }
 
 message DeleteOwnerMembershipResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
+message AgentMembership {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Cause = 4;
+  string Agent = 5;
+}
+
+message CreateAgentMembership {
+  string Cause = 1;
+  string Agent = 2;
+}
+
+message CreateAgentMembershipRequest {
+  string api = 1;
+  CreateAgentMembership item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateAgentMembershipResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetAgentMembershipRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetAgentMembershipResponse {
+  string api = 1;
+  AgentMembership item = 2;
+}
+
+message ListAgentMembershipRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated AgentMembershipOrdering ordering = 3;
+  repeated AgentMembershipFilterRule filters = 4;
+}
+
+message ListAgentMembershipResponse {
+  string api = 1;
+  repeated AgentMembership items = 2;
+}
+
+message UpdateAgentMembershipRequest{
+  string api = 1;
+  AgentMembership item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateAgentMembershipResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteAgentMembershipRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteAgentMembershipResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -5957,140 +6091,6 @@ message DeleteContactMembershipRequest {
 }
 
 message DeleteContactMembershipResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message Agent {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Account = 4;
-}
-
-message CreateAgent {
-  string Account = 1;
-}
-
-message CreateAgentRequest {
-  string api = 1;
-  CreateAgent item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateAgentResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetAgentRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetAgentResponse {
-  string api = 1;
-  Agent item = 2;
-}
-
-message ListAgentRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated AgentOrdering ordering = 3;
-  repeated AgentFilterRule filters = 4;
-}
-
-message ListAgentResponse {
-  string api = 1;
-  repeated Agent items = 2;
-}
-
-message UpdateAgentRequest{
-  string api = 1;
-  Agent item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateAgentResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteAgentRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteAgentResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
-message AgentMembership {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Cause = 4;
-  string Agent = 5;
-}
-
-message CreateAgentMembership {
-  string Cause = 1;
-  string Agent = 2;
-}
-
-message CreateAgentMembershipRequest {
-  string api = 1;
-  CreateAgentMembership item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateAgentMembershipResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetAgentMembershipRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetAgentMembershipResponse {
-  string api = 1;
-  AgentMembership item = 2;
-}
-
-message ListAgentMembershipRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated AgentMembershipOrdering ordering = 3;
-  repeated AgentMembershipFilterRule filters = 4;
-}
-
-message ListAgentMembershipResponse {
-  string api = 1;
-  repeated AgentMembership items = 2;
-}
-
-message UpdateAgentMembershipRequest{
-  string api = 1;
-  AgentMembership item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateAgentMembershipResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteAgentMembershipRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteAgentMembershipResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -6779,6 +6779,45 @@ service ShrikeService {
         };
     }
   
+  // CreateExperimentVariant takes a ExperimentVariant object to create.
+  rpc CreateExperimentVariant(CreateExperimentVariantRequest) returns (CreateExperimentVariantResponse) {
+    option (google.api.http) ={
+      post: "/v1/experimentvariant"
+      body: "*"
+    };
+  }
+  // GetExperimentVariant takes an ID and returns a single ExperimentVariant.
+  rpc GetExperimentVariant(GetExperimentVariantRequest) returns (GetExperimentVariantResponse) {
+    option (google.api.http) ={
+      get: "/v1/experimentvariant/{ID}"
+    };
+  }
+    // List ExperimentVariant, takes filters, limit, and cursor param.
+  rpc ListExperimentVariant(ListExperimentVariantRequest) returns (ListExperimentVariantResponse) {
+  option (google.api.http) ={
+    get: "/v1/experimentvariant"
+  };
+}
+    // Update ExperimentVariant
+    rpc UpdateExperimentVariant(UpdateExperimentVariantRequest) returns (UpdateExperimentVariantResponse) {
+        option (google.api.http) = {
+            put: "/v1/experimentvariant/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/experimentvariant/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete ExperimentVariant
+    rpc DeleteExperimentVariant(DeleteExperimentVariantRequest) returns (DeleteExperimentVariantResponse) {
+        option (google.api.http) = {
+            delete: "/v1/experimentvariant/{ID}"
+        };
+    }
+  
   // CreateExperiment takes a Experiment object to create.
   rpc CreateExperiment(CreateExperimentRequest) returns (CreateExperimentResponse) {
     option (google.api.http) ={
@@ -6857,6 +6896,45 @@ service ShrikeService {
         };
     }
   
+  // CreateIssue takes a Issue object to create.
+  rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse) {
+    option (google.api.http) ={
+      post: "/v1/issue"
+      body: "*"
+    };
+  }
+  // GetIssue takes an ID and returns a single Issue.
+  rpc GetIssue(GetIssueRequest) returns (GetIssueResponse) {
+    option (google.api.http) ={
+      get: "/v1/issue/{ID}"
+    };
+  }
+    // List Issue, takes filters, limit, and cursor param.
+  rpc ListIssue(ListIssueRequest) returns (ListIssueResponse) {
+  option (google.api.http) ={
+    get: "/v1/issue"
+  };
+}
+    // Update Issue
+    rpc UpdateIssue(UpdateIssueRequest) returns (UpdateIssueResponse) {
+        option (google.api.http) = {
+            put: "/v1/issue/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/issue/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Issue
+    rpc DeleteIssue(DeleteIssueRequest) returns (DeleteIssueResponse) {
+        option (google.api.http) = {
+            delete: "/v1/issue/{ID}"
+        };
+    }
+  
   // CreateField takes a Field object to create.
   rpc CreateField(CreateFieldRequest) returns (CreateFieldResponse) {
     option (google.api.http) ={
@@ -6932,84 +7010,6 @@ service ShrikeService {
     rpc DeleteComponent(DeleteComponentRequest) returns (DeleteComponentResponse) {
         option (google.api.http) = {
             delete: "/v1/component/{ID}"
-        };
-    }
-  
-  // CreateExperimentVariant takes a ExperimentVariant object to create.
-  rpc CreateExperimentVariant(CreateExperimentVariantRequest) returns (CreateExperimentVariantResponse) {
-    option (google.api.http) ={
-      post: "/v1/experimentvariant"
-      body: "*"
-    };
-  }
-  // GetExperimentVariant takes an ID and returns a single ExperimentVariant.
-  rpc GetExperimentVariant(GetExperimentVariantRequest) returns (GetExperimentVariantResponse) {
-    option (google.api.http) ={
-      get: "/v1/experimentvariant/{ID}"
-    };
-  }
-    // List ExperimentVariant, takes filters, limit, and cursor param.
-  rpc ListExperimentVariant(ListExperimentVariantRequest) returns (ListExperimentVariantResponse) {
-  option (google.api.http) ={
-    get: "/v1/experimentvariant"
-  };
-}
-    // Update ExperimentVariant
-    rpc UpdateExperimentVariant(UpdateExperimentVariantRequest) returns (UpdateExperimentVariantResponse) {
-        option (google.api.http) = {
-            put: "/v1/experimentvariant/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/experimentvariant/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete ExperimentVariant
-    rpc DeleteExperimentVariant(DeleteExperimentVariantRequest) returns (DeleteExperimentVariantResponse) {
-        option (google.api.http) = {
-            delete: "/v1/experimentvariant/{ID}"
-        };
-    }
-  
-  // CreateIssue takes a Issue object to create.
-  rpc CreateIssue(CreateIssueRequest) returns (CreateIssueResponse) {
-    option (google.api.http) ={
-      post: "/v1/issue"
-      body: "*"
-    };
-  }
-  // GetIssue takes an ID and returns a single Issue.
-  rpc GetIssue(GetIssueRequest) returns (GetIssueResponse) {
-    option (google.api.http) ={
-      get: "/v1/issue/{ID}"
-    };
-  }
-    // List Issue, takes filters, limit, and cursor param.
-  rpc ListIssue(ListIssueRequest) returns (ListIssueResponse) {
-  option (google.api.http) ={
-    get: "/v1/issue"
-  };
-}
-    // Update Issue
-    rpc UpdateIssue(UpdateIssueRequest) returns (UpdateIssueResponse) {
-        option (google.api.http) = {
-            put: "/v1/issue/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/issue/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Issue
-    rpc DeleteIssue(DeleteIssueRequest) returns (DeleteIssueResponse) {
-        option (google.api.http) = {
-            delete: "/v1/issue/{ID}"
         };
     }
   
@@ -7130,6 +7130,45 @@ service ShrikeService {
         };
     }
   
+  // CreateVolunteerOpportunityType takes a VolunteerOpportunityType object to create.
+  rpc CreateVolunteerOpportunityType(CreateVolunteerOpportunityTypeRequest) returns (CreateVolunteerOpportunityTypeResponse) {
+    option (google.api.http) ={
+      post: "/v1/volunteeropportunitytype"
+      body: "*"
+    };
+  }
+  // GetVolunteerOpportunityType takes an ID and returns a single VolunteerOpportunityType.
+  rpc GetVolunteerOpportunityType(GetVolunteerOpportunityTypeRequest) returns (GetVolunteerOpportunityTypeResponse) {
+    option (google.api.http) ={
+      get: "/v1/volunteeropportunitytype/{ID}"
+    };
+  }
+    // List VolunteerOpportunityType, takes filters, limit, and cursor param.
+  rpc ListVolunteerOpportunityType(ListVolunteerOpportunityTypeRequest) returns (ListVolunteerOpportunityTypeResponse) {
+  option (google.api.http) ={
+    get: "/v1/volunteeropportunitytype"
+  };
+}
+    // Update VolunteerOpportunityType
+    rpc UpdateVolunteerOpportunityType(UpdateVolunteerOpportunityTypeRequest) returns (UpdateVolunteerOpportunityTypeResponse) {
+        option (google.api.http) = {
+            put: "/v1/volunteeropportunitytype/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/volunteeropportunitytype/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete VolunteerOpportunityType
+    rpc DeleteVolunteerOpportunityType(DeleteVolunteerOpportunityTypeRequest) returns (DeleteVolunteerOpportunityTypeResponse) {
+        option (google.api.http) = {
+            delete: "/v1/volunteeropportunitytype/{ID}"
+        };
+    }
+  
   // CreateOffice takes a Office object to create.
   rpc CreateOffice(CreateOfficeRequest) returns (CreateOfficeResponse) {
     option (google.api.http) ={
@@ -7205,45 +7244,6 @@ service ShrikeService {
     rpc DeletePollItem(DeletePollItemRequest) returns (DeletePollItemResponse) {
         option (google.api.http) = {
             delete: "/v1/pollitem/{ID}"
-        };
-    }
-  
-  // CreateVolunteerOpportunityType takes a VolunteerOpportunityType object to create.
-  rpc CreateVolunteerOpportunityType(CreateVolunteerOpportunityTypeRequest) returns (CreateVolunteerOpportunityTypeResponse) {
-    option (google.api.http) ={
-      post: "/v1/volunteeropportunitytype"
-      body: "*"
-    };
-  }
-  // GetVolunteerOpportunityType takes an ID and returns a single VolunteerOpportunityType.
-  rpc GetVolunteerOpportunityType(GetVolunteerOpportunityTypeRequest) returns (GetVolunteerOpportunityTypeResponse) {
-    option (google.api.http) ={
-      get: "/v1/volunteeropportunitytype/{ID}"
-    };
-  }
-    // List VolunteerOpportunityType, takes filters, limit, and cursor param.
-  rpc ListVolunteerOpportunityType(ListVolunteerOpportunityTypeRequest) returns (ListVolunteerOpportunityTypeResponse) {
-  option (google.api.http) ={
-    get: "/v1/volunteeropportunitytype"
-  };
-}
-    // Update VolunteerOpportunityType
-    rpc UpdateVolunteerOpportunityType(UpdateVolunteerOpportunityTypeRequest) returns (UpdateVolunteerOpportunityTypeResponse) {
-        option (google.api.http) = {
-            put: "/v1/volunteeropportunitytype/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/volunteeropportunitytype/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete VolunteerOpportunityType
-    rpc DeleteVolunteerOpportunityType(DeleteVolunteerOpportunityTypeRequest) returns (DeleteVolunteerOpportunityTypeResponse) {
-        option (google.api.http) = {
-            delete: "/v1/volunteeropportunitytype/{ID}"
         };
     }
   
@@ -7481,6 +7481,45 @@ service ShrikeService {
         };
     }
   
+  // CreateElection takes a Election object to create.
+  rpc CreateElection(CreateElectionRequest) returns (CreateElectionResponse) {
+    option (google.api.http) ={
+      post: "/v1/election"
+      body: "*"
+    };
+  }
+  // GetElection takes an ID and returns a single Election.
+  rpc GetElection(GetElectionRequest) returns (GetElectionResponse) {
+    option (google.api.http) ={
+      get: "/v1/election/{ID}"
+    };
+  }
+    // List Election, takes filters, limit, and cursor param.
+  rpc ListElection(ListElectionRequest) returns (ListElectionResponse) {
+  option (google.api.http) ={
+    get: "/v1/election"
+  };
+}
+    // Update Election
+    rpc UpdateElection(UpdateElectionRequest) returns (UpdateElectionResponse) {
+        option (google.api.http) = {
+            put: "/v1/election/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/election/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Election
+    rpc DeleteElection(DeleteElectionRequest) returns (DeleteElectionResponse) {
+        option (google.api.http) = {
+            delete: "/v1/election/{ID}"
+        };
+    }
+  
   // CreateBoycott takes a Boycott object to create.
   rpc CreateBoycott(CreateBoycottRequest) returns (CreateBoycottResponse) {
     option (google.api.http) ={
@@ -7556,45 +7595,6 @@ service ShrikeService {
     rpc DeleteBoycottMembership(DeleteBoycottMembershipRequest) returns (DeleteBoycottMembershipResponse) {
         option (google.api.http) = {
             delete: "/v1/boycottmembership/{ID}"
-        };
-    }
-  
-  // CreateElection takes a Election object to create.
-  rpc CreateElection(CreateElectionRequest) returns (CreateElectionResponse) {
-    option (google.api.http) ={
-      post: "/v1/election"
-      body: "*"
-    };
-  }
-  // GetElection takes an ID and returns a single Election.
-  rpc GetElection(GetElectionRequest) returns (GetElectionResponse) {
-    option (google.api.http) ={
-      get: "/v1/election/{ID}"
-    };
-  }
-    // List Election, takes filters, limit, and cursor param.
-  rpc ListElection(ListElectionRequest) returns (ListElectionResponse) {
-  option (google.api.http) ={
-    get: "/v1/election"
-  };
-}
-    // Update Election
-    rpc UpdateElection(UpdateElectionRequest) returns (UpdateElectionResponse) {
-        option (google.api.http) = {
-            put: "/v1/election/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/election/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Election
-    rpc DeleteElection(DeleteElectionRequest) returns (DeleteElectionResponse) {
-        option (google.api.http) = {
-            delete: "/v1/election/{ID}"
         };
     }
   
@@ -8417,6 +8417,45 @@ service ShrikeService {
         };
     }
   
+  // CreateActivityType takes a ActivityType object to create.
+  rpc CreateActivityType(CreateActivityTypeRequest) returns (CreateActivityTypeResponse) {
+    option (google.api.http) ={
+      post: "/v1/activitytype"
+      body: "*"
+    };
+  }
+  // GetActivityType takes an ID and returns a single ActivityType.
+  rpc GetActivityType(GetActivityTypeRequest) returns (GetActivityTypeResponse) {
+    option (google.api.http) ={
+      get: "/v1/activitytype/{ID}"
+    };
+  }
+    // List ActivityType, takes filters, limit, and cursor param.
+  rpc ListActivityType(ListActivityTypeRequest) returns (ListActivityTypeResponse) {
+  option (google.api.http) ={
+    get: "/v1/activitytype"
+  };
+}
+    // Update ActivityType
+    rpc UpdateActivityType(UpdateActivityTypeRequest) returns (UpdateActivityTypeResponse) {
+        option (google.api.http) = {
+            put: "/v1/activitytype/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/activitytype/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete ActivityType
+    rpc DeleteActivityType(DeleteActivityTypeRequest) returns (DeleteActivityTypeResponse) {
+        option (google.api.http) = {
+            delete: "/v1/activitytype/{ID}"
+        };
+    }
+  
   // CreateFollower takes a Follower object to create.
   rpc CreateFollower(CreateFollowerRequest) returns (CreateFollowerResponse) {
     option (google.api.http) ={
@@ -8492,45 +8531,6 @@ service ShrikeService {
     rpc DeleteTerritory(DeleteTerritoryRequest) returns (DeleteTerritoryResponse) {
         option (google.api.http) = {
             delete: "/v1/territory/{ID}"
-        };
-    }
-  
-  // CreateActivityType takes a ActivityType object to create.
-  rpc CreateActivityType(CreateActivityTypeRequest) returns (CreateActivityTypeResponse) {
-    option (google.api.http) ={
-      post: "/v1/activitytype"
-      body: "*"
-    };
-  }
-  // GetActivityType takes an ID and returns a single ActivityType.
-  rpc GetActivityType(GetActivityTypeRequest) returns (GetActivityTypeResponse) {
-    option (google.api.http) ={
-      get: "/v1/activitytype/{ID}"
-    };
-  }
-    // List ActivityType, takes filters, limit, and cursor param.
-  rpc ListActivityType(ListActivityTypeRequest) returns (ListActivityTypeResponse) {
-  option (google.api.http) ={
-    get: "/v1/activitytype"
-  };
-}
-    // Update ActivityType
-    rpc UpdateActivityType(UpdateActivityTypeRequest) returns (UpdateActivityTypeResponse) {
-        option (google.api.http) = {
-            put: "/v1/activitytype/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/activitytype/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete ActivityType
-    rpc DeleteActivityType(DeleteActivityTypeRequest) returns (DeleteActivityTypeResponse) {
-        option (google.api.http) = {
-            delete: "/v1/activitytype/{ID}"
         };
     }
   
@@ -8612,6 +8612,45 @@ service ShrikeService {
         };
     }
   
+  // CreateAgent takes a Agent object to create.
+  rpc CreateAgent(CreateAgentRequest) returns (CreateAgentResponse) {
+    option (google.api.http) ={
+      post: "/v1/agent"
+      body: "*"
+    };
+  }
+  // GetAgent takes an ID and returns a single Agent.
+  rpc GetAgent(GetAgentRequest) returns (GetAgentResponse) {
+    option (google.api.http) ={
+      get: "/v1/agent/{ID}"
+    };
+  }
+    // List Agent, takes filters, limit, and cursor param.
+  rpc ListAgent(ListAgentRequest) returns (ListAgentResponse) {
+  option (google.api.http) ={
+    get: "/v1/agent"
+  };
+}
+    // Update Agent
+    rpc UpdateAgent(UpdateAgentRequest) returns (UpdateAgentResponse) {
+        option (google.api.http) = {
+            put: "/v1/agent/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/agent/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete Agent
+    rpc DeleteAgent(DeleteAgentRequest) returns (DeleteAgentResponse) {
+        option (google.api.http) = {
+            delete: "/v1/agent/{ID}"
+        };
+    }
+  
   // CreateAccount takes a Account object to create.
   rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {
     option (google.api.http) ={
@@ -8690,6 +8729,45 @@ service ShrikeService {
         };
     }
   
+  // CreateAgentMembership takes a AgentMembership object to create.
+  rpc CreateAgentMembership(CreateAgentMembershipRequest) returns (CreateAgentMembershipResponse) {
+    option (google.api.http) ={
+      post: "/v1/agentmembership"
+      body: "*"
+    };
+  }
+  // GetAgentMembership takes an ID and returns a single AgentMembership.
+  rpc GetAgentMembership(GetAgentMembershipRequest) returns (GetAgentMembershipResponse) {
+    option (google.api.http) ={
+      get: "/v1/agentmembership/{ID}"
+    };
+  }
+    // List AgentMembership, takes filters, limit, and cursor param.
+  rpc ListAgentMembership(ListAgentMembershipRequest) returns (ListAgentMembershipResponse) {
+  option (google.api.http) ={
+    get: "/v1/agentmembership"
+  };
+}
+    // Update AgentMembership
+    rpc UpdateAgentMembership(UpdateAgentMembershipRequest) returns (UpdateAgentMembershipResponse) {
+        option (google.api.http) = {
+            put: "/v1/agentmembership/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/agentmembership/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete AgentMembership
+    rpc DeleteAgentMembership(DeleteAgentMembershipRequest) returns (DeleteAgentMembershipResponse) {
+        option (google.api.http) = {
+            delete: "/v1/agentmembership/{ID}"
+        };
+    }
+  
   // CreateContact takes a Contact object to create.
   rpc CreateContact(CreateContactRequest) returns (CreateContactResponse) {
     option (google.api.http) ={
@@ -8765,84 +8843,6 @@ service ShrikeService {
     rpc DeleteContactMembership(DeleteContactMembershipRequest) returns (DeleteContactMembershipResponse) {
         option (google.api.http) = {
             delete: "/v1/contactmembership/{ID}"
-        };
-    }
-  
-  // CreateAgent takes a Agent object to create.
-  rpc CreateAgent(CreateAgentRequest) returns (CreateAgentResponse) {
-    option (google.api.http) ={
-      post: "/v1/agent"
-      body: "*"
-    };
-  }
-  // GetAgent takes an ID and returns a single Agent.
-  rpc GetAgent(GetAgentRequest) returns (GetAgentResponse) {
-    option (google.api.http) ={
-      get: "/v1/agent/{ID}"
-    };
-  }
-    // List Agent, takes filters, limit, and cursor param.
-  rpc ListAgent(ListAgentRequest) returns (ListAgentResponse) {
-  option (google.api.http) ={
-    get: "/v1/agent"
-  };
-}
-    // Update Agent
-    rpc UpdateAgent(UpdateAgentRequest) returns (UpdateAgentResponse) {
-        option (google.api.http) = {
-            put: "/v1/agent/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/agent/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete Agent
-    rpc DeleteAgent(DeleteAgentRequest) returns (DeleteAgentResponse) {
-        option (google.api.http) = {
-            delete: "/v1/agent/{ID}"
-        };
-    }
-  
-  // CreateAgentMembership takes a AgentMembership object to create.
-  rpc CreateAgentMembership(CreateAgentMembershipRequest) returns (CreateAgentMembershipResponse) {
-    option (google.api.http) ={
-      post: "/v1/agentmembership"
-      body: "*"
-    };
-  }
-  // GetAgentMembership takes an ID and returns a single AgentMembership.
-  rpc GetAgentMembership(GetAgentMembershipRequest) returns (GetAgentMembershipResponse) {
-    option (google.api.http) ={
-      get: "/v1/agentmembership/{ID}"
-    };
-  }
-    // List AgentMembership, takes filters, limit, and cursor param.
-  rpc ListAgentMembership(ListAgentMembershipRequest) returns (ListAgentMembershipResponse) {
-  option (google.api.http) ={
-    get: "/v1/agentmembership"
-  };
-}
-    // Update AgentMembership
-    rpc UpdateAgentMembership(UpdateAgentMembershipRequest) returns (UpdateAgentMembershipResponse) {
-        option (google.api.http) = {
-            put: "/v1/agentmembership/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/agentmembership/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete AgentMembership
-    rpc DeleteAgentMembership(DeleteAgentMembershipRequest) returns (DeleteAgentMembershipResponse) {
-        option (google.api.http) = {
-            delete: "/v1/agentmembership/{ID}"
         };
     }
   

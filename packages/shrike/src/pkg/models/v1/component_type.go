@@ -35,8 +35,8 @@ func NewComponentTypeManager(db *sql.DB) *ComponentTypeManager {
 
 // CRUD Methods for the ComponentTypeManager.
 
-// CreateComponentType creates a componentType.
-func (m *ComponentTypeManager) CreateComponentType(ctx context.Context, item *v1.CreateComponentType) (*string, error) {
+// Create creates a componentType.
+func (m *ComponentTypeManager) Create(ctx context.Context, item *v1.CreateComponentType) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *ComponentTypeManager) CreateComponentType(ctx context.Context, item *v1
 	return &id, nil
 }
 
-// GetComponentType gets a single componentType from the database by ID.
-func (m *ComponentTypeManager) GetComponentType(ctx context.Context, id string) (*ComponentType, error) {
+// Get gets a single componentType from the database by ID.
+func (m *ComponentTypeManager) Get(ctx context.Context, id string) (*ComponentType, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *ComponentTypeManager) GetComponentType(ctx context.Context, id string) 
 	return &componentType, nil
 }
 
-// ListComponentType returns a slice of all componentTypes meeting the filter criteria.
-func (m *ComponentTypeManager) ListComponentType(ctx context.Context, filters []*v1.ComponentTypeFilterRule, orderings []*v1.ComponentTypeOrdering, limit int64) ([]*ComponentType, error) {
+// List returns a slice of all componentTypes meeting the filter criteria.
+func (m *ComponentTypeManager) List(ctx context.Context, filters []*v1.ComponentTypeFilterRule, orderings []*v1.ComponentTypeOrdering, limit int64) ([]*ComponentType, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *ComponentTypeManager) ListComponentType(ctx context.Context, filters []
 	return list, nil
 }
 
-// UpdateComponentType runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ComponentTypeManager) UpdateComponentType(ctx context.Context, item *v1.ComponentType) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ComponentTypeManager) Update(ctx context.Context, item *v1.ComponentType) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *ComponentTypeManager) UpdateComponentType(ctx context.Context, item *v1
 	return &rows, nil
 }
 
-//DeleteComponentType creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ComponentTypeManager) DeleteComponentType(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ComponentTypeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

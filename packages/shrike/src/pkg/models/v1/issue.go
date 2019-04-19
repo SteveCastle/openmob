@@ -36,8 +36,8 @@ func NewIssueManager(db *sql.DB) *IssueManager {
 
 // CRUD Methods for the IssueManager.
 
-// CreateIssue creates a issue.
-func (m *IssueManager) CreateIssue(ctx context.Context, item *v1.CreateIssue) (*string, error) {
+// Create creates a issue.
+func (m *IssueManager) Create(ctx context.Context, item *v1.CreateIssue) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *IssueManager) CreateIssue(ctx context.Context, item *v1.CreateIssue) (*
 	return &id, nil
 }
 
-// GetIssue gets a single issue from the database by ID.
-func (m *IssueManager) GetIssue(ctx context.Context, id string) (*Issue, error) {
+// Get gets a single issue from the database by ID.
+func (m *IssueManager) Get(ctx context.Context, id string) (*Issue, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *IssueManager) GetIssue(ctx context.Context, id string) (*Issue, error) 
 	return &issue, nil
 }
 
-// ListIssue returns a slice of all issues meeting the filter criteria.
-func (m *IssueManager) ListIssue(ctx context.Context, filters []*v1.IssueFilterRule, orderings []*v1.IssueOrdering, limit int64) ([]*Issue, error) {
+// List returns a slice of all issues meeting the filter criteria.
+func (m *IssueManager) List(ctx context.Context, filters []*v1.IssueFilterRule, orderings []*v1.IssueOrdering, limit int64) ([]*Issue, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *IssueManager) ListIssue(ctx context.Context, filters []*v1.IssueFilterR
 	return list, nil
 }
 
-// UpdateIssue runs an update query on the provided db and returns the rows affected as an int64.
-func (m *IssueManager) UpdateIssue(ctx context.Context, item *v1.Issue) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *IssueManager) Update(ctx context.Context, item *v1.Issue) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *IssueManager) UpdateIssue(ctx context.Context, item *v1.Issue) (*int64,
 	return &rows, nil
 }
 
-//DeleteIssue creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *IssueManager) DeleteIssue(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *IssueManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

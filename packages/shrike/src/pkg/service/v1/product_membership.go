@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateProductMembership(ctx context.Context, req *
 	m := models.NewProductMembershipManager(s.db)
 
 	// Get a list of productMemberships given filters, ordering, and limit rules.
-	id, err := m.CreateProductMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetProductMembership(ctx context.Context, req *v1.
 	m := models.NewProductMembershipManager(s.db)
 
 	// Get a list of productMemberships given filters, ordering, and limit rules.
-	productMembership, err := m.GetProductMembership(ctx, req.ID)
+	productMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListProductMembership(ctx context.Context, req *v1
 	m := models.NewProductMembershipManager(s.db)
 
 	// Get a list of productMemberships given filters, ordering, and limit rules.
-	list, err := m.ListProductMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateProductMembership(ctx context.Context, req *
 	m := models.NewProductMembershipManager(s.db)
 
 	// Get a list of productMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdateProductMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteProductMembership(ctx context.Context, req *
 	m := models.NewProductMembershipManager(s.db)
 
 	// Get a list of productMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeleteProductMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

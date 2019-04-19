@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateLayoutColumn(ctx context.Context, req *v1.Cr
 	m := models.NewLayoutColumnManager(s.db)
 
 	// Get a list of layoutColumns given filters, ordering, and limit rules.
-	id, err := m.CreateLayoutColumn(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetLayoutColumn(ctx context.Context, req *v1.GetLa
 	m := models.NewLayoutColumnManager(s.db)
 
 	// Get a list of layoutColumns given filters, ordering, and limit rules.
-	layoutColumn, err := m.GetLayoutColumn(ctx, req.ID)
+	layoutColumn, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListLayoutColumn(ctx context.Context, req *v1.List
 	m := models.NewLayoutColumnManager(s.db)
 
 	// Get a list of layoutColumns given filters, ordering, and limit rules.
-	list, err := m.ListLayoutColumn(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateLayoutColumn(ctx context.Context, req *v1.Up
 	m := models.NewLayoutColumnManager(s.db)
 
 	// Get a list of layoutColumns given filters, ordering, and limit rules.
-	rows, err := m.UpdateLayoutColumn(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteLayoutColumn(ctx context.Context, req *v1.De
 	m := models.NewLayoutColumnManager(s.db)
 
 	// Get a list of layoutColumns given filters, ordering, and limit rules.
-	rows, err := m.DeleteLayoutColumn(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

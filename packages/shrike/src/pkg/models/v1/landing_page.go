@@ -37,8 +37,8 @@ func NewLandingPageManager(db *sql.DB) *LandingPageManager {
 
 // CRUD Methods for the LandingPageManager.
 
-// CreateLandingPage creates a landingPage.
-func (m *LandingPageManager) CreateLandingPage(ctx context.Context, item *v1.CreateLandingPage) (*string, error) {
+// Create creates a landingPage.
+func (m *LandingPageManager) Create(ctx context.Context, item *v1.CreateLandingPage) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *LandingPageManager) CreateLandingPage(ctx context.Context, item *v1.Cre
 	return &id, nil
 }
 
-// GetLandingPage gets a single landingPage from the database by ID.
-func (m *LandingPageManager) GetLandingPage(ctx context.Context, id string) (*LandingPage, error) {
+// Get gets a single landingPage from the database by ID.
+func (m *LandingPageManager) Get(ctx context.Context, id string) (*LandingPage, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *LandingPageManager) GetLandingPage(ctx context.Context, id string) (*La
 	return &landingPage, nil
 }
 
-// ListLandingPage returns a slice of all landingPages meeting the filter criteria.
-func (m *LandingPageManager) ListLandingPage(ctx context.Context, filters []*v1.LandingPageFilterRule, orderings []*v1.LandingPageOrdering, limit int64) ([]*LandingPage, error) {
+// List returns a slice of all landingPages meeting the filter criteria.
+func (m *LandingPageManager) List(ctx context.Context, filters []*v1.LandingPageFilterRule, orderings []*v1.LandingPageOrdering, limit int64) ([]*LandingPage, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *LandingPageManager) ListLandingPage(ctx context.Context, filters []*v1.
 	return list, nil
 }
 
-// UpdateLandingPage runs an update query on the provided db and returns the rows affected as an int64.
-func (m *LandingPageManager) UpdateLandingPage(ctx context.Context, item *v1.LandingPage) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *LandingPageManager) Update(ctx context.Context, item *v1.LandingPage) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *LandingPageManager) UpdateLandingPage(ctx context.Context, item *v1.Lan
 	return &rows, nil
 }
 
-//DeleteLandingPage creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *LandingPageManager) DeleteLandingPage(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *LandingPageManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

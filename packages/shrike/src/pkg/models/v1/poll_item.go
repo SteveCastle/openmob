@@ -36,8 +36,8 @@ func NewPollItemManager(db *sql.DB) *PollItemManager {
 
 // CRUD Methods for the PollItemManager.
 
-// CreatePollItem creates a pollItem.
-func (m *PollItemManager) CreatePollItem(ctx context.Context, item *v1.CreatePollItem) (*string, error) {
+// Create creates a pollItem.
+func (m *PollItemManager) Create(ctx context.Context, item *v1.CreatePollItem) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *PollItemManager) CreatePollItem(ctx context.Context, item *v1.CreatePol
 	return &id, nil
 }
 
-// GetPollItem gets a single pollItem from the database by ID.
-func (m *PollItemManager) GetPollItem(ctx context.Context, id string) (*PollItem, error) {
+// Get gets a single pollItem from the database by ID.
+func (m *PollItemManager) Get(ctx context.Context, id string) (*PollItem, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *PollItemManager) GetPollItem(ctx context.Context, id string) (*PollItem
 	return &pollItem, nil
 }
 
-// ListPollItem returns a slice of all pollItems meeting the filter criteria.
-func (m *PollItemManager) ListPollItem(ctx context.Context, filters []*v1.PollItemFilterRule, orderings []*v1.PollItemOrdering, limit int64) ([]*PollItem, error) {
+// List returns a slice of all pollItems meeting the filter criteria.
+func (m *PollItemManager) List(ctx context.Context, filters []*v1.PollItemFilterRule, orderings []*v1.PollItemOrdering, limit int64) ([]*PollItem, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *PollItemManager) ListPollItem(ctx context.Context, filters []*v1.PollIt
 	return list, nil
 }
 
-// UpdatePollItem runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PollItemManager) UpdatePollItem(ctx context.Context, item *v1.PollItem) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PollItemManager) Update(ctx context.Context, item *v1.PollItem) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *PollItemManager) UpdatePollItem(ctx context.Context, item *v1.PollItem)
 	return &rows, nil
 }
 
-//DeletePollItem creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PollItemManager) DeletePollItem(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PollItemManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

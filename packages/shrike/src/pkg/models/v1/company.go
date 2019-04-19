@@ -35,8 +35,8 @@ func NewCompanyManager(db *sql.DB) *CompanyManager {
 
 // CRUD Methods for the CompanyManager.
 
-// CreateCompany creates a company.
-func (m *CompanyManager) CreateCompany(ctx context.Context, item *v1.CreateCompany) (*string, error) {
+// Create creates a company.
+func (m *CompanyManager) Create(ctx context.Context, item *v1.CreateCompany) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *CompanyManager) CreateCompany(ctx context.Context, item *v1.CreateCompa
 	return &id, nil
 }
 
-// GetCompany gets a single company from the database by ID.
-func (m *CompanyManager) GetCompany(ctx context.Context, id string) (*Company, error) {
+// Get gets a single company from the database by ID.
+func (m *CompanyManager) Get(ctx context.Context, id string) (*Company, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *CompanyManager) GetCompany(ctx context.Context, id string) (*Company, e
 	return &company, nil
 }
 
-// ListCompany returns a slice of all companys meeting the filter criteria.
-func (m *CompanyManager) ListCompany(ctx context.Context, filters []*v1.CompanyFilterRule, orderings []*v1.CompanyOrdering, limit int64) ([]*Company, error) {
+// List returns a slice of all companys meeting the filter criteria.
+func (m *CompanyManager) List(ctx context.Context, filters []*v1.CompanyFilterRule, orderings []*v1.CompanyOrdering, limit int64) ([]*Company, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *CompanyManager) ListCompany(ctx context.Context, filters []*v1.CompanyF
 	return list, nil
 }
 
-// UpdateCompany runs an update query on the provided db and returns the rows affected as an int64.
-func (m *CompanyManager) UpdateCompany(ctx context.Context, item *v1.Company) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *CompanyManager) Update(ctx context.Context, item *v1.Company) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *CompanyManager) UpdateCompany(ctx context.Context, item *v1.Company) (*
 	return &rows, nil
 }
 
-//DeleteCompany creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *CompanyManager) DeleteCompany(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *CompanyManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateComponentImplementation(ctx context.Context,
 	m := models.NewComponentImplementationManager(s.db)
 
 	// Get a list of componentImplementations given filters, ordering, and limit rules.
-	id, err := m.CreateComponentImplementation(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetComponentImplementation(ctx context.Context, re
 	m := models.NewComponentImplementationManager(s.db)
 
 	// Get a list of componentImplementations given filters, ordering, and limit rules.
-	componentImplementation, err := m.GetComponentImplementation(ctx, req.ID)
+	componentImplementation, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListComponentImplementation(ctx context.Context, r
 	m := models.NewComponentImplementationManager(s.db)
 
 	// Get a list of componentImplementations given filters, ordering, and limit rules.
-	list, err := m.ListComponentImplementation(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateComponentImplementation(ctx context.Context,
 	m := models.NewComponentImplementationManager(s.db)
 
 	// Get a list of componentImplementations given filters, ordering, and limit rules.
-	rows, err := m.UpdateComponentImplementation(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteComponentImplementation(ctx context.Context,
 	m := models.NewComponentImplementationManager(s.db)
 
 	// Get a list of componentImplementations given filters, ordering, and limit rules.
-	rows, err := m.DeleteComponentImplementation(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

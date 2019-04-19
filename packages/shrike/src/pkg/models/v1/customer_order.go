@@ -35,8 +35,8 @@ func NewCustomerOrderManager(db *sql.DB) *CustomerOrderManager {
 
 // CRUD Methods for the CustomerOrderManager.
 
-// CreateCustomerOrder creates a customerOrder.
-func (m *CustomerOrderManager) CreateCustomerOrder(ctx context.Context, item *v1.CreateCustomerOrder) (*string, error) {
+// Create creates a customerOrder.
+func (m *CustomerOrderManager) Create(ctx context.Context, item *v1.CreateCustomerOrder) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *CustomerOrderManager) CreateCustomerOrder(ctx context.Context, item *v1
 	return &id, nil
 }
 
-// GetCustomerOrder gets a single customerOrder from the database by ID.
-func (m *CustomerOrderManager) GetCustomerOrder(ctx context.Context, id string) (*CustomerOrder, error) {
+// Get gets a single customerOrder from the database by ID.
+func (m *CustomerOrderManager) Get(ctx context.Context, id string) (*CustomerOrder, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *CustomerOrderManager) GetCustomerOrder(ctx context.Context, id string) 
 	return &customerOrder, nil
 }
 
-// ListCustomerOrder returns a slice of all customerOrders meeting the filter criteria.
-func (m *CustomerOrderManager) ListCustomerOrder(ctx context.Context, filters []*v1.CustomerOrderFilterRule, orderings []*v1.CustomerOrderOrdering, limit int64) ([]*CustomerOrder, error) {
+// List returns a slice of all customerOrders meeting the filter criteria.
+func (m *CustomerOrderManager) List(ctx context.Context, filters []*v1.CustomerOrderFilterRule, orderings []*v1.CustomerOrderOrdering, limit int64) ([]*CustomerOrder, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *CustomerOrderManager) ListCustomerOrder(ctx context.Context, filters []
 	return list, nil
 }
 
-// UpdateCustomerOrder runs an update query on the provided db and returns the rows affected as an int64.
-func (m *CustomerOrderManager) UpdateCustomerOrder(ctx context.Context, item *v1.CustomerOrder) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *CustomerOrderManager) Update(ctx context.Context, item *v1.CustomerOrder) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *CustomerOrderManager) UpdateCustomerOrder(ctx context.Context, item *v1
 	return &rows, nil
 }
 
-//DeleteCustomerOrder creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *CustomerOrderManager) DeleteCustomerOrder(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *CustomerOrderManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

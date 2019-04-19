@@ -38,8 +38,8 @@ func NewComponentManager(db *sql.DB) *ComponentManager {
 
 // CRUD Methods for the ComponentManager.
 
-// CreateComponent creates a component.
-func (m *ComponentManager) CreateComponent(ctx context.Context, item *v1.CreateComponent) (*string, error) {
+// Create creates a component.
+func (m *ComponentManager) Create(ctx context.Context, item *v1.CreateComponent) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -59,8 +59,8 @@ func (m *ComponentManager) CreateComponent(ctx context.Context, item *v1.CreateC
 	return &id, nil
 }
 
-// GetComponent gets a single component from the database by ID.
-func (m *ComponentManager) GetComponent(ctx context.Context, id string) (*Component, error) {
+// Get gets a single component from the database by ID.
+func (m *ComponentManager) Get(ctx context.Context, id string) (*Component, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -96,8 +96,8 @@ func (m *ComponentManager) GetComponent(ctx context.Context, id string) (*Compon
 	return &component, nil
 }
 
-// ListComponent returns a slice of all components meeting the filter criteria.
-func (m *ComponentManager) ListComponent(ctx context.Context, filters []*v1.ComponentFilterRule, orderings []*v1.ComponentOrdering, limit int64) ([]*Component, error) {
+// List returns a slice of all components meeting the filter criteria.
+func (m *ComponentManager) List(ctx context.Context, filters []*v1.ComponentFilterRule, orderings []*v1.ComponentOrdering, limit int64) ([]*Component, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -133,8 +133,8 @@ func (m *ComponentManager) ListComponent(ctx context.Context, filters []*v1.Comp
 	return list, nil
 }
 
-// UpdateComponent runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ComponentManager) UpdateComponent(ctx context.Context, item *v1.Component) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ComponentManager) Update(ctx context.Context, item *v1.Component) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -160,8 +160,8 @@ func (m *ComponentManager) UpdateComponent(ctx context.Context, item *v1.Compone
 	return &rows, nil
 }
 
-//DeleteComponent creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ComponentManager) DeleteComponent(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ComponentManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

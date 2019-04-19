@@ -36,8 +36,8 @@ func NewFollowerManager(db *sql.DB) *FollowerManager {
 
 // CRUD Methods for the FollowerManager.
 
-// CreateFollower creates a follower.
-func (m *FollowerManager) CreateFollower(ctx context.Context, item *v1.CreateFollower) (*string, error) {
+// Create creates a follower.
+func (m *FollowerManager) Create(ctx context.Context, item *v1.CreateFollower) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *FollowerManager) CreateFollower(ctx context.Context, item *v1.CreateFol
 	return &id, nil
 }
 
-// GetFollower gets a single follower from the database by ID.
-func (m *FollowerManager) GetFollower(ctx context.Context, id string) (*Follower, error) {
+// Get gets a single follower from the database by ID.
+func (m *FollowerManager) Get(ctx context.Context, id string) (*Follower, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *FollowerManager) GetFollower(ctx context.Context, id string) (*Follower
 	return &follower, nil
 }
 
-// ListFollower returns a slice of all followers meeting the filter criteria.
-func (m *FollowerManager) ListFollower(ctx context.Context, filters []*v1.FollowerFilterRule, orderings []*v1.FollowerOrdering, limit int64) ([]*Follower, error) {
+// List returns a slice of all followers meeting the filter criteria.
+func (m *FollowerManager) List(ctx context.Context, filters []*v1.FollowerFilterRule, orderings []*v1.FollowerOrdering, limit int64) ([]*Follower, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *FollowerManager) ListFollower(ctx context.Context, filters []*v1.Follow
 	return list, nil
 }
 
-// UpdateFollower runs an update query on the provided db and returns the rows affected as an int64.
-func (m *FollowerManager) UpdateFollower(ctx context.Context, item *v1.Follower) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *FollowerManager) Update(ctx context.Context, item *v1.Follower) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *FollowerManager) UpdateFollower(ctx context.Context, item *v1.Follower)
 	return &rows, nil
 }
 
-//DeleteFollower creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *FollowerManager) DeleteFollower(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *FollowerManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

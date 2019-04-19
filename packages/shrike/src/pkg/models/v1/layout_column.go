@@ -37,8 +37,8 @@ func NewLayoutColumnManager(db *sql.DB) *LayoutColumnManager {
 
 // CRUD Methods for the LayoutColumnManager.
 
-// CreateLayoutColumn creates a layoutColumn.
-func (m *LayoutColumnManager) CreateLayoutColumn(ctx context.Context, item *v1.CreateLayoutColumn) (*string, error) {
+// Create creates a layoutColumn.
+func (m *LayoutColumnManager) Create(ctx context.Context, item *v1.CreateLayoutColumn) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *LayoutColumnManager) CreateLayoutColumn(ctx context.Context, item *v1.C
 	return &id, nil
 }
 
-// GetLayoutColumn gets a single layoutColumn from the database by ID.
-func (m *LayoutColumnManager) GetLayoutColumn(ctx context.Context, id string) (*LayoutColumn, error) {
+// Get gets a single layoutColumn from the database by ID.
+func (m *LayoutColumnManager) Get(ctx context.Context, id string) (*LayoutColumn, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *LayoutColumnManager) GetLayoutColumn(ctx context.Context, id string) (*
 	return &layoutColumn, nil
 }
 
-// ListLayoutColumn returns a slice of all layoutColumns meeting the filter criteria.
-func (m *LayoutColumnManager) ListLayoutColumn(ctx context.Context, filters []*v1.LayoutColumnFilterRule, orderings []*v1.LayoutColumnOrdering, limit int64) ([]*LayoutColumn, error) {
+// List returns a slice of all layoutColumns meeting the filter criteria.
+func (m *LayoutColumnManager) List(ctx context.Context, filters []*v1.LayoutColumnFilterRule, orderings []*v1.LayoutColumnOrdering, limit int64) ([]*LayoutColumn, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *LayoutColumnManager) ListLayoutColumn(ctx context.Context, filters []*v
 	return list, nil
 }
 
-// UpdateLayoutColumn runs an update query on the provided db and returns the rows affected as an int64.
-func (m *LayoutColumnManager) UpdateLayoutColumn(ctx context.Context, item *v1.LayoutColumn) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *LayoutColumnManager) Update(ctx context.Context, item *v1.LayoutColumn) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *LayoutColumnManager) UpdateLayoutColumn(ctx context.Context, item *v1.L
 	return &rows, nil
 }
 
-//DeleteLayoutColumn creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *LayoutColumnManager) DeleteLayoutColumn(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *LayoutColumnManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

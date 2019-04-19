@@ -35,8 +35,8 @@ func NewDistrictTypeManager(db *sql.DB) *DistrictTypeManager {
 
 // CRUD Methods for the DistrictTypeManager.
 
-// CreateDistrictType creates a districtType.
-func (m *DistrictTypeManager) CreateDistrictType(ctx context.Context, item *v1.CreateDistrictType) (*string, error) {
+// Create creates a districtType.
+func (m *DistrictTypeManager) Create(ctx context.Context, item *v1.CreateDistrictType) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *DistrictTypeManager) CreateDistrictType(ctx context.Context, item *v1.C
 	return &id, nil
 }
 
-// GetDistrictType gets a single districtType from the database by ID.
-func (m *DistrictTypeManager) GetDistrictType(ctx context.Context, id string) (*DistrictType, error) {
+// Get gets a single districtType from the database by ID.
+func (m *DistrictTypeManager) Get(ctx context.Context, id string) (*DistrictType, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *DistrictTypeManager) GetDistrictType(ctx context.Context, id string) (*
 	return &districtType, nil
 }
 
-// ListDistrictType returns a slice of all districtTypes meeting the filter criteria.
-func (m *DistrictTypeManager) ListDistrictType(ctx context.Context, filters []*v1.DistrictTypeFilterRule, orderings []*v1.DistrictTypeOrdering, limit int64) ([]*DistrictType, error) {
+// List returns a slice of all districtTypes meeting the filter criteria.
+func (m *DistrictTypeManager) List(ctx context.Context, filters []*v1.DistrictTypeFilterRule, orderings []*v1.DistrictTypeOrdering, limit int64) ([]*DistrictType, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *DistrictTypeManager) ListDistrictType(ctx context.Context, filters []*v
 	return list, nil
 }
 
-// UpdateDistrictType runs an update query on the provided db and returns the rows affected as an int64.
-func (m *DistrictTypeManager) UpdateDistrictType(ctx context.Context, item *v1.DistrictType) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *DistrictTypeManager) Update(ctx context.Context, item *v1.DistrictType) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *DistrictTypeManager) UpdateDistrictType(ctx context.Context, item *v1.D
 	return &rows, nil
 }
 
-//DeleteDistrictType creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *DistrictTypeManager) DeleteDistrictType(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *DistrictTypeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

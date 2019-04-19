@@ -44,8 +44,8 @@ func NewFieldTypeManager(db *sql.DB) *FieldTypeManager {
 
 // CRUD Methods for the FieldTypeManager.
 
-// CreateFieldType creates a fieldType.
-func (m *FieldTypeManager) CreateFieldType(ctx context.Context, item *v1.CreateFieldType) (*string, error) {
+// Create creates a fieldType.
+func (m *FieldTypeManager) Create(ctx context.Context, item *v1.CreateFieldType) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -65,8 +65,8 @@ func (m *FieldTypeManager) CreateFieldType(ctx context.Context, item *v1.CreateF
 	return &id, nil
 }
 
-// GetFieldType gets a single fieldType from the database by ID.
-func (m *FieldTypeManager) GetFieldType(ctx context.Context, id string) (*FieldType, error) {
+// Get gets a single fieldType from the database by ID.
+func (m *FieldTypeManager) Get(ctx context.Context, id string) (*FieldType, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -102,8 +102,8 @@ func (m *FieldTypeManager) GetFieldType(ctx context.Context, id string) (*FieldT
 	return &fieldType, nil
 }
 
-// ListFieldType returns a slice of all fieldTypes meeting the filter criteria.
-func (m *FieldTypeManager) ListFieldType(ctx context.Context, filters []*v1.FieldTypeFilterRule, orderings []*v1.FieldTypeOrdering, limit int64) ([]*FieldType, error) {
+// List returns a slice of all fieldTypes meeting the filter criteria.
+func (m *FieldTypeManager) List(ctx context.Context, filters []*v1.FieldTypeFilterRule, orderings []*v1.FieldTypeOrdering, limit int64) ([]*FieldType, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -139,8 +139,8 @@ func (m *FieldTypeManager) ListFieldType(ctx context.Context, filters []*v1.Fiel
 	return list, nil
 }
 
-// UpdateFieldType runs an update query on the provided db and returns the rows affected as an int64.
-func (m *FieldTypeManager) UpdateFieldType(ctx context.Context, item *v1.FieldType) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *FieldTypeManager) Update(ctx context.Context, item *v1.FieldType) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -166,8 +166,8 @@ func (m *FieldTypeManager) UpdateFieldType(ctx context.Context, item *v1.FieldTy
 	return &rows, nil
 }
 
-//DeleteFieldType creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *FieldTypeManager) DeleteFieldType(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *FieldTypeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

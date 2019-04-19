@@ -37,8 +37,8 @@ func NewComponentImplementationManager(db *sql.DB) *ComponentImplementationManag
 
 // CRUD Methods for the ComponentImplementationManager.
 
-// CreateComponentImplementation creates a componentImplementation.
-func (m *ComponentImplementationManager) CreateComponentImplementation(ctx context.Context, item *v1.CreateComponentImplementation) (*string, error) {
+// Create creates a componentImplementation.
+func (m *ComponentImplementationManager) Create(ctx context.Context, item *v1.CreateComponentImplementation) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *ComponentImplementationManager) CreateComponentImplementation(ctx conte
 	return &id, nil
 }
 
-// GetComponentImplementation gets a single componentImplementation from the database by ID.
-func (m *ComponentImplementationManager) GetComponentImplementation(ctx context.Context, id string) (*ComponentImplementation, error) {
+// Get gets a single componentImplementation from the database by ID.
+func (m *ComponentImplementationManager) Get(ctx context.Context, id string) (*ComponentImplementation, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *ComponentImplementationManager) GetComponentImplementation(ctx context.
 	return &componentImplementation, nil
 }
 
-// ListComponentImplementation returns a slice of all componentImplementations meeting the filter criteria.
-func (m *ComponentImplementationManager) ListComponentImplementation(ctx context.Context, filters []*v1.ComponentImplementationFilterRule, orderings []*v1.ComponentImplementationOrdering, limit int64) ([]*ComponentImplementation, error) {
+// List returns a slice of all componentImplementations meeting the filter criteria.
+func (m *ComponentImplementationManager) List(ctx context.Context, filters []*v1.ComponentImplementationFilterRule, orderings []*v1.ComponentImplementationOrdering, limit int64) ([]*ComponentImplementation, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *ComponentImplementationManager) ListComponentImplementation(ctx context
 	return list, nil
 }
 
-// UpdateComponentImplementation runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ComponentImplementationManager) UpdateComponentImplementation(ctx context.Context, item *v1.ComponentImplementation) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ComponentImplementationManager) Update(ctx context.Context, item *v1.ComponentImplementation) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *ComponentImplementationManager) UpdateComponentImplementation(ctx conte
 	return &rows, nil
 }
 
-//DeleteComponentImplementation creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ComponentImplementationManager) DeleteComponentImplementation(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ComponentImplementationManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

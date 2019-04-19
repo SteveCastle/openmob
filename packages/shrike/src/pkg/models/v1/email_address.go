@@ -35,8 +35,8 @@ func NewEmailAddressManager(db *sql.DB) *EmailAddressManager {
 
 // CRUD Methods for the EmailAddressManager.
 
-// CreateEmailAddress creates a emailAddress.
-func (m *EmailAddressManager) CreateEmailAddress(ctx context.Context, item *v1.CreateEmailAddress) (*string, error) {
+// Create creates a emailAddress.
+func (m *EmailAddressManager) Create(ctx context.Context, item *v1.CreateEmailAddress) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *EmailAddressManager) CreateEmailAddress(ctx context.Context, item *v1.C
 	return &id, nil
 }
 
-// GetEmailAddress gets a single emailAddress from the database by ID.
-func (m *EmailAddressManager) GetEmailAddress(ctx context.Context, id string) (*EmailAddress, error) {
+// Get gets a single emailAddress from the database by ID.
+func (m *EmailAddressManager) Get(ctx context.Context, id string) (*EmailAddress, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *EmailAddressManager) GetEmailAddress(ctx context.Context, id string) (*
 	return &emailAddress, nil
 }
 
-// ListEmailAddress returns a slice of all emailAddresss meeting the filter criteria.
-func (m *EmailAddressManager) ListEmailAddress(ctx context.Context, filters []*v1.EmailAddressFilterRule, orderings []*v1.EmailAddressOrdering, limit int64) ([]*EmailAddress, error) {
+// List returns a slice of all emailAddresss meeting the filter criteria.
+func (m *EmailAddressManager) List(ctx context.Context, filters []*v1.EmailAddressFilterRule, orderings []*v1.EmailAddressOrdering, limit int64) ([]*EmailAddress, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *EmailAddressManager) ListEmailAddress(ctx context.Context, filters []*v
 	return list, nil
 }
 
-// UpdateEmailAddress runs an update query on the provided db and returns the rows affected as an int64.
-func (m *EmailAddressManager) UpdateEmailAddress(ctx context.Context, item *v1.EmailAddress) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *EmailAddressManager) Update(ctx context.Context, item *v1.EmailAddress) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *EmailAddressManager) UpdateEmailAddress(ctx context.Context, item *v1.E
 	return &rows, nil
 }
 
-//DeleteEmailAddress creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *EmailAddressManager) DeleteEmailAddress(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *EmailAddressManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

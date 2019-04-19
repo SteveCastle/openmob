@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateDistrict(ctx context.Context, req *v1.Create
 	m := models.NewDistrictManager(s.db)
 
 	// Get a list of districts given filters, ordering, and limit rules.
-	id, err := m.CreateDistrict(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetDistrict(ctx context.Context, req *v1.GetDistri
 	m := models.NewDistrictManager(s.db)
 
 	// Get a list of districts given filters, ordering, and limit rules.
-	district, err := m.GetDistrict(ctx, req.ID)
+	district, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListDistrict(ctx context.Context, req *v1.ListDist
 	m := models.NewDistrictManager(s.db)
 
 	// Get a list of districts given filters, ordering, and limit rules.
-	list, err := m.ListDistrict(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateDistrict(ctx context.Context, req *v1.Update
 	m := models.NewDistrictManager(s.db)
 
 	// Get a list of districts given filters, ordering, and limit rules.
-	rows, err := m.UpdateDistrict(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteDistrict(ctx context.Context, req *v1.Delete
 	m := models.NewDistrictManager(s.db)
 
 	// Get a list of districts given filters, ordering, and limit rules.
-	rows, err := m.DeleteDistrict(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

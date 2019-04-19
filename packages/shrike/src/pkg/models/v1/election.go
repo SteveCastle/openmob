@@ -35,8 +35,8 @@ func NewElectionManager(db *sql.DB) *ElectionManager {
 
 // CRUD Methods for the ElectionManager.
 
-// CreateElection creates a election.
-func (m *ElectionManager) CreateElection(ctx context.Context, item *v1.CreateElection) (*string, error) {
+// Create creates a election.
+func (m *ElectionManager) Create(ctx context.Context, item *v1.CreateElection) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *ElectionManager) CreateElection(ctx context.Context, item *v1.CreateEle
 	return &id, nil
 }
 
-// GetElection gets a single election from the database by ID.
-func (m *ElectionManager) GetElection(ctx context.Context, id string) (*Election, error) {
+// Get gets a single election from the database by ID.
+func (m *ElectionManager) Get(ctx context.Context, id string) (*Election, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *ElectionManager) GetElection(ctx context.Context, id string) (*Election
 	return &election, nil
 }
 
-// ListElection returns a slice of all elections meeting the filter criteria.
-func (m *ElectionManager) ListElection(ctx context.Context, filters []*v1.ElectionFilterRule, orderings []*v1.ElectionOrdering, limit int64) ([]*Election, error) {
+// List returns a slice of all elections meeting the filter criteria.
+func (m *ElectionManager) List(ctx context.Context, filters []*v1.ElectionFilterRule, orderings []*v1.ElectionOrdering, limit int64) ([]*Election, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *ElectionManager) ListElection(ctx context.Context, filters []*v1.Electi
 	return list, nil
 }
 
-// UpdateElection runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ElectionManager) UpdateElection(ctx context.Context, item *v1.Election) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ElectionManager) Update(ctx context.Context, item *v1.Election) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *ElectionManager) UpdateElection(ctx context.Context, item *v1.Election)
 	return &rows, nil
 }
 
-//DeleteElection creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ElectionManager) DeleteElection(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ElectionManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateDonationCampaign(ctx context.Context, req *v
 	m := models.NewDonationCampaignManager(s.db)
 
 	// Get a list of donationCampaigns given filters, ordering, and limit rules.
-	id, err := m.CreateDonationCampaign(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetDonationCampaign(ctx context.Context, req *v1.G
 	m := models.NewDonationCampaignManager(s.db)
 
 	// Get a list of donationCampaigns given filters, ordering, and limit rules.
-	donationCampaign, err := m.GetDonationCampaign(ctx, req.ID)
+	donationCampaign, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListDonationCampaign(ctx context.Context, req *v1.
 	m := models.NewDonationCampaignManager(s.db)
 
 	// Get a list of donationCampaigns given filters, ordering, and limit rules.
-	list, err := m.ListDonationCampaign(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateDonationCampaign(ctx context.Context, req *v
 	m := models.NewDonationCampaignManager(s.db)
 
 	// Get a list of donationCampaigns given filters, ordering, and limit rules.
-	rows, err := m.UpdateDonationCampaign(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteDonationCampaign(ctx context.Context, req *v
 	m := models.NewDonationCampaignManager(s.db)
 
 	// Get a list of donationCampaigns given filters, ordering, and limit rules.
-	rows, err := m.DeleteDonationCampaign(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

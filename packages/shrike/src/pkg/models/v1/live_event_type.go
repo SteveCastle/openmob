@@ -35,8 +35,8 @@ func NewLiveEventTypeManager(db *sql.DB) *LiveEventTypeManager {
 
 // CRUD Methods for the LiveEventTypeManager.
 
-// CreateLiveEventType creates a liveEventType.
-func (m *LiveEventTypeManager) CreateLiveEventType(ctx context.Context, item *v1.CreateLiveEventType) (*string, error) {
+// Create creates a liveEventType.
+func (m *LiveEventTypeManager) Create(ctx context.Context, item *v1.CreateLiveEventType) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *LiveEventTypeManager) CreateLiveEventType(ctx context.Context, item *v1
 	return &id, nil
 }
 
-// GetLiveEventType gets a single liveEventType from the database by ID.
-func (m *LiveEventTypeManager) GetLiveEventType(ctx context.Context, id string) (*LiveEventType, error) {
+// Get gets a single liveEventType from the database by ID.
+func (m *LiveEventTypeManager) Get(ctx context.Context, id string) (*LiveEventType, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *LiveEventTypeManager) GetLiveEventType(ctx context.Context, id string) 
 	return &liveEventType, nil
 }
 
-// ListLiveEventType returns a slice of all liveEventTypes meeting the filter criteria.
-func (m *LiveEventTypeManager) ListLiveEventType(ctx context.Context, filters []*v1.LiveEventTypeFilterRule, orderings []*v1.LiveEventTypeOrdering, limit int64) ([]*LiveEventType, error) {
+// List returns a slice of all liveEventTypes meeting the filter criteria.
+func (m *LiveEventTypeManager) List(ctx context.Context, filters []*v1.LiveEventTypeFilterRule, orderings []*v1.LiveEventTypeOrdering, limit int64) ([]*LiveEventType, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *LiveEventTypeManager) ListLiveEventType(ctx context.Context, filters []
 	return list, nil
 }
 
-// UpdateLiveEventType runs an update query on the provided db and returns the rows affected as an int64.
-func (m *LiveEventTypeManager) UpdateLiveEventType(ctx context.Context, item *v1.LiveEventType) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *LiveEventTypeManager) Update(ctx context.Context, item *v1.LiveEventType) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *LiveEventTypeManager) UpdateLiveEventType(ctx context.Context, item *v1
 	return &rows, nil
 }
 
-//DeleteLiveEventType creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *LiveEventTypeManager) DeleteLiveEventType(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *LiveEventTypeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

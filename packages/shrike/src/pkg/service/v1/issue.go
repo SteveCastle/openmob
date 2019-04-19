@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateIssue(ctx context.Context, req *v1.CreateIss
 	m := models.NewIssueManager(s.db)
 
 	// Get a list of issues given filters, ordering, and limit rules.
-	id, err := m.CreateIssue(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetIssue(ctx context.Context, req *v1.GetIssueRequ
 	m := models.NewIssueManager(s.db)
 
 	// Get a list of issues given filters, ordering, and limit rules.
-	issue, err := m.GetIssue(ctx, req.ID)
+	issue, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListIssue(ctx context.Context, req *v1.ListIssueRe
 	m := models.NewIssueManager(s.db)
 
 	// Get a list of issues given filters, ordering, and limit rules.
-	list, err := m.ListIssue(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateIssue(ctx context.Context, req *v1.UpdateIss
 	m := models.NewIssueManager(s.db)
 
 	// Get a list of issues given filters, ordering, and limit rules.
-	rows, err := m.UpdateIssue(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteIssue(ctx context.Context, req *v1.DeleteIss
 	m := models.NewIssueManager(s.db)
 
 	// Get a list of issues given filters, ordering, and limit rules.
-	rows, err := m.DeleteIssue(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

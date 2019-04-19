@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateAgent(ctx context.Context, req *v1.CreateAge
 	m := models.NewAgentManager(s.db)
 
 	// Get a list of agents given filters, ordering, and limit rules.
-	id, err := m.CreateAgent(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetAgent(ctx context.Context, req *v1.GetAgentRequ
 	m := models.NewAgentManager(s.db)
 
 	// Get a list of agents given filters, ordering, and limit rules.
-	agent, err := m.GetAgent(ctx, req.ID)
+	agent, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListAgent(ctx context.Context, req *v1.ListAgentRe
 	m := models.NewAgentManager(s.db)
 
 	// Get a list of agents given filters, ordering, and limit rules.
-	list, err := m.ListAgent(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateAgent(ctx context.Context, req *v1.UpdateAge
 	m := models.NewAgentManager(s.db)
 
 	// Get a list of agents given filters, ordering, and limit rules.
-	rows, err := m.UpdateAgent(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteAgent(ctx context.Context, req *v1.DeleteAge
 	m := models.NewAgentManager(s.db)
 
 	// Get a list of agents given filters, ordering, and limit rules.
-	rows, err := m.DeleteAgent(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

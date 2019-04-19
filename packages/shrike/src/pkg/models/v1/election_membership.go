@@ -36,8 +36,8 @@ func NewElectionMembershipManager(db *sql.DB) *ElectionMembershipManager {
 
 // CRUD Methods for the ElectionMembershipManager.
 
-// CreateElectionMembership creates a electionMembership.
-func (m *ElectionMembershipManager) CreateElectionMembership(ctx context.Context, item *v1.CreateElectionMembership) (*string, error) {
+// Create creates a electionMembership.
+func (m *ElectionMembershipManager) Create(ctx context.Context, item *v1.CreateElectionMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *ElectionMembershipManager) CreateElectionMembership(ctx context.Context
 	return &id, nil
 }
 
-// GetElectionMembership gets a single electionMembership from the database by ID.
-func (m *ElectionMembershipManager) GetElectionMembership(ctx context.Context, id string) (*ElectionMembership, error) {
+// Get gets a single electionMembership from the database by ID.
+func (m *ElectionMembershipManager) Get(ctx context.Context, id string) (*ElectionMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *ElectionMembershipManager) GetElectionMembership(ctx context.Context, i
 	return &electionMembership, nil
 }
 
-// ListElectionMembership returns a slice of all electionMemberships meeting the filter criteria.
-func (m *ElectionMembershipManager) ListElectionMembership(ctx context.Context, filters []*v1.ElectionMembershipFilterRule, orderings []*v1.ElectionMembershipOrdering, limit int64) ([]*ElectionMembership, error) {
+// List returns a slice of all electionMemberships meeting the filter criteria.
+func (m *ElectionMembershipManager) List(ctx context.Context, filters []*v1.ElectionMembershipFilterRule, orderings []*v1.ElectionMembershipOrdering, limit int64) ([]*ElectionMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *ElectionMembershipManager) ListElectionMembership(ctx context.Context, 
 	return list, nil
 }
 
-// UpdateElectionMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ElectionMembershipManager) UpdateElectionMembership(ctx context.Context, item *v1.ElectionMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ElectionMembershipManager) Update(ctx context.Context, item *v1.ElectionMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *ElectionMembershipManager) UpdateElectionMembership(ctx context.Context
 	return &rows, nil
 }
 
-//DeleteElectionMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ElectionMembershipManager) DeleteElectionMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ElectionMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

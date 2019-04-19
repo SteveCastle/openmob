@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateCompany(ctx context.Context, req *v1.CreateC
 	m := models.NewCompanyManager(s.db)
 
 	// Get a list of companys given filters, ordering, and limit rules.
-	id, err := m.CreateCompany(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetCompany(ctx context.Context, req *v1.GetCompany
 	m := models.NewCompanyManager(s.db)
 
 	// Get a list of companys given filters, ordering, and limit rules.
-	company, err := m.GetCompany(ctx, req.ID)
+	company, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListCompany(ctx context.Context, req *v1.ListCompa
 	m := models.NewCompanyManager(s.db)
 
 	// Get a list of companys given filters, ordering, and limit rules.
-	list, err := m.ListCompany(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateCompany(ctx context.Context, req *v1.UpdateC
 	m := models.NewCompanyManager(s.db)
 
 	// Get a list of companys given filters, ordering, and limit rules.
-	rows, err := m.UpdateCompany(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteCompany(ctx context.Context, req *v1.DeleteC
 	m := models.NewCompanyManager(s.db)
 
 	// Get a list of companys given filters, ordering, and limit rules.
-	rows, err := m.DeleteCompany(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

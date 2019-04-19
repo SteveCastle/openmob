@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateHomePage(ctx context.Context, req *v1.Create
 	m := models.NewHomePageManager(s.db)
 
 	// Get a list of homePages given filters, ordering, and limit rules.
-	id, err := m.CreateHomePage(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetHomePage(ctx context.Context, req *v1.GetHomePa
 	m := models.NewHomePageManager(s.db)
 
 	// Get a list of homePages given filters, ordering, and limit rules.
-	homePage, err := m.GetHomePage(ctx, req.ID)
+	homePage, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListHomePage(ctx context.Context, req *v1.ListHome
 	m := models.NewHomePageManager(s.db)
 
 	// Get a list of homePages given filters, ordering, and limit rules.
-	list, err := m.ListHomePage(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateHomePage(ctx context.Context, req *v1.Update
 	m := models.NewHomePageManager(s.db)
 
 	// Get a list of homePages given filters, ordering, and limit rules.
-	rows, err := m.UpdateHomePage(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteHomePage(ctx context.Context, req *v1.Delete
 	m := models.NewHomePageManager(s.db)
 
 	// Get a list of homePages given filters, ordering, and limit rules.
-	rows, err := m.DeleteHomePage(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

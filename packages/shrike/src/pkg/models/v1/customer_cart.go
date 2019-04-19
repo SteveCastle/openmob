@@ -34,8 +34,8 @@ func NewCustomerCartManager(db *sql.DB) *CustomerCartManager {
 
 // CRUD Methods for the CustomerCartManager.
 
-// CreateCustomerCart creates a customerCart.
-func (m *CustomerCartManager) CreateCustomerCart(ctx context.Context, item *v1.CreateCustomerCart) (*string, error) {
+// Create creates a customerCart.
+func (m *CustomerCartManager) Create(ctx context.Context, item *v1.CreateCustomerCart) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -54,8 +54,8 @@ func (m *CustomerCartManager) CreateCustomerCart(ctx context.Context, item *v1.C
 	return &id, nil
 }
 
-// GetCustomerCart gets a single customerCart from the database by ID.
-func (m *CustomerCartManager) GetCustomerCart(ctx context.Context, id string) (*CustomerCart, error) {
+// Get gets a single customerCart from the database by ID.
+func (m *CustomerCartManager) Get(ctx context.Context, id string) (*CustomerCart, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -91,8 +91,8 @@ func (m *CustomerCartManager) GetCustomerCart(ctx context.Context, id string) (*
 	return &customerCart, nil
 }
 
-// ListCustomerCart returns a slice of all customerCarts meeting the filter criteria.
-func (m *CustomerCartManager) ListCustomerCart(ctx context.Context, filters []*v1.CustomerCartFilterRule, orderings []*v1.CustomerCartOrdering, limit int64) ([]*CustomerCart, error) {
+// List returns a slice of all customerCarts meeting the filter criteria.
+func (m *CustomerCartManager) List(ctx context.Context, filters []*v1.CustomerCartFilterRule, orderings []*v1.CustomerCartOrdering, limit int64) ([]*CustomerCart, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -128,8 +128,8 @@ func (m *CustomerCartManager) ListCustomerCart(ctx context.Context, filters []*v
 	return list, nil
 }
 
-// UpdateCustomerCart runs an update query on the provided db and returns the rows affected as an int64.
-func (m *CustomerCartManager) UpdateCustomerCart(ctx context.Context, item *v1.CustomerCart) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *CustomerCartManager) Update(ctx context.Context, item *v1.CustomerCart) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -155,8 +155,8 @@ func (m *CustomerCartManager) UpdateCustomerCart(ctx context.Context, item *v1.C
 	return &rows, nil
 }
 
-//DeleteCustomerCart creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *CustomerCartManager) DeleteCustomerCart(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *CustomerCartManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

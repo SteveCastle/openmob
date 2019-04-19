@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateEmailAddress(ctx context.Context, req *v1.Cr
 	m := models.NewEmailAddressManager(s.db)
 
 	// Get a list of emailAddresss given filters, ordering, and limit rules.
-	id, err := m.CreateEmailAddress(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetEmailAddress(ctx context.Context, req *v1.GetEm
 	m := models.NewEmailAddressManager(s.db)
 
 	// Get a list of emailAddresss given filters, ordering, and limit rules.
-	emailAddress, err := m.GetEmailAddress(ctx, req.ID)
+	emailAddress, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListEmailAddress(ctx context.Context, req *v1.List
 	m := models.NewEmailAddressManager(s.db)
 
 	// Get a list of emailAddresss given filters, ordering, and limit rules.
-	list, err := m.ListEmailAddress(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateEmailAddress(ctx context.Context, req *v1.Up
 	m := models.NewEmailAddressManager(s.db)
 
 	// Get a list of emailAddresss given filters, ordering, and limit rules.
-	rows, err := m.UpdateEmailAddress(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteEmailAddress(ctx context.Context, req *v1.De
 	m := models.NewEmailAddressManager(s.db)
 
 	// Get a list of emailAddresss given filters, ordering, and limit rules.
-	rows, err := m.DeleteEmailAddress(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

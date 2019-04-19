@@ -37,8 +37,8 @@ func NewEventAttendeeManager(db *sql.DB) *EventAttendeeManager {
 
 // CRUD Methods for the EventAttendeeManager.
 
-// CreateEventAttendee creates a eventAttendee.
-func (m *EventAttendeeManager) CreateEventAttendee(ctx context.Context, item *v1.CreateEventAttendee) (*string, error) {
+// Create creates a eventAttendee.
+func (m *EventAttendeeManager) Create(ctx context.Context, item *v1.CreateEventAttendee) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *EventAttendeeManager) CreateEventAttendee(ctx context.Context, item *v1
 	return &id, nil
 }
 
-// GetEventAttendee gets a single eventAttendee from the database by ID.
-func (m *EventAttendeeManager) GetEventAttendee(ctx context.Context, id string) (*EventAttendee, error) {
+// Get gets a single eventAttendee from the database by ID.
+func (m *EventAttendeeManager) Get(ctx context.Context, id string) (*EventAttendee, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *EventAttendeeManager) GetEventAttendee(ctx context.Context, id string) 
 	return &eventAttendee, nil
 }
 
-// ListEventAttendee returns a slice of all eventAttendees meeting the filter criteria.
-func (m *EventAttendeeManager) ListEventAttendee(ctx context.Context, filters []*v1.EventAttendeeFilterRule, orderings []*v1.EventAttendeeOrdering, limit int64) ([]*EventAttendee, error) {
+// List returns a slice of all eventAttendees meeting the filter criteria.
+func (m *EventAttendeeManager) List(ctx context.Context, filters []*v1.EventAttendeeFilterRule, orderings []*v1.EventAttendeeOrdering, limit int64) ([]*EventAttendee, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *EventAttendeeManager) ListEventAttendee(ctx context.Context, filters []
 	return list, nil
 }
 
-// UpdateEventAttendee runs an update query on the provided db and returns the rows affected as an int64.
-func (m *EventAttendeeManager) UpdateEventAttendee(ctx context.Context, item *v1.EventAttendee) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *EventAttendeeManager) Update(ctx context.Context, item *v1.EventAttendee) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *EventAttendeeManager) UpdateEventAttendee(ctx context.Context, item *v1
 	return &rows, nil
 }
 
-//DeleteEventAttendee creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *EventAttendeeManager) DeleteEventAttendee(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *EventAttendeeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateDonor(ctx context.Context, req *v1.CreateDon
 	m := models.NewDonorManager(s.db)
 
 	// Get a list of donors given filters, ordering, and limit rules.
-	id, err := m.CreateDonor(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetDonor(ctx context.Context, req *v1.GetDonorRequ
 	m := models.NewDonorManager(s.db)
 
 	// Get a list of donors given filters, ordering, and limit rules.
-	donor, err := m.GetDonor(ctx, req.ID)
+	donor, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListDonor(ctx context.Context, req *v1.ListDonorRe
 	m := models.NewDonorManager(s.db)
 
 	// Get a list of donors given filters, ordering, and limit rules.
-	list, err := m.ListDonor(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateDonor(ctx context.Context, req *v1.UpdateDon
 	m := models.NewDonorManager(s.db)
 
 	// Get a list of donors given filters, ordering, and limit rules.
-	rows, err := m.UpdateDonor(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteDonor(ctx context.Context, req *v1.DeleteDon
 	m := models.NewDonorManager(s.db)
 
 	// Get a list of donors given filters, ordering, and limit rules.
-	rows, err := m.DeleteDonor(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

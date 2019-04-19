@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateNote(ctx context.Context, req *v1.CreateNote
 	m := models.NewNoteManager(s.db)
 
 	// Get a list of notes given filters, ordering, and limit rules.
-	id, err := m.CreateNote(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetNote(ctx context.Context, req *v1.GetNoteReques
 	m := models.NewNoteManager(s.db)
 
 	// Get a list of notes given filters, ordering, and limit rules.
-	note, err := m.GetNote(ctx, req.ID)
+	note, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListNote(ctx context.Context, req *v1.ListNoteRequ
 	m := models.NewNoteManager(s.db)
 
 	// Get a list of notes given filters, ordering, and limit rules.
-	list, err := m.ListNote(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateNote(ctx context.Context, req *v1.UpdateNote
 	m := models.NewNoteManager(s.db)
 
 	// Get a list of notes given filters, ordering, and limit rules.
-	rows, err := m.UpdateNote(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteNote(ctx context.Context, req *v1.DeleteNote
 	m := models.NewNoteManager(s.db)
 
 	// Get a list of notes given filters, ordering, and limit rules.
-	rows, err := m.DeleteNote(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

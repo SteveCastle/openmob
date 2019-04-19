@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePhoto(ctx context.Context, req *v1.CreatePho
 	m := models.NewPhotoManager(s.db)
 
 	// Get a list of photos given filters, ordering, and limit rules.
-	id, err := m.CreatePhoto(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPhoto(ctx context.Context, req *v1.GetPhotoRequ
 	m := models.NewPhotoManager(s.db)
 
 	// Get a list of photos given filters, ordering, and limit rules.
-	photo, err := m.GetPhoto(ctx, req.ID)
+	photo, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPhoto(ctx context.Context, req *v1.ListPhotoRe
 	m := models.NewPhotoManager(s.db)
 
 	// Get a list of photos given filters, ordering, and limit rules.
-	list, err := m.ListPhoto(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePhoto(ctx context.Context, req *v1.UpdatePho
 	m := models.NewPhotoManager(s.db)
 
 	// Get a list of photos given filters, ordering, and limit rules.
-	rows, err := m.UpdatePhoto(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePhoto(ctx context.Context, req *v1.DeletePho
 	m := models.NewPhotoManager(s.db)
 
 	// Get a list of photos given filters, ordering, and limit rules.
-	rows, err := m.DeletePhoto(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

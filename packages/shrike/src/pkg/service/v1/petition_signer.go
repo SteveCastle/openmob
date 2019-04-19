@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePetitionSigner(ctx context.Context, req *v1.
 	m := models.NewPetitionSignerManager(s.db)
 
 	// Get a list of petitionSigners given filters, ordering, and limit rules.
-	id, err := m.CreatePetitionSigner(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPetitionSigner(ctx context.Context, req *v1.Get
 	m := models.NewPetitionSignerManager(s.db)
 
 	// Get a list of petitionSigners given filters, ordering, and limit rules.
-	petitionSigner, err := m.GetPetitionSigner(ctx, req.ID)
+	petitionSigner, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPetitionSigner(ctx context.Context, req *v1.Li
 	m := models.NewPetitionSignerManager(s.db)
 
 	// Get a list of petitionSigners given filters, ordering, and limit rules.
-	list, err := m.ListPetitionSigner(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePetitionSigner(ctx context.Context, req *v1.
 	m := models.NewPetitionSignerManager(s.db)
 
 	// Get a list of petitionSigners given filters, ordering, and limit rules.
-	rows, err := m.UpdatePetitionSigner(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePetitionSigner(ctx context.Context, req *v1.
 	m := models.NewPetitionSignerManager(s.db)
 
 	// Get a list of petitionSigners given filters, ordering, and limit rules.
-	rows, err := m.DeletePetitionSigner(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

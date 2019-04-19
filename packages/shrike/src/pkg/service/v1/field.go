@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateField(ctx context.Context, req *v1.CreateFie
 	m := models.NewFieldManager(s.db)
 
 	// Get a list of fields given filters, ordering, and limit rules.
-	id, err := m.CreateField(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetField(ctx context.Context, req *v1.GetFieldRequ
 	m := models.NewFieldManager(s.db)
 
 	// Get a list of fields given filters, ordering, and limit rules.
-	field, err := m.GetField(ctx, req.ID)
+	field, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListField(ctx context.Context, req *v1.ListFieldRe
 	m := models.NewFieldManager(s.db)
 
 	// Get a list of fields given filters, ordering, and limit rules.
-	list, err := m.ListField(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateField(ctx context.Context, req *v1.UpdateFie
 	m := models.NewFieldManager(s.db)
 
 	// Get a list of fields given filters, ordering, and limit rules.
-	rows, err := m.UpdateField(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteField(ctx context.Context, req *v1.DeleteFie
 	m := models.NewFieldManager(s.db)
 
 	// Get a list of fields given filters, ordering, and limit rules.
-	rows, err := m.DeleteField(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

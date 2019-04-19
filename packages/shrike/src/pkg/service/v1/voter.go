@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateVoter(ctx context.Context, req *v1.CreateVot
 	m := models.NewVoterManager(s.db)
 
 	// Get a list of voters given filters, ordering, and limit rules.
-	id, err := m.CreateVoter(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetVoter(ctx context.Context, req *v1.GetVoterRequ
 	m := models.NewVoterManager(s.db)
 
 	// Get a list of voters given filters, ordering, and limit rules.
-	voter, err := m.GetVoter(ctx, req.ID)
+	voter, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListVoter(ctx context.Context, req *v1.ListVoterRe
 	m := models.NewVoterManager(s.db)
 
 	// Get a list of voters given filters, ordering, and limit rules.
-	list, err := m.ListVoter(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateVoter(ctx context.Context, req *v1.UpdateVot
 	m := models.NewVoterManager(s.db)
 
 	// Get a list of voters given filters, ordering, and limit rules.
-	rows, err := m.UpdateVoter(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteVoter(ctx context.Context, req *v1.DeleteVot
 	m := models.NewVoterManager(s.db)
 
 	// Get a list of voters given filters, ordering, and limit rules.
-	rows, err := m.DeleteVoter(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

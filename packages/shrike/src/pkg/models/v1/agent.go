@@ -35,8 +35,8 @@ func NewAgentManager(db *sql.DB) *AgentManager {
 
 // CRUD Methods for the AgentManager.
 
-// CreateAgent creates a agent.
-func (m *AgentManager) CreateAgent(ctx context.Context, item *v1.CreateAgent) (*string, error) {
+// Create creates a agent.
+func (m *AgentManager) Create(ctx context.Context, item *v1.CreateAgent) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *AgentManager) CreateAgent(ctx context.Context, item *v1.CreateAgent) (*
 	return &id, nil
 }
 
-// GetAgent gets a single agent from the database by ID.
-func (m *AgentManager) GetAgent(ctx context.Context, id string) (*Agent, error) {
+// Get gets a single agent from the database by ID.
+func (m *AgentManager) Get(ctx context.Context, id string) (*Agent, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *AgentManager) GetAgent(ctx context.Context, id string) (*Agent, error) 
 	return &agent, nil
 }
 
-// ListAgent returns a slice of all agents meeting the filter criteria.
-func (m *AgentManager) ListAgent(ctx context.Context, filters []*v1.AgentFilterRule, orderings []*v1.AgentOrdering, limit int64) ([]*Agent, error) {
+// List returns a slice of all agents meeting the filter criteria.
+func (m *AgentManager) List(ctx context.Context, filters []*v1.AgentFilterRule, orderings []*v1.AgentOrdering, limit int64) ([]*Agent, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *AgentManager) ListAgent(ctx context.Context, filters []*v1.AgentFilterR
 	return list, nil
 }
 
-// UpdateAgent runs an update query on the provided db and returns the rows affected as an int64.
-func (m *AgentManager) UpdateAgent(ctx context.Context, item *v1.Agent) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *AgentManager) Update(ctx context.Context, item *v1.Agent) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *AgentManager) UpdateAgent(ctx context.Context, item *v1.Agent) (*int64,
 	return &rows, nil
 }
 
-//DeleteAgent creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *AgentManager) DeleteAgent(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *AgentManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

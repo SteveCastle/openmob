@@ -36,8 +36,8 @@ func NewBoycottMembershipManager(db *sql.DB) *BoycottMembershipManager {
 
 // CRUD Methods for the BoycottMembershipManager.
 
-// CreateBoycottMembership creates a boycottMembership.
-func (m *BoycottMembershipManager) CreateBoycottMembership(ctx context.Context, item *v1.CreateBoycottMembership) (*string, error) {
+// Create creates a boycottMembership.
+func (m *BoycottMembershipManager) Create(ctx context.Context, item *v1.CreateBoycottMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *BoycottMembershipManager) CreateBoycottMembership(ctx context.Context, 
 	return &id, nil
 }
 
-// GetBoycottMembership gets a single boycottMembership from the database by ID.
-func (m *BoycottMembershipManager) GetBoycottMembership(ctx context.Context, id string) (*BoycottMembership, error) {
+// Get gets a single boycottMembership from the database by ID.
+func (m *BoycottMembershipManager) Get(ctx context.Context, id string) (*BoycottMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *BoycottMembershipManager) GetBoycottMembership(ctx context.Context, id 
 	return &boycottMembership, nil
 }
 
-// ListBoycottMembership returns a slice of all boycottMemberships meeting the filter criteria.
-func (m *BoycottMembershipManager) ListBoycottMembership(ctx context.Context, filters []*v1.BoycottMembershipFilterRule, orderings []*v1.BoycottMembershipOrdering, limit int64) ([]*BoycottMembership, error) {
+// List returns a slice of all boycottMemberships meeting the filter criteria.
+func (m *BoycottMembershipManager) List(ctx context.Context, filters []*v1.BoycottMembershipFilterRule, orderings []*v1.BoycottMembershipOrdering, limit int64) ([]*BoycottMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *BoycottMembershipManager) ListBoycottMembership(ctx context.Context, fi
 	return list, nil
 }
 
-// UpdateBoycottMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *BoycottMembershipManager) UpdateBoycottMembership(ctx context.Context, item *v1.BoycottMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *BoycottMembershipManager) Update(ctx context.Context, item *v1.BoycottMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *BoycottMembershipManager) UpdateBoycottMembership(ctx context.Context, 
 	return &rows, nil
 }
 
-//DeleteBoycottMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *BoycottMembershipManager) DeleteBoycottMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *BoycottMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

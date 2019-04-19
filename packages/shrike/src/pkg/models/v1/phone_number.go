@@ -35,8 +35,8 @@ func NewPhoneNumberManager(db *sql.DB) *PhoneNumberManager {
 
 // CRUD Methods for the PhoneNumberManager.
 
-// CreatePhoneNumber creates a phoneNumber.
-func (m *PhoneNumberManager) CreatePhoneNumber(ctx context.Context, item *v1.CreatePhoneNumber) (*string, error) {
+// Create creates a phoneNumber.
+func (m *PhoneNumberManager) Create(ctx context.Context, item *v1.CreatePhoneNumber) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *PhoneNumberManager) CreatePhoneNumber(ctx context.Context, item *v1.Cre
 	return &id, nil
 }
 
-// GetPhoneNumber gets a single phoneNumber from the database by ID.
-func (m *PhoneNumberManager) GetPhoneNumber(ctx context.Context, id string) (*PhoneNumber, error) {
+// Get gets a single phoneNumber from the database by ID.
+func (m *PhoneNumberManager) Get(ctx context.Context, id string) (*PhoneNumber, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *PhoneNumberManager) GetPhoneNumber(ctx context.Context, id string) (*Ph
 	return &phoneNumber, nil
 }
 
-// ListPhoneNumber returns a slice of all phoneNumbers meeting the filter criteria.
-func (m *PhoneNumberManager) ListPhoneNumber(ctx context.Context, filters []*v1.PhoneNumberFilterRule, orderings []*v1.PhoneNumberOrdering, limit int64) ([]*PhoneNumber, error) {
+// List returns a slice of all phoneNumbers meeting the filter criteria.
+func (m *PhoneNumberManager) List(ctx context.Context, filters []*v1.PhoneNumberFilterRule, orderings []*v1.PhoneNumberOrdering, limit int64) ([]*PhoneNumber, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *PhoneNumberManager) ListPhoneNumber(ctx context.Context, filters []*v1.
 	return list, nil
 }
 
-// UpdatePhoneNumber runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PhoneNumberManager) UpdatePhoneNumber(ctx context.Context, item *v1.PhoneNumber) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PhoneNumberManager) Update(ctx context.Context, item *v1.PhoneNumber) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *PhoneNumberManager) UpdatePhoneNumber(ctx context.Context, item *v1.Pho
 	return &rows, nil
 }
 
-//DeletePhoneNumber creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PhoneNumberManager) DeletePhoneNumber(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PhoneNumberManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

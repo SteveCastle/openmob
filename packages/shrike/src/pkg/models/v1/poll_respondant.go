@@ -37,8 +37,8 @@ func NewPollRespondantManager(db *sql.DB) *PollRespondantManager {
 
 // CRUD Methods for the PollRespondantManager.
 
-// CreatePollRespondant creates a pollRespondant.
-func (m *PollRespondantManager) CreatePollRespondant(ctx context.Context, item *v1.CreatePollRespondant) (*string, error) {
+// Create creates a pollRespondant.
+func (m *PollRespondantManager) Create(ctx context.Context, item *v1.CreatePollRespondant) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *PollRespondantManager) CreatePollRespondant(ctx context.Context, item *
 	return &id, nil
 }
 
-// GetPollRespondant gets a single pollRespondant from the database by ID.
-func (m *PollRespondantManager) GetPollRespondant(ctx context.Context, id string) (*PollRespondant, error) {
+// Get gets a single pollRespondant from the database by ID.
+func (m *PollRespondantManager) Get(ctx context.Context, id string) (*PollRespondant, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *PollRespondantManager) GetPollRespondant(ctx context.Context, id string
 	return &pollRespondant, nil
 }
 
-// ListPollRespondant returns a slice of all pollRespondants meeting the filter criteria.
-func (m *PollRespondantManager) ListPollRespondant(ctx context.Context, filters []*v1.PollRespondantFilterRule, orderings []*v1.PollRespondantOrdering, limit int64) ([]*PollRespondant, error) {
+// List returns a slice of all pollRespondants meeting the filter criteria.
+func (m *PollRespondantManager) List(ctx context.Context, filters []*v1.PollRespondantFilterRule, orderings []*v1.PollRespondantOrdering, limit int64) ([]*PollRespondant, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *PollRespondantManager) ListPollRespondant(ctx context.Context, filters 
 	return list, nil
 }
 
-// UpdatePollRespondant runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PollRespondantManager) UpdatePollRespondant(ctx context.Context, item *v1.PollRespondant) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PollRespondantManager) Update(ctx context.Context, item *v1.PollRespondant) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *PollRespondantManager) UpdatePollRespondant(ctx context.Context, item *
 	return &rows, nil
 }
 
-//DeletePollRespondant creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PollRespondantManager) DeletePollRespondant(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PollRespondantManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

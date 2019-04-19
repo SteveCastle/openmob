@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateBoycott(ctx context.Context, req *v1.CreateB
 	m := models.NewBoycottManager(s.db)
 
 	// Get a list of boycotts given filters, ordering, and limit rules.
-	id, err := m.CreateBoycott(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetBoycott(ctx context.Context, req *v1.GetBoycott
 	m := models.NewBoycottManager(s.db)
 
 	// Get a list of boycotts given filters, ordering, and limit rules.
-	boycott, err := m.GetBoycott(ctx, req.ID)
+	boycott, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListBoycott(ctx context.Context, req *v1.ListBoyco
 	m := models.NewBoycottManager(s.db)
 
 	// Get a list of boycotts given filters, ordering, and limit rules.
-	list, err := m.ListBoycott(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateBoycott(ctx context.Context, req *v1.UpdateB
 	m := models.NewBoycottManager(s.db)
 
 	// Get a list of boycotts given filters, ordering, and limit rules.
-	rows, err := m.UpdateBoycott(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteBoycott(ctx context.Context, req *v1.DeleteB
 	m := models.NewBoycottManager(s.db)
 
 	// Get a list of boycotts given filters, ordering, and limit rules.
-	rows, err := m.DeleteBoycott(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

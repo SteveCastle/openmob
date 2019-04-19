@@ -35,8 +35,8 @@ func NewCandidateManager(db *sql.DB) *CandidateManager {
 
 // CRUD Methods for the CandidateManager.
 
-// CreateCandidate creates a candidate.
-func (m *CandidateManager) CreateCandidate(ctx context.Context, item *v1.CreateCandidate) (*string, error) {
+// Create creates a candidate.
+func (m *CandidateManager) Create(ctx context.Context, item *v1.CreateCandidate) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *CandidateManager) CreateCandidate(ctx context.Context, item *v1.CreateC
 	return &id, nil
 }
 
-// GetCandidate gets a single candidate from the database by ID.
-func (m *CandidateManager) GetCandidate(ctx context.Context, id string) (*Candidate, error) {
+// Get gets a single candidate from the database by ID.
+func (m *CandidateManager) Get(ctx context.Context, id string) (*Candidate, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *CandidateManager) GetCandidate(ctx context.Context, id string) (*Candid
 	return &candidate, nil
 }
 
-// ListCandidate returns a slice of all candidates meeting the filter criteria.
-func (m *CandidateManager) ListCandidate(ctx context.Context, filters []*v1.CandidateFilterRule, orderings []*v1.CandidateOrdering, limit int64) ([]*Candidate, error) {
+// List returns a slice of all candidates meeting the filter criteria.
+func (m *CandidateManager) List(ctx context.Context, filters []*v1.CandidateFilterRule, orderings []*v1.CandidateOrdering, limit int64) ([]*Candidate, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *CandidateManager) ListCandidate(ctx context.Context, filters []*v1.Cand
 	return list, nil
 }
 
-// UpdateCandidate runs an update query on the provided db and returns the rows affected as an int64.
-func (m *CandidateManager) UpdateCandidate(ctx context.Context, item *v1.Candidate) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *CandidateManager) Update(ctx context.Context, item *v1.Candidate) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *CandidateManager) UpdateCandidate(ctx context.Context, item *v1.Candida
 	return &rows, nil
 }
 
-//DeleteCandidate creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *CandidateManager) DeleteCandidate(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *CandidateManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

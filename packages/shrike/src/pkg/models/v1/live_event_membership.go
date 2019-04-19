@@ -36,8 +36,8 @@ func NewLiveEventMembershipManager(db *sql.DB) *LiveEventMembershipManager {
 
 // CRUD Methods for the LiveEventMembershipManager.
 
-// CreateLiveEventMembership creates a liveEventMembership.
-func (m *LiveEventMembershipManager) CreateLiveEventMembership(ctx context.Context, item *v1.CreateLiveEventMembership) (*string, error) {
+// Create creates a liveEventMembership.
+func (m *LiveEventMembershipManager) Create(ctx context.Context, item *v1.CreateLiveEventMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *LiveEventMembershipManager) CreateLiveEventMembership(ctx context.Conte
 	return &id, nil
 }
 
-// GetLiveEventMembership gets a single liveEventMembership from the database by ID.
-func (m *LiveEventMembershipManager) GetLiveEventMembership(ctx context.Context, id string) (*LiveEventMembership, error) {
+// Get gets a single liveEventMembership from the database by ID.
+func (m *LiveEventMembershipManager) Get(ctx context.Context, id string) (*LiveEventMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *LiveEventMembershipManager) GetLiveEventMembership(ctx context.Context,
 	return &liveEventMembership, nil
 }
 
-// ListLiveEventMembership returns a slice of all liveEventMemberships meeting the filter criteria.
-func (m *LiveEventMembershipManager) ListLiveEventMembership(ctx context.Context, filters []*v1.LiveEventMembershipFilterRule, orderings []*v1.LiveEventMembershipOrdering, limit int64) ([]*LiveEventMembership, error) {
+// List returns a slice of all liveEventMemberships meeting the filter criteria.
+func (m *LiveEventMembershipManager) List(ctx context.Context, filters []*v1.LiveEventMembershipFilterRule, orderings []*v1.LiveEventMembershipOrdering, limit int64) ([]*LiveEventMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *LiveEventMembershipManager) ListLiveEventMembership(ctx context.Context
 	return list, nil
 }
 
-// UpdateLiveEventMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *LiveEventMembershipManager) UpdateLiveEventMembership(ctx context.Context, item *v1.LiveEventMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *LiveEventMembershipManager) Update(ctx context.Context, item *v1.LiveEventMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *LiveEventMembershipManager) UpdateLiveEventMembership(ctx context.Conte
 	return &rows, nil
 }
 
-//DeleteLiveEventMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *LiveEventMembershipManager) DeleteLiveEventMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *LiveEventMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

@@ -36,8 +36,8 @@ func NewDonationCampaignMembershipManager(db *sql.DB) *DonationCampaignMembershi
 
 // CRUD Methods for the DonationCampaignMembershipManager.
 
-// CreateDonationCampaignMembership creates a donationCampaignMembership.
-func (m *DonationCampaignMembershipManager) CreateDonationCampaignMembership(ctx context.Context, item *v1.CreateDonationCampaignMembership) (*string, error) {
+// Create creates a donationCampaignMembership.
+func (m *DonationCampaignMembershipManager) Create(ctx context.Context, item *v1.CreateDonationCampaignMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *DonationCampaignMembershipManager) CreateDonationCampaignMembership(ctx
 	return &id, nil
 }
 
-// GetDonationCampaignMembership gets a single donationCampaignMembership from the database by ID.
-func (m *DonationCampaignMembershipManager) GetDonationCampaignMembership(ctx context.Context, id string) (*DonationCampaignMembership, error) {
+// Get gets a single donationCampaignMembership from the database by ID.
+func (m *DonationCampaignMembershipManager) Get(ctx context.Context, id string) (*DonationCampaignMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *DonationCampaignMembershipManager) GetDonationCampaignMembership(ctx co
 	return &donationCampaignMembership, nil
 }
 
-// ListDonationCampaignMembership returns a slice of all donationCampaignMemberships meeting the filter criteria.
-func (m *DonationCampaignMembershipManager) ListDonationCampaignMembership(ctx context.Context, filters []*v1.DonationCampaignMembershipFilterRule, orderings []*v1.DonationCampaignMembershipOrdering, limit int64) ([]*DonationCampaignMembership, error) {
+// List returns a slice of all donationCampaignMemberships meeting the filter criteria.
+func (m *DonationCampaignMembershipManager) List(ctx context.Context, filters []*v1.DonationCampaignMembershipFilterRule, orderings []*v1.DonationCampaignMembershipOrdering, limit int64) ([]*DonationCampaignMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *DonationCampaignMembershipManager) ListDonationCampaignMembership(ctx c
 	return list, nil
 }
 
-// UpdateDonationCampaignMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *DonationCampaignMembershipManager) UpdateDonationCampaignMembership(ctx context.Context, item *v1.DonationCampaignMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *DonationCampaignMembershipManager) Update(ctx context.Context, item *v1.DonationCampaignMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *DonationCampaignMembershipManager) UpdateDonationCampaignMembership(ctx
 	return &rows, nil
 }
 
-//DeleteDonationCampaignMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *DonationCampaignMembershipManager) DeleteDonationCampaignMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *DonationCampaignMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

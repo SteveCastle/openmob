@@ -36,8 +36,8 @@ func NewProductMembershipManager(db *sql.DB) *ProductMembershipManager {
 
 // CRUD Methods for the ProductMembershipManager.
 
-// CreateProductMembership creates a productMembership.
-func (m *ProductMembershipManager) CreateProductMembership(ctx context.Context, item *v1.CreateProductMembership) (*string, error) {
+// Create creates a productMembership.
+func (m *ProductMembershipManager) Create(ctx context.Context, item *v1.CreateProductMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *ProductMembershipManager) CreateProductMembership(ctx context.Context, 
 	return &id, nil
 }
 
-// GetProductMembership gets a single productMembership from the database by ID.
-func (m *ProductMembershipManager) GetProductMembership(ctx context.Context, id string) (*ProductMembership, error) {
+// Get gets a single productMembership from the database by ID.
+func (m *ProductMembershipManager) Get(ctx context.Context, id string) (*ProductMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *ProductMembershipManager) GetProductMembership(ctx context.Context, id 
 	return &productMembership, nil
 }
 
-// ListProductMembership returns a slice of all productMemberships meeting the filter criteria.
-func (m *ProductMembershipManager) ListProductMembership(ctx context.Context, filters []*v1.ProductMembershipFilterRule, orderings []*v1.ProductMembershipOrdering, limit int64) ([]*ProductMembership, error) {
+// List returns a slice of all productMemberships meeting the filter criteria.
+func (m *ProductMembershipManager) List(ctx context.Context, filters []*v1.ProductMembershipFilterRule, orderings []*v1.ProductMembershipOrdering, limit int64) ([]*ProductMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *ProductMembershipManager) ListProductMembership(ctx context.Context, fi
 	return list, nil
 }
 
-// UpdateProductMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ProductMembershipManager) UpdateProductMembership(ctx context.Context, item *v1.ProductMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ProductMembershipManager) Update(ctx context.Context, item *v1.ProductMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *ProductMembershipManager) UpdateProductMembership(ctx context.Context, 
 	return &rows, nil
 }
 
-//DeleteProductMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ProductMembershipManager) DeleteProductMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ProductMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

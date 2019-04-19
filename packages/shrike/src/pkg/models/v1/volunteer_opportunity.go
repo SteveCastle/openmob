@@ -36,8 +36,8 @@ func NewVolunteerOpportunityManager(db *sql.DB) *VolunteerOpportunityManager {
 
 // CRUD Methods for the VolunteerOpportunityManager.
 
-// CreateVolunteerOpportunity creates a volunteerOpportunity.
-func (m *VolunteerOpportunityManager) CreateVolunteerOpportunity(ctx context.Context, item *v1.CreateVolunteerOpportunity) (*string, error) {
+// Create creates a volunteerOpportunity.
+func (m *VolunteerOpportunityManager) Create(ctx context.Context, item *v1.CreateVolunteerOpportunity) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *VolunteerOpportunityManager) CreateVolunteerOpportunity(ctx context.Con
 	return &id, nil
 }
 
-// GetVolunteerOpportunity gets a single volunteerOpportunity from the database by ID.
-func (m *VolunteerOpportunityManager) GetVolunteerOpportunity(ctx context.Context, id string) (*VolunteerOpportunity, error) {
+// Get gets a single volunteerOpportunity from the database by ID.
+func (m *VolunteerOpportunityManager) Get(ctx context.Context, id string) (*VolunteerOpportunity, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *VolunteerOpportunityManager) GetVolunteerOpportunity(ctx context.Contex
 	return &volunteerOpportunity, nil
 }
 
-// ListVolunteerOpportunity returns a slice of all volunteerOpportunitys meeting the filter criteria.
-func (m *VolunteerOpportunityManager) ListVolunteerOpportunity(ctx context.Context, filters []*v1.VolunteerOpportunityFilterRule, orderings []*v1.VolunteerOpportunityOrdering, limit int64) ([]*VolunteerOpportunity, error) {
+// List returns a slice of all volunteerOpportunitys meeting the filter criteria.
+func (m *VolunteerOpportunityManager) List(ctx context.Context, filters []*v1.VolunteerOpportunityFilterRule, orderings []*v1.VolunteerOpportunityOrdering, limit int64) ([]*VolunteerOpportunity, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *VolunteerOpportunityManager) ListVolunteerOpportunity(ctx context.Conte
 	return list, nil
 }
 
-// UpdateVolunteerOpportunity runs an update query on the provided db and returns the rows affected as an int64.
-func (m *VolunteerOpportunityManager) UpdateVolunteerOpportunity(ctx context.Context, item *v1.VolunteerOpportunity) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *VolunteerOpportunityManager) Update(ctx context.Context, item *v1.VolunteerOpportunity) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *VolunteerOpportunityManager) UpdateVolunteerOpportunity(ctx context.Con
 	return &rows, nil
 }
 
-//DeleteVolunteerOpportunity creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *VolunteerOpportunityManager) DeleteVolunteerOpportunity(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *VolunteerOpportunityManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

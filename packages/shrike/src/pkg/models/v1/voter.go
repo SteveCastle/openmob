@@ -36,8 +36,8 @@ func NewVoterManager(db *sql.DB) *VoterManager {
 
 // CRUD Methods for the VoterManager.
 
-// CreateVoter creates a voter.
-func (m *VoterManager) CreateVoter(ctx context.Context, item *v1.CreateVoter) (*string, error) {
+// Create creates a voter.
+func (m *VoterManager) Create(ctx context.Context, item *v1.CreateVoter) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *VoterManager) CreateVoter(ctx context.Context, item *v1.CreateVoter) (*
 	return &id, nil
 }
 
-// GetVoter gets a single voter from the database by ID.
-func (m *VoterManager) GetVoter(ctx context.Context, id string) (*Voter, error) {
+// Get gets a single voter from the database by ID.
+func (m *VoterManager) Get(ctx context.Context, id string) (*Voter, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *VoterManager) GetVoter(ctx context.Context, id string) (*Voter, error) 
 	return &voter, nil
 }
 
-// ListVoter returns a slice of all voters meeting the filter criteria.
-func (m *VoterManager) ListVoter(ctx context.Context, filters []*v1.VoterFilterRule, orderings []*v1.VoterOrdering, limit int64) ([]*Voter, error) {
+// List returns a slice of all voters meeting the filter criteria.
+func (m *VoterManager) List(ctx context.Context, filters []*v1.VoterFilterRule, orderings []*v1.VoterOrdering, limit int64) ([]*Voter, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *VoterManager) ListVoter(ctx context.Context, filters []*v1.VoterFilterR
 	return list, nil
 }
 
-// UpdateVoter runs an update query on the provided db and returns the rows affected as an int64.
-func (m *VoterManager) UpdateVoter(ctx context.Context, item *v1.Voter) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *VoterManager) Update(ctx context.Context, item *v1.Voter) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *VoterManager) UpdateVoter(ctx context.Context, item *v1.Voter) (*int64,
 	return &rows, nil
 }
 
-//DeleteVoter creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *VoterManager) DeleteVoter(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *VoterManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

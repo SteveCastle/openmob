@@ -35,8 +35,8 @@ func NewDonationCampaignManager(db *sql.DB) *DonationCampaignManager {
 
 // CRUD Methods for the DonationCampaignManager.
 
-// CreateDonationCampaign creates a donationCampaign.
-func (m *DonationCampaignManager) CreateDonationCampaign(ctx context.Context, item *v1.CreateDonationCampaign) (*string, error) {
+// Create creates a donationCampaign.
+func (m *DonationCampaignManager) Create(ctx context.Context, item *v1.CreateDonationCampaign) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *DonationCampaignManager) CreateDonationCampaign(ctx context.Context, it
 	return &id, nil
 }
 
-// GetDonationCampaign gets a single donationCampaign from the database by ID.
-func (m *DonationCampaignManager) GetDonationCampaign(ctx context.Context, id string) (*DonationCampaign, error) {
+// Get gets a single donationCampaign from the database by ID.
+func (m *DonationCampaignManager) Get(ctx context.Context, id string) (*DonationCampaign, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *DonationCampaignManager) GetDonationCampaign(ctx context.Context, id st
 	return &donationCampaign, nil
 }
 
-// ListDonationCampaign returns a slice of all donationCampaigns meeting the filter criteria.
-func (m *DonationCampaignManager) ListDonationCampaign(ctx context.Context, filters []*v1.DonationCampaignFilterRule, orderings []*v1.DonationCampaignOrdering, limit int64) ([]*DonationCampaign, error) {
+// List returns a slice of all donationCampaigns meeting the filter criteria.
+func (m *DonationCampaignManager) List(ctx context.Context, filters []*v1.DonationCampaignFilterRule, orderings []*v1.DonationCampaignOrdering, limit int64) ([]*DonationCampaign, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *DonationCampaignManager) ListDonationCampaign(ctx context.Context, filt
 	return list, nil
 }
 
-// UpdateDonationCampaign runs an update query on the provided db and returns the rows affected as an int64.
-func (m *DonationCampaignManager) UpdateDonationCampaign(ctx context.Context, item *v1.DonationCampaign) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *DonationCampaignManager) Update(ctx context.Context, item *v1.DonationCampaign) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *DonationCampaignManager) UpdateDonationCampaign(ctx context.Context, it
 	return &rows, nil
 }
 
-//DeleteDonationCampaign creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *DonationCampaignManager) DeleteDonationCampaign(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *DonationCampaignManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

@@ -35,8 +35,8 @@ func NewTerritoryManager(db *sql.DB) *TerritoryManager {
 
 // CRUD Methods for the TerritoryManager.
 
-// CreateTerritory creates a territory.
-func (m *TerritoryManager) CreateTerritory(ctx context.Context, item *v1.CreateTerritory) (*string, error) {
+// Create creates a territory.
+func (m *TerritoryManager) Create(ctx context.Context, item *v1.CreateTerritory) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *TerritoryManager) CreateTerritory(ctx context.Context, item *v1.CreateT
 	return &id, nil
 }
 
-// GetTerritory gets a single territory from the database by ID.
-func (m *TerritoryManager) GetTerritory(ctx context.Context, id string) (*Territory, error) {
+// Get gets a single territory from the database by ID.
+func (m *TerritoryManager) Get(ctx context.Context, id string) (*Territory, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *TerritoryManager) GetTerritory(ctx context.Context, id string) (*Territ
 	return &territory, nil
 }
 
-// ListTerritory returns a slice of all territorys meeting the filter criteria.
-func (m *TerritoryManager) ListTerritory(ctx context.Context, filters []*v1.TerritoryFilterRule, orderings []*v1.TerritoryOrdering, limit int64) ([]*Territory, error) {
+// List returns a slice of all territorys meeting the filter criteria.
+func (m *TerritoryManager) List(ctx context.Context, filters []*v1.TerritoryFilterRule, orderings []*v1.TerritoryOrdering, limit int64) ([]*Territory, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *TerritoryManager) ListTerritory(ctx context.Context, filters []*v1.Terr
 	return list, nil
 }
 
-// UpdateTerritory runs an update query on the provided db and returns the rows affected as an int64.
-func (m *TerritoryManager) UpdateTerritory(ctx context.Context, item *v1.Territory) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *TerritoryManager) Update(ctx context.Context, item *v1.Territory) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *TerritoryManager) UpdateTerritory(ctx context.Context, item *v1.Territo
 	return &rows, nil
 }
 
-//DeleteTerritory creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *TerritoryManager) DeleteTerritory(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *TerritoryManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

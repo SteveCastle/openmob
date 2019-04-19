@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateMailingAddress(ctx context.Context, req *v1.
 	m := models.NewMailingAddressManager(s.db)
 
 	// Get a list of mailingAddresss given filters, ordering, and limit rules.
-	id, err := m.CreateMailingAddress(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetMailingAddress(ctx context.Context, req *v1.Get
 	m := models.NewMailingAddressManager(s.db)
 
 	// Get a list of mailingAddresss given filters, ordering, and limit rules.
-	mailingAddress, err := m.GetMailingAddress(ctx, req.ID)
+	mailingAddress, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListMailingAddress(ctx context.Context, req *v1.Li
 	m := models.NewMailingAddressManager(s.db)
 
 	// Get a list of mailingAddresss given filters, ordering, and limit rules.
-	list, err := m.ListMailingAddress(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateMailingAddress(ctx context.Context, req *v1.
 	m := models.NewMailingAddressManager(s.db)
 
 	// Get a list of mailingAddresss given filters, ordering, and limit rules.
-	rows, err := m.UpdateMailingAddress(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteMailingAddress(ctx context.Context, req *v1.
 	m := models.NewMailingAddressManager(s.db)
 
 	// Get a list of mailingAddresss given filters, ordering, and limit rules.
-	rows, err := m.DeleteMailingAddress(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

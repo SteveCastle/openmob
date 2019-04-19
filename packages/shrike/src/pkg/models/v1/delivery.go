@@ -34,8 +34,8 @@ func NewDeliveryManager(db *sql.DB) *DeliveryManager {
 
 // CRUD Methods for the DeliveryManager.
 
-// CreateDelivery creates a delivery.
-func (m *DeliveryManager) CreateDelivery(ctx context.Context, item *v1.CreateDelivery) (*string, error) {
+// Create creates a delivery.
+func (m *DeliveryManager) Create(ctx context.Context, item *v1.CreateDelivery) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -54,8 +54,8 @@ func (m *DeliveryManager) CreateDelivery(ctx context.Context, item *v1.CreateDel
 	return &id, nil
 }
 
-// GetDelivery gets a single delivery from the database by ID.
-func (m *DeliveryManager) GetDelivery(ctx context.Context, id string) (*Delivery, error) {
+// Get gets a single delivery from the database by ID.
+func (m *DeliveryManager) Get(ctx context.Context, id string) (*Delivery, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -91,8 +91,8 @@ func (m *DeliveryManager) GetDelivery(ctx context.Context, id string) (*Delivery
 	return &delivery, nil
 }
 
-// ListDelivery returns a slice of all deliverys meeting the filter criteria.
-func (m *DeliveryManager) ListDelivery(ctx context.Context, filters []*v1.DeliveryFilterRule, orderings []*v1.DeliveryOrdering, limit int64) ([]*Delivery, error) {
+// List returns a slice of all deliverys meeting the filter criteria.
+func (m *DeliveryManager) List(ctx context.Context, filters []*v1.DeliveryFilterRule, orderings []*v1.DeliveryOrdering, limit int64) ([]*Delivery, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -128,8 +128,8 @@ func (m *DeliveryManager) ListDelivery(ctx context.Context, filters []*v1.Delive
 	return list, nil
 }
 
-// UpdateDelivery runs an update query on the provided db and returns the rows affected as an int64.
-func (m *DeliveryManager) UpdateDelivery(ctx context.Context, item *v1.Delivery) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *DeliveryManager) Update(ctx context.Context, item *v1.Delivery) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -155,8 +155,8 @@ func (m *DeliveryManager) UpdateDelivery(ctx context.Context, item *v1.Delivery)
 	return &rows, nil
 }
 
-//DeleteDelivery creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *DeliveryManager) DeleteDelivery(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *DeliveryManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

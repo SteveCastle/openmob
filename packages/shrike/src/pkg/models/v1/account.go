@@ -35,8 +35,8 @@ func NewAccountManager(db *sql.DB) *AccountManager {
 
 // CRUD Methods for the AccountManager.
 
-// CreateAccount creates a account.
-func (m *AccountManager) CreateAccount(ctx context.Context, item *v1.CreateAccount) (*string, error) {
+// Create creates a account.
+func (m *AccountManager) Create(ctx context.Context, item *v1.CreateAccount) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *AccountManager) CreateAccount(ctx context.Context, item *v1.CreateAccou
 	return &id, nil
 }
 
-// GetAccount gets a single account from the database by ID.
-func (m *AccountManager) GetAccount(ctx context.Context, id string) (*Account, error) {
+// Get gets a single account from the database by ID.
+func (m *AccountManager) Get(ctx context.Context, id string) (*Account, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *AccountManager) GetAccount(ctx context.Context, id string) (*Account, e
 	return &account, nil
 }
 
-// ListAccount returns a slice of all accounts meeting the filter criteria.
-func (m *AccountManager) ListAccount(ctx context.Context, filters []*v1.AccountFilterRule, orderings []*v1.AccountOrdering, limit int64) ([]*Account, error) {
+// List returns a slice of all accounts meeting the filter criteria.
+func (m *AccountManager) List(ctx context.Context, filters []*v1.AccountFilterRule, orderings []*v1.AccountOrdering, limit int64) ([]*Account, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *AccountManager) ListAccount(ctx context.Context, filters []*v1.AccountF
 	return list, nil
 }
 
-// UpdateAccount runs an update query on the provided db and returns the rows affected as an int64.
-func (m *AccountManager) UpdateAccount(ctx context.Context, item *v1.Account) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *AccountManager) Update(ctx context.Context, item *v1.Account) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *AccountManager) UpdateAccount(ctx context.Context, item *v1.Account) (*
 	return &rows, nil
 }
 
-//DeleteAccount creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *AccountManager) DeleteAccount(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *AccountManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

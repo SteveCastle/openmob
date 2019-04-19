@@ -36,8 +36,8 @@ func NewOfficeManager(db *sql.DB) *OfficeManager {
 
 // CRUD Methods for the OfficeManager.
 
-// CreateOffice creates a office.
-func (m *OfficeManager) CreateOffice(ctx context.Context, item *v1.CreateOffice) (*string, error) {
+// Create creates a office.
+func (m *OfficeManager) Create(ctx context.Context, item *v1.CreateOffice) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *OfficeManager) CreateOffice(ctx context.Context, item *v1.CreateOffice)
 	return &id, nil
 }
 
-// GetOffice gets a single office from the database by ID.
-func (m *OfficeManager) GetOffice(ctx context.Context, id string) (*Office, error) {
+// Get gets a single office from the database by ID.
+func (m *OfficeManager) Get(ctx context.Context, id string) (*Office, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *OfficeManager) GetOffice(ctx context.Context, id string) (*Office, erro
 	return &office, nil
 }
 
-// ListOffice returns a slice of all offices meeting the filter criteria.
-func (m *OfficeManager) ListOffice(ctx context.Context, filters []*v1.OfficeFilterRule, orderings []*v1.OfficeOrdering, limit int64) ([]*Office, error) {
+// List returns a slice of all offices meeting the filter criteria.
+func (m *OfficeManager) List(ctx context.Context, filters []*v1.OfficeFilterRule, orderings []*v1.OfficeOrdering, limit int64) ([]*Office, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *OfficeManager) ListOffice(ctx context.Context, filters []*v1.OfficeFilt
 	return list, nil
 }
 
-// UpdateOffice runs an update query on the provided db and returns the rows affected as an int64.
-func (m *OfficeManager) UpdateOffice(ctx context.Context, item *v1.Office) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *OfficeManager) Update(ctx context.Context, item *v1.Office) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *OfficeManager) UpdateOffice(ctx context.Context, item *v1.Office) (*int
 	return &rows, nil
 }
 
-//DeleteOffice creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *OfficeManager) DeleteOffice(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *OfficeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

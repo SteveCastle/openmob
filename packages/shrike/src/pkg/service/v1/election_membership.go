@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateElectionMembership(ctx context.Context, req 
 	m := models.NewElectionMembershipManager(s.db)
 
 	// Get a list of electionMemberships given filters, ordering, and limit rules.
-	id, err := m.CreateElectionMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetElectionMembership(ctx context.Context, req *v1
 	m := models.NewElectionMembershipManager(s.db)
 
 	// Get a list of electionMemberships given filters, ordering, and limit rules.
-	electionMembership, err := m.GetElectionMembership(ctx, req.ID)
+	electionMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListElectionMembership(ctx context.Context, req *v
 	m := models.NewElectionMembershipManager(s.db)
 
 	// Get a list of electionMemberships given filters, ordering, and limit rules.
-	list, err := m.ListElectionMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateElectionMembership(ctx context.Context, req 
 	m := models.NewElectionMembershipManager(s.db)
 
 	// Get a list of electionMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdateElectionMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteElectionMembership(ctx context.Context, req 
 	m := models.NewElectionMembershipManager(s.db)
 
 	// Get a list of electionMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeleteElectionMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

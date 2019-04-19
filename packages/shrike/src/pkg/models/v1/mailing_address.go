@@ -38,8 +38,8 @@ func NewMailingAddressManager(db *sql.DB) *MailingAddressManager {
 
 // CRUD Methods for the MailingAddressManager.
 
-// CreateMailingAddress creates a mailingAddress.
-func (m *MailingAddressManager) CreateMailingAddress(ctx context.Context, item *v1.CreateMailingAddress) (*string, error) {
+// Create creates a mailingAddress.
+func (m *MailingAddressManager) Create(ctx context.Context, item *v1.CreateMailingAddress) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -59,8 +59,8 @@ func (m *MailingAddressManager) CreateMailingAddress(ctx context.Context, item *
 	return &id, nil
 }
 
-// GetMailingAddress gets a single mailingAddress from the database by ID.
-func (m *MailingAddressManager) GetMailingAddress(ctx context.Context, id string) (*MailingAddress, error) {
+// Get gets a single mailingAddress from the database by ID.
+func (m *MailingAddressManager) Get(ctx context.Context, id string) (*MailingAddress, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -96,8 +96,8 @@ func (m *MailingAddressManager) GetMailingAddress(ctx context.Context, id string
 	return &mailingAddress, nil
 }
 
-// ListMailingAddress returns a slice of all mailingAddresss meeting the filter criteria.
-func (m *MailingAddressManager) ListMailingAddress(ctx context.Context, filters []*v1.MailingAddressFilterRule, orderings []*v1.MailingAddressOrdering, limit int64) ([]*MailingAddress, error) {
+// List returns a slice of all mailingAddresss meeting the filter criteria.
+func (m *MailingAddressManager) List(ctx context.Context, filters []*v1.MailingAddressFilterRule, orderings []*v1.MailingAddressOrdering, limit int64) ([]*MailingAddress, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -133,8 +133,8 @@ func (m *MailingAddressManager) ListMailingAddress(ctx context.Context, filters 
 	return list, nil
 }
 
-// UpdateMailingAddress runs an update query on the provided db and returns the rows affected as an int64.
-func (m *MailingAddressManager) UpdateMailingAddress(ctx context.Context, item *v1.MailingAddress) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *MailingAddressManager) Update(ctx context.Context, item *v1.MailingAddress) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -160,8 +160,8 @@ func (m *MailingAddressManager) UpdateMailingAddress(ctx context.Context, item *
 	return &rows, nil
 }
 
-//DeleteMailingAddress creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *MailingAddressManager) DeleteMailingAddress(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *MailingAddressManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

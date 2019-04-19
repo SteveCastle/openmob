@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateDelivery(ctx context.Context, req *v1.Create
 	m := models.NewDeliveryManager(s.db)
 
 	// Get a list of deliverys given filters, ordering, and limit rules.
-	id, err := m.CreateDelivery(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetDelivery(ctx context.Context, req *v1.GetDelive
 	m := models.NewDeliveryManager(s.db)
 
 	// Get a list of deliverys given filters, ordering, and limit rules.
-	delivery, err := m.GetDelivery(ctx, req.ID)
+	delivery, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListDelivery(ctx context.Context, req *v1.ListDeli
 	m := models.NewDeliveryManager(s.db)
 
 	// Get a list of deliverys given filters, ordering, and limit rules.
-	list, err := m.ListDelivery(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateDelivery(ctx context.Context, req *v1.Update
 	m := models.NewDeliveryManager(s.db)
 
 	// Get a list of deliverys given filters, ordering, and limit rules.
-	rows, err := m.UpdateDelivery(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteDelivery(ctx context.Context, req *v1.Delete
 	m := models.NewDeliveryManager(s.db)
 
 	// Get a list of deliverys given filters, ordering, and limit rules.
-	rows, err := m.DeleteDelivery(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

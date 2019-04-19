@@ -34,8 +34,8 @@ func NewACLManager(db *sql.DB) *ACLManager {
 
 // CRUD Methods for the ACLManager.
 
-// CreateACL creates a acl.
-func (m *ACLManager) CreateACL(ctx context.Context, item *v1.CreateACL) (*string, error) {
+// Create creates a acl.
+func (m *ACLManager) Create(ctx context.Context, item *v1.CreateACL) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -54,8 +54,8 @@ func (m *ACLManager) CreateACL(ctx context.Context, item *v1.CreateACL) (*string
 	return &id, nil
 }
 
-// GetACL gets a single acl from the database by ID.
-func (m *ACLManager) GetACL(ctx context.Context, id string) (*ACL, error) {
+// Get gets a single acl from the database by ID.
+func (m *ACLManager) Get(ctx context.Context, id string) (*ACL, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -91,8 +91,8 @@ func (m *ACLManager) GetACL(ctx context.Context, id string) (*ACL, error) {
 	return &acl, nil
 }
 
-// ListACL returns a slice of all acls meeting the filter criteria.
-func (m *ACLManager) ListACL(ctx context.Context, filters []*v1.ACLFilterRule, orderings []*v1.ACLOrdering, limit int64) ([]*ACL, error) {
+// List returns a slice of all acls meeting the filter criteria.
+func (m *ACLManager) List(ctx context.Context, filters []*v1.ACLFilterRule, orderings []*v1.ACLOrdering, limit int64) ([]*ACL, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -128,8 +128,8 @@ func (m *ACLManager) ListACL(ctx context.Context, filters []*v1.ACLFilterRule, o
 	return list, nil
 }
 
-// UpdateACL runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ACLManager) UpdateACL(ctx context.Context, item *v1.ACL) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ACLManager) Update(ctx context.Context, item *v1.ACL) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -155,8 +155,8 @@ func (m *ACLManager) UpdateACL(ctx context.Context, item *v1.ACL) (*int64, error
 	return &rows, nil
 }
 
-//DeleteACL creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ACLManager) DeleteACL(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ACLManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

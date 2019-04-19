@@ -35,8 +35,8 @@ func NewLayoutManager(db *sql.DB) *LayoutManager {
 
 // CRUD Methods for the LayoutManager.
 
-// CreateLayout creates a layout.
-func (m *LayoutManager) CreateLayout(ctx context.Context, item *v1.CreateLayout) (*string, error) {
+// Create creates a layout.
+func (m *LayoutManager) Create(ctx context.Context, item *v1.CreateLayout) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *LayoutManager) CreateLayout(ctx context.Context, item *v1.CreateLayout)
 	return &id, nil
 }
 
-// GetLayout gets a single layout from the database by ID.
-func (m *LayoutManager) GetLayout(ctx context.Context, id string) (*Layout, error) {
+// Get gets a single layout from the database by ID.
+func (m *LayoutManager) Get(ctx context.Context, id string) (*Layout, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *LayoutManager) GetLayout(ctx context.Context, id string) (*Layout, erro
 	return &layout, nil
 }
 
-// ListLayout returns a slice of all layouts meeting the filter criteria.
-func (m *LayoutManager) ListLayout(ctx context.Context, filters []*v1.LayoutFilterRule, orderings []*v1.LayoutOrdering, limit int64) ([]*Layout, error) {
+// List returns a slice of all layouts meeting the filter criteria.
+func (m *LayoutManager) List(ctx context.Context, filters []*v1.LayoutFilterRule, orderings []*v1.LayoutOrdering, limit int64) ([]*Layout, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *LayoutManager) ListLayout(ctx context.Context, filters []*v1.LayoutFilt
 	return list, nil
 }
 
-// UpdateLayout runs an update query on the provided db and returns the rows affected as an int64.
-func (m *LayoutManager) UpdateLayout(ctx context.Context, item *v1.Layout) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *LayoutManager) Update(ctx context.Context, item *v1.Layout) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *LayoutManager) UpdateLayout(ctx context.Context, item *v1.Layout) (*int
 	return &rows, nil
 }
 
-//DeleteLayout creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *LayoutManager) DeleteLayout(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *LayoutManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

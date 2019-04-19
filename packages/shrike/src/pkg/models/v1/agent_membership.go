@@ -36,8 +36,8 @@ func NewAgentMembershipManager(db *sql.DB) *AgentMembershipManager {
 
 // CRUD Methods for the AgentMembershipManager.
 
-// CreateAgentMembership creates a agentMembership.
-func (m *AgentMembershipManager) CreateAgentMembership(ctx context.Context, item *v1.CreateAgentMembership) (*string, error) {
+// Create creates a agentMembership.
+func (m *AgentMembershipManager) Create(ctx context.Context, item *v1.CreateAgentMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *AgentMembershipManager) CreateAgentMembership(ctx context.Context, item
 	return &id, nil
 }
 
-// GetAgentMembership gets a single agentMembership from the database by ID.
-func (m *AgentMembershipManager) GetAgentMembership(ctx context.Context, id string) (*AgentMembership, error) {
+// Get gets a single agentMembership from the database by ID.
+func (m *AgentMembershipManager) Get(ctx context.Context, id string) (*AgentMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *AgentMembershipManager) GetAgentMembership(ctx context.Context, id stri
 	return &agentMembership, nil
 }
 
-// ListAgentMembership returns a slice of all agentMemberships meeting the filter criteria.
-func (m *AgentMembershipManager) ListAgentMembership(ctx context.Context, filters []*v1.AgentMembershipFilterRule, orderings []*v1.AgentMembershipOrdering, limit int64) ([]*AgentMembership, error) {
+// List returns a slice of all agentMemberships meeting the filter criteria.
+func (m *AgentMembershipManager) List(ctx context.Context, filters []*v1.AgentMembershipFilterRule, orderings []*v1.AgentMembershipOrdering, limit int64) ([]*AgentMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *AgentMembershipManager) ListAgentMembership(ctx context.Context, filter
 	return list, nil
 }
 
-// UpdateAgentMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *AgentMembershipManager) UpdateAgentMembership(ctx context.Context, item *v1.AgentMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *AgentMembershipManager) Update(ctx context.Context, item *v1.AgentMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *AgentMembershipManager) UpdateAgentMembership(ctx context.Context, item
 	return &rows, nil
 }
 
-//DeleteAgentMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *AgentMembershipManager) DeleteAgentMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *AgentMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

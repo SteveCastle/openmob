@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateLayoutRow(ctx context.Context, req *v1.Creat
 	m := models.NewLayoutRowManager(s.db)
 
 	// Get a list of layoutRows given filters, ordering, and limit rules.
-	id, err := m.CreateLayoutRow(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetLayoutRow(ctx context.Context, req *v1.GetLayou
 	m := models.NewLayoutRowManager(s.db)
 
 	// Get a list of layoutRows given filters, ordering, and limit rules.
-	layoutRow, err := m.GetLayoutRow(ctx, req.ID)
+	layoutRow, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListLayoutRow(ctx context.Context, req *v1.ListLay
 	m := models.NewLayoutRowManager(s.db)
 
 	// Get a list of layoutRows given filters, ordering, and limit rules.
-	list, err := m.ListLayoutRow(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateLayoutRow(ctx context.Context, req *v1.Updat
 	m := models.NewLayoutRowManager(s.db)
 
 	// Get a list of layoutRows given filters, ordering, and limit rules.
-	rows, err := m.UpdateLayoutRow(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteLayoutRow(ctx context.Context, req *v1.Delet
 	m := models.NewLayoutRowManager(s.db)
 
 	// Get a list of layoutRows given filters, ordering, and limit rules.
-	rows, err := m.DeleteLayoutRow(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

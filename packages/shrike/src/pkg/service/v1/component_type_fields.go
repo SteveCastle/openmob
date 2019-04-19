@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateComponentTypeFields(ctx context.Context, req
 	m := models.NewComponentTypeFieldsManager(s.db)
 
 	// Get a list of componentTypeFieldss given filters, ordering, and limit rules.
-	id, err := m.CreateComponentTypeFields(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetComponentTypeFields(ctx context.Context, req *v
 	m := models.NewComponentTypeFieldsManager(s.db)
 
 	// Get a list of componentTypeFieldss given filters, ordering, and limit rules.
-	componentTypeFields, err := m.GetComponentTypeFields(ctx, req.ID)
+	componentTypeFields, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListComponentTypeFields(ctx context.Context, req *
 	m := models.NewComponentTypeFieldsManager(s.db)
 
 	// Get a list of componentTypeFieldss given filters, ordering, and limit rules.
-	list, err := m.ListComponentTypeFields(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateComponentTypeFields(ctx context.Context, req
 	m := models.NewComponentTypeFieldsManager(s.db)
 
 	// Get a list of componentTypeFieldss given filters, ordering, and limit rules.
-	rows, err := m.UpdateComponentTypeFields(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteComponentTypeFields(ctx context.Context, req
 	m := models.NewComponentTypeFieldsManager(s.db)
 
 	// Get a list of componentTypeFieldss given filters, ordering, and limit rules.
-	rows, err := m.DeleteComponentTypeFields(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

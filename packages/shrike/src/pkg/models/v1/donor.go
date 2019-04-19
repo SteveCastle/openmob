@@ -37,8 +37,8 @@ func NewDonorManager(db *sql.DB) *DonorManager {
 
 // CRUD Methods for the DonorManager.
 
-// CreateDonor creates a donor.
-func (m *DonorManager) CreateDonor(ctx context.Context, item *v1.CreateDonor) (*string, error) {
+// Create creates a donor.
+func (m *DonorManager) Create(ctx context.Context, item *v1.CreateDonor) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *DonorManager) CreateDonor(ctx context.Context, item *v1.CreateDonor) (*
 	return &id, nil
 }
 
-// GetDonor gets a single donor from the database by ID.
-func (m *DonorManager) GetDonor(ctx context.Context, id string) (*Donor, error) {
+// Get gets a single donor from the database by ID.
+func (m *DonorManager) Get(ctx context.Context, id string) (*Donor, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *DonorManager) GetDonor(ctx context.Context, id string) (*Donor, error) 
 	return &donor, nil
 }
 
-// ListDonor returns a slice of all donors meeting the filter criteria.
-func (m *DonorManager) ListDonor(ctx context.Context, filters []*v1.DonorFilterRule, orderings []*v1.DonorOrdering, limit int64) ([]*Donor, error) {
+// List returns a slice of all donors meeting the filter criteria.
+func (m *DonorManager) List(ctx context.Context, filters []*v1.DonorFilterRule, orderings []*v1.DonorOrdering, limit int64) ([]*Donor, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *DonorManager) ListDonor(ctx context.Context, filters []*v1.DonorFilterR
 	return list, nil
 }
 
-// UpdateDonor runs an update query on the provided db and returns the rows affected as an int64.
-func (m *DonorManager) UpdateDonor(ctx context.Context, item *v1.Donor) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *DonorManager) Update(ctx context.Context, item *v1.Donor) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *DonorManager) UpdateDonor(ctx context.Context, item *v1.Donor) (*int64,
 	return &rows, nil
 }
 
-//DeleteDonor creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *DonorManager) DeleteDonor(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *DonorManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

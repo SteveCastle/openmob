@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateAccount(ctx context.Context, req *v1.CreateA
 	m := models.NewAccountManager(s.db)
 
 	// Get a list of accounts given filters, ordering, and limit rules.
-	id, err := m.CreateAccount(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetAccount(ctx context.Context, req *v1.GetAccount
 	m := models.NewAccountManager(s.db)
 
 	// Get a list of accounts given filters, ordering, and limit rules.
-	account, err := m.GetAccount(ctx, req.ID)
+	account, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListAccount(ctx context.Context, req *v1.ListAccou
 	m := models.NewAccountManager(s.db)
 
 	// Get a list of accounts given filters, ordering, and limit rules.
-	list, err := m.ListAccount(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateAccount(ctx context.Context, req *v1.UpdateA
 	m := models.NewAccountManager(s.db)
 
 	// Get a list of accounts given filters, ordering, and limit rules.
-	rows, err := m.UpdateAccount(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteAccount(ctx context.Context, req *v1.DeleteA
 	m := models.NewAccountManager(s.db)
 
 	// Get a list of accounts given filters, ordering, and limit rules.
-	rows, err := m.DeleteAccount(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

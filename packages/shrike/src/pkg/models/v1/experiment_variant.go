@@ -40,8 +40,8 @@ func NewExperimentVariantManager(db *sql.DB) *ExperimentVariantManager {
 
 // CRUD Methods for the ExperimentVariantManager.
 
-// CreateExperimentVariant creates a experimentVariant.
-func (m *ExperimentVariantManager) CreateExperimentVariant(ctx context.Context, item *v1.CreateExperimentVariant) (*string, error) {
+// Create creates a experimentVariant.
+func (m *ExperimentVariantManager) Create(ctx context.Context, item *v1.CreateExperimentVariant) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (m *ExperimentVariantManager) CreateExperimentVariant(ctx context.Context, 
 	return &id, nil
 }
 
-// GetExperimentVariant gets a single experimentVariant from the database by ID.
-func (m *ExperimentVariantManager) GetExperimentVariant(ctx context.Context, id string) (*ExperimentVariant, error) {
+// Get gets a single experimentVariant from the database by ID.
+func (m *ExperimentVariantManager) Get(ctx context.Context, id string) (*ExperimentVariant, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -98,8 +98,8 @@ func (m *ExperimentVariantManager) GetExperimentVariant(ctx context.Context, id 
 	return &experimentVariant, nil
 }
 
-// ListExperimentVariant returns a slice of all experimentVariants meeting the filter criteria.
-func (m *ExperimentVariantManager) ListExperimentVariant(ctx context.Context, filters []*v1.ExperimentVariantFilterRule, orderings []*v1.ExperimentVariantOrdering, limit int64) ([]*ExperimentVariant, error) {
+// List returns a slice of all experimentVariants meeting the filter criteria.
+func (m *ExperimentVariantManager) List(ctx context.Context, filters []*v1.ExperimentVariantFilterRule, orderings []*v1.ExperimentVariantOrdering, limit int64) ([]*ExperimentVariant, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -135,8 +135,8 @@ func (m *ExperimentVariantManager) ListExperimentVariant(ctx context.Context, fi
 	return list, nil
 }
 
-// UpdateExperimentVariant runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ExperimentVariantManager) UpdateExperimentVariant(ctx context.Context, item *v1.ExperimentVariant) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ExperimentVariantManager) Update(ctx context.Context, item *v1.ExperimentVariant) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -162,8 +162,8 @@ func (m *ExperimentVariantManager) UpdateExperimentVariant(ctx context.Context, 
 	return &rows, nil
 }
 
-//DeleteExperimentVariant creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ExperimentVariantManager) DeleteExperimentVariant(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ExperimentVariantManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

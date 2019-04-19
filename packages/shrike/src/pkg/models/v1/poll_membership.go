@@ -36,8 +36,8 @@ func NewPollMembershipManager(db *sql.DB) *PollMembershipManager {
 
 // CRUD Methods for the PollMembershipManager.
 
-// CreatePollMembership creates a pollMembership.
-func (m *PollMembershipManager) CreatePollMembership(ctx context.Context, item *v1.CreatePollMembership) (*string, error) {
+// Create creates a pollMembership.
+func (m *PollMembershipManager) Create(ctx context.Context, item *v1.CreatePollMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *PollMembershipManager) CreatePollMembership(ctx context.Context, item *
 	return &id, nil
 }
 
-// GetPollMembership gets a single pollMembership from the database by ID.
-func (m *PollMembershipManager) GetPollMembership(ctx context.Context, id string) (*PollMembership, error) {
+// Get gets a single pollMembership from the database by ID.
+func (m *PollMembershipManager) Get(ctx context.Context, id string) (*PollMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *PollMembershipManager) GetPollMembership(ctx context.Context, id string
 	return &pollMembership, nil
 }
 
-// ListPollMembership returns a slice of all pollMemberships meeting the filter criteria.
-func (m *PollMembershipManager) ListPollMembership(ctx context.Context, filters []*v1.PollMembershipFilterRule, orderings []*v1.PollMembershipOrdering, limit int64) ([]*PollMembership, error) {
+// List returns a slice of all pollMemberships meeting the filter criteria.
+func (m *PollMembershipManager) List(ctx context.Context, filters []*v1.PollMembershipFilterRule, orderings []*v1.PollMembershipOrdering, limit int64) ([]*PollMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *PollMembershipManager) ListPollMembership(ctx context.Context, filters 
 	return list, nil
 }
 
-// UpdatePollMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PollMembershipManager) UpdatePollMembership(ctx context.Context, item *v1.PollMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PollMembershipManager) Update(ctx context.Context, item *v1.PollMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *PollMembershipManager) UpdatePollMembership(ctx context.Context, item *
 	return &rows, nil
 }
 
-//DeletePollMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PollMembershipManager) DeletePollMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PollMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

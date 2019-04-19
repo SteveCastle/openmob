@@ -39,8 +39,8 @@ func NewCauseManager(db *sql.DB) *CauseManager {
 
 // CRUD Methods for the CauseManager.
 
-// CreateCause creates a cause.
-func (m *CauseManager) CreateCause(ctx context.Context, item *v1.CreateCause) (*string, error) {
+// Create creates a cause.
+func (m *CauseManager) Create(ctx context.Context, item *v1.CreateCause) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (m *CauseManager) CreateCause(ctx context.Context, item *v1.CreateCause) (*
 	return &id, nil
 }
 
-// GetCause gets a single cause from the database by ID.
-func (m *CauseManager) GetCause(ctx context.Context, id string) (*Cause, error) {
+// Get gets a single cause from the database by ID.
+func (m *CauseManager) Get(ctx context.Context, id string) (*Cause, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -97,8 +97,8 @@ func (m *CauseManager) GetCause(ctx context.Context, id string) (*Cause, error) 
 	return &cause, nil
 }
 
-// ListCause returns a slice of all causes meeting the filter criteria.
-func (m *CauseManager) ListCause(ctx context.Context, filters []*v1.CauseFilterRule, orderings []*v1.CauseOrdering, limit int64) ([]*Cause, error) {
+// List returns a slice of all causes meeting the filter criteria.
+func (m *CauseManager) List(ctx context.Context, filters []*v1.CauseFilterRule, orderings []*v1.CauseOrdering, limit int64) ([]*Cause, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -134,8 +134,8 @@ func (m *CauseManager) ListCause(ctx context.Context, filters []*v1.CauseFilterR
 	return list, nil
 }
 
-// UpdateCause runs an update query on the provided db and returns the rows affected as an int64.
-func (m *CauseManager) UpdateCause(ctx context.Context, item *v1.Cause) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *CauseManager) Update(ctx context.Context, item *v1.Cause) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -161,8 +161,8 @@ func (m *CauseManager) UpdateCause(ctx context.Context, item *v1.Cause) (*int64,
 	return &rows, nil
 }
 
-//DeleteCause creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *CauseManager) DeleteCause(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *CauseManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

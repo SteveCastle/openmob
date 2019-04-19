@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePetitionMembership(ctx context.Context, req 
 	m := models.NewPetitionMembershipManager(s.db)
 
 	// Get a list of petitionMemberships given filters, ordering, and limit rules.
-	id, err := m.CreatePetitionMembership(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPetitionMembership(ctx context.Context, req *v1
 	m := models.NewPetitionMembershipManager(s.db)
 
 	// Get a list of petitionMemberships given filters, ordering, and limit rules.
-	petitionMembership, err := m.GetPetitionMembership(ctx, req.ID)
+	petitionMembership, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPetitionMembership(ctx context.Context, req *v
 	m := models.NewPetitionMembershipManager(s.db)
 
 	// Get a list of petitionMemberships given filters, ordering, and limit rules.
-	list, err := m.ListPetitionMembership(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePetitionMembership(ctx context.Context, req 
 	m := models.NewPetitionMembershipManager(s.db)
 
 	// Get a list of petitionMemberships given filters, ordering, and limit rules.
-	rows, err := m.UpdatePetitionMembership(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePetitionMembership(ctx context.Context, req 
 	m := models.NewPetitionMembershipManager(s.db)
 
 	// Get a list of petitionMemberships given filters, ordering, and limit rules.
-	rows, err := m.DeletePetitionMembership(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

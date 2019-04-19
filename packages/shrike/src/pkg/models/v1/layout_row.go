@@ -37,8 +37,8 @@ func NewLayoutRowManager(db *sql.DB) *LayoutRowManager {
 
 // CRUD Methods for the LayoutRowManager.
 
-// CreateLayoutRow creates a layoutRow.
-func (m *LayoutRowManager) CreateLayoutRow(ctx context.Context, item *v1.CreateLayoutRow) (*string, error) {
+// Create creates a layoutRow.
+func (m *LayoutRowManager) Create(ctx context.Context, item *v1.CreateLayoutRow) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *LayoutRowManager) CreateLayoutRow(ctx context.Context, item *v1.CreateL
 	return &id, nil
 }
 
-// GetLayoutRow gets a single layoutRow from the database by ID.
-func (m *LayoutRowManager) GetLayoutRow(ctx context.Context, id string) (*LayoutRow, error) {
+// Get gets a single layoutRow from the database by ID.
+func (m *LayoutRowManager) Get(ctx context.Context, id string) (*LayoutRow, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *LayoutRowManager) GetLayoutRow(ctx context.Context, id string) (*Layout
 	return &layoutRow, nil
 }
 
-// ListLayoutRow returns a slice of all layoutRows meeting the filter criteria.
-func (m *LayoutRowManager) ListLayoutRow(ctx context.Context, filters []*v1.LayoutRowFilterRule, orderings []*v1.LayoutRowOrdering, limit int64) ([]*LayoutRow, error) {
+// List returns a slice of all layoutRows meeting the filter criteria.
+func (m *LayoutRowManager) List(ctx context.Context, filters []*v1.LayoutRowFilterRule, orderings []*v1.LayoutRowOrdering, limit int64) ([]*LayoutRow, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *LayoutRowManager) ListLayoutRow(ctx context.Context, filters []*v1.Layo
 	return list, nil
 }
 
-// UpdateLayoutRow runs an update query on the provided db and returns the rows affected as an int64.
-func (m *LayoutRowManager) UpdateLayoutRow(ctx context.Context, item *v1.LayoutRow) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *LayoutRowManager) Update(ctx context.Context, item *v1.LayoutRow) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *LayoutRowManager) UpdateLayoutRow(ctx context.Context, item *v1.LayoutR
 	return &rows, nil
 }
 
-//DeleteLayoutRow creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *LayoutRowManager) DeleteLayoutRow(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *LayoutRowManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

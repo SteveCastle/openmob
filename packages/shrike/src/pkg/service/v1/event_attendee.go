@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateEventAttendee(ctx context.Context, req *v1.C
 	m := models.NewEventAttendeeManager(s.db)
 
 	// Get a list of eventAttendees given filters, ordering, and limit rules.
-	id, err := m.CreateEventAttendee(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetEventAttendee(ctx context.Context, req *v1.GetE
 	m := models.NewEventAttendeeManager(s.db)
 
 	// Get a list of eventAttendees given filters, ordering, and limit rules.
-	eventAttendee, err := m.GetEventAttendee(ctx, req.ID)
+	eventAttendee, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListEventAttendee(ctx context.Context, req *v1.Lis
 	m := models.NewEventAttendeeManager(s.db)
 
 	// Get a list of eventAttendees given filters, ordering, and limit rules.
-	list, err := m.ListEventAttendee(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateEventAttendee(ctx context.Context, req *v1.U
 	m := models.NewEventAttendeeManager(s.db)
 
 	// Get a list of eventAttendees given filters, ordering, and limit rules.
-	rows, err := m.UpdateEventAttendee(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteEventAttendee(ctx context.Context, req *v1.D
 	m := models.NewEventAttendeeManager(s.db)
 
 	// Get a list of eventAttendees given filters, ordering, and limit rules.
-	rows, err := m.DeleteEventAttendee(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

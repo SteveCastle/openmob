@@ -37,8 +37,8 @@ func NewPetitionSignerManager(db *sql.DB) *PetitionSignerManager {
 
 // CRUD Methods for the PetitionSignerManager.
 
-// CreatePetitionSigner creates a petitionSigner.
-func (m *PetitionSignerManager) CreatePetitionSigner(ctx context.Context, item *v1.CreatePetitionSigner) (*string, error) {
+// Create creates a petitionSigner.
+func (m *PetitionSignerManager) Create(ctx context.Context, item *v1.CreatePetitionSigner) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *PetitionSignerManager) CreatePetitionSigner(ctx context.Context, item *
 	return &id, nil
 }
 
-// GetPetitionSigner gets a single petitionSigner from the database by ID.
-func (m *PetitionSignerManager) GetPetitionSigner(ctx context.Context, id string) (*PetitionSigner, error) {
+// Get gets a single petitionSigner from the database by ID.
+func (m *PetitionSignerManager) Get(ctx context.Context, id string) (*PetitionSigner, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *PetitionSignerManager) GetPetitionSigner(ctx context.Context, id string
 	return &petitionSigner, nil
 }
 
-// ListPetitionSigner returns a slice of all petitionSigners meeting the filter criteria.
-func (m *PetitionSignerManager) ListPetitionSigner(ctx context.Context, filters []*v1.PetitionSignerFilterRule, orderings []*v1.PetitionSignerOrdering, limit int64) ([]*PetitionSigner, error) {
+// List returns a slice of all petitionSigners meeting the filter criteria.
+func (m *PetitionSignerManager) List(ctx context.Context, filters []*v1.PetitionSignerFilterRule, orderings []*v1.PetitionSignerOrdering, limit int64) ([]*PetitionSigner, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *PetitionSignerManager) ListPetitionSigner(ctx context.Context, filters 
 	return list, nil
 }
 
-// UpdatePetitionSigner runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PetitionSignerManager) UpdatePetitionSigner(ctx context.Context, item *v1.PetitionSigner) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PetitionSignerManager) Update(ctx context.Context, item *v1.PetitionSigner) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *PetitionSignerManager) UpdatePetitionSigner(ctx context.Context, item *
 	return &rows, nil
 }
 
-//DeletePetitionSigner creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PetitionSignerManager) DeletePetitionSigner(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PetitionSignerManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

@@ -37,8 +37,8 @@ func NewNoteManager(db *sql.DB) *NoteManager {
 
 // CRUD Methods for the NoteManager.
 
-// CreateNote creates a note.
-func (m *NoteManager) CreateNote(ctx context.Context, item *v1.CreateNote) (*string, error) {
+// Create creates a note.
+func (m *NoteManager) Create(ctx context.Context, item *v1.CreateNote) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *NoteManager) CreateNote(ctx context.Context, item *v1.CreateNote) (*str
 	return &id, nil
 }
 
-// GetNote gets a single note from the database by ID.
-func (m *NoteManager) GetNote(ctx context.Context, id string) (*Note, error) {
+// Get gets a single note from the database by ID.
+func (m *NoteManager) Get(ctx context.Context, id string) (*Note, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *NoteManager) GetNote(ctx context.Context, id string) (*Note, error) {
 	return &note, nil
 }
 
-// ListNote returns a slice of all notes meeting the filter criteria.
-func (m *NoteManager) ListNote(ctx context.Context, filters []*v1.NoteFilterRule, orderings []*v1.NoteOrdering, limit int64) ([]*Note, error) {
+// List returns a slice of all notes meeting the filter criteria.
+func (m *NoteManager) List(ctx context.Context, filters []*v1.NoteFilterRule, orderings []*v1.NoteOrdering, limit int64) ([]*Note, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *NoteManager) ListNote(ctx context.Context, filters []*v1.NoteFilterRule
 	return list, nil
 }
 
-// UpdateNote runs an update query on the provided db and returns the rows affected as an int64.
-func (m *NoteManager) UpdateNote(ctx context.Context, item *v1.Note) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *NoteManager) Update(ctx context.Context, item *v1.Note) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *NoteManager) UpdateNote(ctx context.Context, item *v1.Note) (*int64, er
 	return &rows, nil
 }
 
-//DeleteNote creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *NoteManager) DeleteNote(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *NoteManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

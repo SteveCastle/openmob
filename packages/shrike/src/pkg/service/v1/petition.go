@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreatePetition(ctx context.Context, req *v1.Create
 	m := models.NewPetitionManager(s.db)
 
 	// Get a list of petitions given filters, ordering, and limit rules.
-	id, err := m.CreatePetition(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetPetition(ctx context.Context, req *v1.GetPetiti
 	m := models.NewPetitionManager(s.db)
 
 	// Get a list of petitions given filters, ordering, and limit rules.
-	petition, err := m.GetPetition(ctx, req.ID)
+	petition, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListPetition(ctx context.Context, req *v1.ListPeti
 	m := models.NewPetitionManager(s.db)
 
 	// Get a list of petitions given filters, ordering, and limit rules.
-	list, err := m.ListPetition(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdatePetition(ctx context.Context, req *v1.Update
 	m := models.NewPetitionManager(s.db)
 
 	// Get a list of petitions given filters, ordering, and limit rules.
-	rows, err := m.UpdatePetition(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeletePetition(ctx context.Context, req *v1.Delete
 	m := models.NewPetitionManager(s.db)
 
 	// Get a list of petitions given filters, ordering, and limit rules.
-	rows, err := m.DeletePetition(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

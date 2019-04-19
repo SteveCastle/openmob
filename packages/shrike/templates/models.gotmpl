@@ -35,8 +35,8 @@ func New{{.Table.Name}}Manager(db *sql.DB) *{{.Table.Name}}Manager {
 
 // CRUD Methods for the {{.Table.Name}}Manager.
 
-// Create{{.Table.Name}} creates a {{camel .Table.Name}}.
-func (m *{{.Table.Name}}Manager) Create{{.Table.Name}}(ctx context.Context, item *v1.Create{{.Table.Name}}) (*string, error) {
+// Create creates a {{camel .Table.Name}}.
+func (m *{{.Table.Name}}Manager) Create(ctx context.Context, item *v1.Create{{.Table.Name}}) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *{{.Table.Name}}Manager) Create{{.Table.Name}}(ctx context.Context, item
 	return &id, nil
 }
 
-// Get{{.Table.Name}} gets a single {{camel .Table.Name}} from the database by ID.
-func (m *{{.Table.Name}}Manager) Get{{.Table.Name}}(ctx context.Context, id string) (*{{.Table.Name}}, error) {
+// Get gets a single {{camel .Table.Name}} from the database by ID.
+func (m *{{.Table.Name}}Manager) Get(ctx context.Context, id string) (*{{.Table.Name}}, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *{{.Table.Name}}Manager) Get{{.Table.Name}}(ctx context.Context, id stri
 	return &{{camel .Table.Name}}, nil
 }
 
-// List{{.Table.Name}} returns a slice of all {{camel .Table.Name}}s meeting the filter criteria.
-func (m *{{.Table.Name}}Manager) List{{.Table.Name}}(ctx context.Context, filters []*v1.{{.Table.Name}}FilterRule, orderings []*v1.{{.Table.Name}}Ordering, limit int64) ([]*{{.Table.Name}}, error) {
+// List returns a slice of all {{camel .Table.Name}}s meeting the filter criteria.
+func (m *{{.Table.Name}}Manager) List(ctx context.Context, filters []*v1.{{.Table.Name}}FilterRule, orderings []*v1.{{.Table.Name}}Ordering, limit int64) ([]*{{.Table.Name}}, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *{{.Table.Name}}Manager) List{{.Table.Name}}(ctx context.Context, filter
 	return list, nil
 }
 
-// Update{{.Table.Name}} runs an update query on the provided db and returns the rows affected as an int64.
-func (m *{{.Table.Name}}Manager) Update{{.Table.Name}}(ctx context.Context, item *v1.{{.Table.Name}}) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *{{.Table.Name}}Manager) Update(ctx context.Context, item *v1.{{.Table.Name}}) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *{{.Table.Name}}Manager) Update{{.Table.Name}}(ctx context.Context, item
 	return &rows, nil
 }
 
-//Delete{{.Table.Name}} creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *{{.Table.Name}}Manager) Delete{{.Table.Name}}(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *{{.Table.Name}}Manager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

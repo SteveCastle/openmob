@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateExperimentVariant(ctx context.Context, req *
 	m := models.NewExperimentVariantManager(s.db)
 
 	// Get a list of experimentVariants given filters, ordering, and limit rules.
-	id, err := m.CreateExperimentVariant(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetExperimentVariant(ctx context.Context, req *v1.
 	m := models.NewExperimentVariantManager(s.db)
 
 	// Get a list of experimentVariants given filters, ordering, and limit rules.
-	experimentVariant, err := m.GetExperimentVariant(ctx, req.ID)
+	experimentVariant, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListExperimentVariant(ctx context.Context, req *v1
 	m := models.NewExperimentVariantManager(s.db)
 
 	// Get a list of experimentVariants given filters, ordering, and limit rules.
-	list, err := m.ListExperimentVariant(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateExperimentVariant(ctx context.Context, req *
 	m := models.NewExperimentVariantManager(s.db)
 
 	// Get a list of experimentVariants given filters, ordering, and limit rules.
-	rows, err := m.UpdateExperimentVariant(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteExperimentVariant(ctx context.Context, req *
 	m := models.NewExperimentVariantManager(s.db)
 
 	// Get a list of experimentVariants given filters, ordering, and limit rules.
-	rows, err := m.DeleteExperimentVariant(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

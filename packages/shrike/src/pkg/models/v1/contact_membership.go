@@ -36,8 +36,8 @@ func NewContactMembershipManager(db *sql.DB) *ContactMembershipManager {
 
 // CRUD Methods for the ContactMembershipManager.
 
-// CreateContactMembership creates a contactMembership.
-func (m *ContactMembershipManager) CreateContactMembership(ctx context.Context, item *v1.CreateContactMembership) (*string, error) {
+// Create creates a contactMembership.
+func (m *ContactMembershipManager) Create(ctx context.Context, item *v1.CreateContactMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *ContactMembershipManager) CreateContactMembership(ctx context.Context, 
 	return &id, nil
 }
 
-// GetContactMembership gets a single contactMembership from the database by ID.
-func (m *ContactMembershipManager) GetContactMembership(ctx context.Context, id string) (*ContactMembership, error) {
+// Get gets a single contactMembership from the database by ID.
+func (m *ContactMembershipManager) Get(ctx context.Context, id string) (*ContactMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *ContactMembershipManager) GetContactMembership(ctx context.Context, id 
 	return &contactMembership, nil
 }
 
-// ListContactMembership returns a slice of all contactMemberships meeting the filter criteria.
-func (m *ContactMembershipManager) ListContactMembership(ctx context.Context, filters []*v1.ContactMembershipFilterRule, orderings []*v1.ContactMembershipOrdering, limit int64) ([]*ContactMembership, error) {
+// List returns a slice of all contactMemberships meeting the filter criteria.
+func (m *ContactMembershipManager) List(ctx context.Context, filters []*v1.ContactMembershipFilterRule, orderings []*v1.ContactMembershipOrdering, limit int64) ([]*ContactMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *ContactMembershipManager) ListContactMembership(ctx context.Context, fi
 	return list, nil
 }
 
-// UpdateContactMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ContactMembershipManager) UpdateContactMembership(ctx context.Context, item *v1.ContactMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ContactMembershipManager) Update(ctx context.Context, item *v1.ContactMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *ContactMembershipManager) UpdateContactMembership(ctx context.Context, 
 	return &rows, nil
 }
 
-//DeleteContactMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ContactMembershipManager) DeleteContactMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ContactMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

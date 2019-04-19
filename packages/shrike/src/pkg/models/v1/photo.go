@@ -37,8 +37,8 @@ func NewPhotoManager(db *sql.DB) *PhotoManager {
 
 // CRUD Methods for the PhotoManager.
 
-// CreatePhoto creates a photo.
-func (m *PhotoManager) CreatePhoto(ctx context.Context, item *v1.CreatePhoto) (*string, error) {
+// Create creates a photo.
+func (m *PhotoManager) Create(ctx context.Context, item *v1.CreatePhoto) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *PhotoManager) CreatePhoto(ctx context.Context, item *v1.CreatePhoto) (*
 	return &id, nil
 }
 
-// GetPhoto gets a single photo from the database by ID.
-func (m *PhotoManager) GetPhoto(ctx context.Context, id string) (*Photo, error) {
+// Get gets a single photo from the database by ID.
+func (m *PhotoManager) Get(ctx context.Context, id string) (*Photo, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *PhotoManager) GetPhoto(ctx context.Context, id string) (*Photo, error) 
 	return &photo, nil
 }
 
-// ListPhoto returns a slice of all photos meeting the filter criteria.
-func (m *PhotoManager) ListPhoto(ctx context.Context, filters []*v1.PhotoFilterRule, orderings []*v1.PhotoOrdering, limit int64) ([]*Photo, error) {
+// List returns a slice of all photos meeting the filter criteria.
+func (m *PhotoManager) List(ctx context.Context, filters []*v1.PhotoFilterRule, orderings []*v1.PhotoOrdering, limit int64) ([]*Photo, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *PhotoManager) ListPhoto(ctx context.Context, filters []*v1.PhotoFilterR
 	return list, nil
 }
 
-// UpdatePhoto runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PhotoManager) UpdatePhoto(ctx context.Context, item *v1.Photo) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PhotoManager) Update(ctx context.Context, item *v1.Photo) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *PhotoManager) UpdatePhoto(ctx context.Context, item *v1.Photo) (*int64,
 	return &rows, nil
 }
 
-//DeletePhoto creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PhotoManager) DeletePhoto(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PhotoManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

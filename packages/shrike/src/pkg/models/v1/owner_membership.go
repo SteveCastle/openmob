@@ -36,8 +36,8 @@ func NewOwnerMembershipManager(db *sql.DB) *OwnerMembershipManager {
 
 // CRUD Methods for the OwnerMembershipManager.
 
-// CreateOwnerMembership creates a ownerMembership.
-func (m *OwnerMembershipManager) CreateOwnerMembership(ctx context.Context, item *v1.CreateOwnerMembership) (*string, error) {
+// Create creates a ownerMembership.
+func (m *OwnerMembershipManager) Create(ctx context.Context, item *v1.CreateOwnerMembership) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -57,8 +57,8 @@ func (m *OwnerMembershipManager) CreateOwnerMembership(ctx context.Context, item
 	return &id, nil
 }
 
-// GetOwnerMembership gets a single ownerMembership from the database by ID.
-func (m *OwnerMembershipManager) GetOwnerMembership(ctx context.Context, id string) (*OwnerMembership, error) {
+// Get gets a single ownerMembership from the database by ID.
+func (m *OwnerMembershipManager) Get(ctx context.Context, id string) (*OwnerMembership, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (m *OwnerMembershipManager) GetOwnerMembership(ctx context.Context, id stri
 	return &ownerMembership, nil
 }
 
-// ListOwnerMembership returns a slice of all ownerMemberships meeting the filter criteria.
-func (m *OwnerMembershipManager) ListOwnerMembership(ctx context.Context, filters []*v1.OwnerMembershipFilterRule, orderings []*v1.OwnerMembershipOrdering, limit int64) ([]*OwnerMembership, error) {
+// List returns a slice of all ownerMemberships meeting the filter criteria.
+func (m *OwnerMembershipManager) List(ctx context.Context, filters []*v1.OwnerMembershipFilterRule, orderings []*v1.OwnerMembershipOrdering, limit int64) ([]*OwnerMembership, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -131,8 +131,8 @@ func (m *OwnerMembershipManager) ListOwnerMembership(ctx context.Context, filter
 	return list, nil
 }
 
-// UpdateOwnerMembership runs an update query on the provided db and returns the rows affected as an int64.
-func (m *OwnerMembershipManager) UpdateOwnerMembership(ctx context.Context, item *v1.OwnerMembership) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *OwnerMembershipManager) Update(ctx context.Context, item *v1.OwnerMembership) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -158,8 +158,8 @@ func (m *OwnerMembershipManager) UpdateOwnerMembership(ctx context.Context, item
 	return &rows, nil
 }
 
-//DeleteOwnerMembership creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *OwnerMembershipManager) DeleteOwnerMembership(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *OwnerMembershipManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

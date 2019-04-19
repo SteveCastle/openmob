@@ -35,8 +35,8 @@ func NewProductTypeManager(db *sql.DB) *ProductTypeManager {
 
 // CRUD Methods for the ProductTypeManager.
 
-// CreateProductType creates a productType.
-func (m *ProductTypeManager) CreateProductType(ctx context.Context, item *v1.CreateProductType) (*string, error) {
+// Create creates a productType.
+func (m *ProductTypeManager) Create(ctx context.Context, item *v1.CreateProductType) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -56,8 +56,8 @@ func (m *ProductTypeManager) CreateProductType(ctx context.Context, item *v1.Cre
 	return &id, nil
 }
 
-// GetProductType gets a single productType from the database by ID.
-func (m *ProductTypeManager) GetProductType(ctx context.Context, id string) (*ProductType, error) {
+// Get gets a single productType from the database by ID.
+func (m *ProductTypeManager) Get(ctx context.Context, id string) (*ProductType, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (m *ProductTypeManager) GetProductType(ctx context.Context, id string) (*Pr
 	return &productType, nil
 }
 
-// ListProductType returns a slice of all productTypes meeting the filter criteria.
-func (m *ProductTypeManager) ListProductType(ctx context.Context, filters []*v1.ProductTypeFilterRule, orderings []*v1.ProductTypeOrdering, limit int64) ([]*ProductType, error) {
+// List returns a slice of all productTypes meeting the filter criteria.
+func (m *ProductTypeManager) List(ctx context.Context, filters []*v1.ProductTypeFilterRule, orderings []*v1.ProductTypeOrdering, limit int64) ([]*ProductType, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -130,8 +130,8 @@ func (m *ProductTypeManager) ListProductType(ctx context.Context, filters []*v1.
 	return list, nil
 }
 
-// UpdateProductType runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ProductTypeManager) UpdateProductType(ctx context.Context, item *v1.ProductType) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ProductTypeManager) Update(ctx context.Context, item *v1.ProductType) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -157,8 +157,8 @@ func (m *ProductTypeManager) UpdateProductType(ctx context.Context, item *v1.Pro
 	return &rows, nil
 }
 
-//DeleteProductType creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ProductTypeManager) DeleteProductType(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ProductTypeManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

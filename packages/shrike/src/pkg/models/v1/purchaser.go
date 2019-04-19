@@ -37,8 +37,8 @@ func NewPurchaserManager(db *sql.DB) *PurchaserManager {
 
 // CRUD Methods for the PurchaserManager.
 
-// CreatePurchaser creates a purchaser.
-func (m *PurchaserManager) CreatePurchaser(ctx context.Context, item *v1.CreatePurchaser) (*string, error) {
+// Create creates a purchaser.
+func (m *PurchaserManager) Create(ctx context.Context, item *v1.CreatePurchaser) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -58,8 +58,8 @@ func (m *PurchaserManager) CreatePurchaser(ctx context.Context, item *v1.CreateP
 	return &id, nil
 }
 
-// GetPurchaser gets a single purchaser from the database by ID.
-func (m *PurchaserManager) GetPurchaser(ctx context.Context, id string) (*Purchaser, error) {
+// Get gets a single purchaser from the database by ID.
+func (m *PurchaserManager) Get(ctx context.Context, id string) (*Purchaser, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (m *PurchaserManager) GetPurchaser(ctx context.Context, id string) (*Purcha
 	return &purchaser, nil
 }
 
-// ListPurchaser returns a slice of all purchasers meeting the filter criteria.
-func (m *PurchaserManager) ListPurchaser(ctx context.Context, filters []*v1.PurchaserFilterRule, orderings []*v1.PurchaserOrdering, limit int64) ([]*Purchaser, error) {
+// List returns a slice of all purchasers meeting the filter criteria.
+func (m *PurchaserManager) List(ctx context.Context, filters []*v1.PurchaserFilterRule, orderings []*v1.PurchaserOrdering, limit int64) ([]*Purchaser, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -132,8 +132,8 @@ func (m *PurchaserManager) ListPurchaser(ctx context.Context, filters []*v1.Purc
 	return list, nil
 }
 
-// UpdatePurchaser runs an update query on the provided db and returns the rows affected as an int64.
-func (m *PurchaserManager) UpdatePurchaser(ctx context.Context, item *v1.Purchaser) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *PurchaserManager) Update(ctx context.Context, item *v1.Purchaser) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -159,8 +159,8 @@ func (m *PurchaserManager) UpdatePurchaser(ctx context.Context, item *v1.Purchas
 	return &rows, nil
 }
 
-//DeletePurchaser creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *PurchaserManager) DeletePurchaser(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *PurchaserManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

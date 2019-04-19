@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateExperiment(ctx context.Context, req *v1.Crea
 	m := models.NewExperimentManager(s.db)
 
 	// Get a list of experiments given filters, ordering, and limit rules.
-	id, err := m.CreateExperiment(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetExperiment(ctx context.Context, req *v1.GetExpe
 	m := models.NewExperimentManager(s.db)
 
 	// Get a list of experiments given filters, ordering, and limit rules.
-	experiment, err := m.GetExperiment(ctx, req.ID)
+	experiment, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListExperiment(ctx context.Context, req *v1.ListEx
 	m := models.NewExperimentManager(s.db)
 
 	// Get a list of experiments given filters, ordering, and limit rules.
-	list, err := m.ListExperiment(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateExperiment(ctx context.Context, req *v1.Upda
 	m := models.NewExperimentManager(s.db)
 
 	// Get a list of experiments given filters, ordering, and limit rules.
-	rows, err := m.UpdateExperiment(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteExperiment(ctx context.Context, req *v1.Dele
 	m := models.NewExperimentManager(s.db)
 
 	// Get a list of experiments given filters, ordering, and limit rules.
-	rows, err := m.DeleteExperiment(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

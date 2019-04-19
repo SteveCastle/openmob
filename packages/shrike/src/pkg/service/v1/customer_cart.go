@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateCustomerCart(ctx context.Context, req *v1.Cr
 	m := models.NewCustomerCartManager(s.db)
 
 	// Get a list of customerCarts given filters, ordering, and limit rules.
-	id, err := m.CreateCustomerCart(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetCustomerCart(ctx context.Context, req *v1.GetCu
 	m := models.NewCustomerCartManager(s.db)
 
 	// Get a list of customerCarts given filters, ordering, and limit rules.
-	customerCart, err := m.GetCustomerCart(ctx, req.ID)
+	customerCart, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListCustomerCart(ctx context.Context, req *v1.List
 	m := models.NewCustomerCartManager(s.db)
 
 	// Get a list of customerCarts given filters, ordering, and limit rules.
-	list, err := m.ListCustomerCart(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateCustomerCart(ctx context.Context, req *v1.Up
 	m := models.NewCustomerCartManager(s.db)
 
 	// Get a list of customerCarts given filters, ordering, and limit rules.
-	rows, err := m.UpdateCustomerCart(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteCustomerCart(ctx context.Context, req *v1.De
 	m := models.NewCustomerCartManager(s.db)
 
 	// Get a list of customerCarts given filters, ordering, and limit rules.
-	rows, err := m.DeleteCustomerCart(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}

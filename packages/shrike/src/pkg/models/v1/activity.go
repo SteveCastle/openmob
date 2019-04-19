@@ -38,8 +38,8 @@ func NewActivityManager(db *sql.DB) *ActivityManager {
 
 // CRUD Methods for the ActivityManager.
 
-// CreateActivity creates a activity.
-func (m *ActivityManager) CreateActivity(ctx context.Context, item *v1.CreateActivity) (*string, error) {
+// Create creates a activity.
+func (m *ActivityManager) Create(ctx context.Context, item *v1.CreateActivity) (*string, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -59,8 +59,8 @@ func (m *ActivityManager) CreateActivity(ctx context.Context, item *v1.CreateAct
 	return &id, nil
 }
 
-// GetActivity gets a single activity from the database by ID.
-func (m *ActivityManager) GetActivity(ctx context.Context, id string) (*Activity, error) {
+// Get gets a single activity from the database by ID.
+func (m *ActivityManager) Get(ctx context.Context, id string) (*Activity, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err
@@ -96,8 +96,8 @@ func (m *ActivityManager) GetActivity(ctx context.Context, id string) (*Activity
 	return &activity, nil
 }
 
-// ListActivity returns a slice of all activitys meeting the filter criteria.
-func (m *ActivityManager) ListActivity(ctx context.Context, filters []*v1.ActivityFilterRule, orderings []*v1.ActivityOrdering, limit int64) ([]*Activity, error) {
+// List returns a slice of all activitys meeting the filter criteria.
+func (m *ActivityManager) List(ctx context.Context, filters []*v1.ActivityFilterRule, orderings []*v1.ActivityOrdering, limit int64) ([]*Activity, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -133,8 +133,8 @@ func (m *ActivityManager) ListActivity(ctx context.Context, filters []*v1.Activi
 	return list, nil
 }
 
-// UpdateActivity runs an update query on the provided db and returns the rows affected as an int64.
-func (m *ActivityManager) UpdateActivity(ctx context.Context, item *v1.Activity) (*int64, error) {
+// Update runs an update query on the provided db and returns the rows affected as an int64.
+func (m *ActivityManager) Update(ctx context.Context, item *v1.Activity) (*int64, error) {
 
 	c, err := m.connect(ctx)
 	if err != nil {
@@ -160,8 +160,8 @@ func (m *ActivityManager) UpdateActivity(ctx context.Context, item *v1.Activity)
 	return &rows, nil
 }
 
-//DeleteActivity creates and executes DELETE sql on a provided id and returns the number of rows affected.
-func (m *ActivityManager) DeleteActivity(ctx context.Context, id string) (*int64, error) {
+//Delete creates and executes DELETE sql on a provided id and returns the number of rows affected.
+func (m *ActivityManager) Delete(ctx context.Context, id string) (*int64, error) {
 	c, err := m.connect(ctx)
 	if err != nil {
 		return nil, err

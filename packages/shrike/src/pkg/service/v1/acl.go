@@ -17,7 +17,7 @@ func (s *shrikeServiceServer) CreateACL(ctx context.Context, req *v1.CreateACLRe
 	m := models.NewACLManager(s.db)
 
 	// Get a list of acls given filters, ordering, and limit rules.
-	id, err := m.CreateACL(ctx, req.Item)
+	id, err := m.Create(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *shrikeServiceServer) GetACL(ctx context.Context, req *v1.GetACLRequest)
 	m := models.NewACLManager(s.db)
 
 	// Get a list of acls given filters, ordering, and limit rules.
-	acl, err := m.GetACL(ctx, req.ID)
+	acl, err := m.Get(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (s *shrikeServiceServer) ListACL(ctx context.Context, req *v1.ListACLReques
 	m := models.NewACLManager(s.db)
 
 	// Get a list of acls given filters, ordering, and limit rules.
-	list, err := m.ListACL(ctx, req.Filters, req.Ordering, req.Limit)
+	list, err := m.List(ctx, req.Filters, req.Ordering, req.Limit)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (s *shrikeServiceServer) UpdateACL(ctx context.Context, req *v1.UpdateACLRe
 	m := models.NewACLManager(s.db)
 
 	// Get a list of acls given filters, ordering, and limit rules.
-	rows, err := m.UpdateACL(ctx, req.Item)
+	rows, err := m.Update(ctx, req.Item)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (s *shrikeServiceServer) DeleteACL(ctx context.Context, req *v1.DeleteACLRe
 	m := models.NewACLManager(s.db)
 
 	// Get a list of acls given filters, ordering, and limit rules.
-	rows, err := m.DeleteACL(ctx, req.ID)
+	rows, err := m.Delete(ctx, req.ID)
 	if err != nil {
 		return nil, err
 	}
