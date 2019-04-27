@@ -9,6 +9,7 @@ import Form from '@openmob/bluebird/src/components/forms/Form'
 import Widget from '@openmob/bluebird/src/components/forms/Widget'
 import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const CREATE_NOTE = gql`
@@ -63,9 +64,8 @@ const CreateNote = ({ id }) => {
                 </Widget>
                 <Widget>
                   <Label>Body</Label>
-                  <Input
+                  <TextArea
                     value={values.Body}
-                    type="text"
                     name="Body"
                     onChange={handleChange}
                     onBlur={handleBlur}

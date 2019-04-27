@@ -13,6 +13,7 @@ import (
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
 	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/interceptors"
+	"github.com/grpc-ecosystem/go-grpc-prometheus"
 	"google.golang.org/grpc"
 )
 
@@ -30,6 +31,7 @@ func RunServer(ctx context.Context, v1API v1.ShrikeServiceServer, port string) e
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
 			grpc_recovery.UnaryServerInterceptor(),
 			grpc_validator.UnaryServerInterceptor(),
+			grpc_prometheus.UnaryServerInterceptor,
 			interceptors.BuildInterceptor,
 			interceptors.LoggingInterceptor,
 		),

@@ -9,6 +9,7 @@ import Form from '@openmob/bluebird/src/components/forms/Form'
 import Widget from '@openmob/bluebird/src/components/forms/Widget'
 import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const CREATE_FIELDTYPE = gql`
@@ -73,9 +74,8 @@ const CreateFieldType = ({ id }) => {
                 </Widget>
                 <Widget>
                   <Label>StringValueDefault</Label>
-                  <Input
+                  <TextArea
                     value={values.StringValueDefault}
-                    type="text"
                     name="StringValueDefault"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -123,9 +123,8 @@ const CreateFieldType = ({ id }) => {
                 </Widget>
                 <Widget>
                   <Label>DataPath</Label>
-                  <Input
+                  <TextArea
                     value={values.DataPath}
-                    type="text"
                     name="DataPath"
                     onChange={handleChange}
                     onBlur={handleBlur}

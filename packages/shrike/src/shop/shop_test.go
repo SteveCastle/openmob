@@ -1,1 +1,1 @@
-package shop
+package shop_test

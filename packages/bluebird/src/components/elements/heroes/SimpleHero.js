@@ -52,9 +52,7 @@ function SimpleHero({ title }) {
 }
 
 SimpleHero.propTypes = {
-  title: PropTypes.shape({
-    StringValue: PropTypes.string.isRequired
-  })
+  title: PropTypes.string.isRequired
 };
 SimpleHero.defaultProps = {};
 

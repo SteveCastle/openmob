@@ -24,7 +24,7 @@ var packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 });
 var shrike = grpc.loadPackageDefinition(packageDefinition).shrike.v1;
 var client = new shrike.ShrikeService(
-  'localhost:9090',
+  'localhost:9091',
   grpc.credentials.createInsecure()
 );
 

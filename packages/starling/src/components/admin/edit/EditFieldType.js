@@ -9,6 +9,7 @@ import Form from '@openmob/bluebird/src/components/forms/Form'
 import Widget from '@openmob/bluebird/src/components/forms/Widget'
 import Label from '@openmob/bluebird/src/components/forms/Label'
 import Input from '@openmob/bluebird/src/components/forms/Input'
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 import parseObject from '../../../common/helpers'
 
@@ -166,10 +167,9 @@ function EditFieldType({ id }) {
                 </Widget>
                 <Widget>
                   <Label>StringValueDefault</Label>
-                  <Input
+                  <TextArea
                     value={values.StringValueDefault}
                     name="StringValueDefault"
-                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -216,10 +216,9 @@ function EditFieldType({ id }) {
                 </Widget>
                 <Widget>
                   <Label>DataPath</Label>
-                  <Input
+                  <TextArea
                     value={values.DataPath}
                     name="DataPath"
-                    type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

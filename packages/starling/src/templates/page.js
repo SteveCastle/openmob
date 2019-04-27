@@ -1,16 +1,16 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql, Link } from "gatsby"
-import ThemeProvider from "@openmob/bluebird/src/ThemeProvider"
-import skyward from "@openmob/bluebird/src/themes/skyward"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { graphql, Link } from 'gatsby'
+import ThemeProvider from '@openmob/bluebird/src/ThemeProvider'
+import skyward from '@openmob/bluebird/src/themes/skyward'
 
-import Row from "@openmob/bluebird/src/components/layout/Row"
-import Column from "@openmob/bluebird/src/components/layout/Column"
+import Row from '@openmob/bluebird/src/components/layout/Row'
+import Column from '@openmob/bluebird/src/components/layout/Column'
 
-import Layout from "../components/Layout"
-import Node from "../components/Node"
+import Layout from '../components/Layout'
+import Node from '../components/Node'
 
-import SEO from "../components/SEO"
+import SEO from '../components/SEO'
 
 const sortByWeight = (a, b) => a.Weight - b.Weight
 
@@ -19,28 +19,28 @@ const IndexPage = ({
     wren: { getCause: cause = {} },
   },
 }) => (
-  <ThemeProvider theme={skyward}>
-    <Layout title={cause.Title} id={cause.ID} summary={cause.Summary}>
-      <SEO title={cause.Title} keywords={[`gatsby`, `application`, `react`]} />
-      {(cause.HomePage.Layout.LayoutRows || []).sort(sortByWeight).map(row => (
-        <Row key={row.ID} container={row.Container}>
-          {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
-            <Column key={column.ID} size={column.Width}>
-              {(column.Components || []).sort(sortByWeight).map(component => (
-                <Node
-                  fields={component.Fields}
-                  path={component.ComponentImplementation.Path}
-                  key={component.ID}
-                />
-              ))}
-            </Column>
-          ))}
-        </Row>
-      ))}
-      <Link to="/app">Go to the admin page</Link>
-    </Layout>
-  </ThemeProvider>
-)
+    <ThemeProvider theme={skyward}>
+      <Layout title={cause.Title} id={cause.ID} summary={cause.Summary}>
+        <SEO title={cause.Title} keywords={[`gatsby`, `application`, `react`]} />
+        {(cause.HomePage.Layout.LayoutRows || []).sort(sortByWeight).map(row => (
+          <Row key={row.ID} container={row.Container}>
+            {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
+              <Column key={column.ID} size={column.Width}>
+                {(column.Components || []).sort(sortByWeight).map(component => (
+                  <Node
+                    fields={component.Fields}
+                    path={component.ComponentImplementation.Path}
+                    key={component.ID}
+                  />
+                ))}
+              </Column>
+            ))}
+          </Row>
+        ))}
+        <Link to="/app">Go to the admin page</Link>
+      </Layout>
+    </ThemeProvider>
+  )
 
 export const pageQuery = graphql`
   query LandingPageQuery($id: ID!) {
@@ -73,6 +73,13 @@ export const pageQuery = graphql`
                       PropName
                     }
                     StringValue
+                    IntValue
+                    FloatValue
+                    BooleanValue
+                    DateTimeValue{
+                      seconds
+                    }
+                    DataPath
                   }
                   ComponentImplementation {
                     Path

@@ -9,6 +9,7 @@ import Form from "@openmob/bluebird/src/components/forms/Form"
 import Widget from "@openmob/bluebird/src/components/forms/Widget"
 import Label from "@openmob/bluebird/src/components/forms/Label"
 import Input from "@openmob/bluebird/src/components/forms/Input"
+import TextArea from "@openmob/bluebird/src/components/forms/TextArea"
 import Button from "@openmob/bluebird/src/components/buttons/Button"
 
 const CREATE_{{toUpper .Table.Name}} = gql`
@@ -42,14 +43,19 @@ const Create{{.Table.Name}} = ({ id }) => {
               <Form>
                 <h1>Create {{.Table.Name}}</h1>
 {{range $i, $value := .Table.Columns}}{{if gt $i 2}}  <Widget>
-                  <Label>{{.Name}}</Label>
+                  <Label>{{.Name}}</Label>{{if ne .DBType "text"}}
                   <Input
                     value={values.{{.Name}}}
                     type={{if hasPrefix .Type "Time"}}"text"{{end}}{{if hasPrefix .Type "String"}}"text"{{end}}{{if hasPrefix .Type "ID"}}"text"{{end}}{{if hasPrefix .Type "Int"}}"number"{{end}}{{if hasPrefix .Type "Float"}}"number"{{end}}{{if hasPrefix .Type "Bool"}}"checkbox"{{end}}
                     name="{{.Name}}"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                  />
+                  />{{end}}{{if eq .DBType "text"}}
+                  <TextArea
+                    value={values.{{.Name}}}
+                    name="{{.Name}}"
+                    onChange={handleChange}
+                    onBlur={handleBlur}/>{{end}}
                 </Widget>
 {{end}}{{end}}
                 <Button
