@@ -1,4 +1,5 @@
 const path = require(`path`)
+const { GraphQLString } = require("gatsby/graphql")
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -21,7 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Create blog post pages.
     (result.data.wren.listCause || []).forEach(cause => {
-        console.log(cause.Slug);
+      console.log(cause.Slug);
       createPage({
         // Path for this page — required
         path: `${cause.Slug}`,
@@ -32,4 +33,25 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
   })
+}
+exports.setFieldsOnGraphQLNodeType = ({ type }) => {
+  if (type.name === `WREN`) {
+    return {
+      newField: {
+        type: GraphQLString,
+        args: {
+          myArgument: {
+            type: GraphQLString,
+          }
+        },
+        resolve: (source, fieldArgs) => {
+          return `Id of this node is ${source.id}.
+                  Field was called with argument: ${fieldArgs.myArgument}`
+        }
+      }
+    }
+  }
+
+  // by default return empty object
+  return {}
 }

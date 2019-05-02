@@ -19,28 +19,29 @@ const IndexPage = ({
     wren: { getCause: cause = {} },
   },
 }) => (
-    <ThemeProvider theme={skyward}>
-      <Layout title={cause.Title} id={cause.ID} summary={cause.Summary}>
-        <SEO title={cause.Title} keywords={[`gatsby`, `application`, `react`]} />
-        {(cause.HomePage.Layout.LayoutRows || []).sort(sortByWeight).map(row => (
-          <Row key={row.ID} container={row.Container}>
-            {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
-              <Column key={column.ID} size={column.Width}>
-                {(column.Components || []).sort(sortByWeight).map(component => (
-                  <Node
-                    fields={component.Fields}
-                    path={component.ComponentImplementation.Path}
-                    key={component.ID}
-                  />
-                ))}
-              </Column>
-            ))}
-          </Row>
-        ))}
-        <Link to="/app">Go to the admin page</Link>
-      </Layout>
-    </ThemeProvider>
-  )
+  <ThemeProvider theme={skyward}>
+    <Layout title={cause.Title} id={cause.ID} summary={cause.Summary}>
+      <SEO title={cause.Title} keywords={[`gatsby`, `application`, `react`]} />
+      {(cause.HomePage.Layout.LayoutRows || []).sort(sortByWeight).map(row => (
+        <Row key={row.ID} container={row.Container}>
+          {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
+            <Column key={column.ID} size={column.Width}>
+              {(column.Components || []).sort(sortByWeight).map(component => (
+                <Node
+                  id={cause.ID}
+                  fields={component.Fields}
+                  path={component.ComponentImplementation.Path}
+                  key={component.ID}
+                />
+              ))}
+            </Column>
+          ))}
+        </Row>
+      ))}
+      <Link to="/app">Go to the admin page</Link>
+    </Layout>
+  </ThemeProvider>
+)
 
 export const pageQuery = graphql`
   query LandingPageQuery($id: ID!) {
@@ -76,7 +77,7 @@ export const pageQuery = graphql`
                     IntValue
                     FloatValue
                     BooleanValue
-                    DateTimeValue{
+                    DateTimeValue {
                       seconds
                     }
                     DataPath
