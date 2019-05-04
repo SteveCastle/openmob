@@ -1,6 +1,6 @@
-const generatedResolvers = require('./generated/resolvers.js');
 const { mergeResolvers } = require('merge-graphql-schemas');
-
+const generatedResolvers = require('./generated/resolvers.js');
+const modules = require('./modules')
 
 // Resolvers object is passed grpc client to use for data fetching.
 const resolvers = client => ({
@@ -9,21 +9,8 @@ const resolvers = client => ({
         // Fetch the Membership entries from the CMS and return as json on DataPathValue field.
         DataPathValue: async ({ DataPath }, _, ctx) => {
             if (DataPath && ctx.cause) {
-                const query = DataPath.split('.')
-                const memberData = await client[query[0]]()
-                    .sendMessage({ api: 'v1', filters: [{ Cause: ctx.cause }], limit: 10 })
-                const memberItems = memberData.items
-                const fetchItems = async item => {
-                    const result = await client[`Get${query[1]}`]()
-                        .sendMessage({ api: 'v1', ID: item[query[1]] }); 
-                    return result.item
-                };
-                const getData = async () => {
-                    return await Promise.all(memberItems.map(item => fetchItems(item)))
-                }
-                const data = await getData()
-                console.log(data)
-                return JSON.stringify(data)
+                const data = await modules[DataPath].getFieldValue(client, ctx.cause)
+                return data
             }
             return null
         },
