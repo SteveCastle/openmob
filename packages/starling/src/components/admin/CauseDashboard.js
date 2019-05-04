@@ -8,8 +8,8 @@ import ContentPanel from '@openmob/bluebird/src/components/layout/ContentPanel'
 import SideBarHeader from '@openmob/bluebird/src/components/sidebar/SideBarHeader'
 import Menu from '@openmob/bluebird/src/components/menu/Menu'
 import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem'
-import MyCauses from './MyCauses'
-const Home = () => (
+
+const CauseDashboard = () => (
   <App>
     <SideBar>
       <SideBarHeader>
@@ -17,24 +17,41 @@ const Home = () => (
       </SideBarHeader>
       <Menu vertical>
         <MenuItem>
-          <Link to="/app/new">Create Cause</Link>
+          <Link to="/app/pages">Pages</Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/app/plugins">Plugins</Link>
+          <Link to="/app/contacts">Contacts</Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/app/settings">Settings</Link>
+          <Link to="/app/contacts">Volunteer Coordination</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/shop">Fundraising</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/events">Events</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/elections">Elections</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/boycotts">BoyCotts</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/map">Map</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/admin">CRUD</Link>
         </MenuItem>
       </Menu>
     </SideBar>
     <ContentPanel>
-      <MyCauses />
     </ContentPanel>
   </App>
 )
 
-Home.propTypes = {
+CauseDashboard.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Home
+export default CauseDashboard

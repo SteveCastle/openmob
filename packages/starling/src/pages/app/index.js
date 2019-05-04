@@ -4,7 +4,7 @@ import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo-hooks'
 import Admin from '../../components/admin/Admin'
 import Home from '../../components/admin/Home'
-
+import CauseDashboard from '../../components/admin/CauseDashboard'
 import ThemeProvider from '@openmob/bluebird/src/ThemeProvider'
 import skyward from '@openmob/bluebird/src/themes/skyward'
 import './reset.css'
@@ -18,7 +18,8 @@ function App() {
     <ThemeProvider theme={skyward}>
       <ApolloProvider client={client}>
         <Router>
-          <Home path="app" />
+          <Home path="app/*" />
+          <CauseDashboard path="app/cause/:cause/*" />
           <Admin path="app/admin/*" />
         </Router>
       </ApolloProvider>
