@@ -19,7 +19,7 @@ function App() {
       <ApolloProvider client={client}>
         <Router>
           <Home path="app/*" />
-          <CauseDashboard path="app/cause/:cause/*" />
+          <CauseDashboard path="app/cause/:causeID/*" />
           <Admin path="app/admin/*" />
         </Router>
       </ApolloProvider>

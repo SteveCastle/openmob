@@ -13,7 +13,7 @@ const Home = () => (
   <App>
     <SideBar>
       <SideBarHeader>
-        <Link to="/">Open Mob</Link>
+        <Link to="/app">Open Mob</Link>
       </SideBarHeader>
       <Menu vertical>
         <MenuItem>
@@ -24,6 +24,9 @@ const Home = () => (
         </MenuItem>
         <MenuItem>
           <Link to="/app/settings">Settings</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/app/admin">CRUD</Link>
         </MenuItem>
       </Menu>
     </SideBar>
