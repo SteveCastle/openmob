@@ -13,8 +13,11 @@ const resolvers = client => ({
                 const memberData = await client[query[0]]()
                     .sendMessage({ api: 'v1', filters: [{ Cause: ctx.cause }], limit: 10 })
                 const memberItems = memberData.items
-                const fetchItems = async item => await client[`Get${query[1]}`]()
-                    .sendMessage({ api: 'v1', ID: item[query[1]] });
+                const fetchItems = async item => {
+                    const result = await client[`Get${query[1]}`]()
+                        .sendMessage({ api: 'v1', ID: item[query[1]] }); 
+                    return result.item
+                };
                 const getData = async () => {
                     return await Promise.all(memberItems.map(item => fetchItems(item)))
                 }
