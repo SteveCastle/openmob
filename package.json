@@ -5,6 +5,5 @@
     "lerna": "^3.4.0"
   },
   "dependencies": {
-    "@reach/router": "^1.2.1"
   }
 }
