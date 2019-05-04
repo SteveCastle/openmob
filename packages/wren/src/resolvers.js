@@ -15,10 +15,12 @@ const resolvers = client => ({
                 const memberItems = memberData.items
                 const fetchItems = async item => await client[`Get${query[1]}`]()
                     .sendMessage({ api: 'v1', ID: item[query[1]] });
-                const data = async () => {
+                const getData = async () => {
                     return await Promise.all(memberItems.map(item => fetchItems(item)))
                 }
-                return JSON.stringify(data.item)
+                const data = await getData()
+                console.log(data)
+                return JSON.stringify(data)
             }
             return null
         },
