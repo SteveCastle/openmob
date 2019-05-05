@@ -49,9 +49,6 @@ codegen:
 protogen:
 	./scripts/protogen.sh
 generate: codegen protogen
-
-build-client:
-	cd src/cmd/sample-data-client; go build .
 build-server:
 	cd src/cmd/grpc-server; go build .
 build: build-server

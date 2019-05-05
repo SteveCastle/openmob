@@ -1,3 +1,7 @@
+bootstrap:
+	(cd packages/shrike; make bootstrap)
+	(npm install -g lerna)
+	(lerna bootstrap)
 rebuild:
 	(cd packages/shrike; make schema-update)
 	(cd packages/wren; make codegen)
