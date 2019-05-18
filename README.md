@@ -6,24 +6,20 @@ coordination.
 
 ## Project Goals
 
-1. A Web platform for non profits and socially beneficial organizations.
-2. Make best practices for e-commerce, fund raising, lead generation, and
-   Contact Management available for free.
-3. Provide all the features required for an organization to raise funds,
-   increase participation, and raise awareness out of the box.
-4. Provide a means to coordinate volunteers for sales and order fulfillment.
-5. Make testing and analytics a first class citizen.
-6. Do not require users to lock in to any third-party service.
+1. OpenMob is a Web Framework designed specifically for non profits, political organizations, and service based organizations.
+2. Fund raising, election management, awareness raising, and volunteer coordination are the core goals of an OpenMob site and every feature is designed to meet those goals as easily and expertly as possible.
+3. OpenMob avoids vendor lock in and is easy to deploy on any cloud, datacenter, or self owned server. (See Minimum Specs)
+4. Make testing and analytics a first class citizen to enable powerful experimentation and optimization.
+5. Openmob is easy to use out of the box, but also fully extensible meaning you can add on, or make changes to meet your needs.
 
 ## Technical Goals
 
-1. Statically build landing pages for fastest possible response times,
-   accessability in low bandwidth regions, and low hosting costs.
-2. Plugin based hosting, phone contact, and payment fullfilment to avoid
-   corporate lock in.
-3. Simple lock in free self deployment.
-4. One command CLI deploy and application manager.
-5. Provide best practice accessibility out of the box.
+1. Public pages are statically generated which makes them cheap and fast to host. This provides world class speed even on low cost devices and networks around the world, reduces costs, and increases fund raising conversion. 
+2. All features of Openmob are plugin based so you can replace components at will.
+3. Openmob is a containerized application to allow for the largest possible freedom in where you choose to run your OpenMob deployment.
+4. OpenMob comes with a command line tool to help you manage and deploy your installation.
+5. OpenMob meets all web accessability guidelines to reach the largest possible audience.
+6. OpenMob, exposes an API for your application so you can build on the core platform any way you want.
 
 ## Project Structure
 
