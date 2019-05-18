@@ -1,5 +1,7 @@
-# OpenMob
 *This project is in an early development stage and should only be installed by developers. Visit https://grassroots.dev or follow @grassrootsdev on twitter for updates on the progress and upcoming release date.*
+
+# OpenMob
+
 OpenMob is a free open source web framework for the modern civil society
 organization. Designed specifically with the needs of non profits, political organizations, and activist organizations in mind it includes easy to use out of the box features for fund raising, campaigning, volunteer coordination, and political messaging.
 ## Project Goals
