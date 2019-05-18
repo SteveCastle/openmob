@@ -31,11 +31,17 @@ You will need the following dependencies to build and run the project.
 1. GO
 2. Docker
 3. Postgres
+
 ### Installation
 1. Clone the repository `git clone https://github.com/SteveCastle/openmob.git`
 2. Enter the project root directory `cd openmob`
 3. Run `make bootstrap` to install all of the go dependencies and build the project.
 4. See the make file for additional make commands you can use.
+
+### Run Dev Environment
+All commands are from your OpenMob project root.
+1. `make server`
+2. `make client`
 
 ## Project Structure
 
