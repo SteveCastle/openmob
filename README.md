@@ -4,11 +4,11 @@ OpenMob is a free open source web framework for the modern civil society
 organization. Designed spefically with the needs of non profits, political organizations, and activist organizations in mind it includes easy to use out of the box features for fund raising, campaigning, volunteer coordination, and political messaging.
 ## Project Goals
 
-1. Meet the needs of organizations to provide world class internet marketing tools to their employees and volunteers.
-2. Lower organizational costs with an easy to use and low maintence system.
+1. Meet the needs of organizations to provide world class information technology tools to their employees and volunteers.
+2. Lower organizational costs with an easy to use and low maintenance system.
 3. Avoid vendor lockin to provide maximum freedom to organizations wishing to use the software
 4. Enable powerful experimentation and optimization so organizations can move fast and make measured improvements in their results.
-5. Provide a fully extensible system meaning organizations can add on, or make changes to meet their unique needs.
+5. Provide a fully extensible system allowing organizations to add on, or make changes to meet their unique needs.
 
 ## Technical Goals
 
