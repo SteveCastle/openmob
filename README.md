@@ -1,9 +1,7 @@
 # OpenMob
 
-A free and open source control center and platform for the modern civil society
-organization. Empowers best practice fund raising, campaigning, and resource
-coordination.
-
+OpenMob is a free open source web framework for the modern civil society
+organization. Designed spefically with the needs of non profits, political organizations, and activist organizations in mind it includes easy to use out of the box features for fund raising, campaigning, volunteer coordination, and political messaging.
 ## Project Goals
 
 1. OpenMob is a Web Framework designed specifically for non profits, political organizations, and service based organizations.
