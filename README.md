@@ -19,6 +19,9 @@ organization. Designed spefically with the needs of non profits, political organ
 5. Meet all web accessability guidelines to reach the largest possible audience.
 6. Expose an API for your application so you can build on the core platform any way you want.
 
+## What does the name OpenMob mean?
+In animal behavior, [mobbing](https://en.wikipedia.org/wiki/Mobbing_(animal_behavior)) is a form of defense used by smaller prey animals(especially birds) against larger predators. The smaller animals band together and harras the predator until it decides the meal is no longer worth the hassle. Since a fundamental goal of this project is to democratize cutting edge political technology by making it more freely available to anyone with the passion and energy to pursue a civic cause or goal, we thought it was an apt metaphor.
+
 ## Project Structure
 
                         ┌────────────────────┐
