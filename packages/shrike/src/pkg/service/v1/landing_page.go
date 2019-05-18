@@ -4,7 +4,7 @@ import (
 	"context"
 
 	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
-	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models/v1"
+	"github.com/SteveCastle/openmob/packages/shrike/src/pkg/models"
 )
 
 // Create new LandingPage

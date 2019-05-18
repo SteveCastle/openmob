@@ -54,6 +54,8 @@ build-server:
 build: build-server
 start: build-server
 	cd src/cmd/grpc-server; ./grpc-server
+test:
+	go test ./...
 load-data: build-client
 	cd src/cmd/sample-data-client; ./sample-data-client -server=localhost:9090
 bootstrap: startdb install init generate build

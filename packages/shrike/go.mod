@@ -1,6 +1,7 @@
 module github.com/SteveCastle/openmob/packages/shrike
 
 require (
+	github.com/DATA-DOG/go-sqlmock v1.3.3
 	github.com/SteveCastle/structs v1.1.0
 	github.com/cridenour/go-postgis v1.0.0
 	github.com/ghodss/yaml v1.0.0 // indirect

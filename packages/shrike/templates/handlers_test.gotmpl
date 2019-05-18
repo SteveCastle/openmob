@@ -1,0 +1,180 @@
+package v1
+
+import (
+	"context"
+	"database/sql"
+	"reflect"
+	"testing"
+
+	v1 "github.com/SteveCastle/openmob/packages/shrike/src/pkg/api/v1"
+)
+
+func Test_shrikeServiceServer_Create{{.Table.Name}}(t *testing.T) {
+	type fields struct {
+		db *sql.DB
+	}
+	type args struct {
+		ctx context.Context
+		req *v1.Create{{.Table.Name}}Request
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *v1.Create{{.Table.Name}}Response
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &shrikeServiceServer{
+				db: tt.fields.db,
+			}
+			got, err := s.Create{{.Table.Name}}(tt.args.ctx, tt.args.req)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("shrikeServiceServer.Create{{.Table.Name}}() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("shrikeServiceServer.Create{{.Table.Name}}() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_shrikeServiceServer_Get{{.Table.Name}}(t *testing.T) {
+	type fields struct {
+		db *sql.DB
+	}
+	type args struct {
+		ctx context.Context
+		req *v1.Get{{.Table.Name}}Request
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *v1.Get{{.Table.Name}}Response
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &shrikeServiceServer{
+				db: tt.fields.db,
+			}
+			got, err := s.Get{{.Table.Name}}(tt.args.ctx, tt.args.req)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("shrikeServiceServer.Get{{.Table.Name}}() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("shrikeServiceServer.Get{{.Table.Name}}() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_shrikeServiceServer_List{{.Table.Name}}(t *testing.T) {
+	type fields struct {
+		db *sql.DB
+	}
+	type args struct {
+		ctx context.Context
+		req *v1.List{{.Table.Name}}Request
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *v1.List{{.Table.Name}}Response
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &shrikeServiceServer{
+				db: tt.fields.db,
+			}
+			got, err := s.List{{.Table.Name}}(tt.args.ctx, tt.args.req)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("shrikeServiceServer.List{{.Table.Name}}() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("shrikeServiceServer.List{{.Table.Name}}() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_shrikeServiceServer_Update{{.Table.Name}}(t *testing.T) {
+	type fields struct {
+		db *sql.DB
+	}
+	type args struct {
+		ctx context.Context
+		req *v1.Update{{.Table.Name}}Request
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *v1.Update{{.Table.Name}}Response
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &shrikeServiceServer{
+				db: tt.fields.db,
+			}
+			got, err := s.Update{{.Table.Name}}(tt.args.ctx, tt.args.req)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("shrikeServiceServer.Update{{.Table.Name}}() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("shrikeServiceServer.Update{{.Table.Name}}() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_shrikeServiceServer_Delete{{.Table.Name}}(t *testing.T) {
+	type fields struct {
+		db *sql.DB
+	}
+	type args struct {
+		ctx context.Context
+		req *v1.Delete{{.Table.Name}}Request
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    *v1.Delete{{.Table.Name}}Response
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &shrikeServiceServer{
+				db: tt.fields.db,
+			}
+			got, err := s.Delete{{.Table.Name}}(tt.args.ctx, tt.args.req)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("shrikeServiceServer.Delete{{.Table.Name}}() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("shrikeServiceServer.Delete{{.Table.Name}}() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

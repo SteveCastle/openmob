@@ -14,6 +14,8 @@ server:
 	(cd packages/wren; make start)
 mock:
 	(cd packages/shrike; make load-data)
+test:
+	(cd packages/shrike; make test)
 client:
 	(cd packages/starling; make hard-start)
 
