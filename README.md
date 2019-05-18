@@ -4,20 +4,20 @@ OpenMob is a free open source web framework for the modern civil society
 organization. Designed spefically with the needs of non profits, political organizations, and activist organizations in mind it includes easy to use out of the box features for fund raising, campaigning, volunteer coordination, and political messaging.
 ## Project Goals
 
-1. OpenMob is a Web Framework designed specifically for non profits, political organizations, and service based organizations.
-2. Fund raising, election management, awareness raising, and volunteer coordination are the core goals of an OpenMob site and every feature is designed to meet those goals as easily and expertly as possible.
-3. OpenMob avoids vendor lock in and is easy to deploy on any cloud, datacenter, or self owned server. (See Minimum Specs)
-4. Make testing and analytics a first class citizen to enable powerful experimentation and optimization.
-5. Openmob is easy to use out of the box, but also fully extensible meaning you can add on, or make changes to meet your needs.
+1. Meet the needs of organizations to provide world class internet marketing tools to their employees and volunteers.
+2. Lower organizational costs with an easy to use and low maintence system.
+3. Avoid vendor lockin to provide maximum freedom to organizations wishing to use the software
+4. Enable powerful experimentation and optimization so organizations can move fast and make measured improvements in their results.
+5. Provide a fully extensible system meaning organizations can add on, or make changes to meet their unique needs.
 
 ## Technical Goals
 
-1. Public pages are statically generated which makes them cheap and fast to host. This provides world class speed even on low cost devices and networks around the world, reduces costs, and increases fund raising conversion. 
+1. Statically generate landing pages which makes them cheap and fast to host. This provides world class speed even on low cost devices and networks around the world, reduces costs, and increases fund raising conversion. 
 2. All features of Openmob are plugin based so you can replace components at will.
-3. Openmob is a containerized application to allow for the largest possible freedom in where you choose to run your OpenMob deployment.
-4. OpenMob comes with a command line tool to help you manage and deploy your installation.
-5. OpenMob meets all web accessability guidelines to reach the largest possible audience.
-6. OpenMob, exposes an API for your application so you can build on the core platform any way you want.
+3. Openmob is a containerized application to allow for the largest possible freedom in where you choose to run your OpenMob deployment while still allowing you to scale as your usage grows.
+4. A command line tool to help you manage, deploy, and backup your installation.
+5. Meet all web accessability guidelines to reach the largest possible audience.
+6. Expose an API for your application so you can build on the core platform any way you want.
 
 ## Project Structure
 
