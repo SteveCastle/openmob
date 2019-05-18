@@ -4,6 +4,10 @@
 
 OpenMob is a free open source web framework for the modern civil society
 organization. Designed specifically with the needs of non profits, political organizations, and activist organizations in mind it includes easy to use out of the box features for fund raising, campaigning, volunteer coordination, and political messaging.
+
+## What does the name OpenMob mean?
+In animal behavior, [mobbing](https://en.wikipedia.org/wiki/Mobbing_(animal_behavior)) is a form of defense used by smaller prey animals(especially birds) against larger predators. The smaller animals band together and harass the predator until it decides the meal is no longer worth the hassle. Since a fundamental goal of this project is to democratize cutting edge political technology by making it more freely available to anyone with the passion and energy to pursue a civic cause or goal, we thought it was an apt metaphor.
+
 ## Project Goals
 
 1. Meet the needs of organizations to provide world class information technology tools to their employees and volunteers.
@@ -32,9 +36,6 @@ You will need the following dependencies to build and run the project.
 2. Enter the project root directory `cd openmob`
 3. Run `make bootstrap` to install all of the go dependencies and build the project.
 4. See the make file for additional make commands you can use.
-
-## What does the name OpenMob mean?
-In animal behavior, [mobbing](https://en.wikipedia.org/wiki/Mobbing_(animal_behavior)) is a form of defense used by smaller prey animals(especially birds) against larger predators. The smaller animals band together and harass the predator until it decides the meal is no longer worth the hassle. Since a fundamental goal of this project is to democratize cutting edge political technology by making it more freely available to anyone with the passion and energy to pursue a civic cause or goal, we thought it was an apt metaphor.
 
 ## Project Structure
 
