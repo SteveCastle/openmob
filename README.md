@@ -73,8 +73,7 @@ react component library and design system are also found in this repo.
 
 ## Codegen
 
-Openmob makes heavy use of codegen to generate consistent typing from the database, through the server, all the
-way through to the javascript client.
+Openmob makes heavy use of code generation to generate code for common tasks by introspecting the database and outputting database CRUD code, and API handlers. This helps keep the codebase simple, easy to understand, fast to build on, and reliable.
 
                                                                       ┌────────────────────────┐
                                                                       │                        │
