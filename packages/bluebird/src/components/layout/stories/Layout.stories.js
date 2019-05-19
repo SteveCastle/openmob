@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Layout from '../Layout';
 
-storiesOf('Layout System/Layout', module)
+storiesOf('Layout/Layout', module)
   .addParameters({
     info: {
       inline: true

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Navbar from '../Navbar';
 
-storiesOf('Navigation/Navbar', module)
+storiesOf('Layout/Navbar', module)
   .addParameters({
     info: {
       inline: true

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Input from '../Input';
 
-storiesOf('Forms/Input', module)
+storiesOf('Layout/Input', module)
   .addParameters({
     info: {
       inline: true

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import MenuBody from '../MenuBody';
 
-storiesOf('Navigation/MenuBody', module)
+storiesOf('Layout/MenuBody', module)
   .addParameters({
     info: {
       inline: true

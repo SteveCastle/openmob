@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SimpleVolunteering from '../SimpleVolunteering';
 
-storiesOf('OpenMob Elements/SimpleVolunteering', module)
+storiesOf('Layout/SimpleVolunteering', module)
   .addParameters({
     info: {
       inline: true

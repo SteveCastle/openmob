@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import GridItem from '../GridItem';
 
-storiesOf('Building Blocks/GridItem', module)
+storiesOf('Layout/GridItem', module)
   .addParameters({
     info: {
       inline: true

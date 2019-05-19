@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ImageGrid from '../ImageGrid';
 
-storiesOf('Building Blocks/ImageGrid', module)
+storiesOf('Layout/ImageGrid', module)
   .addParameters({
     info: {
       inline: true
