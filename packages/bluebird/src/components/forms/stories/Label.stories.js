@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Label from '../Label';
 
-storiesOf('Layout/Label', module)
+storiesOf('Forms/Label', module)
   .addParameters({
     info: {
       inline: true

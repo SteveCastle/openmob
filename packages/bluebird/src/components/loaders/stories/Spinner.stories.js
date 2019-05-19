@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Spinner from '../Spinner';
 
-storiesOf('Layout/Spinner', module)
+storiesOf('Data Fetching/Spinner', module)
   .addParameters({
     info: {
       inline: true

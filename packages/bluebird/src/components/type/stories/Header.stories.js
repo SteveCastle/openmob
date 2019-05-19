@@ -1,15 +1,17 @@
 import React from 'react';
-
+import faker from 'faker';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import Header from '../Header';
 
-storiesOf('Layout/Header', module)
+storiesOf('Typography/Header', module)
   .addParameters({
     info: {
       inline: true
     }
   })
   .add('Default Header', () => (
-      <Header onClick={action('clicked')} />
+      <Header>{faker.name.findName()}</Header>
   ))
+  .add('Dark Header', () => (
+    <Header dark>{faker.name.findName()}</Header>
+))

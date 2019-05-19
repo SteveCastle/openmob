@@ -4,12 +4,12 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Card from '../Card';
 
-storiesOf('Layout/Card', module)
+storiesOf('Building Blocks/Card', module)
   .addParameters({
     info: {
       inline: true
     }
   })
-  .add('Default Card', () => (
-      <Card onClick={action('clicked')} />
+  .add('Basic Cards', () => (
+      <Card onClick={action('clicked')} label="Primary Card" />
   ))

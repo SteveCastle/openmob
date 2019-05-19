@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SimpleBoycott from '../SimpleBoycott';
 
-storiesOf('Layout/SimpleBoycott', module)
+storiesOf('OpenMob Elements/SimpleBoycott', module)
   .addParameters({
     info: {
       inline: true

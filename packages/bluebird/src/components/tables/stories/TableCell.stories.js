@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import TableCell from '../TableCell';
 
-storiesOf('Layout/TableCell', module)
+storiesOf('Building Blocks/TableCell', module)
   .addParameters({
     info: {
       inline: true

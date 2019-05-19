@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SimpleDonationDrive from '../SimpleDonationDrive';
 
-storiesOf('Layout/SimpleDonationDrive', module)
+storiesOf('OpenMob Elements/SimpleDonationDrive', module)
   .addParameters({
     info: {
       inline: true

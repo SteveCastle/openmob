@@ -7,7 +7,7 @@
     "lodash": "^4.17.11",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "3.0.1",
+    "react-scripts": "2.1.5",
     "react-spring": "^8.0.11",
     "react-with-gesture": "^4.0.5",
     "rebass": "^3.0.1",
@@ -41,13 +41,10 @@
     "@storybook/addon-links": "^5.0.0",
     "@storybook/addons": "^5.0.0",
     "@storybook/react": "^5.0.0",
-    "babel-loader": "^8.0.6",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.13.1",
+    "babel-loader": "^8.0.5",
     "faker": "^4.1.0",
     "prettier": "^1.17.1",
     "prettier-eslint": "^8.8.2",
-    "react-test-renderer": "^16.8.6",
     "recursive-readdir": "^2.2.2",
     "storybook-addon-styled-component-theme": "^1.1.1"
   }

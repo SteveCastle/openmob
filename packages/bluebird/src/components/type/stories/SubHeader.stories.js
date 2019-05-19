@@ -1,15 +1,15 @@
 import React from 'react';
+import faker from 'faker';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import SubHeader from '../SubHeader';
 
-storiesOf('Layout/SubHeader', module)
+storiesOf('Typography/SubHeader', module)
   .addParameters({
     info: {
       inline: true
     }
   })
   .add('Default SubHeader', () => (
-      <SubHeader onClick={action('clicked')} />
+    <SubHeader>{faker.company.catchPhrase()}</SubHeader>
   ))

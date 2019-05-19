@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SimpleShop from '../SimpleShop';
 
-storiesOf('Layout/SimpleShop', module)
+storiesOf('OpenMob Elements/SimpleShop', module)
   .addParameters({
     info: {
       inline: true

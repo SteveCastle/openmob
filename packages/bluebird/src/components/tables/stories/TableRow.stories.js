@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import TableRow from '../TableRow';
 
-storiesOf('Layout/TableRow', module)
+storiesOf('Building Blocks/TableRow', module)
   .addParameters({
     info: {
       inline: true

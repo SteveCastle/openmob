@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import TextArea from '../TextArea';
 
-storiesOf('Layout/TextArea', module)
+storiesOf('Forms/TextArea', module)
   .addParameters({
     info: {
       inline: true

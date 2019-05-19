@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import DataTable from '../DataTable';
 
-storiesOf('Layout/DataTable', module)
+storiesOf('Building Blocks/DataTable', module)
   .addParameters({
     info: {
       inline: true

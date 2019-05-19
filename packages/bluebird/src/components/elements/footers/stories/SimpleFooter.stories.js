@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SimpleFooter from '../SimpleFooter';
 
-storiesOf('Layout/SimpleFooter', module)
+storiesOf('OpenMob Elements/SimpleFooter', module)
   .addParameters({
     info: {
       inline: true

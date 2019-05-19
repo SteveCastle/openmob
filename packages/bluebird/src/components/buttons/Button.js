@@ -75,8 +75,10 @@ Button.propTypes = {
     PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     PropTypes.string
   ]),
-  variant: PropTypes.oneOf(['primary', 'default', 'warning', 'outline']),
-  state: PropTypes.oneOf(['ready', 'loading', 'success', 'error', 'disabled']),
+  variant: PropTypes.oneOf(['primary', 'default', 'warning', 'outline'])
+    .isRequired,
+  state: PropTypes.oneOf(['ready', 'loading', 'success', 'error', 'disabled'])
+    .isRequired,
   block: PropTypes.bool,
   dark: PropTypes.bool
 };

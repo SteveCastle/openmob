@@ -1,15 +1,15 @@
 import React from 'react';
+import faker from 'faker';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import Paragraph from '../Paragraph';
 
-storiesOf('Layout/Paragraph', module)
+storiesOf('Typography/Paragraph', module)
   .addParameters({
     info: {
       inline: true
     }
   })
   .add('Default Paragraph', () => (
-      <Paragraph onClick={action('clicked')} />
+    <Paragraph>{faker.lorem.paragraph()}</Paragraph>
   ))

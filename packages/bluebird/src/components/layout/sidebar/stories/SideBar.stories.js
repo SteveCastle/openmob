@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SideBar from '../SideBar';
 
-storiesOf('Layout/SideBar', module)
+storiesOf('Layout System/SideBar', module)
   .addParameters({
     info: {
       inline: true
