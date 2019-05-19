@@ -12,7 +12,7 @@ import {
   flexWrap
 } from 'styled-system';
 
-const StyledGrid = styled.div`
+const StyledGrid = styled.ul`
   ${borders}
   ${borderRadius}
   ${space}

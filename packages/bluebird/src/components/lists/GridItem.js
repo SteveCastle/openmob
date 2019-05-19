@@ -12,7 +12,7 @@ import {
   borderRadius
 } from 'styled-system';
 
-const StyledItem = styled.div`
+const StyledItem = styled.li`
   ${borders}
   ${borderRadius}
   ${space}

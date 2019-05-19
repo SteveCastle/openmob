@@ -13,7 +13,11 @@ import Row from '../components/layout/Row';
 import Column from '../components/layout/Column';
 import Container from '../components/layout/Container';
 import Form from '../components/forms/Form';
-import SimpleHero from '../components/heroes/SimpleHero';
+import Widget from '../components/forms/Widget';
+import Label from '../components/forms/Label';
+import TextArea from '../components/forms/TextArea';
+
+import SimpleHero from '../components/elements/heroes/SimpleHero';
 import Masonry from '../components/galleries/Masonry';
 import SubHeader from '../components/type/SubHeader';
 
@@ -97,63 +101,33 @@ storiesOf('Layout', module)
     </Layout>
   ));
 
-storiesOf('Buttons', module)
-  .addParameters({
-    info: {
-      inline: true
-    }
-  })
-  .add('Basic Buttons', () => (
-    <>
-      <Button onClick={action('clicked')} label="Primary Button" />
-      <Button
-        onClick={action('clicked')}
-        label="Outline Button"
-        variant="outline"
-      />
-      <Button onClick={action('clicked')} label="Dark Button" variant="dark" />
-      <Button
-        onClick={action('clicked')}
-        label="Warning Button"
-        variant="dark"
-      />
-    </>
-  ))
-  .add('Button States', () => (
-    <>
-      <Button onClick={action('clicked')} label="Ready" />
-      <Button onClick={action('clicked')} label="Loading" />
-      <Button onClick={action('clicked')} label="Success" />
-      <Button onClick={action('clicked')} label="Disabled" />
-    </>
-  ))
-  .add('With confirmation modal', () => (
-    <Button onClick={action('clicked')} label="Hello Button" />
-  ))
-  .add('Icon Buttons', () => (
-    <Button onClick={action('clicked')} label="Hello Button" />
-  ))
-  .add('Block mode', () => (
-    <Button onClick={action('clicked')} label="Hello Button" block />
-  ));
-
 storiesOf('Forms', module)
   .addParameters({
     info: {
       inline: true
     }
   })
-  .add('Form', () => <Form onChange={action('change')} />)
+  .add('Form', () => (
+    <Form onChange={action('change')} >
+      <Widget>
+        <Label>Form Item</Label>
+        <Input onChange={action('change')} dark />
+      </Widget>
+      <Widget>
+        <Label>Form Item</Label>
+        <TextArea onChange={action('change')} dark />
+      </Widget>
+    </Form>))
   .add('Input', () => <Input onChange={action('change')} block />)
   .add('DropDown', () => <Input onChange={action('change')} dark />);
 
-  storiesOf('Heroes', module)
+storiesOf('Heroes', module)
   .addParameters({
     info: {
       inline: true
     }
   })
-  .add('Simple Hero', () => <SimpleHero onChange={action('change')} title={{StringValue: "Welcome"}}/>)
+  .add('Simple Hero', () => <SimpleHero onChange={action('change')} title="Welcome" />)
 
 storiesOf('Photo Galleries', module)
   .addParameters({

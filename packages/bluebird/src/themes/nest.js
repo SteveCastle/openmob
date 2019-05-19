@@ -180,7 +180,7 @@ const theme = {
     sansSerif:
       '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
   },
-  borders: [
+    borders: [
     0,
     '1px solid',
     '2px solid',
