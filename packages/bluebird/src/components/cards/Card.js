@@ -34,6 +34,7 @@ const StyledCard = styled.div`
   ${display}
   ${alignItems}
   ${justifyContent}
+  min-height: 100px;
 `;
 
 function Card({ children }) {

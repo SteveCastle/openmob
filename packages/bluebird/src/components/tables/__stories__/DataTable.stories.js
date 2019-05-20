@@ -1,8 +1,13 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import DataTable from '../DataTable';
+import {
+  DataTable,
+  TableCell,
+  TableRow,
+  TableHeader,
+  TableHeaderCell,
+} from '../';
 
 storiesOf('Building Blocks/DataTable', module)
   .addParameters({
@@ -10,4 +15,13 @@ storiesOf('Building Blocks/DataTable', module)
       inline: true,
     },
   })
-  .add('Default DataTable', () => <DataTable onClick={action('clicked')} />);
+  .add('Default DataTable', () => (
+    <DataTable>
+      <TableHeader>
+        <TableHeaderCell>Greetings</TableHeaderCell>
+        <TableRow>
+          <TableCell>Hello</TableCell>
+        </TableRow>
+      </TableHeader>
+    </DataTable>
+  ));
