@@ -24,8 +24,8 @@ import SubHeader from '../components/type/SubHeader';
 storiesOf('Typography', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Content Type Stack', () => (
     <Layout>
@@ -40,8 +40,8 @@ storiesOf('Typography', module)
 storiesOf('Layout', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Reponsive Flexbox Grid', () => (
     <Layout tracing={5}>
@@ -104,11 +104,11 @@ storiesOf('Layout', module)
 storiesOf('Forms', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Form', () => (
-    <Form onChange={action('change')} >
+    <Form onChange={action('change')}>
       <Widget>
         <Label>Form Item</Label>
         <Input onChange={action('change')} dark />
@@ -117,23 +117,26 @@ storiesOf('Forms', module)
         <Label>Form Item</Label>
         <TextArea onChange={action('change')} dark />
       </Widget>
-    </Form>))
+    </Form>
+  ))
   .add('Input', () => <Input onChange={action('change')} block />)
   .add('DropDown', () => <Input onChange={action('change')} dark />);
 
 storiesOf('Heroes', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Simple Hero', () => <SimpleHero onChange={action('change')} title="Welcome" />)
+  .add('Simple Hero', () => (
+    <SimpleHero onChange={action('change')} title="Welcome" />
+  ));
 
 storiesOf('Photo Galleries', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Masonry', () => (
     <Masonry
@@ -146,7 +149,7 @@ storiesOf('Photo Galleries', module)
         { src: '/images/5.jpg', aspectRatio: 4570 / 3264 },
         { src: '/images/6.jpg', aspectRatio: 5472 / 3648 },
         { src: '/images/7.jpg', aspectRatio: 122 / 182 },
-        { src: '/images/8.jpg', aspectRatio: 122 / 182 }
+        { src: '/images/8.jpg', aspectRatio: 122 / 182 },
       ]}
     />
   ));

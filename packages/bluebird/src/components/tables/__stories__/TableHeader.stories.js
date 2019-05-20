@@ -7,9 +7,9 @@ import TableHeader from '../TableHeader';
 storiesOf('Building Blocks/TableHeader', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default TableHeader', () => (
-      <TableHeader onClick={action('clicked')} />
-  ))
+    <TableHeader onClick={action('clicked')} />
+  ));

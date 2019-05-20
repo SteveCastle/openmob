@@ -7,9 +7,7 @@ import Widget from '../Widget';
 storiesOf('Forms/Widget', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Widget', () => (
-      <Widget onClick={action('clicked')} />
-  ))
+  .add('Default Widget', () => <Widget onClick={action('clicked')} />);

@@ -9,7 +9,7 @@ import {
   borders,
   position,
   bottom,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledItem = styled.li`
@@ -20,6 +20,7 @@ const StyledItem = styled.li`
   ${position}
   ${fontSize}
   ${color}
+  box-sizing: border-box;
   transition: 2s;
   :hover {
     opacity: .7
@@ -59,7 +60,7 @@ const StyledCaption = styled.p`
 
 function GridItem({ uri, width, height, title, id, slug, caption }) {
   return (
-    <StyledItem m={2} position="relative">
+    <StyledItem p={2} position="relative" width={width}>
       <StyledImage src={uri} width={1} m={0} p={0} />
       <StyledTitle color="gray.0" position="absolute" m={4} bottom="0">
         {title}
@@ -84,8 +85,8 @@ GridItem.propTypes = {
   title: PropTypes.string,
   caption: PropTypes.string,
   id: PropTypes.string,
-  slug: PropTypes.string
+  slug: PropTypes.string,
 };
-GridItem.defaultProps = { size: 12 };
+GridItem.defaultProps = { width: 1 / 4 };
 
 export default GridItem;

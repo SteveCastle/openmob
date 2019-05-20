@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledPetition = styled.section`
@@ -54,7 +54,7 @@ function SimplePetition({ title }) {
 }
 
 SimplePetition.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimplePetition.defaultProps = { title: 'Simple Petition' };
 

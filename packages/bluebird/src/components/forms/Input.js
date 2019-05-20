@@ -7,7 +7,7 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledInput = styled.input`
@@ -30,7 +30,7 @@ function Input({
   value,
   type,
   placeholder,
-  disabled
+  disabled,
 }) {
   return (
     <StyledInput
@@ -64,6 +64,6 @@ Input.propTypes = {
   dark: PropTypes.bool,
   value: PropTypes.string,
   placeholder: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 export default Input;

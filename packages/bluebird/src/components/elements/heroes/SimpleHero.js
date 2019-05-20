@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledHero = styled.section`
@@ -52,7 +52,7 @@ function SimpleHero({ title }) {
 }
 
 SimpleHero.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleHero.defaultProps = {};
 

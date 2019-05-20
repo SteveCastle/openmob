@@ -7,9 +7,7 @@ import TableRow from '../TableRow';
 storiesOf('Building Blocks/TableRow', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default TableRow', () => (
-      <TableRow onClick={action('clicked')} />
-  ))
+  .add('Default TableRow', () => <TableRow onClick={action('clicked')} />);

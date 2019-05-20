@@ -7,9 +7,7 @@ import Label from '../Label';
 storiesOf('Forms/Label', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Label', () => (
-      <Label onClick={action('clicked')} />
-  ))
+  .add('Default Label', () => <Label onClick={action('clicked')} />);

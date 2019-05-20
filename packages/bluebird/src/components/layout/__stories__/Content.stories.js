@@ -7,9 +7,7 @@ import Content from '../Content';
 storiesOf('Layout System/Content', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Content', () => (
-      <Content onClick={action('clicked')} />
-  ))
+  .add('Default Content', () => <Content onClick={action('clicked')} />);

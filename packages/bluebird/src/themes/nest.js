@@ -11,7 +11,7 @@ const colors = {
     '#8ca59d',
     '#738e86',
     '#5b7069',
-    '#35413d'
+    '#35413d',
   ],
   teal: [
     '#e7f8f3',
@@ -23,7 +23,7 @@ const colors = {
     '#3cba92',
     '#35a380',
     '#2c876a',
-    '#1f624d'
+    '#1f624d',
   ],
   cyan: [
     '#e7f5f8',
@@ -35,7 +35,7 @@ const colors = {
     '#3ca3ba',
     '#358fa3',
     '#2c7687',
-    '#1f5561'
+    '#1f5561',
   ],
   blue: [
     '#eaeff9',
@@ -47,7 +47,7 @@ const colors = {
     '#3c64b9',
     '#3457a1',
     '#2b4785',
-    '#1e325d'
+    '#1e325d',
   ],
   indigo: [
     '#eeebfa',
@@ -59,7 +59,7 @@ const colors = {
     '#523cb9',
     '#4734a1',
     '#3a2a83',
-    '#281d5b'
+    '#281d5b',
   ],
   violet: [
     '#f5ebf9',
@@ -71,7 +71,7 @@ const colors = {
     '#923cb9',
     '#7f34a2',
     '#682b85',
-    '#4a1e5e'
+    '#4a1e5e',
   ],
   fuschia: [
     '#f9ebf7',
@@ -83,7 +83,7 @@ const colors = {
     '#b93ca3',
     '#a2348e',
     '#862b76',
-    '#5f1f54'
+    '#5f1f54',
   ],
   pink: [
     '#f9ebf0',
@@ -95,7 +95,7 @@ const colors = {
     '#b93c64',
     '#a23457',
     '#862b48',
-    '#5f1e33'
+    '#5f1e33',
   ],
   red: [
     '#f9edea',
@@ -107,7 +107,7 @@ const colors = {
     '#b9533c',
     '#a24834',
     '#863b2b',
-    '#5f2a1e'
+    '#5f2a1e',
   ],
   orange: [
     '#f8f2e6',
@@ -119,7 +119,7 @@ const colors = {
     '#ba923c',
     '#a38035',
     '#876a2c',
-    '#614c1f'
+    '#614c1f',
   ],
   yellow: [
     '#f4f8e5',
@@ -131,7 +131,7 @@ const colors = {
     '#a3ba3c',
     '#8fa335',
     '#77872c',
-    '#56621f'
+    '#56621f',
   ],
   lime: [
     '#ecf8e7',
@@ -143,7 +143,7 @@ const colors = {
     '#64ba3c',
     '#58a335',
     '#49872c',
-    '#34611f'
+    '#34611f',
   ],
   green: [
     '#e8f9eb',
@@ -155,8 +155,8 @@ const colors = {
     '#3cba53',
     '#35a349',
     '#2c873c',
-    '#1f622b'
-  ]
+    '#1f622b',
+  ],
 };
 
 const theme = {
@@ -167,27 +167,27 @@ const theme = {
   lineHeights: {
     solid: 1,
     title: 1.25,
-    copy: 1.5
+    copy: 1.5,
   },
   letterSpacings: {
     normal: 'normal',
     tracked: '0.1em',
     tight: '-0.05em',
-    mega: '0.25em'
+    mega: '0.25em',
   },
   fonts: {
     serif: 'athelas, georgia, times, serif',
     sansSerif:
-      '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+      '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif',
   },
-    borders: [
+  borders: [
     0,
     '1px solid',
     '2px solid',
     '4px solid',
     '8px solid',
     '16px solid',
-    '32px solid'
+    '32px solid',
   ],
   radii: [0, 2, 4, 16, 24, '100%'],
   width: [16, 32, 64, 128, 256],
@@ -197,40 +197,40 @@ const theme = {
     ...colors,
     admin: {
       light: {
-        bg: colors.gray[1]
+        bg: colors.gray[1],
       },
-      dark: { bg: colors.gray[8] }
+      dark: { bg: colors.gray[8] },
     },
     buttons: {
       light: {
-        primary: { bg: colors.green[5], label: colors.white }
+        primary: { bg: colors.green[5], label: colors.white },
       },
-      dark: { primary: { bg: colors.gray[9], label: colors.white } }
+      dark: { primary: { bg: colors.gray[9], label: colors.white } },
     },
     forms: {
       light: {
-        bg: colors.gray[2]
+        bg: colors.gray[2],
       },
-      dark: { bg: colors.gray[9] }
+      dark: { bg: colors.gray[9] },
     },
     type: {
       light: {
         header: colors.gray[9],
         subHeader: colors.gray[9],
-        paragraph: colors.gray[9]
+        paragraph: colors.gray[9],
       },
       dark: {
         header: colors.gray[2],
         subHeader: colors.gray[2],
-        paragraph: colors.gray[2]
-      }
-    }
-  }
+        paragraph: colors.gray[2],
+      },
+    },
+  },
 };
 
 const nest = {
   name: 'Nest',
-  ...theme
+  ...theme,
 };
 
 export default nest;

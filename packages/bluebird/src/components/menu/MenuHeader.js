@@ -11,7 +11,7 @@ import {
   display,
   alignItems,
   justifyContent,
-  flexWrap
+  flexWrap,
 } from 'styled-system';
 
 const StyledMenuHeader = styled.div`
@@ -44,8 +44,8 @@ function MenuHeader({ children }) {
 MenuHeader.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 
 export default MenuHeader;

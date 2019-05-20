@@ -9,7 +9,7 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap
+  flexWrap,
 } from 'styled-system';
 
 const StyledGrid = styled.ul`
@@ -21,6 +21,7 @@ const StyledGrid = styled.ul`
   ${color}
   ${display}
   ${flexWrap}
+  list-style: none;
 `;
 
 function ImageGrid({ children }) {
@@ -32,17 +33,17 @@ function ImageGrid({ children }) {
 }
 
 ImageGrid.propTypes = {
-    children: PropTypes.arrayOf(
+  children: PropTypes.arrayOf(
     PropTypes.shape({
       uri: PropTypes.string,
       width: PropTypes.number,
       height: PropTypes.number,
       title: PropTypes.string,
       id: PropTypes.string,
-      slug: PropTypes.string
+      slug: PropTypes.string,
     })
-  )
+  ),
 };
-ImageGrid.defaultProps = { size: 12 };
+ImageGrid.defaultProps = {};
 
 export default ImageGrid;

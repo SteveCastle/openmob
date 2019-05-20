@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledBlogPost = styled.section`
@@ -54,7 +54,7 @@ function SimpleBlogPost({ title }) {
 }
 
 SimpleBlogPost.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleBlogPost.defaultProps = { title: 'Simple Blogpost' };
 

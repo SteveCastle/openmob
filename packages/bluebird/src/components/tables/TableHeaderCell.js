@@ -14,7 +14,7 @@ import {
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledTableHeader = styled.th`
@@ -45,8 +45,8 @@ function TableHeader({ children }) {
 TableHeader.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 TableHeader.defaultProps = {};
 

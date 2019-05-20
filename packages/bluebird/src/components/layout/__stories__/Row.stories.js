@@ -7,9 +7,7 @@ import Row from '../Row';
 storiesOf('Layout System/Row', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Row', () => (
-      <Row onClick={action('clicked')} />
-  ))
+  .add('Default Row', () => <Row onClick={action('clicked')} />);

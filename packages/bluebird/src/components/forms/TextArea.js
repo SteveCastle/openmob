@@ -7,7 +7,7 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledTextArea = styled.textarea`
@@ -30,7 +30,7 @@ function TextArea({
   value,
   type,
   placeholder,
-  disabled
+  disabled,
 }) {
   return (
     <StyledTextArea
@@ -64,6 +64,6 @@ TextArea.propTypes = {
   dark: PropTypes.bool,
   value: PropTypes.string,
   placeholder: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 export default TextArea;

@@ -7,9 +7,7 @@ import TextArea from '../TextArea';
 storiesOf('Forms/TextArea', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default TextArea', () => (
-      <TextArea onClick={action('clicked')} />
-  ))
+  .add('Default TextArea', () => <TextArea onClick={action('clicked')} />);

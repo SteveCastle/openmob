@@ -16,6 +16,8 @@ mock:
 	(cd packages/shrike; make load-data)
 test:
 	(cd packages/shrike; make test)
+	(cd packages/bluebird; npm test)
+
 client:
 	(cd packages/starling; make hard-start)
 

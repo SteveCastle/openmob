@@ -7,7 +7,7 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledForm = styled.div`
@@ -30,9 +30,9 @@ function Form({ children, onChange, state }) {
 Form.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
   onChange: PropTypes.func,
-  state: PropTypes.oneOf(['ready', 'valid', 'error'])
+  state: PropTypes.oneOf(['ready', 'valid', 'error']),
 };
 export default Form;

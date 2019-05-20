@@ -51,9 +51,9 @@ Masonry.propTypes = {
     PropTypes.shape({
       caption: PropTypes.string,
       src: PropTypes.string.isRequired,
-      aspectRatio: PropTypes.number.isRequired
+      aspectRatio: PropTypes.number.isRequired,
     })
   ).isRequired,
-  itemsPerRow: PropTypes.number.isRequired
+  itemsPerRow: PropTypes.number.isRequired,
 };
 Masonry.defaultProps = { images: [], itemsPerRow: 3 };

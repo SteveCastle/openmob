@@ -7,9 +7,7 @@ import SimpleHero from '../SimpleHero';
 storiesOf('OpenMob Elements/SimpleHero', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default SimpleHero', () => (
-      <SimpleHero onClick={action('clicked')} />
-  ))
+  .add('Default SimpleHero', () => <SimpleHero onClick={action('clicked')} />);

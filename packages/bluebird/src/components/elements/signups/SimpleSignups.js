@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledSignups = styled.section`
@@ -54,7 +54,7 @@ function SimpleSignups({ title }) {
 }
 
 SimpleSignups.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleSignups.defaultProps = { title: 'Simple Signups' };
 

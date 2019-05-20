@@ -7,9 +7,7 @@ import SideBar from '../SideBar';
 storiesOf('Layout System/SideBar', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default SideBar', () => (
-      <SideBar onClick={action('clicked')} />
-  ))
+  .add('Default SideBar', () => <SideBar onClick={action('clicked')} />);

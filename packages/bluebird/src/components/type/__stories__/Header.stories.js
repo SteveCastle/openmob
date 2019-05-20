@@ -6,12 +6,8 @@ import Header from '../Header';
 storiesOf('Typography/Header', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Header', () => (
-      <Header>{faker.name.findName()}</Header>
-  ))
-  .add('Dark Header', () => (
-    <Header dark>{faker.name.findName()}</Header>
-))
+  .add('Default Header', () => <Header>{faker.name.findName()}</Header>)
+  .add('Dark Header', () => <Header dark>{faker.name.findName()}</Header>);

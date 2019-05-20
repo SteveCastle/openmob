@@ -7,9 +7,7 @@ import SimpleShop from '../SimpleShop';
 storiesOf('OpenMob Elements/SimpleShop', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default SimpleShop', () => (
-      <SimpleShop onClick={action('clicked')} />
-  ))
+  .add('Default SimpleShop', () => <SimpleShop onClick={action('clicked')} />);

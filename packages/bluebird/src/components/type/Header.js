@@ -8,7 +8,7 @@ import {
   fontFamily,
   color,
   borders,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledHeader = styled.h1`
@@ -40,8 +40,8 @@ function Header({ children, dark }) {
 Header.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]).isRequired,
-  dark: PropTypes.bool
+  dark: PropTypes.bool,
 };
 export default Header;

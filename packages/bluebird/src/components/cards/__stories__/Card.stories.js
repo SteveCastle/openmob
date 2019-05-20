@@ -7,9 +7,9 @@ import Card from '../Card';
 storiesOf('Building Blocks/Card', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Basic Cards', () => (
-      <Card onClick={action('clicked')} label="Primary Card" />
-  ))
+    <Card onClick={action('clicked')} label="Primary Card" />
+  ));

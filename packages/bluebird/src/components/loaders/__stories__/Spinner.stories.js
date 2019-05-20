@@ -7,9 +7,7 @@ import Spinner from '../Spinner';
 storiesOf('Data Fetching/Spinner', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Spinner', () => (
-      <Spinner onClick={action('clicked')} />
-  ))
+  .add('Default Spinner', () => <Spinner onClick={action('clicked')} />);

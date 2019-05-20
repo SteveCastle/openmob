@@ -7,9 +7,7 @@ import Column from '../Column';
 storiesOf('Layout System/Column', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Column', () => (
-      <Column onClick={action('clicked')} />
-  ))
+  .add('Default Column', () => <Column onClick={action('clicked')} />);

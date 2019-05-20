@@ -7,9 +7,9 @@ import Paragraph from '../Paragraph';
 storiesOf('Typography/Paragraph', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default Paragraph', () => (
     <Paragraph>{faker.lorem.paragraph()}</Paragraph>
-  ))
+  ));

@@ -46,7 +46,7 @@ export const Text = system(
     fontSize: 2,
     color: 'dark-gray',
     fontFamily: 'eczar',
-    fontWeight: 400
+    fontWeight: 400,
   },
   // core
   'space',
@@ -69,7 +69,7 @@ export const Heading = system(
     fontSize: 6,
     color: 'dark-gray',
     fontFamily: 'eczar',
-    fontWeight: 400
+    fontWeight: 400,
   },
   // core
   'space',
@@ -91,7 +91,7 @@ export const BackgroundImage = system(
     ratio: 3 / 4,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    blacklist: ['src']
+    blacklist: ['src'],
   },
   // core
   'space',
@@ -102,7 +102,7 @@ export const BackgroundImage = system(
   'backgroundSize',
   'backgroundPosition',
   props => ({
-    backgroundImage: props.src ? `url(${props.src})` : undefined
+    backgroundImage: props.src ? `url(${props.src})` : undefined,
   })
 );
 BackgroundImage.displayName = 'BackgroundImage';
@@ -142,7 +142,7 @@ export const Grid = system(
   'justifyContent',
   'justifySelf',
   {
-    display: 'grid'
+    display: 'grid',
   }
 );
 Grid.displayName = 'Grid';
@@ -150,7 +150,7 @@ Grid.displayName = 'Grid';
 export const StrikeThrough = system(
   {
     is: 'span',
-    blacklist: ['enabled']
+    blacklist: ['enabled'],
   },
   'space',
   'width',
@@ -166,7 +166,7 @@ export const StrikeThrough = system(
         position: 'absolute',
         top: '35%',
         transform: 'skewY(11deg)',
-        width: '100%'
-      }
+        width: '100%',
+      },
     }
 );

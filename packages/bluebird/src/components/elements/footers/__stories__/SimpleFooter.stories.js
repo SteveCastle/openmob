@@ -7,9 +7,9 @@ import SimpleFooter from '../SimpleFooter';
 storiesOf('OpenMob Elements/SimpleFooter', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimpleFooter', () => (
-      <SimpleFooter onClick={action('clicked')} />
-  ))
+    <SimpleFooter onClick={action('clicked')} />
+  ));

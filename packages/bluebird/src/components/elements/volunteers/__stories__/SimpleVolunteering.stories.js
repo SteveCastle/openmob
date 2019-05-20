@@ -7,9 +7,9 @@ import SimpleVolunteering from '../SimpleVolunteering';
 storiesOf('OpenMob Elements/SimpleVolunteering', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimpleVolunteering', () => (
-      <SimpleVolunteering onClick={action('clicked')} />
-  ))
+    <SimpleVolunteering onClick={action('clicked')} />
+  ));

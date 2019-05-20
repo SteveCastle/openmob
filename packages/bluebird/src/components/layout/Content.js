@@ -12,7 +12,7 @@ import {
   display,
   flexWrap,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledContent = styled.div`
@@ -52,8 +52,8 @@ function Content({ children }) {
 Content.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 Content.defaultProps = {};
 

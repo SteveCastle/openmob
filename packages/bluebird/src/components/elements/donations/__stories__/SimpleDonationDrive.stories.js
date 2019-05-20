@@ -7,9 +7,9 @@ import SimpleDonationDrive from '../SimpleDonationDrive';
 storiesOf('OpenMob Elements/SimpleDonationDrive', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimpleDonationDrive', () => (
-      <SimpleDonationDrive onClick={action('clicked')} />
-  ))
+    <SimpleDonationDrive onClick={action('clicked')} />
+  ));

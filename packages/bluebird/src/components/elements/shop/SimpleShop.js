@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledShop = styled.section`
@@ -54,7 +54,7 @@ function SimpleShop({ title }) {
 }
 
 SimpleShop.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleShop.defaultProps = { title: 'Simple Shop' };
 

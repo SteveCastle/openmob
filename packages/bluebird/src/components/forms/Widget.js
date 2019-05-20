@@ -9,7 +9,7 @@ import {
   borders,
   display,
   justifyContent,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledWidget = styled.div`
@@ -41,8 +41,8 @@ function Widget({ children, block }) {
 Widget.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
-  state: PropTypes.oneOf(['ready', 'valid', 'error'])
+  state: PropTypes.oneOf(['ready', 'valid', 'error']),
 };
 export default Widget;

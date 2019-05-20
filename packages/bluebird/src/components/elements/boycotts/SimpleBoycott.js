@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledBoycott = styled.section`
@@ -54,7 +54,7 @@ function SimpleBoycott({ title }) {
 }
 
 SimpleBoycott.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleBoycott.defaultProps = { title: 'Simple Boycott' };
 

@@ -7,9 +7,7 @@ import App from '../App';
 storiesOf('Layout System/App', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default App', () => (
-      <App onClick={action('clicked')} />
-  ))
+  .add('Default App', () => <App onClick={action('clicked')} />);

@@ -7,9 +7,9 @@ import SimpleBoycott from '../SimpleBoycott';
 storiesOf('OpenMob Elements/SimpleBoycott', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimpleBoycott', () => (
-      <SimpleBoycott onClick={action('clicked')} />
-  ))
+    <SimpleBoycott onClick={action('clicked')} />
+  ));

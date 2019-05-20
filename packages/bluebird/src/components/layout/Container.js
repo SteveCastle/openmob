@@ -10,7 +10,7 @@ import {
   borderRadius,
   display,
   flexWrap,
-  maxWidth
+  maxWidth,
 } from 'styled-system';
 
 const StyledContainer = styled.div`
@@ -45,10 +45,10 @@ function Container({ dark, children, tracing }) {
 Container.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
   dark: PropTypes.bool,
-  tracing: PropTypes.number
+  tracing: PropTypes.number,
 };
 Container.defaultProps = {};
 

@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   flexWrap,
-  flexDirection
+  flexDirection,
 } from 'styled-system';
 
 const StyledApp = styled.div`
@@ -46,8 +46,8 @@ function App({ children }) {
 App.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 App.defaultProps = {};
 

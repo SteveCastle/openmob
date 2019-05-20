@@ -8,7 +8,7 @@ import {
   fontFamily,
   color,
   borders,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledSubHeader = styled.h4`
@@ -42,8 +42,8 @@ function SubHeader({ children, dark }) {
 SubHeader.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]).isRequired,
-  dark: PropTypes.bool
+  dark: PropTypes.bool,
 };
 export default SubHeader;

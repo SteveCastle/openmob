@@ -11,7 +11,7 @@ import {
   display,
   alignItems,
   justifyContent,
-  flexWrap
+  flexWrap,
 } from 'styled-system';
 
 const StyledSideBarHeader = styled.div`
@@ -50,8 +50,8 @@ function SideBarHeader({ children }) {
 StyledSideBarHeader.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 
 export default SideBarHeader;

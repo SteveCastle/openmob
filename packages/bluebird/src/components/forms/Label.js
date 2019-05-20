@@ -7,7 +7,7 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledLabel = styled.label`
@@ -37,8 +37,8 @@ function Label({ children, block, dark }) {
 Label.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
-  state: PropTypes.oneOf(['ready', 'valid', 'error'])
+  state: PropTypes.oneOf(['ready', 'valid', 'error']),
 };
 export default Label;

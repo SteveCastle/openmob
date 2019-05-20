@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledDonationDrive = styled.section`
@@ -54,7 +54,7 @@ function SimpleDonationDrive({ title }) {
 }
 
 SimpleDonationDrive.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleDonationDrive.defaultProps = { title: 'Simple Donation Drive' };
 

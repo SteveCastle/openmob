@@ -9,7 +9,7 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap
+  flexWrap,
 } from 'styled-system';
 
 const StyledMenu = styled.div`
@@ -31,9 +31,9 @@ function Menu({ children, vertical = true }) {
 Menu.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
-  vertical: PropTypes.bool
+  vertical: PropTypes.bool,
 };
 
 export default Menu;

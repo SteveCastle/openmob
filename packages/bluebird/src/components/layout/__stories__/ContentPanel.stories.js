@@ -7,9 +7,9 @@ import ContentPanel from '../ContentPanel';
 storiesOf('Layout System/ContentPanel', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default ContentPanel', () => (
-      <ContentPanel onClick={action('clicked')} />
-  ))
+    <ContentPanel onClick={action('clicked')} />
+  ));

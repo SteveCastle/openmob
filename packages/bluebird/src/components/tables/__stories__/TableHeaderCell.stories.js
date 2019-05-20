@@ -7,9 +7,9 @@ import TableHeaderCell from '../TableHeaderCell';
 storiesOf('Building Blocks/TableHeaderCell', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default TableHeaderCell', () => (
-      <TableHeaderCell onClick={action('clicked')} />
-  ))
+    <TableHeaderCell onClick={action('clicked')} />
+  ));

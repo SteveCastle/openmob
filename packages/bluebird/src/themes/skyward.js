@@ -12,7 +12,7 @@ const colors = {
     '#9aa0ab',
     '#828997',
     '#636c7d',
-    '#393f4a'
+    '#393f4a',
   ],
   blue: [
     '#e9edf5',
@@ -24,7 +24,7 @@ const colors = {
     '#2e4f90',
     '#28447d',
     '#213766',
-    '#162646'
+    '#162646',
   ],
   indigo: [
     '#edebf5',
@@ -36,7 +36,7 @@ const colors = {
     '#3e2e90',
     '#36287c',
     '#2b2064',
-    '#1d1644'
+    '#1d1644',
   ],
   violet: [
     '#f2eaf5',
@@ -48,7 +48,7 @@ const colors = {
     '#702e90',
     '#61287d',
     '#4f2166',
-    '#371646'
+    '#371646',
   ],
   fuschia: [
     '#f5eaf3',
@@ -60,7 +60,7 @@ const colors = {
     '#902e80',
     '#7e2870',
     '#67215c',
-    '#481740'
+    '#481740',
   ],
   pink: [
     '#f5eaee',
@@ -72,7 +72,7 @@ const colors = {
     '#902e4f',
     '#7e2844',
     '#672138',
-    '#471727'
+    '#471727',
   ],
   red: [
     '#f5ebea',
@@ -84,7 +84,7 @@ const colors = {
     '#903e2e',
     '#7e3628',
     '#672c21',
-    '#481f17'
+    '#481f17',
   ],
   orange: [
     '#f3efe6',
@@ -96,7 +96,7 @@ const colors = {
     '#91702e',
     '#7e6228',
     '#685121',
-    '#4a3917'
+    '#4a3917',
   ],
   yellow: [
     '#f0f3e5',
@@ -108,7 +108,7 @@ const colors = {
     '#81912e',
     '#717f29',
     '#5d6922',
-    '#424b18'
+    '#424b18',
   ],
   lime: [
     '#ebf3e6',
@@ -120,7 +120,7 @@ const colors = {
     '#4f912e',
     '#457f29',
     '#396921',
-    '#284a18'
+    '#284a18',
   ],
   green: [
     '#e7f4e9',
@@ -132,7 +132,7 @@ const colors = {
     '#2e913f',
     '#297f37',
     '#21692d',
-    '#184a20'
+    '#184a20',
   ],
   teal: [
     '#e7f3ef',
@@ -144,7 +144,7 @@ const colors = {
     '#2e9170',
     '#297f62',
     '#216951',
-    '#184b3a'
+    '#184b3a',
   ],
   cyan: [
     '#e7f2f4',
@@ -156,8 +156,8 @@ const colors = {
     '#2e8191',
     '#29707e',
     '#215c68',
-    '#18424a'
-  ]
+    '#18424a',
+  ],
 };
 
 const theme = {
@@ -168,18 +168,18 @@ const theme = {
   lineHeights: {
     solid: 1,
     title: 1.25,
-    copy: 1.5
+    copy: 1.5,
   },
   letterSpacings: {
     normal: 'normal',
     tracked: '0.1em',
     tight: '-0.05em',
-    mega: '0.25em'
+    mega: '0.25em',
   },
   fonts: {
     serif: 'athelas, georgia, times, serif',
     sansSerif:
-      '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+      '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif',
   },
   borders: [
     0,
@@ -188,7 +188,7 @@ const theme = {
     '4px solid',
     '8px solid',
     '16px solid',
-    '32px solid'
+    '32px solid',
   ],
   radii: [0, 2, 4, 8, 16, 32, '100%'],
   widths: [16, 32, 64, 128, 256],
@@ -204,45 +204,45 @@ const theme = {
       light: {
         bg: colors.gray[1],
         sidebarBg: colors.blue[9],
-        menubarBg: colors.gray[1]
+        menubarBg: colors.gray[1],
       },
-      dark: { bg: colors.gray[8], sidebarBg: colors.blue[9] }
+      dark: { bg: colors.gray[8], sidebarBg: colors.blue[9] },
     },
     buttons: {
       light: {
         primary: {
           bg: colors.green[5],
           label: colors.white,
-          hover: colors.green[4]
-        }
+          hover: colors.green[4],
+        },
       },
-      dark: { primary: { bg: colors.gray[9], label: colors.white } }
+      dark: { primary: { bg: colors.gray[9], label: colors.white } },
     },
     forms: {
       light: {
         bg: colors.gray[2],
-        value: colors.blue[9]
+        value: colors.blue[9],
       },
-      dark: { bg: colors.gray[9], value: colors.blue[9] }
+      dark: { bg: colors.gray[9], value: colors.blue[9] },
     },
     type: {
       light: {
         header: colors.gray[9],
         subHeader: colors.gray[9],
-        paragraph: colors.gray[9]
+        paragraph: colors.gray[9],
       },
       dark: {
         header: colors.gray[2],
         subHeader: colors.gray[2],
-        paragraph: colors.gray[2]
-      }
-    }
-  }
+        paragraph: colors.gray[2],
+      },
+    },
+  },
 };
 
 const skyward = {
   name: 'Skyward',
-  ...theme
+  ...theme,
 };
 
 export default skyward;

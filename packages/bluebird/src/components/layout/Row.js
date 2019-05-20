@@ -9,7 +9,7 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap
+  flexWrap,
 } from 'styled-system';
 
 import Container from './Container';
@@ -47,10 +47,10 @@ function Row({ children, container, tracing }) {
 Row.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
   container: PropTypes.bool,
-  tracing: PropTypes.number
+  tracing: PropTypes.number,
 };
 Row.defaultProps = { container: false };
 

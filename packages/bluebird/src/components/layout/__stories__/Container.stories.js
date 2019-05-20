@@ -7,9 +7,7 @@ import Container from '../Container';
 storiesOf('Layout System/Container', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Container', () => (
-      <Container onClick={action('clicked')} />
-  ))
+  .add('Default Container', () => <Container onClick={action('clicked')} />);

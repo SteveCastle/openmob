@@ -7,9 +7,7 @@ import TableCell from '../TableCell';
 storiesOf('Building Blocks/TableCell', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default TableCell', () => (
-      <TableCell onClick={action('clicked')} />
-  ))
+  .add('Default TableCell', () => <TableCell onClick={action('clicked')} />);

@@ -7,9 +7,7 @@ import DataTable from '../DataTable';
 storiesOf('Building Blocks/DataTable', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default DataTable', () => (
-      <DataTable onClick={action('clicked')} />
-  ))
+  .add('Default DataTable', () => <DataTable onClick={action('clicked')} />);

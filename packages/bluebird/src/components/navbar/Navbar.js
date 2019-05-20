@@ -10,7 +10,7 @@ import {
   borderBottom,
   borderRadius,
   display,
-  flexWrap
+  flexWrap,
 } from 'styled-system';
 
 const StyledMenubar = styled.div`
@@ -48,8 +48,8 @@ function Menubar({ children }) {
 Menubar.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 
 export default Menubar;

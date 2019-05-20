@@ -7,9 +7,9 @@ import SimpleBlogPost from '../SimpleBlogPost';
 storiesOf('OpenMob Elements/SimpleBlogPost', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimpleBlogPost', () => (
-      <SimpleBlogPost onClick={action('clicked')} />
-  ))
+    <SimpleBlogPost onClick={action('clicked')} />
+  ));

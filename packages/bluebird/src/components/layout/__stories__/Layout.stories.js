@@ -7,9 +7,7 @@ import Layout from '../Layout';
 storiesOf('Layout System/Layout', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Layout', () => (
-      <Layout onClick={action('clicked')} />
-  ))
+  .add('Default Layout', () => <Layout onClick={action('clicked')} />);

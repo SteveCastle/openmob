@@ -7,9 +7,9 @@ import SimpleContent from '../SimpleContent';
 storiesOf('OpenMob Elements/SimpleContent', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimpleContent', () => (
-      <SimpleContent onClick={action('clicked')} />
-  ))
+    <SimpleContent onClick={action('clicked')} />
+  ));

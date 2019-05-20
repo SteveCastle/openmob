@@ -11,7 +11,7 @@ import {
   display,
   alignItems,
   justifyContent,
-  flexWrap
+  flexWrap,
 } from 'styled-system';
 
 const StyledItem = styled.div`
@@ -52,8 +52,8 @@ function MenuItem({ children }) {
 MenuItem.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 
 export default MenuItem;

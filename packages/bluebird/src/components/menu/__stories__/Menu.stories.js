@@ -7,9 +7,7 @@ import Menu from '../Menu';
 storiesOf('Navigation/Menu', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Menu', () => (
-      <Menu onClick={action('clicked')} />
-  ))
+  .add('Default Menu', () => <Menu onClick={action('clicked')} />);

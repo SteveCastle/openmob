@@ -7,9 +7,9 @@ import SimpleElection from '../SimpleElection';
 storiesOf('OpenMob Elements/SimpleElection', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimpleElection', () => (
-      <SimpleElection onClick={action('clicked')} />
-  ))
+    <SimpleElection onClick={action('clicked')} />
+  ));

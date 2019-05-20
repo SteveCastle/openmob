@@ -7,9 +7,7 @@ import MenuBody from '../MenuBody';
 storiesOf('Navigation/MenuBody', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default MenuBody', () => (
-      <MenuBody onClick={action('clicked')} />
-  ))
+  .add('Default MenuBody', () => <MenuBody onClick={action('clicked')} />);

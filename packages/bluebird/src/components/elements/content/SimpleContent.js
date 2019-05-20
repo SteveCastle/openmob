@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledContent = styled.section`
@@ -54,7 +54,7 @@ function SimpleContent({ title }) {
 }
 
 SimpleContent.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleContent.defaultProps = { title: 'Simple Content' };
 

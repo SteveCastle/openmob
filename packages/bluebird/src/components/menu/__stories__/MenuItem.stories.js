@@ -7,9 +7,7 @@ import MenuItem from '../MenuItem';
 storiesOf('Navigation/MenuItem', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default MenuItem', () => (
-      <MenuItem onClick={action('clicked')} />
-  ))
+  .add('Default MenuItem', () => <MenuItem onClick={action('clicked')} />);

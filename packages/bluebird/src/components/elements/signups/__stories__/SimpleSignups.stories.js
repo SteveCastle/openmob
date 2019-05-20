@@ -7,9 +7,9 @@ import SimpleSignups from '../SimpleSignups';
 storiesOf('OpenMob Elements/SimpleSignups', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimpleSignups', () => (
-      <SimpleSignups onClick={action('clicked')} />
-  ))
+    <SimpleSignups onClick={action('clicked')} />
+  ));

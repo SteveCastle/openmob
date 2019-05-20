@@ -7,8 +7,8 @@ import Button from '../Button';
 storiesOf('Building Blocks/Buttons', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Basic Buttons', () => (
     <>

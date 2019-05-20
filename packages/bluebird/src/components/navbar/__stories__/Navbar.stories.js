@@ -7,9 +7,7 @@ import Navbar from '../Navbar';
 storiesOf('Navigation/Navbar', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Navbar', () => (
-      <Navbar onClick={action('clicked')} />
-  ))
+  .add('Default Navbar', () => <Navbar onClick={action('clicked')} />);

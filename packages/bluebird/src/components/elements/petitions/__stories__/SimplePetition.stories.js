@@ -7,9 +7,9 @@ import SimplePetition from '../SimplePetition';
 storiesOf('OpenMob Elements/SimplePetition', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SimplePetition', () => (
-      <SimplePetition onClick={action('clicked')} />
-  ))
+    <SimplePetition onClick={action('clicked')} />
+  ));

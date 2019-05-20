@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledVolunteering = styled.section`
@@ -54,7 +54,7 @@ function SimpleVolunteering({ title }) {
 }
 
 SimpleVolunteering.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleVolunteering.defaultProps = { title: 'Simple Volunteering' };
 

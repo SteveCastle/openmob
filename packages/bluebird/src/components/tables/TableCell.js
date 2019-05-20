@@ -15,7 +15,7 @@ import {
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledTableCell = styled.td`
@@ -58,8 +58,8 @@ function TableCell({ children }) {
 TableCell.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 TableCell.defaultProps = {};
 

@@ -7,9 +7,9 @@ import SubHeader from '../SubHeader';
 storiesOf('Typography/SubHeader', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Default SubHeader', () => (
     <SubHeader>{faker.company.catchPhrase()}</SubHeader>
-  ))
+  ));

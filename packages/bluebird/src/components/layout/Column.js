@@ -7,7 +7,7 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledColumn = styled.div`
@@ -39,11 +39,11 @@ function Column({ dark, children, tracing, size }) {
 Column.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
   size: PropTypes.number,
   dark: PropTypes.bool,
-  tracing: PropTypes.number
+  tracing: PropTypes.number,
 };
 Column.defaultProps = { size: 12 };
 

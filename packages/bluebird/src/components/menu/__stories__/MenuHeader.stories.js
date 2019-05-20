@@ -7,9 +7,7 @@ import MenuHeader from '../MenuHeader';
 storiesOf('Navigation/MenuHeader', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default MenuHeader', () => (
-      <MenuHeader onClick={action('clicked')} />
-  ))
+  .add('Default MenuHeader', () => <MenuHeader onClick={action('clicked')} />);

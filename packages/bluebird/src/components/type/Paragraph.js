@@ -8,7 +8,7 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius
+  borderRadius,
 } from 'styled-system';
 
 const StyledParagraph = styled.p`
@@ -38,8 +38,8 @@ function Paragraph({ children, dark }) {
 Paragraph.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]).isRequired,
-  dark: PropTypes.bool
+  dark: PropTypes.bool,
 };
 export default Paragraph;

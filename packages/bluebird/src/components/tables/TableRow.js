@@ -14,7 +14,7 @@ import {
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledTableRow = styled.tr`
@@ -45,8 +45,8 @@ function TableRow({ children }) {
 TableRow.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 TableRow.defaultProps = {};
 

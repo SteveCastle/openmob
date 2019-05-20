@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import Masonry from '../Masonry'
+import Masonry from '../Masonry';
 
 storiesOf('Photo Galleries/Masonry', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
   .add('Masonry', () => (
     <Masonry
@@ -20,7 +20,7 @@ storiesOf('Photo Galleries/Masonry', module)
         { src: '/images/5.jpg', aspectRatio: 4570 / 3264 },
         { src: '/images/6.jpg', aspectRatio: 5472 / 3648 },
         { src: '/images/7.jpg', aspectRatio: 122 / 182 },
-        { src: '/images/8.jpg', aspectRatio: 122 / 182 }
+        { src: '/images/8.jpg', aspectRatio: 122 / 182 },
       ]}
     />
   ));

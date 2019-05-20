@@ -13,7 +13,7 @@ import {
   alignItems,
   justifyContent,
   flexWrap,
-  flexDirection
+  flexDirection,
 } from 'styled-system';
 
 const StyledMenuBody = styled.div`
@@ -51,8 +51,8 @@ function MenuBody({ children }) {
 MenuBody.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 
 export default MenuBody;

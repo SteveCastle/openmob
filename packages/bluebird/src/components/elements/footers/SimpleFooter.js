@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledFooter = styled.section`
@@ -54,7 +54,7 @@ function SimpleFooter({ title = 'SimpleFooter' }) {
 }
 
 SimpleFooter.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleFooter.defaultProps = { title: 'Simple Footer' };
 

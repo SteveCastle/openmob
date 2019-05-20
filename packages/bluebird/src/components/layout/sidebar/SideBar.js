@@ -10,7 +10,7 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap
+  flexWrap,
 } from 'styled-system';
 
 const StyledSideBar = styled.div`
@@ -36,8 +36,8 @@ function SideBar({ children }) {
 SideBar.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 
 export default SideBar;

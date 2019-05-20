@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledElection = styled.section`
@@ -54,7 +54,7 @@ function SimpleElection({ title = 'SimpleElection' }) {
 }
 
 SimpleElection.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 SimpleElection.defaultProps = { title: 'Simple Election' };
 

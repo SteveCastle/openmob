@@ -14,7 +14,7 @@ import {
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent
+  justifyContent,
 } from 'styled-system';
 
 const StyledDataTable = styled.table`
@@ -45,8 +45,8 @@ function DataTable({ children }) {
 DataTable.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 DataTable.defaultProps = {};
 

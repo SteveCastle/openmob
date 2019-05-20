@@ -7,9 +7,7 @@ import Input from '../Input';
 storiesOf('Forms/Input', module)
   .addParameters({
     info: {
-      inline: true
-    }
+      inline: true,
+    },
   })
-  .add('Default Input', () => (
-      <Input onClick={action('clicked')} />
-  ))
+  .add('Default Input', () => <Input onClick={action('clicked')} />);
