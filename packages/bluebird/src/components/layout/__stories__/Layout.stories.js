@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Layout, Row, Column, Container } from '../';
-storiesOf('Layout', module)
+storiesOf('Layout System/Layout', module)
   .addParameters({
     info: {
       inline: true,
