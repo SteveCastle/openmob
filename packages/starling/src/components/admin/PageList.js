@@ -8,9 +8,8 @@ import CardGridItem from '@openmob/bluebird/src/components/lists/CardGridItem'
 import Header from '@openmob/bluebird/src/components/type/Header'
 import parseObject from '../../common/helpers'
 
-
 const LIST_PAGE = gql`
-  query LandingPageQuery($id: ID!){
+  query LandingPageQuery($id: ID!) {
     getCause(ID: $id) {
       ID
       HomePage {
@@ -25,14 +24,14 @@ const LIST_PAGE = gql`
   }
 `
 
-function MyPages({ navigate = () => { }, causeID }) {
+function MyPages({ navigate = () => {}, causeID }) {
   const {
     data: { getCause: cause = {} },
     error,
     loading,
   } = useQuery(LIST_PAGE, {
     variables: {
-      id: causeID
+      id: causeID,
     },
   })
   console.log('cause', cause)

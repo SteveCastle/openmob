@@ -8,7 +8,7 @@ import ContentPanel from '@openmob/bluebird/src/components/layout/ContentPanel'
 import SideBarHeader from '@openmob/bluebird/src/components/layout/sidebar/SideBarHeader'
 import Menu from '@openmob/bluebird/src/components/menu/Menu'
 import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem'
-import PageList from './PageList';
+import PageList from './PageList'
 const PlaceHolder = () => <div>Placeholder</div>
 
 const CauseDashboard = ({ causeID }) => (
