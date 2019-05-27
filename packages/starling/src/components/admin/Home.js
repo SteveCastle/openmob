@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
+import { Router } from '@reach/router'
 
 import App from '@openmob/bluebird/src/components/layout/App'
 import SideBar from '@openmob/bluebird/src/components/layout/sidebar/SideBar'
@@ -9,6 +10,8 @@ import SideBarHeader from '@openmob/bluebird/src/components/layout/sidebar/SideB
 import Menu from '@openmob/bluebird/src/components/menu/Menu'
 import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem'
 import MyCauses from './MyCauses'
+import New from './New'
+
 const Home = () => (
   <App>
     <SideBar>
@@ -31,7 +34,10 @@ const Home = () => (
       </Menu>
     </SideBar>
     <ContentPanel>
-      <MyCauses />
+      <Router>
+        <MyCauses path="/*" />
+        <New path="/new" />
+      </Router>
     </ContentPanel>
   </App>
 )

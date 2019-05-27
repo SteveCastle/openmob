@@ -11,6 +11,7 @@ import {
   bottom,
   borderRadius,
 } from 'styled-system';
+import Card from '../cards/Card';
 
 const StyledItem = styled.li`
   ${borders}
@@ -21,20 +22,13 @@ const StyledItem = styled.li`
   ${fontSize}
   ${color}
   box-sizing: border-box;
+  cursor: pointer;
   transition: 2s;
   :hover {
     opacity: .7
   }
 `;
 
-const StyledImage = styled.img`
-  ${borders}
-  ${borderRadius}
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
-`;
 const StyledTitle = styled.h2`
   ${borders}
   ${borderRadius}
@@ -58,34 +52,26 @@ const StyledCaption = styled.p`
   text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 `;
 
-function GridItem({ uri, width, height, title, id, slug, caption }) {
+function GridItem({ width, title, caption, onClick }) {
   return (
-    <StyledItem p={2} position="relative" width={width}>
-      <StyledImage src={uri} width={1} m={0} p={0} />
-      <StyledTitle color="gray.0" position="absolute" m={4} bottom="0">
-        {title}
-      </StyledTitle>
-      <StyledCaption
-        color="gray.0"
-        position="absolute"
-        mx={4}
-        my={3}
-        bottom="0"
-      >
-        {caption}
-      </StyledCaption>
+    <StyledItem p={2} m={2} position="relative" width={width} onClick={onClick}>
+      <Card>
+        <StyledTitle color="gray.9" m={4}>
+          {title}
+        </StyledTitle>
+        <StyledCaption color="gray.9" mx={4} my={3}>
+          {caption}
+        </StyledCaption>
+      </Card>
     </StyledItem>
   );
 }
 
 GridItem.propTypes = {
-  uri: PropTypes.string,
   width: PropTypes.number,
-  height: PropTypes.number,
   title: PropTypes.string,
   caption: PropTypes.string,
-  id: PropTypes.string,
-  slug: PropTypes.string,
+  onClick: PropTypes.func,
 };
 GridItem.defaultProps = { width: 1 / 4 };
 

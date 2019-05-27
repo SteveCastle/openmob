@@ -30,7 +30,7 @@ function Header({ children, dark }) {
       fontSize={6}
       fontFamily="sansSerif"
       width={1}
-      color={dark ? 'type.light.header' : 'type.dark.header'}
+      color={dark ? 'type.dark.header' : 'type.light.header'}
     >
       {children}
     </StyledHeader>

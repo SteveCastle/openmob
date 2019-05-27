@@ -11,6 +11,7 @@ import {
   borderRadius,
   display,
   flexWrap,
+  flexDirection,
   alignItems,
   justifyContent,
 } from 'styled-system';
@@ -24,6 +25,7 @@ const StyledContent = styled.div`
   ${fontSize}
   ${display}
   ${flexWrap}
+  ${flexDirection}
   ${color}
   ${display}
   ${alignItems}
@@ -31,12 +33,13 @@ const StyledContent = styled.div`
   overflow-y: auto
 `;
 
-function Content({ children }) {
+function Content({ children, top, left }) {
   return (
     <StyledContent
       display="flex"
-      alignItems="center"
-      justifyContent="center"
+      flexDirection="column"
+      alignItems={top ? 'start' : 'center'}
+      justifyContent={left ? 'start' : 'center'}
       bg="admin.light.bg"
       border={0}
       flexWrap="wrap"
@@ -54,6 +57,8 @@ Content.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  top: PropTypes.bool,
+  left: PropTypes.bool,
 };
 Content.defaultProps = {};
 

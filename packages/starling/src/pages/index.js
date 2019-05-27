@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import ThemeProvider from '@openmob/bluebird/src/ThemeProvider'
 import skyward from '@openmob/bluebird/src/themes/skyward'
+import ImageHero from '@openmob/bluebird/src/components/elements/heroes/ImageHero'
+import Footer from '@openmob/bluebird/src/components/elements/footers/SimpleFooter'
+import SubHeader from '@openmob/bluebird/src/components/type/SubHeader'
 import ImageGrid from '@openmob/bluebird/src/components/lists/ImageGrid'
-import GridItem from '@openmob/bluebird/src/components/lists/GridItem'
+import ImageGridItem from '@openmob/bluebird/src/components/lists/ImageGridItem'
 import Container from '@openmob/bluebird/src/components/layout/Container'
 
 import Layout from '../components/Layout'
@@ -18,11 +21,13 @@ const IndexPage = ({
   <ThemeProvider theme={skyward}>
     <Layout title="grassroots.dev" id="List view" summary="Debug Mode">
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <ImageHero title="Grassroots Dev" />
       <Container>
+        <SubHeader>Featured Causes</SubHeader>
         <ImageGrid>
           {(causes || []).map(cause => (
             <Link to={`/${cause.Slug}`} key={cause.ID}>
-              <GridItem
+              <ImageGridItem
                 title={cause.Title}
                 caption={cause.Summary}
                 uri={cause.Photo.URI}
@@ -31,6 +36,7 @@ const IndexPage = ({
           ))}
         </ImageGrid>
       </Container>
+      <Footer />
     </Layout>
   </ThemeProvider>
 )

@@ -4,13 +4,10 @@ import { useQuery } from 'react-apollo-hooks'
 import { Link } from '@reach/router'
 import gql from 'graphql-tag'
 import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
+import CardGrid from '@openmob/bluebird/src/components/lists/CardGrid'
+import CardGridItem from '@openmob/bluebird/src/components/lists/CardGridItem'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
-import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
-import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
-import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
-import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
-import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
+import Header from '@openmob/bluebird/src/components/type/Header'
 import parseObject from '../../common/helpers'
 
 const LIST_CAUSE = gql`
@@ -58,38 +55,18 @@ function MyCauses({ navigate = () => {} }) {
   }
 
   return (
-    <Content>
-      <Card>
-        <h1>My Causes</h1>
-        <DataTable>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderCell>ID</TableHeaderCell>
-              <TableHeaderCell>CreatedAt</TableHeaderCell>
-              <TableHeaderCell>UpdatedAt</TableHeaderCell>
-              <TableHeaderCell>Title</TableHeaderCell>
-              <TableHeaderCell>Slug</TableHeaderCell>
-              <TableHeaderCell>Summary</TableHeaderCell>
-            </TableRow>
-          </TableHeader>
-          <tbody>
-            {(items || []).map(item => (
-              <TableRow key={item.ID}>
-                <TableCell>
-                  <Link to={`/app/cause/${parseObject(item.ID)}`}>
-                    {parseObject(item.ID)}
-                  </Link>
-                </TableCell>
-                <TableCell>{parseObject(item.CreatedAt)}</TableCell>
-                <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
-                <TableCell>{parseObject(item.Title)}</TableCell>
-                <TableCell>{parseObject(item.Slug)}</TableCell>
-                <TableCell>{parseObject(item.Summary)}</TableCell>
-              </TableRow>
-            ))}
-          </tbody>
-        </DataTable>
-      </Card>
+    <Content top left>
+      <Header>My Causes</Header>
+      <CardGrid>
+        {(items || []).map(item => (
+          <CardGridItem
+            title={parseObject(item.Title)}
+            description={parseObject(item.Summary)}
+            onClick={() => navigate(`/app/cause/${parseObject(item.ID)}`)}
+          />
+        ))}
+        <CardGridItem title="+" onClick={() => navigate('new')} />
+      </CardGrid>
     </Content>
   )
 }

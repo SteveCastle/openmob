@@ -32,7 +32,7 @@ function SubHeader({ children, dark }) {
       fontSize={4}
       fontFamily="sansSerif"
       width={1}
-      color={dark ? 'type.light.subHeader' : 'type.dark.subHeader'}
+      color={dark ? 'type.dark.subHeader' : 'type.light.subHeader'}
     >
       {children}
     </StyledSubHeader>

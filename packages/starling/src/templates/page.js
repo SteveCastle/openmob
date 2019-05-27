@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import ThemeProvider from '@openmob/bluebird/src/ThemeProvider'
 import skyward from '@openmob/bluebird/src/themes/skyward'
 
@@ -38,7 +38,6 @@ const IndexPage = ({
           ))}
         </Row>
       ))}
-      <Link to="/app">Go to the admin page</Link>
     </Layout>
   </ThemeProvider>
 )

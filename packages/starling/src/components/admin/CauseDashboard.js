@@ -24,7 +24,9 @@ const CauseDashboard = ({ causeID }) => (
           <Link to={`/app/cause/${causeID}/outreach`}>Outreach</Link>
         </MenuItem>
         <MenuItem>
-          <Link to={`/app/cause/${causeID}/volunteering`}>Volunteer Coordination</Link>
+          <Link to={`/app/cause/${causeID}/volunteering`}>
+            Volunteer Coordination
+          </Link>
         </MenuItem>
         <MenuItem>
           <Link to={`/app/cause/${causeID}/fundraising`}>Fundraising</Link>

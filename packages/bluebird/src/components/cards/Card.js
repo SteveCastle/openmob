@@ -40,7 +40,6 @@ const StyledCard = styled.div`
 function Card({ children }) {
   return (
     <StyledCard
-      display="flex"
       bg="gray.0"
       p={2}
       border={0}
@@ -49,6 +48,7 @@ function Card({ children }) {
       flexWrap="wrap"
       flexDirection="column"
       fontSize={1}
+      width={1}
     >
       {children}
     </StyledCard>

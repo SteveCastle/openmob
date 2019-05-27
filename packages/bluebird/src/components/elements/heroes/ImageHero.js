@@ -14,7 +14,7 @@ import {
   justifyContent,
 } from 'styled-system';
 
-const StyledFooter = styled.footer`
+const StyledHero = styled.section`
   ${borders}
   ${borderRadius}
   ${space}
@@ -25,6 +25,9 @@ const StyledFooter = styled.footer`
   ${color}
   ${display}
   min-height: 400px;
+  background-image: url("${props => props.image}");
+  background-size: cover;
+  background-position: center;
   `;
 const Title = styled.h1`
   ${borders}
@@ -38,24 +41,29 @@ const Title = styled.h1`
   ${display}
   `;
 
-function SimpleFooter({ title = 'SimpleFooter' }) {
+function ImageHero({
+  title,
+  image = 'https://punknaturalism.com/static/4f45e3f86b23864cb0c71a1f3353b460/a5547/C9up3kLgxni.jpg',
+}) {
   return (
-    <StyledFooter
+    <StyledHero
       display={'flex'}
       justifyContent="center"
       alignItems="center"
-      bg="blue.6"
+      width={1}
+      image={image}
     >
-      <Title color="gray.0" size={1}>
+      <Title color="gray.0" size={4}>
         {title}
       </Title>
-    </StyledFooter>
+    </StyledHero>
   );
 }
 
-SimpleFooter.propTypes = {
+ImageHero.propTypes = {
   title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
-SimpleFooter.defaultProps = { title: 'Simple Footer' };
+ImageHero.defaultProps = {};
 
-export default SimpleFooter;
+export default ImageHero;
