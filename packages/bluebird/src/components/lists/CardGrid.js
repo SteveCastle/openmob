@@ -24,7 +24,7 @@ const StyledGrid = styled.ul`
   list-style: none;
 `;
 
-function ImageGrid({ children }) {
+function CardGrid({ children }) {
   return (
     <StyledGrid display="flex" flexWrap="wrap" width={1}>
       {children}
@@ -32,7 +32,7 @@ function ImageGrid({ children }) {
   );
 }
 
-ImageGrid.propTypes = {
+CardGrid.propTypes = {
   children: PropTypes.arrayOf(
     PropTypes.shape({
       uri: PropTypes.string,
@@ -44,6 +44,6 @@ ImageGrid.propTypes = {
     })
   ),
 };
-ImageGrid.defaultProps = {};
+CardGrid.defaultProps = {};
 
-export default ImageGrid;
+export default CardGrid;

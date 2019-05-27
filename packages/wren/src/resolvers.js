@@ -23,6 +23,23 @@ const resolvers = client => ({
                 .sendMessage({ api: 'v1', ID })
             return data.item
         },
+    },
+    Mutation: {
+        newCause: async (_, { Title }, ctx) => {
+            const { item: layoutId = ID } = await client
+                .CreateLayout()
+                .sendMessage({ api: 'v1', ID })
+            const { item: homePageID = ID } = await client
+                .CreateHomePage()
+                .sendMessage({ api: 'v1', ID })
+            const { item: photoId = ID } = await client
+                .CreatePhoto()
+                .sendMessage({ api: 'v1', ID })
+            const { item: causeID = ID } = await client
+                .CreatePhoto()
+                .sendMessage({ api: 'v1', ID })
+            return causeID
+        },
     }
 })
 

@@ -8,6 +8,9 @@ type Field {
 type Query {
     getHomePageLayout(ID: ID!): Layout
 }
+type Mutation {
+    newCause(Title: String!): String!
+}
 `
 
 const types = [
