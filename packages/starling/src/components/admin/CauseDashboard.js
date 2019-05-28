@@ -17,7 +17,7 @@ const CauseDashboard = ({ causeID }) => (
   <App>
     <SideBar>
       <SideBarHeader>
-        <Link to="/app">Open Mob</Link>
+        <Link to="/">Open Mob</Link>
       </SideBarHeader>
       <Menu vertical>
         <MenuItem>
