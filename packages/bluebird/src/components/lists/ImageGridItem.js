@@ -23,25 +23,28 @@ const StyledItem = styled.li`
   box-sizing: border-box;
   min-height:200px;
   transition: 2s;
+  cursor: pointer;
   :hover {
     opacity: .7
   }
 `;
 
 const StyledImage = styled.div`
-width: 100%;
-height: 100%;
-display: flex;
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: flex-start;
   flex-direction: column;
   justify-content: flex-end;
   flex-direction: column;
+  flex-wrap: wrap;
   background-image: url("${props => props.image}");
   background-position: center;
   background-origin: content-box;
   background-repeat: no-repeat;
   background-size: cover;
 `;
+
 const StyledTitle = styled.h2`
   ${borders}
   ${borderRadius}
@@ -51,7 +54,7 @@ const StyledTitle = styled.h2`
   ${position}
   ${bottom}
   ${color}
-  
+  text-shadow: 1px 1px 1px #000;
 `;
 
 const StyledCaption = styled.p`
@@ -63,25 +66,21 @@ const StyledCaption = styled.p`
   ${position}
   ${bottom}
   ${color}
-  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 1px #000;
 `;
 
 function GridItem({ uri, width, title, caption, onClick }) {
   return (
-    <StyledItem p={2} position="relative" width={width} onClick={onClick}>
-      <StyledImage image={uri} position={"absolute"} p={3}>
-        <StyledTitle color="gray.0" m={1}>
+    <StyledItem p={2} position="relative" width={[1, width / 12]} onClick={onClick}>
+      <StyledImage image={uri} position={'absolute'} p={3}>
+        <StyledTitle color="gray.0" mx={2} my={0}>
           {title}
         </StyledTitle>
-        <StyledCaption
-          color="gray.0"
-          mx={1}
-          my={1}
-        >
+        <StyledCaption color="gray.0" mx={2} my={1}>
           {caption}
         </StyledCaption>
       </StyledImage>
-    </StyledItem>
+    </StyledItem >
   );
 }
 
@@ -90,8 +89,8 @@ GridItem.propTypes = {
   width: PropTypes.number,
   title: PropTypes.string,
   caption: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
-GridItem.defaultProps = { width: 1 / 4 };
+GridItem.defaultProps = { width: 3 };
 
 export default GridItem;
