@@ -20,7 +20,7 @@ var packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   enums: String,
   defaults: false,
   oneofs: true,
-  includeDirs: [THIRD_PARTY]
+  includeDirs: [THIRD_PARTY],
 });
 var shrike = grpc.loadPackageDefinition(packageDefinition).shrike.v1;
 var client = new shrike.ShrikeService(
@@ -38,9 +38,11 @@ const resolvers = generatedResolvers(client);
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
 const server = new ApolloServer({
-  typeDefs, resolvers, context: ({ req }) => ({
-    test: 'there are ctx letters here'
-  })
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({
+    test: 'there are ctx letters here',
+  }),
 });
 
 // This `listen` method launches a web-server.  Existing apps

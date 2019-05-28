@@ -12,6 +12,7 @@ import Container from '@openmob/bluebird/src/components/layout/Container'
 
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
+import { navigate } from '@reach/router'
 
 const IndexPage = ({
   data: {
@@ -26,13 +27,12 @@ const IndexPage = ({
         <SubHeader>Featured Causes</SubHeader>
         <ImageGrid>
           {(causes || []).map(cause => (
-            <Link to={`/${cause.Slug}`} key={cause.ID}>
-              <ImageGridItem
-                title={cause.Title}
-                caption={cause.Summary}
-                uri={cause.Photo.URI}
-              />
-            </Link>
+            <ImageGridItem
+              title={cause.Title}
+              caption={cause.Summary}
+              uri={cause.Photo.URI}
+              onClick={() => navigate(`/${cause.Slug}`)}
+            />
           ))}
         </ImageGrid>
       </Container>

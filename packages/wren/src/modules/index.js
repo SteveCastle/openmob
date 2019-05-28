@@ -1,7 +1,7 @@
-const elections = require('./elections')
+const elections = require('./elections');
 
 const modules = {
-    elections
-}
+  elections,
+};
 
-module.exports = modules
+module.exports = modules;

@@ -15,24 +15,20 @@ import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
 import Button from '@openmob/bluebird/src/components/buttons/Button'
 
 const CREATE_CAUSE = gql`
-  mutation createCause($cause: CauseInput) {
-    createCause(cause: $cause, buildStatic: true) {
-      ID
-    }
+  mutation newCause($Title: String!, $Slug: String!, $Summary: String!) {
+    newCause(Title: $Title, Slug: $Slug, Summary: $Summary)
   }
 `
 
 const New = ({ accountId }) => {
-  const createCause = useMutation(CREATE_CAUSE)
+  const newCause = useMutation(CREATE_CAUSE)
 
   return (
     <Formik
       onSubmit={(values, { setSubmitting }) =>
-        createCause({
+        newCause({
           variables: {
-            cause: {
-              ...values,
-            },
+            ...values,
           },
         })
       }

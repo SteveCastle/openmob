@@ -21,19 +21,26 @@ const StyledItem = styled.li`
   ${fontSize}
   ${color}
   box-sizing: border-box;
+  min-height:200px;
   transition: 2s;
   :hover {
     opacity: .7
   }
 `;
 
-const StyledImage = styled.img`
-  ${borders}
-  ${borderRadius}
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
+const StyledImage = styled.div`
+width: 100%;
+height: 100%;
+display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-direction: column;
+  background-image: url("${props => props.image}");
+  background-position: center;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 const StyledTitle = styled.h2`
   ${borders}
@@ -44,6 +51,7 @@ const StyledTitle = styled.h2`
   ${position}
   ${bottom}
   ${color}
+  
 `;
 
 const StyledCaption = styled.p`
@@ -58,22 +66,21 @@ const StyledCaption = styled.p`
   text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 `;
 
-function GridItem({ uri, width, title, caption }) {
+function GridItem({ uri, width, title, caption, onClick }) {
   return (
-    <StyledItem p={2} position="relative" width={width}>
-      <StyledImage src={uri} width={1} m={0} p={0} />
-      <StyledTitle color="gray.0" position="absolute" m={4} bottom="15px">
-        {title}
-      </StyledTitle>
-      <StyledCaption
-        color="gray.0"
-        position="absolute"
-        mx={4}
-        my={3}
-        bottom="0"
-      >
-        {caption}
-      </StyledCaption>
+    <StyledItem p={2} position="relative" width={width} onClick={onClick}>
+      <StyledImage image={uri} position={"absolute"} p={3}>
+        <StyledTitle color="gray.0" m={1}>
+          {title}
+        </StyledTitle>
+        <StyledCaption
+          color="gray.0"
+          mx={1}
+          my={1}
+        >
+          {caption}
+        </StyledCaption>
+      </StyledImage>
     </StyledItem>
   );
 }
@@ -83,6 +90,7 @@ GridItem.propTypes = {
   width: PropTypes.number,
   title: PropTypes.string,
   caption: PropTypes.string,
+  onClick: PropTypes.func
 };
 GridItem.defaultProps = { width: 1 / 4 };
 

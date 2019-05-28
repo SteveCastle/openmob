@@ -9,13 +9,10 @@ type Query {
     getHomePageLayout(ID: ID!): Layout
 }
 type Mutation {
-    newCause(Title: String!): String!
+    newCause(Title: String!, Slug: String!, Summary: String!): ID!
 }
-`
+`;
 
-const types = [
-    generatedSchema,
-    schema,
-];
+const types = [generatedSchema, schema];
 
 module.exports = mergeTypes(types, { all: true });
