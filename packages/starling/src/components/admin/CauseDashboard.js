@@ -48,7 +48,8 @@ const CauseDashboard = ({ causeID }) => (
     <ContentPanel>
       <Router>
         <PageList path="/" />
-        <PageEditor path="/homepage/:pageID" />
+        <PageList path="/pages" />
+        <PageEditor path="/pages/homepage/:pageID" />
         <PlaceHolder path="/*" />
       </Router>
     </ContentPanel>

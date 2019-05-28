@@ -24,7 +24,7 @@ const LIST_PAGE = gql`
   }
 `
 
-function MyPages({ navigate = () => {}, causeID }) {
+function MyPages({ navigate = () => { }, causeID }) {
   const {
     data: { getCause: cause = {} },
     error,
@@ -50,7 +50,7 @@ function MyPages({ navigate = () => {}, causeID }) {
       <CardGrid>
         <CardGridItem
           title={parseObject(cause.HomePage.Title)}
-          onClick={() => navigate(`homepage/${parseObject(cause.HomePage.ID)}`)}
+          onClick={() => navigate(`pages/homepage/${parseObject(cause.HomePage.ID)}`)}
         />
         {(cause.LandingPages || []).map(item => (
           <CardGridItem
