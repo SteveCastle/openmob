@@ -20,7 +20,7 @@ const StyledColumn = styled.div`
   box-sizing: border-box;
 `;
 
-function Column({ dark, children, tracing, size }) {
+function Column({ children, tracing, size }) {
   return (
     <StyledColumn
       border={0}
@@ -42,7 +42,6 @@ Column.propTypes = {
     PropTypes.node,
   ]),
   size: PropTypes.number,
-  dark: PropTypes.bool,
   tracing: PropTypes.number,
 };
 Column.defaultProps = { size: 12 };

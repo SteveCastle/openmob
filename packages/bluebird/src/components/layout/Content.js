@@ -38,8 +38,8 @@ function Content({ children, top, left }) {
     <StyledContent
       display="flex"
       flexDirection="column"
-      alignItems={top ? 'start' : 'center'}
-      justifyContent={left ? 'start' : 'center'}
+      alignItems={left ? 'flex-start' : 'center'}
+      justifyContent={top ? 'flex-start' : 'center'}
       bg="admin.light.bg"
       border={0}
       flexWrap="wrap"

@@ -9,6 +9,8 @@ import SideBarHeader from '@openmob/bluebird/src/components/layout/sidebar/SideB
 import Menu from '@openmob/bluebird/src/components/menu/Menu'
 import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem'
 import PageList from './PageList'
+import PageEditor from './PageEditor'
+
 const PlaceHolder = () => <div>Placeholder</div>
 
 const CauseDashboard = ({ causeID }) => (
@@ -46,6 +48,7 @@ const CauseDashboard = ({ causeID }) => (
     <ContentPanel>
       <Router>
         <PageList path="/" />
+        <PageEditor path="/homepage/:pageID" />
         <PlaceHolder path="/*" />
       </Router>
     </ContentPanel>

@@ -54,7 +54,7 @@ const StyledCaption = styled.p`
 
 function GridItem({ width, title, caption, onClick }) {
   return (
-    <StyledItem p={2} m={2} position="relative" width={width} onClick={onClick}>
+    <StyledItem p={2} m={2} position="relative" onClick={onClick} width={[1, 1, width / 12]}>
       <Card>
         <StyledTitle color="gray.9" m={4}>
           {title}
@@ -73,6 +73,6 @@ GridItem.propTypes = {
   caption: PropTypes.string,
   onClick: PropTypes.func,
 };
-GridItem.defaultProps = { width: 1 / 4 };
+GridItem.defaultProps = { width: 3 };
 
 export default GridItem;
