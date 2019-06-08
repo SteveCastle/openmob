@@ -9,7 +9,7 @@ import {
   borders,
   position,
   bottom,
-  borderRadius,
+  borderRadius
 } from 'styled-system';
 
 const StyledItem = styled.li`
@@ -69,9 +69,14 @@ const StyledCaption = styled.p`
   text-shadow: 1px 1px 1px #000;
 `;
 
-function GridItem({ uri, width, title, caption, onClick }) {
+function ImageGridItem({ uri, width, title, caption, onClick }) {
   return (
-    <StyledItem p={2} position="relative" width={[1, width / 12]} onClick={onClick}>
+    <StyledItem
+      p={2}
+      position="relative"
+      width={[1, width / 12]}
+      onClick={onClick}
+    >
       <StyledImage image={uri} position={'absolute'} p={3}>
         <StyledTitle color="gray.0" mx={2} my={0}>
           {title}
@@ -80,17 +85,17 @@ function GridItem({ uri, width, title, caption, onClick }) {
           {caption}
         </StyledCaption>
       </StyledImage>
-    </StyledItem >
+    </StyledItem>
   );
 }
 
-GridItem.propTypes = {
+ImageGridItem.propTypes = {
   uri: PropTypes.string,
   width: PropTypes.number,
   title: PropTypes.string,
   caption: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
-GridItem.defaultProps = { width: 3 };
+ImageGridItem.defaultProps = { width: 3 };
 
-export default GridItem;
+export default ImageGridItem;

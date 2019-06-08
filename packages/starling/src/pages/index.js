@@ -1,18 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
-import ThemeProvider from '@openmob/bluebird/src/ThemeProvider'
-import skyward from '@openmob/bluebird/src/themes/skyward'
-import ImageHero from '@openmob/bluebird/src/components/elements/heroes/ImageHero'
-import Footer from '@openmob/bluebird/src/components/elements/footers/SimpleFooter'
-import SubHeader from '@openmob/bluebird/src/components/type/SubHeader'
-import ImageGrid from '@openmob/bluebird/src/components/lists/ImageGrid'
-import ImageGridItem from '@openmob/bluebird/src/components/lists/ImageGridItem'
-import Container from '@openmob/bluebird/src/components/layout/Container'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql, Link } from 'gatsby';
+import ThemeProvider from '@openmob/bluebird/src/ThemeProvider';
+import skyward from '@openmob/bluebird/src/themes/skyward';
+import ImageHero from '@openmob/bluebird/src/components/elements/heroes/ImageHero';
+import Footer from '@openmob/bluebird/src/components/elements/footers/SimpleFooter';
+import SubHeader from '@openmob/bluebird/src/components/type/SubHeader';
+import ImageGrid from '@openmob/bluebird/src/components/lists/ImageGrid';
+import ImageGridItem from '@openmob/bluebird/src/components/lists/ImageGridItem';
+import Container from '@openmob/bluebird/src/components/layout/Container';
 
-import Layout from '../components/Layout'
-import SEO from '../components/SEO'
-import { navigate } from '@reach/router'
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
+import { navigate } from '@reach/router';
 
 const IndexPage = ({
   data: {
@@ -31,6 +31,7 @@ const IndexPage = ({
               title={cause.Title}
               caption={cause.Summary}
               uri={cause.Photo.URI}
+              width={4}
               onClick={() => navigate(`/${cause.Slug}`)}
             />
           ))}
@@ -39,7 +40,7 @@ const IndexPage = ({
       <Footer />
     </Layout>
   </ThemeProvider>
-)
+);
 
 export const pageQuery = graphql`
   query IndexQuery {
@@ -57,13 +58,13 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 IndexPage.propTypes = {
   data: PropTypes.shape({
     wren: PropTypes.shape({
       getCause: PropTypes.shape({}),
     }),
   }),
-}
+};
 
-export default IndexPage
+export default IndexPage;

@@ -1,12 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useQuery } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import CardGrid from '@openmob/bluebird/src/components/lists/CardGrid'
-import CardGridItem from '@openmob/bluebird/src/components/lists/CardGridItem'
-import Header from '@openmob/bluebird/src/components/type/Header'
-import parseObject from '../../common/helpers'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useQuery } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import CardGrid from '@openmob/bluebird/src/components/lists/CardGrid';
+import CardGridItem from '@openmob/bluebird/src/components/lists/CardGridItem';
+import Header from '@openmob/bluebird/src/components/type/Header';
+import parseObject from '../../common/helpers';
 
 const LIST_PAGE = gql`
   query LandingPageQuery($id: ID!) {
@@ -22,9 +22,9 @@ const LIST_PAGE = gql`
       }
     }
   }
-`
+`;
 
-function MyPages({ navigate = () => { }, causeID }) {
+function MyPages({ navigate = () => {}, causeID }) {
   const {
     data: { getCause: cause = {} },
     error,
@@ -33,15 +33,15 @@ function MyPages({ navigate = () => { }, causeID }) {
     variables: {
       id: causeID,
     },
-  })
-  console.log('cause', cause)
+  });
+  console.log('cause', cause);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -50,7 +50,13 @@ function MyPages({ navigate = () => { }, causeID }) {
       <CardGrid>
         <CardGridItem
           title={parseObject(cause.HomePage.Title)}
-          onClick={() => navigate(`pages/homepage/${parseObject(cause.HomePage.ID)}`)}
+          onClick={() =>
+            navigate(
+              `/app/cause/${parseObject(cause.ID)}/pages/homepage/${parseObject(
+                cause.HomePage.ID
+              )}`
+            )
+          }
         />
         {(cause.LandingPages || []).map(item => (
           <CardGridItem
@@ -62,11 +68,11 @@ function MyPages({ navigate = () => { }, causeID }) {
         <CardGridItem title="+" onClick={() => navigate('new')} />
       </CardGrid>
     </Content>
-  )
+  );
 }
 
 MyPages.propTypes = {
   navigate: PropTypes.func,
-}
+};
 
-export default MyPages
+export default MyPages;

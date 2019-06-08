@@ -9,7 +9,7 @@ type Query {
     getHomePageLayout(ID: ID!): Layout
 }
 type Mutation {
-    newCause(Title: String!, Slug: String!, Summary: String!): ID!
+    newCause(Title: String!, Slug: String!, Summary: String!, FeaturedImage: String): ID!
 }
 `;
 

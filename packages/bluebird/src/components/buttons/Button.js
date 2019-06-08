@@ -9,7 +9,7 @@ import {
   color,
   borders,
   boxShadow,
-  borderRadius,
+  borderRadius
 } from 'styled-system';
 
 const StyledButton = styled.button`
@@ -40,7 +40,7 @@ function Button({
   block,
   variant = 'default',
   state,
-  dark,
+  dark
 }) {
   return (
     <StyledButton
@@ -69,19 +69,19 @@ Button.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.oneOfType([
     PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    PropTypes.string,
+    PropTypes.string
   ]),
   loader: PropTypes.oneOfType([
     PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    PropTypes.string,
+    PropTypes.string
   ]),
   variant: PropTypes.oneOf(['primary', 'default', 'warning', 'outline']),
   state: PropTypes.oneOf(['ready', 'loading', 'success', 'error', 'disabled']),
   block: PropTypes.bool,
-  dark: PropTypes.bool,
+  dark: PropTypes.bool
 };
 Button.defaultProps = {
-  state: 'ready',
+  state: 'ready'
 };
 
 export default Button;

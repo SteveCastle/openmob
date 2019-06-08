@@ -1,17 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
-import { Router } from '@reach/router'
-import App from '@openmob/bluebird/src/components/layout/App'
-import SideBar from '@openmob/bluebird/src/components/layout/sidebar/SideBar'
-import ContentPanel from '@openmob/bluebird/src/components/layout/ContentPanel'
-import SideBarHeader from '@openmob/bluebird/src/components/layout/sidebar/SideBarHeader'
-import Menu from '@openmob/bluebird/src/components/menu/Menu'
-import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem'
-import PageList from './PageList'
-import PageEditor from './PageEditor'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
+import { Router } from '@reach/router';
+import App from '@openmob/bluebird/src/components/layout/App';
+import SideBar from '@openmob/bluebird/src/components/layout/sidebar/SideBar';
+import ContentPanel from '@openmob/bluebird/src/components/layout/ContentPanel';
+import SideBarHeader from '@openmob/bluebird/src/components/layout/sidebar/SideBarHeader';
+import Menu from '@openmob/bluebird/src/components/menu/Menu';
+import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem';
+import PageList from './PageList';
+import PageEditor from './PageEditor';
+import CauseEditor from './CauseEditor';
 
-const PlaceHolder = () => <div>Placeholder</div>
+const PlaceHolder = () => <div>Placeholder</div>;
 
 const CauseDashboard = ({ causeID }) => (
   <App>
@@ -47,17 +48,17 @@ const CauseDashboard = ({ causeID }) => (
     </SideBar>
     <ContentPanel>
       <Router>
-        <PageList path="/" />
+        <CauseEditor path="/" />
         <PageList path="/pages" />
         <PageEditor path="/pages/homepage/:pageID" />
         <PlaceHolder path="/*" />
       </Router>
     </ContentPanel>
   </App>
-)
+);
 
 CauseDashboard.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default CauseDashboard
+export default CauseDashboard;

@@ -7,7 +7,7 @@ import {
   fontSize,
   color,
   borders,
-  borderRadius,
+  borderRadius
 } from 'styled-system';
 
 const StyledColumn = styled.div`
@@ -20,13 +20,13 @@ const StyledColumn = styled.div`
   box-sizing: border-box;
 `;
 
-function Column({ children, tracing, size }) {
+function Column({ children, tracing, size, disableSpacing }) {
   return (
     <StyledColumn
       border={0}
-      p={3}
-      mx={2}
-      my={2}
+      p={disableSpacing ? 0 : 3}
+      mx={disableSpacing ? 0 : 2}
+      my={disableSpacing ? 0 : 2}
       width={[1, size / 12]}
       bg={tracing ? `blue.${tracing}` : null}
       fontSize={1}
@@ -39,10 +39,11 @@ function Column({ children, tracing, size }) {
 Column.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
+    PropTypes.node
   ]),
   size: PropTypes.number,
   tracing: PropTypes.number,
+  disableSpacing: PropTypes.bool
 };
 Column.defaultProps = { size: 12 };
 

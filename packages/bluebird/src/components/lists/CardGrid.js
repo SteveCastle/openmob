@@ -9,7 +9,7 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap,
+  flexWrap
 } from 'styled-system';
 
 const StyledGrid = styled.ul`
@@ -40,9 +40,9 @@ CardGrid.propTypes = {
       height: PropTypes.number,
       title: PropTypes.string,
       id: PropTypes.string,
-      slug: PropTypes.string,
+      slug: PropTypes.string
     })
-  ),
+  )
 };
 CardGrid.defaultProps = {};
 

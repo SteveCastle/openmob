@@ -9,7 +9,7 @@ import {
   borders,
   position,
   bottom,
-  borderRadius,
+  borderRadius
 } from 'styled-system';
 import Card from '../cards/Card';
 
@@ -54,7 +54,13 @@ const StyledCaption = styled.p`
 
 function GridItem({ width, title, caption, onClick }) {
   return (
-    <StyledItem p={2} m={2} position="relative" onClick={onClick} width={[1, 1, width / 12]}>
+    <StyledItem
+      p={2}
+      m={2}
+      position="relative"
+      onClick={onClick}
+      width={[1, 1, width / 12]}
+    >
       <Card>
         <StyledTitle color="gray.9" m={4}>
           {title}
@@ -71,7 +77,7 @@ GridItem.propTypes = {
   width: PropTypes.number,
   title: PropTypes.string,
   caption: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 GridItem.defaultProps = { width: 3 };
 

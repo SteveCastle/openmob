@@ -9,7 +9,7 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap,
+  flexWrap
 } from 'styled-system';
 
 import Container from './Container';
@@ -27,14 +27,14 @@ const StyledRow = styled.div`
 
 `;
 
-function Row({ children, container, tracing }) {
+function Row({ children, container, tracing, disableSpacing }) {
   return (
     <StyledRow
       display={'flex'}
       flexWrap={['wrap', 'nowrap']}
       border={0}
-      mx={2}
-      my={1}
+      mx={disableSpacing ? 0 : 2}
+      my={disableSpacing ? 0 : 1}
       width={1}
       bg={tracing ? `fuschia.${tracing}` : null}
       fontSize={1}
@@ -47,10 +47,11 @@ function Row({ children, container, tracing }) {
 Row.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
+    PropTypes.node
   ]),
   container: PropTypes.bool,
   tracing: PropTypes.number,
+  disableSpacing: PropTypes.bool
 };
 Row.defaultProps = { container: false };
 
