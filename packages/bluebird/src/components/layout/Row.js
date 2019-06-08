@@ -9,6 +9,7 @@ import {
   borders,
   borderRadius,
   display,
+  minHeight,
   flexWrap
 } from 'styled-system';
 
@@ -23,8 +24,9 @@ const StyledRow = styled.div`
   ${color}
   ${display}
   ${flexWrap}
+  ${minHeight}
   box-sizing: border-box;
-
+  position: relative;
 `;
 
 function Row({ children, container, tracing, disableSpacing }) {
@@ -36,6 +38,7 @@ function Row({ children, container, tracing, disableSpacing }) {
       mx={disableSpacing ? 0 : 2}
       my={disableSpacing ? 0 : 1}
       width={1}
+      minHeight={100}
       bg={tracing ? `fuschia.${tracing}` : null}
       fontSize={1}
     >

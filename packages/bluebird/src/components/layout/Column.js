@@ -18,6 +18,7 @@ const StyledColumn = styled.div`
   ${fontSize}
   ${color}
   box-sizing: border-box;
+  position: relative;
 `;
 
 function Column({ children, tracing, size, disableSpacing }) {
