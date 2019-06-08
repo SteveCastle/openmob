@@ -166,7 +166,7 @@ func (m *ContactMembershipManager) Delete(ctx context.Context, id string) (*int6
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM contactMembership WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM contact_membership WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete ContactMembership-> "+err.Error())
 	}

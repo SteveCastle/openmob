@@ -166,7 +166,7 @@ func (m *VolunteerOpportunityMembershipManager) Delete(ctx context.Context, id s
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM volunteerOpportunityMembership WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM volunteer_opportunity_membership WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete VolunteerOpportunityMembership-> "+err.Error())
 	}

@@ -71,18 +71,6 @@ const CREATE_ROW = gql`
   }
 `;
 
-const CREATE_COLUMN = gql`
-  mutation createLayoutColumn($layoutColumn: LayoutColumnInput) {
-    createColumn(layoutColumn: $cause, buildStatic: true)
-  }
-`;
-
-const CREATE_COMPONENT = gql`
-  mutation createComponent($component: ComponentInput) {
-    createComponent(component: $component, buildStatic: true)
-  }
-`;
-
 function PageEditor({ navigate = () => {}, pageID }) {
   const {
     data: { getHomePage: page = {} },
@@ -111,15 +99,19 @@ function PageEditor({ navigate = () => {}, pageID }) {
       <SEO title={page.Title} keywords={[`gatsby`, `application`, `react`]} />
       <Editor>
         {(page.Layout.LayoutRows || []).sort(sortByWeight).map(row => (
-          <RowEditor>
+          <RowEditor layoutId={page.Layout.ID} row={row}>
             <Row key={row.ID} container={row.Container}>
               {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
-                <ColumnEditor size={column.Width}>
+                <ColumnEditor
+                  size={column.Width}
+                  id={column.ID}
+                  column={column}
+                >
                   <Column key={column.ID} size={12}>
                     {(column.Components || [])
                       .sort(sortByWeight)
                       .map(component => (
-                        <ComponentEditor>
+                        <ComponentEditor id={component.ID} column={column}>
                           <Node
                             id={page.ID}
                             fields={component.Fields}

@@ -163,7 +163,7 @@ func (m *CustomerCartManager) Delete(ctx context.Context, id string) (*int64, er
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM customerCart WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM customer_cart WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete CustomerCart-> "+err.Error())
 	}

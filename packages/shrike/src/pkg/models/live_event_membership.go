@@ -166,7 +166,7 @@ func (m *LiveEventMembershipManager) Delete(ctx context.Context, id string) (*in
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM liveEventMembership WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM live_event_membership WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete LiveEventMembership-> "+err.Error())
 	}

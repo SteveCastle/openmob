@@ -165,7 +165,7 @@ func (m *LiveEventTypeManager) Delete(ctx context.Context, id string) (*int64, e
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM liveEventType WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM live_event_type WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete LiveEventType-> "+err.Error())
 	}

@@ -166,7 +166,7 @@ func (m *HomePageManager) Delete(ctx context.Context, id string) (*int64, error)
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM homePage WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM home_page WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete HomePage-> "+err.Error())
 	}

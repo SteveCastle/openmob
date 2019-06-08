@@ -167,7 +167,7 @@ func (m *PollRespondantManager) Delete(ctx context.Context, id string) (*int64, 
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM pollRespondant WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM poll_respondant WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete PollRespondant-> "+err.Error())
 	}

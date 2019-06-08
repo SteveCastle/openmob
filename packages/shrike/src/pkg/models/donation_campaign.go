@@ -165,7 +165,7 @@ func (m *DonationCampaignManager) Delete(ctx context.Context, id string) (*int64
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM donationCampaign WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM donation_campaign WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete DonationCampaign-> "+err.Error())
 	}

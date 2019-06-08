@@ -166,7 +166,7 @@ func (m *OwnerMembershipManager) Delete(ctx context.Context, id string) (*int64,
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM ownerMembership WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM owner_membership WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete OwnerMembership-> "+err.Error())
 	}

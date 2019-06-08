@@ -174,7 +174,7 @@ func (m *FieldTypeManager) Delete(ctx context.Context, id string) (*int64, error
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM fieldType WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM field_type WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete FieldType-> "+err.Error())
 	}

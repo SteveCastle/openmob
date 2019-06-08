@@ -165,7 +165,7 @@ func (m *LayoutTypeManager) Delete(ctx context.Context, id string) (*int64, erro
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM layoutType WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM layout_type WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete LayoutType-> "+err.Error())
 	}

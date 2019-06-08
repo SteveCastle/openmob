@@ -165,7 +165,7 @@ func (m *DistrictTypeManager) Delete(ctx context.Context, id string) (*int64, er
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM districtType WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM district_type WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete DistrictType-> "+err.Error())
 	}

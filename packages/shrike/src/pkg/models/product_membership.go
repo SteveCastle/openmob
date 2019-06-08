@@ -166,7 +166,7 @@ func (m *ProductMembershipManager) Delete(ctx context.Context, id string) (*int6
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM productMembership WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM product_membership WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete ProductMembership-> "+err.Error())
 	}

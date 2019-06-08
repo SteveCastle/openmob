@@ -170,7 +170,7 @@ func (m *ExperimentVariantManager) Delete(ctx context.Context, id string) (*int6
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM experimentVariant WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM experiment_variant WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete ExperimentVariant-> "+err.Error())
 	}

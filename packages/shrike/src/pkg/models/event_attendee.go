@@ -167,7 +167,7 @@ func (m *EventAttendeeManager) Delete(ctx context.Context, id string) (*int64, e
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM eventAttendee WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM event_attendee WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete EventAttendee-> "+err.Error())
 	}

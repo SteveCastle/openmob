@@ -167,7 +167,7 @@ func (m *PetitionSignerManager) Delete(ctx context.Context, id string) (*int64, 
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM petitionSigner WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM petition_signer WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete PetitionSigner-> "+err.Error())
 	}

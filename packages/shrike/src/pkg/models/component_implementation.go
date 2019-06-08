@@ -167,7 +167,7 @@ func (m *ComponentImplementationManager) Delete(ctx context.Context, id string) 
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM componentImplementation WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM component_implementation WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete ComponentImplementation-> "+err.Error())
 	}

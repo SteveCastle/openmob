@@ -168,7 +168,7 @@ func (m *ComponentTypeFieldsManager) Delete(ctx context.Context, id string) (*in
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM componentTypeFields WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM component_type_fields WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete ComponentTypeFields-> "+err.Error())
 	}

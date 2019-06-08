@@ -167,7 +167,7 @@ func (m *LandingPageManager) Delete(ctx context.Context, id string) (*int64, err
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM landingPage WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM landing_page WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete LandingPage-> "+err.Error())
 	}

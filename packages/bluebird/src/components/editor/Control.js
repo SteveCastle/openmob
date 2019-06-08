@@ -9,11 +9,19 @@ const StyledControl = styled.div`
   ${space}
   ${fontSize}
   ${color}
+  cursor: pointer;
 `;
 
 function Control({ onClick, children }) {
   return (
-    <StyledControl border={0} color={'gray.1'}>
+    <StyledControl
+      border={0}
+      color={'gray.1'}
+      p={2}
+      fontSize={3}
+      bg={'grey.9'}
+      onClick={onClick}
+    >
       {children}
     </StyledControl>
   );

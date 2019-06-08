@@ -165,7 +165,7 @@ func (m *ActivityTypeManager) Delete(ctx context.Context, id string) (*int64, er
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "DELETE FROM activityType WHERE id=$1", id)
+	res, err := c.ExecContext(ctx, "DELETE FROM activity_type WHERE id=$1", id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to delete ActivityType-> "+err.Error())
 	}
