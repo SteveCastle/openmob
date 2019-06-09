@@ -65,7 +65,11 @@ function PageEditor({ navigate = () => {}, pageID }) {
                     {(column.Components || [])
                       .sort(sortByWeight)
                       .map(component => (
-                        <ComponentEditor id={component.ID} column={column}>
+                        <ComponentEditor
+                          id={component.ID}
+                          pageId={page.ID}
+                          component={component}
+                        >
                           <Node
                             id={page.ID}
                             fields={component.Fields}

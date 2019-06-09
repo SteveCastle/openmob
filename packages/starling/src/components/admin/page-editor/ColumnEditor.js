@@ -18,10 +18,19 @@ const DELETE_COLUMN = gql`
   }
 `;
 
+const CREATE_COMPONENT = gql`
+  mutation createComponent($component: ComponentInput!) {
+    createComponent(component: $component, buildStatic: true) {
+      ID
+    }
+  }
+`;
+
 function ColumnEditor({ children, size, column, pageId, rowId }) {
   const [locked, setLock] = useState(false);
   const deleteLayoutColumn = useMutation(DELETE_COLUMN);
   const updateLayoutColumn = useMutation(UPDATE_COLUMN);
+  const createComponent = useMutation(CREATE_COMPONENT);
 
   return (
     <Column size={size} disableSpacing>
@@ -44,7 +53,27 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
         >
           Delete
         </Control>
-        <Control onClick={() => console.log('add component')}>
+        <Control
+          onClick={() =>
+            createComponent({
+              variables: {
+                component: {
+                  LayoutColumn: column.ID,
+                  ComponentType: '32d88391-4fc4-4a6d-beaf-1d5051da4db5',
+                  ComponentImplementation:
+                    'd5721029-93e2-49a9-b798-21aff3a11c2c',
+                },
+                buildStatic: true,
+              },
+              refetchQueries: [
+                {
+                  query: GET_PAGE,
+                  variables: { id: pageId },
+                },
+              ],
+            })
+          }
+        >
           Add Component
         </Control>
         <Control
