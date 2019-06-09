@@ -11,7 +11,7 @@ import {
   display,
   alignItems,
   justifyContent,
-  flexWrap,
+  flexWrap
 } from 'styled-system';
 
 const StyledItem = styled.div`
@@ -31,6 +31,9 @@ const StyledItem = styled.div`
     height: 100%;
     width: 100%;
     padding: 16px 0 16px 16px;
+    svg {
+      margin-right: 16px;
+    }
   }
 `;
 
@@ -52,8 +55,8 @@ function MenuItem({ children }) {
 MenuItem.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 
 export default MenuItem;

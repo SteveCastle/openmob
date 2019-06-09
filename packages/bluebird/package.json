@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "main": "index.js",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@rebass/components": "^4.0.0-1",
     "lodash": "^4.17.11",
     "react": "^16.8.3",

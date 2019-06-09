@@ -2,6 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { Router } from '@reach/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faArrowLeft,
+  faFile,
+  faPaperPlane,
+  faHandsHelping,
+  faMoneyCheckAlt,
+  faCalendar,
+  faPersonBooth,
+  faBuilding,
+} from '@fortawesome/free-solid-svg-icons';
+
 import App from '@openmob/bluebird/src/components/layout/App';
 import SideBar from '@openmob/bluebird/src/components/layout/sidebar/SideBar';
 import ContentPanel from '@openmob/bluebird/src/components/layout/ContentPanel';
@@ -22,27 +34,52 @@ const CauseDashboard = ({ causeID }) => (
       </SideBarHeader>
       <Menu vertical>
         <MenuItem>
-          <Link to={`/app/cause/${causeID}/pages`}>Pages</Link>
+          <Link to={`/app`}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+            Back to Dashboard
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to={`/app/cause/${causeID}/outreach`}>Outreach</Link>
+          <Link to={`/app/cause/${causeID}/pages`}>
+            <FontAwesomeIcon icon={faFile} />
+            Pages
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to={`/app/cause/${causeID}/outreach`}>
+            <FontAwesomeIcon icon={faPaperPlane} />
+            Outreach
+          </Link>
         </MenuItem>
         <MenuItem>
           <Link to={`/app/cause/${causeID}/volunteering`}>
+            <FontAwesomeIcon icon={faHandsHelping} />
             Volunteer Coordination
           </Link>
         </MenuItem>
         <MenuItem>
-          <Link to={`/app/cause/${causeID}/fundraising`}>Fundraising</Link>
+          <Link to={`/app/cause/${causeID}/fundraising`}>
+            <FontAwesomeIcon icon={faMoneyCheckAlt} />
+            Fundraising
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to={`/app/cause/${causeID}/events`}>Events</Link>
+          <Link to={`/app/cause/${causeID}/events`}>
+            <FontAwesomeIcon icon={faCalendar} />
+            Events
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to={`/app/cause/${causeID}/elections`}>Elections</Link>
+          <Link to={`/app/cause/${causeID}/elections`}>
+            <FontAwesomeIcon icon={faPersonBooth} />
+            Elections
+          </Link>
         </MenuItem>
         <MenuItem>
-          <Link to={`/app/cause/${causeID}/boycotts`}>Boycotts</Link>
+          <Link to={`/app/cause/${causeID}/boycotts`}>
+            <FontAwesomeIcon icon={faBuilding} />
+            Companies
+          </Link>
         </MenuItem>
       </Menu>
     </SideBar>
