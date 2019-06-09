@@ -65,6 +65,12 @@ function RowEditor({ children, row, pageId, layoutId }) {
                 },
                 buildStatic: true,
               },
+              refetchQueries: [
+                {
+                  query: GET_PAGE,
+                  variables: { id: pageId },
+                },
+              ],
             })
           }
         >
