@@ -47,7 +47,7 @@ const New = ({ accountId }) => {
         const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
-            <Card>
+            <Card width={1 / 2}>
               <Form>
                 <h1>Create a New Cause</h1>
                 <Widget>

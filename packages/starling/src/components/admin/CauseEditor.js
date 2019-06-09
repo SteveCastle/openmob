@@ -94,7 +94,7 @@ function CauseEditor({ causeID: id }) {
         const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
-            <Card>
+            <Card width={1 / 2}>
               <Form>
                 <h1>Edit {item.Title}</h1>
                 <Widget>

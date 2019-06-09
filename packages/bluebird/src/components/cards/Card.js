@@ -15,7 +15,7 @@ import {
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent,
+  justifyContent
 } from 'styled-system';
 
 const StyledCard = styled.div`
@@ -37,7 +37,7 @@ const StyledCard = styled.div`
   min-height: 100px;
 `;
 
-function Card({ children }) {
+function Card({ children, width = 1 }) {
   return (
     <StyledCard
       bg="gray.0"
@@ -48,7 +48,7 @@ function Card({ children }) {
       flexWrap="wrap"
       flexDirection="column"
       fontSize={1}
-      width={1}
+      width={width}
     >
       {children}
     </StyledCard>
@@ -58,8 +58,9 @@ function Card({ children }) {
 Card.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
+    PropTypes.node
   ]),
+  width: PropTypes.number
 };
 Card.defaultProps = {};
 

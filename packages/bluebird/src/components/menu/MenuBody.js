@@ -13,7 +13,7 @@ import {
   alignItems,
   justifyContent,
   flexWrap,
-  flexDirection,
+  flexDirection
 } from 'styled-system';
 
 const StyledMenuBody = styled.div`
@@ -32,7 +32,7 @@ const StyledMenuBody = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute;
-  top: 13%;
+  top: 180px;
   left: 0;
   ::-webkit-scrollbar {
     width: 0px;
@@ -51,8 +51,8 @@ function MenuBody({ children }) {
 MenuBody.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 
 export default MenuBody;
