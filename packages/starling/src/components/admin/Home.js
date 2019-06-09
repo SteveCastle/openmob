@@ -34,19 +34,19 @@ const Home = ({ '*': currentPath }) => (
             Back to Dashboard
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'new'}>
           <Link to="/app/new">
             <FontAwesomeIcon icon={faPlus} />
             Create Cause
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'plugins'}>
           <Link to="/app/plugins">
             <FontAwesomeIcon icon={faPlug} />
             Plugins
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'settings'}>
           <Link to="/app/settings">
             <FontAwesomeIcon icon={faCog} />
             Settings
