@@ -57,7 +57,8 @@ function PageEditor({ navigate = () => {}, pageID }) {
               {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
                 <ColumnEditor
                   size={column.Width}
-                  id={column.ID}
+                  rowId={row.ID}
+                  pageId={page.ID}
                   column={column}
                 >
                   <Column key={column.ID} size={12}>

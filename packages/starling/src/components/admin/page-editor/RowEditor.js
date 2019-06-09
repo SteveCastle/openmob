@@ -19,7 +19,7 @@ const DELETE_ROW = gql`
 `;
 
 const CREATE_COLUMN = gql`
-  mutation createLayoutColumn($layoutColumn: LayoutColumnInput) {
+  mutation createLayoutColumn($layoutColumn: LayoutColumnInput!) {
     createLayoutColumn(layoutColumn: $layoutColumn, buildStatic: true) {
       ID
     }
@@ -30,7 +30,7 @@ function RowEditor({ children, row, pageId, layoutId }) {
   const [locked, setLock] = useState(false);
   const updateLayoutRow = useMutation(UPDATE_ROW);
   const deleteLayoutRow = useMutation(DELETE_ROW);
-  const createColumn = useMutation(CREATE_COLUMN);
+  const createLayoutColumn = useMutation(CREATE_COLUMN);
 
   return (
     <Row disableSpacing>
@@ -76,7 +76,27 @@ function RowEditor({ children, row, pageId, layoutId }) {
         >
           Toggle Container
         </Control>
-        <Control onClick={createColumn}>Add Column</Control>
+        <Control
+          onClick={() =>
+            createLayoutColumn({
+              variables: {
+                layoutColumn: {
+                  LayoutRow: row.ID,
+                  Width: 6,
+                },
+                buildStatic: true,
+              },
+              refetchQueries: [
+                {
+                  query: GET_PAGE,
+                  variables: { id: pageId },
+                },
+              ],
+            })
+          }
+        >
+          Add Column
+        </Control>
       </Overlay>
 
       {children}
