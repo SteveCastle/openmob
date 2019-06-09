@@ -230,7 +230,7 @@ const Layout = ({ children, title, id, summary }) => (
       <Menu vertical>
         <MenuHeader>
           <Input block />
-          <MenuItem>
+          <MenuItem noBorder>
             <Link to={`/app`}>
               <FontAwesomeIcon icon={faArrowLeft} />
               Back to Dashboard

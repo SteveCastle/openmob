@@ -23,60 +23,65 @@ import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem';
 import PageList from './PageList';
 import PageEditor from './PageEditor';
 import CauseEditor from './CauseEditor';
+import PlaceHolder from './PlaceHolder';
 
-const PlaceHolder = () => <div>Placeholder</div>;
-
-const CauseDashboard = ({ causeID }) => (
+const CauseDashboard = ({ causeID, '*': currentPath }) => (
   <App>
     <SideBar>
       <SideBarHeader>
         <Link to="/">Open Mob</Link>
       </SideBarHeader>
       <Menu vertical>
-        <MenuItem>
+        <MenuItem hide={currentPath === ''}>
+          <Link to={`/app/cause/${causeID}`}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+            Back to Cause
+          </Link>
+        </MenuItem>
+        <MenuItem hide={currentPath !== ''}>
           <Link to={`/app`}>
             <FontAwesomeIcon icon={faArrowLeft} />
             Back to Dashboard
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'pages'}>
           <Link to={`/app/cause/${causeID}/pages`}>
             <FontAwesomeIcon icon={faFile} />
             Pages
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'outreach'}>
           <Link to={`/app/cause/${causeID}/outreach`}>
             <FontAwesomeIcon icon={faPaperPlane} />
             Outreach
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'volunteering'}>
           <Link to={`/app/cause/${causeID}/volunteering`}>
             <FontAwesomeIcon icon={faHandsHelping} />
             Volunteer Coordination
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'fundraising'}>
           <Link to={`/app/cause/${causeID}/fundraising`}>
             <FontAwesomeIcon icon={faMoneyCheckAlt} />
             Fundraising
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'events'}>
           <Link to={`/app/cause/${causeID}/events`}>
             <FontAwesomeIcon icon={faCalendar} />
             Events
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem active={currentPath === 'elections'}>
           <Link to={`/app/cause/${causeID}/elections`}>
             <FontAwesomeIcon icon={faPersonBooth} />
             Elections
           </Link>
         </MenuItem>
-        <MenuItem>
-          <Link to={`/app/cause/${causeID}/boycotts`}>
+        <MenuItem active={currentPath === 'companies'}>
+          <Link to={`/app/cause/${causeID}/companies`}>
             <FontAwesomeIcon icon={faBuilding} />
             Companies
           </Link>

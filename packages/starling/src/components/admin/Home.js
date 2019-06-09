@@ -8,6 +8,7 @@ import {
   faPlus,
   faPlug,
   faCog,
+  faArrowLeft,
   faOilCan,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -19,14 +20,20 @@ import Menu from '@openmob/bluebird/src/components/menu/Menu';
 import MenuItem from '@openmob/bluebird/src/components/menu/MenuItem';
 import MyCauses from './MyCauses';
 import New from './New';
-
-const Home = () => (
+import PlaceHolder from './PlaceHolder';
+const Home = ({ '*': currentPath }) => (
   <App>
     <SideBar>
       <SideBarHeader>
         <Link to="/">Open Mob</Link>
       </SideBarHeader>
       <Menu vertical>
+        <MenuItem hide={currentPath === ''}>
+          <Link to="/app">
+            <FontAwesomeIcon icon={faArrowLeft} />
+            Back to Dashboard
+          </Link>
+        </MenuItem>
         <MenuItem>
           <Link to="/app/new">
             <FontAwesomeIcon icon={faPlus} />
@@ -41,14 +48,12 @@ const Home = () => (
         </MenuItem>
         <MenuItem>
           <Link to="/app/settings">
-            {' '}
             <FontAwesomeIcon icon={faCog} />
             Settings
           </Link>
         </MenuItem>
         <MenuItem>
           <Link to="/app/admin">
-            {' '}
             <FontAwesomeIcon icon={faOilCan} />
             CRUD
           </Link>
@@ -59,6 +64,8 @@ const Home = () => (
       <Router>
         <MyCauses path="/*" />
         <New path="/new" />
+        <PlaceHolder path="/plugins" />
+        <PlaceHolder path="/settings" />
       </Router>
     </ContentPanel>
   </App>

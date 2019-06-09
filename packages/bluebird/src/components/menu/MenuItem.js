@@ -27,7 +27,7 @@ const StyledItem = styled.div`
   ${flexWrap}
   a {
     text-decoration: none;
-    color: white;
+    ${color}
     height: 100%;
     width: 100%;
     padding: 16px 0 16px 16px;
@@ -37,11 +37,11 @@ const StyledItem = styled.div`
   }
 `;
 
-function MenuItem({ children }) {
-  return (
+function MenuItem({ children, noBorder, active, hide }) {
+  return hide ? null : (
     <StyledItem
-      borderBottom="1px solid #3f3f73"
-      color="gray.0"
+      borderBottom={noBorder ? 'none' : '1px solid #3f3f73'}
+      color={active ? 'green.4' : 'gray.0'}
       display="flex"
       fontSize={2}
       justifyContent="flex-start"
@@ -56,7 +56,10 @@ MenuItem.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]),
+  active: PropTypes.bool,
+  hide: PropTypes.bool,
+  noBorder: PropTypes.bool
 };
 
 export default MenuItem;
