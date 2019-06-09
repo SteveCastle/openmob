@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo-hooks';
 import { Link } from '@reach/router';
 import gql from 'graphql-tag';
+import Spinner from '@openmob/bluebird/src/components/loaders/Spinner';
+
 import Content from '@openmob/bluebird/src/components/layout/Content';
 import CardGrid from '@openmob/bluebird/src/components/lists/CardGrid';
 import CardGridItem from '@openmob/bluebird/src/components/lists/CardGridItem';
@@ -38,7 +40,7 @@ function MyCauses({ navigate = () => {} }) {
   } = useQuery(LIST_CAUSE);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {

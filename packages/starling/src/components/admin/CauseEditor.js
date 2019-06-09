@@ -5,6 +5,7 @@ import { useQuery, useMutation } from 'react-apollo-hooks';
 import gql from 'graphql-tag';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
+import Spinner from '@openmob/bluebird/src/components/loaders/Spinner';
 import Content from '@openmob/bluebird/src/components/layout/Content';
 import Card from '@openmob/bluebird/src/components/cards/Card';
 import Form from '@openmob/bluebird/src/components/forms/Form';
@@ -57,7 +58,7 @@ function CauseEditor({ causeID: id }) {
   const updateCause = useMutation(UPDATE_CAUSE);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
