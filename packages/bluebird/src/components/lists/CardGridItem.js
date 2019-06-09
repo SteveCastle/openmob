@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {
   space,
   width,
+  background,
   fontSize,
   color,
   borders,
@@ -40,6 +41,35 @@ const StyledTitle = styled.h2`
   ${color}
 `;
 
+const CardBody = styled.div`
+  ${borders}
+  ${borderRadius}
+  ${space}
+  ${width}
+  ${fontSize}
+  ${position}
+  ${bottom}
+  ${color}
+`;
+
+const CardLabel = styled.div`
+  ${borders}
+  ${borderRadius}
+  ${space}
+  ${width}
+  ${fontSize}
+  ${position}
+  ${bottom}
+  ${color}
+  ${background}
+  height: 200px;
+  background-image: url("${props => props.image}");
+  background-position: center;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
 const StyledCaption = styled.p`
   ${borders}
   ${borderRadius}
@@ -49,10 +79,9 @@ const StyledCaption = styled.p`
   ${position}
   ${bottom}
   ${color}
-  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 `;
 
-function GridItem({ width, title, caption, onClick }) {
+function GridItem({ width, title, caption, onClick, image }) {
   return (
     <StyledItem
       p={2}
@@ -61,13 +90,16 @@ function GridItem({ width, title, caption, onClick }) {
       onClick={onClick}
       width={[1, 1, width / 12]}
     >
-      <Card>
-        <StyledTitle color="gray.9" m={4}>
-          {title}
-        </StyledTitle>
-        <StyledCaption color="gray.9" mx={4} my={3}>
-          {caption}
-        </StyledCaption>
+      <Card fillHeight>
+        <CardLabel width={1} image={image} />
+        <CardBody>
+          <StyledTitle color="gray.9" mx={3} my={3}>
+            {title}
+          </StyledTitle>
+          <StyledCaption color="gray.9" mx={3} my={2}>
+            {caption}
+          </StyledCaption>
+        </CardBody>
       </Card>
     </StyledItem>
   );
@@ -77,6 +109,7 @@ GridItem.propTypes = {
   width: PropTypes.number,
   title: PropTypes.string,
   caption: PropTypes.string,
+  image: PropTypes.string,
   onClick: PropTypes.func
 };
 GridItem.defaultProps = { width: 3 };

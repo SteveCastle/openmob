@@ -1,14 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useQuery } from 'react-apollo-hooks'
-import { Link } from '@reach/router'
-import gql from 'graphql-tag'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import CardGrid from '@openmob/bluebird/src/components/lists/CardGrid'
-import CardGridItem from '@openmob/bluebird/src/components/lists/CardGridItem'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import Header from '@openmob/bluebird/src/components/type/Header'
-import parseObject from '../../common/helpers'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useQuery } from 'react-apollo-hooks';
+import { Link } from '@reach/router';
+import gql from 'graphql-tag';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import CardGrid from '@openmob/bluebird/src/components/lists/CardGrid';
+import CardGridItem from '@openmob/bluebird/src/components/lists/CardGridItem';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import Header from '@openmob/bluebird/src/components/type/Header';
+import parseObject from '../../common/helpers';
 
 const LIST_CAUSE = gql`
   {
@@ -23,23 +23,26 @@ const LIST_CAUSE = gql`
       Title
       Slug
       Summary
+      Photo {
+        URI
+      }
     }
   }
-`
+`;
 
 function MyCauses({ navigate = () => {} }) {
   const {
     data: { listCause: items = [] },
     error,
     loading,
-  } = useQuery(LIST_CAUSE)
+  } = useQuery(LIST_CAUSE);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   if (items === null || items.length === 0) {
@@ -51,7 +54,7 @@ function MyCauses({ navigate = () => {} }) {
           variant="primary"
         />
       </Content>
-    )
+    );
   }
 
   return (
@@ -60,19 +63,20 @@ function MyCauses({ navigate = () => {} }) {
       <CardGrid>
         {(items || []).map(item => (
           <CardGridItem
-            title={parseObject(item.Title)}
-            description={parseObject(item.Summary)}
+            title={item.Title}
+            caption={item.Summary}
+            image={item.Photo.URI}
             onClick={() => navigate(`/app/cause/${parseObject(item.ID)}`)}
           />
         ))}
         <CardGridItem title="+" onClick={() => navigate('new')} />
       </CardGrid>
     </Content>
-  )
+  );
 }
 
 MyCauses.propTypes = {
   navigate: PropTypes.func,
-}
+};
 
-export default MyCauses
+export default MyCauses;

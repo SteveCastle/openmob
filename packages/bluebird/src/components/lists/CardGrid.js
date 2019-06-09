@@ -21,6 +21,7 @@ const StyledGrid = styled.ul`
   ${color}
   ${display}
   ${flexWrap}
+  justify-content: stretch;
   list-style: none;
 `;
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import gql from 'graphql-tag';
 import Button from '@openmob/bluebird/src/components/buttons/Button';
+import Spinner from '@openmob/bluebird/src/components/loaders/Spinner';
 
 import Row from '@openmob/bluebird/src/components/layout/Row';
 import Column from '@openmob/bluebird/src/components/layout/Column';
@@ -40,7 +41,7 @@ function PageEditor({ navigate = () => {}, pageID }) {
   console.log('page', page);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {

@@ -35,9 +35,10 @@ const StyledCard = styled.div`
   ${alignItems}
   ${justifyContent}
   min-height: 100px;
+  height: ${({ fillHeight }) => (fillHeight ? '100%' : null)};
 `;
 
-function Card({ children, width = 1 }) {
+function Card({ children, width = 1, fillHeight }) {
   return (
     <StyledCard
       bg="gray.0"
@@ -45,10 +46,12 @@ function Card({ children, width = 1 }) {
       border={0}
       boxShadow={0}
       borderRadius={2}
+      display="flex"
       flexWrap="wrap"
       flexDirection="column"
       fontSize={1}
       width={width}
+      fillHeight={fillHeight}
     >
       {children}
     </StyledCard>
@@ -60,7 +63,8 @@ Card.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  width: PropTypes.number
+  width: PropTypes.number,
+  fillHeight: PropTypes.bool
 };
 Card.defaultProps = {};
 
