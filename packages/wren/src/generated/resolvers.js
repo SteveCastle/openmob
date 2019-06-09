@@ -1641,10 +1641,10 @@ module.exports = client => ({
         .UpdateACL()
         .sendMessage({ api: 'v1', item: { ID, ...acl }, buildStatic })
         .then(res => res.updated),
-    deleteACL: (_, { ID }) =>
+    deleteACL: (_, { ID, buildStatic = false }) =>
       client
         .DeleteACL()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createMailingAddress: (_, { mailingAddress, buildStatic = false }) =>
       client
@@ -1660,10 +1660,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteMailingAddress: (_, { ID }) =>
+    deleteMailingAddress: (_, { ID, buildStatic = false }) =>
       client
         .DeleteMailingAddress()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPhoneNumber: (_, { phoneNumber, buildStatic = false }) =>
       client
@@ -1675,10 +1675,10 @@ module.exports = client => ({
         .UpdatePhoneNumber()
         .sendMessage({ api: 'v1', item: { ID, ...phoneNumber }, buildStatic })
         .then(res => res.updated),
-    deletePhoneNumber: (_, { ID }) =>
+    deletePhoneNumber: (_, { ID, buildStatic = false }) =>
       client
         .DeletePhoneNumber()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createEmailAddress: (_, { emailAddress, buildStatic = false }) =>
       client
@@ -1690,10 +1690,10 @@ module.exports = client => ({
         .UpdateEmailAddress()
         .sendMessage({ api: 'v1', item: { ID, ...emailAddress }, buildStatic })
         .then(res => res.updated),
-    deleteEmailAddress: (_, { ID }) =>
+    deleteEmailAddress: (_, { ID, buildStatic = false }) =>
       client
         .DeleteEmailAddress()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLayoutType: (_, { layoutType, buildStatic = false }) =>
       client
@@ -1705,10 +1705,10 @@ module.exports = client => ({
         .UpdateLayoutType()
         .sendMessage({ api: 'v1', item: { ID, ...layoutType }, buildStatic })
         .then(res => res.updated),
-    deleteLayoutType: (_, { ID }) =>
+    deleteLayoutType: (_, { ID, buildStatic = false }) =>
       client
         .DeleteLayoutType()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLayoutRow: (_, { layoutRow, buildStatic = false }) =>
       client
@@ -1720,10 +1720,10 @@ module.exports = client => ({
         .UpdateLayoutRow()
         .sendMessage({ api: 'v1', item: { ID, ...layoutRow }, buildStatic })
         .then(res => res.updated),
-    deleteLayoutRow: (_, { ID }) =>
+    deleteLayoutRow: (_, { ID, buildStatic = false }) =>
       client
         .DeleteLayoutRow()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createComponentTypeFields: (
       _,
@@ -1749,10 +1749,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteComponentTypeFields: (_, { ID }) =>
+    deleteComponentTypeFields: (_, { ID, buildStatic = false }) =>
       client
         .DeleteComponentTypeFields()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createComponentType: (_, { componentType, buildStatic = false }) =>
       client
@@ -1764,10 +1764,10 @@ module.exports = client => ({
         .UpdateComponentType()
         .sendMessage({ api: 'v1', item: { ID, ...componentType }, buildStatic })
         .then(res => res.updated),
-    deleteComponentType: (_, { ID }) =>
+    deleteComponentType: (_, { ID, buildStatic = false }) =>
       client
         .DeleteComponentType()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createComponentImplementation: (
       _,
@@ -1793,10 +1793,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteComponentImplementation: (_, { ID }) =>
+    deleteComponentImplementation: (_, { ID, buildStatic = false }) =>
       client
         .DeleteComponentImplementation()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLayoutColumn: (_, { layoutColumn, buildStatic = false }) =>
       client
@@ -1808,10 +1808,10 @@ module.exports = client => ({
         .UpdateLayoutColumn()
         .sendMessage({ api: 'v1', item: { ID, ...layoutColumn }, buildStatic })
         .then(res => res.updated),
-    deleteLayoutColumn: (_, { ID }) =>
+    deleteLayoutColumn: (_, { ID, buildStatic = false }) =>
       client
         .DeleteLayoutColumn()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createFieldType: (_, { fieldType, buildStatic = false }) =>
       client
@@ -1823,10 +1823,10 @@ module.exports = client => ({
         .UpdateFieldType()
         .sendMessage({ api: 'v1', item: { ID, ...fieldType }, buildStatic })
         .then(res => res.updated),
-    deleteFieldType: (_, { ID }) =>
+    deleteFieldType: (_, { ID, buildStatic = false }) =>
       client
         .DeleteFieldType()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLayout: (_, { layout, buildStatic = false }) =>
       client
@@ -1838,10 +1838,10 @@ module.exports = client => ({
         .UpdateLayout()
         .sendMessage({ api: 'v1', item: { ID, ...layout }, buildStatic })
         .then(res => res.updated),
-    deleteLayout: (_, { ID }) =>
+    deleteLayout: (_, { ID, buildStatic = false }) =>
       client
         .DeleteLayout()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createExperimentVariant: (_, { experimentVariant, buildStatic = false }) =>
       client
@@ -1860,10 +1860,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteExperimentVariant: (_, { ID }) =>
+    deleteExperimentVariant: (_, { ID, buildStatic = false }) =>
       client
         .DeleteExperimentVariant()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createExperiment: (_, { experiment, buildStatic = false }) =>
       client
@@ -1875,10 +1875,10 @@ module.exports = client => ({
         .UpdateExperiment()
         .sendMessage({ api: 'v1', item: { ID, ...experiment }, buildStatic })
         .then(res => res.updated),
-    deleteExperiment: (_, { ID }) =>
+    deleteExperiment: (_, { ID, buildStatic = false }) =>
       client
         .DeleteExperiment()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLandingPage: (_, { landingPage, buildStatic = false }) =>
       client
@@ -1890,10 +1890,10 @@ module.exports = client => ({
         .UpdateLandingPage()
         .sendMessage({ api: 'v1', item: { ID, ...landingPage }, buildStatic })
         .then(res => res.updated),
-    deleteLandingPage: (_, { ID }) =>
+    deleteLandingPage: (_, { ID, buildStatic = false }) =>
       client
         .DeleteLandingPage()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createIssue: (_, { issue, buildStatic = false }) =>
       client
@@ -1905,10 +1905,10 @@ module.exports = client => ({
         .UpdateIssue()
         .sendMessage({ api: 'v1', item: { ID, ...issue }, buildStatic })
         .then(res => res.updated),
-    deleteIssue: (_, { ID }) =>
+    deleteIssue: (_, { ID, buildStatic = false }) =>
       client
         .DeleteIssue()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createField: (_, { field, buildStatic = false }) =>
       client
@@ -1920,10 +1920,10 @@ module.exports = client => ({
         .UpdateField()
         .sendMessage({ api: 'v1', item: { ID, ...field }, buildStatic })
         .then(res => res.updated),
-    deleteField: (_, { ID }) =>
+    deleteField: (_, { ID, buildStatic = false }) =>
       client
         .DeleteField()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createComponent: (_, { component, buildStatic = false }) =>
       client
@@ -1935,10 +1935,10 @@ module.exports = client => ({
         .UpdateComponent()
         .sendMessage({ api: 'v1', item: { ID, ...component }, buildStatic })
         .then(res => res.updated),
-    deleteComponent: (_, { ID }) =>
+    deleteComponent: (_, { ID, buildStatic = false }) =>
       client
         .DeleteComponent()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createCandidate: (_, { candidate, buildStatic = false }) =>
       client
@@ -1950,10 +1950,10 @@ module.exports = client => ({
         .UpdateCandidate()
         .sendMessage({ api: 'v1', item: { ID, ...candidate }, buildStatic })
         .then(res => res.updated),
-    deleteCandidate: (_, { ID }) =>
+    deleteCandidate: (_, { ID, buildStatic = false }) =>
       client
         .DeleteCandidate()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createDistrictType: (_, { districtType, buildStatic = false }) =>
       client
@@ -1965,10 +1965,10 @@ module.exports = client => ({
         .UpdateDistrictType()
         .sendMessage({ api: 'v1', item: { ID, ...districtType }, buildStatic })
         .then(res => res.updated),
-    deleteDistrictType: (_, { ID }) =>
+    deleteDistrictType: (_, { ID, buildStatic = false }) =>
       client
         .DeleteDistrictType()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createDistrict: (_, { district, buildStatic = false }) =>
       client
@@ -1980,10 +1980,10 @@ module.exports = client => ({
         .UpdateDistrict()
         .sendMessage({ api: 'v1', item: { ID, ...district }, buildStatic })
         .then(res => res.updated),
-    deleteDistrict: (_, { ID }) =>
+    deleteDistrict: (_, { ID, buildStatic = false }) =>
       client
         .DeleteDistrict()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createVolunteerOpportunityType: (
       _,
@@ -2009,10 +2009,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteVolunteerOpportunityType: (_, { ID }) =>
+    deleteVolunteerOpportunityType: (_, { ID, buildStatic = false }) =>
       client
         .DeleteVolunteerOpportunityType()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createOffice: (_, { office, buildStatic = false }) =>
       client
@@ -2024,10 +2024,10 @@ module.exports = client => ({
         .UpdateOffice()
         .sendMessage({ api: 'v1', item: { ID, ...office }, buildStatic })
         .then(res => res.updated),
-    deleteOffice: (_, { ID }) =>
+    deleteOffice: (_, { ID, buildStatic = false }) =>
       client
         .DeleteOffice()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPollItem: (_, { pollItem, buildStatic = false }) =>
       client
@@ -2039,10 +2039,10 @@ module.exports = client => ({
         .UpdatePollItem()
         .sendMessage({ api: 'v1', item: { ID, ...pollItem }, buildStatic })
         .then(res => res.updated),
-    deletePollItem: (_, { ID }) =>
+    deletePollItem: (_, { ID, buildStatic = false }) =>
       client
         .DeletePollItem()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLiveEventType: (_, { liveEventType, buildStatic = false }) =>
       client
@@ -2054,10 +2054,10 @@ module.exports = client => ({
         .UpdateLiveEventType()
         .sendMessage({ api: 'v1', item: { ID, ...liveEventType }, buildStatic })
         .then(res => res.updated),
-    deleteLiveEventType: (_, { ID }) =>
+    deleteLiveEventType: (_, { ID, buildStatic = false }) =>
       client
         .DeleteLiveEventType()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createCompany: (_, { company, buildStatic = false }) =>
       client
@@ -2069,10 +2069,10 @@ module.exports = client => ({
         .UpdateCompany()
         .sendMessage({ api: 'v1', item: { ID, ...company }, buildStatic })
         .then(res => res.updated),
-    deleteCompany: (_, { ID }) =>
+    deleteCompany: (_, { ID, buildStatic = false }) =>
       client
         .DeleteCompany()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createProductType: (_, { productType, buildStatic = false }) =>
       client
@@ -2084,10 +2084,10 @@ module.exports = client => ({
         .UpdateProductType()
         .sendMessage({ api: 'v1', item: { ID, ...productType }, buildStatic })
         .then(res => res.updated),
-    deleteProductType: (_, { ID }) =>
+    deleteProductType: (_, { ID, buildStatic = false }) =>
       client
         .DeleteProductType()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createCustomerCart: (_, { customerCart, buildStatic = false }) =>
       client
@@ -2099,10 +2099,10 @@ module.exports = client => ({
         .UpdateCustomerCart()
         .sendMessage({ api: 'v1', item: { ID, ...customerCart }, buildStatic })
         .then(res => res.updated),
-    deleteCustomerCart: (_, { ID }) =>
+    deleteCustomerCart: (_, { ID, buildStatic = false }) =>
       client
         .DeleteCustomerCart()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPayment: (_, { payment, buildStatic = false }) =>
       client
@@ -2114,10 +2114,10 @@ module.exports = client => ({
         .UpdatePayment()
         .sendMessage({ api: 'v1', item: { ID, ...payment }, buildStatic })
         .then(res => res.updated),
-    deletePayment: (_, { ID }) =>
+    deletePayment: (_, { ID, buildStatic = false }) =>
       client
         .DeletePayment()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createDelivery: (_, { delivery, buildStatic = false }) =>
       client
@@ -2129,10 +2129,10 @@ module.exports = client => ({
         .UpdateDelivery()
         .sendMessage({ api: 'v1', item: { ID, ...delivery }, buildStatic })
         .then(res => res.updated),
-    deleteDelivery: (_, { ID }) =>
+    deleteDelivery: (_, { ID, buildStatic = false }) =>
       client
         .DeleteDelivery()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createElection: (_, { election, buildStatic = false }) =>
       client
@@ -2144,10 +2144,10 @@ module.exports = client => ({
         .UpdateElection()
         .sendMessage({ api: 'v1', item: { ID, ...election }, buildStatic })
         .then(res => res.updated),
-    deleteElection: (_, { ID }) =>
+    deleteElection: (_, { ID, buildStatic = false }) =>
       client
         .DeleteElection()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createBoycott: (_, { boycott, buildStatic = false }) =>
       client
@@ -2159,10 +2159,10 @@ module.exports = client => ({
         .UpdateBoycott()
         .sendMessage({ api: 'v1', item: { ID, ...boycott }, buildStatic })
         .then(res => res.updated),
-    deleteBoycott: (_, { ID }) =>
+    deleteBoycott: (_, { ID, buildStatic = false }) =>
       client
         .DeleteBoycott()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createBoycottMembership: (_, { boycottMembership, buildStatic = false }) =>
       client
@@ -2181,10 +2181,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteBoycottMembership: (_, { ID }) =>
+    deleteBoycottMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteBoycottMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createElectionMembership: (
       _,
@@ -2210,10 +2210,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteElectionMembership: (_, { ID }) =>
+    deleteElectionMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteElectionMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPetitionMembership: (
       _,
@@ -2239,10 +2239,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deletePetitionMembership: (_, { ID }) =>
+    deletePetitionMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeletePetitionMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPollMembership: (_, { pollMembership, buildStatic = false }) =>
       client
@@ -2258,10 +2258,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deletePollMembership: (_, { ID }) =>
+    deletePollMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeletePollMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createVolunteerOpportunityMembership: (
       _,
@@ -2287,10 +2287,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteVolunteerOpportunityMembership: (_, { ID }) =>
+    deleteVolunteerOpportunityMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteVolunteerOpportunityMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLiveEventMembership: (
       _,
@@ -2316,10 +2316,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteLiveEventMembership: (_, { ID }) =>
+    deleteLiveEventMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteLiveEventMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createProduct: (_, { product, buildStatic = false }) =>
       client
@@ -2331,10 +2331,10 @@ module.exports = client => ({
         .UpdateProduct()
         .sendMessage({ api: 'v1', item: { ID, ...product }, buildStatic })
         .then(res => res.updated),
-    deleteProduct: (_, { ID }) =>
+    deleteProduct: (_, { ID, buildStatic = false }) =>
       client
         .DeleteProduct()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createProductMembership: (_, { productMembership, buildStatic = false }) =>
       client
@@ -2353,10 +2353,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteProductMembership: (_, { ID }) =>
+    deleteProductMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteProductMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createDonationCampaign: (_, { donationCampaign, buildStatic = false }) =>
       client
@@ -2375,10 +2375,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteDonationCampaign: (_, { ID }) =>
+    deleteDonationCampaign: (_, { ID, buildStatic = false }) =>
       client
         .DeleteDonationCampaign()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createDonationCampaignMembership: (
       _,
@@ -2404,10 +2404,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteDonationCampaignMembership: (_, { ID }) =>
+    deleteDonationCampaignMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteDonationCampaignMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPetition: (_, { petition, buildStatic = false }) =>
       client
@@ -2419,10 +2419,10 @@ module.exports = client => ({
         .UpdatePetition()
         .sendMessage({ api: 'v1', item: { ID, ...petition }, buildStatic })
         .then(res => res.updated),
-    deletePetition: (_, { ID }) =>
+    deletePetition: (_, { ID, buildStatic = false }) =>
       client
         .DeletePetition()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPetitionSigner: (_, { petitionSigner, buildStatic = false }) =>
       client
@@ -2438,10 +2438,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deletePetitionSigner: (_, { ID }) =>
+    deletePetitionSigner: (_, { ID, buildStatic = false }) =>
       client
         .DeletePetitionSigner()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPoll: (_, { poll, buildStatic = false }) =>
       client
@@ -2453,10 +2453,10 @@ module.exports = client => ({
         .UpdatePoll()
         .sendMessage({ api: 'v1', item: { ID, ...poll }, buildStatic })
         .then(res => res.updated),
-    deletePoll: (_, { ID }) =>
+    deletePoll: (_, { ID, buildStatic = false }) =>
       client
         .DeletePoll()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPollRespondant: (_, { pollRespondant, buildStatic = false }) =>
       client
@@ -2472,10 +2472,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deletePollRespondant: (_, { ID }) =>
+    deletePollRespondant: (_, { ID, buildStatic = false }) =>
       client
         .DeletePollRespondant()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPurchaser: (_, { purchaser, buildStatic = false }) =>
       client
@@ -2487,10 +2487,10 @@ module.exports = client => ({
         .UpdatePurchaser()
         .sendMessage({ api: 'v1', item: { ID, ...purchaser }, buildStatic })
         .then(res => res.updated),
-    deletePurchaser: (_, { ID }) =>
+    deletePurchaser: (_, { ID, buildStatic = false }) =>
       client
         .DeletePurchaser()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createCustomerOrder: (_, { customerOrder, buildStatic = false }) =>
       client
@@ -2502,10 +2502,10 @@ module.exports = client => ({
         .UpdateCustomerOrder()
         .sendMessage({ api: 'v1', item: { ID, ...customerOrder }, buildStatic })
         .then(res => res.updated),
-    deleteCustomerOrder: (_, { ID }) =>
+    deleteCustomerOrder: (_, { ID, buildStatic = false }) =>
       client
         .DeleteCustomerOrder()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createDonor: (_, { donor, buildStatic = false }) =>
       client
@@ -2517,10 +2517,10 @@ module.exports = client => ({
         .UpdateDonor()
         .sendMessage({ api: 'v1', item: { ID, ...donor }, buildStatic })
         .then(res => res.updated),
-    deleteDonor: (_, { ID }) =>
+    deleteDonor: (_, { ID, buildStatic = false }) =>
       client
         .DeleteDonor()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLiveEvent: (_, { liveEvent, buildStatic = false }) =>
       client
@@ -2532,10 +2532,10 @@ module.exports = client => ({
         .UpdateLiveEvent()
         .sendMessage({ api: 'v1', item: { ID, ...liveEvent }, buildStatic })
         .then(res => res.updated),
-    deleteLiveEvent: (_, { ID }) =>
+    deleteLiveEvent: (_, { ID, buildStatic = false }) =>
       client
         .DeleteLiveEvent()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createEventAttendee: (_, { eventAttendee, buildStatic = false }) =>
       client
@@ -2547,10 +2547,10 @@ module.exports = client => ({
         .UpdateEventAttendee()
         .sendMessage({ api: 'v1', item: { ID, ...eventAttendee }, buildStatic })
         .then(res => res.updated),
-    deleteEventAttendee: (_, { ID }) =>
+    deleteEventAttendee: (_, { ID, buildStatic = false }) =>
       client
         .DeleteEventAttendee()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createVoter: (_, { voter, buildStatic = false }) =>
       client
@@ -2562,10 +2562,10 @@ module.exports = client => ({
         .UpdateVoter()
         .sendMessage({ api: 'v1', item: { ID, ...voter }, buildStatic })
         .then(res => res.updated),
-    deleteVoter: (_, { ID }) =>
+    deleteVoter: (_, { ID, buildStatic = false }) =>
       client
         .DeleteVoter()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createVolunteerOpportunity: (
       _,
@@ -2591,10 +2591,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteVolunteerOpportunity: (_, { ID }) =>
+    deleteVolunteerOpportunity: (_, { ID, buildStatic = false }) =>
       client
         .DeleteVolunteerOpportunity()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createVolunteer: (_, { volunteer, buildStatic = false }) =>
       client
@@ -2606,10 +2606,10 @@ module.exports = client => ({
         .UpdateVolunteer()
         .sendMessage({ api: 'v1', item: { ID, ...volunteer }, buildStatic })
         .then(res => res.updated),
-    deleteVolunteer: (_, { ID }) =>
+    deleteVolunteer: (_, { ID, buildStatic = false }) =>
       client
         .DeleteVolunteer()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createActivityType: (_, { activityType, buildStatic = false }) =>
       client
@@ -2621,10 +2621,10 @@ module.exports = client => ({
         .UpdateActivityType()
         .sendMessage({ api: 'v1', item: { ID, ...activityType }, buildStatic })
         .then(res => res.updated),
-    deleteActivityType: (_, { ID }) =>
+    deleteActivityType: (_, { ID, buildStatic = false }) =>
       client
         .DeleteActivityType()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createFollower: (_, { follower, buildStatic = false }) =>
       client
@@ -2636,10 +2636,10 @@ module.exports = client => ({
         .UpdateFollower()
         .sendMessage({ api: 'v1', item: { ID, ...follower }, buildStatic })
         .then(res => res.updated),
-    deleteFollower: (_, { ID }) =>
+    deleteFollower: (_, { ID, buildStatic = false }) =>
       client
         .DeleteFollower()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createTerritory: (_, { territory, buildStatic = false }) =>
       client
@@ -2651,10 +2651,10 @@ module.exports = client => ({
         .UpdateTerritory()
         .sendMessage({ api: 'v1', item: { ID, ...territory }, buildStatic })
         .then(res => res.updated),
-    deleteTerritory: (_, { ID }) =>
+    deleteTerritory: (_, { ID, buildStatic = false }) =>
       client
         .DeleteTerritory()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createActivity: (_, { activity, buildStatic = false }) =>
       client
@@ -2666,10 +2666,10 @@ module.exports = client => ({
         .UpdateActivity()
         .sendMessage({ api: 'v1', item: { ID, ...activity }, buildStatic })
         .then(res => res.updated),
-    deleteActivity: (_, { ID }) =>
+    deleteActivity: (_, { ID, buildStatic = false }) =>
       client
         .DeleteActivity()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createNote: (_, { note, buildStatic = false }) =>
       client
@@ -2681,10 +2681,10 @@ module.exports = client => ({
         .UpdateNote()
         .sendMessage({ api: 'v1', item: { ID, ...note }, buildStatic })
         .then(res => res.updated),
-    deleteNote: (_, { ID }) =>
+    deleteNote: (_, { ID, buildStatic = false }) =>
       client
         .DeleteNote()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createAgent: (_, { agent, buildStatic = false }) =>
       client
@@ -2696,10 +2696,10 @@ module.exports = client => ({
         .UpdateAgent()
         .sendMessage({ api: 'v1', item: { ID, ...agent }, buildStatic })
         .then(res => res.updated),
-    deleteAgent: (_, { ID }) =>
+    deleteAgent: (_, { ID, buildStatic = false }) =>
       client
         .DeleteAgent()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createAccount: (_, { account, buildStatic = false }) =>
       client
@@ -2711,10 +2711,10 @@ module.exports = client => ({
         .UpdateAccount()
         .sendMessage({ api: 'v1', item: { ID, ...account }, buildStatic })
         .then(res => res.updated),
-    deleteAccount: (_, { ID }) =>
+    deleteAccount: (_, { ID, buildStatic = false }) =>
       client
         .DeleteAccount()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createOwnerMembership: (_, { ownerMembership, buildStatic = false }) =>
       client
@@ -2730,10 +2730,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteOwnerMembership: (_, { ID }) =>
+    deleteOwnerMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteOwnerMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createAgentMembership: (_, { agentMembership, buildStatic = false }) =>
       client
@@ -2749,10 +2749,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteAgentMembership: (_, { ID }) =>
+    deleteAgentMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteAgentMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createContact: (_, { contact, buildStatic = false }) =>
       client
@@ -2764,10 +2764,10 @@ module.exports = client => ({
         .UpdateContact()
         .sendMessage({ api: 'v1', item: { ID, ...contact }, buildStatic })
         .then(res => res.updated),
-    deleteContact: (_, { ID }) =>
+    deleteContact: (_, { ID, buildStatic = false }) =>
       client
         .DeleteContact()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createContactMembership: (_, { contactMembership, buildStatic = false }) =>
       client
@@ -2786,10 +2786,10 @@ module.exports = client => ({
           buildStatic,
         })
         .then(res => res.updated),
-    deleteContactMembership: (_, { ID }) =>
+    deleteContactMembership: (_, { ID, buildStatic = false }) =>
       client
         .DeleteContactMembership()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createHomePage: (_, { homePage, buildStatic = false }) =>
       client
@@ -2801,10 +2801,10 @@ module.exports = client => ({
         .UpdateHomePage()
         .sendMessage({ api: 'v1', item: { ID, ...homePage }, buildStatic })
         .then(res => res.updated),
-    deleteHomePage: (_, { ID }) =>
+    deleteHomePage: (_, { ID, buildStatic = false }) =>
       client
         .DeleteHomePage()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createPhoto: (_, { photo, buildStatic = false }) =>
       client
@@ -2816,10 +2816,10 @@ module.exports = client => ({
         .UpdatePhoto()
         .sendMessage({ api: 'v1', item: { ID, ...photo }, buildStatic })
         .then(res => res.updated),
-    deletePhoto: (_, { ID }) =>
+    deletePhoto: (_, { ID, buildStatic = false }) =>
       client
         .DeletePhoto()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createCause: (_, { cause, buildStatic = false }) =>
       client
@@ -2831,10 +2831,10 @@ module.exports = client => ({
         .UpdateCause()
         .sendMessage({ api: 'v1', item: { ID, ...cause }, buildStatic })
         .then(res => res.updated),
-    deleteCause: (_, { ID }) =>
+    deleteCause: (_, { ID, buildStatic = false }) =>
       client
         .DeleteCause()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
   },
 });

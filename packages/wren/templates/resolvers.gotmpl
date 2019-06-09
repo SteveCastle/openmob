@@ -36,10 +36,10 @@ module.exports = client => ({
         .Update{{.Name}}()
         .sendMessage({ api: 'v1', item: { ID, ...{{camel .Name}} }, buildStatic  })
         .then(res => res.updated),
-    delete{{.Name}}: (_, { ID }) =>
+    delete{{.Name}}: (_, { ID, buildStatic = false }) =>
       client
         .Delete{{.Name}}()
-        .sendMessage({ api: 'v1', ID })
+        .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),{{end}}
   }
 });
