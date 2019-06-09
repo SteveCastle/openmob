@@ -13,55 +13,8 @@ import RowEditor from './page-editor/RowEditor';
 import ColumnEditor from './page-editor/ColumnEditor';
 import ComponentEditor from './page-editor/ComponentEditor';
 import SEO from '../SEO';
-
+import GET_PAGE from '../../queries/getPage';
 const sortByWeight = (a, b) => a.Weight - b.Weight;
-const GET_PAGE = gql`
-  query HomePageQuery($id: ID!) {
-    getHomePage(ID: $id) {
-      ID
-      Title
-      Layout {
-        ID
-        LayoutRows {
-          ID
-          Container
-          Weight
-          LayoutColumns {
-            ID
-            Width
-            Weight
-            Components {
-              ID
-              Fields {
-                ID
-                FieldType {
-                  Title
-                  DataType
-                  PropName
-                }
-                StringValue
-                IntValue
-                FloatValue
-                BooleanValue
-                DateTimeValue {
-                  seconds
-                }
-                DataPathValue
-                DataPath
-              }
-              ComponentImplementation {
-                Path
-              }
-            }
-          }
-        }
-        LayoutType {
-          ID
-        }
-      }
-    }
-  }
-`;
 
 const CREATE_ROW = gql`
   mutation createLayoutRow($layoutRow: LayoutRowInput) {
@@ -99,7 +52,7 @@ function PageEditor({ navigate = () => {}, pageID }) {
       <SEO title={page.Title} keywords={[`gatsby`, `application`, `react`]} />
       <Editor>
         {(page.Layout.LayoutRows || []).sort(sortByWeight).map(row => (
-          <RowEditor layoutId={page.Layout.ID} row={row}>
+          <RowEditor pageId={page.ID} layoutId={page.Layout.ID} row={row}>
             <Row key={row.ID} container={row.Container}>
               {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
                 <ColumnEditor
@@ -139,6 +92,12 @@ function PageEditor({ navigate = () => {}, pageID }) {
                 },
                 buildStatic: true,
               },
+              refetchQueries: [
+                {
+                  query: GET_PAGE,
+                  variables: { id: page.ID },
+                },
+              ],
             })
           }
         />

@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import Row from '@openmob/bluebird/src/components/layout/Row';
 import Overlay from '@openmob/bluebird/src/components/editor/Overlay';
 import Control from '@openmob/bluebird/src/components/editor/Control';
-
+import GET_PAGE from '../../../queries/getPage';
 const UPDATE_ROW = gql`
   mutation updateLayoutRow($id: ID!, $layoutRow: LayoutRowInput) {
     updateLayoutRow(ID: $id, layoutRow: $layoutRow, buildStatic: true)
@@ -26,7 +26,7 @@ const CREATE_COLUMN = gql`
   }
 `;
 
-function RowEditor({ children, row, layoutId }) {
+function RowEditor({ children, row, pageId, layoutId }) {
   const [locked, setLock] = useState(false);
   const updateLayoutRow = useMutation(UPDATE_ROW);
   const deleteLayoutRow = useMutation(DELETE_ROW);
@@ -42,6 +42,12 @@ function RowEditor({ children, row, layoutId }) {
                 id: row.ID,
                 buildStatic: true,
               },
+              refetchQueries: [
+                {
+                  query: GET_PAGE,
+                  variables: { id: pageId },
+                },
+              ],
             })
           }
         >
