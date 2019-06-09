@@ -82,7 +82,7 @@ function RowEditor({ children, row, pageId, layoutId }) {
               variables: {
                 layoutColumn: {
                   LayoutRow: row.ID,
-                  Width: 6,
+                  Width: 12,
                 },
                 buildStatic: true,
               },
