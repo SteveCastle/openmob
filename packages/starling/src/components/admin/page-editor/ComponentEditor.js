@@ -11,7 +11,7 @@ const DELETE_COMPONENT = gql`
   }
 `;
 
-function ComponentEditor({ children, component, pageId }) {
+function ComponentEditor({ children, component, pageId, causeId }) {
   const [locked, setLock] = useState(false);
   const deleteComponent = useMutation(DELETE_COMPONENT);
 
@@ -36,10 +36,8 @@ function ComponentEditor({ children, component, pageId }) {
         >
           Delete
         </Control>
-        <Control onClick={() => console.log('change fields')}>
-          Change Fields
-        </Control>
-        <Control onClick={() => console.log('change component implementation')}>
+        <Control onClick={() => console.log('clicked')}>Change Fields</Control>
+        <Control onClick={() => console.log('clicked')}>
           Change Component Implementation
         </Control>
       </Overlay>

@@ -7,19 +7,21 @@ import {
   height,
   fontSize,
   color,
+  position,
   borders,
   borderRadius,
   display,
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent,
+  justifyContent
 } from 'styled-system';
 
 const StyledContent = styled.div`
   ${borders}
   ${borderRadius}
   ${space}
+  ${position}
   ${width}
   ${height}
   ${fontSize}
@@ -33,11 +35,12 @@ const StyledContent = styled.div`
   overflow-y: auto
 `;
 
-function Content({ children, top, left }) {
+function Content({ children, top, left, direction = 'column' }) {
   return (
     <StyledContent
+      position="relative"
       display="flex"
-      flexDirection="column"
+      flexDirection={direction}
       alignItems={left ? 'flex-start' : 'center'}
       justifyContent={top ? 'flex-start' : 'center'}
       bg="admin.light.bg"
@@ -55,10 +58,11 @@ function Content({ children, top, left }) {
 Content.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
+    PropTypes.node
   ]),
   top: PropTypes.bool,
   left: PropTypes.bool,
+  direction: PropTypes.string
 };
 Content.defaultProps = {};
 

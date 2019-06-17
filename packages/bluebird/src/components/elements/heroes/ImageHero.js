@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent,
+  justifyContent
 } from 'styled-system';
 
 const StyledHero = styled.section`
@@ -41,10 +41,7 @@ const Title = styled.h1`
   ${display}
   `;
 
-function ImageHero({
-  title,
-  image = 'https://punknaturalism.com/static/4f45e3f86b23864cb0c71a1f3353b460/a5547/C9up3kLgxni.jpg',
-}) {
+function ImageHero({ title, image }) {
   return (
     <StyledHero
       display={'flex'}
@@ -62,7 +59,7 @@ function ImageHero({
 
 ImageHero.propTypes = {
   title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired
 };
 ImageHero.defaultProps = {};
 

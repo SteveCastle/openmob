@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
-import Header from './Header'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
+import Header from './Header';
 
 const Layout = ({ children, title, id, summary }) => (
   <StaticQuery
@@ -21,10 +21,13 @@ const Layout = ({ children, title, id, summary }) => (
       </>
     )}
   />
-)
+);
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};
 
-export default Layout
+export default Layout;

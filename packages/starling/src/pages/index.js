@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import ThemeProvider from '@openmob/bluebird/src/ThemeProvider';
 import skyward from '@openmob/bluebird/src/themes/skyward';
 import ImageHero from '@openmob/bluebird/src/components/elements/heroes/ImageHero';
@@ -22,12 +22,18 @@ const IndexPage = ({
   <ThemeProvider theme={skyward}>
     <Layout title="grassroots.dev" id="List view" summary="Debug Mode">
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-      <ImageHero title="Grassroots Dev" />
+      <ImageHero
+        title="Grassroots Dev"
+        image={
+          'https://punknaturalism.com/static/4f45e3f86b23864cb0c71a1f3353b460/a5547/C9up3kLgxni.jpg'
+        }
+      />
       <Container>
         <SubHeader>Featured Causes</SubHeader>
         <ImageGrid>
           {(causes || []).map(cause => (
             <ImageGridItem
+              key={cause.ID}
               title={cause.Title}
               caption={cause.Summary}
               uri={cause.Photo.URI}

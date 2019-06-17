@@ -1,6 +1,8 @@
-require("dotenv").config({
+var path = require('path');
+
+require('dotenv').config({
   path: `env/.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
@@ -9,15 +11,22 @@ module.exports = {
     author: `Stephen Castle<stephen@callsignmedia.com>`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: { react: path.resolve('./node_modules/react') },
+        extensions: [],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {
-      resolve: "gatsby-source-graphql",
+      resolve: 'gatsby-source-graphql',
       options: {
         // This type will contain remote schema Query type
-        typeName: "WREN",
+        typeName: 'WREN',
         // This is field under which it's accessible
-        fieldName: "wren",
+        fieldName: 'wren',
         // Url to query from
         url: process.env.WREN_API_URL,
       },
@@ -51,4 +60,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
   ],
-}
+};

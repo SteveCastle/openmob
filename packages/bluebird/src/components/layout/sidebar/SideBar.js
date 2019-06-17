@@ -10,7 +10,7 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap,
+  flexWrap
 } from 'styled-system';
 
 const StyledSideBar = styled.div`
@@ -23,21 +23,18 @@ const StyledSideBar = styled.div`
   ${color}
   ${display}
   ${flexWrap}
+  flex: 1 1 20rem;
   overflow: hidden;
 `;
 function SideBar({ children }) {
-  return (
-    <StyledSideBar width={256} bg="admin.light.sidebarBg" height="5">
-      {children}
-    </StyledSideBar>
-  );
+  return <StyledSideBar bg="admin.light.sidebarBg">{children}</StyledSideBar>;
 }
 
 SideBar.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 
 export default SideBar;

@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   flexWrap,
-  flexDirection,
+  flexDirection
 } from 'styled-system';
 
 const StyledApp = styled.div`
@@ -25,6 +25,7 @@ const StyledApp = styled.div`
   ${flexDirection}
   ${color}
   ${display}
+  min-height: 600px;
 `;
 
 function App({ children }) {
@@ -33,7 +34,6 @@ function App({ children }) {
       display={'flex'}
       border={0}
       flexWrap="wrap"
-      flexDirection="column"
       width={1}
       height={5}
       fontSize={1}
@@ -46,8 +46,8 @@ function App({ children }) {
 App.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 App.defaultProps = {};
 

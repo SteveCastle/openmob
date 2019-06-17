@@ -5,9 +5,7 @@ import gql from 'graphql-tag';
 import Button from '@openmob/bluebird/src/components/buttons/Button';
 import Spinner from '@openmob/bluebird/src/components/loaders/Spinner';
 
-import Row from '@openmob/bluebird/src/components/layout/Row';
-import Column from '@openmob/bluebird/src/components/layout/Column';
-import Content from '@openmob/bluebird/src/components/layout/Content';
+import { Row, Column, Content } from '@openmob/bluebird/src/components/layout';
 import Node from '../Node';
 import Editor from './page-editor/PageEditor';
 import RowEditor from './page-editor/RowEditor';
@@ -25,7 +23,7 @@ const CREATE_ROW = gql`
   }
 `;
 
-function PageEditor({ navigate = () => {}, pageID }) {
+function PageEditor({ pageID, causeID }) {
   const {
     data: { getHomePage: page = {} },
     error,
@@ -47,16 +45,21 @@ function PageEditor({ navigate = () => {}, pageID }) {
   if (error) {
     return <div>Error! {error.message}</div>;
   }
-
   return (
     <Content top>
       <SEO title={page.Title} keywords={[`gatsby`, `application`, `react`]} />
       <Editor>
         {(page.Layout.LayoutRows || []).sort(sortByWeight).map(row => (
-          <RowEditor pageId={page.ID} layoutId={page.Layout.ID} row={row}>
+          <RowEditor
+            pageId={page.ID}
+            layoutId={page.Layout.ID}
+            row={row}
+            key={row.ID}
+          >
             <Row key={row.ID} container={row.Container}>
               {(row.LayoutColumns || []).sort(sortByWeight).map(column => (
                 <ColumnEditor
+                  key={column.ID}
                   size={column.Width}
                   rowId={row.ID}
                   pageId={page.ID}
@@ -67,7 +70,9 @@ function PageEditor({ navigate = () => {}, pageID }) {
                       .sort(sortByWeight)
                       .map(component => (
                         <ComponentEditor
+                          key={component.ID}
                           id={component.ID}
+                          causeId={causeID}
                           pageId={page.ID}
                           component={component}
                         >
@@ -112,8 +117,6 @@ function PageEditor({ navigate = () => {}, pageID }) {
   );
 }
 
-PageEditor.propTypes = {
-  navigate: PropTypes.func,
-};
+PageEditor.propTypes = {};
 
 export default PageEditor;

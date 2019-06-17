@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo-hooks';
-import { Link } from '@reach/router';
 import gql from 'graphql-tag';
 import Spinner from '@openmob/bluebird/src/components/loaders/Spinner';
 
@@ -60,7 +59,7 @@ function MyCauses({ navigate = () => {} }) {
   }
 
   return (
-    <Content top left>
+    <Content top left direction="row">
       <Header>My Causes</Header>
       <CardGrid>
         {(items || []).map(item => (

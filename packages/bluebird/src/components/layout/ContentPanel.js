@@ -12,7 +12,7 @@ import {
   display,
   flexWrap,
   alignItems,
-  justifyContent,
+  justifyContent
 } from 'styled-system';
 
 const StyledContentPanel = styled.div`
@@ -28,6 +28,8 @@ const StyledContentPanel = styled.div`
   ${display}
   ${alignItems}
   ${justifyContent}
+  flex: 999 1 0;
+  min-width: 50%;
 `;
 
 function ContentPanel({ children }) {
@@ -39,8 +41,6 @@ function ContentPanel({ children }) {
       bg="admin.light.bg"
       border={0}
       flexWrap="wrap"
-      width="calc(100% - 256px)"
-      height="100%"
       fontSize={1}
     >
       {children}
@@ -51,8 +51,8 @@ function ContentPanel({ children }) {
 ContentPanel.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 ContentPanel.defaultProps = {};
 

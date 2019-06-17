@@ -1,13 +1,26 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import App from '../App';
+import SideBar from '../sidebar/SideBar';
+import Content from '../Content';
+import Modal from '../Modal';
+
+import ContentPanel from '../ContentPanel';
 
 storiesOf('Layout System/App', module)
   .addParameters({
     info: {
-      inline: true,
-    },
+      inline: true
+    }
   })
-  .add('Default App', () => <App onClick={action('clicked')} />);
+  .add('Default App', () => (
+    <App>
+      <SideBar />
+      <ContentPanel>
+        <Content>
+          <Modal active />
+        </Content>
+      </ContentPanel>
+    </App>
+  ));
