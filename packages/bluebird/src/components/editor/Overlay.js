@@ -18,8 +18,8 @@ const StyledOverlay = styled.div`
   ${fontSize}
   ${color}
   ${display}
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   position: absolute;
   box-sizing: border-box;
   top: 0;

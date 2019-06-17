@@ -11,6 +11,7 @@ const StyledControl = styled.div`
   ${space}
   ${fontSize}
   ${color}
+  background-color: black;
   cursor: pointer;
 `;
 
@@ -31,12 +32,16 @@ function Control({ onClick, children }) {
         {({ ref }) => (
           <StyledControl
             border={0}
+            borderRadius={2}
             color={'gray.1'}
             p={2}
-            fontSize={3}
-            bg={'grey.9'}
+            m={1}
+            fontSize={2}
             ref={ref}
-            onClick={() => setActive(!active)}
+            onClick={e => {
+              e.stopPropagation();
+              setActive(!active);
+            }}
           >
             {children}
           </StyledControl>

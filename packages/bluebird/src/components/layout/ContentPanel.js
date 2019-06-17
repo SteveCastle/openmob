@@ -30,6 +30,7 @@ const StyledContentPanel = styled.div`
   ${justifyContent}
   flex: 999 1 0;
   min-width: 50%;
+  height:100%;
 `;
 
 function ContentPanel({ children }) {
