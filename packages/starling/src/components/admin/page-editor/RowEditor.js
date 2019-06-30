@@ -36,7 +36,7 @@ function RowEditor({ children, row, pageId, layoutId }) {
     <Row disableSpacing>
       <Overlay locked={locked} onClick={() => setLock(!locked)}>
         <Control
-          onClick={() =>
+          onClick={() => () =>
             deleteLayoutRow({
               variables: {
                 id: row.ID,
@@ -48,13 +48,12 @@ function RowEditor({ children, row, pageId, layoutId }) {
                   variables: { id: pageId },
                 },
               ],
-            })
-          }
+            })}
         >
           Delete
         </Control>
         <Control
-          onClick={() =>
+          onClick={() => () =>
             updateLayoutRow({
               variables: {
                 id: row.ID,
@@ -71,13 +70,12 @@ function RowEditor({ children, row, pageId, layoutId }) {
                   variables: { id: pageId },
                 },
               ],
-            })
-          }
+            })}
         >
           Toggle Container
         </Control>
         <Control
-          onClick={() =>
+          onClick={() => () =>
             createLayoutColumn({
               variables: {
                 layoutColumn: {
@@ -92,8 +90,7 @@ function RowEditor({ children, row, pageId, layoutId }) {
                   variables: { id: pageId },
                 },
               ],
-            })
-          }
+            })}
         >
           Add Column
         </Control>

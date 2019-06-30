@@ -73,8 +73,10 @@ function PageEditor({ pageID, causeID }) {
                           key={component.ID}
                           id={component.ID}
                           causeId={causeID}
+                          columnId={column.ID}
                           pageId={page.ID}
                           component={component}
+                          componentType={component.ComponentType}
                         >
                           <Node
                             id={page.ID}

@@ -41,7 +41,7 @@ const Title = styled.h1`
   ${display}
   `;
 
-function ImageHero({ title, image }) {
+function ImageHero({ title, image = 'https://punknaturalism.com/static/01ba88d12b13dd70ec470c23d5b18a6a/d47f1/iE9vyi9d8A.jpg' }) {
   return (
     <StyledHero
       display={'flex'}

@@ -14,9 +14,24 @@ import {
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent,
+  justifyContent
 } from 'styled-system';
-
+const Container = styled.div`
+  ${borders}
+  ${borderRadius}
+  ${space}
+  ${width}
+  ${maxWidth}
+  ${height}
+  ${fontSize}
+  ${display}
+  ${flexWrap}
+  ${flexDirection}
+  ${color}
+  ${display}
+  ${alignItems}
+  ${justifyContent}
+`;
 const StyledDataTable = styled.table`
   ${borders}
   ${borderRadius}
@@ -36,17 +51,19 @@ const StyledDataTable = styled.table`
 
 function DataTable({ children }) {
   return (
-    <StyledDataTable p={2} border={0} fontSize={1}>
-      {children}
-    </StyledDataTable>
+    <Container>
+      <StyledDataTable p={2} border={0} fontSize={1}>
+        {children}
+      </StyledDataTable>
+    </Container>
   );
 }
 
 DataTable.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 DataTable.defaultProps = {};
 

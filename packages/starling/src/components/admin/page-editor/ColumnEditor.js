@@ -54,7 +54,7 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
           Delete
         </Control>
         <Control
-          onClick={() =>
+          onClick={() => () =>
             createComponent({
               variables: {
                 component: {
@@ -71,13 +71,12 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
                   variables: { id: pageId },
                 },
               ],
-            })
-          }
+            })}
         >
           Add Component
         </Control>
         <Control
-          onClick={() =>
+          onClick={() => () =>
             updateLayoutColumn({
               variables: {
                 id: column.ID,
@@ -93,8 +92,7 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
                   variables: { id: pageId },
                 },
               ],
-            })
-          }
+            })}
         >
           Change Width
         </Control>

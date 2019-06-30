@@ -24,8 +24,9 @@ const StyledPopper = styled.div`
   cursor: pointer;
 `;
 
-function Control({ onClick, children }) {
+function Control({ onClick, children, options }) {
   const [active, setActive] = useState(false);
+  const [value, setValue] = useState(false);
   return (
     <Manager>
       <Reference>
@@ -55,11 +56,21 @@ function Control({ onClick, children }) {
               ref={ref}
               style={style}
               data-placement={placement}
-              bg="yellow.5"
+              bg="gray.1"
               borderRadius={2}
               p={2}
+              m={1}
             >
-              <button onClick={onClick}>Confirm</button>
+              {options && (
+                <select onChange={e => setValue(e.target.value)}>
+                  {options.map(item => (
+                    <option value={item.ID} key={item.ID}>
+                      {item.Title}
+                    </option>
+                  ))}
+                </select>
+              )}
+              <button onClick={onClick(value)}>Update</button>
               <div ref={arrowProps.ref} style={arrowProps.style} />
             </StyledPopper>
           )}
@@ -70,7 +81,13 @@ function Control({ onClick, children }) {
 }
 
 Control.propTypes = {
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      ID: PropTypes.string,
+      Title: PropTypes.string
+    })
+  )
 };
 Control.defaultProps = {};
 

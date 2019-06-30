@@ -20,6 +20,7 @@ const GET_PAGE = gql`
               Fields {
                 ID
                 FieldType {
+                  ID
                   Title
                   DataType
                   PropName
@@ -34,7 +35,23 @@ const GET_PAGE = gql`
                 DataPathValue
                 DataPath
               }
+              ComponentType {
+                ID
+                ComponentTypeFieldss {
+                  ID
+                  FieldType {
+                    ID
+                    Title
+                  }
+                }
+                ComponentImplementations {
+                  ID
+                  Title
+                }
+              }
               ComponentImplementation {
+                ID
+                Title
                 Path
               }
             }
