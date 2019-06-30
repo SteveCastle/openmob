@@ -102,7 +102,11 @@ function ComponentEditor({
 
   return (
     <div style={{ width: '100%', position: 'relative' }}>
-      <Overlay locked={locked} onClick={() => setLock(!locked)}>
+      <Overlay
+        locked={locked}
+        onClick={() => setLock(!locked)}
+        nestingLevel={2}
+      >
         <Control label="Delete">
           <ConfirmWidget handleSubmit={removeComponent} />
         </Control>

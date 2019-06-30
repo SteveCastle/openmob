@@ -22,6 +22,7 @@ const StyledPopper = styled.div`
   ${fontSize}
   ${color}
   cursor: pointer;
+  z-index: 999;
 `;
 
 function Control({ label, children }) {

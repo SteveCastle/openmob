@@ -5,7 +5,11 @@ function Widget({ handleSubmit, options }) {
   const [value, setValue] = useState(false);
 
   return (
-    <div>
+    <div
+      onClick={e => {
+        e.stopPropagation();
+      }}
+    >
       {options && (
         <select onChange={e => setValue(e.target.value)}>
           {options.map(item => (

@@ -86,7 +86,11 @@ function RowEditor({ children, row, pageId, layoutId }) {
 
   return (
     <Row disableSpacing>
-      <Overlay locked={locked} onClick={() => setLock(!locked)}>
+      <Overlay
+        locked={locked}
+        onClick={() => setLock(!locked)}
+        nestingLevel={0}
+      >
         <Control label="Delete Row">
           <Widget handleSubmit={handleDeleteRow} />
         </Control>

@@ -86,7 +86,11 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
 
   return (
     <Column size={size} disableSpacing>
-      <Overlay locked={locked} onClick={() => setLock(!locked)}>
+      <Overlay
+        locked={locked}
+        onClick={() => setLock(!locked)}
+        nestingLevel={1}
+      >
         <Control label="Delete Column">
           <Widget handleSubmit={handleDelete} />
         </Control>

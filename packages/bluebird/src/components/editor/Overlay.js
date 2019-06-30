@@ -22,29 +22,24 @@ const StyledOverlay = styled.div`
   justify-content: flex-start;
   position: absolute;
   box-sizing: border-box;
-  top: 0;
-  left: 0;
+  top: ${({ nestingLevel }) => nestingLevel * 32}px;
+  left: ${({ nestingLevel }) => nestingLevel * 32}px;
   width: 100%;
-  height: 100%;
-  opacity: ${({ locked }) => (locked ? 0.9 : 0)};
-  transition: opacity .2s ease-out;
-  z-index: ${({ locked }) => (locked ? 999 : 998)};;
-  & :hover {
-    opacity: ${({ locked }) => (locked ? 0.9 : 0.8)};
-
-  }
+  height: 80%;
+  transition: background-color .2s ease-out;
+  z-index: ${({ locked }) => (locked ? 999 : 998)};
 `;
 
-function Overlay({ children, locked, onClick }) {
+function Overlay({ children, locked, onClick, nestingLevel }) {
   return (
     <StyledOverlay
       border={0}
-      bg={'gray.9'}
       locked={locked}
       onClick={onClick}
       display="flex"
+      nestingLevel={nestingLevel}
     >
-      {children}
+      {locked && children}
     </StyledOverlay>
   );
 }

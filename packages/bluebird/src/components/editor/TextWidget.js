@@ -5,7 +5,11 @@ function TextWidget({ handleSubmit, title, initValue }) {
   const [value, setValue] = useState(false);
 
   return (
-    <div>
+    <div
+      onClick={e => {
+        e.stopPropagation();
+      }}
+    >
       <span>{title}</span>
       <input
         type="text"
