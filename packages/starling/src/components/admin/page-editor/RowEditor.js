@@ -5,6 +5,8 @@ import gql from 'graphql-tag';
 import Row from '@openmob/bluebird/src/components/layout/Row';
 import Overlay from '@openmob/bluebird/src/components/editor/Overlay';
 import Control from '@openmob/bluebird/src/components/editor/Control';
+import Widget from '@openmob/bluebird/src/components/editor/Widget';
+
 import GET_PAGE from '../../../queries/getPage';
 const UPDATE_ROW = gql`
   mutation updateLayoutRow($id: ID!, $layoutRow: LayoutRowInput) {
@@ -32,67 +34,67 @@ function RowEditor({ children, row, pageId, layoutId }) {
   const deleteLayoutRow = useMutation(DELETE_ROW);
   const createLayoutColumn = useMutation(CREATE_COLUMN);
 
+  const handleDeleteRow = () => () =>
+    deleteLayoutRow({
+      variables: {
+        id: row.ID,
+        buildStatic: true,
+      },
+      refetchQueries: [
+        {
+          query: GET_PAGE,
+          variables: { id: pageId },
+        },
+      ],
+    });
+
+  const handleToggleContainer = () => () =>
+    updateLayoutRow({
+      variables: {
+        id: row.ID,
+        layoutRow: {
+          Weight: row.Weight,
+          Layout: layoutId,
+          Container: !row.Container,
+        },
+        buildStatic: true,
+      },
+      refetchQueries: [
+        {
+          query: GET_PAGE,
+          variables: { id: pageId },
+        },
+      ],
+    });
+
+  const handleCreateColumn = () => () =>
+    createLayoutColumn({
+      variables: {
+        layoutColumn: {
+          LayoutRow: row.ID,
+          Width: 12,
+        },
+        buildStatic: true,
+      },
+      refetchQueries: [
+        {
+          query: GET_PAGE,
+          variables: { id: pageId },
+        },
+      ],
+    });
+
   return (
     <Row disableSpacing>
       <Overlay locked={locked} onClick={() => setLock(!locked)}>
-        <Control
-          onClick={() => () =>
-            deleteLayoutRow({
-              variables: {
-                id: row.ID,
-                buildStatic: true,
-              },
-              refetchQueries: [
-                {
-                  query: GET_PAGE,
-                  variables: { id: pageId },
-                },
-              ],
-            })}
-        >
-          Delete
+        <Control label="Delete Row">
+          <Widget handleSubmit={handleDeleteRow} />
         </Control>
-        <Control
-          onClick={() => () =>
-            updateLayoutRow({
-              variables: {
-                id: row.ID,
-                layoutRow: {
-                  Weight: row.Weight,
-                  Layout: layoutId,
-                  Container: !row.Container,
-                },
-                buildStatic: true,
-              },
-              refetchQueries: [
-                {
-                  query: GET_PAGE,
-                  variables: { id: pageId },
-                },
-              ],
-            })}
-        >
-          Toggle Container
+        <Control label="Toggle Container">
+          <Widget handleSubmit={handleToggleContainer} />
         </Control>
-        <Control
-          onClick={() => () =>
-            createLayoutColumn({
-              variables: {
-                layoutColumn: {
-                  LayoutRow: row.ID,
-                  Width: 12,
-                },
-                buildStatic: true,
-              },
-              refetchQueries: [
-                {
-                  query: GET_PAGE,
-                  variables: { id: pageId },
-                },
-              ],
-            })}
-        >
-          Add Column
+        <Control label="Add Column">
+          <Widget handleSubmit={handleCreateColumn} />
         </Control>
       </Overlay>
 

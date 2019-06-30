@@ -3,8 +3,9 @@ import { useMutation } from 'react-apollo-hooks';
 import gql from 'graphql-tag';
 import Overlay from '@openmob/bluebird/src/components/editor/Overlay';
 import Control from '@openmob/bluebird/src/components/editor/Control';
+import Widget from '@openmob/bluebird/src/components/editor/Widget';
+
 import GET_PAGE from '../../../queries/getPage';
-import { FormikConsumer } from 'formik';
 
 // GraphQL Queries to perform the actions of this editor.
 const DELETE_COMPONENT = gql`
@@ -44,8 +45,8 @@ function ComponentEditor({
         },
       ],
     });
-  // Function to change the component implementation to
-  // a new ID.
+  // Callback function to change the component implementation to
+  // a new ID. Passed to widget that calls function with result value of widget.
   const changeImplementation = newID => () =>
     updateComponent({
       variables: {
@@ -67,18 +68,25 @@ function ComponentEditor({
   return (
     <div style={{ width: '100%', position: 'relative' }}>
       <Overlay locked={locked} onClick={() => setLock(!locked)}>
-        <Control onClick={removeComponent}>Delete</Control>
-        <Control
-          onClick={() => console.log(componentType, component.Fields)}
-          options={componentType.ComponentTypeFieldss}
-        >
-          Change Fields
+        <Control label="Delete">
+          <Widget handleSubmit={removeComponent} />
         </Control>
         <Control
-          onClick={changeImplementation}
+          label="Edit Fields"
+          options={componentType.ComponentTypeFieldss}
+        >
+          <Widget
+            handleSubmit={() => console.log(componentType, component.Fields)}
+          />
+        </Control>
+        <Control
+          label="Change Style"
           options={componentType.ComponentImplementations}
         >
-          Change Component Implementation
+          <Widget
+            handleSubmit={changeImplementation}
+            options={componentType.ComponentImplementations}
+          />
         </Control>
       </Overlay>
       {children}
