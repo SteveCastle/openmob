@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 import Overlay from '@openmob/bluebird/src/components/editor/Overlay';
 import Control from '@openmob/bluebird/src/components/editor/Control';
 import Widget from '@openmob/bluebird/src/components/editor/Widget';
+import TextWidget from '@openmob/bluebird/src/components/editor/TextWidget';
+import ConfirmWidget from '@openmob/bluebird/src/components/editor/ConfirmWidget';
 
 import GET_PAGE from '../../../queries/getPage';
 
@@ -20,6 +22,12 @@ const UPDATE_COMPONENT = gql`
   }
 `;
 
+const UPDATE_FIELD = gql`
+  mutation updateField($id: ID!, $field: FieldInput) {
+    updateField(ID: $id, field: $field, buildStatic: true)
+  }
+`;
+
 // UI for editing a component node in the layout tree.
 function ComponentEditor({
   children,
@@ -31,6 +39,8 @@ function ComponentEditor({
   const [locked, setLock] = useState(false);
   const deleteComponent = useMutation(DELETE_COMPONENT);
   const updateComponent = useMutation(UPDATE_COMPONENT);
+  const updateField = useMutation(UPDATE_FIELD);
+
   // Function to delete the component from the row.
   const removeComponent = () => () =>
     deleteComponent({
@@ -65,19 +75,50 @@ function ComponentEditor({
         },
       ],
     });
+
+  const handleUpdateField = field => newValue => () =>
+    updateField({
+      variables: {
+        id: field.ID,
+        field: {
+          ...field,
+          Component: component.ID,
+          FieldType: field.FieldType.ID,
+          ID: undefined,
+          CreatedAt: undefined,
+          UpdatedAt: undefined,
+          __typename: undefined,
+          DataPathValue: undefined,
+          StringValue: newValue,
+        },
+      },
+      refetchQueries: [
+        {
+          query: GET_PAGE,
+          variables: { id: pageId },
+        },
+      ],
+    });
+
   return (
     <div style={{ width: '100%', position: 'relative' }}>
       <Overlay locked={locked} onClick={() => setLock(!locked)}>
         <Control label="Delete">
-          <Widget handleSubmit={removeComponent} />
+          <ConfirmWidget handleSubmit={removeComponent} />
         </Control>
         <Control
           label="Edit Fields"
           options={componentType.ComponentTypeFieldss}
         >
-          <Widget
-            handleSubmit={() => console.log(componentType, component.Fields)}
-          />
+          {Array.isArray(component.Fields) &&
+            component.Fields.map(field => (
+              <TextWidget
+                title={field.FieldType.Title}
+                initValue={field.StringValue}
+                handleSubmit={handleUpdateField(field)}
+                key={field.ID}
+              />
+            ))}
         </Control>
         <Control
           label="Change Style"
