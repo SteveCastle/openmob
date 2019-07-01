@@ -9,6 +9,19 @@ import ConfirmWidget from '@openmob/bluebird/src/components/editor/ConfirmWidget
 
 import GET_PAGE from '../../../queries/getPage';
 
+// Maps the type of FieldType to a widget
+// and a field found on Field table.
+const typeToFieldMap = {
+  string: {
+    field: 'StringValue',
+    widget: TextWidget,
+  },
+  module: {
+    field: 'DataPath',
+    widget: TextWidget,
+  },
+};
+
 // GraphQL Queries to perform the actions of this editor.
 const DELETE_COMPONENT = gql`
   mutation deleteComponent($id: ID!) {
@@ -65,7 +78,7 @@ function ComponentEditor({
           ComponentType: component.ComponentType.ID,
           ComponentImplementation: newID,
           LayoutColumn: columnId,
-          Wieght: component.Weight,
+          Weight: component.Weight,
         },
       },
       refetchQueries: [
@@ -89,7 +102,7 @@ function ComponentEditor({
           UpdatedAt: undefined,
           __typename: undefined,
           DataPathValue: undefined,
-          StringValue: newValue,
+          [typeToFieldMap[field.FieldType.DataType].field]: newValue,
         },
       },
       refetchQueries: [
@@ -115,14 +128,19 @@ function ComponentEditor({
           options={componentType.ComponentTypeFieldss}
         >
           {Array.isArray(component.Fields) &&
-            component.Fields.map(field => (
-              <TextWidget
-                title={field.FieldType.Title}
-                initValue={field.StringValue}
-                handleSubmit={handleUpdateField(field)}
-                key={field.ID}
-              />
-            ))}
+            component.Fields.map(field => {
+              const Widget = typeToFieldMap[field.FieldType.DataType].widget;
+              return (
+                <Widget
+                  title={field.FieldType.Title}
+                  initValue={
+                    field[typeToFieldMap[field.FieldType.DataType].field]
+                  }
+                  handleSubmit={handleUpdateField(field)}
+                  key={field.ID}
+                />
+              );
+            })}
         </Control>
         <Control
           label="Change Style"
