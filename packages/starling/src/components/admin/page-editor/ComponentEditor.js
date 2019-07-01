@@ -129,9 +129,10 @@ function ComponentEditor({
         >
           {Array.isArray(component.Fields) &&
             component.Fields.map(field => {
-              const Widget = typeToFieldMap[field.FieldType.DataType].widget;
+              const FieldWidget =
+                typeToFieldMap[field.FieldType.DataType].widget;
               return (
-                <Widget
+                <FieldWidget
                   title={field.FieldType.Title}
                   initValue={
                     field[typeToFieldMap[field.FieldType.DataType].field]
