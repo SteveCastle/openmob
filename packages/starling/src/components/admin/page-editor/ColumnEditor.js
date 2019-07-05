@@ -123,6 +123,7 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
         <Control label="Change Width">
           <Widget
             handleSubmit={handleChangeWidth}
+            initValue={size}
             options={[
               { ID: 12, Title: '12' },
               { ID: 6, Title: '6' },

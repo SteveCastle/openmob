@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function Widget({ handleSubmit, options }) {
+function Widget({ handleSubmit, initValue, options }) {
   const [value, setValue] = useState(false);
 
   return (
@@ -11,7 +11,10 @@ function Widget({ handleSubmit, options }) {
       }}
     >
       {options && (
-        <select onChange={e => setValue(e.target.value)}>
+        <select
+          onChange={e => setValue(e.target.value)}
+          value={value || initValue}
+        >
           {options.map(item => (
             <option value={item.ID} key={item.ID}>
               {item.Title}
@@ -26,6 +29,7 @@ function Widget({ handleSubmit, options }) {
 
 Widget.propTypes = {
   handleSubmit: PropTypes.func,
+  initValue: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
   options: PropTypes.arrayOf(
     PropTypes.shape({
       ID: PropTypes.string,

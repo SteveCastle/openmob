@@ -150,6 +150,7 @@ function ComponentEditor({
           <Widget
             handleSubmit={changeImplementation}
             options={componentType.ComponentImplementations}
+            initValue={component.ComponentImplementation.ID}
           />
         </Control>
       </Overlay>
