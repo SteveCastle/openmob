@@ -10,6 +10,8 @@ type Query {
 }
 type Mutation {
     newCause(Title: String!, Slug: String!, Summary: String!, FeaturedImage: String): ID!
+    newComponent(LayoutColumn: ID!, ComponentType: ID!, ComponentImplementation: ID!): ID!
+
 }
 `;
 

@@ -21,10 +21,16 @@ const DELETE_COLUMN = gql`
 `;
 
 const CREATE_COMPONENT = gql`
-  mutation createComponent($component: ComponentInput!) {
-    createComponent(component: $component, buildStatic: true) {
-      ID
-    }
+  mutation newComponent(
+    $LayoutColumn: ID!
+    $ComponentType: ID!
+    $ComponentImplementation: ID!
+  ) {
+    newComponent(
+      LayoutColumn: $LayoutColumn
+      ComponentType: $ComponentType
+      ComponentImplementation: $ComponentImplementation
+    )
   }
 `;
 
@@ -32,7 +38,7 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
   const [locked, setLock] = useState(false);
   const deleteLayoutColumn = useMutation(DELETE_COLUMN);
   const updateLayoutColumn = useMutation(UPDATE_COLUMN);
-  const createComponent = useMutation(CREATE_COMPONENT);
+  const newComponent = useMutation(CREATE_COMPONENT);
   const {
     data: { listComponentType: componentTypes = [] },
     error,
@@ -62,20 +68,15 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
     });
 
   const handleCreateComponent = newID => () =>
-    createComponent({
+    newComponent({
       variables: {
-        component: {
-          LayoutColumn: column.ID,
-          ComponentType: componentTypes.find(component => {
-            debugger;
-            return component.ID === newID;
-          }).ID,
-          ComponentImplementation: componentTypes.find(component => {
-            debugger;
-            return component.ID === newID;
-          }).ComponentImplementation.ID,
-        },
-        buildStatic: true,
+        LayoutColumn: column.ID,
+        ComponentType: componentTypes.find(component => {
+          return component.ID === newID;
+        }).ID,
+        ComponentImplementation: componentTypes.find(component => {
+          return component.ID === newID;
+        }).ComponentImplementation.ID,
       },
       refetchQueries: [
         {
