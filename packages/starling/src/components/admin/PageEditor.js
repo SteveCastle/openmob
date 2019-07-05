@@ -12,7 +12,7 @@ import RowEditor from './page-editor/RowEditor';
 import ColumnEditor from './page-editor/ColumnEditor';
 import ComponentEditor from './page-editor/ComponentEditor';
 import SEO from '../SEO';
-import GET_PAGE from '../../queries/getPage';
+import { GET_PAGE } from '../../queries/getPage';
 const sortByWeight = (a, b) => a.Weight - b.Weight;
 
 const CREATE_ROW = gql`
@@ -35,8 +35,6 @@ function PageEditor({ pageID, causeID }) {
   });
 
   const createLayoutRow = useMutation(CREATE_ROW);
-
-  console.log('page', page);
 
   if (loading) {
     return <Spinner />;

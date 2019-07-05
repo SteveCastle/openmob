@@ -7,7 +7,7 @@ import Overlay from '@openmob/bluebird/src/components/editor/Overlay';
 import Control from '@openmob/bluebird/src/components/editor/Control';
 import Widget from '@openmob/bluebird/src/components/editor/Widget';
 
-import GET_PAGE from '../../../queries/getPage';
+import { GET_PAGE } from '../../../queries/getPage';
 const UPDATE_ROW = gql`
   mutation updateLayoutRow($id: ID!, $layoutRow: LayoutRowInput) {
     updateLayoutRow(ID: $id, layoutRow: $layoutRow, buildStatic: true)

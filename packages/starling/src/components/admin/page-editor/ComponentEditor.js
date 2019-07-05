@@ -7,7 +7,7 @@ import Widget from '@openmob/bluebird/src/components/editor/Widget';
 import TextWidget from '@openmob/bluebird/src/components/editor/TextWidget';
 import ConfirmWidget from '@openmob/bluebird/src/components/editor/ConfirmWidget';
 
-import GET_PAGE from '../../../queries/getPage';
+import { GET_PAGE } from '../../../queries/getPage';
 
 // Maps the type of FieldType to a widget
 // and a field found on Field table.

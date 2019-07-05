@@ -48,6 +48,9 @@ const GET_PAGE = gql`
                   ID
                   Title
                 }
+                ComponentImplementation {
+                  ID
+                }
               }
               ComponentImplementation {
                 ID
@@ -65,4 +68,4 @@ const GET_PAGE = gql`
   }
 `;
 
-export default GET_PAGE;
+export { GET_PAGE };

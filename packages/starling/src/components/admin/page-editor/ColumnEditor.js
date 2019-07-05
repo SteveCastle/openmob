@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useMutation } from 'react-apollo-hooks';
+import { useMutation, useQuery } from 'react-apollo-hooks';
 import gql from 'graphql-tag';
 import Column from '@openmob/bluebird/src/components/layout/Column';
 import Overlay from '@openmob/bluebird/src/components/editor/Overlay';
 import Control from '@openmob/bluebird/src/components/editor/Control';
 import Widget from '@openmob/bluebird/src/components/editor/Widget';
-
-import GET_PAGE from '../../../queries/getPage';
+import { GET_PAGE } from '../../../queries/getPage';
+import { LIST_COMPONENT_TYPES } from '../../../queries/listComponentTypes';
 
 const UPDATE_COLUMN = gql`
   mutation updateLayoutColumn($id: ID!, $layoutColumn: LayoutColumnInput) {
@@ -33,6 +33,19 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
   const deleteLayoutColumn = useMutation(DELETE_COLUMN);
   const updateLayoutColumn = useMutation(UPDATE_COLUMN);
   const createComponent = useMutation(CREATE_COMPONENT);
+  const {
+    data: { listComponentType: componentTypes = [] },
+    error,
+    loading,
+  } = useQuery(LIST_COMPONENT_TYPES);
+
+  if (loading) {
+    return <div />;
+  }
+
+  if (error) {
+    return <div>Error! {error.message}</div>;
+  }
 
   const handleDelete = () => () =>
     deleteLayoutColumn({
@@ -48,13 +61,19 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
       ],
     });
 
-  const createCreateComponent = () => () =>
+  const handleCreateComponent = newID => () =>
     createComponent({
       variables: {
         component: {
           LayoutColumn: column.ID,
-          ComponentType: '32d88391-4fc4-4a6d-beaf-1d5051da4db5',
-          ComponentImplementation: 'd5721029-93e2-49a9-b798-21aff3a11c2c',
+          ComponentType: componentTypes.find(component => {
+            debugger;
+            return component.ID === newID;
+          }).ID,
+          ComponentImplementation: componentTypes.find(component => {
+            debugger;
+            return component.ID === newID;
+          }).ComponentImplementation.ID,
         },
         buildStatic: true,
       },
@@ -95,7 +114,10 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
           <Widget handleSubmit={handleDelete} />
         </Control>
         <Control label="Create Component">
-          <Widget handleSubmit={createCreateComponent} />
+          <Widget
+            handleSubmit={handleCreateComponent}
+            options={componentTypes}
+          />
         </Control>
         <Control label="Change Width">
           <Widget
