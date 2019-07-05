@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_LIVEEVENTMEMBERSHIP = gql`
   query getLiveEventMembershipById($id: ID!) {
@@ -35,7 +35,7 @@ const GET_LIVEEVENTMEMBERSHIP = gql`
       }
     }
   }
-`
+`;
 const UPDATE_LIVEEVENTMEMBERSHIP = gql`
   mutation updateLiveEventMembership(
     $id: ID!
@@ -47,7 +47,7 @@ const UPDATE_LIVEEVENTMEMBERSHIP = gql`
       buildStatic: true
     )
   }
-`
+`;
 
 function EditLiveEventMembership({ id }) {
   const {
@@ -56,16 +56,16 @@ function EditLiveEventMembership({ id }) {
     loading,
   } = useQuery(GET_LIVEEVENTMEMBERSHIP, {
     variables: { id },
-  })
+  });
 
-  const updateLiveEventMembership = useMutation(UPDATE_LIVEEVENTMEMBERSHIP)
+  const updateLiveEventMembership = useMutation(UPDATE_LIVEEVENTMEMBERSHIP);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -92,7 +92,7 @@ function EditLiveEventMembership({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -161,14 +161,14 @@ function EditLiveEventMembership({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditLiveEventMembership.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditLiveEventMembership
+export default EditLiveEventMembership;

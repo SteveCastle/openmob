@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from '@reach/router';
 import { Link } from 'gatsby';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -37,12 +36,12 @@ import ListLayoutRow from './list/ListLayoutRow';
 import EditComponentTypeFields from './edit/EditComponentTypeFields';
 import CreateComponentTypeFields from './create/CreateComponentTypeFields';
 import ListComponentTypeFields from './list/ListComponentTypeFields';
-import EditComponentType from './edit/EditComponentType';
-import CreateComponentType from './create/CreateComponentType';
-import ListComponentType from './list/ListComponentType';
 import EditComponentImplementation from './edit/EditComponentImplementation';
 import CreateComponentImplementation from './create/CreateComponentImplementation';
 import ListComponentImplementation from './list/ListComponentImplementation';
+import EditComponentType from './edit/EditComponentType';
+import CreateComponentType from './create/CreateComponentType';
+import ListComponentType from './list/ListComponentType';
 import EditLayoutColumn from './edit/EditLayoutColumn';
 import CreateLayoutColumn from './create/CreateLayoutColumn';
 import ListLayoutColumn from './list/ListLayoutColumn';
@@ -230,12 +229,6 @@ const Layout = ({ children, title, id, summary }) => (
       <Menu vertical>
         <MenuHeader>
           <Input block />
-          <MenuItem noBorder>
-            <Link to={`/app`}>
-              <FontAwesomeIcon icon={faArrowLeft} />
-              Back to Dashboard
-            </Link>
-          </MenuItem>
         </MenuHeader>
         <MenuBody>
           <MenuItem>
@@ -262,12 +255,12 @@ const Layout = ({ children, title, id, summary }) => (
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/app/admin/component-type">ComponentType</Link>
-          </MenuItem>
-          <MenuItem>
             <Link to="/app/admin/component-implementation">
               ComponentImplementation
             </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/app/admin/component-type">ComponentType</Link>
           </MenuItem>
           <MenuItem>
             <Link to="/app/admin/layout-column">LayoutColumn</Link>
@@ -482,12 +475,12 @@ const Layout = ({ children, title, id, summary }) => (
         <ListComponentTypeFields path="/component-type-fields" />
         <CreateComponentTypeFields path="/component-type-fields/create" />
         <EditComponentTypeFields path="/component-type-fields/:id" />
-        <ListComponentType path="/component-type" />
-        <CreateComponentType path="/component-type/create" />
-        <EditComponentType path="/component-type/:id" />
         <ListComponentImplementation path="/component-implementation" />
         <CreateComponentImplementation path="/component-implementation/create" />
         <EditComponentImplementation path="/component-implementation/:id" />
+        <ListComponentType path="/component-type" />
+        <CreateComponentType path="/component-type/create" />
+        <EditComponentType path="/component-type/:id" />
         <ListLayoutColumn path="/layout-column" />
         <CreateLayoutColumn path="/layout-column/create" />
         <EditLayoutColumn path="/layout-column/:id" />

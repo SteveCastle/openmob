@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_ACTIVITY = gql`
   query getActivityById($id: ID!) {
@@ -39,12 +39,12 @@ const GET_ACTIVITY = gql`
       }
     }
   }
-`
+`;
 const UPDATE_ACTIVITY = gql`
   mutation updateActivity($id: ID!, $activity: ActivityInput) {
     updateActivity(ID: $id, activity: $activity, buildStatic: true)
   }
-`
+`;
 
 function EditActivity({ id }) {
   const {
@@ -53,16 +53,16 @@ function EditActivity({ id }) {
     loading,
   } = useQuery(GET_ACTIVITY, {
     variables: { id },
-  })
+  });
 
-  const updateActivity = useMutation(UPDATE_ACTIVITY)
+  const updateActivity = useMutation(UPDATE_ACTIVITY);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -91,7 +91,7 @@ function EditActivity({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -180,14 +180,14 @@ function EditActivity({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditActivity.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditActivity
+export default EditActivity;

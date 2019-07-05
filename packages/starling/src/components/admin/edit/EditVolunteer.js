@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_VOLUNTEER = gql`
   query getVolunteerById($id: ID!) {
@@ -38,12 +38,12 @@ const GET_VOLUNTEER = gql`
       }
     }
   }
-`
+`;
 const UPDATE_VOLUNTEER = gql`
   mutation updateVolunteer($id: ID!, $volunteer: VolunteerInput) {
     updateVolunteer(ID: $id, volunteer: $volunteer, buildStatic: true)
   }
-`
+`;
 
 function EditVolunteer({ id }) {
   const {
@@ -52,16 +52,16 @@ function EditVolunteer({ id }) {
     loading,
   } = useQuery(GET_VOLUNTEER, {
     variables: { id },
-  })
+  });
 
-  const updateVolunteer = useMutation(UPDATE_VOLUNTEER)
+  const updateVolunteer = useMutation(UPDATE_VOLUNTEER);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -89,7 +89,7 @@ function EditVolunteer({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -168,14 +168,14 @@ function EditVolunteer({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditVolunteer.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditVolunteer
+export default EditVolunteer;

@@ -218,27 +218,6 @@ message ComponentTypeFieldsFilterRule {
   }
 }
 
-message ComponentTypeOrdering {
-  Direction Direction = 1;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
-message ComponentTypeFilterRule {
-  Rule Rule = 1;
-  LogicalOperator LogicalOperator = 2;
-  oneof field {
-    string ID = 3;
-    google.protobuf.Timestamp CreatedAt = 4;
-    google.protobuf.Timestamp UpdatedAt = 5;
-    string Title = 6;
-  }
-}
-
 message ComponentImplementationOrdering {
   Direction Direction = 1;
   oneof field {
@@ -261,6 +240,29 @@ message ComponentImplementationFilterRule {
     string Title = 6;
     string Path = 7;
     string ComponentType = 8;
+  }
+}
+
+message ComponentTypeOrdering {
+  Direction Direction = 1;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+    string ComponentImplementation = 7;
+  }
+}
+
+message ComponentTypeFilterRule {
+  Rule Rule = 1;
+  LogicalOperator LogicalOperator = 2;
+  oneof field {
+    string ID = 3;
+    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp UpdatedAt = 5;
+    string Title = 6;
+    string ComponentImplementation = 7;
   }
 }
 
@@ -2129,72 +2131,6 @@ message DeleteComponentTypeFieldsResponse {
   int64 deleted = 2;
 }
 
-message ComponentType {
-  string ID = 1;
-  google.protobuf.Timestamp CreatedAt = 2;
-  google.protobuf.Timestamp UpdatedAt = 3;
-  string Title = 4;
-}
-
-message CreateComponentType {
-  string Title = 1;
-}
-
-message CreateComponentTypeRequest {
-  string api = 1;
-  CreateComponentType item = 2;
-  bool buildStatic = 3;
-}
-
-message CreateComponentTypeResponse {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetComponentTypeRequest {
-  string api = 1;
-  string ID = 2;
-}
-
-message GetComponentTypeResponse {
-  string api = 1;
-  ComponentType item = 2;
-}
-
-message ListComponentTypeRequest {
-  string api = 1;
-  int64 limit = 2;
-  repeated ComponentTypeOrdering ordering = 3;
-  repeated ComponentTypeFilterRule filters = 4;
-}
-
-message ListComponentTypeResponse {
-  string api = 1;
-  repeated ComponentType items = 2;
-}
-
-message UpdateComponentTypeRequest{
-  string api = 1;
-  ComponentType item = 2;
-  bool buildStatic = 3;
-}
-
-message UpdateComponentTypeResponse {
-  string api = 1;
-  int64 updated = 2;
-}
-
-message DeleteComponentTypeRequest {
-  string api = 1;
-  string ID = 2;
-  bool buildStatic = 3;
-}
-
-message DeleteComponentTypeResponse {
-  string api = 1;
-  int64 deleted = 2;
-}
-
 message ComponentImplementation {
   string ID = 1;
   google.protobuf.Timestamp CreatedAt = 2;
@@ -2261,6 +2197,74 @@ message DeleteComponentImplementationRequest {
 }
 
 message DeleteComponentImplementationResponse {
+  string api = 1;
+  int64 deleted = 2;
+}
+
+message ComponentType {
+  string ID = 1;
+  google.protobuf.Timestamp CreatedAt = 2;
+  google.protobuf.Timestamp UpdatedAt = 3;
+  string Title = 4;
+  string ComponentImplementation = 5;
+}
+
+message CreateComponentType {
+  string Title = 1;
+  string ComponentImplementation = 2;
+}
+
+message CreateComponentTypeRequest {
+  string api = 1;
+  CreateComponentType item = 2;
+  bool buildStatic = 3;
+}
+
+message CreateComponentTypeResponse {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetComponentTypeRequest {
+  string api = 1;
+  string ID = 2;
+}
+
+message GetComponentTypeResponse {
+  string api = 1;
+  ComponentType item = 2;
+}
+
+message ListComponentTypeRequest {
+  string api = 1;
+  int64 limit = 2;
+  repeated ComponentTypeOrdering ordering = 3;
+  repeated ComponentTypeFilterRule filters = 4;
+}
+
+message ListComponentTypeResponse {
+  string api = 1;
+  repeated ComponentType items = 2;
+}
+
+message UpdateComponentTypeRequest{
+  string api = 1;
+  ComponentType item = 2;
+  bool buildStatic = 3;
+}
+
+message UpdateComponentTypeResponse {
+  string api = 1;
+  int64 updated = 2;
+}
+
+message DeleteComponentTypeRequest {
+  string api = 1;
+  string ID = 2;
+  bool buildStatic = 3;
+}
+
+message DeleteComponentTypeResponse {
   string api = 1;
   int64 deleted = 2;
 }
@@ -6584,45 +6588,6 @@ service ShrikeService {
         };
     }
   
-  // CreateComponentType takes a ComponentType object to create.
-  rpc CreateComponentType(CreateComponentTypeRequest) returns (CreateComponentTypeResponse) {
-    option (google.api.http) ={
-      post: "/v1/componenttype"
-      body: "*"
-    };
-  }
-  // GetComponentType takes an ID and returns a single ComponentType.
-  rpc GetComponentType(GetComponentTypeRequest) returns (GetComponentTypeResponse) {
-    option (google.api.http) ={
-      get: "/v1/componenttype/{ID}"
-    };
-  }
-    // List ComponentType, takes filters, limit, and cursor param.
-  rpc ListComponentType(ListComponentTypeRequest) returns (ListComponentTypeResponse) {
-  option (google.api.http) ={
-    get: "/v1/componenttype"
-  };
-}
-    // Update ComponentType
-    rpc UpdateComponentType(UpdateComponentTypeRequest) returns (UpdateComponentTypeResponse) {
-        option (google.api.http) = {
-            put: "/v1/componenttype/{item.ID}"
-            body: "*"
-
-            additional_bindings {
-                patch: "/v1/componenttype/{item.ID}"
-                body: "*"
-            }
-        };
-    }
-
-    // Delete ComponentType
-    rpc DeleteComponentType(DeleteComponentTypeRequest) returns (DeleteComponentTypeResponse) {
-        option (google.api.http) = {
-            delete: "/v1/componenttype/{ID}"
-        };
-    }
-  
   // CreateComponentImplementation takes a ComponentImplementation object to create.
   rpc CreateComponentImplementation(CreateComponentImplementationRequest) returns (CreateComponentImplementationResponse) {
     option (google.api.http) ={
@@ -6659,6 +6624,45 @@ service ShrikeService {
     rpc DeleteComponentImplementation(DeleteComponentImplementationRequest) returns (DeleteComponentImplementationResponse) {
         option (google.api.http) = {
             delete: "/v1/componentimplementation/{ID}"
+        };
+    }
+  
+  // CreateComponentType takes a ComponentType object to create.
+  rpc CreateComponentType(CreateComponentTypeRequest) returns (CreateComponentTypeResponse) {
+    option (google.api.http) ={
+      post: "/v1/componenttype"
+      body: "*"
+    };
+  }
+  // GetComponentType takes an ID and returns a single ComponentType.
+  rpc GetComponentType(GetComponentTypeRequest) returns (GetComponentTypeResponse) {
+    option (google.api.http) ={
+      get: "/v1/componenttype/{ID}"
+    };
+  }
+    // List ComponentType, takes filters, limit, and cursor param.
+  rpc ListComponentType(ListComponentTypeRequest) returns (ListComponentTypeResponse) {
+  option (google.api.http) ={
+    get: "/v1/componenttype"
+  };
+}
+    // Update ComponentType
+    rpc UpdateComponentType(UpdateComponentTypeRequest) returns (UpdateComponentTypeResponse) {
+        option (google.api.http) = {
+            put: "/v1/componenttype/{item.ID}"
+            body: "*"
+
+            additional_bindings {
+                patch: "/v1/componenttype/{item.ID}"
+                body: "*"
+            }
+        };
+    }
+
+    // Delete ComponentType
+    rpc DeleteComponentType(DeleteComponentTypeRequest) returns (DeleteComponentTypeResponse) {
+        option (google.api.http) = {
+            delete: "/v1/componenttype/{ID}"
         };
     }
   

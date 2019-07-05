@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_HOMEPAGE = gql`
   query getHomePageById($id: ID!) {
@@ -33,12 +33,12 @@ const GET_HOMEPAGE = gql`
       }
     }
   }
-`
+`;
 const UPDATE_HOMEPAGE = gql`
   mutation updateHomePage($id: ID!, $homePage: HomePageInput) {
     updateHomePage(ID: $id, homePage: $homePage, buildStatic: true)
   }
-`
+`;
 
 function EditHomePage({ id }) {
   const {
@@ -47,16 +47,16 @@ function EditHomePage({ id }) {
     loading,
   } = useQuery(GET_HOMEPAGE, {
     variables: { id },
-  })
+  });
 
-  const updateHomePage = useMutation(UPDATE_HOMEPAGE)
+  const updateHomePage = useMutation(UPDATE_HOMEPAGE);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -83,7 +83,7 @@ function EditHomePage({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -152,14 +152,14 @@ function EditHomePage({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditHomePage.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditHomePage
+export default EditHomePage;

@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_PAYMENT = gql`
   query getPaymentById($id: ID!) {
@@ -32,12 +32,12 @@ const GET_PAYMENT = gql`
       }
     }
   }
-`
+`;
 const UPDATE_PAYMENT = gql`
   mutation updatePayment($id: ID!, $payment: PaymentInput) {
     updatePayment(ID: $id, payment: $payment, buildStatic: true)
   }
-`
+`;
 
 function EditPayment({ id }) {
   const {
@@ -46,16 +46,16 @@ function EditPayment({ id }) {
     loading,
   } = useQuery(GET_PAYMENT, {
     variables: { id },
-  })
+  });
 
-  const updatePayment = useMutation(UPDATE_PAYMENT)
+  const updatePayment = useMutation(UPDATE_PAYMENT);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -81,7 +81,7 @@ function EditPayment({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -140,14 +140,14 @@ function EditPayment({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditPayment.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditPayment
+export default EditPayment;

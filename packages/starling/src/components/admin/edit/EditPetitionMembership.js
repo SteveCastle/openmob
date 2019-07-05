@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_PETITIONMEMBERSHIP = gql`
   query getPetitionMembershipById($id: ID!) {
@@ -35,7 +35,7 @@ const GET_PETITIONMEMBERSHIP = gql`
       }
     }
   }
-`
+`;
 const UPDATE_PETITIONMEMBERSHIP = gql`
   mutation updatePetitionMembership(
     $id: ID!
@@ -47,7 +47,7 @@ const UPDATE_PETITIONMEMBERSHIP = gql`
       buildStatic: true
     )
   }
-`
+`;
 
 function EditPetitionMembership({ id }) {
   const {
@@ -56,16 +56,16 @@ function EditPetitionMembership({ id }) {
     loading,
   } = useQuery(GET_PETITIONMEMBERSHIP, {
     variables: { id },
-  })
+  });
 
-  const updatePetitionMembership = useMutation(UPDATE_PETITIONMEMBERSHIP)
+  const updatePetitionMembership = useMutation(UPDATE_PETITIONMEMBERSHIP);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -92,7 +92,7 @@ function EditPetitionMembership({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -161,14 +161,14 @@ function EditPetitionMembership({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditPetitionMembership.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditPetitionMembership
+export default EditPetitionMembership;

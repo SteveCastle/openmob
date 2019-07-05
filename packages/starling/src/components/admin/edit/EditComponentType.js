@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_COMPONENTTYPE = gql`
   query getComponentTypeById($id: ID!) {
@@ -28,9 +28,12 @@ const GET_COMPONENTTYPE = gql`
         nanos
       }
       Title
+      ComponentImplementation {
+        ID
+      }
     }
   }
-`
+`;
 const UPDATE_COMPONENTTYPE = gql`
   mutation updateComponentType($id: ID!, $componentType: ComponentTypeInput) {
     updateComponentType(
@@ -39,7 +42,7 @@ const UPDATE_COMPONENTTYPE = gql`
       buildStatic: true
     )
   }
-`
+`;
 
 function EditComponentType({ id }) {
   const {
@@ -48,16 +51,16 @@ function EditComponentType({ id }) {
     loading,
   } = useQuery(GET_COMPONENTTYPE, {
     variables: { id },
-  })
+  });
 
-  const updateComponentType = useMutation(UPDATE_COMPONENTTYPE)
+  const updateComponentType = useMutation(UPDATE_COMPONENTTYPE);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -67,6 +70,7 @@ function EditComponentType({ id }) {
         CreatedAt: parseObject(item.CreatedAt),
         UpdatedAt: parseObject(item.UpdatedAt),
         Title: parseObject(item.Title),
+        ComponentImplementation: parseObject(item.ComponentImplementation),
       }}
       onSubmit={(values, { setSubmitting }) =>
         updateComponentType({
@@ -83,7 +87,7 @@ function EditComponentType({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -132,6 +136,16 @@ function EditComponentType({ id }) {
                     onBlur={handleBlur}
                   />
                 </Widget>
+                <Widget>
+                  <Label>ComponentImplementation</Label>
+                  <Input
+                    value={values.ComponentImplementation}
+                    name="ComponentImplementation"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
 
                 <Button
                   label="Save"
@@ -142,14 +156,14 @@ function EditComponentType({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditComponentType.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditComponentType
+export default EditComponentType;

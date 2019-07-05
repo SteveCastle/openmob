@@ -16278,6 +16278,9 @@
         },
         "Title": {
           "type": "string"
+        },
+        "ComponentImplementation": {
+          "type": "string"
         }
       }
     },
@@ -16402,6 +16405,9 @@
         },
         "Title": {
           "type": "string"
+        },
+        "ComponentImplementation": {
+          "type": "string"
         }
       }
     },
@@ -16423,6 +16429,9 @@
           "format": "date-time"
         },
         "Title": {
+          "type": "string"
+        },
+        "ComponentImplementation": {
           "type": "string"
         }
       }
@@ -17057,6 +17066,9 @@
       "type": "object",
       "properties": {
         "Title": {
+          "type": "string"
+        },
+        "ComponentImplementation": {
           "type": "string"
         }
       }

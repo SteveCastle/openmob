@@ -50,16 +50,17 @@ input ComponentTypeFieldsInput {
   Required: Boolean
 }
 ​
-input ComponentTypeInput {
-  secret: Int
-  Title: String!
-}
-​
 input ComponentImplementationInput {
   secret: Int
   Title: String!
   Path: String!
   ComponentType: ID!
+}
+​
+input ComponentTypeInput {
+  secret: Int
+  Title: String!
+  ComponentImplementation: ID!
 }
 ​
 input LayoutColumnInput {
@@ -491,6 +492,17 @@ type ComponentTypeFields {
   Required: Boolean
 }
 ​
+type ComponentImplementation {
+  ID: ID!
+  ComponentTypes: [ComponentType]
+  Components: [Component]
+  CreatedAt: Time!
+  UpdatedAt: Time!
+  Title: String!
+  Path: String!
+  ComponentType: ComponentType
+}
+​
 type ComponentType {
   ID: ID!
   ComponentTypeFieldss: [ComponentTypeFields]
@@ -499,16 +511,7 @@ type ComponentType {
   CreatedAt: Time!
   UpdatedAt: Time!
   Title: String!
-}
-​
-type ComponentImplementation {
-  ID: ID!
-  Components: [Component]
-  CreatedAt: Time!
-  UpdatedAt: Time!
-  Title: String!
-  Path: String!
-  ComponentType: ComponentType
+  ComponentImplementation: ComponentImplementation
 }
 ​
 type LayoutColumn {
@@ -1089,10 +1092,10 @@ type Cause {
     listLayoutRow(limit: Int): [LayoutRow]
     getComponentTypeFields(ID: ID!): ComponentTypeFields
     listComponentTypeFields(limit: Int): [ComponentTypeFields]
-    getComponentType(ID: ID!): ComponentType
-    listComponentType(limit: Int): [ComponentType]
     getComponentImplementation(ID: ID!): ComponentImplementation
     listComponentImplementation(limit: Int): [ComponentImplementation]
+    getComponentType(ID: ID!): ComponentType
+    listComponentType(limit: Int): [ComponentType]
     getLayoutColumn(ID: ID!): LayoutColumn
     listLayoutColumn(limit: Int): [LayoutColumn]
     getFieldType(ID: ID!): FieldType
@@ -1236,12 +1239,12 @@ type Cause {
     createComponentTypeFields(componentTypeFields: ComponentTypeFieldsInput, buildStatic: Boolean): ComponentTypeFields
     updateComponentTypeFields(ID: ID!, componentTypeFields: ComponentTypeFieldsInput, buildStatic: Boolean): Int
     deleteComponentTypeFields(ID: ID!, buildStatic: Boolean): Int
-    createComponentType(componentType: ComponentTypeInput, buildStatic: Boolean): ComponentType
-    updateComponentType(ID: ID!, componentType: ComponentTypeInput, buildStatic: Boolean): Int
-    deleteComponentType(ID: ID!, buildStatic: Boolean): Int
     createComponentImplementation(componentImplementation: ComponentImplementationInput, buildStatic: Boolean): ComponentImplementation
     updateComponentImplementation(ID: ID!, componentImplementation: ComponentImplementationInput, buildStatic: Boolean): Int
     deleteComponentImplementation(ID: ID!, buildStatic: Boolean): Int
+    createComponentType(componentType: ComponentTypeInput, buildStatic: Boolean): ComponentType
+    updateComponentType(ID: ID!, componentType: ComponentTypeInput, buildStatic: Boolean): Int
+    deleteComponentType(ID: ID!, buildStatic: Boolean): Int
     createLayoutColumn(layoutColumn: LayoutColumnInput, buildStatic: Boolean): LayoutColumn
     updateLayoutColumn(ID: ID!, layoutColumn: LayoutColumnInput, buildStatic: Boolean): Int
     deleteLayoutColumn(ID: ID!, buildStatic: Boolean): Int

@@ -131,6 +131,7 @@ CREATE TABLE component_type
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     title VARCHAR(255) NOT NULL,
+    component_implementation UUID REFERENCES component_implementation(id) NOT NULL,
     PRIMARY KEY (id)
 );
 

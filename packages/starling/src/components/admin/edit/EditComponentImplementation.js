@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_COMPONENTIMPLEMENTATION = gql`
   query getComponentImplementationById($id: ID!) {
@@ -34,7 +34,7 @@ const GET_COMPONENTIMPLEMENTATION = gql`
       }
     }
   }
-`
+`;
 const UPDATE_COMPONENTIMPLEMENTATION = gql`
   mutation updateComponentImplementation(
     $id: ID!
@@ -46,7 +46,7 @@ const UPDATE_COMPONENTIMPLEMENTATION = gql`
       buildStatic: true
     )
   }
-`
+`;
 
 function EditComponentImplementation({ id }) {
   const {
@@ -55,18 +55,18 @@ function EditComponentImplementation({ id }) {
     loading,
   } = useQuery(GET_COMPONENTIMPLEMENTATION, {
     variables: { id },
-  })
+  });
 
   const updateComponentImplementation = useMutation(
     UPDATE_COMPONENTIMPLEMENTATION
-  )
+  );
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -94,7 +94,7 @@ function EditComponentImplementation({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -173,14 +173,14 @@ function EditComponentImplementation({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditComponentImplementation.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditComponentImplementation
+export default EditComponentImplementation;

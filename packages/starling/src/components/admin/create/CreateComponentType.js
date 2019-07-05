@@ -1,18 +1,18 @@
 /* eslint-disable */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
 
 const CREATE_COMPONENTTYPE = gql`
   mutation createComponentType($componentType: ComponentTypeInput) {
@@ -20,10 +20,10 @@ const CREATE_COMPONENTTYPE = gql`
       ID
     }
   }
-`
+`;
 
 const CreateComponentType = ({ id }) => {
-  const createComponentType = useMutation(CREATE_COMPONENTTYPE)
+  const createComponentType = useMutation(CREATE_COMPONENTTYPE);
 
   return (
     <Formik
@@ -38,7 +38,7 @@ const CreateComponentType = ({ id }) => {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -54,6 +54,16 @@ const CreateComponentType = ({ id }) => {
                     onBlur={handleBlur}
                   />
                 </Widget>
+                <Widget>
+                  <Label>ComponentImplementation</Label>
+                  <Input
+                    value={values.ComponentImplementation}
+                    type="text"
+                    name="ComponentImplementation"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Widget>
 
                 <Button
                   label="Save"
@@ -64,14 +74,14 @@ const CreateComponentType = ({ id }) => {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
-}
+  );
+};
 
 CreateComponentType.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default CreateComponentType
+export default CreateComponentType;

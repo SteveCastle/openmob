@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_CONTACTMEMBERSHIP = gql`
   query getContactMembershipById($id: ID!) {
@@ -35,7 +35,7 @@ const GET_CONTACTMEMBERSHIP = gql`
       }
     }
   }
-`
+`;
 const UPDATE_CONTACTMEMBERSHIP = gql`
   mutation updateContactMembership(
     $id: ID!
@@ -47,7 +47,7 @@ const UPDATE_CONTACTMEMBERSHIP = gql`
       buildStatic: true
     )
   }
-`
+`;
 
 function EditContactMembership({ id }) {
   const {
@@ -56,16 +56,16 @@ function EditContactMembership({ id }) {
     loading,
   } = useQuery(GET_CONTACTMEMBERSHIP, {
     variables: { id },
-  })
+  });
 
-  const updateContactMembership = useMutation(UPDATE_CONTACTMEMBERSHIP)
+  const updateContactMembership = useMutation(UPDATE_CONTACTMEMBERSHIP);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -92,7 +92,7 @@ function EditContactMembership({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -161,14 +161,14 @@ function EditContactMembership({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditContactMembership.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditContactMembership
+export default EditContactMembership;

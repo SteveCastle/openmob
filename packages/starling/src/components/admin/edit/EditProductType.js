@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_PRODUCTTYPE = gql`
   query getProductTypeById($id: ID!) {
@@ -30,12 +30,12 @@ const GET_PRODUCTTYPE = gql`
       Title
     }
   }
-`
+`;
 const UPDATE_PRODUCTTYPE = gql`
   mutation updateProductType($id: ID!, $productType: ProductTypeInput) {
     updateProductType(ID: $id, productType: $productType, buildStatic: true)
   }
-`
+`;
 
 function EditProductType({ id }) {
   const {
@@ -44,16 +44,16 @@ function EditProductType({ id }) {
     loading,
   } = useQuery(GET_PRODUCTTYPE, {
     variables: { id },
-  })
+  });
 
-  const updateProductType = useMutation(UPDATE_PRODUCTTYPE)
+  const updateProductType = useMutation(UPDATE_PRODUCTTYPE);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -79,7 +79,7 @@ function EditProductType({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -138,14 +138,14 @@ function EditProductType({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditProductType.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditProductType
+export default EditProductType;

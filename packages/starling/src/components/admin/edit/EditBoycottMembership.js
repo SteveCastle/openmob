@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_BOYCOTTMEMBERSHIP = gql`
   query getBoycottMembershipById($id: ID!) {
@@ -35,7 +35,7 @@ const GET_BOYCOTTMEMBERSHIP = gql`
       }
     }
   }
-`
+`;
 const UPDATE_BOYCOTTMEMBERSHIP = gql`
   mutation updateBoycottMembership(
     $id: ID!
@@ -47,7 +47,7 @@ const UPDATE_BOYCOTTMEMBERSHIP = gql`
       buildStatic: true
     )
   }
-`
+`;
 
 function EditBoycottMembership({ id }) {
   const {
@@ -56,16 +56,16 @@ function EditBoycottMembership({ id }) {
     loading,
   } = useQuery(GET_BOYCOTTMEMBERSHIP, {
     variables: { id },
-  })
+  });
 
-  const updateBoycottMembership = useMutation(UPDATE_BOYCOTTMEMBERSHIP)
+  const updateBoycottMembership = useMutation(UPDATE_BOYCOTTMEMBERSHIP);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -92,7 +92,7 @@ function EditBoycottMembership({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -161,14 +161,14 @@ function EditBoycottMembership({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditBoycottMembership.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditBoycottMembership
+export default EditBoycottMembership;

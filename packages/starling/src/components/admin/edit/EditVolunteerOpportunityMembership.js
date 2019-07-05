@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_VOLUNTEEROPPORTUNITYMEMBERSHIP = gql`
   query getVolunteerOpportunityMembershipById($id: ID!) {
@@ -35,7 +35,7 @@ const GET_VOLUNTEEROPPORTUNITYMEMBERSHIP = gql`
       }
     }
   }
-`
+`;
 const UPDATE_VOLUNTEEROPPORTUNITYMEMBERSHIP = gql`
   mutation updateVolunteerOpportunityMembership(
     $id: ID!
@@ -47,7 +47,7 @@ const UPDATE_VOLUNTEEROPPORTUNITYMEMBERSHIP = gql`
       buildStatic: true
     )
   }
-`
+`;
 
 function EditVolunteerOpportunityMembership({ id }) {
   const {
@@ -56,18 +56,18 @@ function EditVolunteerOpportunityMembership({ id }) {
     loading,
   } = useQuery(GET_VOLUNTEEROPPORTUNITYMEMBERSHIP, {
     variables: { id },
-  })
+  });
 
   const updateVolunteerOpportunityMembership = useMutation(
     UPDATE_VOLUNTEEROPPORTUNITYMEMBERSHIP
-  )
+  );
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -94,7 +94,7 @@ function EditVolunteerOpportunityMembership({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -163,14 +163,14 @@ function EditVolunteerOpportunityMembership({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditVolunteerOpportunityMembership.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditVolunteerOpportunityMembership
+export default EditVolunteerOpportunityMembership;

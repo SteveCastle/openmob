@@ -34,6 +34,31 @@ module.exports = client => ({
         .sendMessage({ api: 'v1', ID: FieldType })
         .then(res => res.item),
   },
+  ComponentImplementation: {
+    ComponentTypes: ({ ID }) =>
+      client
+        .ListComponentType()
+        .sendMessage({
+          api: 'v1',
+          filters: [{ ComponentImplementation: ID }],
+          limit: 10,
+        })
+        .then(res => res.items),
+    Components: ({ ID }) =>
+      client
+        .ListComponent()
+        .sendMessage({
+          api: 'v1',
+          filters: [{ ComponentImplementation: ID }],
+          limit: 10,
+        })
+        .then(res => res.items),
+    ComponentType: ({ ComponentType }) =>
+      client
+        .GetComponentType()
+        .sendMessage({ api: 'v1', ID: ComponentType })
+        .then(res => res.item),
+  },
   ComponentType: {
     ComponentTypeFieldss: ({ ID }) =>
       client
@@ -50,21 +75,10 @@ module.exports = client => ({
         .ListComponent()
         .sendMessage({ api: 'v1', filters: [{ ComponentType: ID }], limit: 10 })
         .then(res => res.items),
-  },
-  ComponentImplementation: {
-    Components: ({ ID }) =>
+    ComponentImplementation: ({ ComponentImplementation }) =>
       client
-        .ListComponent()
-        .sendMessage({
-          api: 'v1',
-          filters: [{ ComponentImplementation: ID }],
-          limit: 10,
-        })
-        .then(res => res.items),
-    ComponentType: ({ ComponentType }) =>
-      client
-        .GetComponentType()
-        .sendMessage({ api: 'v1', ID: ComponentType })
+        .GetComponentImplementation()
+        .sendMessage({ api: 'v1', ID: ComponentImplementation })
         .then(res => res.item),
   },
   LayoutColumn: {
@@ -1019,16 +1033,6 @@ module.exports = client => ({
         .GetComponentTypeFields()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
-    listComponentType: (_, { limit, ordering, filters }) =>
-      client
-        .ListComponentType()
-        .sendMessage({ api: 'v1', limit, ordering, filters })
-        .then(res => res.items),
-    getComponentType: (_, { ID }) =>
-      client
-        .GetComponentType()
-        .sendMessage({ api: 'v1', ID })
-        .then(res => res.item),
     listComponentImplementation: (_, { limit, ordering, filters }) =>
       client
         .ListComponentImplementation()
@@ -1037,6 +1041,16 @@ module.exports = client => ({
     getComponentImplementation: (_, { ID }) =>
       client
         .GetComponentImplementation()
+        .sendMessage({ api: 'v1', ID })
+        .then(res => res.item),
+    listComponentType: (_, { limit, ordering, filters }) =>
+      client
+        .ListComponentType()
+        .sendMessage({ api: 'v1', limit, ordering, filters })
+        .then(res => res.items),
+    getComponentType: (_, { ID }) =>
+      client
+        .GetComponentType()
         .sendMessage({ api: 'v1', ID })
         .then(res => res.item),
     listLayoutColumn: (_, { limit, ordering, filters }) =>
@@ -1754,21 +1768,6 @@ module.exports = client => ({
         .DeleteComponentTypeFields()
         .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
-    createComponentType: (_, { componentType, buildStatic = false }) =>
-      client
-        .CreateComponentType()
-        .sendMessage({ api: 'v1', item: { ...componentType }, buildStatic })
-        .then(res => ({ ID: res.ID, ...componentType })),
-    updateComponentType: (_, { ID, componentType, buildStatic = false }) =>
-      client
-        .UpdateComponentType()
-        .sendMessage({ api: 'v1', item: { ID, ...componentType }, buildStatic })
-        .then(res => res.updated),
-    deleteComponentType: (_, { ID, buildStatic = false }) =>
-      client
-        .DeleteComponentType()
-        .sendMessage({ api: 'v1', ID, buildStatic })
-        .then(res => res.deleted),
     createComponentImplementation: (
       _,
       { componentImplementation, buildStatic = false }
@@ -1796,6 +1795,21 @@ module.exports = client => ({
     deleteComponentImplementation: (_, { ID, buildStatic = false }) =>
       client
         .DeleteComponentImplementation()
+        .sendMessage({ api: 'v1', ID, buildStatic })
+        .then(res => res.deleted),
+    createComponentType: (_, { componentType, buildStatic = false }) =>
+      client
+        .CreateComponentType()
+        .sendMessage({ api: 'v1', item: { ...componentType }, buildStatic })
+        .then(res => ({ ID: res.ID, ...componentType })),
+    updateComponentType: (_, { ID, componentType, buildStatic = false }) =>
+      client
+        .UpdateComponentType()
+        .sendMessage({ api: 'v1', item: { ID, ...componentType }, buildStatic })
+        .then(res => res.updated),
+    deleteComponentType: (_, { ID, buildStatic = false }) =>
+      client
+        .DeleteComponentType()
         .sendMessage({ api: 'v1', ID, buildStatic })
         .then(res => res.deleted),
     createLayoutColumn: (_, { layoutColumn, buildStatic = false }) =>

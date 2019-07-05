@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_PHONENUMBER = gql`
   query getPhoneNumberById($id: ID!) {
@@ -30,12 +30,12 @@ const GET_PHONENUMBER = gql`
       PhoneNumber
     }
   }
-`
+`;
 const UPDATE_PHONENUMBER = gql`
   mutation updatePhoneNumber($id: ID!, $phoneNumber: PhoneNumberInput) {
     updatePhoneNumber(ID: $id, phoneNumber: $phoneNumber, buildStatic: true)
   }
-`
+`;
 
 function EditPhoneNumber({ id }) {
   const {
@@ -44,16 +44,16 @@ function EditPhoneNumber({ id }) {
     loading,
   } = useQuery(GET_PHONENUMBER, {
     variables: { id },
-  })
+  });
 
-  const updatePhoneNumber = useMutation(UPDATE_PHONENUMBER)
+  const updatePhoneNumber = useMutation(UPDATE_PHONENUMBER);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -79,7 +79,7 @@ function EditPhoneNumber({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -138,14 +138,14 @@ function EditPhoneNumber({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditPhoneNumber.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditPhoneNumber
+export default EditPhoneNumber;

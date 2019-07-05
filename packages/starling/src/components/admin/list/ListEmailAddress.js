@@ -1,17 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useQuery } from 'react-apollo-hooks'
-import { Link } from '@reach/router'
-import gql from 'graphql-tag'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
-import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
-import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
-import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
-import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useQuery } from 'react-apollo-hooks';
+import { Link } from '@reach/router';
+import gql from 'graphql-tag';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import DataTable from '@openmob/bluebird/src/components/tables/DataTable';
+import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader';
+import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell';
+import TableRow from '@openmob/bluebird/src/components/tables/TableRow';
+import TableCell from '@openmob/bluebird/src/components/tables/TableCell';
+import parseObject from '../../../common/helpers';
 
 const LIST_EMAILADDRESS = gql`
   {
@@ -26,21 +26,21 @@ const LIST_EMAILADDRESS = gql`
       Address
     }
   }
-`
+`;
 
 function ListEmailAddress({ navigate = () => {} }) {
   const {
     data: { listEmailAddress: items = [] },
     error,
     loading,
-  } = useQuery(LIST_EMAILADDRESS)
+  } = useQuery(LIST_EMAILADDRESS);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   if (items === null || items.length === 0) {
@@ -52,7 +52,7 @@ function ListEmailAddress({ navigate = () => {} }) {
           variant="primary"
         />
       </Content>
-    )
+    );
   }
 
   return (
@@ -91,11 +91,11 @@ function ListEmailAddress({ navigate = () => {} }) {
         </DataTable>
       </Card>
     </Content>
-  )
+  );
 }
 
 ListEmailAddress.propTypes = {
   navigate: PropTypes.func,
-}
+};
 
-export default ListEmailAddress
+export default ListEmailAddress;

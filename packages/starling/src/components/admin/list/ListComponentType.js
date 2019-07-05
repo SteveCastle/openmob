@@ -1,17 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useQuery } from 'react-apollo-hooks'
-import { Link } from '@reach/router'
-import gql from 'graphql-tag'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import DataTable from '@openmob/bluebird/src/components/tables/DataTable'
-import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader'
-import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell'
-import TableRow from '@openmob/bluebird/src/components/tables/TableRow'
-import TableCell from '@openmob/bluebird/src/components/tables/TableCell'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useQuery } from 'react-apollo-hooks';
+import { Link } from '@reach/router';
+import gql from 'graphql-tag';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import DataTable from '@openmob/bluebird/src/components/tables/DataTable';
+import TableHeader from '@openmob/bluebird/src/components/tables/TableHeader';
+import TableHeaderCell from '@openmob/bluebird/src/components/tables/TableHeaderCell';
+import TableRow from '@openmob/bluebird/src/components/tables/TableRow';
+import TableCell from '@openmob/bluebird/src/components/tables/TableCell';
+import parseObject from '../../../common/helpers';
 
 const LIST_COMPONENTTYPE = gql`
   {
@@ -24,23 +24,26 @@ const LIST_COMPONENTTYPE = gql`
         seconds
       }
       Title
+      ComponentImplementation {
+        ID
+      }
     }
   }
-`
+`;
 
 function ListComponentType({ navigate = () => {} }) {
   const {
     data: { listComponentType: items = [] },
     error,
     loading,
-  } = useQuery(LIST_COMPONENTTYPE)
+  } = useQuery(LIST_COMPONENTTYPE);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   if (items === null || items.length === 0) {
@@ -52,7 +55,7 @@ function ListComponentType({ navigate = () => {} }) {
           variant="primary"
         />
       </Content>
-    )
+    );
   }
 
   return (
@@ -72,6 +75,7 @@ function ListComponentType({ navigate = () => {} }) {
               <TableHeaderCell>CreatedAt</TableHeaderCell>
               <TableHeaderCell>UpdatedAt</TableHeaderCell>
               <TableHeaderCell>Title</TableHeaderCell>
+              <TableHeaderCell>ComponentImplementation</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <tbody>
@@ -87,17 +91,26 @@ function ListComponentType({ navigate = () => {} }) {
                 <TableCell>{parseObject(item.CreatedAt)}</TableCell>
                 <TableCell>{parseObject(item.UpdatedAt)}</TableCell>
                 <TableCell>{parseObject(item.Title)}</TableCell>
+                <TableCell>
+                  <Link
+                    to={`/app/admin/component-implementation/${parseObject(
+                      item.ComponentImplementation
+                    )}`}
+                  >
+                    {parseObject(item.ComponentImplementation)}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </tbody>
         </DataTable>
       </Card>
     </Content>
-  )
+  );
 }
 
 ListComponentType.propTypes = {
   navigate: PropTypes.func,
-}
+};
 
-export default ListComponentType
+export default ListComponentType;

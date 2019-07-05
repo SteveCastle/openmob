@@ -1,18 +1,18 @@
 /* eslint-disable */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
 
 const CREATE_DONOR = gql`
   mutation createDonor($donor: DonorInput) {
@@ -20,10 +20,10 @@ const CREATE_DONOR = gql`
       ID
     }
   }
-`
+`;
 
 const CreateDonor = ({ id }) => {
-  const createDonor = useMutation(CREATE_DONOR)
+  const createDonor = useMutation(CREATE_DONOR);
 
   return (
     <Formik
@@ -38,7 +38,7 @@ const CreateDonor = ({ id }) => {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -84,14 +84,14 @@ const CreateDonor = ({ id }) => {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
-}
+  );
+};
 
 CreateDonor.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default CreateDonor
+export default CreateDonor;

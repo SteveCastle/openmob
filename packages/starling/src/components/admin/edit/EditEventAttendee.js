@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_EVENTATTENDEE = gql`
   query getEventAttendeeById($id: ID!) {
@@ -38,7 +38,7 @@ const GET_EVENTATTENDEE = gql`
       }
     }
   }
-`
+`;
 const UPDATE_EVENTATTENDEE = gql`
   mutation updateEventAttendee($id: ID!, $eventAttendee: EventAttendeeInput) {
     updateEventAttendee(
@@ -47,7 +47,7 @@ const UPDATE_EVENTATTENDEE = gql`
       buildStatic: true
     )
   }
-`
+`;
 
 function EditEventAttendee({ id }) {
   const {
@@ -56,16 +56,16 @@ function EditEventAttendee({ id }) {
     loading,
   } = useQuery(GET_EVENTATTENDEE, {
     variables: { id },
-  })
+  });
 
-  const updateEventAttendee = useMutation(UPDATE_EVENTATTENDEE)
+  const updateEventAttendee = useMutation(UPDATE_EVENTATTENDEE);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -93,7 +93,7 @@ function EditEventAttendee({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -172,14 +172,14 @@ function EditEventAttendee({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditEventAttendee.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditEventAttendee
+export default EditEventAttendee;

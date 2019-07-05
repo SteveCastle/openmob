@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_LAYOUTROW = gql`
   query getLayoutRowById($id: ID!) {
@@ -34,12 +34,12 @@ const GET_LAYOUTROW = gql`
       Weight
     }
   }
-`
+`;
 const UPDATE_LAYOUTROW = gql`
   mutation updateLayoutRow($id: ID!, $layoutRow: LayoutRowInput) {
     updateLayoutRow(ID: $id, layoutRow: $layoutRow, buildStatic: true)
   }
-`
+`;
 
 function EditLayoutRow({ id }) {
   const {
@@ -48,16 +48,16 @@ function EditLayoutRow({ id }) {
     loading,
   } = useQuery(GET_LAYOUTROW, {
     variables: { id },
-  })
+  });
 
-  const updateLayoutRow = useMutation(UPDATE_LAYOUTROW)
+  const updateLayoutRow = useMutation(UPDATE_LAYOUTROW);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -85,7 +85,7 @@ function EditLayoutRow({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -164,14 +164,14 @@ function EditLayoutRow({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditLayoutRow.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditLayoutRow
+export default EditLayoutRow;

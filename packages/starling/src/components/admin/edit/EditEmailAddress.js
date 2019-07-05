@@ -1,19 +1,19 @@
 /* eslint-disable */
 
-import React from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import { Formik } from 'formik'
-import PropTypes from 'prop-types'
-import Content from '@openmob/bluebird/src/components/layout/Content'
-import Card from '@openmob/bluebird/src/components/cards/Card'
-import Form from '@openmob/bluebird/src/components/forms/Form'
-import Widget from '@openmob/bluebird/src/components/forms/Widget'
-import Label from '@openmob/bluebird/src/components/forms/Label'
-import Input from '@openmob/bluebird/src/components/forms/Input'
-import TextArea from '@openmob/bluebird/src/components/forms/TextArea'
-import Button from '@openmob/bluebird/src/components/buttons/Button'
-import parseObject from '../../../common/helpers'
+import React from 'react';
+import { useQuery, useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import Content from '@openmob/bluebird/src/components/layout/Content';
+import Card from '@openmob/bluebird/src/components/cards/Card';
+import Form from '@openmob/bluebird/src/components/forms/Form';
+import Widget from '@openmob/bluebird/src/components/forms/Widget';
+import Label from '@openmob/bluebird/src/components/forms/Label';
+import Input from '@openmob/bluebird/src/components/forms/Input';
+import TextArea from '@openmob/bluebird/src/components/forms/TextArea';
+import Button from '@openmob/bluebird/src/components/buttons/Button';
+import parseObject from '../../../common/helpers';
 
 const GET_EMAILADDRESS = gql`
   query getEmailAddressById($id: ID!) {
@@ -30,12 +30,12 @@ const GET_EMAILADDRESS = gql`
       Address
     }
   }
-`
+`;
 const UPDATE_EMAILADDRESS = gql`
   mutation updateEmailAddress($id: ID!, $emailAddress: EmailAddressInput) {
     updateEmailAddress(ID: $id, emailAddress: $emailAddress, buildStatic: true)
   }
-`
+`;
 
 function EditEmailAddress({ id }) {
   const {
@@ -44,16 +44,16 @@ function EditEmailAddress({ id }) {
     loading,
   } = useQuery(GET_EMAILADDRESS, {
     variables: { id },
-  })
+  });
 
-  const updateEmailAddress = useMutation(UPDATE_EMAILADDRESS)
+  const updateEmailAddress = useMutation(UPDATE_EMAILADDRESS);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error! {error.message}</div>
+    return <div>Error! {error.message}</div>;
   }
 
   return (
@@ -79,7 +79,7 @@ function EditEmailAddress({ id }) {
       }
     >
       {props => {
-        const { values, handleChange, handleBlur, handleSubmit } = props
+        const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
           <Content>
             <Card>
@@ -138,14 +138,14 @@ function EditEmailAddress({ id }) {
               </Form>
             </Card>
           </Content>
-        )
+        );
       }}
     </Formik>
-  )
+  );
 }
 
 EditEmailAddress.propTypes = {
   id: PropTypes.string,
-}
+};
 
-export default EditEmailAddress
+export default EditEmailAddress;

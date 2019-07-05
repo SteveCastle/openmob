@@ -16,10 +16,11 @@ import (
 
 // ComponentType is a type for component_type db element.
 type ComponentType struct {
-	ID        uuid.UUID
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	Title     string
+	ID                      uuid.UUID
+	CreatedAt               time.Time
+	UpdatedAt               time.Time
+	Title                   string
+	ComponentImplementation uuid.UUID
 }
 
 // ComponentTypeManager manages queries returning a componentType or list of componentTypes.
@@ -44,8 +45,8 @@ func (m *ComponentTypeManager) Create(ctx context.Context, item *v1.CreateCompon
 	defer c.Close()
 	var id string
 	// Execute INSERT query and then scan the resulting id into id string.
-	err = c.QueryRowContext(ctx, "INSERT INTO component_type (title) VALUES($1)  RETURNING id;",
-		item.Title).Scan(&id)
+	err = c.QueryRowContext(ctx, "INSERT INTO component_type (title, component_implementation) VALUES($1, $2)  RETURNING id;",
+		item.Title, item.ComponentImplementation).Scan(&id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to insert into ComponentType-> "+err.Error())
 	}
@@ -65,7 +66,7 @@ func (m *ComponentTypeManager) Get(ctx context.Context, id string) (*ComponentTy
 	defer c.Close()
 
 	// query ComponentType by ID
-	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title FROM component_type WHERE id=$1",
+	rows, err := c.QueryContext(ctx, "SELECT id, created_at, updated_at, title, component_implementation FROM component_type WHERE id=$1",
 		id)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to select from ComponentType-> "+err.Error())
@@ -82,7 +83,7 @@ func (m *ComponentTypeManager) Get(ctx context.Context, id string) (*ComponentTy
 	// scan ComponentType data into protobuf model
 	var componentType ComponentType
 
-	if err := rows.Scan(&componentType.ID, &componentType.CreatedAt, &componentType.UpdatedAt, &componentType.Title); err != nil {
+	if err := rows.Scan(&componentType.ID, &componentType.CreatedAt, &componentType.UpdatedAt, &componentType.Title, &componentType.ComponentImplementation); err != nil {
 		return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentType row-> "+err.Error())
 	}
 
@@ -118,7 +119,7 @@ func (m *ComponentTypeManager) List(ctx context.Context, filters []*v1.Component
 	list := []*ComponentType{}
 	for rows.Next() {
 		componentType := new(ComponentType)
-		if err := rows.Scan(&componentType.ID, &componentType.CreatedAt, &componentType.UpdatedAt, &componentType.Title); err != nil {
+		if err := rows.Scan(&componentType.ID, &componentType.CreatedAt, &componentType.UpdatedAt, &componentType.Title, &componentType.ComponentImplementation); err != nil {
 			return nil, status.Error(codes.Unknown, "failed to retrieve field values from ComponentType row-> "+err.Error())
 		}
 		list = append(list, componentType)
@@ -139,8 +140,8 @@ func (m *ComponentTypeManager) Update(ctx context.Context, item *v1.ComponentTyp
 	}
 	defer c.Close()
 
-	res, err := c.ExecContext(ctx, "UPDATE component_type SET title=$2 WHERE id=$1",
-		item.ID, item.Title)
+	res, err := c.ExecContext(ctx, "UPDATE component_type SET title=$2, component_implementation=$3 WHERE id=$1",
+		item.ID, item.Title, item.ComponentImplementation)
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "failed to update ComponentType-> "+err.Error())
 	}
@@ -193,6 +194,7 @@ func convertToComponentTypeProto(c *ComponentType) *v1.ComponentType {
 		CreatedAt: createdAt,
 		UpdatedAt: updatedAt,
 		Title:     c.Title,
+		ComponentImplementation: c.ComponentImplementation.String(),
 	}
 }
 
@@ -213,7 +215,7 @@ func (*ComponentTypeManager) GetProto(c *ComponentType) *v1.ComponentType {
 // BuildComponentTypeListQuery takes a filter and ordering object for a componentType.
 // and returns an SQL string
 func BuildComponentTypeListQuery(filters []*v1.ComponentTypeFilterRule, orderings []*v1.ComponentTypeOrdering, limit int64) string {
-	baseSQL := "SELECT id, created_at, updated_at, title FROM component_type"
+	baseSQL := "SELECT id, created_at, updated_at, title, component_implementation FROM component_type"
 	// Range over the provided rules and create where clauses.
 	for i, r := range filters {
 		if i == 0 {

@@ -1,18 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import ThemeProvider from '@openmob/bluebird/src/ThemeProvider'
-import skyward from '@openmob/bluebird/src/themes/skyward'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import ThemeProvider from '@openmob/bluebird/src/ThemeProvider';
+import skyward from '@openmob/bluebird/src/themes/skyward';
 
-import Row from '@openmob/bluebird/src/components/layout/Row'
-import Column from '@openmob/bluebird/src/components/layout/Column'
+import Row from '@openmob/bluebird/src/components/layout/Row';
+import Column from '@openmob/bluebird/src/components/layout/Column';
 
-import Layout from '../components/Layout'
-import Node from '../components/Node'
+import Layout from '../components/Layout';
+import Node from '../components/Node';
 
-import SEO from '../components/SEO'
+import SEO from '../components/SEO';
 
-const sortByWeight = (a, b) => a.Weight - b.Weight
+const sortByWeight = (a, b) => a.Weight - b.Weight;
 
 const IndexPage = ({
   data: {
@@ -40,7 +40,7 @@ const IndexPage = ({
       ))}
     </Layout>
   </ThemeProvider>
-)
+);
 
 export const pageQuery = graphql`
   query LandingPageQuery($id: ID!) {
@@ -96,13 +96,13 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 IndexPage.propTypes = {
   data: PropTypes.shape({
     wren: PropTypes.shape({
       getCause: PropTypes.shape({}),
     }),
   }),
-}
+};
 
-export default IndexPage
+export default IndexPage;
