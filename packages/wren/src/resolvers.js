@@ -88,7 +88,9 @@ const resolvers = client => ({
         filters: [{ ComponentType: ComponentType }],
         limit: 10
       });
-
+      if (!items) {
+        return componentID;
+      }
       const createField = async item => {
         const { item: fieldType } = await client
           .GetFieldType()
