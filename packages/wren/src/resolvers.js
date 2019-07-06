@@ -12,6 +12,7 @@ const resolvers = client => ({
     // If there is a DataPath value in the field.
     // Fetch the Membership entries from the CMS and return as json on DataPathValue field.
     DataPathValue: async ({ DataPath }, _, ctx) => {
+      console.log('resolving datapathvalue: ', ctx.cause, DataPath);
       if (DataPath && ctx.cause) {
         const data = await modules[DataPath].getFieldValue(client, ctx.cause);
         return data;

@@ -113,6 +113,26 @@ function ComponentEditor({
       ],
     });
 
+  const handleChangeWeight = newWeight => () =>
+    updateComponent({
+      variables: {
+        id: component.ID,
+        component: {
+          ComponentType: component.ComponentType.ID,
+          ComponentImplementation: component.ComponentImplementation.ID,
+          LayoutColumn: columnId,
+          Weight: parseInt(newWeight),
+        },
+        buildStatic: true,
+      },
+      refetchQueries: [
+        {
+          query: GET_PAGE,
+          variables: { id: pageId },
+        },
+      ],
+    });
+
   return (
     <div style={{ width: '100%', position: 'relative' }}>
       <Overlay
@@ -151,6 +171,12 @@ function ComponentEditor({
             handleSubmit={changeImplementation}
             options={componentType.ComponentImplementations}
             initValue={component.ComponentImplementation.ID}
+          />
+        </Control>
+        <Control label="Change Weight">
+          <TextWidget
+            handleSubmit={handleChangeWeight}
+            initValue={component.Weight}
           />
         </Control>
       </Overlay>

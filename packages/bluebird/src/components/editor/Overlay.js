@@ -44,6 +44,14 @@ const StyledOverlay = styled.div`
   z-index: ${({ locked }) => (locked ? 999 : 998)};
 `;
 
+const ActivateButton = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: black;
+  opacity: 0.7;
+`;
+
 function Overlay({ children, locked, onClick, nestingLevel }) {
   return (
     <StyledOverlay
@@ -53,6 +61,7 @@ function Overlay({ children, locked, onClick, nestingLevel }) {
       display="flex"
       nestingLevel={nestingLevel}
     >
+      {!locked && <ActivateButton />}
       {locked && children}
     </StyledOverlay>
   );

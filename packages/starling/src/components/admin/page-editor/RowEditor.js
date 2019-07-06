@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import Row from '@openmob/bluebird/src/components/layout/Row';
 import Overlay from '@openmob/bluebird/src/components/editor/Overlay';
 import Control from '@openmob/bluebird/src/components/editor/Control';
+import TextWidget from '@openmob/bluebird/src/components/editor/TextWidget';
 import Widget from '@openmob/bluebird/src/components/editor/Widget';
 
 import { GET_PAGE } from '../../../queries/getPage';
@@ -67,6 +68,25 @@ function RowEditor({ children, row, pageId, layoutId }) {
       ],
     });
 
+  const handleChangeWeight = newWeight => () =>
+    updateLayoutRow({
+      variables: {
+        id: row.ID,
+        layoutRow: {
+          Layout: layoutId,
+          Container: row.Container,
+          Weight: parseInt(newWeight),
+        },
+        buildStatic: true,
+      },
+      refetchQueries: [
+        {
+          query: GET_PAGE,
+          variables: { id: pageId },
+        },
+      ],
+    });
+
   const handleCreateColumn = () => () =>
     createLayoutColumn({
       variables: {
@@ -99,6 +119,12 @@ function RowEditor({ children, row, pageId, layoutId }) {
         </Control>
         <Control label="Add Column">
           <Widget handleSubmit={handleCreateColumn} />
+        </Control>
+        <Control label="Change Weight">
+          <TextWidget
+            handleSubmit={handleChangeWeight}
+            initValue={row.Weight}
+          />
         </Control>
       </Overlay>
 

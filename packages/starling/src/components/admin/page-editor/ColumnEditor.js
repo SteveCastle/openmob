@@ -5,6 +5,7 @@ import Column from '@openmob/bluebird/src/components/layout/Column';
 import Overlay from '@openmob/bluebird/src/components/editor/Overlay';
 import Control from '@openmob/bluebird/src/components/editor/Control';
 import Widget from '@openmob/bluebird/src/components/editor/Widget';
+import TextWidget from '@openmob/bluebird/src/components/editor/TextWidget';
 import { GET_PAGE } from '../../../queries/getPage';
 import { LIST_COMPONENT_TYPES } from '../../../queries/listComponentTypes';
 
@@ -104,6 +105,25 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
       ],
     });
 
+  const handleChangeWeight = newWeight => () =>
+    updateLayoutColumn({
+      variables: {
+        id: column.ID,
+        layoutColumn: {
+          Width: column.Width,
+          LayoutRow: rowId,
+          Weight: parseInt(newWeight),
+        },
+        buildStatic: true,
+      },
+      refetchQueries: [
+        {
+          query: GET_PAGE,
+          variables: { id: pageId },
+        },
+      ],
+    });
+
   return (
     <Column size={size} disableSpacing>
       <Overlay
@@ -129,6 +149,12 @@ function ColumnEditor({ children, size, column, pageId, rowId }) {
               { ID: 6, Title: '6' },
               { ID: 3, Title: '3' },
             ]}
+          />
+        </Control>
+        <Control label="Change Weight">
+          <TextWidget
+            handleSubmit={handleChangeWeight}
+            initValue={column.Weight}
           />
         </Control>
       </Overlay>
