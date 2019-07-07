@@ -24,16 +24,11 @@ const CREATE_ROW = gql`
 `;
 
 function PageEditor({ pageID, causeID }) {
-  const {
-    data: { getHomePage: page = {} },
-    error,
-    loading,
-  } = useQuery(GET_PAGE, {
+  const { data, error, loading } = useQuery(GET_PAGE, {
     variables: {
-      id: pageID,
+      id: causeID,
     },
   });
-
   const createLayoutRow = useMutation(CREATE_ROW);
 
   if (loading) {
@@ -43,6 +38,7 @@ function PageEditor({ pageID, causeID }) {
   if (error) {
     return <div>Error! {error.message}</div>;
   }
+  const page = data.getCause.HomePage;
   return (
     <Content top>
       <SEO title={page.Title} keywords={[`gatsby`, `application`, `react`]} />
@@ -51,6 +47,7 @@ function PageEditor({ pageID, causeID }) {
           <RowEditor
             pageId={page.ID}
             layoutId={page.Layout.ID}
+            causeId={causeID}
             row={row}
             key={row.ID}
           >
@@ -61,6 +58,7 @@ function PageEditor({ pageID, causeID }) {
                   size={column.Width}
                   rowId={row.ID}
                   pageId={page.ID}
+                  causeId={causeID}
                   column={column}
                 >
                   <Column key={column.ID} size={12}>

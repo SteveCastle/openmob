@@ -29,7 +29,7 @@ const CREATE_COLUMN = gql`
   }
 `;
 
-function RowEditor({ children, row, pageId, layoutId }) {
+function RowEditor({ children, row, pageId, layoutId, causeId }) {
   const [locked, setLock] = useState(false);
   const updateLayoutRow = useMutation(UPDATE_ROW);
   const deleteLayoutRow = useMutation(DELETE_ROW);
@@ -44,7 +44,7 @@ function RowEditor({ children, row, pageId, layoutId }) {
       refetchQueries: [
         {
           query: GET_PAGE,
-          variables: { id: pageId },
+          variables: { id: causeId },
         },
       ],
     });
@@ -63,7 +63,7 @@ function RowEditor({ children, row, pageId, layoutId }) {
       refetchQueries: [
         {
           query: GET_PAGE,
-          variables: { id: pageId },
+          variables: { id: causeId },
         },
       ],
     });
@@ -82,7 +82,7 @@ function RowEditor({ children, row, pageId, layoutId }) {
       refetchQueries: [
         {
           query: GET_PAGE,
-          variables: { id: pageId },
+          variables: { id: causeId },
         },
       ],
     });
@@ -99,7 +99,7 @@ function RowEditor({ children, row, pageId, layoutId }) {
       refetchQueries: [
         {
           query: GET_PAGE,
-          variables: { id: pageId },
+          variables: { id: causeId },
         },
       ],
     });

@@ -29,7 +29,7 @@ function Widget({ handleSubmit, initValue, options }) {
 
 Widget.propTypes = {
   handleSubmit: PropTypes.func,
-  initValue: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+  initValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   options: PropTypes.arrayOf(
     PropTypes.shape({
       ID: PropTypes.string,

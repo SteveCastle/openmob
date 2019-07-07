@@ -1,3 +1,7 @@
+// This module maps a dataPath field in a layout
+// to a set of gRPC requests to load data required for the dataPath.
+// This will probably be moved into gRPC service.
+
 async function getFieldValue(client, causeId) {
   const memberData = await client
     .ListElectionMembership()
@@ -14,10 +18,9 @@ async function getFieldValue(client, causeId) {
     return await Promise.all(memberItems.map(item => fetchItems(item)));
   };
   const data = await getData();
-  console.log(data);
   return JSON.stringify(data);
 }
 
 module.exports = {
-  getFieldValue,
+  getFieldValue
 };

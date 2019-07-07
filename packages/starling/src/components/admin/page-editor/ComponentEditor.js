@@ -48,6 +48,7 @@ function ComponentEditor({
   pageId,
   columnId,
   componentType,
+  causeId,
 }) {
   const [locked, setLock] = useState(false);
   const deleteComponent = useMutation(DELETE_COMPONENT);
@@ -64,7 +65,7 @@ function ComponentEditor({
       refetchQueries: [
         {
           query: GET_PAGE,
-          variables: { id: pageId },
+          variables: { id: causeId },
         },
       ],
     });
@@ -84,7 +85,7 @@ function ComponentEditor({
       refetchQueries: [
         {
           query: GET_PAGE,
-          variables: { id: pageId },
+          variables: { id: causeId },
         },
       ],
     });
@@ -108,7 +109,7 @@ function ComponentEditor({
       refetchQueries: [
         {
           query: GET_PAGE,
-          variables: { id: pageId },
+          variables: { id: causeId },
         },
       ],
     });
@@ -128,7 +129,7 @@ function ComponentEditor({
       refetchQueries: [
         {
           query: GET_PAGE,
-          variables: { id: pageId },
+          variables: { id: causeId },
         },
       ],
     });

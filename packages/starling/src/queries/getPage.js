@@ -2,66 +2,68 @@ import gql from 'graphql-tag';
 
 const GET_PAGE = gql`
   query HomePageQuery($id: ID!) {
-    getHomePage(ID: $id) {
-      ID
-      Title
-      Layout {
+    getCause(ID: $id) {
+      HomePage {
         ID
-        LayoutRows {
+        Title
+        Layout {
           ID
-          Container
-          Weight
-          LayoutColumns {
+          LayoutRows {
             ID
-            Width
+            Container
             Weight
-            Components {
+            LayoutColumns {
               ID
-              Fields {
+              Width
+              Weight
+              Components {
                 ID
-                FieldType {
-                  ID
-                  Title
-                  DataType
-                  PropName
-                }
-                StringValue
-                IntValue
-                FloatValue
-                BooleanValue
-                DateTimeValue {
-                  seconds
-                }
-                DataPathValue
-                DataPath
-              }
-              ComponentType {
-                ID
-                ComponentTypeFieldss {
+                Fields {
                   ID
                   FieldType {
                     ID
                     Title
+                    DataType
+                    PropName
                   }
+                  StringValue
+                  IntValue
+                  FloatValue
+                  BooleanValue
+                  DateTimeValue {
+                    seconds
+                  }
+                  DataPathValue
+                  DataPath
                 }
-                ComponentImplementations {
+                ComponentType {
                   ID
-                  Title
+                  ComponentTypeFieldss {
+                    ID
+                    FieldType {
+                      ID
+                      Title
+                    }
+                  }
+                  ComponentImplementations {
+                    ID
+                    Title
+                  }
+                  ComponentImplementation {
+                    ID
+                  }
                 }
                 ComponentImplementation {
                   ID
+                  Title
+                  Path
                 }
-              }
-              ComponentImplementation {
-                ID
-                Title
-                Path
               }
             }
           }
-        }
-        LayoutType {
-          ID
+          LayoutType {
+            ID
+          }
         }
       }
     }
