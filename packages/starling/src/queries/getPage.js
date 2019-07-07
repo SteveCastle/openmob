@@ -18,6 +18,7 @@ const GET_PAGE = gql`
               Weight
               Components {
                 ID
+                Weight
                 Fields {
                   ID
                   FieldType {
