@@ -43,8 +43,8 @@ const CreateProductMembership = ({ id }) => {
       {props => {
         const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
-          <Content>
-            <Card>
+          <Content top>
+            <Card width={9 / 10}>
               <Form>
                 <h1>Create ProductMembership</h1>
                 <Widget>

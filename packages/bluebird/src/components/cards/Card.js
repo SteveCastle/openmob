@@ -34,7 +34,6 @@ const StyledCard = styled.div`
   ${display}
   ${alignItems}
   ${justifyContent}
-  min-height: 100px;
   height: ${({ fillHeight }) => (fillHeight ? '100%' : null)};
 `;
 
@@ -43,10 +42,11 @@ function Card({ children, width = 1, fillHeight }) {
     <StyledCard
       bg="gray.0"
       p={2}
+      m={2}
       border={0}
       boxShadow={0}
       borderRadius={2}
-      display="flex"
+      display="inline-block"
       flexWrap="wrap"
       flexDirection="row"
       fontSize={1}

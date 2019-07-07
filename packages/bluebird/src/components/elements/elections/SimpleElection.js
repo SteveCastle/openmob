@@ -11,7 +11,7 @@ import {
   borderRadius,
   display,
   alignItems,
-  justifyContent,
+  justifyContent
 } from 'styled-system';
 
 const StyledElection = styled.section`
@@ -38,7 +38,7 @@ const Title = styled.h1`
   ${display}
   `;
 
-function SimpleElection({ title = 'SimpleElection' }) {
+function SimpleElection({ title = 'SimpleElection', elections = [] }) {
   return (
     <StyledElection
       display={'flex'}
@@ -49,12 +49,16 @@ function SimpleElection({ title = 'SimpleElection' }) {
       <Title color="gray.0" size={1}>
         {title}
       </Title>
+      <ul>
+        {elections && elections.map(election => <li>{election.Title}</li>)}
+      </ul>
     </StyledElection>
   );
 }
 
 SimpleElection.propTypes = {
   title: PropTypes.string.isRequired,
+  elections: PropTypes.arrayOf(PropTypes.shape({}))
 };
 SimpleElection.defaultProps = { title: 'Simple Election' };
 

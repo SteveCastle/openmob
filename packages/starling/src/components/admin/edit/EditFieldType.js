@@ -5,6 +5,7 @@ import { useQuery, useMutation } from 'react-apollo-hooks';
 import gql from 'graphql-tag';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
+import Spinner from '@openmob/bluebird/src/components/loaders/Spinner';
 import Content from '@openmob/bluebird/src/components/layout/Content';
 import Card from '@openmob/bluebird/src/components/cards/Card';
 import Form from '@openmob/bluebird/src/components/forms/Form';
@@ -60,7 +61,7 @@ function EditFieldType({ id }) {
   const updateFieldType = useMutation(UPDATE_FIELDTYPE);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
@@ -100,8 +101,8 @@ function EditFieldType({ id }) {
       {props => {
         const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
-          <Content>
-            <Card>
+          <Content top>
+            <Card width={9 / 10}>
               <Form>
                 <h1>Edit {item.ID}</h1>
                 <Widget>

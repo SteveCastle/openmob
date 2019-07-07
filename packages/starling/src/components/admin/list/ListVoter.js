@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo-hooks';
 import { Link } from '@reach/router';
 import gql from 'graphql-tag';
+import Spinner from '@openmob/bluebird/src/components/loaders/Spinner';
 import Content from '@openmob/bluebird/src/components/layout/Content';
 import Card from '@openmob/bluebird/src/components/cards/Card';
 import Button from '@openmob/bluebird/src/components/buttons/Button';
@@ -41,7 +42,7 @@ function ListVoter({ navigate = () => {} }) {
   } = useQuery(LIST_VOTER);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
@@ -61,8 +62,8 @@ function ListVoter({ navigate = () => {} }) {
   }
 
   return (
-    <Content>
-      <Card>
+    <Content top>
+      <Card width={9 / 10}>
         <h1>List Voter</h1>
         <Button
           label="Create a new Voter"

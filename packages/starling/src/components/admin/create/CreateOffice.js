@@ -40,8 +40,8 @@ const CreateOffice = ({ id }) => {
       {props => {
         const { values, handleChange, handleBlur, handleSubmit } = props;
         return (
-          <Content>
-            <Card>
+          <Content top>
+            <Card width={9 / 10}>
               <Form>
                 <h1>Create Office</h1>
                 <Widget>

@@ -47,6 +47,12 @@ const StyledDataTable = styled.table`
   ${display}
   ${alignItems}
   ${justifyContent}
+  table-layout:fixed;
+  width:100%;
+
+  & td {
+    word-wrap: break-word;
+  }
 `;
 
 function DataTable({ children }) {
