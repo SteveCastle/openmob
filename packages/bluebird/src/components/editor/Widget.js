@@ -32,7 +32,7 @@ Widget.propTypes = {
   initValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      ID: PropTypes.string,
+      ID: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       Title: PropTypes.string
     })
   )

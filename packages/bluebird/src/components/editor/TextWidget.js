@@ -28,7 +28,7 @@ function TextWidget({ handleSubmit, title, initValue }) {
 TextWidget.propTypes = {
   handleSubmit: PropTypes.func,
   title: PropTypes.string,
-  initValue: PropTypes.string
+  initValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default TextWidget;

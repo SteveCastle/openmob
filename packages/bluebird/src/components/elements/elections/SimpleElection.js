@@ -50,7 +50,10 @@ function SimpleElection({ title = 'SimpleElection', elections = [] }) {
         {title}
       </Title>
       <ul>
-        {elections && elections.map(election => <li>{election.Title}</li>)}
+        {elections &&
+          elections.map(election => (
+            <li key={election.ID}>{election.Title}</li>
+          ))}
       </ul>
     </StyledElection>
   );

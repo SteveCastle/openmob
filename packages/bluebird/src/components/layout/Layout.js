@@ -9,7 +9,7 @@ import {
   borders,
   borderRadius,
   display,
-  flexWrap,
+  flexWrap
 } from 'styled-system';
 
 const StyledLayout = styled.div`
@@ -40,8 +40,8 @@ function Layout({ children }) {
 Layout.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 Layout.defaultProps = {};
 
