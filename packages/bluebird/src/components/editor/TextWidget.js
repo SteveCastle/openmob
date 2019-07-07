@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function TextWidget({ handleSubmit, title, initValue }) {
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState('');
+  const [fresh, setFresh] = useState(true);
 
   return (
     <div
@@ -13,8 +14,11 @@ function TextWidget({ handleSubmit, title, initValue }) {
       <span>{title}</span>
       <input
         type="text"
-        onChange={e => setValue(e.target.value)}
-        value={value || initValue}
+        onChange={e => {
+          setValue(e.target.value);
+          setFresh(false);
+        }}
+        value={initValue && fresh ? initValue : value}
       />
       <button onClick={handleSubmit(value)}>Update</button>
     </div>
