@@ -138,6 +138,9 @@ message Delete{{.Name}}Response {
 }
 {{end}}
 
+  // CUSTOM MESSAGES
+
+
 // Generated Shrike Service Definition
 service ShrikeService {
   {{ range .Schema.Tables }}
@@ -180,4 +183,5 @@ service ShrikeService {
         };
     }
   {{end}}
+  // CUSTOM SERVICE ENDPOINTS
 }

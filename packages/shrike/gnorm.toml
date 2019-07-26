@@ -45,7 +45,7 @@ ExcludeTables = ["migrations", "spatial_ref_sys", "geometry_columns", "geography
 # environment variable may be used, which will expand to the name of the file
 # that was just generated.
 # Example to run goimports on each output file:
-PostRun = ["./scripts/gofmt.sh", "$GNORMFILE"]
+PostRun = ["./scripts/merge-proto.sh", "$GNORMFILE"]
 # PostRun = ["echo", "$GNORMFILE"]
 
 # OutputDir is the directory relative to the project root (where the
@@ -81,7 +81,6 @@ NoOverwriteGlobs = ["*.perm.go"]
 # "tables.gotmpl" would render tables.gotmpl template with data from the the
 # "public.users" table to ./public/users/users.go.
 [TablePaths]
-"pkg/service/v1/{{snake .Table}}.go" = "templates/handlers.gotmpl"
 
 # SchemaPaths iis a map of output paths to template paths that tells Gnorm how
 # to render and output its schema info.  Each template will be rendered with

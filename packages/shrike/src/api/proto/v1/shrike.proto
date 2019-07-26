@@ -6312,6 +6312,9 @@ message DeleteCauseResponse {
 }
 
 
+  // CUSTOM MESSAGES
+
+
 // Generated Shrike Service Definition
 service ShrikeService {
   
@@ -8967,4 +8970,5 @@ service ShrikeService {
         };
     }
   
+  // CUSTOM SERVICE ENDPOINTS
 }
