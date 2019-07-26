@@ -45,7 +45,7 @@ ExcludeTables = ["migrations", "spatial_ref_sys", "geometry_columns", "geography
 # environment variable may be used, which will expand to the name of the file
 # that was just generated.
 # Example to run goimports on each output file:
-PostRun = ["./scripts/merge-proto.sh", "$GNORMFILE"]
+PostRun = ["echo", "$GNORMFILE"]
 # PostRun = ["echo", "$GNORMFILE"]
 
 # OutputDir is the directory relative to the project root (where the

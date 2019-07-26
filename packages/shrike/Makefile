@@ -46,6 +46,9 @@ install:
 codegen:
 	gnorm gen
 	gnorm gen -c gnorm_go.toml
+	cd src/api/proto/v1; sed -i -e '/CUSTOMMESSAGES/r shrike_messages.proto' shrike.proto
+	cd src/api/proto/v1; sed -i -e '/CUSTOMSERVICE/r shrike_service.proto' shrike.proto
+
 protogen:
 	./scripts/protogen.sh
 generate: codegen protogen

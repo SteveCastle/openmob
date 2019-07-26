@@ -8971,5 +8971,5 @@ service ShrikeService {
     }
   
   // CUSTOMSERVICE
-// Merged from shrike_service.proto
+
 }
