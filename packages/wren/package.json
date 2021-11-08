@@ -19,7 +19,7 @@
   "homepage": "https://github.com/SteveCastle/openmob#readme",
   "dependencies": {
     "@grpc/proto-loader": "^0.4.0",
-    "apollo-server": "^2.4.6",
+    "apollo-server": "^2.25.3",
     "graphql": "^14.1.1",
     "graphql-import": "^0.7.1",
     "grpc": "^1.18.0",
